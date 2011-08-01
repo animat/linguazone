@@ -1,0 +1,34 @@
+<%= render :partial => "subscription/checkpoint", :locals => {:subscription => @subscription} %>
+
+<%= render :partial => "checkpoint" %>
+
+<div class="progressContent">
+	<% form_for @school, :url => {:controller => "schools", :action => "create"} do |f| %>
+		<%= f.error_messages %>
+		<p>
+			<%= f.label :name, "Your school's name:" %><br />
+			<%= f.text_field :name, {:size => 30} %>
+		</p>
+		<p>
+			<%= f.label :address, "Your school's address:" %><br />
+			<%= f.text_field :address, {:size => 30} %>
+		</p>
+		<p>
+			<%= f.label :city, "Your school's city:" %><br />
+			<%= f.text_field :city, {:size => 30} %>
+		</p>
+		<p>
+			<%= f.label :state_id, "Your school's state:" %><br />
+			<%= f.select(:state_id, grouped_options_for_select({"International" => @intl_states, " United States" => @states} )) %>
+		</p>
+		<p>
+			<%= f.label :zip, "Your school's zip code:" %><br />
+			<%= f.text_field :zip, {:size => 5} %>
+		</p>
+		<p>
+			<%= f.submit "Add your school to the database" %>
+		</p>
+	<% end %>
+</div>
+
+<%= render :partial => "teachers/checkpoint" %>

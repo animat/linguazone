@@ -1,0 +1,36 @@
+<% content_for :page_script do %>
+<script type="text/javascript">
+
+function showGamePreview(swf) {
+	$("player").innerHTML = '<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/fMyQPeOq4C0&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/fMyQPeOq4C0&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>';
+	$("now_playing").innerHTML = '<h2>Now watching: "Alphabet Tree" game preview</h2><p>Challenge students to group words in this fun game from LinguaZone. Students can do X, Y, or Z, but be careful - if you put a wrong answer in the tree, you need to start over!</p>';
+	$("tutorial_link").style.display = "inline";
+}
+function showTutorial() {
+	$("player").innerHTML = '<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/fMyQPeOq4C0&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/fMyQPeOq4C0&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>';
+	$("now_playing").innerHTML = '<h2>Now watching: How to customize a game</h2><p>Watch this quick video to see how it is to get started customizing games in just a few minutes. Easy as 1 - 2 - 3!</p>';
+	$("tutorial_link").style.display = "none";
+}
+
+</script>
+<% end %>
+<% stylesheet 'about' %>
+
+<h1>Create your own online games</h1>
+<p class="availability_note">Available with all LinguaZone accounts. Fullscreen mode and student tracking only available with premium subscriptions.</p>
+
+<h2>Customize engaging online games in just minutes.</h2>
+<p>Play colorful, animated computer games with your students using material directly from your class. LinguaZone has over 20 different templates for you to customize in a few quick steps, allowing teachers of any language to create a fun way to drill and practice material from your curricula.</p>
+
+<h2>Play the games in class, in the lab, on the projector, or at home.</h2>
+<p>There is no software to install with LinguaZone.com, so you decide how to integrate the games into your lessons. Capture your students' attention right away by having a game projected on your smart board as students walk into class, or reward hard work with a few minutes on the classroom computer. Take the whole class to the computer lab for the day, or assign LinguaZone games for homework while your students are reviewing for a test.</p>
+
+<h2>Perfect for smart boards.</h2>
+<p>Students are tuned in to technology, and modern classrooms are not far behind. Make the most out of the technology that is available to you with LinguaZone. Games are especially great on smart boards: invite students to pop balloons on the board with their finger or drag the correct answer into place in front of the class.</p>
+
+<h2>And it's easy to use.</h2>
+<p>Watch our quick tutorial video below to see just how easy it is.</p>
+
+<div style="width: 600px; height: 400px; margin: 0px auto;">
+	<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/_paBk49B1wc&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/_paBk49B1wc&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>
+</div>

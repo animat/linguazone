@@ -1,0 +1,14 @@
+<% stylesheet "students" %>
+
+<h1>Schools in <%= @state.name %></h1>
+<p>Listed alphabetically</p>
+
+<% unless @schools.empty? %>
+	<div id="list_schools">
+		<ul>
+			<% for school in @schools do %>
+				<li><%= link_to school.name+" <span>in "+school.city+"</span>", school_path(school) %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>

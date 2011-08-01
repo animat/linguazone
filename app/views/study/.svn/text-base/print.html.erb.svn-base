@@ -1,0 +1,85 @@
+<% content_for(:page_script) do %>
+<script type="text/javascript">
+var printStyle;
+
+function getPrintStyle() {
+    var i, a;
+    for (i = 0; (a = document.getElementsByTagName("link")[i]); i++) {
+        if (a.getAttribute("rel").indexOf("style") != -1
+         && a.getAttribute("title")
+         && !a.disabled) 
+            return a.getAttribute("title");
+    }
+    return null;
+}
+
+	
+function printList() {
+	alert("style :: "+getPrintStyle());
+	
+	printStyle = document.createElement('link');
+	printStyle.setAttribute('rel', 'stylesheet');
+	printStyle.setAttribute('href', '/stylesheets/print_list.css');
+	printStyle.setAttribute('type', 'text/css');
+	printStyle.setAttribute('media', 'print');
+	
+	document.getElementsByTagName('head')[0].appendChild(printStyle);
+	
+	window.print();
+	
+//	window.location.reload();
+}
+
+function printFlashCards() {
+	alert("style :: "+getPrintStyle());
+	
+	printStyle = document.createElement('link');
+	printStyle.setAttribute('rel', 'stylesheet');
+	printStyle.setAttribute('href', '/stylesheets/print_flash_cards.css');
+	printStyle.setAttribute('type', 'text/css');
+	printStyle.setAttribute('media', 'print');
+	
+	document.getElementsByTagName('head')[0].appendChild(printStyle);
+	
+	window.print();
+	
+//	window.location.reload();
+}
+</script>
+<% end %>
+
+<div id="instructions">
+	Print your words as <%= link_to_function "flash cards", "window.print()" %>
+</div>
+
+<div>
+	<% counter = 0 %>
+	<% @nodes.each_with_index do |node, index| %>
+		
+		<% if index == @nodes.length %>
+			<table id="last">
+		<% elsif counter == 0 %>
+			<table>
+		<% end %>
+			<% if counter == 5 %>
+				<tr class="last">
+			<% else %>
+				<tr>
+			<% end %>
+				<% node.elements.each do |n| %>
+					<% if n.name == "question" %>
+						<%=  '<td class="left">'+String(n.attribute("content"))+'</td>' %>
+					<% else %>
+						<%= '<td>'+String(n.attribute("content"))+'</td>' %>
+					<% end %>
+				<% end %>
+			</tr>
+		<% counter += 1 %>
+		
+		<% if counter == 5 %>
+			<% counter = 0 %>
+			</table>
+		<% end %>
+		
+	<% end %>
+</div>

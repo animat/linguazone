@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/lz-v2/!svn/ver/58/lz/app/views/contact_mailer
+END
+report_bug.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/lz-v2/!svn/ver/58/lz/app/views/contact_mailer/report_bug.html.erb
+END
+contact_email.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/lz-v2/!svn/ver/29/lz/app/views/contact_mailer/contact_email.html.erb
+END

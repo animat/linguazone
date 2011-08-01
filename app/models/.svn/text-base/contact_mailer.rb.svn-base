@@ -1,0 +1,24 @@
+class ContactMailer < ActionMailer::Base
+  
+  def contact_email(email_params)
+    recipients    "info@linguazone.com"
+    from          "info@linguazone.com"
+    reply_to      '"'+email_params[:name]+'" <'+email_params[:address]+'>'
+    subject       "LinguaZone contact form"
+    body          :name => email_params[:name], :address => email_params[:address], :school => email_params[:school], :city => email_params[:city], :state => email_params[:state], :body => email_params[:body]
+    content_type  "text/html"
+  end
+  
+  def report_bug(params)
+    if params[:user_id] and params[:user_id] != 0 and params[:user_id] != "undefined"
+      @user = User.find(params[:user_id])
+      reply_to    '"'+@user.display_name+'" <'+@user.email+'>'
+    end
+    recipients    "info@linguazone.com"
+    from          "info@linguazone.com"
+    subject       "LinguaZone bug report"
+    body          :body => params[:body], :game_id => params[:game_id]
+    content_type   "text/html"
+  end
+
+end

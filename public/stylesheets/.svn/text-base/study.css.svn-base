@@ -1,0 +1,47 @@
+#notepad {
+	width: 621px;
+	padding:25px 20px 20px 20px;
+	margin: 0px auto;
+	background: url('../../images/word_lists/lined_yellow_paper.gif') repeat-y;
+	line-height: 24px;
+}
+#notepad_footer {
+	width: 621px;
+	height: 37px;
+	padding:0px 20px 0px 20px;
+	margin: 0px auto;
+	background: url('../../images/word_lists/lined_yellow_paper_bottom.gif') no-repeat;
+}
+p.wordListTitle {
+	margin-left:5px;
+	font-family:Trebuchet MS, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight:bold;
+	color:#003399;
+	padding-bottom:30px;
+}
+.wordListOptions {
+	width: 700px;
+	margin: 0 auto;
+}
+.wordListOptions ul li {
+	list-style: none;
+	display: inline;
+}
+.wordListGames {
+	width: 450px;
+	text-align: center;
+	border: thin solid #000;
+	margin:0 auto;
+	display: none;
+	height: 0px;
+	visibility: none;
+}
+.studyInstructions {
+	width:600px;
+	text-align: left;
+	background:#FFFFFF;
+	margin: 59px auto;
+	padding: 10px;
+	border: 1px dotted black;
+}

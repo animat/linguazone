@@ -1,0 +1,29 @@
+#game_window {
+	margin: 0px auto;
+	padding: 20px;
+	width: 640px;
+	height: 440px;
+	background: url('../images/play/game_window.gif') no-repeat;
+}
+#game {
+	width: 600px;
+	height: 400px;
+	background: #CCC;
+}
+
+#sortStats  {
+	padding-top: 15px;
+	width: 590px;
+	margin: 0px auto;
+}
+p.statsHeader {
+	margin-top: 1em;
+	padding: 3px;
+	background: #C6E2FF;
+}
+p.statsDetails {
+	padding-left: 20px;
+}
+span.statsDate {
+	color: #666;
+}

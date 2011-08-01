@@ -1,0 +1,135 @@
+ul {
+	margin: 0;
+	padding: 0;
+}
+li {
+	list-style: none;
+	display: inline;
+}
+fieldset {
+	padding: 10px;
+	margin: 20px auto;
+	width: 800px;
+}
+
+#school_info h1 {
+	float: left;
+}
+#school_info p {
+	float: right;
+	font-size: .9em;
+	font-family: Trebuchet MS, Times, serif;
+	text-align: right;
+	color: #003399;
+}
+#settings {
+	width: 85%;
+	margin: 0px auto;
+	padding: 10px;
+	background-color: #FFEFD5;
+}
+p.note {
+	font-size: .8em;
+	color: #666;
+}
+.section_header {
+	background-color: #FF6600;
+	height: 38px;
+	margin: 20px 14px 20px 10px;
+}
+.section_header h2 {
+	float: left;
+	padding: 10px 20px 0px 35px;
+	color: #FFFFFF;
+	text-shadow: 2px 2px 2px #663366;
+}
+.section_header div.add {
+	float: right;
+	margin-top: 5px;
+	background: url('../images/courses/show/section_header_add.gif') right top no-repeat;
+	color: #009900;
+}
+.section_header div.add p {
+	text-align: right;
+	width: 137px;
+	margin-top: 4px;
+	margin-right: 12px;
+}
+.section_header div.add p a {
+	color: #009900;
+	padding: 2px 2px 2px 50px;
+}
+
+.post {
+	padding-left: 40px;
+	margin-bottom: 15px;
+}
+.post h3 {
+	float: left;
+}
+.post p.date {
+	float: left;
+	margin-left: 30px;
+	color: #009900;
+	font-size: .9em;
+}
+
+.available_item {
+	margin-left: 30px;
+	height: 170px;
+	position: relative;
+}
+.available_item img {
+	float: left;
+}
+.available_item p {
+	position: absolute;
+	left: 165px;
+	top: 25%;
+}
+.available_item  ul {
+	display: none;
+}
+
+.available_item_controls {
+	margin-left: 30px;
+	height: 170px;
+	position: relative;
+}
+.available_item_controls img {
+	float: left;
+}
+.available_item_controls p {
+	position: absolute;
+	left: 165px;
+	top: 25%;
+}
+.available_item_controls ul {
+	display: block;
+	background-color: #FFEFD5;
+	padding: 10px;
+}
+.available_item_controls li {
+	padding: 10px;
+}
+
+.hidden_item {
+	margin-left: 10px;
+}
+.hidden_item div.details {
+	float: left;
+}
+.hidden_item div.details img {
+	float: left;
+}
+.hidden_item div.details p {
+	float: left;
+	padding-top: 15px;
+	padding-left: 40px;
+	margin-bottom: 20px;
+}
+.hidden_item div.controls {
+	float: right;
+	padding-top: 10px;
+	padding-right: 10px;
+}

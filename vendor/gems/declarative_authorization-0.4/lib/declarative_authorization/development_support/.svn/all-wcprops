@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/declarative_authorization-0.4/lib/declarative_authorization/development_support
+END
+development_support.rb
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/declarative_authorization-0.4/lib/declarative_authorization/development_support/development_support.rb
+END
+analyzer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/declarative_authorization-0.4/lib/declarative_authorization/development_support/analyzer.rb
+END
+change_supporter.rb
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/declarative_authorization-0.4/lib/declarative_authorization/development_support/change_supporter.rb
+END
+change_analyzer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/declarative_authorization-0.4/lib/declarative_authorization/development_support/change_analyzer.rb
+END

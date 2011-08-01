@@ -1,0 +1,18 @@
+<% stylesheet "students" %>
+
+<h1>Find your school</h1>
+
+<% if @schools.empty? %>
+	<p>Sorry! We couldn't find any schools with that name. Use the links below to locate your school instead.</p>
+	<div id="list_states">
+		<%= render :partial => "browse_for_school" %>
+	</div>
+<% else %>
+	<div id="list_schools">
+		<ul>
+			<% for school in @schools do %>
+				<li><%= link_to school.name+" <span>in "+school.city+"</span>", school_path(school) %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>

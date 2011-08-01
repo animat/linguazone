@@ -1,0 +1,20 @@
+<p><%= description %>: 
+	<%= link_to_function ""+String(total_count)+" users" do |page|
+			page << "if ($('"+table_id+"').visible()) {"
+				page[table_id].hide
+			page << "} else {"
+				page[table_id].show
+			page << "}"
+		end
+	 %>
+</p>
+
+<table id="<%= table_id %>" style="display: none;" width="100%">
+	<% for user in users do %>
+		<tr>
+			<td><%= user.first_name %> <%= user.last_name %></td>
+			<td><%= user.email %></td>
+			<td><%= format_short_date(user.subscription.expired_at) %></td>
+		</tr>
+	<% end %>
+</table>

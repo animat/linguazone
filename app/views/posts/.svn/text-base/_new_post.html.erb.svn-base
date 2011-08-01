@@ -1,0 +1,29 @@
+<h1>Create a new post</h1>
+
+<% form_for(@post) do |f| %>
+ 	<%= f.error_messages %>
+
+	<div style="padding: 20px">
+		<p>
+			<%= f.label :title %><br />
+			<%= f.text_field :title, :size => 40 %>
+		</p>
+		<p>
+			<%= f.label :content %><br />
+			<%= f.text_area :content, :rows => 10, :cols => 51 %>
+		</p>
+		<p>
+			<%= f.label :audio_id, "Record audio (optional): "%><br />
+			<%= swf_tag "audio-widget", {:size => "215x138"} %>
+		</p>
+		<p>
+			<%= f.check_box "shared" %> <%= f.label "shared", "Students can see each others' responses" %>
+		</p>
+		<p style="padding-left: 50px">
+			<%= f.hidden_field :course_id, :value => @course_id %>
+			<%= f.hidden_field :user_id, :value => current_user.id %>
+			<%= f.hidden_field :audio_id, :value => 0 %>
+	    	<%= f.submit 'Create' %>
+		</p>
+	</div>
+<% end %>

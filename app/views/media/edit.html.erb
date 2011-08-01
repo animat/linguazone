@@ -1,0 +1,45 @@
+<h1>Edit media item: <%= @asset.descrip %></h1>
+<br />
+
+<% form_for @asset, :html => {:multipart => true}, :url => {:controller => "media", :action => "update"} do |f| %>
+	
+	<%= f.error_messages %>
+	
+	<% if current_user.id == 30 || current_user.id == 31 %>
+		<p><%= f.label :name, "Name: "%> <%= f.text_field :name %></p>
+		<p><%= f.label :descrip, "Description: "%> <%= f.text_field :descrip %></p>
+		<p><%= f.label :media_category_id, "Category: "%> <%= f.select :media_category_id, MediaCategory.all.map {|mc| [mc.name, mc.id]} %></p>
+		<p><%= f.label :notes, "Notes:" %><br /><%= f.text_area :notes, :rows => 5, :cols => 30 %></p>
+	<% elsif current_user.role == "artist" %>
+		<p><strong>Name:</strong> <%= @asset.name %></p>
+		<p><strong>Description:</strong> <%= @asset.descrip %></p>
+		<p><strong>Category:</strong> <%= @asset.media_category.name %></p>
+		<p>
+			<strong>Notes: </strong>
+			<% if @asset.notes.empty? %>
+				No notes for this item.
+			<% else %>
+				<%= @asset.notes %>
+			<% end %>
+		</p>
+	<% end %>
+	
+	<p><%= f.label :assigned_to, "In progress with artist:" %> <%= f.select :assigned_to, options_for_select({"Orissa" => "Orissa", "Chris" => "Chris", "Francis" => "Francis", "Huang" => "Huang"}, @asset.assigned_to), :include_blank => true %></p>
+	<hr />
+	<p><%= swf_tag @asset.swf.url, {:size => "500x500"} %> <%= swf_tag @asset.swf.url, {:size => "200x200"} %> <%= swf_tag @asset.swf.url, {:size => "80x80"} %></p>
+	<%= @asset.swf.url %>
+	<p><%= f.label :fla %> <%= f.file_field :fla %> (submitted <%= format_date_time(@asset.fla_updated_at) %>)</p>
+	<p><%= f.label :swf %> <%= f.file_field :swf %> (submitted <%= format_date_time(@asset.fla_updated_at) %>)</p>
+	<hr />
+	
+	<% unless current_user.nil? %>
+		<% if current_user.id == 30 || current_user.id == 31 %>
+			<p><%= f.check_box :published %> <%= f.label :published, "Publish this item on the website" %></p>
+		<% end %>
+	<% end %>
+	<p>
+		<%= f.hidden_field :media_type_id, :value => "1" %>
+		<%= f.submit %>
+	</p>
+	
+<% end %>

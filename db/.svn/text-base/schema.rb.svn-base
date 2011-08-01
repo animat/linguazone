@@ -1,0 +1,183 @@
+# This file is auto-generated from the current state of the database. Instead of editing this file, 
+# please use the migrations feature of Active Record to incrementally modify your database, and
+# then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your database schema. If you need
+# to create the application database on another system, you should be using db:schema:load, not running
+# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended to check this file into your version control system.
+
+ActiveRecord::Schema.define(:version => 20100225155559) do
+
+  create_table "activities", :force => true do |t|
+    t.string  "name"
+    t.string  "swf"
+    t.text    "help"
+    t.integer "convertable"
+  end
+
+  create_table "audio_clips", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "used_in_games_tally"
+    t.integer  "post_id"
+    t.integer  "comment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "available_games", :force => true do |t|
+    t.integer "game_id",   :null => false
+    t.integer "user_id",   :null => false
+    t.integer "course_id", :null => false
+    t.integer "order",     :null => false
+    t.integer "hidden",    :null => false
+  end
+
+  create_table "available_word_lists", :id => false, :force => true do |t|
+    t.integer "word_list_id"
+    t.integer "user_id"
+    t.integer "course_id"
+    t.integer "order",        :null => false
+    t.integer "hidden",       :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "user_id",    :null => false
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "course_registrations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "courses", :force => true do |t|
+    t.integer "user_id"
+    t.string  "name"
+    t.integer "grade"
+    t.boolean "login_required", :default => false
+    t.string  "code"
+  end
+
+  create_table "games", :force => true do |t|
+    t.text     "xml"
+    t.string   "description"
+    t.string   "audio_ids"
+    t.integer  "template_id"
+    t.integer  "language_id"
+    t.integer  "activity_id",   :null => false
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "high_scores", :force => true do |t|
+    t.string    "score",           :null => false
+    t.integer   "game_id",         :null => false
+    t.timestamp "submitted_at",    :null => false
+    t.string    "submitted_by",    :null => false
+    t.string    "submitted_by_ip", :null => false
+  end
+
+  create_table "languages", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "news", :force => true do |t|
+    t.string   "headline"
+    t.string   "summary"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "audio_id",   :null => false
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schools", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.integer  "state_id",   :null => false
+    t.integer  "zip"
+    t.integer  "pin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "expired_at"
+  end
+
+  create_table "states", :force => true do |t|
+    t.string  "name"
+    t.string  "abbr"
+    t.integer "intl"
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.string   "plan"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "templates", :force => true do |t|
+    t.text     "xml"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "admin"
+    t.integer  "activity_id", :null => false
+    t.integer  "language_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_sessions", :force => true do |t|
+    t.string "email",    :null => false
+    t.string "password", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.boolean  "enabled",              :default => true, :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "display_name"
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "password_salt",                          :null => false
+    t.string   "persistence_token",                      :null => false
+    t.integer  "school_id",                              :null => false
+    t.string   "role",                                   :null => false
+    t.integer  "subscription_type_id",                   :null => false
+    t.integer  "discount_id",                            :null => false
+    t.integer  "receive_newsletter",                     :null => false
+    t.integer  "default_language_id",                    :null => false
+    t.datetime "created_at"
+    t.datetime "expired_at"
+    t.datetime "last_login_at"
+  end
+
+  create_table "word_lists", :force => true do |t|
+    t.text     "xml"
+    t.text     "description"
+    t.integer  "language_id"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+end

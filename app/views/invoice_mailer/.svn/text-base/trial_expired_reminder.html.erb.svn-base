@@ -1,0 +1,29 @@
+<p>
+	Hi <%= @user.first_name %>,
+</p>
+
+<p>
+	I'm getting in touch to let you know that your trial to LinguaZone just expired. I hope you've had a chance to enjoy using the site with your students!
+</p>
+<p>
+	LinguaZone is made by language teachers, for language teachers. We'd certainly appreciate your support if you're able to sign up for a 12-month subscription to continue to use LinguaZone games, word lists, and audio blogs with your classes. It is through support from teachers like you that we're able to continue developing the kinds of online tools that connect with language students in new ways.
+</p>
+
+<p>
+	To sign up for a subscription, just login to the site and select a subscription plan when you are prompted. If you have any questions about signing up for a subscription, please reply to this email (info@linguazone.com) or call me 610.322.9137.
+</p>
+
+<p>
+	All the best,<br />
+	Colin
+</p>
+
+<p>
+	--<br />
+	Colin Angevine<br />
+	Director, LinguaZone<br />
+	LinguaZone.com<br />
+	LinguaZoneCamps.com<br />
+	PrimaLingua.net<br />
+	610.322.9137
+</p>

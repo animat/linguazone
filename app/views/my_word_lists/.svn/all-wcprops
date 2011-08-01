@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/lz-v2/!svn/ver/53/lz/app/views/my_word_lists
+END
+_word_list.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/lz-v2/!svn/ver/28/lz/app/views/my_word_lists/_word_list.html.erb
+END
+_hidden_list.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/lz-v2/!svn/ver/28/lz/app/views/my_word_lists/_hidden_list.html.erb
+END
+search.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/lz-v2/!svn/ver/28/lz/app/views/my_word_lists/search.html.erb
+END
+index.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/lz-v2/!svn/ver/53/lz/app/views/my_word_lists/index.html.erb
+END
+all.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/lz-v2/!svn/ver/28/lz/app/views/my_word_lists/all.html.erb
+END
+_search_fields.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/lz-v2/!svn/ver/28/lz/app/views/my_word_lists/_search_fields.html.erb
+END
+show.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/lz-v2/!svn/ver/1/lz/app/views/my_word_lists/show.html.erb
+END

@@ -1,0 +1,28 @@
+<% content_for :page_script do %>
+<script type="text/javascript">
+
+Event.observe(window, 'load', function() {
+	$('onlySearchMyGames').hide();
+	$('more_options').show();
+	$('fewer_options').hide();
+});
+
+</script>
+<% end %>
+
+<% stylesheet "my_games" %>
+
+<h1>All of my games</h1>
+<fieldset>
+	<legend>Search my games</legend>
+	<%= render :partial => "search_fields" %>
+</fieldset>
+
+<% unless @games.nil? or @games.empty? %>
+	<%= page_entries_info @games %>
+	<% paginated_section @games do %>
+		<% @games.each do |g| %>
+			<%= render :partial => "game", :locals => {:game => g} %>
+		<% end %>
+	<% end %>
+<% end %>

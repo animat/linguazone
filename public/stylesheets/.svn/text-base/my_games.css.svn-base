@@ -1,0 +1,45 @@
+#listGames {
+	
+}
+
+
+fieldset {
+	margin: 15px auto;
+	width: 70%;
+}
+
+.game_listing {
+	padding: 5px;
+	border-bottom: 1px dotted #000000;
+}
+.game_listing img {
+	float: left;
+	padding-right: 20px;
+}
+.game_details {
+	float: left;
+	width: 75%;
+}
+.game_details p {
+	padding-top: 10px;
+}
+span.date {
+	color: #666;
+	font-size: .8em;
+}
+span.hint {
+	color: #666;
+	font-size: .8em;
+}
+.display_item_highlight {
+	padding: 5px;
+	background-color:#FFCC99;
+	border-bottom: 1px dotted #000000;
+}
+
+
+.manage_game {
+	float: right;
+	padding: 20px;
+	background-color: #FFEFD5;
+}

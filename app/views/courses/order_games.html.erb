@@ -1,0 +1,24 @@
+<% stylesheet 'course' %>
+
+<div>
+	<div id="order_instructions">
+		<h1>Drag and drop your games in order,</h1>
+		<p>then <%= link_to "save and return to "+@course.name, :controller => "courses", :action => "show", :id => @course.id %> when you are finished.</p>
+	</div>
+	<br class="clearFloat" />
+</div>
+<div id="order_games">
+	<ul id="sortable_list">
+		<% @games.each do |g| %>
+			<% unless g.game.nil? %>
+				<li id="item_<%= g.id %>">
+					<%= image_tag '/games/'+g.game.activity.swf+'/display/icon-small.jpg' %>
+					<p><%= g.game.description %></p>
+					<br class="clearFloat" />
+				</li>
+			<% end %>
+		<% end %>
+	</ul>
+</div>
+
+<%= sortable_element(:sortable_list, :update => 'items', :url => {:action => :update_game_order}) %>

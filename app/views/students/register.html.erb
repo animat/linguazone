@@ -1,0 +1,39 @@
+<h1>Register in a new class</h1>
+<p>Make sure to have your class code ready if your class page is password protected. If you don't know your class code, just ask your teacher or one of your classmates.</p>
+
+<div class="progressHeader">
+	<%= image_tag "shared-buttons/progress-button-1.jpg" %><h3>First, find your school</h3>
+</div>
+<br class="clearFloat" />
+
+<div class="progressContent">
+	<div id="search_for_school">
+		<% form_remote_tag :url => {:controller => "students", :action => "find_school"} do |f| %>
+			<p>
+				<%= label :school, :name, "Your school's name:" %><br />
+				<%= text_field_with_auto_complete :school, :name %>
+				<%= submit_tag "Check the database" %>
+			</p>
+		<% end %>
+	</div>
+	<div id="select_school"></div>
+</div>
+
+<div class="progressHeader">
+	<%= image_tag "shared-buttons/progress-button-2.jpg" %><h3>Next, find your class</h3>
+</div>
+<br class="clearFloat" />
+
+<div class="progressContent">
+	<div id="select_course"></div>
+</div>
+
+<div class="progressHeader">
+	<%= image_tag "shared-buttons/progress-button-3.jpg" %><h3>Finally, enter your class code (if needed)</h3>
+</div>
+<br class="clearFloat" />
+
+<div class="progressContent">
+	<div id="enter_code"></div>
+	<div id="confirm_code"></div>
+</div>

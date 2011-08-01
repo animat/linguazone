@@ -1,0 +1,158 @@
+<% content_for :page_script do %>
+<script type="text/javascript">
+
+function showTutorial(type) {
+	if (type == "games") {
+		var swf = '<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/_paBk49B1wc&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/_paBk49B1wc&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>';
+		var descrip = "<h2>Now watching: Customizing your own games on LinguaZone.com</h2><p>Choose from over 20 templates to create your own colorful, engaging games to challenge your students at school or home.</p>";
+	} else if (type == "word_lists") {
+		var swf = '<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/lRvF8QiI-LQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/lRvF8QiI-LQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>';
+		var descrip = "<h2>Now watching: Customizing word lists on LinguaZone.com</h2><p>Create powerful study tools to help your students with vocabulary, whether online or offline.</p>";
+	} else if (type == "audio_blogs") {
+		var swf = '<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/mXTyA-Hob1c&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/mXTyA-Hob1c&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>';
+		var descrip = '<h2>Now watching: Creating an audio blog on LinguaZone.com</h2><p>Create posts with text, audio, or both, and give your students a chance to comment on your posts with audio, too. A whole new way to interact outside of the classroom.</p>';
+	}
+	
+	$("player").innerHTML = swf;
+	$("player").style.display = "block";
+}
+
+function edit_password() {
+	$("password_display").style.display = "none";
+	$("password_field").style.display = "block";
+}
+
+</script>
+<% end %>
+
+
+<% stylesheet 'teachers' %>
+
+<div>
+	<div class="floatLeft">
+		<h1>Overview</h1>
+		<p>Manage your classes, games, and word lists from your teacher homepage.</p>
+	</div>
+	<% link_to logout_path do %>
+		<div class="floatRight">
+			<div class="delete_button"><span>logout</span></div>
+		</div>
+	<% end %>
+	<br class="clearFloat" />
+</div>
+<br />
+<div id="player" style="margin: 0px auto; display: none;">
+	<%= swf_tag 'http://www.youtube.com/v/16OTJ6zfAIA&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6', :size => "600x400", :parameters => {:size => "600x400", :allowFullScreen => true, :scale => "exactfit", :allowScriptAccess => "always", :quality => "high", :align => "middle"} %>
+	<br />
+</div>
+<div>
+	<div id="enclose">
+		<div id="notepad">
+			<div class="notepadHeader">
+				<h2>Tutorial videos</h2>
+			</div>
+			<div class="notepadBody">
+				<ul>
+					<li><%= link_to_function "Overview: games", "showTutorial('games');" %></li>
+					<li><%= link_to_function "Overview: word lists", "showTutorial('word_lists');" %></li>
+					<li><%= link_to_function "Overview: audio blogs", "showTutorial('audio_blogs');" %></li>
+				</ul>
+			</div>
+			<div class="notepadFooter"></div>
+		</div>
+		<div id="quickLinks">
+			<h2>Quick links</h2>
+			<% link_to :controller => "my_courses", :action => "new" do %>
+				<div class="new_button"><span>new class</span></div>
+			<% end %>
+			<% link_to :controller => "customize", :action => "new", :cmzr_type => "game" do %>
+				<div class="new_button"><span>new game</span></div>
+			<% end %>
+			<% link_to :controller => "customize", :action => "new", :cmzr_type => "list" do %>
+				<div class="new_button"><span>new word list</span></div>
+			<% end %>
+		</div>
+	</div>
+	<div id="listClasses">
+		<h2>Quick class links</h2>
+		<ul>
+			<% unless @courses.nil? or @courses.empty? %>
+				<% for course in @courses do %>
+					<li><%= link_to course.name, :controller => "courses", :action => "show", :id => course.id %></li>
+				<% end %>
+			<% else %>
+				You have not created any classes yet.
+			<% end %>
+		</ul>
+	</div>
+	<br class="clearFloat" />
+</div>
+
+<div id="news">
+	<h2>Latest news on LinguaZone</h2>
+	<% for item in @news_items do %>
+		<h3><%= item.headline %></h3>
+		<p><%= item.summary %></p>
+	<% end %>
+</div>
+
+<hr />
+
+<div>
+	<div id="my_account">
+		<h2>My account</h2>
+		<p>
+			<strong>Name:</strong> <%= current_user.first_name %> <%= current_user.last_name %><br />
+			<strong>Email address:</strong> <%= current_user.email %><br />
+			<strong>Password:</strong> <span id="password_display">************** <%= link_to_function "[edit]", "edit_password()" %></span>
+									   <span id="password_field" style="display: none">
+											<% form_for @user, :url => {:controller => "teachers", :action => "update"} do |f| %>
+												<%= f.password_field "password", :size => 15 %>
+												<%= f.submit "Change password" %>
+											<% end %>
+										</span>
+		</p>
+
+		<p>
+			<strong><%= current_user.school.name %></strong><br />
+			<%= current_user.school.city %>, <%= current_user.school.state.name %>
+		</p>
+		<p>
+			<strong>5-digit pin number:</strong> <%= current_user.subscription.pin %>
+		</p>
+	</div>
+
+	<div id="my_prefs">
+		<h2>My preferences</h2>
+		<p>
+			<% form_for @user, :url => {:controller => "teachers", :action => "update"} do |f| %>
+				<%= f.error_messages %>
+				<%= f.label :display_name, "Display my name to students on LinguaZone.com as:" %><br />
+				<%= f.text_field :display_name, :size => 20 %>
+				<%= f.submit "Update" %>
+			<% end %>
+		</p>
+		<p>
+			<% form_for @user, :url => {:controller => "teachers", :action => "update"} do |f| %>
+				<%= f.error_messages %>
+				<%= f.label "default_language_id", "My default language for new games and word lists:"%><br />
+				<%= f.collection_select 'default_language_id', Language.all(:order => "name"), :id, :name, {:include_blank => "Select a language...", :selected => current_user.default_language_id} %>
+			<%= f.submit "Update" %>
+			<% end %>
+		</p>
+	</div>
+	<br class="clearFloat" />
+</div>
+<hr />
+<div id="renew">
+	<% if current_user.subscription.subscription_plan.name == "trial" %>
+		<h2>Sign up for a basic or premium subscription</h2>
+		<p>Your trial account has access to <strong>premium</strong> features. For a reminder of the differences between basic and premium subscriptions, <%= link_to "click here", :controller => "about", :action => "pricing" %>, then return to this page to upgrade your account.</p>
+		<br />
+		<%= render :partial => 'subscription/upgrade_trial' %>
+	<% else %>
+		<%= render :partial => 'subscription/renew_subscription' %>
+	<% end %>
+	<br />
+	<p align="center">Need help renewing your account or downgrading? <%= link_to "Let us know.", contact_path %> We're happy to help.</p>
+</div>

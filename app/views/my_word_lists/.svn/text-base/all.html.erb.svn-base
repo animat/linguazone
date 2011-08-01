@@ -1,0 +1,16 @@
+<% stylesheet "my_games" %>
+
+<h1>All of my word lists</h1>
+<fieldset>
+	<legend>Search my word lists</legend>
+	<%= render :partial => "search_fields" %>
+</fieldset>
+
+<% unless @word_lists.nil? or @word_lists.empty? %>
+	<%= page_entries_info @word_lists %>
+	<% paginated_section @word_lists do %>
+		<% @word_lists.each do |wl| %>
+			<%= render :partial => "word_list", :locals => {:word_list => wl} %>
+		<% end %>
+	<% end %>
+<% end %>

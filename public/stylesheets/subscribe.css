@@ -1,0 +1,44 @@
+#full {
+	height: 160px;
+	margin: 0px auto;
+	padding-left: 300px;
+	padding-top: 30px;
+	background: url('../images/subscribe/subscribe-premium.gif') no-repeat;
+}
+#basic {
+	width: 800px;
+	height: 100px;
+	margin: 0px auto;
+	padding-left: 300px;
+	padding-top: 30px;
+	background: url('../images/subscribe/subscribe-basic.gif') no-repeat;
+}
+#single {
+	width: 800px;
+	height: 100px;
+	margin: 0px auto;
+	padding-left: 300px;
+	padding-top: 30px;
+	background: url('../images/subscribe/subscribe-single.gif') no-repeat;
+}
+
+
+label{
+	display:block;
+	font-weight:bold;
+	text-align:right;
+	width:200px;
+	float:left;
+}
+input{
+	float: left;
+	border: solid 1px #aacfe4;
+}
+.hint {
+	color: #666;
+	display: block;
+	font-size: 0.8em;
+	font-weight: normal;
+	text-align: right;
+	width: 140px;
+}

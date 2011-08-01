@@ -1,0 +1,128 @@
+fieldset {
+	width: 50%;
+	margin: 20px auto;
+	background-color: #FFFFAA;
+}
+
+/* -----------
+	  login
+   ----------- */
+
+p.helper_links {
+	text-align: center;
+}
+fieldset.login {
+	width: 80%;
+	background-color: #FAE2CF;
+	border: 3px solid #FF6600;
+}
+#list_states ul {
+	margin-left: 20px;
+	padding: 0px;
+}
+#list_states ul li {
+	list-style: none;
+}
+#list_states ul li a {
+	display: block;
+	width: 250px;
+	padding: 3px;
+	text-decoration: none;
+}
+#list_states ul li a:hover {
+	background-color: #FF6600;
+	color: #FFF;
+}
+#list_states ul li a span {
+	padding-left: 3px;
+	color: #666;
+	font-size: .8em;
+}
+#list_states ul li a:hover span {
+	display: none;
+}
+
+#list_schools ul {
+	margin-left: 20px;
+	padding: 0px;
+}
+#list_schools ul li {
+	list-style: none;
+}
+#list_schools ul li a {
+	display: block;
+	width: 800px;
+	padding: 3px;
+	text-decoration: none;
+}
+#list_schools ul li a:hover {
+	background-color: #FF6600;
+	color: #FFF;
+}
+#list_schools ul li a span {
+	padding-left: 3px;
+	color: #666;
+	font-size: .8em;
+}
+#list_schools ul li a:hover span {
+	display: none;
+}
+
+
+
+/* -----------
+	  index
+   ----------- */
+#list_classes {
+	width: 100%;
+}
+#list_classes ul {
+	width: 80%;
+	margin: 0px auto;
+	padding: 20px 0px;
+	list-style-type: none;
+}
+#list_classes ul li {
+	border-top:1px solid #194BA0; 
+	border-bottom: 1px solid #194BA0;
+}
+#list_classes ul li a {
+	display: block;
+	padding: 10px;
+	text-decoration: none;
+	text-align: center;
+}
+#list_classes ul li a:hover {
+	color: #FFF;
+	background: #FF6600;
+	text-shadow: 1px 1px 1px #993300;
+}
+#list_classes ul li.register a:hover {
+	color: #FFF;
+	background: #4DBD33;
+	text-shadow: 1px 1px 1px #324F17;
+}
+
+/* -----------
+	  show
+   ----------- */
+ul#high_score_listing {
+	margin-top: 30px;
+	list-style-type: none;
+}
+ul#high_score_listing li {
+	margin-top: 25px;
+}
+ul#high_score_listing li img {
+	float: left;
+	position: relative;
+	top: -13px;
+	left: -10px;
+}
+ul#high_score_listing li p.statsDetails {
+	font-size: .9em;
+	color: #666;
+	line-height: .9em;
+	margin-left: 60px;
+	margin-top: 0px;
+}

@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  descrip: MyString
+  path: MyString
+  type: 1
+  category: 1
+  published: false
+  used_count: 1
+
+two:
+  name: MyString
+  descrip: MyString
+  path: MyString
+  type: 1
+  category: 1
+  published: false
+  used_count: 1

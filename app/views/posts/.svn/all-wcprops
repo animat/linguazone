@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/lz-v2/!svn/ver/65/lz/app/views/posts
+END
+edit.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/lz-v2/!svn/ver/63/lz/app/views/posts/edit.html.erb
+END
+index.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/lz-v2/!svn/ver/6/lz/app/views/posts/index.html.erb
+END
+new.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/lz-v2/!svn/ver/63/lz/app/views/posts/new.html.erb
+END
+_new_comment.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/lz-v2/!svn/ver/28/lz/app/views/posts/_new_comment.html.erb
+END
+upgrade_reminder.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/lz-v2/!svn/ver/63/lz/app/views/posts/upgrade_reminder.html.erb
+END
+_new_post.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/lz-v2/!svn/ver/63/lz/app/views/posts/_new_post.html.erb
+END
+show.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/lz-v2/!svn/ver/63/lz/app/views/posts/show.html.erb
+END
+_comment.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/lz-v2/!svn/ver/65/lz/app/views/posts/_comment.html.erb
+END

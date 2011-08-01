@@ -1,0 +1,35 @@
+<% stylesheet 'course' %>
+
+<h1>Hidden word lists in <%= @course.name %></h1>
+<p><%= link_to "Return to "+@course.name+" class page", :controller => "courses", :action => "show", :id => @course.id %></p>
+<fieldset>
+	<legend>Search hidden word lists in <%= @course.name %></legend>
+	<% form_for @search do |f| %>
+		<%= f.hidden_field :user_id_equals, :value => current_user.id %>
+		<%= f.hidden_field :course_id_equals, :value => @course.id %>
+		<%= f.hidden_field :hidden_equals, :value => 1 %>
+		<%= f.label :word_list_description_like, "Search for:" %>
+		<%= f.text_field :word_list_description_like %>
+		<%= f.submit "Search", :name => nil %>
+	<% end %>
+	<% if @user_searching %>
+		<p style="font-size: .7em;">
+			<%= link_to "Clear search", 
+					"/courses/search_hidden_word_lists?search[user_id_equals]=" + String(current_user.id) +
+					"&search[course_id_equals]=" + String(@course.id) +
+					"&search[hidden_equals]=1"  %>
+		</p>
+	<% end %>
+</fieldset>
+
+<% unless @available_word_lists.nil? or @available_word_lists.empty? %>
+	<% @available_word_lists.each do |available_list| %>
+		<% unless available_list.nil? %>
+			<%= render :partial => "hidden_word_list", :locals => {:hidden_word_list => available_list} %>
+		<% end %>
+		<br />
+	<% end %>
+<% else %>
+	<br />
+	<p align="center">No word lists are hidden in <%= @course.name %></p>
+<% end %>

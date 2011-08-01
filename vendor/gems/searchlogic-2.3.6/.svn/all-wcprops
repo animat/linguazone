@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/lz-v2/!svn/ver/41/lz/vendor/gems/searchlogic-2.3.6
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/searchlogic-2.3.6/LICENSE
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/searchlogic-2.3.6/Rakefile
+END
+README.rdoc
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/searchlogic-2.3.6/README.rdoc
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/searchlogic-2.3.6/.gitignore
+END
+VERSION.yml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/searchlogic-2.3.6/VERSION.yml
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/searchlogic-2.3.6/init.rb
+END
+searchlogic.gemspec
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/searchlogic-2.3.6/searchlogic.gemspec
+END
+CHANGELOG.rdoc
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/searchlogic-2.3.6/CHANGELOG.rdoc
+END
+.specification
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/lz-v2/!svn/ver/41/lz/vendor/gems/searchlogic-2.3.6/.specification
+END

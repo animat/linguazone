@@ -1,0 +1,167 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/lz-v2/!svn/ver/35/lz/db/migrate
+END
+20091022032909_create_available_word_lists.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091022032909_create_available_word_lists.rb
+END
+20091022012901_create_activity_table.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091022012901_create_activity_table.rb
+END
+20100215212634_add_code_to_courses.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/lz-v2/!svn/ver/15/lz/db/migrate/20100215212634_add_code_to_courses.rb
+END
+20100212160759_add_require_login_to_courses.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/lz-v2/!svn/ver/15/lz/db/migrate/20100212160759_add_require_login_to_courses.rb
+END
+20091015163015_create_users.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091015163015_create_users.rb
+END
+20091016210004_remove_timestampts_from_states.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091016210004_remove_timestampts_from_states.rb
+END
+20100208213650_create_posts.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/lz-v2/!svn/ver/8/lz/db/migrate/20100208213650_create_posts.rb
+END
+20091016205117_create_states.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091016205117_create_states.rb
+END
+20100211051952_add_role_to_users.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/lz-v2/!svn/ver/15/lz/db/migrate/20100211051952_add_role_to_users.rb
+END
+20091022014644_create_activities.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091022014644_create_activities.rb
+END
+20091022003847_create_games_table.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091022003847_create_games_table.rb
+END
+20100302025802_create_subscription_plans.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/lz-v2/!svn/ver/35/lz/db/migrate/20100302025802_create_subscription_plans.rb
+END
+20100215164205_create_course_registrations.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/lz-v2/!svn/ver/15/lz/db/migrate/20100215164205_create_course_registrations.rb
+END
+20091021151510_rename_users_to_teachers.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091021151510_rename_users_to_teachers.rb
+END
+20100225155559_create_subscriptions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/lz-v2/!svn/ver/27/lz/db/migrate/20100225155559_create_subscriptions.rb
+END
+20091022021311_create_available_games.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091022021311_create_available_games.rb
+END
+20091022010728_create_courses_word_lists_join_table.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091022010728_create_courses_word_lists_join_table.rb
+END
+20091015161718_create_schools.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091015161718_create_schools.rb
+END
+20091022204828_create_news.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091022204828_create_news.rb
+END
+20091022033231_create_word_lists.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091022033231_create_word_lists.rb
+END
+20091015015316_create_courses.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091015015316_create_courses.rb
+END
+20100216204803_add_is_teacher_to_course_registrations.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/lz-v2/!svn/ver/17/lz/db/migrate/20100216204803_add_is_teacher_to_course_registrations.rb
+END
+20091021152636_add_teacher_to_course.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091021152636_add_teacher_to_course.rb
+END
+20091016205332_remove_timestamps_from_states.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091016205332_remove_timestamps_from_states.rb
+END
+20100225043046_create_audio_clips.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/lz-v2/!svn/ver/27/lz/db/migrate/20100225043046_create_audio_clips.rb
+END
+20091022011425_create_games.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/lz-v2/!svn/ver/1/lz/db/migrate/20091022011425_create_games.rb
+END
+20100208213719_create_comments.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/lz-v2/!svn/ver/8/lz/db/migrate/20100208213719_create_comments.rb
+END

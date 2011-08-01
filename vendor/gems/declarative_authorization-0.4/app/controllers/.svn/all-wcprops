@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/declarative_authorization-0.4/app/controllers
+END
+authorization_rules_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/declarative_authorization-0.4/app/controllers/authorization_rules_controller.rb
+END
+authorization_usages_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/declarative_authorization-0.4/app/controllers/authorization_usages_controller.rb
+END

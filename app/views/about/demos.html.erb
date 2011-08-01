@@ -1,0 +1,40 @@
+<% content_for :page_script do %>
+<script type="text/javascript">
+
+function showHelp(game_div) {
+	var newStyle = $(game_div).style.display == "none" ? "block" : "none";
+	$(game_div).style.display = newStyle;
+}
+
+</script>
+<% end %>
+
+<h1>Game demos in <%= @language.name.titleize %></h1>
+<br />
+
+<% if @demos.empty? %>
+	<p align="center">Sorry, demos for <%= @language.name.titleize%> are not yet available.</p>
+<% else %>
+	<table border="0" cellspacing="2" width="100%" align="center">
+	
+		<% @demos.each_with_index do |demo, index| %>
+			<% if index.modulo(3) == 0 %>
+				<tr>
+			<% end %>
+				<td align="center" width="33%">
+					<%= link_to image_tag("/games/"+demo.activity.swf+"/display/icon.jpg"), :controller => "play", :action => "show", :id => demo.game_id %>
+					<br />
+					<%= demo.activity.name %>
+					<%= link_to_function image_tag("info-help.jpg"), "showHelp('"+demo.activity.swf+"_help')" %>
+					<div id="<%= demo.activity.swf %>_help" style="display: none; color: #666; font-size: .9em">
+						<%= demo.activity.help %><br />
+						<%= demo.activity.youtube_embed %>
+					</div>
+				</td>
+			<% if index.modulo(3) == 2 %>
+				</tr>
+			<% end %>
+		<% end %>
+	
+	</table>
+<% end %>

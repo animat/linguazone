@@ -1,0 +1,17 @@
+<h1>Find your class on LinguaZone</h1>
+
+<h2>Schools in the USA</h2>
+<ul>
+	<% for state in @states do %>
+		<li><%= link_to state.name, {:controller => :states, :action => :show, :id => state.id} %></li>
+	<% end %>
+</ul>
+
+<br />
+
+<h2>International schools</h2>
+<ul>
+	<% for state in @intl_states do %>
+		<li><%= link_to state.name, {:controller => :states, :action => :show, :id => state.id} %></li>
+	<% end %>
+</ul>

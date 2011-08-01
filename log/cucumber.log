@@ -1,0 +1,373 @@
+# Logfile created on Thu Feb 24 18:13:50 -0500 2011  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mBEGIN[0m
+
+
+Processing TeachersController#login (for 127.0.0.1 at 2011-02-24 18:20:17) [GET]
+  Parameters: {"action"=>"login", "controller"=>"teachers"}
+Rendering template within layouts/application
+Rendering teachers/login
+Rendered teachers/_teacher_login (11.9ms)
+Rendered layouts/_standard_nav (4.3ms)
+Completed in 62ms (View: 58, DB: 2) | 200 OK [http://www.example.com/teachers/login]
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (37.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+
+
+Processing TeachersController#login (for 127.0.0.1 at 2011-02-24 18:22:45) [GET]
+  Parameters: {"action"=>"login", "controller"=>"teachers"}
+Rendering template within layouts/application
+Rendering teachers/login
+Rendered teachers/_teacher_login (9.9ms)
+Rendered layouts/_standard_nav (3.7ms)
+Completed in 26ms (View: 22, DB: 38) | 200 OK [http://www.example.com/teachers/login]
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+
+
+Processing TeachersController#login (for 127.0.0.1 at 2011-02-24 18:36:51) [GET]
+  Parameters: {"action"=>"login", "controller"=>"teachers"}
+Rendering template within layouts/application
+Rendering teachers/login
+Rendered teachers/_teacher_login (9.9ms)
+Rendered layouts/_standard_nav (3.8ms)
+Completed in 26ms (View: 22, DB: 2) | 200 OK [http://www.example.com/teachers/login]
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+
+
+Processing TeachersController#login (for 127.0.0.1 at 2011-02-24 18:38:31) [GET]
+  Parameters: {"action"=>"login", "controller"=>"teachers"}
+Rendering template within layouts/application
+Rendering teachers/login
+Rendered teachers/_teacher_login (10.0ms)
+Rendered layouts/_standard_nav (3.8ms)
+Completed in 26ms (View: 22, DB: 2) | 200 OK [http://www.example.com/teachers/login]
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+
+
+Processing TeachersController#login (for 127.0.0.1 at 2011-04-11 20:16:10) [GET]
+  Parameters: {"action"=>"login", "controller"=>"teachers"}
+Rendering template within layouts/application
+Rendering teachers/login
+Rendered teachers/_teacher_login (10.1ms)
+Rendered layouts/_standard_nav (3.7ms)
+Completed in 26ms (View: 23, DB: 2) | 200 OK [http://www.example.com/teachers/login]
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+
+
+Processing TeachersController#login (for 127.0.0.1 at 2011-04-11 20:17:13) [GET]
+  Parameters: {"action"=>"login", "controller"=>"teachers"}
+Rendering template within layouts/application
+Rendering teachers/login
+Rendered teachers/_teacher_login (9.7ms)
+Rendered layouts/_standard_nav (3.7ms)
+Completed in 26ms (View: 22, DB: 2) | 200 OK [http://www.example.com/teachers/login]
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+
+
+Processing TeachersController#login (for 127.0.0.1 at 2011-04-11 20:18:59) [GET]
+  Parameters: {"action"=>"login", "controller"=>"teachers"}
+Rendering template within layouts/application
+Rendering teachers/login
+Rendered teachers/_teacher_login (9.8ms)
+Rendered layouts/_standard_nav (4.0ms)
+Completed in 26ms (View: 23, DB: 2) | 200 OK [http://www.example.com/teachers/login]
+  [4;35;1mSQL (0.3ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY '567a7064e4dbeaf9b5512ccb34ad814f84b03306ba6fbdf83db8073392dc504841b676d668413760fee72fa54dca05e19caa01cb1549c3ab57794be09e947430') LIMIT 1[0m
+  [4;35;1mUser Create (0.0ms)[0m   [0mMysql::Error: Column 'display_name' cannot be null: INSERT INTO `users` (`created_at`, `last_request_at`, `crypted_password`, `email_active`, `expired_at`, `perishable_token`, `discount_id`, `receive_newsletter`, `role`, `default_language_id`, `enabled`, `current_login_ip`, `password_salt`, `current_login_at`, `persistence_token`, `last_name`, `subscription_id`, `login_count`, `display_name`, `last_login_ip`, `last_login_at`, `email`, `first_name`, `school_id`) VALUES('2011-04-12 00:33:04', NULL, 'abe75c9fb5de1c103ecdc673cd78716fd9e55de2dc2bcb46cf0c34578561a7add0b9fa79a922e3402a8f21ce8ca40e7a558f5dcdb92999be32f30aa1b7f2eff2', 1, NULL, 'vo_PX5tcbTGiMWJSUlx7', 0, 0, '0', 0, 1, NULL, 'MJM41QBCd51RL73QYOX7', NULL, '567a7064e4dbeaf9b5512ccb34ad814f84b03306ba6fbdf83db8073392dc504841b676d668413760fee72fa54dca05e19caa01cb1549c3ab57794be09e947430', 'Teacher', 0, 0, NULL, NULL, NULL, 'tony@sopranos.com', 'Joe', 0)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY '7fab4de8e2fde41a6d7131b72b63145f3414c56012f8ebdb5094ec5501b0710656469d045141b12e4ae80c38be0439b79b4f227084a24cc4a192399f70aec532') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO `users` (`created_at`, `last_request_at`, `crypted_password`, `email_active`, `expired_at`, `perishable_token`, `discount_id`, `receive_newsletter`, `role`, `default_language_id`, `enabled`, `current_login_ip`, `password_salt`, `current_login_at`, `persistence_token`, `last_name`, `subscription_id`, `login_count`, `display_name`, `last_login_ip`, `last_login_at`, `email`, `first_name`, `school_id`) VALUES('2011-04-12 00:33:41', NULL, '5f59cffea534dcfbdf7a1887ca49fa4bf71451a3e710f434786ecbcb322089ff2d14cdfbe9b70af2360e039f40dea2aa05f45208a129bb98be0015aaef1466dc', 1, NULL, 'bpdB-4vpmfRCL8IAUjd5', 0, 0, '0', 0, 1, NULL, '7myVkU01YI2tnPVsJbaM', NULL, '7fab4de8e2fde41a6d7131b72b63145f3414c56012f8ebdb5094ec5501b0710656469d045141b12e4ae80c38be0439b79b4f227084a24cc4a192399f70aec532', 'Teacher', 0, 0, 'Joe Teacher', NULL, NULL, 'tony@sopranos.com', 'Joe', 0)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (25.7ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY '7d7bddcc99ee569c7295e66caf3516627ed1945ff57d4c10a631ee95218a2cf6aafac1d308bb219f6fb018aef910c483cd9105d1d7e8d05b7ef3316c89f848fe') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO `users` (`created_at`, `last_request_at`, `crypted_password`, `email_active`, `expired_at`, `perishable_token`, `discount_id`, `receive_newsletter`, `role`, `default_language_id`, `enabled`, `current_login_ip`, `password_salt`, `current_login_at`, `persistence_token`, `last_name`, `subscription_id`, `login_count`, `display_name`, `last_login_ip`, `last_login_at`, `email`, `first_name`, `school_id`) VALUES('2011-04-12 00:33:50', NULL, '967c71dd3c329cdcc34950b3808e941353b7b6967a9191bc6c94a32f11a0d118949919b2ee56e647cea5c433cae81a3c6ea0b1b77a4928966ffcda5aaa9016be', 1, NULL, 'jNmJglA3iCjYHgHhldSE', 0, 0, '0', 0, 1, NULL, 'TDI9cwxoLxymN54uH1r7', NULL, '7d7bddcc99ee569c7295e66caf3516627ed1945ff57d4c10a631ee95218a2cf6aafac1d308bb219f6fb018aef910c483cd9105d1d7e8d05b7ef3316c89f848fe', 'Teacher', 0, 0, 'Joe Teacher', NULL, NULL, 'tony@sopranos.com', 'Joe', 0)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY 'c58b0ba73fa6d42e7992aeefe4c24a1845ece9d9e4881ccd17a7eb0da49bbb68c102d33337a7809d94d52b55d9406de9d75153ca8a7002f01f1d11e7384ce8dd') LIMIT 1[0m
+  [4;35;1mUser Create (0.2ms)[0m   [0mINSERT INTO `users` (`created_at`, `last_request_at`, `crypted_password`, `email_active`, `expired_at`, `perishable_token`, `discount_id`, `receive_newsletter`, `role`, `default_language_id`, `enabled`, `current_login_ip`, `password_salt`, `current_login_at`, `persistence_token`, `last_name`, `subscription_id`, `login_count`, `display_name`, `last_login_ip`, `last_login_at`, `email`, `first_name`, `school_id`) VALUES('2011-04-12 00:35:07', NULL, '6beb394e082728eef7787ec0bb543b3e3957114ffcc46cc3afa64da5929f5463a9abc6c4510ce15c82f292301c341e25e4f517cf26591ab3814ac3a550577861', 1, NULL, 'XgZPSKyVj8fEgOPnzeZj', 0, 0, '0', 0, 1, NULL, 'yNmC-m-R4Qj314FNBrwD', NULL, 'c58b0ba73fa6d42e7992aeefe4c24a1845ece9d9e4881ccd17a7eb0da49bbb68c102d33337a7809d94d52b55d9406de9d75153ca8a7002f01f1d11e7384ce8dd', 'Teacher', 0, 0, 'Joe Teacher', NULL, NULL, 'tony@sopranos.com', 'Joe', 0)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY '5ac4438f02b93febe9173d5d17d40c9bbfdf110f4a171a3c843cacc556897afcd1a30b56d65f241e6f9a1ea0992350c05291d44caa02ac250796e8d8277c5525') LIMIT 1[0m
+  [4;35;1mUser Create (0.2ms)[0m   [0mINSERT INTO `users` (`created_at`, `last_request_at`, `crypted_password`, `email_active`, `expired_at`, `perishable_token`, `discount_id`, `receive_newsletter`, `role`, `default_language_id`, `enabled`, `current_login_ip`, `password_salt`, `current_login_at`, `persistence_token`, `last_name`, `subscription_id`, `login_count`, `display_name`, `last_login_ip`, `last_login_at`, `email`, `first_name`, `school_id`) VALUES('2011-04-12 00:35:14', NULL, '8d9b0056382a0a108a006bfbd9a1d299e385b0b546254f13b9f3ddbe8054761acd6b2794db8cea50b807da78048266548227b1aa488254af2629f04c7cbfe653', 1, NULL, 'lPeGT--LTLSY_Njvq8ED', 0, 0, '0', 0, 1, NULL, 'fkczOTqymDnHYDKbdsQY', NULL, '5ac4438f02b93febe9173d5d17d40c9bbfdf110f4a171a3c843cacc556897afcd1a30b56d65f241e6f9a1ea0992350c05291d44caa02ac250796e8d8277c5525', 'Teacher', 0, 0, 'Joe Teacher', NULL, NULL, 'tony@sopranos.com', 'Joe', 0)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+
+
+Processing TeachersController#login (for 127.0.0.1 at 2011-04-11 20:35:14) [GET]
+  Parameters: {"action"=>"login", "controller"=>"teachers"}
+Rendering template within layouts/application
+Rendering teachers/login
+Rendered teachers/_teacher_login (3.9ms)
+Rendered layouts/_standard_nav (4.1ms)
+Completed in 21ms (View: 17, DB: 3) | 200 OK [http://www.example.com/teachers/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-04-11 20:35:14) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"remember_me"=>"0", "role"=>"teacher", "password"=>"[FILTERED]", "email"=>"tony@sopranos.com"}, "action"=>"create", "controller"=>"user_sessions"}
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (LOWER(`users`.email) = 'tony@sopranos.com') LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE `users` SET `perishable_token` = 'WoBtsdwBfsBgfwclcn2l', `current_login_at` = '2011-04-12 00:35:14', `login_count` = 1, `current_login_ip` = '127.0.0.1', `last_request_at` = '2011-04-12 00:35:14' WHERE `id` = 4[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/teachers
+Completed in 298ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+
+
+Processing TeachersController#index (for 127.0.0.1 at 2011-04-11 20:35:14) [GET]
+  Parameters: {"action"=>"index", "controller"=>"teachers"}
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '4') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE `users` SET `perishable_token` = 'fe9dU9tALxZNVcEcp70G', `last_request_at` = '2011-04-12 00:35:14' WHERE `id` = 4[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Permission denied: No matching rules found for index for #<User id: 4, enabled: true, email: "tony@sopranos.com", crypted_password: "8d9b0056382a0a108a006bfbd9a1d299e385b0b546254f13b9f...", password_salt: "fkczOTqymDnHYDKbdsQY", persistence_token: "5ac4438f02b93febe9173d5d17d40c9bbfdf110f4a171a3c843...", perishable_token: "fe9dU9tALxZNVcEcp70G", first_name: "Joe", last_name: "Teacher", display_name: "Joe Teacher", school_id: 0, role: "0", subscription_id: 0, discount_id: 0, email_active: true, receive_newsletter: false, default_language_id: 0, created_at: "2011-04-12 00:35:14", expired_at: nil, last_login_at: nil, current_login_at: "2011-04-12 00:35:14", last_request_at: "2011-04-12 00:35:14", login_count: 1, current_login_ip: "127.0.0.1", last_login_ip: nil> (roles [:"0"], privileges [:index], context :teachers).
+Redirected to http://www.example.com/
+Filter chain halted as [:filter_access_filter] rendered_or_redirected.
+Completed in 10ms (DB: 1) | 302 Found [http://www.example.com/teachers]
+
+
+Processing AboutController#index (for 127.0.0.1 at 2011-04-11 20:35:14) [GET]
+  Parameters: {"action"=>"index", "controller"=>"about"}
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '4') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE `users` SET `perishable_token` = '7QgkNYFr2nLxfilsFIDO', `last_request_at` = '2011-04-12 00:35:14' WHERE `id` = 4[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Rendering template within layouts/application
+Rendering about/index
+Completed in 17ms (View: 9, DB: 1) | 200 OK [http://www.example.com/]
+  [4;35;1mSQL (26.8ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY 'fdb6f5c73e5cfd5f853a35287a542f5a3e6b67b6db738f9df07915b463be47891a90b1e291c948b50bc826c1c4ecb33f7b9b5d21f55a4801aadcab710012f329') LIMIT 1[0m
+  [4;35;1mUser Create (0.2ms)[0m   [0mINSERT INTO `users` (`created_at`, `last_request_at`, `crypted_password`, `email_active`, `expired_at`, `perishable_token`, `discount_id`, `receive_newsletter`, `role`, `default_language_id`, `enabled`, `current_login_ip`, `password_salt`, `current_login_at`, `persistence_token`, `last_name`, `subscription_id`, `login_count`, `display_name`, `last_login_ip`, `last_login_at`, `email`, `first_name`, `school_id`) VALUES('2011-04-12 00:35:55', NULL, '61c8602c46e0326b5ff1c7135ee978a5f33a23ab5f3659b62045957d1d69c8b0660418c51afd5add0baf68a459a0fb9c2acc745d348bbbd9a07f03f904101aee', 1, NULL, 'xtCa2kL9JyFqxdYJbkWw', 0, 0, '0', 0, 1, NULL, 'Hui22xSm-TdArQd84bU1', NULL, 'fdb6f5c73e5cfd5f853a35287a542f5a3e6b67b6db738f9df07915b463be47891a90b1e291c948b50bc826c1c4ecb33f7b9b5d21f55a4801aadcab710012f329', 'Teacher', 0, 0, 'Joe Teacher', NULL, NULL, 'tony@sopranos.com', 'Joe', 0)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+
+
+Processing TeachersController#login (for 127.0.0.1 at 2011-04-11 20:35:55) [GET]
+  Parameters: {"action"=>"login", "controller"=>"teachers"}
+Rendering template within layouts/application
+Rendering teachers/login
+Rendered teachers/_teacher_login (3.7ms)
+Rendered layouts/_standard_nav (4.0ms)
+Completed in 20ms (View: 17, DB: 3) | 200 OK [http://www.example.com/teachers/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-04-11 20:35:55) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"remember_me"=>"0", "role"=>"teacher", "password"=>"[FILTERED]", "email"=>"tony@sopranos.com"}, "action"=>"create", "controller"=>"user_sessions"}
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (LOWER(`users`.email) = 'tony@sopranos.com') LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE `users` SET `perishable_token` = 'nuJ5MGbJnFVi6p_bx14l', `current_login_at` = '2011-04-12 00:35:55', `login_count` = 1, `current_login_ip` = '127.0.0.1', `last_request_at` = '2011-04-12 00:35:55' WHERE `id` = 5[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/teachers
+Completed in 221ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+
+
+Processing TeachersController#index (for 127.0.0.1 at 2011-04-11 20:35:55) [GET]
+  Parameters: {"action"=>"index", "controller"=>"teachers"}
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '5') LIMIT 1[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE `users` SET `perishable_token` = 'XlYJZ4c7iME5JqBzSrn9', `last_request_at` = '2011-04-12 00:35:55' WHERE `id` = 5[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Permission denied: No matching rules found for index for #<User id: 5, enabled: true, email: "tony@sopranos.com", crypted_password: "61c8602c46e0326b5ff1c7135ee978a5f33a23ab5f3659b6204...", password_salt: "Hui22xSm-TdArQd84bU1", persistence_token: "fdb6f5c73e5cfd5f853a35287a542f5a3e6b67b6db738f9df07...", perishable_token: "XlYJZ4c7iME5JqBzSrn9", first_name: "Joe", last_name: "Teacher", display_name: "Joe Teacher", school_id: 0, role: "0", subscription_id: 0, discount_id: 0, email_active: true, receive_newsletter: false, default_language_id: 0, created_at: "2011-04-12 00:35:55", expired_at: nil, last_login_at: nil, current_login_at: "2011-04-12 00:35:55", last_request_at: "2011-04-12 00:35:55", login_count: 1, current_login_ip: "127.0.0.1", last_login_ip: nil> (roles [:"0"], privileges [:index], context :teachers).
+Redirected to http://www.example.com/
+Filter chain halted as [:filter_access_filter] rendered_or_redirected.
+Completed in 14ms (DB: 2) | 302 Found [http://www.example.com/teachers]
+
+
+Processing AboutController#index (for 127.0.0.1 at 2011-04-11 20:35:55) [GET]
+  Parameters: {"action"=>"index", "controller"=>"about"}
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '5') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE `users` SET `perishable_token` = '1R3wqS9UGeo6B9jbFWt1', `last_request_at` = '2011-04-12 00:35:55' WHERE `id` = 5[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Rendering template within layouts/application
+Rendering about/index
+Completed in 23ms (View: 11, DB: 2) | 200 OK [http://www.example.com/]
+  [4;35;1mSQL (19.9ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (2.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY '869a16cd12e084465be70dc50ef3256eaac0deb91c5560e4ff5c3d55143253ad4f1100d942f07f6d362f77c4ff0f3e63b70e11b38e0d8feb057501f0417c93c2') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO `users` (`created_at`, `last_request_at`, `crypted_password`, `email_active`, `expired_at`, `perishable_token`, `discount_id`, `receive_newsletter`, `role`, `default_language_id`, `enabled`, `current_login_ip`, `password_salt`, `current_login_at`, `persistence_token`, `last_name`, `subscription_id`, `login_count`, `display_name`, `last_login_ip`, `last_login_at`, `email`, `first_name`, `school_id`) VALUES('2011-04-12 00:36:30', NULL, '812a51c7da6bf1b8c91667fd19fef47505ecaf62c8b248718e06b50dace7c58f41c527b2b29a40480bee6f7a4425a009ae6bd1a5d713608dc548969cd7735eb8', 1, NULL, 'IDq93uv3zcplTaEGK0Ne', 0, 0, '0', 0, 1, NULL, '6Gfr8MHZePiAgH9B1n0E', NULL, '869a16cd12e084465be70dc50ef3256eaac0deb91c5560e4ff5c3d55143253ad4f1100d942f07f6d362f77c4ff0f3e63b70e11b38e0d8feb057501f0417c93c2', 'Teacher', 0, 0, 'Joe Teacher', NULL, NULL, 'tony@sopranos.com', 'Joe', 0)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+
+
+Processing TeachersController#login (for 127.0.0.1 at 2011-04-11 20:36:30) [GET]
+  Parameters: {"action"=>"login", "controller"=>"teachers"}
+Rendering template within layouts/application
+Rendering teachers/login
+Rendered teachers/_teacher_login (3.9ms)
+Rendered layouts/_standard_nav (4.1ms)
+Completed in 22ms (View: 18, DB: 4) | 200 OK [http://www.example.com/teachers/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-04-11 20:36:30) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"remember_me"=>"0", "role"=>"teacher", "password"=>"[FILTERED]", "email"=>"tony@sopranos.com"}, "action"=>"create", "controller"=>"user_sessions"}
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (LOWER(`users`.email) = 'tony@sopranos.com') LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE `users` SET `perishable_token` = 'tIEVJLGjntc6MS9uO50U', `current_login_at` = '2011-04-12 00:36:30', `login_count` = 1, `current_login_ip` = '127.0.0.1', `last_request_at` = '2011-04-12 00:36:30' WHERE `id` = 6[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/teachers
+Completed in 373ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+
+
+Processing TeachersController#index (for 127.0.0.1 at 2011-04-11 20:36:30) [GET]
+  Parameters: {"action"=>"index", "controller"=>"teachers"}
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '6') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE `users` SET `perishable_token` = 'q5Mmb92FgkwWdEkbpy8o', `last_request_at` = '2011-04-12 00:36:30' WHERE `id` = 6[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Permission denied: No matching rules found for index for #<User id: 6, enabled: true, email: "tony@sopranos.com", crypted_password: "812a51c7da6bf1b8c91667fd19fef47505ecaf62c8b248718e0...", password_salt: "6Gfr8MHZePiAgH9B1n0E", persistence_token: "869a16cd12e084465be70dc50ef3256eaac0deb91c5560e4ff5...", perishable_token: "q5Mmb92FgkwWdEkbpy8o", first_name: "Joe", last_name: "Teacher", display_name: "Joe Teacher", school_id: 0, role: "0", subscription_id: 0, discount_id: 0, email_active: true, receive_newsletter: false, default_language_id: 0, created_at: "2011-04-12 00:36:30", expired_at: nil, last_login_at: nil, current_login_at: "2011-04-12 00:36:30", last_request_at: "2011-04-12 00:36:30", login_count: 1, current_login_ip: "127.0.0.1", last_login_ip: nil> (roles [:"0"], privileges [:index], context :teachers).
+Redirected to http://www.example.com/
+Filter chain halted as [:filter_access_filter] rendered_or_redirected.
+Completed in 11ms (DB: 1) | 302 Found [http://www.example.com/teachers]
+
+
+Processing AboutController#index (for 127.0.0.1 at 2011-04-11 20:36:30) [GET]
+  Parameters: {"action"=>"index", "controller"=>"about"}
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '6') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE `users` SET `perishable_token` = '4sJdLoPoeCCHJ07xCcnt', `last_request_at` = '2011-04-12 00:36:30' WHERE `id` = 6[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Rendering template within layouts/application
+Rendering about/index
+Completed in 18ms (View: 10, DB: 1) | 200 OK [http://www.example.com/]
+  [4;35;1mSQL (48.7ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY '001121f170f92a30d465f9d0dfe3ae61c8f4499755241368ecb50eef96644c6ef2efadf8d2eea91b965d164a0839254c94566bc722d481e7e2402d99cf1bed55') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO `users` (`created_at`, `last_request_at`, `crypted_password`, `email_active`, `expired_at`, `perishable_token`, `discount_id`, `receive_newsletter`, `role`, `default_language_id`, `enabled`, `current_login_ip`, `password_salt`, `current_login_at`, `persistence_token`, `last_name`, `subscription_id`, `login_count`, `display_name`, `last_login_ip`, `last_login_at`, `email`, `first_name`, `school_id`) VALUES('2011-04-12 00:36:52', NULL, '51fc4de875a4c0ee088c9340d7f5229caa174464ea959e3af4148c58fefd0001e87687961cb2e5ee3f206f12013f150ff66591111055aa5e1759099433ffaa13', 1, NULL, 'ji4THyjxaXIJGey4gdPc', 0, 0, '0', 0, 1, NULL, 'LTUbotlpBEdqjiTBvaWE', NULL, '001121f170f92a30d465f9d0dfe3ae61c8f4499755241368ecb50eef96644c6ef2efadf8d2eea91b965d164a0839254c94566bc722d481e7e2402d99cf1bed55', 'Teacher', 0, 0, 'Joe Teacher', NULL, NULL, 'tony@sopranos.com', 'Joe', 0)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+
+
+Processing TeachersController#login (for 127.0.0.1 at 2011-04-11 20:36:52) [GET]
+  Parameters: {"action"=>"login", "controller"=>"teachers"}
+Rendering template within layouts/application
+Rendering teachers/login
+Rendered teachers/_teacher_login (3.7ms)
+Rendered layouts/_standard_nav (4.0ms)
+Completed in 20ms (View: 17, DB: 3) | 200 OK [http://www.example.com/teachers/login]
+  [4;35;1mSQL (1.2ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY '02a8b04668c24ef5753f5a80ec8c49a6a5012c383febfb5306519b41324613d9659aee15cf8a22dbca2e08751a8d76eec91601f0e9ed27f8c5111888f5adc000') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO `users` (`created_at`, `last_request_at`, `crypted_password`, `email_active`, `expired_at`, `perishable_token`, `discount_id`, `receive_newsletter`, `role`, `default_language_id`, `enabled`, `current_login_ip`, `password_salt`, `current_login_at`, `persistence_token`, `last_name`, `subscription_id`, `login_count`, `display_name`, `last_login_ip`, `last_login_at`, `email`, `first_name`, `school_id`) VALUES('2011-04-12 00:37:12', NULL, '65f5fd1df9a2e22a854fad8d855583f72a47f0a5e1d37b688e05d71a878dcf9e9fe36f30bc144a23da6d50fc5801091e6c6ee92027415693f574c1da79a5a712', 1, NULL, 'mKM6QboVrXKe9mn01UyR', 0, 0, '0', 0, 1, NULL, 'vnmqauchMx6SewgnbH5M', NULL, '02a8b04668c24ef5753f5a80ec8c49a6a5012c383febfb5306519b41324613d9659aee15cf8a22dbca2e08751a8d76eec91601f0e9ed27f8c5111888f5adc000', 'Teacher', 0, 0, 'Joe Teacher', NULL, NULL, 'tony@sopranos.com', 'Joe', 0)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+
+
+Processing TeachersController#login (for 127.0.0.1 at 2011-04-11 20:37:12) [GET]
+  Parameters: {"action"=>"login", "controller"=>"teachers"}
+Rendering template within layouts/application
+Rendering teachers/login
+Rendered teachers/_teacher_login (3.7ms)
+Rendered layouts/_standard_nav (4.0ms)
+Completed in 20ms (View: 17, DB: 3) | 200 OK [http://www.example.com/teachers/login]
+  [4;35;1mSQL (0.8ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY '90e8b018737333c0ff7f95742cb6544c80aa919d14c7e0dbd1fb578c296d32affea9940e517189bc11a9b91afa9397b6468359f9b7d29e166a871965d0880663') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO `users` (`created_at`, `last_request_at`, `crypted_password`, `email_active`, `expired_at`, `perishable_token`, `discount_id`, `receive_newsletter`, `role`, `default_language_id`, `enabled`, `current_login_ip`, `password_salt`, `current_login_at`, `persistence_token`, `last_name`, `subscription_id`, `login_count`, `display_name`, `last_login_ip`, `last_login_at`, `email`, `first_name`, `school_id`) VALUES('2011-04-12 00:37:47', NULL, 'aff22db353c3e4436183cb97c92305724874ffbdd7b93d5d378252035f1fedbffdd9cc627c1a4f58c9bb8ae098e3ae94aaa0ae0f73633d50611e8617204e3cf2', 1, NULL, 'v1YEcWvwpR-7XKah-Fsz', 0, 0, '0', 0, 1, NULL, 'fRGRxa0meKzHHScc7ORr', NULL, '90e8b018737333c0ff7f95742cb6544c80aa919d14c7e0dbd1fb578c296d32affea9940e517189bc11a9b91afa9397b6468359f9b7d29e166a871965d0880663', 'Teacher', 0, 0, 'Joe Teacher', NULL, NULL, 'tony@sopranos.com', 'Joe', 0)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+
+
+Processing TeachersController#login (for 127.0.0.1 at 2011-04-11 20:37:47) [GET]
+  Parameters: {"action"=>"login", "controller"=>"teachers"}
+Rendering template within layouts/application
+Rendering teachers/login
+Rendered teachers/_teacher_login (3.8ms)
+Rendered layouts/_standard_nav (4.0ms)
+Completed in 21ms (View: 17, DB: 3) | 200 OK [http://www.example.com/teachers/login]
+  [4;35;1mSQL (0.7ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY 'ff4482b7a0f90159cc0f27ea1f693eff512041edaf1bc021ac27d8e26ad33101d64b95dd4f757948914825c024155e1964b9b9038d26029be46e33bc98008d16') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO `users` (`created_at`, `last_request_at`, `crypted_password`, `email_active`, `expired_at`, `perishable_token`, `discount_id`, `receive_newsletter`, `role`, `default_language_id`, `enabled`, `current_login_ip`, `password_salt`, `current_login_at`, `persistence_token`, `last_name`, `subscription_id`, `login_count`, `display_name`, `last_login_ip`, `last_login_at`, `email`, `first_name`, `school_id`) VALUES('2011-04-12 00:39:09', NULL, 'd204c8e657b5e3348b0f9cd7ec93695b736b2ad84fab4c67a8f0120e212ce2ecfcd92fec82467b7598dd1a12f2963a2086f1be84940294e58375b21466b678e5', 1, NULL, 'uQFQgOz29eYN_-VAp7Wl', 0, 0, '0', 0, 1, NULL, 'RKlerV0mjPdFZAN29y99', NULL, 'ff4482b7a0f90159cc0f27ea1f693eff512041edaf1bc021ac27d8e26ad33101d64b95dd4f757948914825c024155e1964b9b9038d26029be46e33bc98008d16', 'Teacher', 0, 0, 'Joe Teacher', NULL, NULL, 'tony@sopranos.com', 'Joe', 0)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+
+
+Processing TeachersController#login (for 127.0.0.1 at 2011-04-11 20:39:09) [GET]
+  Parameters: {"action"=>"login", "controller"=>"teachers"}
+Rendering template within layouts/application
+Rendering teachers/login
+Rendered teachers/_teacher_login (3.8ms)
+Rendered layouts/_standard_nav (4.0ms)
+Completed in 20ms (View: 17, DB: 3) | 200 OK [http://www.example.com/teachers/login]
+  [4;35;1mSQL (0.8ms)[0m   [0mROLLBACK[0m

@@ -1,0 +1,34 @@
+<% stylesheet 'teachers' %>
+<% stylesheet 'my_games' %>
+
+<div>
+	<div class="floatLeft">
+		<h1>My classes</h1>
+		<p>Create, edit, and manage your LinguaZone classes.</p>
+	</div>
+	<div class="floatRight">
+		<% link_to :action => "new" do %>
+			<div class="new_button">
+				<span>Create a new class</span>
+			</div>
+		<% end %>	
+	</div>
+	<br class="clearFloat" />
+</div>
+
+<br />
+
+<div>
+	<% for course in @courses do %>
+		<div class="game_listing">
+			<div class="game_details">
+				<p><%= link_to course.name, :controller => "courses", :action => "show", :id => course.id %></p>
+				<%= render :partial => "edit_registered_students", :locals => {:course_id => course.id, :cr => course.course_registrations }%>
+			</div>
+			<div class="manage_game">
+				<%= link_to 'Delete this class', :controller => "my_courses", :action => "destroy", :id => course.id %>
+			</div>
+			<br class="clearFloat" />
+		</div>
+	<% end %>
+</div>

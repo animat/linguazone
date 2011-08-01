@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/lz-v2/!svn/ver/58/lz/app/views/subscription
+END
+_checkpoint.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/lz-v2/!svn/ver/36/lz/app/views/subscription/_checkpoint.html.erb
+END
+no_availability.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/lz-v2/!svn/ver/36/lz/app/views/subscription/no_availability.html.erb
+END
+confirm.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/lz-v2/!svn/ver/58/lz/app/views/subscription/confirm.html.erb
+END
+_extend_new.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/lz-v2/!svn/ver/29/lz/app/views/subscription/_extend_new.html.erb
+END
+renew.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/lz-v2/!svn/ver/36/lz/app/views/subscription/renew.html.erb
+END
+_upgrade_trial.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/lz-v2/!svn/ver/36/lz/app/views/subscription/_upgrade_trial.html.erb
+END
+join_form.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/lz-v2/!svn/ver/36/lz/app/views/subscription/join_form.html.erb
+END
+_renew_subscription.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/lz-v2/!svn/ver/36/lz/app/views/subscription/_renew_subscription.html.erb
+END

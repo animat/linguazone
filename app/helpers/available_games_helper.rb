@@ -1,0 +1,2 @@
+module AvailableGamesHelper
+end

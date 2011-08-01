@@ -1,0 +1,52 @@
+<?php
+
+include_once('../includes/include.php');
+
+if (isset($_GET['find'])) {
+	if ($_GET['find'] == "all") {
+		$query = "SELECT DISTINCT(m.id), name, descrip, path, mt.type
+					FROM media m
+					INNER JOIN media_types mt ON mt.id = m.type
+					WHERE m.published = 1";
+	} else if (isset($_GET['cat'])) {
+		$query = "SELECT DISTINCT(m.id), name, descrip, path, mt.type, mc.category
+					FROM media m
+					INNER JOIN media_types mt ON mt.id = m.type
+					INNER JOIN media_categories mc ON mc.id = m.category
+					WHERE mc.category = '".$_GET['cat']."'
+					AND m.published = 1";
+	} else {
+		$query = "SELECT DISTINCT(m.id), name, descrip, path, mt.type
+					FROM media m, media_keywords mk, media_types mt
+					WHERE (
+						MATCH (name, descrip) AGAINST ('".$_GET['find']."')
+						OR
+						MATCH (keyword) AGAINST ('".$_GET['find']."')
+						)
+					AND mk.media_id = m.id
+					AND mt.id = m.type
+					AND m.published = 1";
+	}
+	$result = $handle->query($query);
+	$printXML = '<?xml version="1.0" encoding="utf-8"?>'; 
+	$printXML .= '<xml>';
+	while ($row = $handle->fetchArray($result)) {
+		$printXML .= '<item name="'.$row['name'].'" path="'.$row['path'].'" type="'.$row['type'].'" descrip="'.$row['descrip'].'" id="'.$row['id'].'" />';
+	}
+	$printXML .= '</xml>';
+	echo $printXML;
+}
+
+if (isset($_GET['category'])) {
+	$query = "SELECT * FROM media_categories";
+	$result = $handle->query($query);
+	$printXML = '<?xml version="1.0" encoding="utf-8"?>';
+	$printXML .= '<xml>';
+	while ($row = $handle->fetchArray($result)) {
+		$printXML .= '<category name="'.$row['category'].'" id="'.$row['id'].'" />';
+	}
+	$printXML .= '</xml>';
+	echo $printXML;
+}
+
+?>

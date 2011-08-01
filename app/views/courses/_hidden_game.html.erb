@@ -1,0 +1,13 @@
+<div id="<%= dom_id(hidden_game) %>" class="hidden_item">
+	<div class="details">
+		<%= link_to image_tag('/games/'+hidden_game.game.activity.swf+'/display/icon-small.jpg', :alt => 'Play '+hidden_game.game.activity.name), play_path(hidden_game.game.id) %>
+		<p id="description_<%= dom_id(hidden_game) %>"><%= hidden_game.game.description %></p>
+	</div>
+	<div class="controls">
+		<%= link_to_remote "Show",
+			:loading => "$('show_"+dom_id(hidden_game)+"').replace('Showing...')",
+			:url => {:controller => "courses", :action => "show_game", :id => hidden_game.id },
+			:html => {:id => "show_"+dom_id(hidden_game) } %>
+	</div>
+	<br class="clearFloat" />
+</div>

@@ -1,0 +1,17 @@
+<% stylesheet 'teachers' %>
+
+<h1>Login to your LinguaZone account</h1>
+<p>to customize your own class pages with audio blogs, games, and word lists</p>
+
+<br />
+<div id="login">
+	<%= render :partial => "teacher_login" %>
+</div>
+<br />
+
+<div id="login_helper_links">
+	<p align="center">Can't login? <%= link_to "I forgot my password", :controller => "password_resets", :action => "new" %>.</p>
+	<p align="center">Don't have an account? <%= link_to "Start a free trial", trial_path %> to get started in minutes.</p>
+	<p align="center">Does your school already have a subscription? <%= link_to "Join it", :controller => "about", :action => "pricing" %> now.</p>
+	<br class="clearFloat" />
+</div>

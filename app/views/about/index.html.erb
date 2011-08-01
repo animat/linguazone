@@ -1,0 +1,67 @@
+<% content_for :page_script do %>
+<script type="text/javascript">
+
+function showTutorial(type) {
+	
+	if (type == "games") {
+		var swf = '<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/_paBk49B1wc&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/_paBk49B1wc&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>';
+		var descrip = "<h2>Now watching: Customizing your own games on LinguaZone.com</h2><p>Choose from over 20 templates to create your own colorful, engaging games to challenge your students at school or home.</p>";
+	} else if (type == "word_lists") {
+		var swf = '<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/lRvF8QiI-LQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/lRvF8QiI-LQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>';
+		var descrip = "<h2>Now watching: Customizing word lists on LinguaZone.com</h2><p>Create powerful study tools to help your students with vocabulary, whether online or offline.</p>";
+	} else if (type == "audio_blog") {
+		var swf = '<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/mXTyA-Hob1c&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/mXTyA-Hob1c&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>';
+		var descrip = '<h2>Now watching: Creating an audio blog on LinguaZone.com</h2><p>Create posts with text, audio, or both, and give your students a chance to comment on your posts with audio, too. A whole new way to interact outside of the classroom.</p>';
+	}
+	
+	$("player").innerHTML = swf;
+	$("now_playing").innerHTML = descrip;
+	$("overview_link").style.display = "inline";
+}
+function showOverview() {
+	$("player").innerHTML = '<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/BkhFTVcrUbQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&autoplay=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/BkhFTVcrUbQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&autoplay=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>';
+	$("now_playing").innerHTML = '<h2>Now watching: Highlight reel of LinguaZone games</h2><p>Take a quick look at a number of different games customized by world language teachers.</p>';
+	$("overview_link").style.display = "none";
+}
+
+</script>
+<% end %>
+<% stylesheet 'about' %>
+
+<h1 align="center">Customize your own audio blog, games, and word lists</h1>
+<p align="center">
+	for you and your students to use at school or home.
+	<span id="overview_link" style="display: none"><%= link_to_function "Watch the overview video again.", "showOverview();" %></span>
+</p>
+<br />
+<div id="container">
+	<div id="player">
+		<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/BkhFTVcrUbQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&autoplay=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/BkhFTVcrUbQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&autoplay=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>
+		<!-- <EMBED SRC="/highlight-reel.mov" WIDTH="600" HEIGHT="400" AUTOPLAY="true" CONTROLLER="true" LOOP="false" PLUGINSPAGE="http://www.apple.com/quicktime/"> -->
+	</div>
+	<div id="categories">
+		<div class="category">
+			<h2>Games</h2>
+			<p>Customize over 20 colorful, fun games to challenge your students</p>
+			<p class="links"><%= link_to_function "&larr; View tutorial", "showTutorial('games');" %> | <%= link_to "Learn more &rarr;", :action => "games" %></p>
+		</div>
+		<div class="category">
+			<h2>Word lists</h2>
+			<p>Create study tools for students to use with or without a computer</p>
+			<p class="links"><%= link_to_function "&larr; View tutorial", "showTutorial('word_lists');" %> | <%= link_to "Learn more &rarr;", :action => "word_lists" %></p>
+		</div>
+		<div class="category" style="border-bottom: 0">
+			<h2>Audio blogs</h2>
+			<p>Teacher posts &amp; student comments can be text, audio, or both</p>
+			<p class="links"><%= link_to_function "&larr; View tutorial", "showTutorial('audio_blog');" %> | <%= link_to "Learn more &rarr;", :action => "audio_blogs" %></p>
+		</div>
+	</div>
+	<br class="clearFloat" />
+</div>
+<div id="now_playing">
+	<h2>Now watching: Highlight reel of LinguaZone games</h2>
+	<p>Take a quick look at a number of different games customized by world language teachers.</p>
+</div>
+
+<br /><br />
+<p align="center">Get started in just a few minutes with a <%= link_to "free 2-week trial", trial_path %> or <%= link_to "learn more about LinguaZone", :action => "features" %>.</p>

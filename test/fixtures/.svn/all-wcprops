@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/lz-v2/!svn/ver/35/lz/test/fixtures
+END
+subscription_plans.yml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/lz-v2/!svn/ver/35/lz/test/fixtures/subscription_plans.yml
+END
+courses.yml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/lz-v2/!svn/ver/1/lz/test/fixtures/courses.yml
+END
+roles.yml
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/lz-v2/!svn/ver/15/lz/test/fixtures/roles.yml
+END
+media_categories.yml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/lz-v2/!svn/ver/70/lz/test/fixtures/media_categories.yml
+END
+comments.yml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/lz-v2/!svn/ver/8/lz/test/fixtures/comments.yml
+END
+available_word_lists.yml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/lz-v2/!svn/ver/1/lz/test/fixtures/available_word_lists.yml
+END
+word_lists.yml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/lz-v2/!svn/ver/1/lz/test/fixtures/word_lists.yml
+END
+audio_clips.yml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/lz-v2/!svn/ver/27/lz/test/fixtures/audio_clips.yml
+END
+available_games.yml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/lz-v2/!svn/ver/1/lz/test/fixtures/available_games.yml
+END
+games.yml
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/lz-v2/!svn/ver/1/lz/test/fixtures/games.yml
+END
+users.yml
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/lz-v2/!svn/ver/1/lz/test/fixtures/users.yml
+END
+medias.yml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/lz-v2/!svn/ver/70/lz/test/fixtures/medias.yml
+END
+states.yml
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/lz-v2/!svn/ver/1/lz/test/fixtures/states.yml
+END
+media_types.yml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/lz-v2/!svn/ver/70/lz/test/fixtures/media_types.yml
+END
+activities.yml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/lz-v2/!svn/ver/1/lz/test/fixtures/activities.yml
+END
+languages.yml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/lz-v2/!svn/ver/1/lz/test/fixtures/languages.yml
+END
+media_keywords.yml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/lz-v2/!svn/ver/70/lz/test/fixtures/media_keywords.yml
+END
+subscriptions.yml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/lz-v2/!svn/ver/27/lz/test/fixtures/subscriptions.yml
+END
+posts.yml
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/lz-v2/!svn/ver/8/lz/test/fixtures/posts.yml
+END
+schools.yml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/lz-v2/!svn/ver/1/lz/test/fixtures/schools.yml
+END
+news.yml
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/lz-v2/!svn/ver/1/lz/test/fixtures/news.yml
+END

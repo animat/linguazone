@@ -1,0 +1,27 @@
+<% stylesheet "students" %>
+
+<h1>Classes at <%= @school.name %></h1>
+	
+<% if @school.address.nil? or @school.address == "" %>
+	<p>in <%= @school.city %>, <%= @school.state.name %></p>
+<% else %>
+	<p><%= @school.address + ", " + @school.city %>, <%= @school.state.name %></p>
+<% end %>
+
+<br />
+
+<% unless @courses.nil? or @courses.empty? %>
+	<div id="list_schools">
+		<ul>
+			<% for course in @courses do %>
+				<li>
+					<%= link_to course.name+" <span>taught by "+ course.user.display_name+"</span>", 
+							:controller => "courses", :action => "show", :id => course.id %>
+				</li>
+			
+			<% end %>
+		</ul>
+	</div>
+<% else %>
+	<p align="center" style="color: #666;">There are no classes from this school listed on LinguaZone.</p>
+<% end %>

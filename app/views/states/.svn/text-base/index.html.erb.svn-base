@@ -1,0 +1,27 @@
+<% stylesheet "students" %>
+
+<div id="list_states">
+	<div class="floatLeft" style="width: 50%">
+		<h2>US schools</h2>
+		<ul>
+			<% for state in @states do %>
+				<li>
+					<%= link_to state.name + "<span> ("+pluralize(state.schools.length, "school")+")</span>", 
+							:controller => "states", :action => "show", :id => state.id %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+	<div class="floatRight" style="width: 50%">
+		<h2>International schools</h2>
+		<ul>
+			<% for state in @intl_states do %>
+				<li>
+					<%= link_to state.name + "<span> ("+pluralize(state.schools.length, "school")+")</span>", 
+							:controller => "states", :action => "show", :id => state.id %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+	<br class="clearFloat" />
+</div>

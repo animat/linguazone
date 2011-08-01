@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/lz-v2/!svn/ver/68/lz/app/models
+END
+user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/lz-v2/!svn/ver/63/lz/app/models/user.rb
+END
+state.rb
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/lz-v2/!svn/ver/1/lz/app/models/state.rb
+END
+user_session.rb
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/lz-v2/!svn/ver/14/lz/app/models/user_session.rb
+END
+games_word_list.rb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/lz-v2/!svn/ver/31/lz/app/models/games_word_list.rb
+END
+language.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/lz-v2/!svn/ver/1/lz/app/models/language.rb
+END
+contact_mailer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/lz-v2/!svn/ver/66/lz/app/models/contact_mailer.rb
+END
+subscription.rb
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/lz-v2/!svn/ver/66/lz/app/models/subscription.rb
+END
+demo.rb
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/lz-v2/!svn/ver/41/lz/app/models/demo.rb
+END
+post.rb
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/lz-v2/!svn/ver/31/lz/app/models/post.rb
+END
+invoice_mailer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/lz-v2/!svn/ver/68/lz/app/models/invoice_mailer.rb
+END
+school.rb
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/lz-v2/!svn/ver/31/lz/app/models/school.rb
+END
+course_registration.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/lz-v2/!svn/ver/16/lz/app/models/course_registration.rb
+END
+activity.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/lz-v2/!svn/ver/1/lz/app/models/activity.rb
+END
+subscription_plan.rb
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/lz-v2/!svn/ver/31/lz/app/models/subscription_plan.rb
+END
+course.rb
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/lz-v2/!svn/ver/63/lz/app/models/course.rb
+END
+comment.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/lz-v2/!svn/ver/63/lz/app/models/comment.rb
+END
+word_list.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/lz-v2/!svn/ver/14/lz/app/models/word_list.rb
+END
+available_word_list.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/lz-v2/!svn/ver/1/lz/app/models/available_word_list.rb
+END
+audio_clip.rb
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/lz-v2/!svn/ver/25/lz/app/models/audio_clip.rb
+END
+available_game.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/lz-v2/!svn/ver/1/lz/app/models/available_game.rb
+END
+game.rb
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/lz-v2/!svn/ver/14/lz/app/models/game.rb
+END
+high_score.rb
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/lz-v2/!svn/ver/31/lz/app/models/high_score.rb
+END
+template.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/lz-v2/!svn/ver/31/lz/app/models/template.rb
+END
+news.rb
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/lz-v2/!svn/ver/1/lz/app/models/news.rb
+END

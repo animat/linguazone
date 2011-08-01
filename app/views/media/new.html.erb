@@ -1,0 +1,19 @@
+<h1>Add a media item</h1>
+<br />
+
+<% form_for @asset, :html => {:multipart => true}, :url => {:controller => "media", :action => "create"} do |f| %>
+	
+	<p><%= f.label :name, "Name: "%> <%= f.text_field :name %></p>
+	<p><%= f.label :descrip, "Description: "%> <%= f.text_field :descrip %></p>
+	<p><%= f.label :media_category_id, "Category: "%> <%= f.select :media_category_id, MediaCategory.all.map {|mc| [mc.name, mc.id]} %></p>
+	<p><%= f.label :assigned_to %> <%= f.select :assigned_to, {"Orissa" => "Orissa", "Chris" => "Chris", "Francis" => "Francis", "Huang" => "Huang"}, :include_blank => true %>
+	<br />
+	<p>
+		<%= f.hidden_field :media_type_id, :value => "1" %>
+		<%= f.hidden_field :used_count, :value => "0" %>
+		<%= f.hidden_field :published, :value => "0" %>
+		<%= f.hidden_field :path, :value => "" %>
+		<%= f.submit %>
+	</p>
+	
+<% end %>

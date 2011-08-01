@@ -1,0 +1,11 @@
+<ul>
+	<li><%= link_to "HOME", :controller => "about", :action => "index" %></li>
+	<li><%= link_to "FEATURES", :controller => "about", :action => "features" %></li>
+	<li><%= link_to "PRICING" , :controller => "about", :action => "pricing" %></li>
+	<li><%= link_to "LANGUAGES" , :controller => "about", :action => "languages" %></li>
+	<li><%= link_to "ABOUT US" , :controller => "about", :action => "us" %></li>
+</ul>
+<ul class="login">
+	<li><%= link_to "STUDENTS", :controller => "students", :action => "login" %></li>
+	<li><%= link_to "TEACHERS", :controller => "teachers", :action => "login" %></li>
+</ul>

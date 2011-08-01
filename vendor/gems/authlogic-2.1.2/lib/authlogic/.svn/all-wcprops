@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/authlogic-2.1.2/lib/authlogic
+END
+i18n.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/authlogic-2.1.2/lib/authlogic/i18n.rb
+END
+random.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/authlogic-2.1.2/lib/authlogic/random.rb
+END
+regex.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/authlogic-2.1.2/lib/authlogic/regex.rb
+END
+test_case.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/authlogic-2.1.2/lib/authlogic/test_case.rb
+END

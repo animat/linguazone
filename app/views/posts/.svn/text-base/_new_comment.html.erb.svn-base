@@ -1,0 +1,24 @@
+<fieldset>
+	<legend><span>Leave a comment</span></legend>
+		<% form_for @comment do |f| %>
+			<%= f.hidden_field :post_id, :value => @post.id %>
+			<%= f.hidden_field :user_id, :value => current_user.id %>
+			<p>
+				Your name: <%= current_user.display_name %> (<%= link_to "logout", logout_path %>)
+			</p>
+			<div>
+				<div class="floatLeft" style="width: 60%">
+					<%= f.label :content, "Your comment:" %><br />
+					<%= f.text_area :content %>
+				</div>
+				<div class="floatRight" style="margin: 0px 5px;">
+					<%= swf_tag "audio-widget", {:size => "215x138"} %>
+				</div>
+				<br class="clearFloat" />
+			</div>
+			<p align="center">
+				<%= f.hidden_field :audio_id, :value => 0 %>
+		    	<%= f.submit 'Submit' %>
+			</p>
+		<% end %>
+</fieldset>

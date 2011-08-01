@@ -1,0 +1,12 @@
+<div id="<%= dom_id(hidden_post) %>" class="hidden_item">
+	<div class="details">
+		<p id="description_<%= dom_id(hidden_post) %>"><%= hidden_post.post.title %></p>
+	</div>
+	<div class="controls">
+		<%= link_to_remote "Show",
+			:loading => "$('show_"+dom_id(hidden_post)+"').replace('Showing...')",
+			:url => {:controller => "courses", :action => "show_post", :id => hidden_post.id },
+			:html => {:id => "show_"+dom_id(hidden_post) } %>
+	</div>
+	<br class="clearFloat" />
+</div>

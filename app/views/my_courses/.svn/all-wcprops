@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/lz-v2/!svn/ver/60/lz/app/views/my_courses
+END
+index.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/lz-v2/!svn/ver/53/lz/app/views/my_courses/index.html.erb
+END
+new.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/lz-v2/!svn/ver/28/lz/app/views/my_courses/new.html.erb
+END
+_new_course_form.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/lz-v2/!svn/ver/60/lz/app/views/my_courses/_new_course_form.html.erb
+END
+show.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/lz-v2/!svn/ver/28/lz/app/views/my_courses/show.html.erb
+END

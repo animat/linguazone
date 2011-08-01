@@ -1,0 +1,22 @@
+<div class="game_listing" id="<%= dom_id(hidden_list) %>">
+	<div class="game_details">
+		<p>
+			<%= hidden_list.word_list.description %>
+			<br />
+			<span class="date">Last updated <%= format_short_date(hidden_list.word_list.updated_at) %></span>
+		</p>
+	</div>
+	
+	<div class="manage_game">
+		<%= link_to 'Edit', :controller => "customize", :action => "edit", :id => hidden_list.word_list.id, :cmzr_type => "list" %>
+		<% unless show_in_course.nil? %>
+			|
+			<%= link_to_remote 'Show '+String(hidden_list.course_id),
+				:loading => "$('show_"+dom_id(hidden_list)+"').replace('Showing...')",
+				:url => {:controller => "courses", :action => "show_game", :id => hidden_list.id },
+				:html => {:id => "show_"+dom_id(hidden_list) } %>
+		<% end %>
+	</div>
+	<br class="clearFloat" />
+
+</div>

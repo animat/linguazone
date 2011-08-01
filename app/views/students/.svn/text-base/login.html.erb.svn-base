@@ -1,0 +1,69 @@
+<% stylesheet "students" %>
+
+<div>
+	<div style="width: 46%; float: left;">
+		<h1>Login to LinguaZone</h1>
+		<p>for one-click access to class pages and for access to password-protected pages <span style="color: green;">*optional</span></p>
+
+		<div>
+			<fieldset class="login">
+				<% form_for (@user_session) do |f| %>
+					<%= f.error_messages %>
+					<div>
+						<%= f.label :email, "Username or email address:" %>
+						<br />
+						<%= f.text_field :email %>
+					</div>
+					<br class="clearFloat" />
+					<div>
+						<%= f.label :password, "Password:" %>
+						<br />
+						<%= f.password_field :password %>
+					</div>
+					<br class="clearFloat" />
+					<div align="center">
+						<%= f.check_box :remember_me %>
+						<%= f.label :remember_me %>
+					</div>
+					<br class="clearFloat" />
+					<div align="center">
+						<%= f.hidden_field :role, :value => "student" %>
+						<%= f.submit "Login" %>
+					</div>
+				<% end %>
+			</fieldset>
+		</div>
+
+		<p class="helper_links"><%= link_to "Create a username & password", new_student_path %></p>
+	</div>
+	<div style="width: 46%; float: right;">
+		<h1>Find your class page</h1>
+		<p>jump to your class page without creating a username</p>
+		<div id="search_schools">
+			<fieldset class="login">
+				<% form_tag :controller => "schools", :action => "search" do |f| %>
+					<div class="loginLabel">
+						<%= label :school, :name, "Your school's name:" %>
+					</div>
+					<div class="loginField">
+						<%= text_field_with_auto_complete :school, :name, {:size => 30} %>
+					</div>
+					<br />
+					<div align="center">
+						<%= submit_tag "Find your class" %>
+					</div>
+				<% end %>
+			</fieldset>
+		</div>
+
+		<p class="helper_links">Can't find your class? Browse for your school below.</p>
+	</div>
+</div>
+
+<br class="clearFloat" /> 
+
+<hr />
+
+<div id="list_states">
+	<%= render :partial => "schools/browse_for_school" %>
+</div>

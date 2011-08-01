@@ -1,0 +1,44 @@
+<% stylesheet 'my_games' %>
+
+<h1>Adopt a game made by another teacher</h1>
+<fieldset>
+	<legend>Search games made by other LinguaZone teachers</legend>
+		<% form_for @search, :url => {:action => "adopt"} do |f| %>
+			<%= f.hidden_field :updated_by_id_does_not_equal, :value => current_user.id %>
+			<p>
+				<%= f.label :description_like, "Search for:" %>
+				<%= f.text_field :description_like %>
+				<%= link_to_function "more options...", :id => "search_options" do |page|
+					page.visual_effect(:toggle_appear, "advanced_search")
+				end %>
+			</p>
+			<div id="advanced_search" style="display: none">
+				<p>
+					<%= f.label :activity_id_equals, "Customized in..." %>
+					<%= f.collection_select :activity_id_equals, Activity.all(:order => "name ASC"), :id, :name, :include_blank => "any game template" %>
+					<%= f.label :language_id_equals, "which is in..." %>
+					<%= f.collection_select :language_id_equals, Language.all(:order => "name ASC"), :id, :name, :include_blank => "any language" %>
+				</p>
+				<p>
+					<%= f.label :updated_by_last_name_like, "customized by (teacher's last name)... " %>
+					<%= f.text_field :updated_by_last_name_like, :size => 25 %>
+				</p>
+			</div>
+			<p align="center">
+				<%= f.submit "Search", :name => nil %>
+			</p>
+		<% end %>
+	</legend>
+</fieldset>
+<br />
+
+<div id="search_results">
+	<% unless @games.nil? or @games.empty? %>
+		<%= page_entries_info @games %>
+		<% paginated_section @games do %>
+			<% @games.each do |g| %>
+				<%= render :partial => "adopt_game", :locals => {:game => g} %>
+			<% end %>
+		<% end %>
+	<% end %>
+</div>

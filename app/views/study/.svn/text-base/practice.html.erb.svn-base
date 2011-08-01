@@ -1,0 +1,10 @@
+<% stylesheet 'play' %>
+
+<h1>Study your word list</h1>
+<p><%= @list.description %>!</p>
+
+<div id="game_window">
+	<div id="game">
+		<%= swf_tag 'study', {:id => "study", :flashvars => "listid="+String(@list.id), :flash_version => "8"} %>
+	</div>
+</div>

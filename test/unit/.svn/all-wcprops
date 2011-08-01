@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/lz-v2/!svn/ver/63/lz/test/unit
+END
+user_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/lz-v2/!svn/ver/1/lz/test/unit/user_test.rb
+END
+media_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/lz-v2/!svn/ver/70/lz/test/unit/media_test.rb
+END
+language_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/lz-v2/!svn/ver/1/lz/test/unit/language_test.rb
+END
+contact_mailer_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/lz-v2/!svn/ver/35/lz/test/unit/contact_mailer_test.rb
+END
+subscription_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/lz-v2/!svn/ver/27/lz/test/unit/subscription_test.rb
+END
+post_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/lz-v2/!svn/ver/8/lz/test/unit/post_test.rb
+END
+invoice_mailer_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/lz-v2/!svn/ver/27/lz/test/unit/invoice_mailer_test.rb
+END
+school_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/lz-v2/!svn/ver/1/lz/test/unit/school_test.rb
+END
+available_games_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/lz-v2/!svn/ver/1/lz/test/unit/available_games_test.rb
+END
+games_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/lz-v2/!svn/ver/1/lz/test/unit/games_test.rb
+END
+subscription_plan_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/lz-v2/!svn/ver/35/lz/test/unit/subscription_plan_test.rb
+END
+course_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/lz-v2/!svn/ver/1/lz/test/unit/course_test.rb
+END
+role_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/lz-v2/!svn/ver/15/lz/test/unit/role_test.rb
+END
+comment_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/lz-v2/!svn/ver/8/lz/test/unit/comment_test.rb
+END
+states_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/lz-v2/!svn/ver/1/lz/test/unit/states_test.rb
+END
+media_types_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/lz-v2/!svn/ver/70/lz/test/unit/media_types_test.rb
+END
+activities_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/lz-v2/!svn/ver/1/lz/test/unit/activities_test.rb
+END
+word_list_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/lz-v2/!svn/ver/1/lz/test/unit/word_list_test.rb
+END
+available_word_list_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/lz-v2/!svn/ver/1/lz/test/unit/available_word_list_test.rb
+END
+media_keywords_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/lz-v2/!svn/ver/70/lz/test/unit/media_keywords_test.rb
+END
+audio_clip_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/lz-v2/!svn/ver/27/lz/test/unit/audio_clip_test.rb
+END
+available_game_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/lz-v2/!svn/ver/1/lz/test/unit/available_game_test.rb
+END
+news_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/lz-v2/!svn/ver/1/lz/test/unit/news_test.rb
+END
+media_category_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/lz-v2/!svn/ver/70/lz/test/unit/media_category_test.rb
+END

@@ -1,0 +1,100 @@
+<% content_for :page_script do %>
+<script type="text/javascript">
+
+var audioid;
+
+function setAudioID(num) {
+	audioid = num;
+	$("comment_audio_id").value = num;
+}
+
+function showPostControls() {
+	$("post_controls").className = "controls";
+	$("backToClass").className = "remove_spacing";
+}
+
+function hidePostControls() {
+	$("post_controls").className = "hide_controls";
+	$("backToClass").className = "hold_spacing";
+}
+
+</script>
+<% end %>
+
+<% stylesheet 'post' %>
+
+<% content_for :title do %> LinguaZone - <%= @post.course.name %> - Audio Blog - <%= @post.title %> <% end %>
+
+<div onmouseover="showPostControls();" onmouseout="hidePostControls();">
+	<div id="title" >
+		<h1><%= @post.title %></h1>
+		<p class="date"><%= format_date(@post.updated_at) %></p>
+		<br class="clearFloat" />
+	</div>
+
+	<div id="post">
+		<% if @post.audio_id == 0 %>
+			<p><%= @post.content %></p>
+		<% else %>
+			<div style="margin-top: 10px">
+				<div style="float: left; margin: 0px 15px;">
+					<%= swf_tag "audio-widget", {:size => "215x138", :flashvars => "audio_id="+String(@post.audio_id), :wmode => 'transparent'} %>
+				</div>
+				<p><%= @post.content %></p>
+				<br class="clearFloat" />
+			</div>
+		<% end %>
+		<% if is_teacher_for(@post.course) %>
+			<ul id="post_controls" class="hide_controls">
+				<li>Teacher controls:</li>
+				<li><%= link_to "Edit post", edit_post_path(@post) %></li>
+				<li><%= link_to "Delete post", @post, :method => "DELETE", :confirm => "Are you sure you want to delete this post?" %></li>
+			</ul>
+		<% end %>
+	</div>
+</div>
+
+<p id="backToClass" class="hold_spacing"><%= link_to 'Back to class page', :controller => "courses", :action => "show", :id => @post.course_id %></p>
+
+<hr />
+
+<% if current_user.nil? %>
+	<div align="center">
+		<p><strong>You must login</strong> to participate in this audio blog.</p>
+		<p>Please <%= link_to "return to the login window", :controller => "students", :action => "login" %>, or <%= link_to "let us know", contact_path %> if you're running into any problems.</p>
+	</div>
+<% else %>
+	<div id="comments">
+		<h2>Comments</h2>
+		<% if @post.comments.length == 0 %>
+			<p>No comments have been left on this post yet.</p>
+		<% else %>
+			<% if @post.shared? %>
+				<%= page_entries_info @student_comments %>
+				<% paginated_section @student_comments do %>
+					<% @student_comments.each do |sc| %>
+						<%= render :partial => 'comment', :locals => {:comment => sc, :post => @post} %>
+					<% end %>
+				<% end %>
+			<% else %>
+				<% if is_teacher_for (@post.course) %>
+					<p>Students cannot see each other's comments &mdash; only you can see student comments.</p>
+					<%= page_entries_info @student_comments %>
+					<% paginated_section @student_comments do %>
+						<% @student_comments.each do |sc| %>
+							<%= render :partial => 'comment', :locals => {:comment => sc, :post => @post} %>
+						<% end %>
+					<% end %>
+				<% else %>
+					<p>You have left <%= pluralize(@student_comments.length, 'comment') %> on this post.</p>
+					<%= render :partial => 'comment', :collection => @student_comments %>
+				<% end %>
+			<% end %>
+		<% end %>
+	</div>
+
+	<%= render :partial => 'new_comment' %>
+
+
+	<%= link_to 'Back to class page', :controller => "courses", :action => "show", :id => @post.course_id %>
+<% end %>

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/authlogic-2.1.2/test/crypto_provider_test
+END
+bcrypt_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/authlogic-2.1.2/test/crypto_provider_test/bcrypt_test.rb
+END
+sha512_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/authlogic-2.1.2/test/crypto_provider_test/sha512_test.rb
+END
+aes256_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/authlogic-2.1.2/test/crypto_provider_test/aes256_test.rb
+END
+sha1_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/lz-v2/!svn/ver/38/lz/vendor/gems/authlogic-2.1.2/test/crypto_provider_test/sha1_test.rb
+END

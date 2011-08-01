@@ -1,0 +1,19 @@
+<div class="game_listing" id="<%= dom_id(game) %>">
+	<div class="game_details">
+		<% unless game.activity.nil? %>
+			<%= link_to image_tag('/games/'+game.activity.swf+'/display/icon-small.jpg', :alt => 'Play '+game.activity.name), play_path(game.id) %>
+		<% end %>
+		<p>
+			<%= game.description %>
+			<br />
+			<span class="date">Last updated <%= format_short_date(game.updated_at) %></span>
+		</p>
+	</div>
+	
+	<div class="manage_game">
+		<%= link_to 'Edit', :controller => "customize", :action => "edit", :id => game.id, :cmzr_type => "game" %>
+		|
+		<%= link_to 'Delete', :controller => "my_games", :action => "destroy", :id => game.id %>
+	</div>
+	<br class="clearFloat" />
+</div>

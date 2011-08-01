@@ -1,0 +1,26 @@
+class StudyController < ApplicationController
+  before_filter :load_word_list
+  
+  def load_word_list
+    @list = WordList.find(params[:id])
+  end
+  
+  def browse
+    doc = REXML::Document.new(@list.xml)
+    @nodes = REXML::XPath.match(doc, "/gamedata/node")
+  end
+
+  def print
+    doc = REXML::Document.new(@list.xml)
+    @nodes = REXML::XPath.match(doc, "/gamedata/node")
+    
+    render :layout => "print_word_list"
+  end
+
+  def practice
+  end
+
+  def catch
+  end
+
+end
