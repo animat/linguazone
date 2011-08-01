@@ -1,6 +1,0 @@
-<h1>High scores</h1>
-<ul>
-	<% @scores.each do |score| %>
-		<li>Score :: <%= score.user_id %> :: <%= score.score %></li>
-	<% end %>
-</ul>

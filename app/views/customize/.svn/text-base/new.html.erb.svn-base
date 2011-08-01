@@ -1,5 +1,0 @@
-<h1>Create a new <%= format_cmzr_type(params[:cmzr_type]) %></h1>
-<br />
-<div align="center">
-	<%= swf_tag 'customizer/main.lzx.swf', { :id => "customizer", :flashvars => @embed_vars, :size => "600x600" } %>
-</div>

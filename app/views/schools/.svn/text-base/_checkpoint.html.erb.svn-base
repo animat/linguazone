@@ -1,9 +1,0 @@
-<div class="progressHeader"><%= image_tag "shared-buttons/progress-button-2.jpg" %><h3>Next, confirm details about your school.</h3></div>
-<% unless @school.nil? or @school.city.nil? %>
-	<div class="progressContent">
-		<p>
-			<%= @school.name %><br />
-			in <%= @school.city %>, <%= @school.state.abbr %>
-		</p>
-	</div>
-<% end %>

@@ -1,2 +1,0 @@
-<h2><%= @game.activity.name %></h2>
-<p><%= @game.description %></p>

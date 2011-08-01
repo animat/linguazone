@@ -1,8 +1,0 @@
-<p>New trial subscription to LinguaZone!</p>
-<p>-------------</p>
-<p>
-	<%= @user.first_name %> <%= @user.last_name %><br />
-	<%= @user.email %><br />
-	<%= @user.school.name %><br />
-	<%= @user.school.city %>, <%= @user.school.state.name %>
-</p>

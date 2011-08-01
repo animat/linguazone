@@ -1,2 +1,0 @@
-<p><%= session[:school].name %> does not currently have a subscription to LinguaZone.</p>
-<p><%= link_to "Continue to create your account", :controller => "subscription", :action => "new" %>.</p>

@@ -1,8 +1,0 @@
-<div id="select_course">
-	<% form_remote_for @registration, :url => {:action => "select_course"} do |f| %>
-		<% for course in @courses do %>
-			<%= f.radio_button :course_id, String(course.id) %> <%= f.label :course_id, course.name+" taught by "+course.user.display_name %><br />
-		<% end %>
-		<p><%= f.submit 'Continue registration', :disable_with => "Registering in class..." %></p>
-	<% end %>
-</div>

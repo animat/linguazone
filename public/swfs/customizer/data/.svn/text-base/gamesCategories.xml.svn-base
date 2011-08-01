@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<gamesCategories>
-	<category group="all" title="All" desc="All of the games offered by LinguaZone" />
-	<category group="matching" title="Match" desc="Students match correct answers to the options you provide" />
-	<category group="unscrambling" title="Unscramble" desc="Students unscramble words to answer questions" />
-	<category group="multipleChoice" title="Multi Choice" desc="Students answer multiple questions" />
-	<category group="studentInput" title="Fill in" desc="Students produce and type the answers to your questions" />
-</gamesCategories>

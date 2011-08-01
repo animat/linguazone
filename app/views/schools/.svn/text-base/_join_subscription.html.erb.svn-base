@@ -1,8 +1,0 @@
-<p><%= session[:school].name %> has a <strong><%= session[:school].subscription.subscription_plan.name %> subscription</strong>.</p>
-<p>
-	<strong><%= pluralize(session[:school].subscribers.length, "teacher") %></strong>
-	are currently registered with a maximum allowed group of 
-	<strong><%= session[:school].subscription.subscription_plan.max_teachers %></strong>.
-</p>
-
-<p>Have your school's 5-digit pin number ready, then <%= link_to "continue to create your account", :controller => "teachers", :action => "new" %>.</p>

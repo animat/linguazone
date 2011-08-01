@@ -1,6 +1,0 @@
-<% stylesheet 'teachers' %>
-
-<h1>Your subscription has expired</h1>
-<p>Renew your subscription now, or <%= link_to "get in touch", contact_path %> if you need help.</p>
-
-<%= render :partial => "upgrade_trial" %>

@@ -1,3 +1,0 @@
-<ul>
-	<li><%= link_to "Return to the student homepage", :controller => "students", :action => "index" %></li>
-</ul>

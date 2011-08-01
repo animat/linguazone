@@ -1,0 +1,13 @@
+tags
+log/*.log
+tmp/**/*
+doc/api
+tmp/*
+*.swp
+doc/app
+.idea
+*.sqlite3
+*.DS_Store
+db/*.sqlite3
+public/stylesheets/compiled
+*(Autosaved).rtfd/
