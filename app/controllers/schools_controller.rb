@@ -1,6 +1,6 @@
 class SchoolsController < ApplicationController
   auto_complete_for :school, :name
-  
+
   def index
     redirect_to :controller => "students", :action => "login"
   end
@@ -13,7 +13,7 @@ class SchoolsController < ApplicationController
       format.xml { render :xml => @school }
     end
   end
-  
+
   def search
     @schools = School.all(:conditions => ['LOWER(name) LIKE ?', '%'+params[:school][:name]+'%'])
     if @schools.length == 1
@@ -23,7 +23,7 @@ class SchoolsController < ApplicationController
       @intl_states = State.all(:conditions => ["intl = 1"], :order => "name")
     end
   end
-  
+
   def check
     if params[:trial] != nil
       @subscription = Subscription.new
@@ -35,7 +35,7 @@ class SchoolsController < ApplicationController
     end
     session[:subscription] = @subscription
   end
-  
+
   def confirm_or_new
     if session[:subscription].nil?
       redirect_to :controller => "about", :action => "pricing"
@@ -60,13 +60,13 @@ class SchoolsController < ApplicationController
             end
           end
         end
-        
+
       else
         redirect_to :action => "new", :school_name => params[:school][:name]
       end
     end
   end
-  
+
   def new
     if session[:subscription].nil?
       redirect_to :controller => "about", :action => "pricing"
@@ -77,7 +77,7 @@ class SchoolsController < ApplicationController
       @intl_states = State.all(:conditions => ["intl = 1"], :order => "name").collect { |state| [state.name, state.id]}
     end
   end
-  
+
   def create
     @school = School.new(params[:school])
     if @school.save

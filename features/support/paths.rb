@@ -10,9 +10,10 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
+    when /the new trial page/
+      '/trial'
     when /the teacher login page/
       login_teachers_path
-      
 
 
     # Add more mappings here.
