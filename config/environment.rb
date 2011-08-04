@@ -15,24 +15,6 @@ Rails::Initializer.run do |config|
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
-  
-  # Specify gems that this application depends on and have them installed with rake gems:install
-  # config.gem "bj"
-  # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
-  # config.gem "sqlite3-ruby", :lib => "sqlite3"
-  config.gem "aws-s3", :version => '0.6.2', :lib => "aws/s3"
-  config.gem "authlogic"
-  config.gem "searchlogic"
-  config.gem "declarative_authorization", :source => "http://gemcutter.org"
-  config.gem "will_paginate", :source => "http://gemcutter.org"
-  config.gem "rexml-expansion-fix"
-  config.gem "javan-whenever", :lib => false, :source => "http://gems.github.com"
-  config.gem "paperclip", :source => "http://gems.github.com", :lib => "paperclip"
-  config.gem "cucumber"
-  config.gem "capybara"
-  config.gem "database_cleaner", :version => '0.5.0'
-  config.gem "factory_girl"
-  #config.gem "mysql"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

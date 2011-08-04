@@ -13,5 +13,5 @@ Feature: Student views audio blogs
     And I fill in "Email address:" with "tony@sopranos.com"
     And I fill in "Password:" with "badabing"
     And I press "Login"
-		Then show me the page
-    
+    Then show me the page
+
