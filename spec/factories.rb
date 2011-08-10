@@ -28,11 +28,20 @@ end
 
 Factory.define :game do |g|
   g.description "Fun game"
-  g.audio_ids "1,2"
+  g.audio_ids   "1,2"
   g.template_id 2
-  g.xml "<game></game>"
+  g.xml         "<game></game>"
   g.association :activity
   g.association :language
+end
+
+Factory.define :school do |s|
+  s.name        "Xavier's School of Gifted Youngsters"
+  s.address     "1407 Graymalkin Lane"
+  s.city        "Salem Center"
+  s.association :state
+  s.zip         "19103"
+  s.pin          999
 end
 
 Factory.define :teacher, :class => "User" do |f|
