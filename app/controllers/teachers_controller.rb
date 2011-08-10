@@ -1,7 +1,7 @@
 class TeachersController < ApplicationController
   filter_access_to :index, :update, :destroy
   before_filter :check_expired
-  
+
   def getting_started
     session[:teacher] = nil
     session[:school] = nil
@@ -9,20 +9,20 @@ class TeachersController < ApplicationController
     flash[:notice] = nil
     flash[:error] = nil
     @course = Course.new
-    @game = Game.find(10763)
+    @game = Game.getting_started
   end
-  
+
   def login
     @user_session = UserSession.new
   end
-  
+
   # GET /teachers
   # GET /teachers.xml
   def index
     @user = current_user
     @news_items = News.all(:limit => 4, :order => "created_at DESC")
     @subscription = Subscription.new
-    
+
     if current_user.subscription.subscription_plan.max_teachers == -1
       @add_teachers_upgrades = nil
     else
@@ -70,9 +70,9 @@ class TeachersController < ApplicationController
     end
     @subscription = session[:subscription]
     @school = session[:school]
-    
+
     @new_teacher = User.new(params[:user])
-    
+
     if params[:user][:first_name].blank? or params[:user][:last_name].blank? or params[:user][:email].blank? or params[:user][:password].blank?
       flash[:error] = "Please fill out all of the fields before continuing."
       render :action => "new"
@@ -92,10 +92,10 @@ class TeachersController < ApplicationController
       end
     end
   end
-  
+
   def update
     @user = current_user
-    
+
     if @user.update_attributes(params[:user])
       flash[:notice] = "Saved your preferences."
       redirect_to :controller => "teachers", :action => "index"

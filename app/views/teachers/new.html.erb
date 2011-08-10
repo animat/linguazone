@@ -1,22 +1,22 @@
-<%= render :partial => "subscription/checkpoint" %>
+<%= render "subscription/checkpoint" %>
 
-<%= render :partial => "schools/checkpoint" %>
+<%= render "schools/checkpoint" %>
 
-<%= render :partial => "checkpoint" %>
+<%= render "checkpoint" %>
 
 <div class="progressContent">
-	<% form_for @new_teacher, :url => {:controller => "teachers", :action => "create"} do |f| %>
-		<%= f.error_messages %>
-		<div>
-			<%= render :partial => "new_teacher_form", :locals => {:f => f} %>
-		</div>
-		<br />
-		<p>
-			<% if @subscription.subscription_plan.name == "trial" %>
-				<%= f.submit 'Create trial and get started!' %>
-			<% else %>
-				<%= f.submit 'Continue to confirmation page' %>
-			<% end %>
-		</p>
-	<% end %>
+  <% form_for @new_teacher, :url => {:controller => "teachers", :action => "create"} do |f| %>
+    <%= f.error_messages %>
+    <div>
+      <%= render "new_teacher_form", {:f => f} %>
+    </div>
+    <br />
+    <p>
+      <% if @subscription.trial? %>
+        <%= f.submit 'Create trial and get started!' %>
+      <% else %>
+        <%= f.submit 'Continue to confirmation page' %>
+      <% end %>
+    </p>
+  <% end %>
 </div>

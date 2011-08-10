@@ -1,7 +1,8 @@
 Feature: A new teacher creates a trial account
 
 Background:
-  Given a subscription plan exists with a id of "9"
+  Given a subscription plan exists with a name of "trial"
+  And a game exists with a getting started of "true"
   And a state exists with a name of "Pennsylvania"
   And I am on the new trial page
 
@@ -18,5 +19,5 @@ Scenario: Sign up for a new plan with a new school
   And I fill in "Your last name:" with "Soprano"
   And I fill in "Your email address:" with "tony@njwaste.com"
   And I fill in "Create a LinguaZone password" with "badabing"
-  And I press "Continue to confirmation page"
-  Then I should see "Email invoice and get started"
+  And I press "user_submit"
+  Then I should see "Let's get started!"
