@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'mysql'
+gem 'rdoc'
 gem 'rack',  '1.0.1'
 gem 'SystemTimer'
 gem "repeated_auto_complete"
