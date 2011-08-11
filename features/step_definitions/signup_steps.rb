@@ -21,6 +21,5 @@ When "I fill in my account details" do
     And I fill in "Your last name:" with "Soprano"
     And I fill in "Your email address:" with "tony@njwaste.com"
     And I fill in "Create a LinguaZone password" with "badabing"
-    And I press "user_submit"
   }
 end

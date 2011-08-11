@@ -1,5 +1,5 @@
 class SchoolsController < ApplicationController
-  auto_complete_for :school, :name
+  autocomplete :school, :name
 
   def index
     redirect_to :controller => "students", :action => "login"
@@ -25,6 +25,7 @@ class SchoolsController < ApplicationController
   end
 
   def check
+    @school = School.new
     if params[:trial] != nil
       @subscription = Subscription.new(:subscription_plan => SubscriptionPlan.trial)
     elsif params[:subscription] != nil

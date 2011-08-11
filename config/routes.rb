@@ -1,28 +1,50 @@
-ActionController::Routing::Routes.draw do |map|
-  
-  map.resources :teachers, :collection => { :login => :get, :getting_started => :get}
-  map.resources :students, :collection => { :login => :get, :register => :get, :select_school => :get }
-  map.resources :schools, :collection => { :check => :get, :confirm => :get, :confirm_or_new => :get}
-  map.resources :posts, :collection => {:upgrade_reminder => :get}
-  
-  map.resources :states, :play, :users, :user_sessions, :high_scores, :comments, :media, :password_resets
-  
-  map.connect 'customize/:action/:cmzr_type/:id', :controller => "customize", :cmzr_type => nil, :id => nil
-  map.connect 'class/:id', :controller => "courses", :action => "show"
-  map.connect 'class/:id/feed', :controller => "courses", :action => "feed"
-  
-  map.logout "logout", :controller => "user_sessions", :action => "destroy"
-  map.trial "trial", :controller => "schools", :action => "check", :trial => "true"
-  map.contact "contact", :controller => "about", :action => "us", :anchor => "email"
-  
-  map.root :controller => "about", :action => "index"
+Linguazone::Application.routes.draw do
+  resources :teachers do
+    collection do
+      get :getting_started
+      get :login
+    end
+  end
 
-  # See how all your routes lay out with "rake routes"
+  resources :students do
+    collection do
+      get :select_school
+      get :register
+      get :login
+    end
+  end
 
-  # Install the default routes as the lowest priority.
-  # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
-  
+  resources :schools do
+    collection do
+      get :autocomplete_name
+      get :check
+      get :confirm
+      get :confirm_or_new
+    end
+  end
+
+  resources :posts do
+    collection do
+      get :upgrade_reminder
+    end
+  end
+
+  resources :states
+  resources :play
+  resources :users
+  resources :user_sessions
+  resources :high_scores
+  resources :comments
+  resources :media
+  resources :password_resets
+  match 'customize/:action/:cmzr_type/:id' => 'customize#index', :cmzr_type => nil, :id => nil
+  match 'class/:id' => 'courses#show'
+  match 'class/:id/feed' => 'courses#feed'
+  match 'logout' => 'user_sessions#destroy', :as => :logout
+  match 'trial' => 'schools#check', :as => :trial, :trial => 'true'
+  match 'contact' => 'about#us', :as => :contact, :anchor => 'email'
+  match '/' => 'about#index'
+  match '/:controller(/:action(/:id))'
+  root :controller => "about", :action => "index"
 end
+

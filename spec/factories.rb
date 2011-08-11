@@ -3,14 +3,14 @@ Factory.define :state do |p|
   p.abbr 'PA'
 end
 
-Factory.define :subscription_plan do |p|
-  p.name "Trial"
-  p.max_teachers 50
-  p.cost 5
+Factory.define :user do |u|
+  u.email      "john@smith.com"
+  u.first_name "John"
+  u.last_name  "Smith"
 end
 
-Factory.define :subscription do |s|
-  s.association :subscription_plan
+Factory.define :student, :parent => :user do |s|
+  s.role "student"
 end
 
 Factory.define :language do |l|
@@ -34,6 +34,17 @@ Factory.define :game do |g|
   g.association :activity
   g.association :language
 end
+
+Factory.define :subscription_plan do |p|
+  p.name "Trial"
+  p.max_teachers 50
+  p.cost 5
+end
+
+Factory.define :subscription do |s|
+  s.association :subscription_plan
+end
+
 
 Factory.define :school do |s|
   s.name        "Xavier's School of Gifted Youngsters"

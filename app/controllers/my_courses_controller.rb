@@ -1,27 +1,27 @@
 class MyCoursesController < ApplicationController
   before_filter :check_expired
-  
+
   def index
     @courses = Course.all(:conditions => ["user_id = ?", current_user.id], :include => :course_registrations)
   end
-  
+
   def show
     @course = Course.find(params[:id])
   end
-  
+
   def new
     @course = Course.new
   end
-  
+
   def create
     @course = Course.new(params[:course])
-    
+
     if @course.login_required?
       if @course.code.blank?
         @course.login_required = false
       end
     end
-    
+
     respond_to do |format|
       if @course.save
         format.html {redirect_to :controller => "courses", :action => "show", :id => @course.id}
@@ -32,20 +32,20 @@ class MyCoursesController < ApplicationController
       end
     end
   end
-  
+
   def edit
-    
+
   end
-  
+
   def update
-    
+
   end
-  
+
   def destroy
     @course = Course.find(params[:id])
-    if @course.user_id == current_user.id  
+    if @course.user_id == current_user.id
       @course.destroy
-    
+
       flash[:notice] = "The class has been deleted."
       redirect_to :action => "index"
     else

@@ -5,8 +5,7 @@
 <%= render "checkpoint" %>
 
 <div class="progressContent">
-  <% form_for @new_teacher, :url => {:controller => "teachers", :action => "create"} do |f| %>
-    <%= f.error_messages %>
+  <%= form_for @new_teacher, :url => {:controller => "teachers", :action => "create"} do |f| %>
     <div>
       <%= render "new_teacher_form", {:f => f} %>
     </div>

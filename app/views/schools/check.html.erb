@@ -1,15 +1,14 @@
-<%= render :partial => "subscription/checkpoint" %>
+<%= render "subscription/checkpoint" %>
 
-<%= render :partial => "checkpoint" %>
+<%= render "checkpoint" %>
 
 <div class="progressContent">
-	<% form_tag :controller => "schools", :action => "confirm_or_new" do |f| %>
-		<div>
-			<%= label :school, :name, "Your school's name:" %><br />
-			<%= text_field_with_auto_complete :school, :name, {:size => 34} %>
-			<%= submit_tag "Check the database" %>
-		</div>
-	<% end %>
+  <%= simple_form_for @school, :url => confirm_or_new_schools_path do |f| %>
+    <div>
+      <%= f.input :name, :label => "Your school's name:", :url => autocomplete_name_schools_path, :as => :autocomplete %>
+      <%= f.submit "Check the database" %>
+    </div>
+  <% end %>
 </div>
 
-<%= render :partial => "teachers/checkpoint" %>
+<%= render "teachers/checkpoint" %>

@@ -10,6 +10,8 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
+    when /the student login page/
+      '/students/login'
     when /the new trial page/
       '/trial'
     when /the teacher login page/
