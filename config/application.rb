@@ -1,8 +1,16 @@
 # Put this in config/application.rb
 require File.expand_path('../boot', __FILE__)
 
+require "thread"
+require 'rails/all'
+
+Bundler.require(:default, Rails.env) if defined?(Bundler)
+
 module Linguazone
   class Application < Rails::Application
+
+    config.filter_parameters << :password << :password_confirmation
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -31,10 +39,9 @@ module Linguazone
 
     # JOYENT DEPLOYMENT: Unpacked gems to vendor/gems, now adding this directory to load path
     #   followed tutorial at http://wiki.joyent.com/shared:kb:installing-rails
-    config.load_paths += Dir["#{RAILS_ROOT}/vendor/gems/**"].map do |dir|
+    config.autoload_paths += Dir["#{Rails.root}/vendor/gems/**"].map do |dir|
       File.directory?(lib = "#{dir}/lib") ? lib : dir
     end
-
   end
 end
 

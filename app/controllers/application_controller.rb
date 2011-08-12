@@ -4,7 +4,6 @@
 class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user, :is_teacher_for, :is_student_for
-  filter_parameter_logging :password, :password_confirmation
   before_filter :set_current_user, :get_teacher_courses
 
   protected
@@ -14,26 +13,26 @@ class ApplicationController < ActionController::Base
         @courses = Course.all(:conditions => ["user_id = ?", current_user.id]) if current_user.role == "teacher"
       end
     end
-  
+
     def set_current_user
      Authorization.current_user = current_user
     end
-    
+
     def current_user
       return @current_user if defined?(@current_user)
       @current_user = current_user_session && current_user_session.record
     end
-    
+
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
       @current_user_session = UserSession.find
     end
-    
+
     def is_teacher_for(course)
       return false if current_user.nil?
       return course.user_id == current_user.id
     end
-    
+
     def is_teacher_for_student(student_id)
       @course_registrations = CourseRegistration.all(:conditions => ["user_id = ?", student_id])
       @val = false
@@ -45,12 +44,12 @@ class ApplicationController < ActionController::Base
       end
       @val
     end
-    
+
     def is_student_for(course)
       return false if current_user.nil?
       return CourseRegistration.all(:conditions => ["user_id = ? AND course_id = ?", current_user.id, course.id]).length > 0
     end
-    
+
     def check_expired
       unless current_user.nil?
         if current_user.role == "teacher"
@@ -60,7 +59,7 @@ class ApplicationController < ActionController::Base
         end
       end
     end
-    
+
     def store_location
       session[:return_to] = request.request_uri
     end
@@ -70,7 +69,7 @@ class ApplicationController < ActionController::Base
       rescue ActionController::RedirectBackError
         redirect_to path
     end
-    
+
     def permission_denied
       flash[:error] = "You do not have permission to access that page. You may need to login first."
       redirect_to root_url

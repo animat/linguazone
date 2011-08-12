@@ -1,5 +1,5 @@
 class SchoolsController < ApplicationController
-  auto_complete_for :school, :name
+  autocomplete :school, :name
 
   def index
     redirect_to :controller => "students", :action => "login"

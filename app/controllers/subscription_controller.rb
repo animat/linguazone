@@ -1,5 +1,5 @@
 class SubscriptionController < ApplicationController
-  auto_complete_for :school, :name
+  autocomplete :school, :name
   
   def new
     render :controller => "teachers", :action => "new"

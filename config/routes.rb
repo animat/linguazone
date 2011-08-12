@@ -1,39 +1,31 @@
 Linguazone::Application.routes.draw do
   resources :teachers do
     collection do
-  get :getting_started
-  get :login
-  end
-  
-  
+      get :getting_started
+      get :login
+    end
   end
 
   resources :students do
     collection do
-  get :select_school
-  get :register
-  get :login
-  end
-  
-  
+      get :select_school
+      get :register
+      get :login
+    end
   end
 
   resources :schools do
     collection do
-  get :check
-  get :confirm
-  get :confirm_or_new
-  end
-  
-  
+      get :check
+      get :confirm
+      get :confirm_or_new
+    end
   end
 
   resources :posts do
     collection do
-  get :upgrade_reminder
-  end
-  
-  
+      get :upgrade_reminder
+    end
   end
 
   resources :states
@@ -44,7 +36,7 @@ Linguazone::Application.routes.draw do
   resources :comments
   resources :media
   resources :password_resets
-  match 'customize/:action/:cmzr_type/:id' => 'customize#index', :cmzr_type => , :id => 
+  match 'customize/:action/:cmzr_type/:id' => 'customize#index', :cmzr_type => nil, :id => nil
   match 'class/:id' => 'courses#show'
   match 'class/:id/feed' => 'courses#feed'
   match 'logout' => 'user_sessions#destroy', :as => :logout

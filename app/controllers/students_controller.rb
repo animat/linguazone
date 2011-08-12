@@ -1,11 +1,11 @@
 class StudentsController < ApplicationController
   filter_access_to :index, :register, :search_for_school, :select_school, :enter_code, :auto_complete_for_school
-  auto_complete_for :school, :name
-  
+  autocomplete :school, :name
+
   def index
     @registered_courses = CourseRegistration.all(:conditions => ["user_id = ?", current_user.id], :include => :course)
   end
-  
+
   def show
     if current_user.nil?   # Must be logged in
       @proceed = false
@@ -27,17 +27,17 @@ class StudentsController < ApplicationController
       redirect_to :controller => "my_courses"
     end
   end
-  
+
   def login
     @user_session = UserSession.new
     @states = State.all(:conditions => ["intl = 0"], :order => "name")
     @intl_states = State.all(:conditions => ["intl = 1"], :order => "name")
   end
-  
+
   def register
     @school = School.new
   end
-  
+
   def find_school
     @similar_schools = School.all(:conditions => ['LOWER(name) LIKE ?', params[:school][:name]])
     if @similar_schools.length == 1
@@ -54,7 +54,7 @@ class StudentsController < ApplicationController
       end
     end
   end
-  
+
   def select_course
     @course = Course.find(params[:course_registration][:course_id])
     @registration = CourseRegistration.new(params[:course_registration])
@@ -68,26 +68,26 @@ class StudentsController < ApplicationController
       if @course.login_required == true
         page.replace 'enter_code', :partial => "enter_code"
       else
-        page.replace 'enter_code', '<div id="enter_code"><p>No class code needed! You are all set. '+ 
+        page.replace 'enter_code', '<div id="enter_code"><p>No class code needed! You are all set. '+
                       (link_to "Visit the "+ @course.name+" class page", :controller => "courses", :action => "show", :id => @course.id) +
                       ' and get started now.</p></div>'
       end
     end
   end
-  
+
   def enter_code
     @course = Course.find(params[:course_id])
     @success = @course.code.downcase == params[:code].downcase
-    
+
     if @success == true
       @registration = CourseRegistration.new({:course_id => params[:course_id], :user_id => current_user.id})
       @registration.save
     end
-    
+
     render :update do |page|
       if @success == true
         page.replace 'enter_code', '<div id="enter_code"></div>'
-        page.replace 'confirm_code', '<div id="confirm_code"><p>Great! You are all set. '+ 
+        page.replace 'confirm_code', '<div id="confirm_code"><p>Great! You are all set. '+
                       (link_to "Visit the "+ @course.name+" class page", :controller => "courses", :action => "show", :id => @course.id) +
                       ' and get started now.</p></div>'
         page.visual_effect :highlight, 'confirm_code'
@@ -120,7 +120,7 @@ class StudentsController < ApplicationController
     @user.discount_id = 0
     @user.receive_newsletter = 0
     @user.default_language_id = 0
-    
+
     respond_to do |format|
       if @user.save
         format.html { redirect_to :controller => "students", :action => "index" }
@@ -129,15 +129,15 @@ class StudentsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @user = User.find(params[:id])
     #@cr = CourseRegistration.all(:)
-    
+
     @user.destroy
     redirect_to :controller => "my_courses", :action => "index"
   end
-  
+
   def permission_denied
     redirect_to :action => "login"
   end
