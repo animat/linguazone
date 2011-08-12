@@ -16,6 +16,7 @@ require 'factory_girl/step_definitions'
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
+require 'cucumber/rails'
 
 Capybara.default_selector = :css
 
@@ -30,6 +31,7 @@ end
 Before do
   DatabaseCleaner.start
   Group.delete_all
+ActionController::Base.allow_rescue = false
 end
 
 After do
