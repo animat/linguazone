@@ -19,8 +19,12 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-      return @current_user if defined?(@current_user)
-      @current_user = current_user_session && current_user_session.record
+     # return @current_user if defined?(@current_user)
+     @current_user = current_user_session && current_user_session.record unless defined?(@current_user)
+     p '---' * 33
+     p @current_user
+     p '---' * 33
+     @current_user
     end
 
     def current_user_session

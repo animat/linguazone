@@ -13,6 +13,16 @@ gem "will_paginate"
 gem "rexml-expansion-fix"
 gem "whenever"
 gem 'paperclip', '2.3.6'
+gem 'simple_form'
+gem 'dynamic_form'
+
+# Rails 3.1 - Asset Pipeline
+gem 'json'
+gem 'sass'
+gem 'coffee-script'
+gem 'uglifier'
+gem 'jquery-rails'
+
 
 group :development, :test do
   gem 'spork',           '~> 0.9.0.rc'

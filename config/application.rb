@@ -8,7 +8,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Linguazone
   class Application < Rails::Application
-
+    config.assets.enabled = true
     config.filter_parameters << :password << :password_confirmation
 
     # Settings in config/environments/* take precedence over those specified here.

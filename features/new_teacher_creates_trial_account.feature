@@ -10,7 +10,9 @@ Scenario: Sign up for a new plan with a new school
   When I enter "Northwest" as my school
   And I fill in my school's address
   Then I should see "Lastly, create your account"
+  Then show me the page
   When I fill in my account details
+  And I press "Create trial and get started!"
   Then I should see "Let's get started!"
 
 Scenario: Sign up for a new plan with an existing school
@@ -18,4 +20,5 @@ Scenario: Sign up for a new plan with an existing school
   And I am on the new trial page
   When I enter "Northwest" as my school
   And I fill in my account details
+  And I press "Create trial and get started!"
   Then I should see "Let's get started!"

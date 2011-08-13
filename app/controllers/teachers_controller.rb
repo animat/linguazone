@@ -43,21 +43,16 @@ class TeachersController < ApplicationController
     end
   end
 
-  # GET /teachers/new
-  # GET /teachers/new.xml
   def new
     if session[:subscription].nil?
       redirect_to :controller => "about", :action => "pricing"
     elsif session[:school].nil?
       redirect_to :controller => "schools", :action => "check"
     end
+
     @subscription = session[:subscription]
     @school = session[:school]
     @new_teacher = User.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @teacher }
-    end
   end
 
   # POST /teachers

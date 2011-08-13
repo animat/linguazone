@@ -1,16 +1,16 @@
 class SubscriptionController < ApplicationController
   autocomplete :school, :name
-  
+
   def new
     render :controller => "teachers", :action => "new"
   end
-  
+
   def renew
     @subscription = Subscription.new
     @basic_subscriptions = SubscriptionPlan.all(:conditions => ["name = 'basic'"], :order => "name, cost")
     @premium_subscriptions = SubscriptionPlan.all(:conditions => ["name = 'premium'"], :order => "name, cost")
   end
-  
+
   def join_form
     @subscription = Subscription.find_by_pin(params[:pin])
     if @subscription.nil?
@@ -26,7 +26,7 @@ class SubscriptionController < ApplicationController
       end
     end
   end
-  
+
   def join
     if params[:user][:first_name].empty? or params[:user][:last_name].empty? or params[:user][:email].empty? or params[:user][:password].empty?
       flash[:error] = "Please fill out all of the fields before continuing."
@@ -57,7 +57,7 @@ class SubscriptionController < ApplicationController
       end
     end
   end
-  
+
   def no_availability
     @school = session[:school]
     @current_plan = @school.subscription.subscription_plan
@@ -66,7 +66,7 @@ class SubscriptionController < ApplicationController
     @cost = @upgrade_plan.cost - @current_plan.cost
     @new_teacher = User.new
   end
-  
+
   def upgrade
     unless params[:subscription].nil?
       @new_plan = SubscriptionPlan.find(params[:subscription][:subscription_plan_id]) # Directed from a trial upgrade
@@ -76,10 +76,10 @@ class SubscriptionController < ApplicationController
       @new_plan = SubscriptionPlan.find(params[:subscription_plan_id]) # Directed from a paying account upgrade
       @renew = false
     end
-    
+
     @current_plan = current_user.subscription.subscription_plan
     @subscription = current_user.subscription
-    
+
     @cost = @current_plan.cost - @new_plan.cost
     @cost = @cost.abs
     @subscription.subscription_plan = @new_plan
@@ -87,10 +87,10 @@ class SubscriptionController < ApplicationController
       @subscription.expired_at = Time.now.advance(:years => 1)
     end
     @subscription.save
-    
+
     current_user.subscription = @subscription
     current_user.save
-    
+
     @other_teachers = User.find_all_by_school_id(current_user.school_id)
     unless @other_teachers.nil?
       @other_teachers.each do |ot|
@@ -98,15 +98,15 @@ class SubscriptionController < ApplicationController
         ot.save
       end
     end
-    
+
     @users = User.all(:conditions => ["subscription_id = ?", @subscription.id])
     @users.each do |user|
       unless user.nil? or user.email.nil?
-        InvoiceMailer.deliver_upgrade_invoice(user.email, current_user, @subscription, @cost)
+        InvoiceMailer.upgrade_invoice(user.email, current_user, @subscription, @cost).deliver
       end
     end
-    InvoiceMailer.deliver_upgrade_invoice("info@linguazone.com", current_user, @subscription, @cost)
-    
+    InvoiceMailer.upgrade_invoice("info@linguazone.com", current_user, @subscription, @cost).deliver
+
     flash[:notice] = "Your subscription has been upgraded.<br />Please check your email for an invoice that you can give to your school's business office.<br />Payment is due within one month."
     if params[:new_teacher] == "true"
       redirect_to :controller => "teachers", :action => "getting_started"
@@ -114,15 +114,15 @@ class SubscriptionController < ApplicationController
       redirect_to :controller => "teachers", :action => "index"
     end
   end
-  
+
   def extend
     @subscription = Subscription.find(params[:subscription_id])
     @subscription.expired_at = @subscription.expired_at.advance(:years => 1)
     @subscription.save
-    
+
     current_user.subscription = @subscription
     current_user.save
-    
+
     @other_teachers = User.find_all_by_school_id(current_user.school_id)
     unless @other_teachers.nil?
       @other_teachers.each do |ot|
@@ -130,21 +130,21 @@ class SubscriptionController < ApplicationController
         ot.save
       end
     end
-    
+
     @users = User.all(:conditions => ["subscription_id = ?", @subscription.id])
     @users.each do |user|
-      InvoiceMailer.deliver_extend_invoice(user.email, current_user, @subscription, current_user.subscription.subscription_plan.cost)
+      InvoiceMailer.extend_invoice(user.email, current_user, @subscription, current_user.subscription.subscription_plan.cost).deliver
     end
-    InvoiceMailer.deliver_extend_invoice("info@linguazone.com", current_user, @subscription, current_user.subscription.subscription_plan.cost)
-    
+    InvoiceMailer.extend_invoice("info@linguazone.com", current_user, @subscription, current_user.subscription.subscription_plan.cost).deliver
+
     flash[:notice] = "Your subscription has been renewed for one year.<br />Please check your email for an invoice that you can give to your school's business office.<br />Payment is due within one month."
     redirect_to :controller => "teachers"
   end
-  
+
   def confirm
     flash[:notice] = nil
     flash[:error] = nil
-    
+
     if session[:teacher].nil?
       redirect_to :controller => "teachers", :action => "new"
     elsif session[:school].nil?
@@ -160,38 +160,38 @@ class SubscriptionController < ApplicationController
       end
     end
   end
-  
+
   def create
     @subscription = session[:subscription]
     @school = session[:school]
     @teacher = session[:teacher]
-    
+
     if @subscription.subscription_plan.name == "trial"
       @subscription.expired_at = Time.now.advance(:weeks => 2)
     else
       @subscription.expired_at = Time.now.advance(:years => 1)
     end
     @subscription.pin = 10001 + rand(89998)
-    
+
     @teacher.school = @school
     @teacher.subscription = @subscription
-    
+
     @teacher.persistence_token = nil
-    
+
     @teacher.save
-    
+
     if @subscription.subscription_plan.name == "trial"
-      InvoiceMailer.deliver_trial_confirmation(@teacher.email, @teacher)
-      InvoiceMailer.deliver_trial_details(@teacher)
+      InvoiceMailer.trial_confirmation(@teacher.email, @teacher).deliver
+      InvoiceMailer.trial_details(@teacher).deliver
     else
-      InvoiceMailer.deliver_new_invoice(@teacher.email, @teacher, @subscription, @subscription.subscription_plan.cost)
-      InvoiceMailer.deliver_new_invoice("info@linguazone.com", @teacher, @subscription, @subscription.subscription_plan.cost)
-      InvoiceMailer.deliver_new_invoice("magistraroberts@hotmail.com", @teacher, @subscription, @subscription.subscription_plan.cost)
+      InvoiceMailer.new_invoice(@teacher.email, @teacher, @subscription, @subscription.subscription_plan.cost).deliver
+      InvoiceMailer.new_invoice("info@linguazone.com", @teacher, @subscription, @subscription.subscription_plan.cost).deliver
+      InvoiceMailer.new_invoice("magistraroberts@hotmail.com", @teacher, @subscription, @subscription.subscription_plan.cost).deliver
     end
-    
+
     respond_to do |format|
         format.html { redirect_to :controller => "teachers", :action => "getting_started" }
     end
   end
-  
+
 end

@@ -25,6 +25,7 @@ class SchoolsController < ApplicationController
   end
 
   def check
+    @school = School.new
     if params[:trial] != nil
       @subscription = Subscription.new(:subscription_plan => SubscriptionPlan.trial)
     elsif params[:subscription] != nil

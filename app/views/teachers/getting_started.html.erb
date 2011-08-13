@@ -3,7 +3,7 @@
 
 <div class="progressHeader"><%= image_tag "shared-buttons/progress-button-1.jpg" %><h3>Create a class page</h3></div>
 <div class="progressContent" id="create_course" style="width: 850px">
-  <% remote_form_for @course, :url => {:controller => "my_courses", :action => "create"},
+  <% form_for @course, :remote => true, :url => {:controller => "my_courses", :action => "create"},
                 :update => "create_course" do |f| %>
     <%= render :partial => "my_courses/new_course_form", :locals => {:form => f} %>
   <% end %>

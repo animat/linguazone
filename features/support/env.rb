@@ -27,16 +27,3 @@ if defined?(ActiveRecord::Base)
   rescue LoadError => ignore_if_database_cleaner_not_present
   end
 end
-
-Before do
-  DatabaseCleaner.start
-  Group.delete_all
-ActionController::Base.allow_rescue = false
-end
-
-After do
-  DatabaseCleaner.clean
-  Group.delete_all
-end
-
-
