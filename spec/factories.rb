@@ -3,6 +3,16 @@ Factory.define :state do |p|
   p.abbr 'PA'
 end
 
+Factory.define :user do |u|
+  u.email      "john@smith.com"
+  u.first_name "John"
+  u.last_name  "Smith"
+end
+
+Factory.define :student, :parent => :user do |s|
+  s.role "student"
+end
+
 Factory.define :language do |l|
   l.name "Spanish"
   l.special_characters "ñ"

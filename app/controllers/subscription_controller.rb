@@ -176,9 +176,10 @@ class SubscriptionController < ApplicationController
     @teacher.school = @school
     @teacher.subscription = @subscription
 
-    @teacher.persistence_token = nil
-
     @teacher.save
+    UserSession.create(@teacher, true)
+    p "--" * 45
+    p UserSession.find.inspect
 
     if @subscription.subscription_plan.name == "trial"
       InvoiceMailer.trial_confirmation(@teacher.email, @teacher).deliver
@@ -189,9 +190,7 @@ class SubscriptionController < ApplicationController
       InvoiceMailer.new_invoice("magistraroberts@hotmail.com", @teacher, @subscription, @subscription.subscription_plan.cost).deliver
     end
 
-    respond_to do |format|
-        format.html { redirect_to :controller => "teachers", :action => "getting_started" }
-    end
+    redirect_to :controller => "teachers", :action => "getting_started"
   end
 
 end
