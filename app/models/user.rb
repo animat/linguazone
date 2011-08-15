@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :audio_clips
   belongs_to :subscription
+  before_save :set_display_name
   
   validates_presence_of :first_name, :last_name, :email, :password, :on => :create
   
@@ -68,4 +69,9 @@ class User < ActiveRecord::Base
   def role_symbols
     [role.to_sym]
   end
+
+  protected
+    def set_display_name
+      self.display_name = "#{self.first_name} #{self.last_name}"
+    end
 end

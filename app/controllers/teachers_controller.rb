@@ -85,7 +85,6 @@ class TeachersController < ApplicationController
         flash[:error] = "That email address is already in our database.<br />Please get in touch if you'd like help reactivating your account."
         render :action => "new"
       else
-        @new_teacher.display_name = @new_teacher.first_name + " " + @new_teacher.last_name
         @new_teacher.role = "teacher"
         session[:teacher] = @new_teacher
         redirect_to :controller => "subscription", :action => "confirm"

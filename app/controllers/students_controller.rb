@@ -115,7 +115,6 @@ class StudentsController < ApplicationController
     @user = User.new(params[:user])
     @user.first_name.titleize
     @user.last_name.titleize
-    @user.display_name = @user.first_name + " " + @user.last_name
     @user.role = "student"
     @user.school_id = 0
     @user.discount_id = 0
