@@ -141,7 +141,7 @@ class InitialDatabase < ActiveRecord::Migration
       t.string  "name",     :limit => 50, :null => false
     end
 
-    add_index "media_keywords", ["name"], :name => "keyword"
+    add_index "media_keywords", ["name"]
 
     create_table "media_types", :force => true do |t|
       t.string "ext", :limit => 5, :null => false
