@@ -6,6 +6,8 @@ Background:
     | tony@sopranos.com | badabing  |
 
 Scenario:
-  Given I go to the new user session page
-  Then show me the page
-
+  Given I go to the student login page
+  And I fill in "Username or email address:" with "tony@sopranos.com"
+  And I fill in "Password:" with "badabing"
+  And I press "Login"
+  Then I should see "Overview"

@@ -98,8 +98,6 @@ class StudentsController < ApplicationController
     end
   end
 
-  # GET /students/new
-  # GET /students/new.xml
   def new
     @user = User.new
 
@@ -109,8 +107,6 @@ class StudentsController < ApplicationController
     end
   end
 
-  # POST /students
-  # POST /students.xml
   def create
     @user = User.new(params[:user])
     @user.first_name.titleize
