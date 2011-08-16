@@ -51,7 +51,7 @@ class SchoolsController < ApplicationController
             session[:school] = @school
             redirect_to :controller => "teachers", :action => "new"
           else
-            if @school.subscription.subscription_plan.name == "trial"
+            if @school.subscription.trial?
               session[:school] = @school
               redirect_to :controller => "teachers", :action => "new"
             else

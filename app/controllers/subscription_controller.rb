@@ -155,7 +155,7 @@ class SubscriptionController < ApplicationController
       @teacher = session[:teacher]
       @school = session[:school]
       @subscription = session[:subscription]
-      if @subscription.subscription_plan.name == "trial"
+      if @subscription.trial?
         redirect_to :controller => "subscription", :action => "create"
       end
     end
@@ -169,7 +169,7 @@ class SubscriptionController < ApplicationController
     @school = School.new session[:school].attributes
     @teacher = User.new session[:teacher].attributes
 
-    if @subscription.subscription_plan.name == "trial"
+    if @subscription.trial?
       @subscription.expired_at = Time.now.advance(:weeks => 2)
     else
       @subscription.expired_at = Time.now.advance(:years => 1)
@@ -184,7 +184,7 @@ class SubscriptionController < ApplicationController
     # saving a user logs that user in with AuthLogic
     @teacher.save
 
-    if @subscription.subscription_plan.name == "trial"
+    if @subscription.trial?
       InvoiceMailer.trial_confirmation(@teacher.email, @teacher).deliver
       InvoiceMailer.trial_details(@teacher).deliver
     else

@@ -37,7 +37,7 @@ class TeachersController < ApplicationController
         @new_plan_upgrades = SubscriptionPlan.all(:conditions => ["name = 'premium' AND (max_teachers >= ? OR max_teachers = -1)", current_user.subscription.subscription_plan.max_teachers])
       end
     end
-    if current_user.subscription.subscription_plan.name == "trial"
+    if current_user.subscription.trial?
       @basic_subscriptions = SubscriptionPlan.all(:conditions => ["name = 'basic'"], :order => "name, cost")
       @premium_subscriptions = SubscriptionPlan.all(:conditions => ["name = 'premium'"], :order => "name, cost")
     end
