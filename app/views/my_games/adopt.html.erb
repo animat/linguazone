@@ -3,7 +3,7 @@
 <h1>Adopt a game made by another teacher</h1>
 <fieldset>
 	<legend>Search games made by other LinguaZone teachers</legend>
-		<% form_for @search, :url => {:action => "adopt"} do |f| %>
+		<%= form_for @search, :url => {:action => "adopt"} do |f| %>
 			<%= f.hidden_field :updated_by_id_does_not_equal, :value => current_user.id %>
 			<p>
 				<%= f.label :description_like, "Search for:" %>

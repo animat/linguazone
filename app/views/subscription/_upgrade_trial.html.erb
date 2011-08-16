@@ -2,7 +2,7 @@
 	
 	<h3>Sign up for a 12-month subscription</h3>
 	<br />
-	<% form_for @subscription, :url => {:controller => "subscription", :action => "upgrade"} do |f| %>
+	<%= form_for @subscription, :url => {:controller => "subscription", :action => "upgrade"} do |f| %>
 		<p>
 			<% @basic_subscriptions.each do |sp| %>
 				<%= f.radio_button :subscription_plan_id, sp.id %>

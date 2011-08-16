@@ -1,6 +1,6 @@
 <fieldset>
 	<legend><span>Leave a comment</span></legend>
-		<% form_for @comment do |f| %>
+		<%= form_for @comment do |f| %>
 			<%= f.hidden_field :post_id, :value => @post.id %>
 			<%= f.hidden_field :user_id, :value => current_user.id %>
 			<p>

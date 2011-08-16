@@ -1,4 +1,4 @@
-<% form_for @search, :url => {:action => "search"} do |f| %>
+<%= form_for @search, :url => {:action => "search"} do |f| %>
 	<%= f.hidden_field :user_id_equals, :value => current_user.id %>
 	<p>
 		<%= f.label :game_description_like, "Search for:" %>

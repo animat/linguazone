@@ -1,7 +1,7 @@
 <h1>Create a new class</h1>
 <br />
 <div>
-	<% form_for @course, :url => {:action => "create"} do |f| %>
+	<%= form_for @course, :url => {:action => "create"} do |f| %>
 		<%= render :partial => 'new_course_form', :locals => {:form => f} %>
 	<% end %>
 </div>

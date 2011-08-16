@@ -14,7 +14,7 @@
 <div>
 	<h1><a name="email">Get in touch with us. We'd love to hear from you!</a></h1>
 	<div id="contact_form">
-		<% form_for :email, :url => { :controller => "about", :action => "send_mail" } do |f| %>
+		<%= form_for :email, :url => { :controller => "about", :action => "send_mail" } do |f| %>
 			<%= f.error_messages %>
 			<p><%= f.label :name, "Your name:" %><br /><%= f.text_field :name, :size => 40 %></p>
 			<p><%= f.label :address, "Your email address:" %><br /><%= f.text_field :address, :size => 40 %></p>

@@ -13,7 +13,7 @@
 <br />
 
 <div class="progressContent" id="new_teacher" style="display: none">
-	<% form_for @new_teacher, :url => {:controller => "subscription", :action => "join", :upgrade_plan => @upgrade_plan.id} do |f| %>
+	<%= form_for @new_teacher, :url => {:controller => "subscription", :action => "join", :upgrade_plan => @upgrade_plan.id} do |f| %>
 		<%= f.error_messages %>
 		<div>
 			<%= render :partial => "teachers/new_teacher_form", :locals => {:f => f} %>

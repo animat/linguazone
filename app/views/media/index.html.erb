@@ -1,6 +1,6 @@
 <% if current_user.nil? %>
 	<h1>Artist login</h1>
-	<% form_for (@user_session) do |f| %>
+	<%= form_for (@user_session) do |f| %>
 		<%= f.error_messages %>
 		<div style="width: 600px; margin: 20px auto; padding: 10px; background-color: #C9DEFF; border: 3px solid #194BA0" align="center">
 			<p><%= f.label :email, "Email address:" %>	<%= f.text_field :email, :cols => 30 %></p>

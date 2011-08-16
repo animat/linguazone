@@ -4,7 +4,7 @@
 <p><%= link_to "Return to "+@course.name+" class page", :controller => "courses", :action => "show", :id => @course.id %></p>
 <fieldset>
 	<legend>Search hidden word lists in <%= @course.name %></legend>
-	<% form_for @search do |f| %>
+	<%= form_for @search do |f| %>
 		<%= f.hidden_field :user_id_equals, :value => current_user.id %>
 		<%= f.hidden_field :course_id_equals, :value => @course.id %>
 		<%= f.hidden_field :hidden_equals, :value => 1 %>

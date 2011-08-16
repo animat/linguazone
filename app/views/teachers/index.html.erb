@@ -106,7 +106,7 @@ function edit_password() {
 			<strong>Email address:</strong> <%= current_user.email %><br />
 			<strong>Password:</strong> <span id="password_display">************** <%= link_to_function "[edit]", "edit_password()" %></span>
 									   <span id="password_field" style="display: none">
-											<% form_for @user, :url => {:controller => "teachers", :action => "update"} do |f| %>
+											<%= form_for @user, :url => {:controller => "teachers", :action => "update"} do |f| %>
 												<%= f.password_field "password", :size => 15 %>
 												<%= f.submit "Change password" %>
 											<% end %>
@@ -125,7 +125,7 @@ function edit_password() {
 	<div id="my_prefs">
 		<h2>My preferences</h2>
 		<p>
-			<% form_for @user, :url => {:controller => "teachers", :action => "update"} do |f| %>
+			<%= form_for @user, :url => {:controller => "teachers", :action => "update"} do |f| %>
 				<%= f.error_messages %>
 				<%= f.label :display_name, "Display my name to students on LinguaZone.com as:" %><br />
 				<%= f.text_field :display_name, :size => 20 %>
@@ -133,7 +133,7 @@ function edit_password() {
 			<% end %>
 		</p>
 		<p>
-			<% form_for @user, :url => {:controller => "teachers", :action => "update"} do |f| %>
+			<%= form_for @user, :url => {:controller => "teachers", :action => "update"} do |f| %>
 				<%= f.error_messages %>
 				<%= f.label "default_language_id", "My default language for new games and word lists:"%><br />
 				<%= f.collection_select 'default_language_id', Language.all(:order => "name"), :id, :name, {:include_blank => "Select a language...", :selected => current_user.default_language_id} %>

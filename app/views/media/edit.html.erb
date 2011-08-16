@@ -1,7 +1,7 @@
 <h1>Edit media item: <%= @asset.descrip %></h1>
 <br />
 
-<% form_for @asset, :html => {:multipart => true}, :url => {:controller => "media", :action => "update"} do |f| %>
+<%= form_for @asset, :html => {:multipart => true}, :url => {:controller => "media", :action => "update"} do |f| %>
 	
 	<%= f.error_messages %>
 	
