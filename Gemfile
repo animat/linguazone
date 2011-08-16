@@ -15,6 +15,7 @@ gem "whenever"
 gem 'paperclip', '2.3.6'
 gem 'simple_form'
 gem 'dynamic_form'
+gem 'pg'
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'
