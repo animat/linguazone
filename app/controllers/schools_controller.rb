@@ -19,8 +19,8 @@ class SchoolsController < ApplicationController
     if @schools.length == 1
       redirect_to @schools
     elsif @schools.length == 0
-      @states = State.all(:conditions => ["intl = 0"], :order => "name")
-      @intl_states = State.all(:conditions => ["intl = 1"], :order => "name")
+      @states      = State.national
+      @intl_states = State.international
     end
   end
 
@@ -73,8 +73,8 @@ class SchoolsController < ApplicationController
     else
       @subscription = session[:subscription]
       @school = School.new(:name => params[:school_name].titleize)
-      @states = State.all(:conditions => ["intl = 0"], :order => "name").collect { |state| [state.name, state.id]}
-      @intl_states = State.all(:conditions => ["intl = 1"], :order => "name").collect { |state| [state.name, state.id]}
+      @states      = State.national.collect { |state| [state.name, state.id]}
+      @intl_states = State.international.collect { |state| [state.name, state.id]}
     end
   end
 
@@ -84,8 +84,8 @@ class SchoolsController < ApplicationController
       session[:school] = @school
       redirect_to :controller => "teachers", :action => "new"
     else
-      @states = State.all(:conditions => ["intl = 0"], :order => "name").collect { |state| [state.name, state.id]}
-      @intl_states = State.all(:conditions => ["intl = 1"], :order => "name").collect { |state| [state.name, state.id]}
+      @states      = State.national
+      @intl_states = State.international
       render :action => "new"
     end
   end

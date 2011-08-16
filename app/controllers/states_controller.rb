@@ -1,8 +1,8 @@
 class StatesController < ApplicationController
-  
+
   def index
-    @states = State.all(:conditions => ["intl = 0"])
-    @intl_states = State.all(:conditions => ["intl = 1"])
+    @states      = State.nationl
+    @intl_states = State.international
     respond_to do |format|
       format.html # index.html.erb
       format.xml { render :xml => @courses }
@@ -17,5 +17,5 @@ class StatesController < ApplicationController
       format.xml { render :xml => @school }
     end
   end
-  
+
 end

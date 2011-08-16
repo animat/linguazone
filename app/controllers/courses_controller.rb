@@ -1,21 +1,12 @@
 class CoursesController < ApplicationController
   filter_access_to :show, :attribute_check => true
   before_filter :check_expired
-  
-  # GET /courses
-  # GET /courses.xml
-  def index
-    @states = State.all(:conditions => "intl = 0")
-    @intl_states = State.all(:conditions => "intl = 1")
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @states }
-    end
+  def index
+    @states      = State.national
+    @intl_states = State.international
   end
 
-  # GET /courses/1
-  # GET /courses/1.xml
   def show
     @course = Course.find(params[:id], :include => [:user, :school])
     @course_registrations = CourseRegistration.all(:conditions => ["course_id = ?", @course.id], :include => :user, :order => "users.last_name ASC")

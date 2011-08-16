@@ -30,8 +30,8 @@ class StudentsController < ApplicationController
 
   def login
     @user_session = UserSession.new
-    @states = State.all(:conditions => ["intl = 0"], :order => "name")
-    @intl_states = State.all(:conditions => ["intl = 1"], :order => "name")
+    @states =      State.national
+    @intl_states = State.international
   end
 
   def register
