@@ -17,12 +17,12 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.xml
   def show
-    @course = Course.find(params[:id], :include => {:user, :school})
+    @course = Course.find(params[:id], :include => [:user, :school])
     @course_registrations = CourseRegistration.all(:conditions => ["course_id = ?", @course.id], :include => :user, :order => "users.last_name ASC")
     
     @showing_posts = @course.available_posts.find_all_by_hidden(0)
     @showing_word_lists = @course.available_word_lists.find_all_by_hidden(0)
-    @showing_games = @course.available_games.find_all_by_hidden(0, :order => "ordering", :include => {:game, :activity})
+    @showing_games = @course.available_games.find_all_by_hidden(0, :order => "ordering", :include => [:game, :activity])
     
     if @course.login_required
       unless is_student_for(@course) or is_teacher_for(@course)
@@ -38,11 +38,11 @@ class CoursesController < ApplicationController
   end
   
   def feed
-    @course = Course.find(params[:id], :include => {:user, :school})
+    @course = Course.find(params[:id], :include => [:user, :school])
     
     @showing_posts = Post.find_all_by_course_id(params[:id])
     @showing_word_lists = @course.available_word_lists.find_all_by_hidden(0)
-    @showing_games = @course.available_games.find_all_by_hidden(0, :order => "ordering", :include => {:game, :activity})
+    @showing_games = @course.available_games.find_all_by_hidden(0, :order => "ordering", :include => [:game, :activity])
     
     render :layout => false
     response.headers["Content-Type"] = "application/xml; charset=utf-8"
@@ -80,7 +80,7 @@ class CoursesController < ApplicationController
   
   def order_games
     @course = Course.find(params[:id])
-    @games = @course.available_games.find_all_by_hidden(0, :order => "ordering", :include => {:game, :activity})
+    @games = @course.available_games.find_all_by_hidden(0, :order => "ordering", :include => [:game, :activity])
   end
   
   def update_game_order
