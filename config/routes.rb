@@ -40,6 +40,7 @@ Linguazone::Application.routes.draw do
   match 'customize/:action/:cmzr_type/:id' => 'customize#index', :cmzr_type => nil, :id => nil
   match 'class/:id' => 'courses#show'
   match 'class/:id/feed' => 'courses#feed'
+  match 'about/pricing' => 'about#pricing', :as => :pricing
   match 'logout' => 'user_sessions#destroy', :as => :logout
   match 'trial' => 'schools#check', :as => :trial, :trial => 'true'
   match 'contact' => 'about#us', :as => :contact, :anchor => 'email'

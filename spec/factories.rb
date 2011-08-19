@@ -1,3 +1,5 @@
+
+
 Factory.define :state do |p|
   p.name "Pennsylvania"
   p.abbr 'PA'
@@ -42,9 +44,10 @@ Factory.define :subscription_plan do |p|
 end
 
 Factory.define :subscription do |s|
+  s.pin         "ABC12"
   s.association :subscription_plan
+  s.expired_at  5.months.from_now
 end
-
 
 Factory.define :school do |s|
   s.name        "Xavier's School of Gifted Youngsters"
@@ -61,4 +64,6 @@ Factory.define :teacher, :class => "User" do |f|
   f.password "test"
   f.first_name "Joe"
   f.last_name "Teacher"
+  f.association :school
+  f.association :subscription
 end

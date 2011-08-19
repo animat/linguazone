@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
     c.require_password_confirmation = false
     c.ignore_blank_passwords = true
     c.validate_password_field = false
+    c.maintain_sessions = false
   end
 
   belongs_to :school

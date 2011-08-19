@@ -16,6 +16,7 @@ gem 'paperclip', '2.3.6'
 gem 'simple_form'
 gem 'dynamic_form'
 gem 'pg'
+gem 'seed-fu'
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'
@@ -36,7 +37,6 @@ group :development, :test do
   gem "database_cleaner"
   gem "ruby-debug", :platforms => [:mri_18]
   gem "ruby-debug19", :platforms => [:mri_19]
-  gem "seed-fu"
   gem "factory_girl_rails", "1.1.0"
 end
 

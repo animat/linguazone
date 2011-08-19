@@ -12,6 +12,8 @@ module NavigationHelpers
       '/'
     when /the student login page/
       '/students/login'
+    when /the pricing page/
+      pricing_path
     when /the new trial page/
       '/trial'
     when /the teacher login page/

@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Subscription do
   describe "#trial?" do
+    it "can be created from a factory" do
+      Factory(:subscription)
+    end
+
     it "is true when subscription plan name is trial" do
       trial_plan = Factory.build(:subscription_plan, :name => "trial")
       subscription = Factory.build(:subscription, :subscription_plan => trial_plan)
@@ -14,5 +18,4 @@ describe Subscription do
       subscription.should_not be_trial
     end
   end
-
 end

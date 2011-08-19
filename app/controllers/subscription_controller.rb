@@ -45,9 +45,10 @@ class SubscriptionController < ApplicationController
         @teacher = User.new(params[:user])
         @teacher.subscription = session[:school].subscription
         @teacher.school = session[:school]
-        @teacher.display_name = @teacher.first_name+" "+@teacher.last_name
         @teacher.role = "teacher"
+
         @teacher.save
+        UserSession.create @teacher
 
         unless params[:upgrade_plan].nil?
           redirect_to :controller => "subscription", :action => "upgrade", :subscription_plan_id => params[:upgrade_plan], :new_teacher => true
@@ -181,8 +182,8 @@ class SubscriptionController < ApplicationController
 
     @teacher.persistence_token = nil
 
-    # saving a user logs that user in with AuthLogic
     @teacher.save
+    UserSession.create @teacher
 
     if @subscription.trial?
       InvoiceMailer.trial_confirmation(@teacher.email, @teacher).deliver

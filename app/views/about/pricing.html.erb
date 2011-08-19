@@ -51,7 +51,7 @@
 <div style="width: 85%; padding: 15px; margin: 0px auto; background-color: #FFFFAA; border: 1px solid #666;">
 	<h2>Does your school already have a subscription?</h2>
 	<p>
-		<% form_tag :controller => "subscription", :action => "join_form" do %>
+		<%= form_tag :controller => "subscription", :action => "join_form" do %>
 			<%= label :pin, "Enter your school's 5-digit pin number:" %>
 			<%= text_field_tag :pin, nil, {:size => 12} %>
 			<%= submit_tag "Proceed" %><br />
