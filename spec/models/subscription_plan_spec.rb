@@ -1,7 +1,15 @@
 require 'spec_helper'
 
 describe SubscriptionPlan do
+  it "should create from factory" do
+    Factory(:subscription_plan)
+  end
+
   describe ".trial" do
+    it "can be created from a factory" do
+      Factory(:subscription_plan)
+    end
+
     context "when a trial plan exists" do
       let!(:trial_plan) { Factory(:subscription_plan, :name => "trial") }
 

@@ -5,9 +5,10 @@ class School < ActiveRecord::Base
   
   validates_presence_of :name, :address, :city, :zip
   validates_numericality_of :zip
-  
+
+  # TODO: this should be tied to subscriptions
   def subscribers
-    User.all(:conditions => ['school_id = ?', self.id])
+    self.users
   end
   
   def subscription
