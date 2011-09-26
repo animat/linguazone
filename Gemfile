@@ -30,6 +30,9 @@ end
 
 group :development, :test do
   gem 'spork',           '~> 0.9.0.rc9'
+  gem 'guard'
+  gem 'guard-spork'
+  gem 'guard-rspec'
   gem 'rack-test'
   gem 'rspec-rails'
   gem "launchy",         "0.3.7"

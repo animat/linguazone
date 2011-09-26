@@ -1,5 +1,5 @@
 Linguazone::Application.configure do
-  config.cache_classes = true
+  config.cache_classes = false
   config.whiny_nils = true
   config.action_controller.perform_caching             = false
   config.action_view.cache_template_loading            = true
