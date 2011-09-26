@@ -32,6 +32,7 @@ module ActionView #:nodoc:
         if defined? SwfTag
           SwfTag.new(self, @controller, source).public_path
         else
+          return ''
           compute_public_path(source, SwfAsset::DIRECTORY, SwfAsset::EXTENSION)
         end
       end

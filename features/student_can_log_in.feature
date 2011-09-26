@@ -1,4 +1,4 @@
-Feature: An existing teacher can log in
+Feature: An existing student can log in
 
 Background:
   Given the following student exists:

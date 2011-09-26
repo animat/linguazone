@@ -16,6 +16,8 @@ module NavigationHelpers
       pricing_path
     when /the new trial page/
       '/trial'
+    when /the teachers page/
+      teachers_path
     when /the teacher login page/
       login_teachers_path
 

@@ -16,27 +16,13 @@ class TeachersController < ApplicationController
     @user_session = UserSession.new
   end
 
-  # GET /teachers
-  # GET /teachers.xml
   def index
     @user = current_user
     @news_items = News.all(:limit => 4, :order => "created_at DESC")
     @subscription = Subscription.new
 
-    if current_user.subscription.subscription_plan.max_teachers == -1
-      @add_teachers_upgrades = nil
-    else
-      @add_teachers_upgrades = SubscriptionPlan.all(:conditions => ["name = ? AND (max_teachers > ? OR max_teachers = -1)", current_user.subscription.subscription_plan.name, current_user.subscription.subscription_plan.max_teachers])
-    end
-    if current_user.subscription.subscription_plan.name == "premium"
-      @new_plan_upgrades = nil
-    else
-      if current_user.subscription.subscription_plan.max_teachers == -1
-        @new_plan_upgrades = SubscriptionPlan.all(:conditions => ["name = 'premium' AND max_teachers = -1"])
-      else
-        @new_plan_upgrades = SubscriptionPlan.all(:conditions => ["name = 'premium' AND (max_teachers >= ? OR max_teachers = -1)", current_user.subscription.subscription_plan.max_teachers])
-      end
-    end
+    @upgrades = current_user.subscription.subscription_plan.upgrades
+
     if current_user.subscription.trial?
       @basic_subscriptions = SubscriptionPlan.all(:conditions => ["name = 'basic'"], :order => "name, cost")
       @premium_subscriptions = SubscriptionPlan.all(:conditions => ["name = 'premium'"], :order => "name, cost")

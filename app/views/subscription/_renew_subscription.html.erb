@@ -1,45 +1,35 @@
 <h2>Renew my subscription to LinguaZone</h2>
-	<p>
-		<strong>Current subscription plan:</strong> 
-		<%= current_user.subscription.subscription_plan.name.titleize %> subscription
-		for <%= format_max_teachers(current_user.subscription.subscription_plan.max_teachers) %>
-		<br />
-		<strong>Current subscription expiring on:</strong> <%= format_date_with_year(current_user.subscription.expired_at) %>
-	</p>
-	
-	<div>
-		<div id="extend">
-			<h3>Extend my subscription for 12 months</h3>
-			<br />
-			<p>
-				Keep my account active until:<br />
-				<strong><%= format_date_with_year(current_user.subscription.expired_at.advance(:years => 1)) %></strong><br /><br />
-				<%= link_to "Purchase now and send me an invoice for $"+String(current_user.subscription.subscription_plan.cost), {:controller => "subscription", :action => "extend", :subscription_id => current_user.subscription.id}, :class => "purchase" %>
-			</p>
-		</div>
-		<div id="upgrade">
-			<h3>Upgrade my subscription</h3>
-			<br />
-			<% if @add_teachers_upgrades.nil? and @new_plan_upgrades.nil? %>
-				<p>No upgrades are available for your account. Thanks for your support!</p>
-			<% else %>
-				<% unless @add_teachers_upgrades.nil? %>
-					<% @add_teachers_upgrades.each do |add_teacher| %>
-						<p>
-							<%= add_teacher.name.titleize+" subscription for "+format_max_teachers(add_teacher.max_teachers) %><br />
-							<%= link_to "Purchase now and send me an invoice for $"+String(add_teacher.cost - current_user.subscription.subscription_plan.cost), {:controller => "subscription", :action => "upgrade", :subscription_plan_id => add_teacher.id}, :class => "purchase" %>
-						</p>
-					<% end %>
-				<% end %>
-				<% unless @new_plan_upgrades.nil? %>
-					<% @new_plan_upgrades.each do |new_plan| %>
-						<p>
-							<%= new_plan.name.titleize+" subscription for "+format_max_teachers(new_plan.max_teachers) %><br />
-							<%= link_to "Purchase now and send me an invoice for $"+String(new_plan.cost - current_user.subscription.subscription_plan.cost), {:controller => "subscription", :action => "upgrade", :subscription_plan_id => new_plan.id}, :class => "purchase" %>
-						</p>
-					<% end %>
-				<% end %>
-			<% end %>
-		</div>
-		<br class="clearFloat" />
-	</div>
+  <p>
+    <strong>Current subscription plan:</strong>
+    <%= current_user.subscription.subscription_plan.name.titleize %> subscription
+    for <%= format_max_teachers(current_user.subscription.subscription_plan.max_teachers) %>
+    <br />
+    <strong>Current subscription expiring on:</strong> <%= format_date_with_year(current_user.subscription.expired_at) %>
+  </p>
+
+  <div>
+    <div id="extend">
+      <h3>Extend my subscription for 12 months</h3>
+      <br />
+      <p>
+        Keep my account active until:<br />
+        <strong><%= format_date_with_year(current_user.subscription.expired_at.advance(:years => 1)) %></strong><br /><br />
+        <%= link_to "Purchase now and send me an invoice for $"+String(current_user.subscription.subscription_plan.cost), {:controller => "subscription", :action => "extend", :subscription_id => current_user.subscription.id}, :class => "purchase" %>
+      </p>
+    </div>
+    <div id="upgrade">
+      <h3>Upgrade my subscription</h3>
+      <br />
+      <% if @upgrades.empty? %>
+        <p>No upgrades are available for your account. Thanks for your support!</p>
+      <% else %>
+        <% @upgrades.each do |new_plan| %>
+          <p>
+            <%= new_plan.name.titleize+" subscription for "+format_max_teachers(new_plan.max_teachers) %><br />
+            <%= link_to "Purchase now and send me an invoice for $"+String(new_plan.cost - current_user.subscription.subscription_plan.cost), {:controller => "subscription", :action => "upgrade", :subscription_plan_id => new_plan.id}, :class => "purchase" %>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+    <br class="clearFloat" />
+  </div>

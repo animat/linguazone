@@ -1,1 +1,7 @@
 LinguaZone.com: offering customizable teaching tools for language teachers.
+
+Running the specs
+
+Simply run 'guard' and the tests will all be run!
+
+Hit enter to run all the tests at any time.
