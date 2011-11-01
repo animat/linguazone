@@ -16,6 +16,7 @@ gem 'simple_form'
 gem 'dynamic_form'
 gem 'pg'
 gem 'seed-fu'
+gem 'multi_json', '1.0.3'
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'

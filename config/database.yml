@@ -2,8 +2,9 @@
 #   gem install sqlite3-ruby (not necessary on OS X Leopard)
 development:
   adapter: mysql
-  database: lz_development
+  database: lz_dev
   username: root
+  password: root
   timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
@@ -13,6 +14,7 @@ test: &test
   adapter: mysql
   database: lz_test
   username: root
+  password: root
   timeout: 5000
 
 production:

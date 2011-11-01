@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -193,6 +194,14 @@ ActiveRecord::Schema.define(:version => 20110926180534) do
     t.datetime "updated_at",               :null => false
   end
 
+  create_table "plans", :force => true do |t|
+    t.string   "name"
+    t.integer  "max_teachers"
+    t.decimal  "cost",         :precision => 10, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "posts", :force => true do |t|
     t.string   "title"
     t.text     "content"
@@ -218,6 +227,13 @@ ActiveRecord::Schema.define(:version => 20110926180534) do
   end
 
   add_index "schools", ["name", "city"], :name => "school_index"
+
+  create_table "schools_teachers", :id => false, :force => true do |t|
+    t.integer  "school_id"
+    t.integer  "teacher_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -255,6 +271,17 @@ ActiveRecord::Schema.define(:version => 20110926180534) do
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
     t.datetime "expired_at",           :null => false
+  end
+
+  create_table "teachers", :force => true do |t|
+    t.boolean  "enabled"
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "display_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "subscription_id"
   end
 
   create_table "templates", :force => true do |t|
