@@ -17,7 +17,7 @@ end
 
 Factory.define :language do |l|
   l.name "Spanish"
-  l.special_characters "ñ"
+  l.special_characters "N"
 end
 
 Factory.define :activity do |a|
