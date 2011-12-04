@@ -44,11 +44,11 @@ div.delete_button span {
 	font-family: Helvetica, sans-serif;
 	color: #FFFFFF;
 }
-div.new_button span a {
+a div.new_button {
 	color: #FFFFFF;
 	text-decoration: none;
 }
-div.delete_button span a {
+a div.delete_button {
 	color: #FFFFFF;
 	text-decoration: none;
 }

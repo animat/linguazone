@@ -64,6 +64,18 @@ Factory.define :teacher, :class => "User" do |f|
   f.password "test"
   f.first_name "Joe"
   f.last_name "Teacher"
+  f.role "teacher"
   f.association :school
   f.association :subscription
+end
+
+Factory.define :post do |p|
+  p.title         "Sample post #___"
+  p.content       "Lorem ipsum text here..."
+  p.audio_id      3000
+  p.association   :user
+  p.association   :course
+  p.shared        true
+  p.created_at    Time.now
+  p.updated_at    Time.now
 end

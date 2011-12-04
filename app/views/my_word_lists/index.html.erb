@@ -7,7 +7,7 @@
 		<p>Create, edit, and manage your LinguaZone word lists.</p>
 	</div>
 	<div class="floatRight">
-		<% link_to :controller => "customize", :action => "new", :cmzr_type => "list" do %>
+		<%= link_to :controller => "customize", :action => "new", :cmzr_type => "list" do %>
 			<div class="new_button">
 				<span>Create a new word list</span>
 			</div>
@@ -24,7 +24,7 @@
 <br />
 
 <div align="center">
-	<% link_to :action => "all" do %>
+	<%= link_to :action => "all" do %>
 		<div class="big_button" style="width: 250px">
 			<span>View all my word lists</span>
 		</div>

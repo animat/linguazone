@@ -20,6 +20,8 @@ module NavigationHelpers
       teachers_path
     when /the teacher login page/
       login_teachers_path
+    when /my posts page/
+      my_posts_path
 
 
     # Add more mappings here.

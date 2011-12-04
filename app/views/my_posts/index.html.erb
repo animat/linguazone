@@ -5,9 +5,13 @@
 <% unless @posts.nil? or @posts.empty? %>
 	<%= page_entries_info @posts %>
 	<br /><br />
-	<% paginated_section @posts do %>
-		<% @posts.each do |p| %>
-			<p><%= link_to p.title, :controller => "posts", :action => "show", :id => p.id %> <span class="date"><%= format_date_with_year(p.updated_at) %></span></p>
+	<% if @posts.empty? %>
+		<p>You have not yet created any audio blog posts. Go to a class page, then create your first one!</p>
+	<% else %>
+	 	<% paginated_section @posts do %>
+			<% @posts.each do |p| %>
+				<p><%= link_to p.title, :controller => "posts", :action => "show", :id => p.id %> <span class="date"><%= format_date_with_year(p.updated_at) %></span></p>
+			<% end %>
 		<% end %>
 	<% end %>
 <% end %>

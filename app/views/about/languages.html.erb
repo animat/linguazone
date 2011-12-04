@@ -12,7 +12,7 @@
 	<ul>
 		<% @languages.each do |language| %>
 			<li>
-				<% link_to :controller => "about", :action => "demos", :language => language.id do %>
+				<%= link_to :controller => "about", :action => "demos", :language => language.id do %>
 					<div class="big_button" style="width: 200px">
 						<span><%= language.name %></span>
 					</div>

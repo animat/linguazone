@@ -1,5 +1,5 @@
 <div class="available_post" id="<%= dom_id(showing_post) %>" onmouseover="this.className = 'available_post_controls'" onmouseout="this.className = 'available_post'">
-		<% link_to :controller => "posts", :action => "show", :id => showing_post.post.id do %><h3><%= showing_post.post.title %></h3><% end %>
+		<%= link_to :controller => "posts", :action => "show", :id => showing_post.post.id do %><h3><%= showing_post.post.title %></h3><% end %>
 		<span class="date"><%= format_date(showing_post.post.updated_at)%></span>
 		<br class="clearFloat" />
 		<%= link_to (image_tag 'courses/show/speech_bubble.jpg'), :controller => "posts", :action => "show", :id => showing_post.post.id %>

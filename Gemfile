@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'mysql'
+gem 'mysql2'
 gem 'rdoc'
 gem 'rails3-jquery-autocomplete'
 gem 'rails', '3.1.0'
@@ -17,6 +17,7 @@ gem 'dynamic_form'
 gem 'pg'
 gem 'seed-fu'
 gem 'multi_json', '1.0.3'
+gem 'rake', '0.9.2.2'
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'
@@ -40,6 +41,7 @@ group :development, :test do
   gem "database_cleaner"
   gem "ruby-debug", :platforms => [:mri_18]
   gem "ruby-debug19", :platforms => [:mri_19]
+	gem "factory_girl"
   gem "factory_girl_rails", "1.1.0"
 end
 

@@ -33,7 +33,7 @@ function edit_password() {
     <h1>Overview</h1>
     <p>Manage your classes, games, and word lists from your teacher homepage.</p>
   </div>
-  <% link_to logout_path do %>
+  <%= link_to logout_path do %>
     <div class="floatRight">
       <div class="delete_button"><span>logout</span></div>
     </div>
@@ -62,13 +62,13 @@ function edit_password() {
     </div>
     <div id="quickLinks">
       <h2>Quick links</h2>
-      <% link_to :controller => "my_courses", :action => "new" do %>
+      <%= link_to :controller => "my_courses", :action => "new" do %>
         <div class="new_button"><span>new class</span></div>
       <% end %>
-      <% link_to :controller => "customize", :action => "new", :cmzr_type => "game" do %>
+      <%= link_to :controller => "customize", :action => "new", :cmzr_type => "game" do %>
         <div class="new_button"><span>new game</span></div>
       <% end %>
-      <% link_to :controller => "customize", :action => "new", :cmzr_type => "list" do %>
+      <%= link_to :controller => "customize", :action => "new", :cmzr_type => "list" do %>
         <div class="new_button"><span>new word list</span></div>
       <% end %>
     </div>

@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 12.hours do
-  runner "Subscription.send_reminder_emails"
-end
+#every 24.hours do
+#  runner "Subscription.send_reminder_emails"
+#end

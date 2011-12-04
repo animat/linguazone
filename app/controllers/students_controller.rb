@@ -116,12 +116,17 @@ class StudentsController < ApplicationController
     @user.discount_id = 0
     @user.receive_newsletter = 0
     @user.default_language_id = 0
-
+    
     respond_to do |format|
-      if @user.save
-        format.html { redirect_to :controller => "students", :action => "index" }
+      if User.is_email_in_use(@user.email) 
+        flash[:error] = "That username or email address is already in the database."
       else
-        format.html { render :action => "new" }
+        if @user.save
+          format.html { redirect_to :controller => "students", :action => "index" }
+        else
+          flash[:error] = "There was an error creating your account."
+          format.html { render :action => "new" }
+        end
       end
     end
   end

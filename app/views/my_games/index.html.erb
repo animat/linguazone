@@ -18,7 +18,7 @@ Event.observe(window, 'load', function() {
 		<p>Create, edit, and manage your LinguaZone games.</p>
 	</div>
 	<div class="floatRight">
-		<% link_to :controller => "customize", :action => "new", :cmzr_type => "game" do %>
+		<%= link_to :controller => "customize", :action => "new", :cmzr_type => "game" do %>
 			<div class="new_button">
 				<span>Create a new game</span>
 			</div>
@@ -35,12 +35,12 @@ Event.observe(window, 'load', function() {
 <br />
 
 <div align="center">
-	<% link_to :action => "adopt" do %>
+	<%= link_to :action => "adopt" do %>
 		<div class="big_button" style="width: 200px">
 			<span>Adopt a game</span>
 		</div>
 	<% end %>
-	<% link_to :action => "all" do %>
+	<%= link_to :action => "all" do %>
 		<div class="big_button" style="width: 200px">
 			<span>View all my games</span>
 		</div>

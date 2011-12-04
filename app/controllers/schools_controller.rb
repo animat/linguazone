@@ -36,6 +36,7 @@ class SchoolsController < ApplicationController
     session[:subscription] = @subscription
   end
 
+  # TODO: What if there are multiple schools whose names are like the queried name?
   def confirm_or_new
     if session[:subscription].nil?
       redirect_to :controller => "about", :action => "pricing"
@@ -75,6 +76,9 @@ class SchoolsController < ApplicationController
       @school = School.new(:name => params[:school_name].titleize)
       @states      = State.national.collect { |state| [state.name, state.id]}
       @intl_states = State.international.collect { |state| [state.name, state.id]}
+      #@states = State.national.all
+      #@intl_states = State.international.all
+      logger.info @intl_states
     end
   end
 

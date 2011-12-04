@@ -83,7 +83,7 @@ GEM
       json (>= 1.4.6)
     guard (0.8.8)
       thor (~> 0.14.6)
-    guard-rspec (0.5.1)
+    guard-rspec (0.5.2)
       guard (>= 0.8.4)
     guard-spork (0.3.1)
       guard (>= 0.8.4)
@@ -117,7 +117,7 @@ GEM
     mocha (0.10.0)
       metaclass (~> 0.0.1)
     multi_json (1.0.3)
-    mysql (2.8.1)
+    mysql2 (0.3.7)
     nokogiri (1.5.0)
     paperclip (2.3.6)
       activerecord
@@ -237,6 +237,7 @@ DEPENDENCIES
   database_cleaner
   declarative_authorization
   dynamic_form
+  factory_girl
   factory_girl_rails (= 1.1.0)
   guard
   guard-rspec
@@ -247,12 +248,13 @@ DEPENDENCIES
   meta_search
   mocha
   multi_json (= 1.0.3)
-  mysql
+  mysql2
   paperclip (= 2.3.6)
   pg
   rack-test
   rails (= 3.1.0)
   rails3-jquery-autocomplete
+  rake (= 0.9.2.2)
   rdoc
   rexml-expansion-fix
   rspec-rails

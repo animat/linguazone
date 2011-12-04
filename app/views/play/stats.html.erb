@@ -4,21 +4,21 @@
 <h3><%= @game.description %></h3>
 
 <div id="sortStats" style="display: none">
-	<% link_to (teachers_path, :class => "white") do %>
+	<%= link_to (teachers_path, :class => "white") do %>
 		<div>
 			<div class="supercheckbox_left_checked"></div>
 			<div class="supercheckbox_center">student name</div>
 			<div class="supercheckbox_right"></div>
 		</div>
 	<% end %>
-	<% link_to (teachers_path, :class => "white") do %>
+	<%= link_to (teachers_path, :class => "white") do %>
 		<div>
 			<div class="supercheckbox_left_blank"></div>
 			<div class="supercheckbox_center">date played</div>
 			<div class="supercheckbox_right"></div>
 		</div>
 	<% end %>
-	<% link_to (teachers_path, :class => "white") do %>
+	<%= link_to (teachers_path, :class => "white") do %>
 		<div>
 			<div class="supercheckbox_left_blank"></div>
 			<div class="supercheckbox_center">top scores</div>

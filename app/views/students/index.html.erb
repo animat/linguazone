@@ -7,7 +7,7 @@
 		<p>Jump to your class page from here for your LinguaZone games, word lists, and audio blogs.</p>
 	</div>
 	<div class="floatRight">
-		<% link_to(logout_path, :class => "button") do %>
+		<%= link_to(logout_path, :class => "button") do %>
 			<div class="delete_button"><span>logout</span></div>
 		<% end %>
 	</div>
@@ -26,7 +26,7 @@
 
 <br />
 <div align="center">
-	<% link_to :action => "register" do %>
+	<%= link_to :action => "register" do %>
 		<div class="big_button" style="width: 300px">
 			<span>Register in a new class</span>
 		</div>

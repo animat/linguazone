@@ -11,6 +11,7 @@ class School < ActiveRecord::Base
     self.users
   end
   
+  # TODO: this should take into consideration more than just the first teacher found
   def subscription
     if subscribers.length > 0
       subscribers[0].subscription
@@ -19,8 +20,9 @@ class School < ActiveRecord::Base
     end
   end
   
+  # TODO: Don't count accounts that are coordinators/ are not enabled
   def available_spaces
-    self.subscription.subscription_plan.max_teachers - self.subscribers.length # Don't count accounts that aren't enabled/ coordinators
+    self.subscription.subscription_plan.max_teachers - self.subscribers.length
   end
   
   def is_availability?
