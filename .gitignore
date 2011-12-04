@@ -11,3 +11,4 @@ doc/app
 db/*.sqlite3
 public/stylesheets/compiled
 *(Autosaved).rtfd/
+rake/*
