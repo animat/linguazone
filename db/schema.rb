@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926180534) do
+ActiveRecord::Schema.define(:version => 20111205020141) do
 
   create_table "activities", :force => true do |t|
     t.string  "name",          :limit => 50,                    :null => false
@@ -66,11 +65,11 @@ ActiveRecord::Schema.define(:version => 20110926180534) do
   end
 
   create_table "conference_signups", :force => true do |t|
-    t.string   "name",       :limit => 55, :null => false
-    t.string   "school",     :limit => 55, :null => false
-    t.string   "email",      :limit => 50, :null => false
-    t.string   "conference", :limit => 25, :null => false
-    t.datetime "date_added",               :null => false
+    t.string    "name",       :limit => 55, :null => false
+    t.string    "school",     :limit => 55, :null => false
+    t.string    "email",      :limit => 50, :null => false
+    t.string    "conference", :limit => 25, :null => false
+    t.timestamp "date_added",               :null => false
   end
 
   create_table "course_registrations", :force => true do |t|
@@ -96,35 +95,33 @@ ActiveRecord::Schema.define(:version => 20110926180534) do
   end
 
   create_table "discounts", :force => true do |t|
-    t.integer  "percent",      :limit => 1,  :default => 0,  :null => false
-    t.integer  "single_cost",  :limit => 1,  :default => 0,  :null => false
-    t.integer  "school_cost",  :limit => 1,  :default => 0,  :null => false
-    t.string   "email_msg",                  :default => "", :null => false
-    t.string   "target_group", :limit => 25, :default => "", :null => false
-    t.string   "code",         :limit => 25, :default => "", :null => false
-    t.datetime "expiration"
+    t.integer   "percent",      :limit => 1,  :default => 0,  :null => false
+    t.integer   "single_cost",  :limit => 1,  :default => 0,  :null => false
+    t.integer   "school_cost",  :limit => 1,  :default => 0,  :null => false
+    t.string    "email_msg",                  :default => "", :null => false
+    t.string    "target_group", :limit => 25, :default => "", :null => false
+    t.string    "code",         :limit => 25, :default => "", :null => false
+    t.timestamp "expiration"
   end
 
   create_table "games", :force => true do |t|
-    t.integer  "template_id",                    :default => 0,     :null => false
-    t.text     "xml",                                               :null => false
-    t.string   "description",     :limit => 250,                    :null => false
-    t.string   "audio_ids",       :limit => 200,                    :null => false
-    t.integer  "activity_id",                    :default => 0,     :null => false
-    t.integer  "language_id",                    :default => 0,     :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "created_by_id",                  :default => 0,     :null => false
-    t.integer  "updated_by_id",                  :default => 0,     :null => false
-    t.boolean  "getting_started",                :default => false, :null => false
+    t.integer   "template_id",                  :default => 0, :null => false
+    t.text      "xml",                                         :null => false
+    t.string    "description",   :limit => 250,                :null => false
+    t.string    "audio_ids",     :limit => 200,                :null => false
+    t.integer   "activity_id",                  :default => 0, :null => false
+    t.integer   "language_id",                  :default => 0, :null => false
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "created_by_id",                :default => 0, :null => false
+    t.integer   "updated_by_id",                :default => 0, :null => false
   end
 
   add_index "games", ["description"], :name => "game_descrip"
-  add_index "games", ["getting_started"], :name => "index_games_on_getting_started"
 
   create_table "games_keywords", :primary_key => "game_keyword_id", :force => true do |t|
     t.integer "game_id", :default => 0, :null => false
-    t.string  "keyword",                :null => false
+    t.text    "keyword",                :null => false
   end
 
   add_index "games_keywords", ["keyword"], :name => "keyword"
@@ -135,11 +132,11 @@ ActiveRecord::Schema.define(:version => 20110926180534) do
   end
 
   create_table "high_scores", :force => true do |t|
-    t.string   "score",           :null => false
-    t.integer  "game_id",         :null => false
-    t.datetime "submitted_at",    :null => false
-    t.integer  "user_id",         :null => false
-    t.string   "user_ip_address", :null => false
+    t.string    "score",           :null => false
+    t.integer   "game_id",         :null => false
+    t.timestamp "submitted_at",    :null => false
+    t.integer   "user_id",         :null => false
+    t.string    "user_ip_address", :null => false
   end
 
   create_table "languages", :force => true do |t|
@@ -156,42 +153,42 @@ ActiveRecord::Schema.define(:version => 20110926180534) do
     t.string  "name",     :limit => 50, :null => false
   end
 
-  add_index "media_keywords", ["name"], :name => "index_media_keywords_on_name"
+  add_index "media_keywords", ["name"], :name => "keyword"
 
   create_table "media_types", :force => true do |t|
     t.string "ext", :limit => 5, :null => false
   end
 
   create_table "medias", :force => true do |t|
-    t.string   "name",              :limit => 50,                     :null => false
-    t.string   "descrip",           :limit => 75,                     :null => false
-    t.string   "path",              :limit => 120,                    :null => false
-    t.integer  "media_type_id",     :limit => 2,                      :null => false
-    t.integer  "media_category_id",                                   :null => false
-    t.boolean  "published",                        :default => false, :null => false
-    t.boolean  "pending",                          :default => false, :null => false
-    t.string   "assigned_to",       :limit => 50,                     :null => false
-    t.text     "notes",                                               :null => false
-    t.integer  "used_count",                                          :null => false
-    t.datetime "date_added"
-    t.string   "fla_file_name"
-    t.string   "fla_content_type"
-    t.integer  "fla_file_size"
-    t.datetime "fla_updated_at"
-    t.string   "swf_file_name"
-    t.string   "swf_content_type"
-    t.integer  "swf_file_size"
-    t.datetime "swf_updated_at"
+    t.string    "name",              :limit => 50,                     :null => false
+    t.string    "descrip",           :limit => 75,                     :null => false
+    t.string    "path",              :limit => 120,                    :null => false
+    t.integer   "media_type_id",     :limit => 2,                      :null => false
+    t.integer   "media_category_id",                                   :null => false
+    t.boolean   "published",                        :default => false, :null => false
+    t.boolean   "pending",                          :default => false, :null => false
+    t.string    "assigned_to",       :limit => 50,                     :null => false
+    t.text      "notes",                                               :null => false
+    t.integer   "used_count",                                          :null => false
+    t.timestamp "date_added"
+    t.string    "fla_file_name"
+    t.string    "fla_content_type"
+    t.integer   "fla_file_size"
+    t.datetime  "fla_updated_at"
+    t.string    "swf_file_name"
+    t.string    "swf_content_type"
+    t.integer   "swf_file_size"
+    t.datetime  "swf_updated_at"
   end
 
   add_index "medias", ["name", "descrip"], :name => "name"
 
   create_table "news", :force => true do |t|
-    t.string   "summary",                  :null => false
-    t.string   "headline",   :limit => 75, :null => false
-    t.text     "content",                  :null => false
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.string    "summary",                  :null => false
+    t.string    "headline",   :limit => 75, :null => false
+    t.text      "content",                  :null => false
+    t.timestamp "created_at",               :null => false
+    t.datetime  "updated_at",               :null => false
   end
 
   create_table "plans", :force => true do |t|
@@ -214,16 +211,16 @@ ActiveRecord::Schema.define(:version => 20110926180534) do
   end
 
   create_table "schools", :force => true do |t|
-    t.string   "name",                                         :null => false
-    t.string   "address",    :limit => 200,                    :null => false
-    t.string   "city",       :limit => 35,                     :null => false
-    t.integer  "state_id",                  :default => 0,     :null => false
-    t.string   "zip",        :limit => 10,                     :null => false
-    t.boolean  "enabled",                   :default => false, :null => false
-    t.integer  "pin",        :limit => 3,   :default => 0,     :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at",                                   :null => false
-    t.datetime "expired_at"
+    t.text      "name",                                         :null => false
+    t.string    "address",    :limit => 200,                    :null => false
+    t.string    "city",       :limit => 35,                     :null => false
+    t.integer   "state_id",                  :default => 0,     :null => false
+    t.string    "zip",        :limit => 10,                     :null => false
+    t.boolean   "enabled",                   :default => false, :null => false
+    t.integer   "pin",        :limit => 3,   :default => 0,     :null => false
+    t.timestamp "created_at"
+    t.datetime  "updated_at"
+    t.timestamp "expired_at"
   end
 
   add_index "schools", ["name", "city"], :name => "school_index"
@@ -252,17 +249,17 @@ ActiveRecord::Schema.define(:version => 20110926180534) do
   end
 
   create_table "study_histories", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "word_list_id",    :null => false
-    t.string   "study_type",      :null => false
-    t.string   "user_ip_address", :null => false
-    t.datetime "submitted_at",    :null => false
+    t.integer   "user_id",         :null => false
+    t.integer   "word_list_id",    :null => false
+    t.string    "study_type",      :null => false
+    t.string    "user_ip_address", :null => false
+    t.timestamp "submitted_at",    :null => false
   end
 
   create_table "subscription_plans", :force => true do |t|
-    t.string  "name",         :limit => 100, :null => false
-    t.integer "max_teachers",                :null => false
-    t.integer "cost",                        :null => false
+    t.string  "name",         :limit => 100,                                :null => false
+    t.integer "max_teachers",                                               :null => false
+    t.decimal "cost",                        :precision => 10, :scale => 0, :null => false
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -285,15 +282,13 @@ ActiveRecord::Schema.define(:version => 20110926180534) do
   end
 
   create_table "templates", :force => true do |t|
-    t.integer  "admin",                      :default => 0, :null => false
-    t.integer  "activity_id",                :default => 0, :null => false
-    t.integer  "language_id",                :default => 0, :null => false
-    t.integer  "user_id",                    :default => 0, :null => false
-    t.string   "name",        :limit => 50,                 :null => false
-    t.string   "description", :limit => 150,                :null => false
-    t.text     "xml",                                       :null => false
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.integer "admin",                      :default => 0, :null => false
+    t.integer "activity_id",                :default => 0, :null => false
+    t.integer "language_id",                :default => 0, :null => false
+    t.integer "user_id",                    :default => 0, :null => false
+    t.string  "name",        :limit => 50,                 :null => false
+    t.string  "description", :limit => 150,                :null => false
+    t.text    "xml",                                       :null => false
   end
 
   create_table "user_sessions", :force => true do |t|
@@ -302,37 +297,37 @@ ActiveRecord::Schema.define(:version => 20110926180534) do
   end
 
   create_table "users", :force => true do |t|
-    t.boolean  "enabled",                            :default => true,  :null => false
-    t.string   "email",               :limit => 45,                     :null => false
-    t.string   "crypted_password",                                      :null => false
-    t.string   "password_salt",                                         :null => false
-    t.string   "persistence_token",                                     :null => false
-    t.string   "perishable_token",                                      :null => false
-    t.string   "first_name",          :limit => 50,                     :null => false
-    t.string   "last_name",           :limit => 50,                     :null => false
-    t.string   "display_name",        :limit => 100,                    :null => false
-    t.integer  "school_id",                          :default => 0,     :null => false
-    t.string   "role",                :limit => 50,  :default => "0",   :null => false
-    t.integer  "subscription_id",                    :default => 0,     :null => false
-    t.integer  "discount_id",                        :default => 0,     :null => false
-    t.boolean  "email_active",                       :default => true,  :null => false
-    t.boolean  "receive_newsletter",                 :default => false, :null => false
-    t.integer  "default_language_id",                :default => 0,     :null => false
-    t.datetime "created_at"
-    t.datetime "expired_at"
-    t.datetime "last_login_at"
-    t.integer  "login_count",                        :default => 0,     :null => false
-    t.string   "last_login_ip",       :limit => 40
+    t.boolean   "enabled",                            :default => true,  :null => false
+    t.string    "email",               :limit => 45,                     :null => false
+    t.string    "crypted_password",                                      :null => false
+    t.string    "password_salt",                                         :null => false
+    t.string    "persistence_token",                                     :null => false
+    t.string    "perishable_token",                                      :null => false
+    t.string    "first_name",          :limit => 50,                     :null => false
+    t.string    "last_name",           :limit => 50,                     :null => false
+    t.string    "display_name",        :limit => 100,                    :null => false
+    t.integer   "school_id",                          :default => 0,     :null => false
+    t.string    "role",                :limit => 50,  :default => "0",   :null => false
+    t.integer   "subscription_id",                    :default => 0,     :null => false
+    t.integer   "discount_id",                        :default => 0,     :null => false
+    t.boolean   "email_active",                       :default => true,  :null => false
+    t.boolean   "receive_newsletter",                 :default => false, :null => false
+    t.integer   "default_language_id",                :default => 0,     :null => false
+    t.timestamp "created_at"
+    t.timestamp "expired_at"
+    t.datetime  "last_login_at"
+    t.integer   "login_count",                        :default => 0,     :null => false
+    t.string    "last_login_ip",       :limit => 40
   end
 
   create_table "word_lists", :force => true do |t|
-    t.text     "xml"
-    t.text     "description",                  :null => false
-    t.integer  "language_id",   :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "created_by_id", :default => 0, :null => false
-    t.integer  "updated_by_id", :default => 0, :null => false
+    t.text      "xml"
+    t.text      "description",                  :null => false
+    t.integer   "language_id",   :default => 0, :null => false
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "created_by_id", :default => 0, :null => false
+    t.integer   "updated_by_id", :default => 0, :null => false
   end
 
   create_table "word_lists_keywords", :force => true do |t|

@@ -1,6 +1,5 @@
 source 'http://rubygems.org'
 
-gem 'mysql2'
 gem 'rdoc'
 gem 'rails3-jquery-autocomplete'
 gem 'rails', '3.1.0'
@@ -43,6 +42,7 @@ group :development, :test do
   gem "ruby-debug19", :platforms => [:mri_19]
 	gem "factory_girl"
   gem "factory_girl_rails", "1.1.0"
+	gem 'mysql2'
 end
 
 group :test do
