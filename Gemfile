@@ -5,9 +5,8 @@ gem 'rails3-jquery-autocomplete'
 gem 'rails', '3.1.0'
 gem "aws-s3", '0.6.2', :require => "aws/s3"
 gem "authlogic"
-gem "meta_search"
+gem "meta_search", ">= 1.1.0.pre"
 gem "declarative_authorization"
-gem "will_paginate"
 gem "rexml-expansion-fix"
 gem "whenever"
 gem 'paperclip', '2.3.6'
@@ -17,10 +16,11 @@ gem 'pg'
 gem 'seed-fu'
 gem 'multi_json', '1.0.3'
 gem 'rake', '0.9.2.2'
+gem 'activeadmin'
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'
-gem 'sass'
+gem 'sass-rails'
 gem 'coffee-script'
 gem 'uglifier'
 gem 'jquery-rails'

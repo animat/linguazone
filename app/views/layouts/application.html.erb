@@ -32,6 +32,9 @@
       <% unless flash[:notice].nil? %>
         <p class="flash_notice"><%= flash[:notice]%></p>
       <% end %>
+			<% unless flash[:alert].nil? %>
+        <p class="flash_notice"><%= flash[:alert]%></p>
+      <% end %>
       <% unless flash[:error].nil? %>
         <p class="flash_error"><%= flash[:error] %></p>
       <% end %>

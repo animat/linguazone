@@ -6,7 +6,10 @@ Linguazone::Application.configure do
 
   config.action_controller.perform_caching             = true
   config.action_view.cache_template_loading            = true
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_deliveries              = true
+  
+  config.assets.precompile += %w[active_admin.css active_admin.js]
+  config.assets.initialize_on_precompile = false
 
   ActionMailer::Base.delivery_method = :smtp
 
