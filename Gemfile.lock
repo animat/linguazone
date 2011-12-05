@@ -277,6 +277,7 @@ DEPENDENCIES
   guard-spork
   jquery-rails
   json
+  kaminari
   launchy (= 0.3.7)
   meta_search (>= 1.1.0.pre)
   mocha

@@ -17,6 +17,7 @@ gem 'seed-fu'
 gem 'multi_json', '1.0.3'
 gem 'rake', '0.9.2.2'
 gem 'activeadmin'
+gem 'kaminari'
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'
