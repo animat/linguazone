@@ -17,10 +17,6 @@ test: &test
   password: root
   timeout: 5000
 
-#staging:
-
-#production:
-#    adapter: postgresql
 
 cucumber:
   <<: *test

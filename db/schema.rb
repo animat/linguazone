@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111205032716) do
+ActiveRecord::Schema.define(:version => 20111205160930) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -153,8 +153,8 @@ ActiveRecord::Schema.define(:version => 20111205032716) do
   add_index "games", ["description"], :name => "game_descrip"
 
   create_table "games_keywords", :primary_key => "game_keyword_id", :force => true do |t|
-    t.integer "game_id", :default => 0, :null => false
-    t.text    "keyword",                :null => false
+    t.integer "game_id", :default => 0,  :null => false
+    t.string  "keyword", :default => "", :null => false
   end
 
   add_index "games_keywords", ["keyword"], :name => "keyword"
@@ -244,7 +244,7 @@ ActiveRecord::Schema.define(:version => 20111205032716) do
   end
 
   create_table "schools", :force => true do |t|
-    t.text      "name",                                         :null => false
+    t.string    "name",                      :default => "",    :null => false
     t.string    "address",    :limit => 200,                    :null => false
     t.string    "city",       :limit => 35,                     :null => false
     t.integer   "state_id",                  :default => 0,     :null => false
@@ -255,8 +255,6 @@ ActiveRecord::Schema.define(:version => 20111205032716) do
     t.datetime  "updated_at"
     t.timestamp "expired_at"
   end
-
-  add_index "schools", ["name", "city"], :name => "school_index"
 
   create_table "schools_teachers", :id => false, :force => true do |t|
     t.integer  "school_id"

@@ -14,8 +14,6 @@ gem 'simple_form'
 gem 'dynamic_form'
 gem 'pg'
 gem 'seed-fu'
-gem 'multi_json', '1.0.3'
-gem 'rake', '0.9.2.2'
 gem 'activeadmin'
 gem 'kaminari'
 
@@ -47,9 +45,9 @@ group :development, :test do
 end
 
 group :test do
+	gem "cucumber-rails"
   gem "mocha"
   gem "capybara"
-  gem "cucumber-rails"
   gem "shoulda"
   gem "timecop"
 end
