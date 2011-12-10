@@ -35,7 +35,8 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'rack-test'
   gem 'rspec-rails'
-  gem "launchy",         "0.3.7"
+  #gem "launchy",         "0.3.7" #Not sure why this version was needed?
+	gem "launchy"
   gem "database_cleaner"
   gem "ruby-debug", :platforms => [:mri_18]
   gem "ruby-debug19", :platforms => [:mri_19]

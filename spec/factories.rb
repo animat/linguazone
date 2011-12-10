@@ -58,6 +58,11 @@ Factory.define :school do |s|
   s.pin          999
 end
 
+Factory.define :course do |c|
+  c.name          "Latin 3A"
+  c.association   :user
+end
+
 Factory.define :teacher, :class => "User" do |f|
   f.email "test@example.com"
   f.display_name "Joe Teacher"

@@ -20,18 +20,3 @@ Feature: An existing student and teacher can log in
 	  And I fill in "Password:" with "test"
 	  And I press "Login"
 	  Then I should see "Overview"
-	
-
-# TODO:	
-# 	Scenario Outline: Login as an existing parent
-# 	  Given 1 parent
-# 	  When I go to the parent sign in page
-# 	  And I fill in "Email" with <email>
-# 	  And I fill in "Password" with <password>
-# 	  And I press "Sign in"
-# 	  Then I should see <feedback>
-#
-# 	  Examples:
-# 	    | email | password | feedback |
-#       | "parent@example.com" | "password" | "Signed in successfully" |
-#       | "parent@example.com" | "fail"     | "Invalid"                |

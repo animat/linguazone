@@ -8,7 +8,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id], :include => [:user, :school])
+    @course = Course.find(params[:id])
     @course_registrations = CourseRegistration.all(:conditions => ["course_id = ?", @course.id], :include => :user, :order => "users.last_name ASC")
     
     @showing_posts = @course.available_posts.find_all_by_hidden(0)

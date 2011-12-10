@@ -32,16 +32,14 @@ Linguazone::Application.routes.draw do
       get :upgrade_reminder
     end
   end
-
-  resources :states
-  resources :play
-  resources :users
-  resources :user_sessions
-  resources :high_scores
+  
   resources :comments
-  resources :media
-  resources :password_resets
+
   resources :my_posts, :my_games, :my_courses, :my_word_lists
+  resources :courses
+  resources :play, :high_scores
+  resources :users, :user_sessions
+  resources :states, :media, :password_resets
   match 'customize/:action/:cmzr_type/:id' => 'customize#index', :cmzr_type => nil, :id => nil
   match 'class/:id' => 'courses#show'
   match 'class/:id/feed' => 'courses#feed'

@@ -1,4 +1,4 @@
-Feature: A new teacher creates a trial account
+Feature: Teacher manages posts for audio blogs
 
 	Background:
 	  Given a teacher exists

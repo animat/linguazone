@@ -15,7 +15,8 @@ Feature: New student creates account
 		And I press "Create account"
 		Then I should be on the students page
 		And I should see "Overview"
-
+		And I should see "Register in a new class"
+		
 	Scenario: Fail to create a new student account with duplicate username
 		When I am on the new student page
 		And I fill in "Your first name:" with "Tony"

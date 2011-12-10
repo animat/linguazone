@@ -23,7 +23,8 @@
 		<div class="game_listing">
 			<div class="game_details">
 				<p><%= link_to course.name, :controller => "courses", :action => "show", :id => course.id %></p>
-				<%= render :partial => "edit_registered_students", :locals => {:course_id => course.id, :cr => course.course_registrations }%>
+				<%# TODO: Allow granular control of students in a class %>
+				<%# render :partial => "edit_registered_students", :locals => {:course_id => course.id, :cr => course.course_registrations }%>
 			</div>
 			<div class="manage_game">
 				<%= link_to 'Delete this class', :controller => "my_courses", :action => "destroy", :id => course.id %>
