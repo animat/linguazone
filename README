@@ -1,7 +1,9 @@
 LinguaZone.com: offering customizable teaching tools for language teachers.
 
-Running the specs
-
-Simply run 'guard' and the tests will all be run!
-
-Hit enter to run all the tests at any time.
+To-do items:
+- Create Cucumber tests for resources (a subscribing teacher's games, word lists, etc)
+- Use RESTful resources more accurately, use nested resources where appropriate
+	-- Should I create tests before correcting routes? Or correct the routes and create tests at same time?
+- Address student login issues
+- Refactor audio blog posts; use available_games instead of simply games for play controller
+- 
