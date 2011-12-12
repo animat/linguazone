@@ -19,17 +19,22 @@
 <br />
 
 <div>
-	<% for course in @courses do %>
-		<div class="game_listing">
-			<div class="game_details">
-				<p><%= link_to course.name, :controller => "courses", :action => "show", :id => course.id %></p>
-				<%# TODO: Allow granular control of students in a class %>
-				<%# render :partial => "edit_registered_students", :locals => {:course_id => course.id, :cr => course.course_registrations }%>
+	<% if @courses.length == 0 %>
+		<p>You have not created any class pages yet.</p>
+	<% else %>
+		<% for course in @courses do %>
+			<div class="game_listing">
+				<div class="game_details">
+					<p><%= link_to course.name, :controller => "courses", :action => "show", :id => course.id %></p>
+					<%# TODO: Allow granular control of students in a class %>
+					<%# render :partial => "edit_registered_students", :locals => {:course_id => course.id, :cr => course.course_registrations }%>
+				</div>
+				<div class="manage_game">
+					<%= link_to "Edit", edit_my_course_path(course) %> | 
+					<span class="warning"><%= link_to 'Delete', my_course_path(course), :method => :delete, :confirm => "Are you sure you want to delete this class?" %></span>
+				</div>
+				<br class="clearFloat" />
 			</div>
-			<div class="manage_game">
-				<%= link_to 'Delete this class', :controller => "my_courses", :action => "destroy", :id => course.id %>
-			</div>
-			<br class="clearFloat" />
-		</div>
+		<% end %>
 	<% end %>
 </div>

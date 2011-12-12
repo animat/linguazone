@@ -1,0 +1,8 @@
+<h1>Edit your class</h1>
+<br />
+<div>
+	<%= form_for @course, :url => {:action => "update"} do |f| %>
+		<%= render :partial => 'form', :locals => {:form => f} %>
+		<p align="center"><%= f.submit "Update this class" %></p>
+	<% end %>
+</div>

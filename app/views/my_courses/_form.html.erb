@@ -20,7 +20,8 @@
         <br />
         <span class="input_hint">
           (Leave blank to allow students to access this page without logging in.<br />
-          Only password-protected pages can use audio blogs and student tracking.)</span>
+          Only password-protected pages can use audio blogs and student tracking.)
+				</span>
       </td>
     </tr>
   <% else %>
@@ -29,4 +30,4 @@
 </table>
 <br />
 <%= form.hidden_field :user_id, :value => current_user.id %>
-<p align="center"><%= form.submit "Create this class" %></p>
+

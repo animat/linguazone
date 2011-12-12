@@ -35,23 +35,31 @@ class MyCoursesController < ApplicationController
   end
 
   def edit
-
+    @course = Course.find(params[:id])
   end
 
   def update
-
+    @course = Course.find(params[:id])
+    if @course.update_attributes(params[:course])
+      flash[:success] = "Your class has been updated."
+      redirect_to my_courses_path
+    else
+      flash[:error] = "There was an error updating your class."
+      render :action => "edit"
+    end
   end
 
   def destroy
     @course = Course.find(params[:id])
+    # TODO: Use cancan for authorization
     if @course.user_id == current_user.id
       @course.destroy
 
-      flash[:notice] = "The class has been deleted."
-      redirect_to :action => "index"
+      flash[:notice] = "#{@course.name} has been deleted."
+      redirect_to my_courses_path
     else
       flash[:error] = "You do not have access to that class."
-      redirect_to :action => "index"
+      redirect_to my_courses_path
     end
   end
 end

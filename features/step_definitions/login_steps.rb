@@ -14,9 +14,9 @@ Then /^I should see the following logins:$/ do |expected_logins_table|
 end
 
 Given /^I am logged in as a teacher$/ do
-  Given %Q|I am on the teacher login page|
-	And %Q|I fill in "Email address:" with "test@example.com"|
-	And %Q|I fill in "Password:" with "test"|
-	And %Q|I press "Login"|
-	Then %Q|I should see "Overview"|
+  step %Q|I am on the teacher login page|
+	step %Q|I fill in "Email address:" with "test@example.com"|
+	step %Q|I fill in "Password:" with "test"|
+	step %Q|I press "Login"|
+	step %Q|I should see "Overview"|
 end

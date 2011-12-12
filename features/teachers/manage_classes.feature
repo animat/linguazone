@@ -4,20 +4,12 @@ Feature: Manage classes
 	I want to be able to manage all class information
 	
 	Background:
-    Given a state exists with a name of "Pennsylvania"
-    And the following subscription plan exists:
-      | name    | max teachers | cost |
-      | premium | -1           | 500  |
-    And the following subscription exists:
-      | pin   | subscription plan     |
-      | 12345 | name: premium         |
-		And the following school exists:
-		 | name      | state              |
-		 | Northwest | name: Pennsylvania |
-    And the following teacher exists:
-      | first_name | subscription | school          |
-      | Tony       | pin: 12345   | name: Northwest |
+    Given a teacher exists with a first name of "Tony"
 	
+	
+	# @Len: Since I am using my_courses_controller to create/ update/ delete courses
+	# 				(instead of the courses_controller to do that) I am a bit confused about
+	#					things like form_for and routes. Any recommendations?
 	Scenario: Create a new class
 		Given I am logged in as a teacher
 		And I am on the my courses page
@@ -30,16 +22,43 @@ Feature: Manage classes
 	
 	Scenario: I am browsing my classes but I have not made any yet
 		Given I am logged in as a teacher
-		And I am on the my courses page
 		And I have 0 courses
-		Then I should see "Create your first class page"
+		And I am on the my courses page
+		Then I should see "You have not created any class pages yet."
 	
 	Scenario: I am browsing my classes
 		Given I am logged in as a teacher
-		And I am on the my courses page
 		And the following courses exist:
 		 | name             | user             |
 		 | Spanish 8        | first_name: Tony |
 		 | Prima Lingua 6-1 | first_name: Tony |
+		And I am on the my courses page
 		Then I should see "Spanish 8"
 		And I should see "Prima Lingua 6-1"
+		And I should not see "Latin 3A"
+	
+	Scenario: Rename a class
+		Given I am logged in as a teacher
+		And the following course exists:
+		 | name      | user             |
+		 | Spanish 8 | first_name: Tony |
+		And I am on the my courses page
+		When I follow "Edit"
+		And I fill in "Class name" with "French 8"
+		And I press "Update"
+		Then I should see "successfully"
+		And I should be on the my courses page
+		And I should see "French 8"
+	
+	# @Len: How can I complete the rest of this test?
+	@wip
+	Scenario: Delete a class
+		Given I am logged in as a teacher
+		And the following course exists:
+		 | name      | user             |
+		 | Spanish 8 | first_name: Tony |
+		And I am on the my courses page
+		When I follow "Delete"
+		Then I should see "successfully"
+		And I should be on the my courses page
+		And I should not see "Spanish 8"
