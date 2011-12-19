@@ -3,6 +3,7 @@ class MyGamesController < ApplicationController
   
   def index
     @search = AvailableGame.search(params[:search])
+    @all_games = Game.search(:updated_by_id_equals => current_user.id).order(:updated_at).page params[:page]
   end
   
   def show
@@ -32,8 +33,8 @@ class MyGamesController < ApplicationController
       else
         @course = Course.find(params['search']['course_id_equals'])
       end
-      @search = AvailableGame.search(params[:search])
-      @available_games, @available_games_count = @search.paginate(:page => params[:page]), @search.count
+      @available_games = AvailableGame.search(params[:search]).page(params[:page])
+      @available_games_count = @available_games.count
     end    
   end
   

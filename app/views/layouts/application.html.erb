@@ -2,8 +2,12 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title><%= yield(:title) or 'LinguaZone' %></title>
-  <%= stylesheet_link_tag 'layout' %>
+	<%= csrf_meta_tag %>
+	
+  <title><%= yield(:title) || 'LinguaZone' %></title>
+  
+	<%= stylesheet_link_tag 'layout' %>
+	<% # Is this stylesheet line needed with the asset pipeline? %>
   <%= yield(:head) %>
   <%= yield(:page_script) %>
 </head>
@@ -79,6 +83,5 @@
 
     </script>
   </div>
-  <%= javascript_include_tag 'application' %>
 </body>
 </html>

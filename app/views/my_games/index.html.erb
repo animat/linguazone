@@ -1,14 +1,3 @@
-<% content_for :page_script do %>
-<script type="text/javascript">
-
-Event.observe(window, 'load', function() {
-	$('onlySearchMyGames').hide();
-	$('more_options').show();
-	$('fewer_options').hide();
-});
-
-</script>
-<% end %>
 <% stylesheet 'my_games' %>
 <% stylesheet 'teachers' %>
 
@@ -32,7 +21,6 @@ Event.observe(window, 'load', function() {
 	<%= render :partial => "search_fields" %>
 </fieldset>
 
-<br />
 
 <div align="center">
 	<%= link_to :action => "adopt" do %>
@@ -46,3 +34,14 @@ Event.observe(window, 'load', function() {
 		</div>
 	<% end %>
 </div>
+
+<% unless @all_games.nil? or @all_games.empty? %>
+	<h2>Browsing all games (<%= @all_games.length %> total)</h2>
+	<%= paginate @all_games %>
+	<% @all_games.each do |g| %>
+		<%= render :partial => "game", :locals => {:game => g} %>
+	<% end %>
+	<%= paginate @all_games %>
+<% else %>
+	<h2>You have not created any games yet. Try creating a new game or adopting one to get started.</h2>
+<% end %>

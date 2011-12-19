@@ -33,9 +33,15 @@ Linguazone::Application.routes.draw do
     end
   end
   
+  resources :my_games do
+    collection do
+      get :search
+    end
+  end
+  
   resources :comments
 
-  resources :my_posts, :my_games, :my_courses, :my_word_lists
+  resources :my_posts, :my_courses, :my_word_lists
   resources :courses
   resources :play, :high_scores
   resources :users, :user_sessions

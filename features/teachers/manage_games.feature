@@ -9,20 +9,16 @@ Feature: Teacher manages customized games
 		 | Cliffhanger |
 		And "John" has 10 games
 		And "John" has 3 games which are the "Leap Frog" activity
-		And a game exists with a description of "Unique game for tests"
+		And "John" has a game with a description of "This is a unique game for searching"
 		And I am logged in as "John"
 		And I am on the my games page
 	
-	@wip
 	Scenario: View all my games
 		Then I should see "(14 total)"
 	
-	
+	@wip
 	Scenario: Search my games
-		When I press "View all my games"
-		Then show me the page
-		When I follow "Search my games"
-		And I fill in "description" with "Unique"
+		When I fill in "Search for:" with "unique"
 		And I press "Search"
 		Then I should see "1 game"
-		And I should see "Unique game for tests"
+		And I should see "unique game for searching"
