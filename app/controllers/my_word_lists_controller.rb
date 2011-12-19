@@ -3,17 +3,12 @@ class MyWordListsController < ApplicationController
   
   def index
     @search = AvailableWordList.search(params[:search])
+    @word_lists = WordList.search(:updated_by_id_equals => current_user.id).page(params[:page])
+    @total_word_lists_count = WordList.where(:updated_by_id => current_user.id).length
   end
   
   def show
     @word_list = WordList.find(params[:id])
-  end
-
-  def all
-    @all_word_lists = WordList.search(:updated_by_id_equals => current_user.id)
-    @word_lists = @all_word_lists.all(:order => "updated_at DESC")
-    @word_lists = @word_lists.paginate(:page => params[:page])
-    @search = AvailableWordList.search(:user_id_equals => 0)
   end
   
   def search

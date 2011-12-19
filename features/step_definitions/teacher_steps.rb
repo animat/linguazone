@@ -41,16 +41,16 @@ Given /^I have (\d+) courses$/ do |num|
 end
 
 # TODO: Is this an appropriate way to use factories? Create then update?
-Given /^"([^"]*)" has (\d+) games$/ do |name, num|
+Given /^"([^"]*)" has (\d+) ([^"]*)$/ do |name, num, things|
   @t = User.find_by_first_name(name)
   count = num.to_i
   if count == 0
-    Game.all.each do |g|
+    things.singularize.constantize.all.each do |g|
       g.destroy
     end
   else
     count.times do |t|
-      @g = Factory.create(:game)
+      @g = Factory.create(things.singularize)
       @g.updated_by_id = @t.id
       @g.save
     end
@@ -68,9 +68,9 @@ Given /^"([^"]*)" has (\d+) games which are the "([^"]*)" activity$/ do |teacher
   end
 end
 
-Given /^"([^"]*)" has a game with a description of "([^"]*)"$/ do |teacher_name, description|
+Given /^"([^"]*)" has a ([^"]*) with a description of "([^"]*)"$/ do |teacher_name, thing, description|
   @t = User.find_by_first_name(teacher_name)
-  @g = Factory.create(:game)
+  @g = Factory.create(thing)
   @g.updated_by_id = @t.id
   @g.description = description
   @g.save

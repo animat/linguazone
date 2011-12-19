@@ -36,7 +36,7 @@
 </div>
 
 <% unless @all_games.nil? or @all_games.empty? %>
-	<h2>Browsing all games (<%= @all_games.length %> total)</h2>
+	<h2>Browsing games (<%= @total_games_count %> total)</h2>
 	<%= paginate @all_games %>
 	<% @all_games.each do |g| %>
 		<%= render :partial => "game", :locals => {:game => g} %>

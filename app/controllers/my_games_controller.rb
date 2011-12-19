@@ -4,6 +4,7 @@ class MyGamesController < ApplicationController
   def index
     @search = AvailableGame.search(params[:search])
     @all_games = Game.search(:updated_by_id_equals => current_user.id).order(:updated_at).page params[:page]
+    @total_games_count = Game.where(:updated_by_id => current_user.id).length
   end
   
   def show
@@ -16,14 +17,7 @@ class MyGamesController < ApplicationController
       @games = @search.paginate(:page => params[:page])
     end
   end
-  
-  def all
-    @all_games = Game.search(:updated_by_id_equals => current_user.id)
-    @games = @all_games.all(:order => "updated_at DESC")
-    @games = @games.paginate(:page => params[:page])
-    @search = AvailableGame.search(:user_id_equals => 0)
-  end
-  
+    
   def search
     if params[:search].nil? or params[:search].empty?
       @search = AvailableGame.search(:user_id_equals => 0)

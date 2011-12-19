@@ -30,3 +30,14 @@
 		</div>
 	<% end %>
 </div>
+
+<% unless @word_lists.nil? or @word_lists.empty? %>
+	<h2>Browsing games (<%= @total_word_lists_count %> total)</h2>
+	<%= paginate @word_lists %>
+	<% @word_lists.each do |wl| %>
+		<%= render :partial => "word_list", :locals => {:word_list => wl} %>
+	<% end %>
+	<%= paginate @word_lists %>
+<% else %>
+	<h2>You have not created any word lists yet. Try creating a new one!</h2>
+<% end %>

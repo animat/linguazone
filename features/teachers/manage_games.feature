@@ -16,7 +16,6 @@ Feature: Teacher manages customized games
 	Scenario: View all my games
 		Then I should see "(14 total)"
 	
-	@wip
 	Scenario: Search my games
 		When I fill in "Search for:" with "unique"
 		And I press "Search"

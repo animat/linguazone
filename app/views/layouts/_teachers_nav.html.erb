@@ -1,28 +1,28 @@
 <ul>
-	<li><%= link_to "OVERVIEW", :controller => "teachers" %></li>
+	<li><%= link_to "OVERVIEW", teachers_path %></li>
 	<li>
-		<%= link_to "CLASSES", :controller => "my_courses" %>
+		<%= link_to "CLASSES", my_courses_path %>
 		<ul>
 			<% for course in @courses do %>
-				<li><%= link_to course.name, :controller => "courses", :action => "show", :id => course.id %></li>
+				<li><%= link_to course.name, course_path(course) %></li>
 			<% end %>
-			<li><%= link_to "Create a class", :controller => "my_courses", :action => "new" %></li>
+			<li><%= link_to "Create a class", new_my_course_path %></li>
 		</ul>
 	</li>
 	<li>
 		<%= link_to "GAMES", :controller => "my_games" %>
 		<ul>
-			<li><%= link_to "Search my games", :controller => "my_games", :action => "search" %></li>
-			<li><%= link_to "View all my games", :controller => "my_games", :action => "all" %></li>
-			<li><%= link_to "Adopt a game", :controller => "my_games", :action => "adopt" %></li>
+			<li><%= link_to "Search my games", search_my_games_path %></li>
+			<li><%= link_to "View all my games", my_games_path %></li>
+			<li><%= link_to "Adopt a game", adopt_my_games_path %></li>
 			<li><%= link_to "Create a new game", :controller => "customize", :action => "new", :cmzr_type => "game" %></li>
 		</ul>
 	</li>
 	<li>
 		<%= link_to "WORD LISTS", :controller => "my_word_lists" %>
 		<ul>
-			<li><%= link_to "Search my word lists", :controller => "my_word_lists", :action => "search" %></li>
-			<li><%= link_to "View all my word lists", :controller => "my_word_lists", :action => "all" %></li>
+			<li><%= link_to "Search my word lists", search_my_word_lists_path %></li>
+			<li><%= link_to "View all my word lists", my_word_lists_path %></li>
 			<li><%= link_to "Create a new word list", :controller => "customize", :action => "new", :cmzr_type => "list" %></li>
 		</ul>
 	</li>
