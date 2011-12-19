@@ -6,10 +6,6 @@ Feature: Manage classes
 	Background:
     Given a teacher exists with a first name of "Tony"
 	
-	
-	# @Len: Since I am using my_courses_controller to create/ update/ delete courses
-	# 				(instead of the courses_controller to do that) I am a bit confused about
-	#					things like form_for and routes. Any recommendations?
 	Scenario: Create a new class
 		Given I am logged in as a teacher
 		And I am on the my courses page
@@ -46,12 +42,10 @@ Feature: Manage classes
 		When I follow "Edit"
 		And I fill in "Class name" with "French 8"
 		And I press "Update"
-		Then I should see "successfully"
+		Then I should see "Your class has been updated"
 		And I should be on the my courses page
 		And I should see "French 8"
 	
-	# @Len: How can I complete the rest of this test?
-	@wip
 	Scenario: Delete a class
 		Given I am logged in as a teacher
 		And the following course exists:
@@ -59,6 +53,5 @@ Feature: Manage classes
 		 | Spanish 8 | first_name: Tony |
 		And I am on the my courses page
 		When I follow "Delete"
-		Then I should see "successfully"
+		Then I should see "Spanish 8 has been deleted"
 		And I should be on the my courses page
-		And I should not see "Spanish 8"

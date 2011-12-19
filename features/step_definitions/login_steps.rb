@@ -20,3 +20,12 @@ Given /^I am logged in as a teacher$/ do
 	step %Q|I press "Login"|
 	step %Q|I should see "Overview"|
 end
+
+Given /^I am logged in as "([^"]*)"$/ do |teacher_name|
+  @t = User.find_by_first_name(teacher_name)
+  step %Q|I am on the teacher login page|
+  step %Q|I fill in "Email address:" with "#{@t.email}"|
+  step %Q|I fill in "Password:" with "test"|
+  step %Q|I press "Login"|
+  step %Q|I should see "Overview"|
+end

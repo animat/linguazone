@@ -37,6 +37,11 @@ Factory.define :game do |g|
   g.association :language
 end
 
+Factory.define :available_game do |ag|
+  ag.association :game
+  ag.association :user
+end
+
 Factory.define :subscription_plan do |p|
   p.name "Trial"
   p.max_teachers 50
