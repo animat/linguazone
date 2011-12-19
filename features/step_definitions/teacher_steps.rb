@@ -1,63 +1,29 @@
-Given /^I have (\d+) posts$/ do |num|
-  count = num.to_i
-  if count == 0
-    Post.all.each do |p|
-      p.destroy
-    end
+# TODO: Is this an appropriate way to use factories? Create then update? Also not sure how to deal with word lists as two words.
+Given /^([^"]*) (has|have) (\d+) (games|posts|word lists|word_lists|courses)$/ do |teacher_name, verb, num, things|
+  if teacher_name == "I"
+    @t = User.first
   else
-    count.times do |count|
-      @post = Factory.create(:post)
-      @post.save
-    end
+    @t = User.find_by_first_name(teacher_name)
   end
-end
-
-Given /^I have (\d+) games$/ do |num|
   count = num.to_i
   if count == 0
-    Game.all.each do |g|
+    things.singularize.capitalize.constantize.all.each do |g|
       g.destroy
     end
   else
-    count.times do |count|
-      @game = Factory.create(:game)
-      @game.save
-    end
-  end
-end
-
-Given /^I have (\d+) courses$/ do |num|
-  count = num.to_i
-  if count == 0
-    Course.all.each do |c|
-      c.destroy
-    end
-  else
-    count.times do |count|
-      @course = Factory.create(:course)
-      @course.save
-    end
-  end
-end
-
-# TODO: Is this an appropriate way to use factories? Create then update?
-Given /^"([^"]*)" has (\d+) ([^"]*)$/ do |name, num, things|
-  @t = User.find_by_first_name(name)
-  count = num.to_i
-  if count == 0
-    things.singularize.constantize.all.each do |g|
-      g.destroy
-    end
-  else
-    count.times do |t|
+    count.times do
       @g = Factory.create(things.singularize)
-      @g.updated_by_id = @t.id
+      if things.singularize == "post" || things.singularize == "course"
+        @g.user_id = @t.id
+      else
+        @g.updated_by_id = @t.id
+      end
       @g.save
     end
   end
 end
 
-Given /^"([^"]*)" has (\d+) games which are the "([^"]*)" activity$/ do |teacher_name, num_games, activity_name|
+Given /^([^"]*) has (\d+) games which are the "([^"]*)" activity$/ do |teacher_name, num_games, activity_name|
   @t = User.find_by_first_name(teacher_name)
   num_games.to_i.times do |activity_name|
     @a = Activity.find_by_name(activity_name)
@@ -68,10 +34,21 @@ Given /^"([^"]*)" has (\d+) games which are the "([^"]*)" activity$/ do |teacher
   end
 end
 
-Given /^"([^"]*)" has a ([^"]*) with a description of "([^"]*)"$/ do |teacher_name, thing, description|
+Given /^([^"]*) has a (game|post|word list|word_list) with a description of "([^"]*)"$/ do |teacher_name, thing, description|
   @t = User.find_by_first_name(teacher_name)
   @g = Factory.create(thing)
-  @g.updated_by_id = @t.id
-  @g.description = description
+  if thing == "post"
+    @g.user_id = @t.id
+    @g.content = description
+  else
+    @g.updated_by_id = @t.id
+    @g.description = description
+  end
   @g.save
+end
+
+Given /^([^"]*) is subscribed with a basic subscription$/ do |teacher_name|
+  @t = User.find_by_first_name(teacher_name)
+  @p = SubscriptionPlan.create(:name => "basic", :max_teachers => 3, :cost => 6)
+  @t.subscription.subscription_plan = @p
 end

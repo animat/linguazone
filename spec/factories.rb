@@ -7,6 +7,7 @@ end
 
 Factory.define :user do |u|
   u.email      "john@smith.com"
+  u.password    "test"
   u.first_name "John"
   u.last_name  "Smith"
 end
@@ -43,15 +44,25 @@ Factory.define :word_list do |g|
   g.association :language
 end
 
+Factory.define :post do |p|
+  p.title         "Sample post #___"
+  p.content       "Lorem ipsum text here..."
+  p.audio_id      3000
+  p.shared        true
+  p.created_at    Time.now
+  p.updated_at    Time.now
+  p.association   :course
+end
+
 Factory.define :available_game do |ag|
   ag.association :game
   ag.association :user
 end
 
 Factory.define :subscription_plan do |p|
-  p.name "Trial"
-  p.max_teachers 50
-  p.cost 5
+  p.name          "trial"
+  p.max_teachers  50
+  p.cost          5
 end
 
 Factory.define :subscription do |s|
@@ -83,15 +94,4 @@ Factory.define :teacher, :class => "User" do |f|
   f.role "teacher"
   f.association :school
   f.association :subscription
-end
-
-Factory.define :post do |p|
-  p.title         "Sample post #___"
-  p.content       "Lorem ipsum text here..."
-  p.audio_id      3000
-  p.association   :user
-  p.association   :course
-  p.shared        true
-  p.created_at    Time.now
-  p.updated_at    Time.now
 end

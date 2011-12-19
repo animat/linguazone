@@ -7,6 +7,7 @@
 	<% @posts.each do |p| %>
 			<p><%= link_to p.title, post_path(p) %> <span class="date"><%= format_date_with_year(p.updated_at) %></span></p>
 	<% end %>
+	<%= paginate @posts %>
 <% else %>
 	<p>You have not yet created any audio blog posts. Go to a class page, then create your first one!</p>
 <% end %>

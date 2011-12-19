@@ -7,9 +7,9 @@ Feature: Teacher manages customized games
 		 | Leap Frog   |
 		 | Mantis      |
 		 | Cliffhanger |
-		And "John" has 10 games
-		And "John" has 3 games which are the "Leap Frog" activity
-		And "John" has a game with a description of "This is a unique game for searching"
+		And John has 10 games
+		And John has 3 games which are the "Leap Frog" activity
+		And John has a game with a description of "This is a unique game for searching"
 		And I am logged in as "John"
 		And I am on the my games page
 	

@@ -29,3 +29,7 @@ Given /^I am logged in as "([^"]*)"$/ do |teacher_name|
   step %Q|I press "Login"|
   step %Q|I should see "Overview"|
 end
+
+Given /^I have logged out$/ do
+  visit logout_path
+end
