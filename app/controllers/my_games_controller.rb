@@ -11,7 +11,8 @@ class MyGamesController < ApplicationController
     @game = Game.find(params[:id], :include => ["activity"])
   end
   
-  # TODO: Would it be possible to abstract search/ adopt into one piece for games, word lists, and audio posts?
+  # TODO @Len: Would it be possible to abstract search/ adopt into one piece for games, word lists, and audio posts?
+  # =>        Then potentially the same thing for available_games/ word_lists/ posts as a nested resource of courses?
   def adopt
     @search = Game.search(params[:search])
     unless params[:search].nil?

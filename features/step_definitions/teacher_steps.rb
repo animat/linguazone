@@ -1,4 +1,4 @@
-# TODO: Is this an appropriate way to use factories? Create then update? Also not sure how to deal with word lists as two words.
+# TODO @Len: Is this an appropriate way to use factories? Create then update? Also not sure how to deal with word lists as two words.
 Given /^([^"]*) (has|have) (\d+) (games|posts|word lists|word_lists|courses)$/ do |teacher_name, verb, num, things|
   if teacher_name == "I"
     @t = User.first

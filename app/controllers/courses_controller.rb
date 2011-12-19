@@ -11,11 +11,14 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @course_registrations = CourseRegistration.all(:conditions => ["course_id = ?", @course.id], :include => :user, :order => "users.last_name ASC")
     
+    # TODO @Len: Can I use scopes here? Would that help simplify?
+    # TODO @Len: Since games, word_lists, posts are so closely tied together, another question -- how can build an audit log so teachers can track student activity?
     @showing_posts = @course.available_posts.find_all_by_hidden(0)
     @showing_word_lists = @course.available_word_lists.find_all_by_hidden(0)
     @showing_games = @course.available_games.find_all_by_hidden(0, :order => "ordering", :include => [:game, :activity])
     
     if @course.login_required
+      # TODO: Use cancan for authorization
       unless is_student_for(@course) or is_teacher_for(@course)
         flash[:error] = "You are not registered for that class."
         redirect_to students_url
