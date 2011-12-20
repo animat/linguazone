@@ -17,7 +17,6 @@ Feature: New student creates account
 		And I should see "Overview"
 		And I should see "Register in a new class"
 	
-	@wip
 	Scenario: Fail to create a new student account with duplicate username
 		When I am on the new student page
 		And I fill in "Your first name:" with "Tony"
@@ -28,4 +27,6 @@ Feature: New student creates account
 		Then I should see "already"
 		And I should be on the new student page
 	
-	# TODO @Len: Any tips on how to migrate to OAuth so that I can have users sign up with their Google Accounts?
+	# TODO @Len: Any tips on how to use OAuth so that I can have users sign up with their Google Accounts?
+	#							Also, sometimes students report having bizarre login problems. No idea how to troubleshoot.
+	#							The site used to use one service, then switched to Authlogic. Feeling like I'm in an in between state.

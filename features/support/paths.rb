@@ -22,6 +22,9 @@ module NavigationHelpers
       login_teachers_path
     when /the about features page/
       about_features_path
+    when /^the "([^"]*)" course page$/i
+      course_path(Course.find_by_name($1))
+    
 
 
     # Add more mappings here.

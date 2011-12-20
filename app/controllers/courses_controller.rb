@@ -12,10 +12,12 @@ class CoursesController < ApplicationController
     @course_registrations = CourseRegistration.all(:conditions => ["course_id = ?", @course.id], :include => :user, :order => "users.last_name ASC")
     
     # TODO @Len: Can I use scopes here? Would that help simplify?
+    # => Also, running into issues trying to include the activity from available games
     # TODO @Len: Since games, word_lists, posts are so closely tied together, another question -- how can build an audit log so teachers can track student activity?
     @showing_posts = @course.available_posts.find_all_by_hidden(0)
     @showing_word_lists = @course.available_word_lists.find_all_by_hidden(0)
-    @showing_games = @course.available_games.find_all_by_hidden(0, :order => "ordering", :include => [:game, :activity])
+    #@showing_games = @course.available_games.find_all_by_hidden(0).order("ordering").includes([:game, :activity])
+    @showing_games = @course.available_games.find_all_by_hidden(0)
     
     if @course.login_required
       # TODO: Use cancan for authorization
