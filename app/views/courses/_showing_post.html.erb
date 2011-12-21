@@ -10,7 +10,7 @@
 			<li>Teacher controls:</li>
 			<li><%= link_to "Edit this post", :controller => "posts", :action => "edit", :id => showing_post.post.id %></li>
 			<li>
-				<%= link_to_remote "Hide from students",
+				<%# TODO: link_to_remote "Hide from students",
 						:loading => "$('hide_"+dom_id(showing_post)+"').replace('Hiding...')",
 						:url => {:controller => "courses", :action => "hide_post", :id => showing_post.id },
 						:html => {:id => "hide_"+dom_id(showing_post) } 

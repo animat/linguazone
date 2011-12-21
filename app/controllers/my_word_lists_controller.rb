@@ -1,4 +1,4 @@
-class MyWordListsController < ApplicationController
+class MyWordListsController < CourseItemsController
   before_filter :check_expired
   
   def index
@@ -9,20 +9,6 @@ class MyWordListsController < ApplicationController
   
   def show
     @word_list = WordList.find(params[:id])
-  end
-  
-  def search
-    if params[:search].nil? or params[:search].empty?
-      @search = AvailableWordList.search(:user_id_equals => 0)
-    else
-      if params[:search][:course_id_equals].nil? or params[:search][:course_id_equals] == ""
-        params[:search][:course_id_equals] = 0
-      else
-        @course = Course.find(params['search']['course_id_equals'])
-      end
-      @search = AvailableWordList.search(params[:search])
-      @available_lists, @available_lists_count = @search.all, @search.count
-    end    
   end
   
   def destroy
@@ -48,6 +34,10 @@ class MyWordListsController < ApplicationController
       flash[:error] = "You do not have access to that word list."
       redirect_to :action => "all"
     end
+  end
+  
+  def joining_table
+    AvailableWordList
   end
   
 end

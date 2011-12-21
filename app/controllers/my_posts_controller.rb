@@ -1,4 +1,4 @@
-class MyPostsController < ApplicationController
+class MyPostsController < CourseItemsController
   def search
   end
 
@@ -8,5 +8,9 @@ class MyPostsController < ApplicationController
     end
     @posts = Post.search(:user_id_equals => current_user.id).order(:updated_at).page(params[:page])
   end
-
+  
+  def joining_table
+    AvailablePost
+  end
+  
 end

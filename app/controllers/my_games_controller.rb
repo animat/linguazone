@@ -1,4 +1,4 @@
-class MyGamesController < ApplicationController
+class MyGamesController < CourseItemsController
   before_filter :check_expired
   
   def index
@@ -11,8 +11,7 @@ class MyGamesController < ApplicationController
     @game = Game.find(params[:id], :include => ["activity"])
   end
   
-  # TODO @Len: Would it be possible to abstract search/ adopt into one piece for games, word lists, and audio posts?
-  # =>        Then potentially the same thing for available_games/ word_lists/ posts as a nested resource of courses?
+  # TODO: Use CourseItems and shared partials for shared behavior
   def adopt
     @search = Game.search(params[:search])
     unless params[:search].nil?
@@ -55,5 +54,9 @@ class MyGamesController < ApplicationController
       flash[:error] = "You do not have access to that game."
       redirect_to :action => "all"
     end
+  end
+  
+  def joining_table
+    AvailableGame
   end
 end

@@ -9,15 +9,16 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
-    @course_registrations = CourseRegistration.all(:conditions => ["course_id = ?", @course.id], :include => :user, :order => "users.last_name ASC")
+    if is_teacher_for(@course)
+      @course_registrations = CourseRegistration.all(:conditions => ["course_id = ?", @course.id], :include => :user, :order => "users.last_name ASC")
+    end
     
-    # TODO @Len: Can I use scopes here? Would that help simplify?
-    # => Also, running into issues trying to include the activity from available games
-    # TODO @Len: Since games, word_lists, posts are so closely tied together, another question -- how can build an audit log so teachers can track student activity?
-    @showing_posts = @course.available_posts.find_all_by_hidden(0)
-    @showing_word_lists = @course.available_word_lists.find_all_by_hidden(0)
-    #@showing_games = @course.available_games.find_all_by_hidden(0).order("ordering").includes([:game, :activity])
-    @showing_games = @course.available_games.find_all_by_hidden(0)
+    # TODO @Len: What steps can I take to build an audit log of student activity across these three different things?
+    # => Use a module with a participate method that will log all participation activities
+    # => Not sure how to merge these separate models into one "audit log" model
+    @showing_posts = @course.available_posts.showing
+    @showing_word_lists = @course.available_word_lists.showing
+    @showing_games = @course.available_games.showing.order("ordering")
     
     if @course.login_required
       # TODO: Use cancan for authorization
@@ -36,9 +37,9 @@ class CoursesController < ApplicationController
   def feed
     @course = Course.find(params[:id], :include => [:user, :school])
     
-    @showing_posts = Post.find_all_by_course_id(params[:id])
-    @showing_word_lists = @course.available_word_lists.find_all_by_hidden(0)
-    @showing_games = @course.available_games.find_all_by_hidden(0, :order => "ordering", :include => [:game, :activity])
+    @showing_posts = @course.available_posts.showing
+    @showing_word_lists = @course.available_word_lists.showing
+    @showing_games = @course.available_games.showing.order("ordering")
     
     render :layout => false
     response.headers["Content-Type"] = "application/xml; charset=utf-8"
@@ -76,7 +77,7 @@ class CoursesController < ApplicationController
   
   def order_games
     @course = Course.find(params[:id])
-    @games = @course.available_games.find_all_by_hidden(0, :order => "ordering", :include => [:game, :activity])
+    @games = @course.available_games.find_all_by_hidden(0, :order => "ordering")
   end
   
   def update_game_order

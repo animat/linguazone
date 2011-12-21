@@ -69,7 +69,7 @@ function checkLoginRequired(val) {
 			</p>
 			<% end %>
 		</div>
-		<%= render :partial => "my_courses/show_registered_students", :locals => {:course_id => params[:id], :cr => @course_registrations}%>
+		<%# TODO: render :partial => "my_courses/show_registered_students", :locals => {:course_id => params[:id], :cr => @course_registrations}%>
 	</div>
 	<div class="wrapper">
 <% end %>
@@ -122,9 +122,11 @@ function checkLoginRequired(val) {
 		<h2>Play games</h2>
 		<% if is_teacher_for(@course) %>
 			<div class="add"><p><%= link_to "add a game", :controller => "courses", :action => "add_game", :id => @course.id %></p></div>
-			<% if @showing_games.length > 1 %>
-				<div class="order"><p><%= link_to "reorder", :controller => "courses", :action => "order_games", :id => @course.id %></p></div>
-			<% end %>
+			<%# TODO: Reinsert ordering of games if @showing_games.length > 1 %>
+				<!--<div class="order"><p>-->
+					<%# link_to "reorder", :controller => "courses", :action => "order_games", :id => @course.id %>
+				<!--</p></div>-->
+			<%# end %>
 		<% end %>
 		<br class="clearFloat" />
 	</div>

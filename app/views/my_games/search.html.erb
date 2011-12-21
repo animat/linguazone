@@ -1,8 +1,6 @@
 <% content_for :page_script do %>
 <script type="text/javascript">
-
-// TODO: Tips on how to simplify this? Tie JS in better?
-
+// TODO: Issues having this JS work
 function disableHiddenSelect() {
 	$('search_hidden_equals').selectedIndex = 0;
 	$('search_hidden_equals').disabled = true;
@@ -11,7 +9,7 @@ function enableHiddenSelect() {
 	$('search_hidden_equals').disabled = false;
 }
 
-Event.observe(window, 'load', function() {
+$(function() {
 	if ($('search_game_activity_id_equals').selectedIndex != 0 
 				|| $('search_course_id_equals').selectedIndex != 0 
 				|| $('search_game_language_id_equals').selectedIndex != 0) {
@@ -39,8 +37,6 @@ Event.observe(window, 'load', function() {
 			enableHiddenSelect();
 		}
 	}
-	
-	
 });
 
 </script>

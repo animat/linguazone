@@ -10,6 +10,7 @@ Factory.define :user do |u|
   u.password    "test"
   u.first_name "John"
   u.last_name  "Smith"
+  u.association :school
 end
 
 Factory.define :student, :parent => :user do |s|

@@ -8,6 +8,7 @@
   
 	<%= stylesheet_link_tag 'layout' %>
 	<% # Is this stylesheet line needed with the asset pipeline? %>
+	<%= javascript_include_tag :application %>
   <%= yield(:head) %>
   <%= yield(:page_script) %>
 </head>

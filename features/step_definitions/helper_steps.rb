@@ -4,6 +4,10 @@ When /^I debug$/ do
   debugger; 1
 end
 
+When /^I follow the (\d+)(st|nd|rd|th) link$/ do |num, suffix|
+  find(:xpath, "a[#{num}]").click
+end
+
 Given /^I expect to click "([^"]*)" on a confirmation box saying "([^"]*)"$/ do |option, message|
   retval = (option == "OK") ? "true" : "false"
 

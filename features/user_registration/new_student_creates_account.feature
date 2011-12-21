@@ -28,5 +28,5 @@ Feature: New student creates account
 		And I should be on the new student page
 	
 	# TODO @Len: Any tips on how to use OAuth so that I can have users sign up with their Google Accounts?
-	#							Also, sometimes students report having bizarre login problems. No idea how to troubleshoot.
-	#							The site used to use one service, then switched to Authlogic. Feeling like I'm in an in between state.
+	#							Also, sometimes students report having bizarre login problems. No idea how to troubleshoot these issues.
+	#							The site used to use one service, then switched to Authlogic. Feeling like I'm in an in between state. Not sure how to move forward.

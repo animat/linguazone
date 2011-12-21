@@ -9,7 +9,8 @@
 			<li>Teacher controls:</li>
 			<li><%= link_to "Edit this game", :controller => "customize", :action => "edit", :id => showing_game.game.id, :cmzr_type => "game" %></li>
 			<li>
-				<%= link_to_remote "Hide from students",
+				
+				<%# TODO: link_to_remote "Hide from students",
 						:loading => "$('hide_"+dom_id(showing_game)+"').replace('Hiding...')",
 						:url => {:controller => "courses", :action => "hide_game", :id => showing_game.id },
 						:html => {:id => "hide_"+dom_id(showing_game) } 

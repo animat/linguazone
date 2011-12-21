@@ -12,6 +12,15 @@ module HtmlSelectorsHelpers
       "html > body"
     when "the subscription's pin"
       "#pin"
+    when /^the (success|notice|error) flash$/
+      ".flash_#{$1}"
+    when /^the showing games area$/
+      "#displayShowingGames"
+    when /^the (\d+)(st|nd|rd|th) post area$/
+      "#available_post_#{$1}"
+    when /^the (\d+)(st|nd|rd|th) word list area$/
+      "#available_word_list_#{$1} > div"
+      
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

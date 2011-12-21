@@ -7,7 +7,7 @@ class PlayController < ApplicationController
   
   def show
     @game = Game.find(params[:id], :include => [:activity, :updated_by])
-    @premium = @game.updated_by.is_premium_subscriber?
+    @premium = (@game.updated_by.nil?) ? false : @game.updated_by.is_premium_subscriber?
     @flashvars = "game_id="+String(@game.id)+"&fullscreen_available="+String(@premium)+"&path=../&isFullscreen=false"
     unless current_user.nil?
       if current_user.role == "student"

@@ -73,7 +73,7 @@
 				<li>Teacher controls:</li>
 				<li><%= link_to "Delete comment", comment, :method => "DELETE" %></li>
 				<li <%= 'style="display: none"' unless comment.teacher_note.empty? %> id="add_<%= dom_id(comment) %>_teacher_note_link">
-					<%= link_to_function "Add teacher note to this comment", {}, :id => "add_"+dom_id(comment)+"_teacher_note" do |page| 
+					<%# TODO: link_to_function "Add teacher note to this comment", {}, :id => "add_"+dom_id(comment)+"_teacher_note" do |page| 
 						page.visual_effect :slide_down, dom_id(comment)+"_new_teacher_note"
 					end %>
 				</li>
