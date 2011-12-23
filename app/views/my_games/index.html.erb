@@ -35,13 +35,13 @@
 	<% end %>
 </div>
 
-<% unless @all_games.nil? or @all_games.empty? %>
-	<h2>Browsing games (<%= @total_games_count %> total)</h2>
+<% if @all_games.empty? %>
+	<h2>You have not created any games yet. Try creating a new game or adopting one to get started.</h2>
+<% else %>
+	<h2>Browsing games (<%= @total_games %> total)</h2>
 	<%= paginate @all_games %>
 	<% @all_games.each do |g| %>
-		<%= render :partial => "game", :locals => {:game => g} %>
+		<%= render :partial => "default_item", :locals => {:item => g} %>
 	<% end %>
 	<%= paginate @all_games %>
-<% else %>
-	<h2>You have not created any games yet. Try creating a new game or adopting one to get started.</h2>
 <% end %>

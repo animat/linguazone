@@ -46,4 +46,16 @@ module ApplicationHelper
   def format_short_date(val)
     val.strftime '%D' unless val.nil?
   end
+  
+  def hash_is_blank_except?(hash, field)
+    val = true
+    hash.each_pair do |k, v| 
+      unless k == field
+        unless v.blank?
+          val = true
+        end
+      end
+    end
+    val
+  end
 end

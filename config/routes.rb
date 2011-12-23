@@ -35,13 +35,7 @@ Linguazone::Application.routes.draw do
   
   resources :my_games, :my_word_lists, :my_posts do
     collection do
-      get :search
-    end
-  end
-  
-  resources :my_games do
-    collection do
-      get :adopt
+      get :search, :adopt
     end
   end
   

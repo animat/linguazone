@@ -1,0 +1,16 @@
+<% unless item.game.nil? %>
+	<div class="game_listing" id="<%= dom_id(item) %>">
+		<div class="game_details">
+			<%= link_to image_tag('/games/'+item.game.activity.swf+'/display/icon-small.jpg', :alt => 'Play '+item.game.activity.name), play_path(item.game.id) %>
+			<p>
+				<%= item.game.description %><br />
+				<span class="date">customized in <%= item.game.language.name %> by <%= (item.game.updated_by.nil?) ? "unknown" : item.game.updated_by.display_name %></span>
+			</p>
+		</div>
+	
+		<div class="manage_game">
+			<%= link_to "Adopt", :controller => "customize", :action => "adopt", :cmzr_type => "game", :id => item.game.id %>
+		</div>
+		<br class="clearFloat" />
+	</div>
+<% end %>

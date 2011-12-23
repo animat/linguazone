@@ -14,12 +14,14 @@ module HtmlSelectorsHelpers
       "#pin"
     when /^the (success|notice|error) flash$/
       ".flash_#{$1}"
-    when /^the showing games area$/
-      "#displayShowingGames"
+    when /^the (\d+)(st|nd|rd|th) game area$/
+      "#available_game_#{$1} > div"
     when /^the (\d+)(st|nd|rd|th) post area$/
       "#available_post_#{$1}"
     when /^the (\d+)(st|nd|rd|th) word list area$/
       "#available_word_list_#{$1} > div"
+    when /^the first search result row$/
+      [:xpath, "//div[@class='wrapper']/div[@class='game_listing'][1]"]
       
 
     # Add more mappings here.

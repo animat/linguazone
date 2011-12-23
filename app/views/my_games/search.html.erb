@@ -1,41 +1,30 @@
 <% content_for :page_script do %>
 <script type="text/javascript">
-// TODO: Issues having this JS work
-function disableHiddenSelect() {
-	$('search_hidden_equals').selectedIndex = 0;
-	$('search_hidden_equals').disabled = true;
-}
-function enableHiddenSelect() {
-	$('search_hidden_equals').disabled = false;
-}
-
-$(function() {
-	if ($('search_game_activity_id_equals').selectedIndex != 0 
-				|| $('search_course_id_equals').selectedIndex != 0 
-				|| $('search_game_language_id_equals').selectedIndex != 0) {
-		$('onlySearchMyGames').show();
-		$('more_options').hide();
-		$('fewer_options').show();
+function showMoreOptions(animate) {
+	if (animate) {
+		$('#more_options').show("blind", 500);	
 	} else {
-		$('onlySearchMyGames').hide();
-		$('more_options').show();
-		$('fewer_options').hide();
+		$('#more_options').show();
 	}
-
-	<% unless params[:hidden_equals].nil? %>
-		$('hidden_equals').selectedIndex = <%= params[:hidden_equals] + 1 %>;
-	<%# else %>
-		$('search_hidden_equals').selectedIndex = 0;
-	<% end %>
-	<% if params[:course_id_equals].nil? %>
-		disableHiddenSelect();
-	<% end %>
-	$('search_course_id_equals').onchange = function() {
-		if ($('search_course_id_equals').selectedIndex == 0) {
-			disableHiddenSelect();
-		} else {
-			enableHiddenSelect();
-		}
+	$('#more_options_link').hide();
+	$('#fewer_options_link').show();
+}
+function hideMoreOptions(animate) {
+	if (animate) {
+		$('#more_options').hide("blind", 500);	
+	} else {
+		$('#more_options').hide();
+	}
+	$('#more_options_link').show();
+	$('#fewer_options_link').hide();
+}
+$(function() {
+	// TODO: Improve this if statement so that it can apply to all course items
+	// @Len: Any thoughts on building this helper function?
+	if (<%= hash_is_blank_except?(params[:search], :game_description_like) %>) {
+		showMoreOptions(false);
+	} else {
+		hideMoreOptions(false);
 	}
 });
 
@@ -45,35 +34,29 @@ $(function() {
 <% stylesheet 'my_games' %>
 <% stylesheet 'course' %>
 
-<% if @course.nil? %>
-	<% if params[:search].nil? %>
-		<h1>Find your LinguaZone game</h1>
+<fieldset>
+	<% if @search_type == "adopt" %>
+		<legend>Refine my search for other teachers' LinguaZone games</legend>
 	<% else %>
-		<h1>Search results (<%= @available_games_count %> total)</h1>
+		<legend>Refine my search</legend>
 	<% end %>
-	<fieldset>
-		<legend>Search my games</legend>
-		<%= render :partial => "search_fields" %>
-	</fieldset>
-	<br />
+	<%= render :partial => "search_fields" %>
+</fieldset>
+<br />
+
+<% if @search_type == "hidden" %>
+	<h1>Hidden games in <%= @course.name %> (<%= @available_items_count %> total)</h1>
+	<p><%= link_to "Go to "+@course.name+" class page", :controller => "courses", :action => "show", :id => @course.id %></p>
 <% else %>
-	<% if params['search']['hidden_equals'] == '1' %>
-		<h1>Hidden games in <%= @course.name %> (<%= @available_games_count %> total)</h1>
-		<p><%= link_to "Go to "+@course.name+" class page", :controller => "courses", :action => "show", :id => @course.id %></p>
-		<fieldset>
-			<legend>Search hidden games in <%= @course.name %></legend>
-			<%= render :partial => "search_fields" %>
-		</fieldset>
-	<% end %>
+	<h1>Search results (<%= @available_items_count %> total)</h1>
 <% end %>
 
-<% unless @available_games.nil? or @available_games.empty? %>
-	<%= paginate @available_games %>
-	<% @available_games.each do |available_game| %>
-		<% unless available_game.game.nil? %>
-			<%= render :partial => "hidden_game", :locals => {:hidden_game => available_game, :show_in_course => @course} %>
-		<% end %>
+<% unless @available_items.empty? %>
+	<%= paginate @available_items %>
+	<% @available_items.each do |available_item| %>
+		<%= render :partial => "#{@search_type}_item", :locals => {:item => available_item, :show_in_course => @course} %>
 	<% end %>
+	<%= paginate @available_items %>
 <% else %>
-	<p>No games matched your search terms.</p>
+	<p>No items matched your search terms.</p>
 <% end %>

@@ -8,4 +8,3 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require autocomplete-rails.js
-////= require_tree .

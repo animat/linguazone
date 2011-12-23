@@ -17,12 +17,11 @@ Feature: Teacher manages posts for audio blogs
 
 	# TODO @Len: Not sure why I can't test basic subscription access in this way. 
 	#					The controller should block me out. Should I use a before_filter?
-	Scenario: I am not a premium subscriber
+	Scenario: I am booted because I am not a premium subscriber
 		Given I have logged out
 		And John is subscribed with a basic subscription
 		And John has 0 posts
 		When I am logged in as "John"
 		And I am on the my posts page
-		Then show me the page
 		Then I should see "Interested in upgrading?"
 		And I should not see "create your first one"

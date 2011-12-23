@@ -3,34 +3,12 @@ class MyGamesController < CourseItemsController
   
   def index
     @search = AvailableGame.search(params[:search])
-    @all_games = Game.search(:updated_by_id_equals => current_user.id).order(:updated_at).page params[:page]
-    @total_games_count = Game.where(:updated_by_id => current_user.id).length
+    @all_games = AvailableGame.includes(:game).where(:user_id => current_user.id).order("games.updated_at").page(params[:page])
+    @total_games = AvailableGame.where(:user_id => current_user.id).length
   end
   
   def show
     @game = Game.find(params[:id], :include => ["activity"])
-  end
-  
-  # TODO: Use CourseItems and shared partials for shared behavior
-  def adopt
-    @search = Game.search(params[:search])
-    unless params[:search].nil?
-      @games = @search.paginate(:page => params[:page])
-    end
-  end
-    
-  def search
-    if params[:search].nil? or params[:search].empty?
-      @search = AvailableGame.search(:user_id_equals => 0)
-    else
-      if params[:search][:course_id_equals].nil? or params[:search][:course_id_equals] == ""
-        params[:search][:course_id_equals] = 0
-      else
-        @course = Course.find(params['search']['course_id_equals'])
-      end
-      @available_games = AvailableGame.search(params[:search]).page(params[:page])
-      @available_games_count = @available_games.count
-    end    
   end
   
   def destroy

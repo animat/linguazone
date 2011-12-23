@@ -24,7 +24,7 @@ Feature: Students access their own class page and use the course items
 	
 	Scenario: Play a game from the course page
 		Given I am on the "Latin 3A" course page
-		When I follow the 1st link within the showing games area
+		When I follow the 1st link within the 1st game area
 		Then I should see "Play fun"
 	# TODO: Print functionality is not working
 	Scenario Outline: Use all of the features of a word list
