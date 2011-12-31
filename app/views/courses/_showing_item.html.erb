@@ -9,7 +9,7 @@
 			<li><%= edit_showing_item(type, showing_item) %></li>
 			<li><%= hide_showing_item(type, showing_item) %></li>
 			<% if current_user and current_user.is_premium_subscriber? %>
-				<li><%= view_stats_on_showing_item(type, showing_item) %></li>
+				<li><%= view_stats_on_showing_item(type, showing_item, course) %></li>
 			<% end %>
 		</ul>
 	<% end %>

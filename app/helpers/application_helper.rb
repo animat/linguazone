@@ -60,6 +60,7 @@ module ApplicationHelper
     val
   end
   #TODO: Not sure how to access the icon path properly
+  #TODO @Len: Too many content_tags here? Is this worth pursuing in this way? Should this be inside of another helper, not application?
   def showing_item_pic(type, item)
     if type == "game"
       content_tag(:img, "", :src => item.game.large_icon_src)
@@ -82,23 +83,26 @@ module ApplicationHelper
     end
   end
   
-  # TODO @Len: Is it possible to have a helper return a link_to like this? Any ideas for me?
   def edit_showing_item(type, item)
     if type == "game"
-      link_to "Edit this game", :controller => "customize", :action => "edit", :id => item.game.id, :cmzr_type => "game"
+      content_tag(:a, "Edit this game", :href => url_for(:controller => "customize", :action => "edit", :id => item.game.id, :cmzr_type => "game"))
     elsif type == "word_list"
-      link_to "Edit this word list", :controller => "customize", :action => "edit", :id => item.word_list.id, :cmzr_type => "list"
+      content_tag(:a, "Edit this word list", :href => url_for(:controller => "customize", :action => "edit", :id => item.word_list.id, :cmzr_type => "list"))
     elsif type == "post"
       link_to "Edit this post", edit_post_path(item.post)
     end
-    "Edit"
   end
   
+  # TODO @Len: Not sure how to have a link here that will trigger JavaScript
   def hide_showing_item(type, item)
     "Hide from students"
   end
   
-  def view_stats_on_showing_item(type, item)
-    "View stats"
+  def view_stats_on_showing_item(type, item, course)
+    if type == "word_list"
+      content_tag(:a, "View stats", :href => url_for(:controller => "study", :action => "stats", :id => item.word_list.id, :course => course.id))
+    elsif type == "game"
+      content_tag(:a, "View stats", :href => url_for(:controller => "play", :action => "stats", :id => item.game.id, :course => course.id))
+    end
   end
 end

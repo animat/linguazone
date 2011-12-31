@@ -19,8 +19,8 @@ Given /^([^"]*) (has|have) (\d+) (games|posts|word lists|word_lists|courses)$/ d
         # TODO: Make sure that course items are made available when they are created
         AvailableGame.create!(:user_id => @t.id, :game_id => @g.id, :course_id => 0)
         @g.updated_by_id = @t.id
-      elsif things.singularize == "WordList"
-        AvailableWordList.create!(:user_id => @t.id, :word_list_id => @g.id, :course_id => 0)
+      elsif things.singularize == "word_list"
+        AvailableWordList.create!(:user_id => @t.id, :word_list_id => @g.id, :course_id => 0, :hidden => 0, :order => 0)
         @g.updated_by_id = @t.id
       end
       @g.save
@@ -79,7 +79,7 @@ Given /^all of ([^"]*)'s games, word lists, and posts are showing on the "([^"]*
   end
   @word_lists = WordList.where(:updated_by_id => @teacher.id).all
   @word_lists.each do |wl|
-    AvailableWordList.create!(:word_list_id => wl.id, :user_id => @teacher.id, :course_id => @course.id, :hidden => 0)
+    AvailableWordList.create!(:word_list_id => wl.id, :user_id => @teacher.id, :course_id => @course.id, :hidden => 0, :order => 0)
   end
   @posts = Post.where(:user_id => @teacher.id).all
   @posts.each do |p|

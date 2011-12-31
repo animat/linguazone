@@ -91,7 +91,7 @@ function hideActivity(id, type) {
 <% unless @showing_posts.nil? %>
 	<div id="showing_posts">
 		<% for showing_post in @showing_posts do %>
-			<%= render :partial => "showing_item", :locals => {:type => "post", :showing_item => showing_post} %>
+			<%= render :partial => "showing_item", :locals => {:type => "post", :showing_item => showing_post, :course => @course} %>
 		<% end %>
 	</div>
 	<br class="clearFloat" />
@@ -111,7 +111,7 @@ function hideActivity(id, type) {
 <% unless @showing_word_lists.nil? or @showing_word_lists.empty? %>
 	<div id="showing_word_lists">
 		<% for showing_word_list in @showing_word_lists do %>
-			<%= render :partial => "showing_item", :locals => {:type => "word_list", :showing_item => showing_word_list}%>
+			<%= render :partial => "showing_item", :locals => {:type => "word_list", :showing_item => showing_word_list, :course => @course}%>
 		<% end %>
 		<br class="clearFloat" />
 	</div>
@@ -137,7 +137,7 @@ function hideActivity(id, type) {
 <% unless @showing_games.nil? %>
 	<div id="showing_games">
 		<% for showing_game in @showing_games do %>
-			<%= render :partial => "showing_item", :locals => {:type => "game", :showing_item => showing_game} unless showing_game.game.nil? %>
+			<%= render :partial => "showing_item", :locals => {:type => "game", :showing_item => showing_game, :course => @course} unless showing_game.game.nil? %>
 		<% end %>
 	</div>
 	<br class="clearFloat" />

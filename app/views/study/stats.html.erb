@@ -4,7 +4,7 @@
 
 <% if @registrations.nil? or @registrations.empty? %>
 	<br />
-	<p align="center">No students in <%= @course.name %> have played this game yet.</p>
+	<p align="center">No students in <%= @course.name %> have studied this word list yet.</p>
 <% else %>
 	<% @registrations.each do |reg| %>
 		<p class="statsHeader"><%= reg.user.display_name %></p>
