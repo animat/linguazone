@@ -6,4 +6,8 @@ class AvailablePost < ActiveRecord::Base
   scope :showing, lambda {
     where("hidden = ?", 0)
   }
+  
+  def parent_assoc
+    post
+  end
 end

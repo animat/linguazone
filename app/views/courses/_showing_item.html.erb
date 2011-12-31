@@ -1,5 +1,7 @@
 <div class="available_item" id="<%= dom_id(showing_item) %>" onmouseover="this.className = 'available_item_controls'" onmouseout="this.className = 'available_item'">
-	<%= showing_item_content(type, showing_item) %>
+	<%= showing_item_pic(type, showing_item) %>
+	<%= showing_item_header(type, showing_item) %>
+	<%= showing_item_description(type, showing_item) %>
 	<br class="clearFloat" />
 	<% if is_teacher_for(@course) %>
 		<ul>

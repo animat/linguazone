@@ -7,5 +7,8 @@ class AvailableGame < ActiveRecord::Base
     where("hidden = ?", 0)
   }
   
+  def parent_assoc
+    game
+  end
   
 end

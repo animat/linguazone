@@ -5,7 +5,19 @@ class Game < ActiveRecord::Base
   belongs_to :language
   has_many :available_games
   has_many :high_scores
-
+  
+  def large_icon_src
+    "games/#{self.activity.swf}/display/icon.jpg"
+  end
+  
+  def header_text
+    ""
+  end
+  
+  def description_text
+    "#{self.description}"
+  end
+  
   def self.getting_started
     self.find_by_getting_started(true)
   end

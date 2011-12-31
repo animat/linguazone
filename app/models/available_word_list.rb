@@ -6,4 +6,8 @@ class AvailableWordList < ActiveRecord::Base
   scope :showing, lambda {
     where("hidden = ?", 0)
   }
+  
+  def parent_assoc
+    word_list
+  end
 end
