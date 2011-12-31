@@ -5,11 +5,11 @@
 
 	<div style="padding: 20px">
 		<p>
-			<%= f.label :title %><br />
+			<%= f.label :title, "Enter a title for your post" %><br />
 			<%= f.text_field :title, :size => 40 %>
 		</p>
 		<p>
-			<%= f.label :content %><br />
+			<%= f.label :content, "Enter text for your post (optional)" %><br />
 			<%= f.text_area :content, :rows => 10, :cols => 51 %>
 		</p>
 		<p>
@@ -23,7 +23,7 @@
 			<%= f.hidden_field :course_id, :value => @course_id %>
 			<%= f.hidden_field :user_id, :value => current_user.id %>
 			<%= f.hidden_field :audio_id, :value => 0 %>
-	    	<%= f.submit 'Create' %>
+    	<%= f.submit 'Create' %>
 		</p>
 	</div>
 <% end %>

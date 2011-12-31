@@ -15,13 +15,15 @@ module HtmlSelectorsHelpers
     when /^the (success|notice|error) flash$/
       ".flash_#{$1}"
     when /^the (\d+)(st|nd|rd|th) game area$/
-      "#available_game_#{$1} > div"
+      [:xpath, "//div[@id='showing_games']/div[@class='available_item'][#{$1}]"]
     when /^the (\d+)(st|nd|rd|th) post area$/
-      "#available_post_#{$1}"
+      [:xpath, "//div[@id='showing_posts']/div[@class='available_item'][#{$1}]"]
     when /^the (\d+)(st|nd|rd|th) word list area$/
-      "#available_word_list_#{$1} > div"
+      [:xpath, "//div[@id='showing_word_lists']/div[@class='available_item'][#{$1}]"]
     when /^the first search result row$/
       [:xpath, "//div[@class='wrapper']/div[@class='game_listing'][1]"]
+    when /^the wrapper$/
+      ".wrapper"
       
 
     # Add more mappings here.

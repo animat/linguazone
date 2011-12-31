@@ -59,4 +59,22 @@ module ApplicationHelper
     end
     val
   end
+  
+  def showing_item_content(type, item)
+    if type == "word_list"
+      "word list"
+  	elsif type == "game"
+  	  "game"
+	  elsif type == "post"
+	    "post"
+    end
+  end
+  
+  def edit_showing_item(type, item)
+    "Edit"
+  end
+  
+  def hide_showing_item(type, item)
+    "hide this game"
+  end
 end

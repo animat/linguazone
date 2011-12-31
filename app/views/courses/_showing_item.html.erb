@@ -1,0 +1,14 @@
+<div class="available_item" id="<%= dom_id(showing_item) %>" onmouseover="this.className = 'available_item_controls'" onmouseout="this.className = 'available_item'">
+	<%= showing_item_content(type, showing_item) %>
+	<br class="clearFloat" />
+	<% if is_teacher_for(@course) %>
+		<ul>
+			<li>Teacher controls:</li>
+			<li><%= edit_showing_item(type, showing_item) %></li>
+			<li><%= hide_showing_item(type, showing_item) %></li>
+			<% if current_user and current_user.is_premium_subscriber? %>
+				<li><%= view_stats_on_showing_item(type, showing_item) %></li>
+			<% end %>
+		</ul>
+	<% end %>
+</div>

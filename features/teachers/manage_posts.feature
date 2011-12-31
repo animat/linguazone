@@ -29,4 +29,8 @@ Feature: Teacher manages posts for audio blogs
 	
 	Scenario: Create a new post
 		Given I am on the my posts page
-		When I follow 
+		When I follow "Create a new audio blog post"
+		And I follow "Test class" within the wrapper
+		And I fill in "Enter a title for your post" with "Sample title of an audio blog post"
+		And I press "Create"
+		Then I should see "Your new post has been created and added to the class page"

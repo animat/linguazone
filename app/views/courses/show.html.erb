@@ -1,18 +1,21 @@
 <% stylesheet 'course' %>
 <% stylesheet 'teachers' %>
-<% content_for :title do %> LinguaZone - <%= @course.name %> at <%= @course.user.school.name %> <% end %>
+<% content_for :title do %>LinguaZone - <%= @course.name %> at <%= @course.user.school.name %><% end %>
 <% content_for :page_script do %>
 <link rel="alternate" type="application/rss+xml" title="rss" href="<%= @course.id %>/feed" />
 <script type="text/javascript">
 
 var loginRequired = false;
-
 function checkLoginRequired(val) {
 	if (val) {
 		$("loginForm").show();
 	} else {
 		$("loginForm").hide();
 	}
+}
+
+function hideActivity(id, type) {
+	
 }
 
 </script>
@@ -47,7 +50,7 @@ function checkLoginRequired(val) {
 					<br class="clearFloat" />
 				</p> -->
 		<div id="loginForm">
-			<% form_tag :action => "update" do %>
+			<%= form_tag :controller => "courses", :action => "update" do %>
 			<p>
 				<%= label_tag :code, "Students can register in this class using the class code:" %> 
 				<%= text_field_tag :code, @course.code, :size => 12 %>
@@ -86,9 +89,9 @@ function checkLoginRequired(val) {
 	<div class="wrapper">
 <% end %>
 <% unless @showing_posts.nil? %>
-	<div id="posts">
+	<div id="showing_posts">
 		<% for showing_post in @showing_posts do %>
-			<%= render :partial => "showing_post", :locals => {:showing_post => showing_post}%>
+			<%= render :partial => "showing_item", :locals => {:type => "post", :showing_item => showing_post} %>
 		<% end %>
 	</div>
 	<br class="clearFloat" />
@@ -105,12 +108,10 @@ function checkLoginRequired(val) {
 	</div>
 	<div class="wrapper">
 <% end %>
-<% unless @showing_word_lists.nil? %>
-	<div id="games">
+<% unless @showing_word_lists.nil? or @showing_word_lists.empty? %>
+	<div id="showing_word_lists">
 		<% for showing_word_list in @showing_word_lists do %>
-			<div class="displayItems" id="<%= dom_id(showing_word_list.word_list) %>">
-				<%= render :partial => "showing_word_list", :locals => {:showing_word_list => showing_word_list}%>
-			</div>
+			<%= render :partial => "showing_item", :locals => {:type => "word_list", :showing_item => showing_word_list}%>
 		<% end %>
 		<br class="clearFloat" />
 	</div>
@@ -134,9 +135,9 @@ function checkLoginRequired(val) {
 <% end %>
 
 <% unless @showing_games.nil? %>
-	<div id="displayShowingGames">
+	<div id="showing_games">
 		<% for showing_game in @showing_games do %>
-			<%= render :partial => "showing_game", :locals => {:course => @course, :showing_game => showing_game} unless showing_game.game.nil? %>
+			<%= render :partial => "showing_item", :locals => {:type => "game", :showing_item => showing_game} unless showing_game.game.nil? %>
 		<% end %>
 	</div>
 	<br class="clearFloat" />

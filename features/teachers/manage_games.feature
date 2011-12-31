@@ -53,7 +53,7 @@ Feature: Teacher manages customized games
 		And I should not see "Edit" within the first search result row
 		
 	# TODO: Showing/ hiding the advanced options here is a bit clunky. Not sure how the show/hide link should function; not sure how to test it.
-	@javascript @wip
+	@javascript
 	Scenario: Advanced search options should be hidden at first
 		Then "Customized in..." should not be visible
 		And "which is..." should not be visible

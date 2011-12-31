@@ -39,10 +39,19 @@ Linguazone::Application.routes.draw do
     end
   end
   
+  resources :courses do
+    collection do
+      get :order_games
+      get :add_game, :add_list, :add_post
+      get :search_hidden_games, :search_hidden_word_lists, :search_hidden_posts
+      get :hide_game, :hide_word_list, :hide_post
+      get :show_game, :show_word_list, :show_post
+    end
+  end
+  
   resources :comments
 
   resources :my_courses
-  resources :courses
   resources :play, :high_scores
   resources :users, :user_sessions
   resources :states, :media, :password_resets
@@ -50,7 +59,7 @@ Linguazone::Application.routes.draw do
   match 'class/:id' => 'courses#show'
   match 'class/:id/feed' => 'courses#feed'
   
-  #TODO: Is there any way to simplify these statements?
+  # TODO: Is there any way to simplify these statements?
   match 'about/pricing' => 'about#pricing', :as => :pricing
   match 'about/features' => 'about#features'
   match 'about/games' => 'about#games'

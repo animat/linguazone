@@ -1,4 +1,5 @@
 Given /^([^"]*) (has|have) (\d+) (games|posts|word lists|word_lists|courses)$/ do |teacher_name, verb, num, things|
+  things = "word_lists" if things == "word lists" # TODO: Is there a Ruby command that will do this for me?
   if teacher_name == "I"
     @t = User.first
   else
@@ -14,9 +15,12 @@ Given /^([^"]*) (has|have) (\d+) (games|posts|word lists|word_lists|courses)$/ d
       @g = Factory.create(things.singularize)
       if things.singularize == "post" || things.singularize == "course"
         @g.user_id = @t.id
-      else
+      elsif things.singularize == "game"
         # TODO: Make sure that course items are made available when they are created
         AvailableGame.create!(:user_id => @t.id, :game_id => @g.id, :course_id => 0)
+        @g.updated_by_id = @t.id
+      elsif things.singularize == "WordList"
+        AvailableWordList.create!(:user_id => @t.id, :word_list_id => @g.id, :course_id => 0)
         @g.updated_by_id = @t.id
       end
       @g.save
@@ -64,4 +68,25 @@ Given /^([^"]*) has a hidden game on the "([^"]*)" class page$/ do |teacher_name
   @g.updated_by_id = @t.id
   @g.save
   @ag = AvailableGame.create!(:user_id => @t.id, :course_id => @c.id, :game_id => @g.id, :hidden => 1)
+end
+
+Given /^all of ([^"]*)'s games, word lists, and posts are showing on the "([^"]*)" page$/ do |teacher_name, class_name|
+  @teacher = User.find_by_first_name(teacher_name)
+  @course = Course.find_by_name(class_name)
+  @games = Game.where(:updated_by_id => @teacher.id).all
+  @games.each do |g|
+    AvailableGame.create!(:game_id => g.id, :user_id => @teacher.id, :course_id => @course.id, :hidden => 0)
+  end
+  @word_lists = WordList.where(:updated_by_id => @teacher.id).all
+  @word_lists.each do |wl|
+    AvailableWordList.create!(:word_list_id => wl.id, :user_id => @teacher.id, :course_id => @course.id, :hidden => 0)
+  end
+  @posts = Post.where(:user_id => @teacher.id).all
+  @posts.each do |p|
+    AvailablePost.create!(:post_id => p.id, :user_id => @teacher.id, :course_id => @course.id, :hidden => 0, :ordering => 0)
+  end
+end
+
+Then /^I should only see one game$/ do
+  find(:xpath, "//div[@class='showing_games']/available_item").should == 1
 end

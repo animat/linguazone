@@ -55,12 +55,14 @@ class CoursesController < ApplicationController
         @course.login_required = true
       end
       if @course.save
-        flash[:notice] = "Updated class settings"
+        flash[:success] = "Updated class settings"
       else
         flash[:error] = "Could not update class settings"
       end
     end
-    redirect_to :action => "show", :id => @course.id
+    logger.debug "Just finished updating! Great job! Redirecting to the course path... #{@course.id}"
+    logger.debug "**" * 40
+    redirect_to course_path(@course)
   end
   
   def add_post

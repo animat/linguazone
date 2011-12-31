@@ -58,10 +58,12 @@ class PostsController < ApplicationController
         
         @available_post = AvailablePost.new(:post_id => @post.id, :user_id => @post.user_id, :course_id => @post.course_id, :ordering => 0, :hidden => 0)
         @available_post.save
+        flash[:success] = "Your new post has been created and added to the class page"
         
         format.html { redirect_to(@post) }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
       else
+        flash[:error] = "There has been an error creating your new post"
         format.html { render :action => "new" }
         format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
       end
