@@ -27,16 +27,18 @@ class CourseItemsController < ApplicationController
   end
   
   def search
-    redirect_to :action => :index if params[:search].nil? #TODO @Len: This doesn't always seem to be working...?
+    if params[:search].nil?
+      redirect_to :action => :index
+    else
+      @search = joining_table.search(params[:search])
+      @course = Course.find(params[:search][:course_id_equals]) unless params[:search][:course_id_equals].blank?
+      @available_items = joining_table.search(params[:search]).page(params[:page])
+      @available_items_count = joining_table.search(params[:search]).length
     
-    @search = joining_table.search(params[:search])
-    @course = Course.find(params[:search][:course_id_equals]) unless params[:search][:course_id_equals].blank?
-    @available_items = joining_table.search(params[:search]).page(params[:page])
-    @available_items_count = joining_table.search(params[:search]).length
-    
-    @search_type = "default"
-    @search_type = "hidden" if @course && params[:search][:hidden_equals].to_i == 1
-    @search_type = "adopt" if params[:search][:game_updated_by_id_does_not_equal]
+      @search_type = "default"
+      @search_type = "hidden" if @course && params[:search][:hidden_equals].to_i == 1
+      @search_type = "adopt" if params[:search][:game_updated_by_id_does_not_equal]
+    end
   end
     
 end

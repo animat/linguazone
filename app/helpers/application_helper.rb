@@ -48,11 +48,12 @@ module ApplicationHelper
   end
   
   def hash_is_blank_except?(hash, field)
+    return true if hash.nil?
     val = true
     hash.each_pair do |k, v| 
-      unless k == field
-        unless v.blank?
-          val = true
+      unless k == field.to_s
+        unless k == "user_id_equals"
+          val = false unless v.blank?
         end
       end
     end

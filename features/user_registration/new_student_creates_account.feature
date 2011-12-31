@@ -4,7 +4,8 @@ Feature: New student creates account
 	  Given the following student exists:
 	    | email             | password  |
 	    | tony@sopranos.com | badabing  |
-
+	
+	# TODO: User isn't actually being logged in after new account is created
 	
 	Scenario: Successfully create a new student account
 		When I am on the new student page
@@ -24,8 +25,7 @@ Feature: New student creates account
 		And I fill in "Email address or username:" with "tony@sopranos.com"
 		And I fill in "Create a LinguaZone password:" with "new-lz-password"
 		And I press "Create account"
-		Then I should see "already"
-		And I should be on the new student page
+		Then I should see "That username or email address is already in the database"
 	
 	# TODO @Len: Any tips on how to use OAuth so that I can have users sign up with their Google Accounts?
 	#							Also, sometimes students report having bizarre login problems. No idea how to troubleshoot these issues.

@@ -1,5 +1,7 @@
 Feature: A new teacher creates a trial account
-
+	
+	# TODO: Game does not have a method getting_started=  for some reason
+	
   Background:
     Given a subscription plan exists with a name of "trial"
     And a game exists with a getting started of "true"

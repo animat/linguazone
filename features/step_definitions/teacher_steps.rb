@@ -54,11 +54,12 @@ Given /^([^"]*) is subscribed with a basic subscription$/ do |teacher_name|
   @t = User.find_by_first_name(teacher_name)
   @p = SubscriptionPlan.create(:name => "basic", :max_teachers => 3, :cost => 6)
   @t.subscription.subscription_plan = @p
+  @t.subscription.save
 end
 
 Given /^([^"]*) has a hidden game on the "([^"]*)" class page$/ do |teacher_name, course_name|
   @t = User.find_by_first_name(teacher_name)
-  @c = Course.create!(:user_id => @t.id, :name => course_name)
+  @c = Course.find_by_name(course_name)
   @g = Factory.create(:game)
   @g.updated_by_id = @t.id
   @g.save

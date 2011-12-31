@@ -4,6 +4,10 @@ When /^I debug$/ do
   debugger; 1
 end
 
+Then /^"([^"]*)" should not be visible$/ do |arg1|
+  find(:xpath, "//*[contains(.,'#{arg1}')]").should_not be_visible
+end
+
 When /^I follow the (\d+)(st|nd|rd|th) link$/ do |num, suffix|
   find(:xpath, "a[#{num}]").click
 end

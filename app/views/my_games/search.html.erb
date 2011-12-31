@@ -19,12 +19,10 @@ function hideMoreOptions(animate) {
 	$('#fewer_options_link').hide();
 }
 $(function() {
-	// TODO: Improve this if statement so that it can apply to all course items
-	// @Len: Any thoughts on building this helper function?
-	if (<%= hash_is_blank_except?(params[:search], :game_description_like) %>) {
-		showMoreOptions(false);
-	} else {
+	if (<%= hash_is_blank_except?(params[:search], "game_description_like") %>) {
 		hideMoreOptions(false);
+	} else {
+		showMoreOptions(false);
 	}
 });
 
@@ -35,11 +33,7 @@ $(function() {
 <% stylesheet 'course' %>
 
 <fieldset>
-	<% if @search_type == "adopt" %>
-		<legend>Refine my search for other teachers' LinguaZone games</legend>
-	<% else %>
-		<legend>Refine my search</legend>
-	<% end %>
+	<legend><%= refine_search_text(@search_type) %></legend>
 	<%= render :partial => "search_fields" %>
 </fieldset>
 <br />

@@ -14,14 +14,15 @@ Feature: Teacher manages posts for audio blogs
 	Scenario: I browse my posts
 		When I am on the my posts page
 		Then I should see "Sample post"
-
-	# TODO @Len: Not sure why I can't test basic subscription access in this way. 
-	#					The controller should block me out. Should I use a before_filter?
+	
 	Scenario: I am booted because I am not a premium subscriber
 		Given I have logged out
 		And John is subscribed with a basic subscription
 		And John has 0 posts
 		When I am logged in as "John"
 		And I am on the my posts page
-		Then I should see "Interested in upgrading?"
-		And I should not see "create your first one"
+		Then I should see "Upgrade to use audio blogs"
+		And I should not see "You have not yet created any audio blog posts"
+	
+	Scenario: Create a new post
+		

@@ -15,7 +15,7 @@ Feature: Join an existing subscription
       | subscription | school          |
       | pin: 12345   | name: Northwest |
       | pin: 54321   | name: Normal    |
-    And a game exists with a getting started of "true"
+	  And a game exists with a getting started of "true"
     And a state exists with a name of "Pennsylvania"
 
   Scenario: Join an existing subscription
