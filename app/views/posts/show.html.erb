@@ -70,20 +70,16 @@ function hidePostControls() {
 			<p>No comments have been left on this post yet.</p>
 		<% else %>
 			<% if @post.shared? %>
-				<%= page_entries_info @student_comments %>
-				<% paginated_section @student_comments do %>
-					<% @student_comments.each do |sc| %>
-						<%= render :partial => 'comment', :locals => {:comment => sc, :post => @post} %>
-					<% end %>
+				<%= paginate @student_comments %>
+				<% @student_comments.each do |sc| %>
+					<%= render :partial => 'comment', :locals => {:comment => sc, :post => @post} %>
 				<% end %>
 			<% else %>
 				<% if is_teacher_for (@post.course) %>
 					<p>Students cannot see each other's comments &mdash; only you can see student comments.</p>
-					<%= page_entries_info @student_comments %>
-					<% paginated_section @student_comments do %>
-						<% @student_comments.each do |sc| %>
-							<%= render :partial => 'comment', :locals => {:comment => sc, :post => @post} %>
-						<% end %>
+					<%= paginate @student_comments %>
+					<% @student_comments.each do |sc| %>
+						<%= render :partial => 'comment', :locals => {:comment => sc, :post => @post} %>
 					<% end %>
 				<% else %>
 					<p>You have left <%= pluralize(@student_comments.length, 'comment') %> on this post.</p>

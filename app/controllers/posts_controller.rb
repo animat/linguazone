@@ -20,7 +20,7 @@ class PostsController < ApplicationController
       @comment = Comment.new( :post => @post )
     
       @student_comments = @post.comments
-      @student_comments = @student_comments.paginate(:page => params[:page])
+      @student_comments = @student_comments.page(params[:page])
     end
     respond_to do |format|
       format.html # show.html.erb

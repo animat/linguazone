@@ -4,6 +4,9 @@ Feature: Teacher manages posts for audio blogs
 	  Given a teacher exists with a first name of "John"
 		And John has 10 posts
 		And John has a post with a description of "This is a unique post for searching"
+		And the following course exists:
+		 | user             | name       |
+		 | first_name: John | Test class |
 		And I am logged in as "John"
 	
   Scenario: I do not have any posts and the site points me to create a new post
@@ -25,4 +28,5 @@ Feature: Teacher manages posts for audio blogs
 		And I should not see "You have not yet created any audio blog posts"
 	
 	Scenario: Create a new post
-		
+		Given I am on the my posts page
+		When I follow 

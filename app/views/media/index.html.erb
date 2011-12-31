@@ -55,37 +55,35 @@
 <br />
 
 <h1>Listing all published media</h1>
-<% paginated_section @assets do %>
-	<br />
-	<table width="100%" cellspacing="5">
+<%= paginate @assets %>
+<table width="100%" cellspacing="5">
+	<tr>
+		<th>Description</th>
+		<th>Category</th>
+		<th>Image</th>
+	</tr>
+	<% @assets.each do |a| %>
 		<tr>
-			<th>Description</th>
-			<th>Category</th>
-			<th>Image</th>
-		</tr>
-		<% @assets.each do |a| %>
-			<tr>
-				<td width="300">
-					<%= a.descrip %><br />
-					<span style="font-size: .8em; color: #999;">
-						<%= a.id %>: 
-						<% a.media_keywords.each do |mk| %>
-							<%= mk.name %>  
-						<% end %>
-					</span>
-				</td>
-				<td><%= a.media_category.name %></td>
-				<td><%= swf_tag 'http://linguazone.s3.amazonaws.com/' + a.path + a.name + ".swf" , { :height => "100", :width => "100" } %></td>
-				<% unless current_user.nil? %>
-					<% if current_user.id == 30 || current_user.id == 31 %>
-						<td align="right"><%= link_to "Edit", :action => "edit", :id => a.id %></td>
-					<% else %>
-							<td align="right"><%= link_to "Zoom in", :action => "show", :id => a.id %></td>
+			<td width="300">
+				<%= a.descrip %><br />
+				<span style="font-size: .8em; color: #999;">
+					<%= a.id %>: 
+					<% a.media_keywords.each do |mk| %>
+						<%= mk.name %>  
 					<% end %>
+				</span>
+			</td>
+			<td><%= a.media_category.name %></td>
+			<td><%= swf_tag 'http://linguazone.s3.amazonaws.com/' + a.path + a.name + ".swf" , { :height => "100", :width => "100" } %></td>
+			<% unless current_user.nil? %>
+				<% if current_user.id == 30 || current_user.id == 31 %>
+					<td align="right"><%= link_to "Edit", :action => "edit", :id => a.id %></td>
 				<% else %>
-					<td align="right"><%= link_to "Zoom in", :action => "show", :id => a.id %></td>
+						<td align="right"><%= link_to "Zoom in", :action => "show", :id => a.id %></td>
 				<% end %>
-			</tr>
-		<% end %>
-	</table>
-<% end %>
+			<% else %>
+				<td align="right"><%= link_to "Zoom in", :action => "show", :id => a.id %></td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>
