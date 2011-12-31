@@ -1,8 +1,8 @@
-<h1>Audio blogs on LinguaZone</h1>
+<h1>Upgrade to use audio blogs</h1>
 <p>Create an audio blog on your class pages to leave messages for your students with text, audio, or both. Students can then create comments on your posts with text and audio to engage you and each other. Connect with your students and continue to practice oral and aural skills outside of the classroom.</p>
 
 <h2>Available for premium subscribers.</h2>
-<p>Interested in upgrading? Use the links at the bottom of the <%= link_to "Overview page", :controller => "teachers", :action => "index" %> or <%= link_to "contact us", contact_path %> for help.</p>
+<p>Interested in upgrading? Use the links at the bottom of the <%= link_to "Overview page", teachers_path %> or <%= link_to "contact us", contact_path %> for help.</p>
 
 <h2>And it's easy to use.</h2>
 <p>Take a look at this quick tutorial video to get an idea of how easy it is to use audio blogs with your classes.</p>
@@ -10,5 +10,5 @@
 <br />
 
 <div style="width: 600px; height: 400px; margin: 0px auto;">
-	<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/mXTyA-Hob1c&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/mXTyA-Hob1c&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>
+	<% # TODO @Len: What's the best way to embed flash swf's and YouTube swf's in Rails 3.1? %>
 </div>

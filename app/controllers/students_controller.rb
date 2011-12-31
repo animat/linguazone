@@ -120,6 +120,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if User.is_email_in_use(@user.email) 
         flash[:error] = "That username or email address is already in the database."
+        format.html { render :action => "new" }
       else
         if @user.save
           format.html { redirect_to :controller => "students", :action => "index" }
