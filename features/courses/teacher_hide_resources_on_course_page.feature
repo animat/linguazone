@@ -15,7 +15,7 @@ Feature: Teachers hide resources on their class page
 	@javascript
 	Scenario: Hide a game on the class page
 		When I follow "Hide from students" within the 1st game area
-		Then I should only see one game
+		Then I should see 1 available item within the showing games area
 
 	Scenario: Hide a post on the class page
 

@@ -36,8 +36,22 @@ Feature: Teachers control the resources available on their class page
 	
 	Scenario: View stats on a word list from the course page
 		When I follow "View stats" within the 1st word list area
-		Then show me the page
 		Then I should see "No students in Test class have studied this word list yet."
 	
 	Scenario: Teacher should not be able to view stats on a post from a course page
 		Then I should not see "View stats" within the 1st post area
+		
+	Scenario: Create a new game from the class page
+		When I follow "add a game" within the game header section
+		And I follow "Create a new game"
+		Then I should see "Select a language for your new game"
+	
+	Scenario: Create a new word list from the class page
+		When I follow "add a list" within the word_list header section
+		And I follow "Create a new word list"
+		Then I should see "Select a language for your new word list"
+	
+	Scenario: Create a new post from the class page
+		When I follow "add a post" within the post header section
+		And I follow "Create a post"
+		Then I should see "Enter a title for your post"

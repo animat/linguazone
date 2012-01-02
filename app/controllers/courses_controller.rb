@@ -119,6 +119,7 @@ class CoursesController < ApplicationController
     render :update do |page|
       page.visual_effect :toggle_appear, dom_id(@showing_game)
     end
+    # throw a 404 error if it doesn't work
   end
   
   def hide_word_list

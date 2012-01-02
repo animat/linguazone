@@ -52,19 +52,19 @@ Feature: Teacher manages customized games
 		Then I should see "Adopt" within the first search result row
 		And I should not see "Edit" within the first search result row
 		
-	# TODO: Showing/ hiding the advanced options here is a bit clunky. Not sure how the show/hide link should function; not sure how to test it.
 	@javascript
 	Scenario: Advanced search options should be hidden at first
-		Then "Customized in..." should not be visible
-		And "which is..." should not be visible
-		And "Search for:" should not be visible
+		Then I wait until "Customized in..." is not visible
+		And I wait until "which is..." is not visible
+		And I wait until "Search for:" is not visible
 		
-	# TODO: Not sure this is properly testing JavaScript visibility either
-	@javascript
-	Scenario: Advanced search options should be visible when in use
-		Given I select "Leap Frog" from "Customized in..."
+	@javascript @wip
+	Scenario: Advanced search options should be visible when in use and remember their state
+		Given I follow "more options..."
+		And I select "Leap Frog" from "Customized in..."
 		And I select "Test class" from "Listed under..."
 		And I select "hidden" from "which is..."
 		When I press "Search"
-		Then I should see "Customized in"
-		And I should see "which is..."
+		Then I wait until "Customized in..." is visible
+		And I wait until "which is..." is visible
+		And the "which is..." field should contain "hidden"

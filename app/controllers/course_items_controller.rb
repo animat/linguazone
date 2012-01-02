@@ -40,5 +40,9 @@ class CourseItemsController < ApplicationController
       @search_type = "adopt" if params[:search][:game_updated_by_id_does_not_equal]
     end
   end
+  
+  #def hide_item
+  
+  #def show_item
     
 end

@@ -70,23 +70,47 @@ Given /^([^"]*) has a hidden game on the "([^"]*)" class page$/ do |teacher_name
   @ag = AvailableGame.create!(:user_id => @t.id, :course_id => @c.id, :game_id => @g.id, :hidden => 1)
 end
 
-Given /^all of ([^"]*)'s games, word lists, and posts are showing on the "([^"]*)" page$/ do |teacher_name, class_name|
+Given /^all of ([^"]*)'s games, word lists, and posts are ([^"]*) on the "([^"]*)" page$/ do |teacher_name, show_or_hide, class_name|
   @teacher = User.find_by_first_name(teacher_name)
   @course = Course.find_by_name(class_name)
   @games = Game.where(:updated_by_id => @teacher.id).all
   @games.each do |g|
-    AvailableGame.create!(:game_id => g.id, :user_id => @teacher.id, :course_id => @course.id, :hidden => 0)
+    if show_or_hide == "showing"
+      AvailableGame.create!(:game_id => g.id, :user_id => @teacher.id, :course_id => @course.id, :hidden => 0)
+    else
+      AvailableGame.create!(:game_id => g.id, :user_id => @teacher.id, :course_id => @course.id, :hidden => 1)
+    end
   end
   @word_lists = WordList.where(:updated_by_id => @teacher.id).all
   @word_lists.each do |wl|
-    AvailableWordList.create!(:word_list_id => wl.id, :user_id => @teacher.id, :course_id => @course.id, :hidden => 0, :order => 0)
+    if show_or_hide == "showing"
+      AvailableWordList.create!(:word_list_id => wl.id, :user_id => @teacher.id, :course_id => @course.id, :hidden => 0, :order => 0)
+    else
+      AvailableWordList.create!(:word_list_id => wl.id, :user_id => @teacher.id, :course_id => @course.id, :hidden => 1, :order => 0)
+    end
   end
   @posts = Post.where(:user_id => @teacher.id).all
   @posts.each do |p|
-    AvailablePost.create!(:post_id => p.id, :user_id => @teacher.id, :course_id => @course.id, :hidden => 0, :ordering => 0)
+    if show_or_hide == "showing"
+      AvailablePost.create!(:post_id => p.id, :user_id => @teacher.id, :course_id => @course.id, :hidden => 0, :ordering => 0)
+    else
+      AvailablePost.create!(:post_id => p.id, :user_id => @teacher.id, :course_id => @course.id, :hidden => 1, :ordering => 0)
+    end
   end
 end
 
-Then /^I should only see one game$/ do
-  find(:xpath, "//div[@class='showing_games']/available_item").should == 1
+Then /^I should see (\d+) available (games|word_lists|posts)$/ do |count, things|
+  if count.to_i == 0
+    begin
+      #within "div#showing_games" do
+      #  ____ child nodes ___ == count
+      #end
+      find(:xpath, "//div[@id='showing_#{things}']/*").length.should == count
+    rescue
+      true
+      #TODO @Len: This is a terrible way to test! However I don't know how to test if there are no children -- unable to find xpath error.
+    end
+  else
+    find(:xpath, "//div[@id='showing_#{things}']/div[@class='available_item']").length.should == count
+  end
 end

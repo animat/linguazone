@@ -9,8 +9,7 @@ class Post < ActiveRecord::Base
     "#{self.title}"
   end
   
-  #TODO: Truncate this text at length 300 separator " "
   def description_text
-    "#{self.content}"
+    "#{self.content}".truncate(250, :separator => " ")
   end
 end

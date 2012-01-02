@@ -59,15 +59,14 @@ module ApplicationHelper
     end
     val
   end
-  #TODO: Not sure how to access the icon path properly
-  #TODO @Len: Too many content_tags here? Is this worth pursuing in this way? Should this be inside of another helper, not application?
-  def showing_item_pic(type, item)
+  #TODO: Not accessing game icons properly
+  def showing_item_pic_and_link(type, item)
     if type == "game"
-      content_tag(:img, "", :src => item.game.large_icon_src)
+      link_to image_tag(item.game.large_icon_src), play_path(item.game)
     elsif type == "word_list"
       ""
 	  elsif type == "post"
-	    content_tag(:img, "", :src => "courses/show/speech-bubble.jpg")
+	    link_to image_tag("courses/show/speech_bubble.jpg"), post_path(item.post)
     end
   end
   
@@ -77,7 +76,12 @@ module ApplicationHelper
   
   def showing_item_description(type, item)
     if type == "word_list"
-      content_tag(:p, "study - options - go - here")
+      review_link = link_to image_tag("word_lists/review_list.jpg"), url_for(:controller => "study", :action => "browse", :id => item.word_list.id)
+      print_link = link_to image_tag("word_lists/print_list.jpg"), url_for(:controller => "study", :action => "print", :id => item.word_list.id)
+      study_link = link_to image_tag("word_lists/study_list.jpg"), url_for(:controller => "study", :action => "practice", :id => item.word_list.id)
+      catch_link = link_to image_tag("word_lists/catch_list.jpg"), url_for(:controller => "study", :action => "catch", :id => item.word_list.id)
+      
+      review_link + print_link + study_link + catch_link
     else
       content_tag(:p, item.parent_assoc.description_text)
     end
@@ -85,24 +89,26 @@ module ApplicationHelper
   
   def edit_showing_item(type, item)
     if type == "game"
-      content_tag(:a, "Edit this game", :href => url_for(:controller => "customize", :action => "edit", :id => item.game.id, :cmzr_type => "game"))
+      link_to "Edit this game", url_for(:controller => "customize", :action => "edit", :id => item.game.id, :cmzr_type => "game")
     elsif type == "word_list"
-      content_tag(:a, "Edit this word list", :href => url_for(:controller => "customize", :action => "edit", :id => item.word_list.id, :cmzr_type => "list"))
+      link_to "Edit this word list", url_for(:controller => "customize", :action => "edit", :id => item.word_list.id, :cmzr_type => "list")
     elsif type == "post"
       link_to "Edit this post", edit_post_path(item.post)
     end
   end
   
   # TODO @Len: Not sure how to have a link here that will trigger JavaScript
-  def hide_showing_item(type, item)
-    "Hide from students"
+  def hide_showing_item(item)
+    unless item.class == AvailablePost
+      link_to "Hide from students", hide_game_courses_path(item), :class => "hide_available_item"
+    end
   end
   
   def view_stats_on_showing_item(type, item, course)
     if type == "word_list"
-      content_tag(:a, "View stats", :href => url_for(:controller => "study", :action => "stats", :id => item.word_list.id, :course => course.id))
+      link_to "View stats", url_for(:controller => "study", :action => "stats", :id => item.word_list.id, :course => course.id)
     elsif type == "game"
-      content_tag(:a, "View stats", :href => url_for(:controller => "play", :action => "stats", :id => item.game.id, :course => course.id))
+      link_to "View stats", url_for(:controller => "play", :action => "stats", :id => item.game.id, :course => course.id)
     end
   end
 end
