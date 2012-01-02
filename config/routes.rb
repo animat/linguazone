@@ -38,6 +38,10 @@ Linguazone::Application.routes.draw do
       get :search, :adopt
     end
   end
+  #TODO @Len: Is there an efficient way to create a new path here and establish parameters?
+  #match 'my_games/search/hidden_games_on_class/:course_id' => 'my_games#search', params[:search][:hidden_equals] => 1, params[:search][:course_id] => nil
+  #match 'my_word_lists/search/hidden_word_lists_on_class/:course_id' => 'my_word_lists#search', :search[:hidden_equals] => 1, :search[:course_id] => nil
+  #match 'my_posts/search/hidden_posts_on_class/:course_id' => 'my_posts#search', :search[:hidden_equals] => 1, :search[:course_id] => nil
   
   resources :courses do
     collection do

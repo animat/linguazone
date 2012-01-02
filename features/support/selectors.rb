@@ -24,6 +24,9 @@ module HtmlSelectorsHelpers
       [:xpath, "//div[@class='wrapper']/div[@class='game_listing'][1]"]
     when /^the wrapper$/
       ".wrapper"
+    # TODO @Len: Can I capture "word list" and use Ruby to force into "word_list"?
+    when /^the (game|word_list|post) header section$/
+      [:xpath, "//div[@id='#{$1}_header']"]
       
 
     # Add more mappings here.

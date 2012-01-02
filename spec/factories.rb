@@ -39,6 +39,13 @@ Factory.define :game do |g|
   g.association :language
 end
 
+Factory.define :demo do |d|
+  d.association :game
+  d.association :activity
+  d.association :language
+  d.category    "sample"
+end
+
 Factory.define :word_list do |g|
   g.description "Challenging word list"
   g.xml         "<game></game>"
