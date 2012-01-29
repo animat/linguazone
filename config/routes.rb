@@ -42,7 +42,11 @@ Linguazone::Application.routes.draw do
   #match 'my_games/search/hidden_games_on_class/:course_id' => 'my_games#search', params[:search][:hidden_equals] => 1, params[:search][:course_id] => nil
   #match 'my_word_lists/search/hidden_word_lists_on_class/:course_id' => 'my_word_lists#search', :search[:hidden_equals] => 1, :search[:course_id] => nil
   #match 'my_posts/search/hidden_posts_on_class/:course_id' => 'my_posts#search', :search[:hidden_equals] => 1, :search[:course_id] => nil
-  
+  #
+  namespace :api do
+    resources :media_categories, :only => [:index]
+  end
+
   resources :courses do
     collection do
       get :order_games
