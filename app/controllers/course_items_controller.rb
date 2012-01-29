@@ -34,7 +34,9 @@ class CourseItemsController < ApplicationController
       @course = Course.find(params[:search][:course_id_equals]) unless params[:search][:course_id_equals].blank?
       @available_items = joining_table.search(params[:search]).page(params[:page])
       @available_items_count = joining_table.search(params[:search]).length
-    
+      
+      @hidden_equals_val = params[:search][:hidden_equals]
+      
       @search_type = "default"
       @search_type = "hidden" if @course && params[:search][:hidden_equals].to_i == 1
       @search_type = "adopt" if params[:search][:game_updated_by_id_does_not_equal]

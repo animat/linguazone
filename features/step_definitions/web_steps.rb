@@ -206,6 +206,10 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   end
 end
 
+Then /^"([^"]*)" should be selected for "([^"]*)"$/ do |value, field| 
+  find_field(field).value.should =~ /#{value}/ 
+end
+
 Then /^show me the page$/ do
   save_and_open_page
 end

@@ -2,6 +2,5 @@
 	<%= f.label :course_id_equals, "Listed under..." %>
 	<%= f.collection_select :course_id_equals, Course.find_all_by_user_id(current_user.id, :order => "name ASC"), :id, :name, :include_blank => "any of my classes" %>
 	<%= f.label :hidden_equals, "which is..." %>
-	<% #TODO @Len: Not sure how to set the default selected item here %>
-	<%= f.select :hidden_equals, options_for_select({"hidden" => 1, "showing" => 0}), :include_blank => "either showing or hidden" %>
+	<%= f.select :hidden_equals, options_for_select([["hidden", "1"], ["showing", "0"]], @hidden_equals_val), :include_blank => "either showing or hidden" %>
 </p>

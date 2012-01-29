@@ -60,26 +60,26 @@ module ApplicationHelper
     val
   end
   #TODO: Not accessing game icons properly
-  def showing_item_pic_and_link(type, item)
-    if type == "game"
+  def showing_item_pic_and_link(item)
+    if item.class == AvailableGame
       link_to image_tag(item.game.large_icon_src), play_path(item.game)
-    elsif type == "word_list"
+    elsif item.class == AvailableWordList
       ""
-	  elsif type == "post"
+	  elsif item.class == AvailablePost
 	    link_to image_tag("courses/show/speech_bubble.jpg"), post_path(item.post)
     end
   end
   
-  def showing_item_header(type, item)
+  def showing_item_header(item)
     content_tag(:h3, item.parent_assoc.header_text)
   end
   
-  def showing_item_description(type, item)
-    if type == "word_list"
+  def showing_item_description(item)
+    if item.class == AvailableWordList
       review_link = link_to image_tag("word_lists/review_list.jpg"), url_for(:controller => "study", :action => "browse", :id => item.word_list.id)
       print_link = link_to image_tag("word_lists/print_list.jpg"), url_for(:controller => "study", :action => "print", :id => item.word_list.id)
       study_link = link_to image_tag("word_lists/study_list.jpg"), url_for(:controller => "study", :action => "practice", :id => item.word_list.id)
-      catch_link = link_to image_tag("word_lists/catch_list.jpg"), url_for(:controller => "study", :action => "catch", :id => item.word_list.id)
+      catch_link = link_to image_tag("word_lists/catch_words.jpg"), url_for(:controller => "study", :action => "catch", :id => item.word_list.id)
       
       review_link + print_link + study_link + catch_link
     else
@@ -87,12 +87,12 @@ module ApplicationHelper
     end
   end
   
-  def edit_showing_item(type, item)
-    if type == "game"
+  def edit_showing_item(item)
+    if item.class == AvailableGame
       link_to "Edit this game", url_for(:controller => "customize", :action => "edit", :id => item.game.id, :cmzr_type => "game")
-    elsif type == "word_list"
+    elsif item.class == AvailableWordList
       link_to "Edit this word list", url_for(:controller => "customize", :action => "edit", :id => item.word_list.id, :cmzr_type => "list")
-    elsif type == "post"
+    elsif item.class == AvailablePost
       link_to "Edit this post", edit_post_path(item.post)
     end
   end
@@ -104,10 +104,10 @@ module ApplicationHelper
     end
   end
   
-  def view_stats_on_showing_item(type, item, course)
-    if type == "word_list"
+  def view_stats_on_showing_item(item, course)
+    if item.class == AvailableWordList
       link_to "View stats", url_for(:controller => "study", :action => "stats", :id => item.word_list.id, :course => course.id)
-    elsif type == "game"
+    elsif item.class == AvailableGame
       link_to "View stats", url_for(:controller => "play", :action => "stats", :id => item.game.id, :course => course.id)
     end
   end

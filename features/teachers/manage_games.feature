@@ -58,7 +58,7 @@ Feature: Teacher manages customized games
 		And I wait until "which is..." is not visible
 		And I wait until "Search for:" is not visible
 		
-	@javascript @wip
+	@javascript
 	Scenario: Advanced search options should be visible when in use and remember their state
 		Given I follow "more options..."
 		And I select "Leap Frog" from "Customized in..."
@@ -67,4 +67,4 @@ Feature: Teacher manages customized games
 		When I press "Search"
 		Then I wait until "Customized in..." is visible
 		And I wait until "which is..." is visible
-		And the "which is..." field should contain "hidden"
+		And "1" should be selected for "which is..."
