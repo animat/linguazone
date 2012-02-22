@@ -43,6 +43,7 @@ group :development, :test do
 	gem "factory_girl"
   gem "factory_girl_rails", "1.1.0"
 	gem 'mysql2'
+  gem 'pry-rails'
 end
 
 group :test do
