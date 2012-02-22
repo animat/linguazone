@@ -15,10 +15,10 @@ end
 
 Given /^I am logged in as a teacher$/ do
   step %Q|I am on the teacher login page|
-	step %Q|I fill in "Email address:" with "test@example.com"|
-	step %Q|I fill in "Password:" with "test"|
-	step %Q|I press "Login"|
-	step %Q|I should see "Overview"|
+  step %Q|I fill in "Email address:" with "test@example.com"|
+  step %Q|I fill in "Password:" with "test"|
+  step %Q|I press "Login"|
+  step %Q|I should see "Overview"|
 end
 
 Given /^I am logged in as "([^"]*)"$/ do |teacher_name|
