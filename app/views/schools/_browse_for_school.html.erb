@@ -3,7 +3,7 @@
 	<ul>
 		<% for state in @states do %>
 			<li>
-				<%= link_to state.name + "<span> ("+pluralize(state.schools.length, "school")+")</span>", 
+				<%= link_to (state.name + "<span> ("+pluralize(state.schools.length, "school")+")</span>").html_safe, 
 						:controller => "states", :action => "show", :id => state.id %>
 			</li>
 		<% end %>
@@ -14,7 +14,7 @@
 	<ul>
 		<% for state in @intl_states do %>
 			<li>
-				<%= link_to state.name + "<span> ("+pluralize(state.schools.length, "school")+")</span>", 
+				<%= link_to (state.name + "<span> ("+pluralize(state.schools.length, "school")+")</span>").html_safe, 
 						:controller => "states", :action => "show", :id => state.id %>
 			</li>
 		<% end %>
