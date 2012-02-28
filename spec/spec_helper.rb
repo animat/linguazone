@@ -10,7 +10,7 @@ Spork.prefork do
 
   Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
 
-  Rspec::Runner.configure do |config|
+  RSpec.configure do |config|
     config.use_transactional_fixtures = true
     config.use_instantiated_fixtures  = false
     config.fixture_path = Rails.root + '/spec/fixtures/'
