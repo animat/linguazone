@@ -30,7 +30,7 @@ module NavigationHelpers
     when /^the media category index api$/
       api_media_categories_path
     when /^the show game [0-9] api$/
-      api_game_path($1)
+      api_v1_game_path($1)
 
 
 
