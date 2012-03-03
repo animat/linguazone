@@ -5,7 +5,8 @@
 <div class="progressContent" id="create_course" style="width: 850px">
   <%= form_for @course, :remote => true, :url => {:controller => "my_courses", :action => "create"},
                 :update => "create_course" do |f| %>
-    <%= render :partial => "my_courses/new_course_form", :locals => {:form => f} %>
+    <%= render :partial => "my_courses/form", :locals => {:form => f} %>
+		<%= f.submit "Create this class" %>
   <% end %>
 </div>
 

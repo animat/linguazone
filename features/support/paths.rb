@@ -29,6 +29,8 @@ module NavigationHelpers
       url_for(:controller => "about", :action => "demos", :language => @lang.id)
     when /^the media category index api$/
       api_media_categories_path
+    when /^the show game [0-9] api$/
+      api_game_path($1)
 
 
 

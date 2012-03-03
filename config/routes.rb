@@ -44,7 +44,10 @@ Linguazone::Application.routes.draw do
   #match 'my_posts/search/hidden_posts_on_class/:course_id' => 'my_posts#search', :search[:hidden_equals] => 1, :search[:course_id] => nil
   #
   namespace :api do
-    resources :media_categories, :only => [:index]
+    namespace :v1 do
+      resources :media_categories, :only => [:index]
+      resources :games
+    end
   end
 
   resources :courses do
