@@ -45,8 +45,13 @@ Linguazone::Application.routes.draw do
   #
   namespace :api do
     namespace :v1 do
-      resources :media_categories, :only => [:index]
-      resources :games
+      resources :media_categories, :courses, :only => [:index]
+      resources :games, :audio_clips
+      resources :medias, :available_games, :games_word_lists, :only => [:index] do
+        collection do
+          get :search
+        end
+      end
     end
   end
 

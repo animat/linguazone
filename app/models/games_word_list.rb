@@ -1,4 +1,4 @@
 class GamesWordList < ActiveRecord::Base
-  has_many :games
-  has_many :word_lists
+  belongs_to :game
+  belongs_to :word_list
 end
