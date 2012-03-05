@@ -8,6 +8,14 @@ class Api::V1::GamesController < ApplicationController
     end
   end
   
+  # TODO: This is used by LZContainer.fla. This should eventually be subsumed by show action.
+  def info
+    @game = Game.find(params[:id], :include => [:activity, :template, :language])
+    respond_to do |format|
+      format.xml
+    end
+  end
+  
   def create
     
     @template = Template.new(:activity_id => params[:gameinfoid], :language_id => params[:languageid])
