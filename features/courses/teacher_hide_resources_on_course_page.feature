@@ -12,9 +12,10 @@ Feature: Teachers hide resources on their class page
 		And I am logged in as "John"
 		And I am on the "Test class" course page
 	
-	@javascript
+	@javascript @wip
 	Scenario: Hide a game on the class page
-		When I follow "Hide from students" within the 1st game area
+		Then show me the page
+		When I follow "Hide from students" within the 2nd game area
 		Then I should see 1 available item within the showing games area
 
 	Scenario: Hide a post on the class page

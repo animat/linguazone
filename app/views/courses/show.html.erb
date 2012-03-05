@@ -61,7 +61,7 @@ $(function() {
 					<br class="clearFloat" />
 				</p> -->
 		<div id="loginForm">
-			<%= form_tag :controller => "courses", :action => "update" do %>
+			<%= form_for(@course) do %>
 			<p>
 				<%= label_tag :code, "Students can register in this class using the class code:" %> 
 				<%= text_field_tag :code, @course.code, :size => 12 %>

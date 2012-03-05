@@ -123,6 +123,7 @@ class StudentsController < ApplicationController
         format.html { render :action => "new" }
       else
         if @user.save
+          UserSession.create @user
           format.html { redirect_to :controller => "students", :action => "index" }
         else
           flash[:error] = "There was an error creating your account."

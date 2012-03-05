@@ -1,5 +1,6 @@
+<% content_for(:title) do "Study word list: #{@list.description}" end %>
 <div id="instructions">
-	<p><span>Print your list as <%= link_to_function "flash cards", "window.print();" %>.</span></p>
+	<p><span>Print your list as <%= link_to_function "flash cards", "window.print()" %>.</span></p>
 	<p>Click the link above to print. Cut the paper along the dotted lines, then fold in half and begin studying!</p>
 </div>
 
@@ -22,9 +23,9 @@
 	<% end %>
 			<% node.elements.each do |n| %>
 				<% if n.name == "question" %>
-					<%=  '<td class="left">'+String(n.attribute("content"))+'</td>' %>
+					<td class="left"><%= n.attribute("content") %></td>
 				<% else %>
-					<%= '<td>'+String(n.attribute("content"))+'</td>' %>
+					<td><%= n.attribute("content") %></td>
 				<% end %>
 			<% end %>
 		</tr>
