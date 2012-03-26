@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
   protected
     # TODO: Cache the teacher's courses so that this query doesn't happen on every page
+    # =>        Are there other places that database connections can be minimized? How to approach that?
     def get_teacher_courses
       unless current_user.nil?
         @courses = Course.all(:conditions => ["user_id = ?", current_user.id]) if current_user.role == "teacher"

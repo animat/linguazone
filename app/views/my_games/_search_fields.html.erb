@@ -2,8 +2,10 @@
 	<p>
 		<%= f.label :game_description_like, "Search for:" %>
 		<%= f.text_field :game_description_like %>
-		<%= link_to_function "more options...", "showMoreOptions(true);", :id => "more_options_link" %>
-		<%= link_to_function "fewer options...", "hideMoreOptions(true);", :id => "fewer_options_link" %>
+		<% if more_options_links %>
+			<%= link_to_function "more options...", "showMoreOptions(true);", :id => "more_options_link" %>
+			<%= link_to_function "fewer options...", "hideMoreOptions(true);", :id => "fewer_options_link" %>
+		<% end %>
 	</p>
 	<div id="more_options">
 		<p>

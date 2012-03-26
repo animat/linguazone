@@ -2,10 +2,6 @@ class Api::V1::GamesController < ApplicationController
   
   def show
     @game = Game.find(params[:id], :include => [:activity, :template, :language])
-    # TODO @Len: Do I need a respond to in order to use the .xml.builder view?
-    respond_to do |format|
-      format.xml
-    end
   end
   
   # TODO: This is used by LZContainer.fla. This should eventually be subsumed by show action.

@@ -15,9 +15,30 @@ Feature: Teachers show hidden resources on their class page
 	Scenario: Verify all games can be hidden at first
 		Then I should see 0 available games
 	
+	@javascript
 	Scenario: Show a hidden game
-		When I follow "add a game"
+		Given I follow "add a game"
 		And I follow "Show a hidden game"
-		And I follow "Show" within the first search result row
-		Then I should see "This game has been added to your account"
-	
+		And I should see 2 "Show" links
+		When I follow "Show" within the first search result row
+		Then I should see 1 "Show" link
+
+	@javascript
+	Scenario: Show a hidden post
+		Given I should see 0 "Hide from students" links for posts
+		And I follow "add a post"
+		And I follow "Show a hidden post"
+		When I follow "Show" within the first search result row
+		Then I should see 1 "Show" link
+		And I follow "Go to Test class class page"
+		And I should see 1 "Hide from students" links for posts
+
+	@javascript
+	Scenario: Show a hidden word list
+		Given I should see 0 "Hide from students" links for word_lists
+		And I follow "add a list"
+		And I follow "Show a hidden word list"
+		When I follow "Show" within the first search result row
+		Then I should see 1 "Show" link
+		And I follow "Go to Test class class page"
+		And I should see 1 "Hide from students" links for word_lists

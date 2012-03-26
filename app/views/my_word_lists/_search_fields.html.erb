@@ -1,16 +1,19 @@
 <%= form_for @search, :url => {:action => "search"} do |f| %>
-	<%= f.hidden_field :user_id_equals, :value => current_user.id %>
 	<p>
 		<%= f.label :word_list_description_like, "Search for:" %>
 		<%= f.text_field :word_list_description_like %>
 	</p>
-	<div id="onlySearchMyGames" style="display: none">
-		<p>
-			<%= f.label :course_id_equals, "Listed under..." %>
-			<%= f.collection_select :course_id_equals, Course.find_all_by_user_id(current_user.id, :order => "name ASC"), :id, :name, :include_blank => "any of my classes" %>
-			<%= f.label :hidden_equals, "which is..." %>
-			<%= f.select :hidden_equals, options_for_select({"hidden" => "1", "showing" => "0"}, :hidden_equals), :include_blank => "either showing or hidden" %>
-		</p>
+	<div id="more_options">
+		<% if @search_type == "adopt" %>
+			<p>
+				<%= f.label :word_list_updated_by_last_name_like, "customized by (teacher's last name)... " %>
+				<%= f.text_field :word_list_updated_by_last_name_like, :size => 25 %>
+				<%= f.hidden_field :word_list_updated_by_id_does_not_equal, :value => current_user.id %>
+			</p>
+		<% else %>
+			<%= f.hidden_field :user_id_equals, :value => current_user.id %>
+			<%= render :partial => "shared/search_course_filter", :locals => {:f => f}%>
+		<% end %>
 	</div>
 	<p align="center">
 		<%= f.submit "Search", :name => nil %>

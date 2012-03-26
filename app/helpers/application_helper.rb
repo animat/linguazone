@@ -97,10 +97,13 @@ module ApplicationHelper
     end
   end
   
-  # TODO @Len: Not sure how to have a link here that will trigger JavaScript
   def hide_showing_item(item)
-    unless item.class == AvailablePost
+    if item.class == AvailableGame
       link_to "Hide from students", hide_game_courses_path(item), :class => "hide_available_item"
+    elsif item.class == AvailableWordList
+      link_to "Hide from students", hide_word_list_courses_path(item), :class => "hide_available_item"
+    elsif item.class == AvailablePost
+      link_to "Hide from students", hide_post_courses_path(item), :class => "hide_available_item"
     end
   end
   

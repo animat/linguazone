@@ -26,7 +26,7 @@ Feature: New student creates account
 		And I press "Create account"
 		Then I should see "That username or email address is already in the database"
 	
-	# TODO @Len: Any tips on how to use OAuth so that I can have users sign up with their Google Accounts?
+	# TODO @Len [later]: Any tips on how to use OAuth so that I can have users sign up with their Google Accounts?
 	#				Also, sometimes students report having bizarre login problems. No idea how to troubleshoot these issues.
 	#				The site used to use one service, then switched to Authlogic. Feeling like I'm in an in between state. Not sure how to move forward.
 	#		Related: could you help me consolidate duplicate student accounts?

@@ -13,7 +13,7 @@ class CoursesController < ApplicationController
       @course_registrations = CourseRegistration.all(:conditions => ["course_id = ?", @course.id], :include => :user, :order => "users.last_name ASC")
     end
     
-    # TODO @Len: What steps can I take to build an audit log of student activity across these three different things?
+    # TODO @Len [later]: What steps can I take to build an audit log of student activity across these three different things?
     # => Use a module with a participate method that will log all participation activities
     # => Not sure how to merge these separate models into one "audit log" model
     @showing_posts = @course.available_posts.showing
@@ -112,63 +112,62 @@ class CoursesController < ApplicationController
   end
   
   def hide_game
-    @showing_game = AvailableGame.find(params[:id])
+    @showing_game = AvailableGame.find(params[:available_game_id])
     @showing_game.hidden = 1
-    @showing_game.save
-    
-    render :update do |page|
-      page.visual_effect :toggle_appear, dom_id(@showing_game)
+    if @showing_game.save
+      render :text => "Saved successfully"
+    else
+      render :text => "Failed"
     end
-    # throw a 404 error if it doesn't work
   end
   
   def hide_word_list
-    @showing_word_list = AvailableWordList.find(params[:id])
+    @showing_word_list = AvailableWordList.find(params[:available_word_list_id])
     @showing_word_list.hidden = 1
-    @showing_word_list.save
-    
-    render :update do |page|
-      page.visual_effect :toggle_appear, dom_id(@showing_word_list)
+    if @showing_word_list.save
+      render :text => "Saved successfully"
+    else
+      render :text => "Failed"
     end
   end
   
   def hide_post
-    @showing_post = AvailablePost.find(params[:id])
+    @showing_post = AvailablePost.find(params[:available_post_id])
     @showing_post.hidden = 1
-    @showing_post.save
-    
-    render :update do |page|
-      page.visual_effect :toggle_appear, dom_id(@showing_post)
+    if @showing_post.save
+      render :text => "Saved successfully"
+    else
+      render :text => "Failed"
     end
   end
   
   def show_game
-    @hidden_game = AvailableGame.find(params[:id])
+    @hidden_game = AvailableGame.find(params[:available_game_id])
     @hidden_game.hidden = 0
-    @hidden_game.save
-    
-    render :update do |page|
-      page.visual_effect :toggle_appear, dom_id(@hidden_game)
+    if @hidden_game.save
+      render :text => "Saved successfully"
+    else
+      render :text => "Failed"
     end
   end
   
   def show_word_list
-    @hidden_word_list = AvailableWordList.find(params[:id])
+    @hidden_word_list = AvailableWordList.find(params[:available_word_list_id])
     @hidden_word_list.hidden = 0
-    @hidden_word_list.save
-    
-    render :update do |page|
-      page.visual_effect :toggle_appear, dom_id(@hidden_word_list)
+    if @hidden_word_list.save
+      render :text => "Saved successfully"
+    else
+      render :text => "Failed"
     end
   end
   
   def show_post
-    @hidden_post = AvailablePost.find(params[:id])
+    @hidden_post = AvailablePost.find(params[:available_post_id])
     @hidden_post.hidden = 0
-    @hidden_post.save
-    
-    render :update do |page|
-      page.visual_effect :toggle_appear, dom_id(@hidden_post)
+    if @hidden_post.save
+      render :text => "Saved successfully"
+    else
+      render :text => "Failed"
     end
   end
   

@@ -13,11 +13,7 @@
 			<%= link_to 'Edit', :controller => "customize", :action => "edit", :id => item.game.id, :cmzr_type => "game" %>
 			<% unless show_in_course.nil? %>
 				|
-				Show
-				<%# TODO: Restore hiding and showing functionality link_to_remote 'Show '+String(item.course_id),
-					:loading => "$('show_"+dom_id(item)+"').replace('Showing...')",
-					:url => {:controller => "courses", :action => "show_game", :id => item.id },
-					:html => {:id => "show_"+dom_id(item) } %>
+				<%= link_to "Show", show_game_courses_path(item), :class => "show_available_item" %>
 			<% end %>
 		</div>
 		<br class="clearFloat" />

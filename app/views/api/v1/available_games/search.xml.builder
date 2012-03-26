@@ -1,6 +1,6 @@
 xml.instruct! :xml, :encoding => "UTF-8"
 xml.classes do
-  @ags.each do |ag|
-    xml.class("", :classname => ag.course.name, :classid => ag.course.id, :classactive => "false") unless ag.course.nil?
+  @all_courses.each do |c|
+      xml.class("", :classname => c.name, :classid => c.id, :classactive => @available_courses.include?(c))
   end
 end

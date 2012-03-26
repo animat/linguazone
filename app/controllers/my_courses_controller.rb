@@ -51,7 +51,7 @@ class MyCoursesController < ApplicationController
 
   def destroy
     @course = Course.find(params[:id])
-    # TODO: Use cancan for authorization @Len for later on
+    # TODO: Use cancan for authorization
     if @course.user_id == current_user.id
       @course.destroy
 

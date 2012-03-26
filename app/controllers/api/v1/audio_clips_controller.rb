@@ -8,6 +8,7 @@ class  Api::V1::AudioClipsController < ApplicationController
     @ac.created_at = Time.now
     @ac.updated_at = Time.now
     
+    # TODO @Len: What action should this view take? It isn't show... can't be create... want to give feedback upon successful create
     if @ac.save
       render :text => '<?xml version="1.0" encoding="utf-8"?><xml><id>'+String(@ac.id)+'</id></xml>'
     else

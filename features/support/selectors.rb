@@ -14,14 +14,24 @@ module HtmlSelectorsHelpers
       "#pin"
     when /^the (success|notice|error) flash$/
       ".flash_#{$1}"
+    when /^the available games area$/
+      [:xpath, "//div[@id='showing_games']"]
+    
     when /^the (\d+)(st|nd|rd|th) game area$/
       [:xpath, "//div[@id='showing_games']/div[@class='available_item'][#{$1}]"]
+      
+    when /^the (\d+)(st|nd|rd|th) game controls area$/
+      [:xpath, "//div[@id='showing_games']/div[#{1}]//a[@class='hide_available_item']/.."]
+    
     when /^the (\d+)(st|nd|rd|th) post area$/
       [:xpath, "//div[@id='showing_posts']/div[@class='available_item'][#{$1}]"]
+    
     when /^the (\d+)(st|nd|rd|th) word list area$/
       [:xpath, "//div[@id='showing_word_lists']/div[@class='available_item'][#{$1}]"]
+    
     when /^the first search result row$/
       [:xpath, "//div[@class='wrapper']/div[@class='game_listing'][1]"]
+    
     when /^the wrapper$/
       ".wrapper"
     # TODO @Len: Can I capture "word list" and use Ruby to force into "word_list"?
