@@ -52,20 +52,6 @@ $(function() {
 	<%= render :partial => "search_fields" %>
 </fieldset>
 
-
-<div align="center">
-	<%= link_to :action => "adopt" do %>
-		<div class="big_button" style="width: 200px">
-			<span>Adopt a game</span>
-		</div>
-	<% end %>
-	<%= link_to :action => "all" do %>
-		<div class="big_button" style="width: 200px">
-			<span>View all my games</span>
-		</div>
-	<% end %>
-</div>
-
 <% if @all_games.empty? %>
 	<h2>You have not created any games yet. Try creating a new game or adopting one to get started.</h2>
 <% else %>

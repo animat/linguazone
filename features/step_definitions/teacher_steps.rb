@@ -46,10 +46,14 @@ Given /^([^"]*) has a (game|post|word list|word_list) with a description of "([^
   if thing == "post"
     @g.user_id = @t.id
     @g.content = description
-  else
+  elsif thing == "game"
     @g.updated_by_id = @t.id
     @g.description = description
     AvailableGame.create!(:user_id => @t.id, :game_id => @g.id, :course_id => 0)
+  elsif thing == "word_list"
+    @g.updated_by_id = @t.id
+    @g.description = description
+    AvailableWordList.create!(:user_id => @t.id, :word_list_id => @g.id, :course_id => 0, :hidden => 0, :order => 0)
   end
   @g.save
 end

@@ -58,7 +58,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    childprocess (0.2.3)
+    childprocess (0.3.1)
       ffi (~> 1.0.6)
     chronic (0.6.6)
     coderay (1.0.5)
@@ -107,6 +107,8 @@ GEM
     guard-spork (0.4.0)
       guard (>= 0.8.4)
       spork (>= 0.8.4)
+    happymapper (0.4.0)
+      libxml-ruby (~> 2.0)
     has_scope (0.5.1)
     hike (1.2.1)
     i18n (0.6.0)
@@ -122,6 +124,7 @@ GEM
     launchy (2.0.5)
       addressable (~> 2.2.6)
     libv8 (3.3.10.4)
+    libxml-ruby (2.2.2)
     linecache (0.46)
       rbx-require-relative (> 0.0.4)
     linecache19 (0.5.12)
@@ -140,7 +143,7 @@ GEM
     mime-types (1.17.2)
     mocha (0.10.0)
       metaclass (~> 0.0.1)
-    multi_json (1.0.4)
+    multi_json (1.1.0)
     mysql2 (0.3.11)
     nokogiri (1.5.0)
     orm_adapter (0.0.5)
@@ -220,7 +223,7 @@ GEM
       ruby-debug-base19 (>= 0.11.19)
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
-    rubyzip (0.9.5)
+    rubyzip (0.9.6.1)
     sass (3.1.11)
     sass-rails (3.1.5)
       actionpack (~> 3.1.0)
@@ -230,10 +233,10 @@ GEM
     seed-fu (2.1.0)
       activerecord (~> 3.1.0)
       activesupport (~> 3.1.0)
-    selenium-webdriver (2.15.0)
-      childprocess (>= 0.2.1)
-      ffi (~> 1.0.9)
-      multi_json (~> 1.0.4)
+    selenium-webdriver (2.20.0)
+      childprocess (>= 0.2.5)
+      ffi (~> 1.0)
+      multi_json (~> 1.0)
       rubyzip
     shoulda (2.11.3)
     simple_form (1.5.2)
@@ -285,6 +288,7 @@ DEPENDENCIES
   guard
   guard-rspec
   guard-spork
+  happymapper
   jquery-rails
   json
   kaminari

@@ -2,9 +2,9 @@ Feature: Teachers hide resources on their class page
 	
 	Background:
 		Given a teacher exists with a first name of "John"
-		And John has 2 games
-		And John has 2 word lists
-		And John has 2 posts
+		And John has 3 games
+		And John has 3 word lists
+		And John has 3 posts
 		And the following course exists:
 		 | user             | name       |
 		 | first_name: John | Test class |
@@ -14,9 +14,21 @@ Feature: Teachers hide resources on their class page
 	
 	@javascript
 	Scenario: Hide a game on the class page
-		When I follow "Hide from students" within the 1st game area
-		Then I should see 1 available item within the showing games area
+		Given I should see 3 "Hide from students" links for games
+		When I hover over the course item teacher controls
+		And I follow "Hide from students" within the 2nd game controls area
+		Then I should see 2 "Hide from students" links for games
 
+	@javascript
 	Scenario: Hide a post on the class page
+		Given I should see 3 "Hide from students" links for posts
+		When I hover over the course item teacher controls
+		And I follow "Hide from students" within the 1st post controls area
+		Then I should see 2 "Hide from students" links for posts
 
+	@javascript
 	Scenario: Hide a word list on the class page
+		Given I should see 3 "Hide from students" links for word_lists
+		When I hover over the course item teacher controls
+		And I follow "Hide from students" within the 1st word_list controls area
+		Then I should see 2 "Hide from students" links for word_lists

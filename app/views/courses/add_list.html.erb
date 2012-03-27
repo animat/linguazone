@@ -9,8 +9,14 @@
 			<span>Create a new word list</span>
 		</div>
 	<% end %>
-		
-	<%= link_to "/courses/search_hidden_word_lists?search[user_id_equals]=" + String(current_user.id) +
+	<br />
+	<%= link_to :controller => "my_word_lists", :action => "adopt" do %>
+		<div class="big_button" style="width: 200px">
+			<span>Adopt a word list</span>
+		</div>
+	<% end %>
+	<br />
+	<%= link_to "/my_word_lists/search?search[user_id_equals]=" + String(current_user.id) +
 					"&search[course_id_equals]=" + String(@course.id) +
 					"&search[hidden_equals]=1" do %>
 		<div class="big_button" style="width: 250px">

@@ -12,7 +12,6 @@ Feature: Teachers control the resources available on their class page
 		And I am logged in as "John"
 		And I am on the "Test class" course page
 	
-	#TODO @Len: Not sure why I can't update here. Trying to make courses more RESTful...
 	Scenario: Update the class code on the page
 		When I fill in "Students can register in this class using the class code:" with "code"
 		And I press "Update"

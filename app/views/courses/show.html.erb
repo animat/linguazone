@@ -14,17 +14,13 @@ function checkLoginRequired(val) {
 	}
 }
 
-function hideActivity(id, type) {
-	
-}
-
 $(function() {
 	$(".hide_available_item").live("click", function() {
 		$(this).text("Hiding...");
-		//$.ajax { .... };
-		// $(this).attr("href")
-		// this refers to the link itself
-		// deal with success and failure
+		var href = $(this).attr("href");
+		var div = $(this).parent().parent().parent();
+		$.post(href, function() { $(div).slideUp(); })
+		  .error(function() { alert("We're sorry. There was an error hiding this item."); });
 		return false;
 	})
 });
@@ -61,7 +57,7 @@ $(function() {
 					<br class="clearFloat" />
 				</p> -->
 		<div id="loginForm">
-			<%= form_tag :controller => "courses", :action => "update" do %>
+			<%= form_for(@course) do %>
 			<p>
 				<%= label_tag :code, "Students can register in this class using the class code:" %> 
 				<%= text_field_tag :code, @course.code, :size => 12 %>

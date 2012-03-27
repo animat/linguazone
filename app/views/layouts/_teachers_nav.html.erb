@@ -10,24 +10,23 @@
 		</ul>
 	</li>
 	<li>
-		<%= link_to "GAMES", :controller => "my_games" %>
+		<%= link_to "GAMES", my_games_path %>
 		<ul>
-			<li><%= link_to "Search my games", search_my_games_path %></li>
 			<li><%= link_to "View all my games", my_games_path %></li>
 			<li><%= link_to "Adopt a game", adopt_my_games_path %></li>
 			<li><%= link_to "Create a new game", :controller => "customize", :action => "new", :cmzr_type => "game" %></li>
 		</ul>
 	</li>
 	<li>
-		<%= link_to "WORD LISTS", :controller => "my_word_lists" %>
+		<%= link_to "WORD LISTS", my_word_lists_path %>
 		<ul>
-			<li><%= link_to "Search my word lists", search_my_word_lists_path %></li>
 			<li><%= link_to "View all my word lists", my_word_lists_path %></li>
+			<li><%= link_to "Adopt a word list", adopt_my_word_lists_path %></li>
 			<li><%= link_to "Create a new word list", :controller => "customize", :action => "new", :cmzr_type => "list" %></li>
 		</ul>
 	</li>
 	<li>
-		<%= link_to "AUDIO BLOG", :controller => "my_posts" %>
+		<%= link_to "AUDIO BLOG", my_posts_path %>
 		<ul>
 			<li><%= link_to "View all my audio blog posts", :controller => "my_posts" %></li>
 			<li><%= link_to "Create a new audio blog post", :controller => "posts", :action => "new" %></li>

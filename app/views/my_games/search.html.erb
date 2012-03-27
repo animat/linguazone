@@ -24,6 +24,14 @@ $(function() {
 	} else {
 		showMoreOptions(false);
 	}
+	$(".show_available_item").live("click", function() {
+		$(this).text("Showing...");
+		var href = $(this).attr("href");
+		var div = $(this).parent().parent();
+		$.post(href, function() { $(div).slideUp(); })
+		  .error(function() { alert("We're sorry. There was an error showing this item."); });
+		return false;
+	})
 });
 
 </script>

@@ -39,7 +39,11 @@ class CourseItemsController < ApplicationController
       
       @search_type = "default"
       @search_type = "hidden" if @course && params[:search][:hidden_equals].to_i == 1
-      @search_type = "adopt" if params[:search][:game_updated_by_id_does_not_equal]
+      if joining_table == AvailableGame
+        @search_type = "adopt" if params[:search][:game_updated_by_id_does_not_equal]
+      elsif joining_table == AvailableWordList
+        @search_type = "adopt" if params[:search][:word_list_updated_by_id_does_not_equal]
+      end
     end
   end
   

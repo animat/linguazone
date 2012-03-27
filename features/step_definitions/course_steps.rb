@@ -26,3 +26,15 @@ Given /^the course "([^"]*)" has a code of "([^"]*)"$/ do |course_name, code|
   end
   @c.save
 end
+
+Then /^I should see (\d+) "([^"]*)" links for ([^"]*)$/ do |count, link_text, area|
+  all(:xpath, "//div[@id='showing_#{area}']//a[text()='#{link_text}']").length.should == count.to_i
+end
+
+Then /^I should see (\d+) "([^"]*)" links?$/ do |count, link_text|
+  all(:xpath, "//a[text()='#{link_text}']").length.should == count.to_i
+end
+
+When /^I hover over the course item teacher controls$/ do
+  page.execute_script "$(function() {	$('.available_item').toggleClass('available_item_controls'); })"
+end

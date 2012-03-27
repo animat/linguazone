@@ -10,7 +10,7 @@
 		</div>
 	<% end %>
 		
-	<%= link_to "/courses/search_hidden_posts?search[user_id_equals]=" + String(current_user.id) +
+	<%= link_to "/my_posts/search?search[user_id_equals]=" + String(current_user.id) +
 					"&search[course_id_equals]=" + String(@course.id) +
 					"&search[hidden_equals]=1" do %>
 		<div class="big_button" style="width: 200px">

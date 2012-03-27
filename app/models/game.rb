@@ -3,6 +3,7 @@ class Game < ActiveRecord::Base
   belongs_to :created_by, :class_name => 'User'
   belongs_to :updated_by, :class_name => 'User'
   belongs_to :language
+  belongs_to :template
   has_many :available_games
   has_many :high_scores
   

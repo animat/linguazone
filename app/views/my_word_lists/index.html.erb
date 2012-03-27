@@ -1,3 +1,34 @@
+<% content_for :page_script do %>
+<script type="text/javascript">
+function showMoreOptions(animate) {
+	if (animate) {
+		$('#more_options').show("blind", 500);	
+	} else {
+		$('#more_options').show();
+	}
+	$('#more_options_link').hide();
+	$('#fewer_options_link').show();
+}
+function hideMoreOptions(animate) {
+	if (animate) {
+		$('#more_options').hide("blind", 500);	
+	} else {
+		$('#more_options').hide();
+	}
+	$('#more_options_link').show();
+	$('#fewer_options_link').hide();
+}
+$(function() {
+	if (<%= hash_is_blank_except?(params[:search], "game_description_like") %>) {
+		hideMoreOptions(false);
+	} else {
+		showMoreOptions(false);
+	}
+});
+
+</script>
+<% end %>
+
 <% stylesheet 'my_games' %>
 <% stylesheet 'teachers' %>
 
@@ -23,19 +54,11 @@
 
 <br />
 
-<div align="center">
-	<%= link_to :action => "all" do %>
-		<div class="big_button" style="width: 250px">
-			<span>View all my word lists</span>
-		</div>
-	<% end %>
-</div>
-
 <% unless @word_lists.nil? or @word_lists.empty? %>
-	<h2>Browsing games (<%= @total_word_lists_count %> total)</h2>
+	<h2>Browsing word lists (<%= @total_word_lists_count %> total)</h2>
 	<%= paginate @word_lists %>
 	<% @word_lists.each do |wl| %>
-		<%= render :partial => "word_list", :locals => {:word_list => wl} %>
+		<%= render :partial => "default_item", :locals => {:item => wl} %>
 	<% end %>
 	<%= paginate @word_lists %>
 <% else %>

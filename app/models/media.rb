@@ -1,6 +1,9 @@
 class Media < ActiveRecord::Base
+  set_table_name 'medias'
+
   has_many :media_keywords
   belongs_to :media_category
+  belongs_to :media_type
 
   before_save :set_path_and_artist
 
@@ -20,5 +23,4 @@ class Media < ActiveRecord::Base
   def set_path_and_artist
     self.path = "media/image/"+media_category.name+"/"
   end
-
 end

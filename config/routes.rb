@@ -42,14 +42,35 @@ Linguazone::Application.routes.draw do
   #match 'my_games/search/hidden_games_on_class/:course_id' => 'my_games#search', params[:search][:hidden_equals] => 1, params[:search][:course_id] => nil
   #match 'my_word_lists/search/hidden_word_lists_on_class/:course_id' => 'my_word_lists#search', :search[:hidden_equals] => 1, :search[:course_id] => nil
   #match 'my_posts/search/hidden_posts_on_class/:course_id' => 'my_posts#search', :search[:hidden_equals] => 1, :search[:course_id] => nil
-  
+  #
+  namespace :api do
+    namespace :v1 do
+      resources :media_categories, :courses, :only => [:index]
+      resources :games do
+        collection do
+          get :info
+        end
+      end
+      resources :audio_clips, :high_scores
+      resources :medias, :available_games, :games_word_lists, :only => [:index] do
+        collection do
+          get :search
+        end
+      end
+    end
+  end
+
   resources :courses do
     collection do
       get :order_games
       get :add_game, :add_list, :add_post
       get :search_hidden_games, :search_hidden_word_lists, :search_hidden_posts
-      get :hide_game, :hide_word_list, :hide_post
-      get :show_game, :show_word_list, :show_post
+      match "hide_game/:available_game_id" => "courses#hide_game", :via => :post, :as => "hide_game"
+      match "hide_word_list/:available_word_list_id" => "courses#hide_word_list", :via => :post, :as => "hide_word_list"
+      match "hide_post/:available_post_id" => "courses#hide_post", :via => :post, :as => "hide_post"
+      match "show_game/:available_game_id" => "courses#show_game", :via => :post, :as => "show_game"
+      match "show_word_list/:available_word_list_id" => "courses#show_word_list", :via => :post, :as => "show_word_list"
+      match "show_post/:available_post_id" => "courses#show_post", :via => :post, :as => "show_post"
     end
   end
   

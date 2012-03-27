@@ -1,5 +1,4 @@
 
-
 Factory.define :state do |p|
   p.name "Pennsylvania"
   p.abbr 'PA'
@@ -103,3 +102,24 @@ Factory.define :teacher, :class => "User" do |f|
   f.association :school
   f.association :subscription
 end
+
+Factory.define :media_category do |m|
+  m.name "unscramble"
+end
+
+Factory.define :media_type do |m|
+  m.ext "swf"
+end
+
+Factory.define :media do |m|
+  m.name         "Unscrambling Game"
+  m.descrip      "A fun game"
+  m.path         "/"
+  m.assigned_to  "John"
+  m.published    true
+  m.pending      false
+  m.used_count   4
+  m.association  :media_type
+  m.association  :media_category
+end
+

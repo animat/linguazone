@@ -1,6 +1,4 @@
 class MyPostsController < CourseItemsController
-  def search
-  end
 
   def index
     unless current_user.is_premium_subscriber?

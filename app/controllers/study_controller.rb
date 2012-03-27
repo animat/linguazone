@@ -17,6 +17,7 @@ class StudyController < ApplicationController
   end
 
   def print
+    @title = "Study word list: #{@list.description}"
     if current_user
       @sh = StudyHistory.new(:user_id => current_user.id, :word_list_id => @list.id, :study_type => "print")
       @sh.submitted_at = Time.now

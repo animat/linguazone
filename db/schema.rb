@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111205160930) do
+ActiveRecord::Schema.define(:version => 20120302221011) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -138,19 +138,21 @@ ActiveRecord::Schema.define(:version => 20111205160930) do
   end
 
   create_table "games", :force => true do |t|
-    t.integer   "template_id",                  :default => 0, :null => false
-    t.text      "xml",                                         :null => false
-    t.string    "description",   :limit => 250,                :null => false
-    t.string    "audio_ids",     :limit => 200,                :null => false
-    t.integer   "activity_id",                  :default => 0, :null => false
-    t.integer   "language_id",                  :default => 0, :null => false
+    t.integer   "template_id",                    :default => 0,     :null => false
+    t.text      "xml",                                               :null => false
+    t.string    "description",     :limit => 250,                    :null => false
+    t.string    "audio_ids",       :limit => 200,                    :null => false
+    t.integer   "activity_id",                    :default => 0,     :null => false
+    t.integer   "language_id",                    :default => 0,     :null => false
     t.timestamp "created_at"
     t.timestamp "updated_at"
-    t.integer   "created_by_id",                :default => 0, :null => false
-    t.integer   "updated_by_id",                :default => 0, :null => false
+    t.integer   "created_by_id",                  :default => 0,     :null => false
+    t.integer   "updated_by_id",                  :default => 0,     :null => false
+    t.boolean   "getting_started",                :default => false, :null => false
   end
 
   add_index "games", ["description"], :name => "game_descrip"
+  add_index "games", ["getting_started"], :name => "index_games_on_getting_started"
 
   create_table "games_keywords", :primary_key => "game_keyword_id", :force => true do |t|
     t.integer "game_id", :default => 0,  :null => false

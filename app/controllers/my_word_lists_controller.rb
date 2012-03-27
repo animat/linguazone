@@ -3,8 +3,9 @@ class MyWordListsController < CourseItemsController
   
   def index
     @search = AvailableWordList.search(params[:search])
-    @word_lists = WordList.search(:updated_by_id_equals => current_user.id).page(params[:page])
-    @total_word_lists_count = WordList.where(:updated_by_id => current_user.id).length
+    
+    @word_lists = AvailableWordList.includes(:word_list).search(:word_list_updated_by_id_equals => current_user.id).page(params[:page])
+    @total_word_lists_count = AvailableWordList.where(:user_id => current_user.id).length
   end
   
   def show
