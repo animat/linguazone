@@ -31,4 +31,4 @@ Feature: Teachers hide resources on their class page
 		Given I should see 3 "Hide from students" links for word_lists
 		When I hover over the course item teacher controls
 		And I follow "Hide from students" within the 1st word_list controls area
-		Then I should see 2 "Hide from students" links for posts
+		Then I should see 2 "Hide from students" links for word_lists

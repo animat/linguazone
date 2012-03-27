@@ -2,8 +2,14 @@
 	<p>
 		<%= f.label :word_list_description_like, "Search for:" %>
 		<%= f.text_field :word_list_description_like %>
+		<%= link_to_function "more options...", "showMoreOptions(true);", :id => "more_options_link" %>
+		<%= link_to_function "fewer options...", "hideMoreOptions(true);", :id => "fewer_options_link" %>
 	</p>
 	<div id="more_options">
+		<p>
+			<%= f.label :word_list_language_id_equals, "Which is in..." %>
+			<%= f.collection_select :word_list_language_id_equals, Language.all(:order => "name ASC"), :id, :name, :include_blank => "any language" %>
+		</p>
 		<% if @search_type == "adopt" %>
 			<p>
 				<%= f.label :word_list_updated_by_last_name_like, "customized by (teacher's last name)... " %>

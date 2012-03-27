@@ -17,8 +17,10 @@ require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
 require 'cucumber/rails'
+require 'selenium-webdriver'
 
 Capybara.default_selector = :css
+Capybara.server_boot_timeout = 50
 
 if defined?(ActiveRecord::Base)
   begin

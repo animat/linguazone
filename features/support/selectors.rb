@@ -1,10 +1,4 @@
 module HtmlSelectorsHelpers
-  # Maps a name to a selector. Used primarily by the
-  #
-  #   When /^(.+) within (.+)$/ do |step, scope|
-  #
-  # step definitions in web_steps.rb
-  #
   def selector_for(locator)
     case locator
 
@@ -14,21 +8,18 @@ module HtmlSelectorsHelpers
       "#pin"
     when /^the (success|notice|error) flash$/
       ".flash_#{$1}"
-    when /^the available games area$/
-      [:xpath, "//div[@id='showing_games']"]
+    when /^the available (games|word lists|word_lists|posts) area$/
+      @type = $1.sub(" ", "_")
+      [:xpath, "//div[@id='showing_#{@type}']"]
     
-    when /^the (\d+)(st|nd|rd|th) game area$/
-      [:xpath, "//div[@id='showing_games']/div[@class='available_item'][#{$1}]"]
-      
-    when /^the (\d+)(st|nd|rd|th) game controls area$/
-      [:xpath, "//div[@id='showing_games']/div[#{1}]//a[@class='hide_available_item']/.."]
+    when /^the (\d+)(st|nd|rd|th) (game|word_list|post) controls area$/
+      [:xpath, "//div[@id='showing_#{$3}s']/div[#{1}]//a[@class='hide_available_item']/.."]
     
-    when /^the (\d+)(st|nd|rd|th) post area$/
-      [:xpath, "//div[@id='showing_posts']/div[@class='available_item'][#{$1}]"]
-    
-    when /^the (\d+)(st|nd|rd|th) word list area$/
-      [:xpath, "//div[@id='showing_word_lists']/div[@class='available_item'][#{$1}]"]
-    
+    when /^the (\d+)(st|nd|rd|th) (game|word list|post) area$/
+      @num = $1
+      @type = $3.sub(" ", "_")
+      [:xpath, "//div[@id='showing_#{@type}s']/div[@class='available_item'][#{@num}]"]
+
     when /^the first search result row$/
       [:xpath, "//div[@class='wrapper']/div[@class='game_listing'][1]"]
     
