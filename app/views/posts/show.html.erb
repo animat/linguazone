@@ -18,6 +18,28 @@ function hidePostControls() {
 	$("backToClass").className = "hold_spacing";
 }
 
+$(function() {
+	$(".new_teacher_note_link").live("click", function() {
+		var comment_id = $(this).parent().parent().parent().attr('id');
+		$("#"+comment_id+"_new_teacher_note").slideDown();
+		return false;
+	})
+	
+	$(".delete_teacher_note_link").live("click", function() {
+		var comment_id = $(this).parent().parent().parent().attr('id');
+		$("#"+comment_id+"_teacher_note_text_area").val("");
+		$("#"+comment_id+"_teacher_note_form").submit();
+		$("#"+comment_id+"_teacher_note").slideUp();
+		return false;
+	})
+	
+	$(".cancel_note_link").live("click", function() {
+		var comment_id = $(this).parent().parent().parent().attr('id');
+		$("#"+comment_id+"_new_teacher_note").slideUp();
+		return false;
+	})
+});
+
 </script>
 <% end %>
 
@@ -38,7 +60,7 @@ function hidePostControls() {
 		<% else %>
 			<div style="margin-top: 10px">
 				<div style="float: left; margin: 0px 15px;">
-					<%= swf_tag "audio-widget", {:size => "215x138", :flashvars => "audio_id="+String(@post.audio_id), :wmode => 'transparent'} %>
+					<%= swf_tag "/swfs/audio-widget.swf", {:size => "215x138", :flashvars => "audio_id="+String(@post.audio_id), :wmode => 'transparent'} %>
 				</div>
 				<p><%= @post.content %></p>
 				<br class="clearFloat" />

@@ -1,5 +1,21 @@
 module PostsHelper
   
+  def comment_class_according_to_user(user)
+    if user.is_teacher?
+      "teacher_comment"
+    else
+      "comment"
+    end
+  end
+  
+  def do_not_display_empty_note (comment)
+    "style='display: none'" if comment.teacher_note.blank?
+  end
+  
+  def display_empty_note (comment)
+    "style='display: none'" unless comment.teacher_note.blank?
+  end
+  
   def saved_note(comment_id)
     render :update do |page|
       page.show comment_id+"_teacher_note"

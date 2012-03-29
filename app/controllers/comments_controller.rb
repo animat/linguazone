@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  respond_to :html, :js
+  
   def create
     @comment = Comment.new(params[:comment])
 
@@ -10,7 +12,7 @@ class CommentsController < ApplicationController
     end
   end
   
-  def update_comment
+  def update
     @comment = Comment.find(params[:comment_id])
     
     if params[:teacher_note].empty?
@@ -19,22 +21,14 @@ class CommentsController < ApplicationController
       @comment.teacher_note = params[:teacher_note]
     end
     
-    if @comment.save
-      render :text => @comment.teacher_note
-      # respond_to do |format|
-      #         format.html {redirect_to(@comment.post) }
-      #         format.xml { head :ok }
-      #       end
-    else
-      flash[:error] = "Error updating comment: #{@comment.errors}"
-      redirect_to(@comment.post)
+    @comment.save
+    respond_to do |format|
+      format.js { render :layout => false }
     end
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-
-    redirect_to(@comment.post)
   end
 end

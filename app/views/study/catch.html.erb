@@ -5,6 +5,6 @@
 
 <div id="game_window">
 	<div id="game">
-		<%= swf_tag 'catch', {:id => "study", :flashvars => "listid="+String(@list.id), :flash_version => "8"} %>
+		<%= swf_tag '/swfs/catch.swf', {:id => "study", :flashvars => "listid="+String(@list.id), :flash_version => "8"} %>
 	</div>
 </div>

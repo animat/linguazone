@@ -7,5 +7,5 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require swfobject
+//= require swf_fu
 //= require autocomplete-rails.js

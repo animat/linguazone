@@ -1,0 +1,10 @@
+if (<%= @comment.teacher_note.blank? %> == true) {
+	$("#<%= dom_id(@comment) %>_new_note_link").slideDown();
+	$("#<%= dom_id(@comment) %>_del_note_link").slideUp();	
+} else {
+	$("#<%= dom_id(@comment) %>_new_teacher_note").slideUp();
+	$("#<%= dom_id(@comment) %>_teacher_note_content").html("<%= @comment.teacher_note %>");
+	$("#<%= dom_id(@comment) %>_teacher_note").slideDown();
+	$("#<%= dom_id(@comment) %>_new_note_link").slideUp();
+	$("#<%= dom_id(@comment) %>_del_note_link").slideDown();
+}
