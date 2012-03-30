@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xliff version="1.0" xml:lang="de">
+
+  <file datatype="plaintext" original="bathTubBubbles.fla" source-language="EN">
+    <header></header>
+    <body>
+      <trans-unit id="001" resname="IDS_CURRENT_SCORE">
+        <source>Aktueller Punktestand</source>
+      </trans-unit>
+      <trans-unit id="002" resname="IDS_FINAL_SCORE">
+        <source>Insgesamt Punktestand</source>
+      </trans-unit>
+      <trans-unit id="003" resname="IDS_INSTRUCTIONS">
+        <source>Lass die Luftblasen platzen und finde die passende Frage  auf dem gelben Spielzeug Boot.</source>
+      </trans-unit>
+      <trans-unit id="004" resname="IDS_PLAY">
+        <source>Los geht&apos;s!</source>
+      </trans-unit>
+      <trans-unit id="005" resname="IDS_PLAY_AGAIN">
+        <source>Nochmal?</source>
+      </trans-unit>
+    </body>
+  </file>
+
+</xliff>

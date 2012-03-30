@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xliff version="1.0" xml:lang="fr">
+
+  <file datatype="plaintext" original="thumper.fla" source-language="EN">
+    <header></header>
+    <body>
+      <trans-unit id="001" resname="IDS_INSTRUCTIONS">
+        <source>Eclate chaque ballon sur l&apos;écran pour libérer les pieces a l&apos;intérieur.  Puis traine-les sur les espaces libres pour déchiffrer la réponse correcte. </source>
+      </trans-unit>
+      <trans-unit id="002" resname="IDS_PLAY_AGAIN">
+        <source>Encore une fois?</source>
+      </trans-unit>
+      <trans-unit id="003" resname="IDS_PLAY_GAME">
+        <source>Viens jouer!</source>
+      </trans-unit>
+      <trans-unit id="004" resname="IDS_WIN">
+        <source>Magnifique! Tu as terminé le jeu.</source>
+      </trans-unit>
+    </body>
+  </file>
+
+</xliff>

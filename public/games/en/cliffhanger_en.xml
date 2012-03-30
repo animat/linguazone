@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xliff version="1.0" xml:lang="en">
+
+  <file datatype="plaintext" original="cliffhanger.fla" source-language="EN">
+    <header></header>
+    <body>
+      <trans-unit id="001" resname="IDS_INSTRUCTIONS">
+        <source>Click the trees on the left side of the screen and then on the right side to help the bird get the correct answers.</source>
+      </trans-unit>
+      <trans-unit id="002" resname="IDS_GREAT_JOB">
+        <source>Great job!</source>
+      </trans-unit>
+      <trans-unit id="003" resname="IDS_TOTAL_POINTS">
+        <source>Total points:</source>
+      </trans-unit>
+      <trans-unit id="004" resname="IDS_PLAY_AGAIN">
+        <source>Play again?</source>
+      </trans-unit>
+    </body>
+  </file>
+
+</xliff>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xliff version="1.0" xml:lang="fr">
+
+  <file datatype="plaintext" original="downfall.fla" source-language="EN">
+    <header></header>
+    <body>
+      <trans-unit id="001" resname="IDS_CONGRATS">
+        <source>Félicitations, tu as terminé le jeu.</source>
+      </trans-unit>
+      <trans-unit id="002" resname="IDS_EARN_POINTS">
+        <source>Gagne des points pour shooter la réponse correcte.</source>
+      </trans-unit>
+      <trans-unit id="003" resname="IDS_FIRE_MISSILE">
+        <source>Lance le missile</source>
+      </trans-unit>
+      <trans-unit id="004" resname="IDS_HARD_DIFFICULTY">
+        <source>Joue au niveau difficile</source>
+      </trans-unit>
+      <trans-unit id="005" resname="IDS_INSTRUCTIONS">
+        <source>Tire l&apos;UFO pour correspondre a terme en haut de l&apos;écran.</source>
+      </trans-unit>
+      <trans-unit id="006" resname="IDS_LIVES">
+        <source>Tu commences avec trois vies.</source>
+      </trans-unit>
+      <trans-unit id="007" resname="IDS_LOST">
+        <source>Oh non! Ton vaisseau s&apos;est écrasé trop de fois. Vous n&apos;avez que trois vies! Bonne chance de réessayer.</source>
+      </trans-unit>
+      <trans-unit id="008" resname="IDS_MADE_IT">
+        <source>Ca y est! C&apos;est fini!</source>
+      </trans-unit>
+      <trans-unit id="009" resname="IDS_MEDIUM_DIFFICULTY">
+        <source>Joue au niveau moyen</source>
+      </trans-unit>
+      <trans-unit id="010" resname="IDS_MOVE_SHIP">
+        <source>Bouge le vaisseau spatial</source>
+      </trans-unit>
+      <trans-unit id="011" resname="IDS_PLAY_AGAIN">
+        <source>Encore une fois?</source>
+      </trans-unit>
+      <trans-unit id="012" resname="IDS_PLAY_GAME">
+        <source>Viens jouer!</source>
+      </trans-unit>
+      <trans-unit id="013" resname="IDS_SHOOT_UFO">
+        <source>Tire l&apos;UFO pour correspondre a ce terme</source>
+      </trans-unit>
+      <trans-unit id="014" resname="IDS_SPACE">
+        <source>Espace</source>
+      </trans-unit>
+      <trans-unit id="015" resname="IDS_TOTAL_SCORE">
+        <source>Score total</source>
+      </trans-unit>
+      <trans-unit id="016" resname="IDS_TURBO">
+        <source>Turbo</source>
+      </trans-unit>
+      <trans-unit id="017" resname="IDS_TURBO_BOOST">
+        <source>Mets les résponses correctes en ligne pour obtenir le tubo</source>
+      </trans-unit>
+    </body>
+  </file>
+
+</xliff>

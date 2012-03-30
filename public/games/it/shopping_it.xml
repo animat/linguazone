@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xliff version="1.0" xml:lang="it">
+
+  <file datatype="plaintext" original="shopping.fla" source-language="EN">
+    <header></header>
+    <body>
+      <trans-unit id="001" resname="IDS_INSTRUCTIONS">
+        <source></source>
+      </trans-unit>
+      <trans-unit id="002" resname="IDS_CONGRATS">
+        <source></source>
+      </trans-unit>
+      <trans-unit id="003" resname="IDS_PLAY_AGAIN">
+        <source></source>
+      </trans-unit>
+    </body>
+  </file>
+
+</xliff>

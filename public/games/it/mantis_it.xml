@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xliff version="1.0" xml:lang="it">
+
+  <file datatype="plaintext" original="mantis.fla" source-language="EN">
+    <header></header>
+    <body>
+      <trans-unit id="001" resname="IDS_CONGRATS">
+        <source>Benissimo! Tu sei stato capace di battere il gioco e riunire Manitis con la sua bambina.</source>
+      </trans-unit>
+      <trans-unit id="002" resname="IDS_CONGRATULATIONS">
+        <source>Congratulazioni</source>
+      </trans-unit>
+      <trans-unit id="003" resname="IDS_DID_IT">
+        <source>Benissimo</source>
+      </trans-unit>
+      <trans-unit id="004" resname="IDS_INSTRUCTIONS">
+        <source>Scrivi la risposta corretta come indicato in cima allo schermo per aiutare Mantis a raggiungere la sua bambina.</source>
+      </trans-unit>
+      <trans-unit id="005" resname="IDS_PLAY">
+        <source>Giochiamo!</source>
+      </trans-unit>
+      <trans-unit id="006" resname="IDS_PLAY_AGAIN">
+        <source>Vuoi giocare ancora?</source>
+      </trans-unit>
+    </body>
+  </file>
+
+</xliff>
