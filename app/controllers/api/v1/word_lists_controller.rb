@@ -7,6 +7,7 @@ class Api::V1::WordListsController < ApplicationController
     @word_list = WordList.create!(:xml => params[:gamedatabranch], :description => params[:descriptext], :language_id => params[:languageid],
               :created_at => Time.now, :updated_at => Time.now,
               :created_by_id => params[:userid], :updated_by_id => params[:userid])
+    AvailableWordList.create!(:word_list_id => @word_list.id, :user_id => current_user.id, :course_id => 0, :order => 0, :hidden => 0)
     update_classes(@word_list.id, params[:userid], params[:classes])
     update_linked_games(@word_list.id, params[:gamedatabranch], params[:descriptext], params[:activatenewgames], 
                           params[:languageid], params[:userid], params[:classes])
@@ -43,10 +44,12 @@ class Api::V1::WordListsController < ApplicationController
           ag.destroy
         end
       end
-      # Create any new AGs that do not yet exist
+      # Create any new AGs that do not yet exist (not making any new items for course 0)
       classes_array.each do |c|
         unless @ag_course_ids.include?(c)
-          AvailableWordList.create!(:word_list_id => list_id, :user_id => user_id, :course_id => c, :order => 0, :hidden => 0)
+          unless c == 0
+            AvailableWordList.create!(:word_list_id => list_id, :user_id => user_id, :course_id => c, :order => 0, :hidden => 0)
+          end
         end
       end
     end
@@ -65,7 +68,9 @@ class Api::V1::WordListsController < ApplicationController
       # Create any new AGs that do not yet exist
       classes_array.each do |c|
         unless @ag_course_ids.include?(c)
-          AvailableGame.create!(:game_id => game_id, :user_id => user_id, :course_id => c, :ordering => 0, :hidden => 0)
+          unless c == 0
+            AvailableGame.create!(:game_id => game_id, :user_id => user_id, :course_id => c, :ordering => 0, :hidden => 0)
+          end
         end
       end
     end
@@ -78,6 +83,7 @@ class Api::V1::WordListsController < ApplicationController
                 :activity_id => act, :language_id => lang,
                 :created_at => Time.now, :updated_at => Time.now,
                 :created_by_id => uid, :updated_by_id => uid)
+      AvailableGame.create(:game_id => @game.id, :user_id => uid, :course_id => 0, :ordering => 0, :hidden => 0)
       update_classes_for_linked_game(@game.id, uid, cls)
       @game.id
     end
@@ -101,8 +107,10 @@ class Api::V1::WordListsController < ApplicationController
       end
       @activity_ids = new_activity_ids.split("_").map {|s| s.to_i}
       @activity_ids.each do |a|
-        @new_game_id = create_linked_game(updated_xml, descrip, a, lang_id, user_id, cls)
-        GamesWordList.create(:game_id => @new_game_id, :word_list_id => list_id)
+        unless a == 0
+          @new_game_id = create_linked_game(updated_xml, descrip, a, lang_id, user_id, cls)
+          GamesWordList.create(:game_id => @new_game_id, :word_list_id => list_id)
+        end
       end
     end
 end

@@ -58,7 +58,7 @@ $(function() {
 	<h2>Browsing word lists (<%= @total_word_lists_count %> total)</h2>
 	<%= paginate @word_lists %>
 	<% @word_lists.each do |wl| %>
-		<%= render :partial => "default_item", :locals => {:item => wl} %>
+		<%= render :partial => "default_item", :locals => {:item => wl} unless wl.word_list.nil? %>
 	<% end %>
 	<%= paginate @word_lists %>
 <% else %>

@@ -8,7 +8,7 @@ class Game < ActiveRecord::Base
   has_many :high_scores
   
   def large_icon_src
-    "/games/#{self.activity.swf}/display/icon.jpg"
+    "/games/#{self.activity.swf}/display/icon.jpg" unless self.activity.nil?
   end
   
   def header_text

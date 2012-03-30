@@ -4,8 +4,8 @@ class MyWordListsController < CourseItemsController
   def index
     @search = AvailableWordList.search(params[:search])
     
-    @word_lists = AvailableWordList.includes(:word_list).search(:word_list_updated_by_id_equals => current_user.id).page(params[:page])
-    @total_word_lists_count = AvailableWordList.where(:user_id => current_user.id).length
+    @word_lists = AvailableWordList.includes(:word_list).where(:user_id => current_user.id, :course_id => 0).order("word_lists.updated_at DESC").page(params[:page])
+    @total_word_lists_count = AvailableWordList.where(:user_id => current_user.id, :course_id => 0).length
   end
   
   def show
@@ -20,7 +20,7 @@ class MyWordListsController < CourseItemsController
         al.destroy
       end
       
-      @linked_to_games = GameWordList.all(:conditions => ["word_list_id = ?", params[:id]])
+      @linked_to_games = GamesWordList.all(:conditions => ["word_list_id = ?", params[:id]])
       unless @linked_to_games.nil?
         @linked_to_games.each do |lg|
           lg.destroy
@@ -30,10 +30,10 @@ class MyWordListsController < CourseItemsController
       @word_list.destroy
     
       flash[:notice] = "The word list has been deleted."
-      redirect_to :action => "all"
+      redirect_to my_word_lists_path
     else
       flash[:error] = "You do not have access to that word list."
-      redirect_to :action => "all"
+      redirect_to my_word_lists_path
     end
   end
   
