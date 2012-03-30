@@ -51,8 +51,8 @@ Linguazone::Application.routes.draw do
           get :info
         end
       end
-      resources :audio_clips, :high_scores
-      resources :medias, :available_games, :games_word_lists, :only => [:index] do
+      resources :audio_clips, :high_scores, :word_lists
+      resources :medias, :available_games, :available_word_lists, :games_word_lists, :only => [:index] do
         collection do
           get :search
         end

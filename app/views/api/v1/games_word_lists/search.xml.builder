@@ -1,7 +1,10 @@
 xml.instruct! :xml, :encoding => "UTF-8"
 xml.games do
-  @games.each do |g|
-    # TODO: activate should be flagged as a 1 if the word list has been converted to this kind of a game
-    xml.game("", :gamename => g.game.activity.name, :gameinfoid => g.game.activity.id, :gameid => g.id, :activate => "") unless g.game.nil?
+  @all_convertible_games.each do |acg|
+    if @linked_activity_ids.include?(acg.id)
+      xml.game("", :gamename => acg.name, :gameinfoid => acg.id, :activate => 1)
+    else
+      xml.game("", :gamename => acg.name, :gameinfoid => acg.id, :activate => "")      
+    end
   end
 end

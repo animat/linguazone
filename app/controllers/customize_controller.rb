@@ -43,7 +43,7 @@ class CustomizeController < ApplicationController
     end
     @new_game.save
     
-    # CREATE ARRAY OF AUDIO IDS
+    # TODO: CREATE ARRAY OF AUDIO IDS
     # ITERATE THROUGH EACH, ADD TO TALLY IN AUDIO_CLIPS TABLE
     
     flash[:notice] = "This game has been added to your account.<br />Make changes and save to your class pages."
