@@ -16,9 +16,15 @@ class CoursesController < ApplicationController
     # TODO @Len [later]: What steps can I take to build an audit log of student activity across these three different things?
     # => Use a module with a participate method that will log all participation activities
     # => Not sure how to merge these separate models into one "audit log" model
-    @showing_posts = @course.available_posts.showing
-    @showing_word_lists = @course.available_word_lists.showing
-    @showing_games = @course.available_games.showing.order("ordering")
+    #@showing_posts = @course.available_posts.showing.order()
+    #@showing_word_lists = @course.available_word_lists.showing
+    #@showing_games = @course.available_games.showing.order("ordering")
+    @showing_posts = AvailablePost.all(:conditions => ["available_posts.course_id = ? AND hidden = ?", @course.id, 0], :include => :post,
+                              :order => "posts.updated_at DESC")
+    @showing_word_lists = AvailableWordList.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, 0], :include => :word_list,
+                              :order => "word_lists.updated_at DESC")
+    @showing_games = AvailableGame.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, 0], :include => :game, 
+                              :order => "ordering ASC, games.updated_at DESC")
     
     if @course.login_required
       # TODO: Use cancan for authorization
@@ -83,11 +89,12 @@ class CoursesController < ApplicationController
   end
   
   def update_game_order
-    params[:sortable_list].each_index do |i|
-      item = AvailableGame.find(params[:sortable_list][i])
+    params[:item].each_index do |i|
+      item = AvailableGame.find(params[:item][i])
       item.ordering = i + 1
       item.save
     end
+    render :nothing => true
   end
   
   def search_hidden_games

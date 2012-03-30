@@ -130,11 +130,11 @@ $(function() {
 		<h2>Play games</h2>
 		<% if is_teacher_for(@course) %>
 			<div class="add"><p><%= link_to "add a game", :controller => "courses", :action => "add_game", :id => @course.id %></p></div>
-			<%# TODO: Reinsert ordering of games if @showing_games.length > 1 %>
-				<!--<div class="order"><p>-->
-					<%# link_to "reorder", :controller => "courses", :action => "order_games", :id => @course.id %>
-				<!--</p></div>-->
-			<%# end %>
+			<% if @showing_games.length > 1 %>
+				<div class="order"><p>
+					<%= link_to "reorder", :controller => "courses", :action => "order_games", :id => @course.id %>
+				</p></div>
+			<% end %>
 		<% end %>
 		<br class="clearFloat" />
 	</div>
