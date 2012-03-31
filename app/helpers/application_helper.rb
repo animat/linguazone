@@ -59,7 +59,7 @@ module ApplicationHelper
     end
     val
   end
-  #TODO: Not accessing game icons properly
+
   def showing_item_pic_and_link(item)
     if item.class == AvailableGame
       link_to image_tag(item.game.large_icon_src), play_path(item.game)

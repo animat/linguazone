@@ -1,5 +1,5 @@
 Given /^([^"]*) (has|have) (\d+) (games|posts|word lists|word_lists|courses)$/ do |teacher_name, verb, num, things|
-  things = "word_lists" if things == "word lists" # TODO: Is there a Ruby command that will do this for me?
+  things = things.sub(" ", "_")
   if teacher_name == "I"
     @t = User.first
   else
