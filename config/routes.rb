@@ -83,7 +83,7 @@ Linguazone::Application.routes.draw do
   match 'customize/:action/:cmzr_type/:id' => 'customize#index', :cmzr_type => nil, :id => nil
   match 'class/:id' => 'courses#show'
   match 'class/:id/feed' => 'courses#feed'
-  
+    
   # TODO: Is there any way to simplify these statements?
   match 'about/pricing' => 'about#pricing', :as => :pricing
   match 'about/features' => 'about#features'
