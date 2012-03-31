@@ -1,6 +1,13 @@
 <% content_for :page_script do %>
 <script type="text/javascript">
 
+$(function() {
+	$("#overview_link").hide();
+	$("#overview_link").live("click", function() {
+		showOverview();
+	})
+})
+
 function showTutorial(type) {
 	
 	if (type == "games") {
@@ -16,12 +23,12 @@ function showTutorial(type) {
 	
 	$("#player").innerHTML = swf;
 	$("#now_playing").innerHTML = descrip;
-	$("#overview_link").style.display = "inline";
+	$("#overview_link").slideDown();
 }
 function showOverview() {
 	$("#player").innerHTML = '<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/BkhFTVcrUbQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&autoplay=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/BkhFTVcrUbQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&autoplay=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>';
 	$("#now_playing").innerHTML = '<h2>Now watching: Highlight reel of LinguaZone games</h2><p>Take a quick look at a number of different games customized by world language teachers.</p>';
-	$("#overview_link").style.display = "none";
+	$("#overview_link").slideUp();;
 }
 
 </script>
@@ -31,13 +38,12 @@ function showOverview() {
 <h1 align="center">Customize your own audio blog, games, and word lists</h1>
 <p align="center">
 	for you and your students to use at school or home.
-	<span id="overview_link" style="display: none"><%= link_to_function "Watch the overview video again.", "showOverview();" %></span>
+	<%= link_to {}, "Watch the overview video again.", :id => "overview_link" %>
 </p>
 <br />
 <div id="container">
 	<div id="player">
 		<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/BkhFTVcrUbQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&autoplay=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/BkhFTVcrUbQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&autoplay=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>
-		<!-- <EMBED SRC="/highlight-reel.mov" WIDTH="600" HEIGHT="400" AUTOPLAY="true" CONTROLLER="true" LOOP="false" PLUGINSPAGE="http://www.apple.com/quicktime/"> -->
 	</div>
 	<div id="categories">
 		<div class="category">
