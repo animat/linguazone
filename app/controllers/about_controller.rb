@@ -20,7 +20,7 @@ class AboutController < ApplicationController
   end
   
   def word_lists
-    @convertable_activities = Activity.all(:conditions => "convertable = 1")
+    @convertable_activities = Activity.where(:convertable => true)
   end
   
   def audio_blogs
