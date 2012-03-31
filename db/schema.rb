@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331210115) do
+ActiveRecord::Schema.define(:version => 20120331220334) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(:version => 20120331210115) do
     t.integer "user_id",   :null => false
     t.integer "course_id", :null => false
     t.integer "ordering",  :null => false
-    t.integer "hidden",    :null => false
+    t.boolean "hidden",    :null => false
   end
 
   create_table "available_word_lists", :force => true do |t|
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(:version => 20120331210115) do
     t.integer "user_id",      :default => 0, :null => false
     t.integer "course_id",    :default => 0, :null => false
     t.integer "order",                       :null => false
-    t.integer "hidden",                      :null => false
+    t.boolean "hidden",                      :null => false
   end
 
   create_table "comments", :force => true do |t|
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(:version => 20120331210115) do
     t.integer  "user_id",      :null => false
     t.integer  "audio_id"
     t.text     "content"
-    t.text     "teacher_note", :null => false
+    t.text     "teacher_note"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
