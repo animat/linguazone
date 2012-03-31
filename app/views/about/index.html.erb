@@ -14,14 +14,14 @@ function showTutorial(type) {
 		var descrip = '<h2>Now watching: Creating an audio blog on LinguaZone.com</h2><p>Create posts with text, audio, or both, and give your students a chance to comment on your posts with audio, too. A whole new way to interact outside of the classroom.</p>';
 	}
 	
-	$("player").innerHTML = swf;
-	$("now_playing").innerHTML = descrip;
-	$("overview_link").style.display = "inline";
+	$("#player").innerHTML = swf;
+	$("#now_playing").innerHTML = descrip;
+	$("#overview_link").style.display = "inline";
 }
 function showOverview() {
-	$("player").innerHTML = '<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/BkhFTVcrUbQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&autoplay=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/BkhFTVcrUbQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&autoplay=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>';
-	$("now_playing").innerHTML = '<h2>Now watching: Highlight reel of LinguaZone games</h2><p>Take a quick look at a number of different games customized by world language teachers.</p>';
-	$("overview_link").style.display = "none";
+	$("#player").innerHTML = '<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/BkhFTVcrUbQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&autoplay=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/BkhFTVcrUbQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&autoplay=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>';
+	$("#now_playing").innerHTML = '<h2>Now watching: Highlight reel of LinguaZone games</h2><p>Take a quick look at a number of different games customized by world language teachers.</p>';
+	$("#overview_link").style.display = "none";
 }
 
 </script>
