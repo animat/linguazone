@@ -44,7 +44,7 @@ class AboutController < ApplicationController
     if params[:language].nil?
       redirect_to :action => "languages"
     else
-      @language = Language.find(params[:language])
+      @language = Language.find(params[:language].to_i)
       @demos = Demo.all(:conditions => ["language_id = ? and category != 'general'", @language.id], :include => "activity", :order => "activities.name")
     end
   end
