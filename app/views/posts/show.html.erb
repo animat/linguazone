@@ -5,17 +5,17 @@ var audioid;
 
 function setAudioID(num) {
 	audioid = num;
-	$("comment_audio_id").value = num;
+	$("#comment_audio_id").val(num);
 }
 
 function showPostControls() {
-	$("post_controls").className = "controls";
-	$("backToClass").className = "remove_spacing";
+	$("#post_controls").className = "controls";
+	$("#backToClass").className = "remove_spacing";
 }
 
 function hidePostControls() {
-	$("post_controls").className = "hide_controls";
-	$("backToClass").className = "hold_spacing";
+	$("#post_controls").className = "hide_controls";
+	$("#backToClass").className = "hold_spacing";
 }
 
 $(function() {
