@@ -17,6 +17,7 @@ gem 'seed-fu'
 gem 'activeadmin'
 gem 'kaminari'
 gem 'happymapper'
+gem 'swf_fu', '>= 2.0'
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'
@@ -44,7 +45,6 @@ group :development, :test do
   gem "factory_girl_rails", "1.1.0"
   gem 'pry-rails'
   gem 'mysql2'
-	gem "swf_fu", ">= 2.0"
 end
 
 group :test do
