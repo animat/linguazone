@@ -17,7 +17,7 @@ class CourseItemsController < ApplicationController
     end
     @new_game.save
     
-    flash[:notice] = "This game has been added to your account.<br />Make changes and save to your class pages."
+    flash[:notice] = "This game has been added to your account.<br />Make changes and save to your class pages.".html_safe
     redirect_to :controller => "customize", :action => "edit", :cmzr_type => "game", :id => @new_game.id
   end
   
