@@ -31,7 +31,7 @@ class CustomizeController < ApplicationController
     @game = Game.find(params[:id])
     @template = Template.find(@game.template_id)
     
-    @new_template = Template.new(:xml => @template.xml, :name => @template.name, :description => @template.description, :admin => @template.admin, :activity_id => @template.activity_id, :language_id => @template.language_id, :user_id => current_user.id, :created_at => @template.created_at, :updated_at => Time.now)
+    @new_template = Template.new(:xml => @template.xml, :name => @template.name, :description => @template.description, :admin => @template.admin, :activity_id => @template.activity_id, :language_id => @template.language_id, :user_id => current_user.id)
     unless params[:language_id].nil?
       @new_template.language_id = params[:language_id]
     end
