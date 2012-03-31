@@ -19,11 +19,11 @@ class CoursesController < ApplicationController
     #@showing_posts = @course.available_posts.showing.order()
     #@showing_word_lists = @course.available_word_lists.showing
     #@showing_games = @course.available_games.showing.order("ordering")
-    @showing_posts = AvailablePost.all(:conditions => ["available_posts.course_id = ? AND hidden = ?", @course.id, 'true'], :include => :post,
+    @showing_posts = AvailablePost.all(:conditions => ["available_posts.course_id = ? AND hidden = ?", @course.id, false], :include => :post,
                               :order => "posts.updated_at DESC")
-    @showing_word_lists = AvailableWordList.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, 'true'], :include => :word_list,
+    @showing_word_lists = AvailableWordList.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, false], :include => :word_list,
                               :order => "word_lists.updated_at DESC")
-    @showing_games = AvailableGame.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, 'true'], :include => :game, 
+    @showing_games = AvailableGame.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, false], :include => :game, 
                               :order => "ordering ASC, games.updated_at DESC")
     
     if @course.login_required
@@ -85,7 +85,7 @@ class CoursesController < ApplicationController
   
   def order_games
     @course = Course.find(params[:id])
-    @games = @course.available_games.find_all_by_hidden(0, :order => "ordering")
+    @games = @course.available_games.find_all_by_hidden(false, :order => "ordering")
   end
   
   def update_game_order
