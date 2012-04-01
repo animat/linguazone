@@ -1,7 +1,6 @@
 class InvoiceMailer < ActionMailer::Base
   helper :application
-  default :from    => "LinguaZone.com"
-  default :headers => { "return-path" => 'info@linguazone.com' }
+  default :from    => "LinguaZone.com <info@linguazone.com>"
   default :reply_to => "info@linguazone.com"
 
   def trial_confirmation(email_addr, user)
