@@ -13,8 +13,8 @@ class ContactMailer < ActionMailer::Base
     @address = email_params[:address]
     @school = email_params[:school]
     @city = email_params[:city]
-    @state => email_params[:state]
-    @body => email_params[:body]
+    @state = email_params[:state]
+    @body = email_params[:body]
     mail :to => "info@linguazone.com", :subject => "LinguaZone contact form"
   end
   
@@ -33,7 +33,7 @@ class ContactMailer < ActionMailer::Base
   def updated_media_notify_artist(email_addr, id, descrip, assigned_to, notes)
     @descrip = descrip
     @assigned_to = assigned_to
-    @notes => notes
+    @notes = notes
     @id = id
     mail :to => email_addr, :subject => "[LZ] New note on your clip art: #{@descrip}", :reply_to => "Colin Angevine <info@linguazone.com>"
   end
