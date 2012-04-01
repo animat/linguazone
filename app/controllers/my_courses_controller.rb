@@ -26,7 +26,7 @@ class MyCoursesController < ApplicationController
       if @course.save
         flash[:success] = "This is your new class page. Students in your "+@course.name+" class will find your games, word lists, and audio blogs here."
         format.html { redirect_to course_path(@course) }
-        format.js { render :text => "Your class has been saved. Next, customize a game below." }
+        format.js
       else
         format.html { render :action => "new" }
         format.js { render :text => "Oops! There was an error creating your class. Try again from the Classes link at the top of the page." }

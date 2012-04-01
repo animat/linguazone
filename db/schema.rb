@@ -121,8 +121,8 @@ ActiveRecord::Schema.define(:version => 20120401023302) do
   end
 
   create_table "demos", :force => true do |t|
-    t.integer "language_id",                              :null => false
-    t.integer "activity_id",                              :null => false
+    t.string  "language_id", :limit => 2,                 :null => false
+    t.string  "activity_id", :limit => 3,                 :null => false
     t.integer "game_id",                   :default => 0, :null => false
     t.string  "category",    :limit => 50,                :null => false
   end

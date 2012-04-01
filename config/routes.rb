@@ -20,11 +20,12 @@ Linguazone::Application.routes.draw do
 
   resources :schools do
     collection do
-      get :autocomplete_name
+      #get :autocomplete_name
       get :check
       get :confirm
       get :confirm_or_new
     end
+    get :autocomplete_name, :on => :collection
   end
 
   resources :posts do

@@ -4,7 +4,7 @@
 <p>To renew <%= session[:school].name %>'s subscription for $<%= String(@upgrade_plan.cost - @school.subscription.subscription_plan.cost) %> and create your account, enter your school's pin number below.</p>
 
 <div class="floatLeft">
-	<% form_tag :controller => "subscription", :action => "create" do %>
+	<%= form_tag :controller => "subscription", :action => "create" do %>
 	<p>
 		<%= label_tag :pin, "Enter your school's 5-digit pin number:" %>
 		<%= text_field_tag :pin %>

@@ -8,7 +8,7 @@
 
 <div class="progressContent">
 	<div id="search_for_school">
-		<% form_remote_tag :url => {:controller => "students", :action => "find_school"} do |f| %>
+		<%= form_remote_tag :url => {:controller => "students", :action => "find_school"} do |f| %>
 			<p>
 				<%= label :school, :name, "Your school's name:" %><br />
 				<%= text_field_with_auto_complete :school, :name %>
