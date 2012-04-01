@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331224601) do
+ActiveRecord::Schema.define(:version => 20120401023302) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -244,7 +244,6 @@ ActiveRecord::Schema.define(:version => 20120331224601) do
     t.integer   "state_id",                  :default => 0,     :null => false
     t.string    "zip",        :limit => 10,                     :null => false
     t.boolean   "enabled",                   :default => false, :null => false
-    t.integer   "pin",        :limit => 3,   :default => 0,     :null => false
     t.timestamp "created_at"
     t.datetime  "updated_at"
     t.timestamp "expired_at"
