@@ -14,7 +14,7 @@ class ContactMailer < ActionMailer::Base
     @school = email_params[:school]
     @city = email_params[:city]
     @state = email_params[:state]
-    @body = email_params[:body]
+    @main_msg = email_params[:body]
     mail :to => "info@linguazone.com", :subject => "LinguaZone contact form"
   end
   
@@ -25,7 +25,7 @@ class ContactMailer < ActionMailer::Base
     else
       @reply_address = ""
     end
-    @body = params[:body]
+    @main_msg = params[:body]
     @game_id = params[:game_id]
     mail :to => "info@linguazone.com", :subject => "LinguaZone bug report", :reply_to => @reply_address
   end
