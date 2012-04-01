@@ -9,7 +9,7 @@ class CustomizeController < ApplicationController
       redirect_to :action => "select_language", :cmzr_type => params[:cmzr_type]
     else
       @language = Language.find(@lang_id)
-      @embed_vars = "userid="+String(current_user.id)+"&gamelanguage="+@language.name+"&cmzrtype="+params[:cmzr_type]
+      @embed_vars = "userid="+String(current_user.id)+"&gamelanguage="+@language.name+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
     end
   end
   
@@ -18,9 +18,9 @@ class CustomizeController < ApplicationController
 
   def edit
     if params[:cmzr_type] == "game"
-      @embed_vars = "gameid="+params[:id]+"&userid="+String(current_user.id)+"&cmzrtype="+params[:cmzr_type]
+      @embed_vars = "gameid="+params[:id]+"&userid="+String(current_user.id)+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
     elsif params[:cmzr_type] == "list"
-      @embed_vars = "listid="+params[:id]+"&userid="+String(current_user.id)+"&cmzrtype="+params[:cmzr_type]
+      @embed_vars = "listid="+params[:id]+"&userid="+String(current_user.id)+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
     end
   end
 
