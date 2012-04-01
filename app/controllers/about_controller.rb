@@ -53,7 +53,7 @@ class AboutController < ApplicationController
   end
   
   def send_mail
-    ContactMailer.deliver_contact_email(params[:email])
+    ContactMailer.contact_email(params[:email]).deliver
     flash[:notice] = "Your message has been sent. Expect a reply shortly."
     redirect_to :action => "us"
   end

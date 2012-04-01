@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
 
   def deliver_password_reset_instructions!
     reset_perishable_token!
-    ContactMailer.deliver_password_reset_instructions(self)
+    ContactMailer.password_reset_instructions(self).deliver
   end
 
   def scores_in_game(id)

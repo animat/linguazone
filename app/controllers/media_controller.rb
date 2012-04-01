@@ -56,10 +56,10 @@ class MediaController < ApplicationController
           else
             @email_addr = "'Colin Angevine' <colinangevine@gmail.com>"
           end
-          ContactMailer.deliver_updated_media_notify_artist(@email_addr, @asset.id, @asset.descrip, @asset.assigned_to, @asset.notes)
+          ContactMailer.updated_media_notify_artist(@email_addr, @asset.id, @asset.descrip, @asset.assigned_to, @asset.notes).deliver
           flash[:notice] = "Sent an email to "+@email_addr+" about the new note."
         elsif params[:media][:swf] != nil or params[:media][:fla] != nil
-          ContactMailer.deliver_updated_media_notify_admin(params[:media], @asset.descrip, @asset.notes, @asset.id)
+          ContactMailer.updated_media_notify_admin(params[:media], @asset.descrip, @asset.notes, @asset.id).deliver
           flash[:notice] = "Saved your artwork and notified admins."
         else
           flash[:notice] = 'Media item was successfully updated.'

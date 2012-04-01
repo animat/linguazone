@@ -20,42 +20,42 @@ class Subscription < ActiveRecord::Base
     @two_week_subs = User.all(:conditions => ["email = ?", "info@linguazone.com"])
     unless @two_week_subs.empty?
       @two_week_subs.each do |u|
-        InvoiceMailer.deliver_two_week_reminder("colinangevine@gmail.com", u, u.subscription)
+        InvoiceMailer.two_week_reminder("colinangevine@gmail.com", u, u.subscription).deliver
       end
     end
 
     @one_week_subs = User.all(:conditions => ["email = ?", "info@linguazone.com"])
     unless @one_week_subs.empty?
       @one_week_subs.each do |u|
-        InvoiceMailer.deliver_one_week_reminder("colinangevine@gmail.com", u, u.subscription)
+        InvoiceMailer.one_week_reminder("colinangevine@gmail.com", u, u.subscription).deliver
       end
     end
 
     @two_day_subs = User.all(:conditions => ["email = ?", "info@linguazone.com"])
     unless @two_day_subs.empty?
       @two_day_subs.each do |u|
-        InvoiceMailer.deliver_two_day_reminder("colinangevine@gmail.com", u, u.subscription)
+        InvoiceMailer.two_day_reminder("colinangevine@gmail.com", u, u.subscription).deliver
       end
     end
 
     # @one_week_trials = User.all(:conditions => ["email = ?", "info@linguazone.com"])
     #     unless @one_week_trials.empty?
     #       @one_week_trials.each do |u|
-    #         InvoiceMailer.deliver_trial_one_week_reminder("colinangevine@gmail.com", u, u.subscription)
+    #         InvoiceMailer.trial_one_week_reminder("colinangevine@gmail.com", u, u.subscription).deliver
     #       end
     #     end
     #
     #     @three_day_trials = User.all(:conditions => ["email = ?", "info@linguazone.com"])
     #     unless @three_day_trials.empty?
     #       @three_day_trials.each do |u|
-    #         InvoiceMailer.deliver_trial_three_day_reminder("colinangevine@gmail.com", u, u.subscription)
+    #         InvoiceMailer.trial_three_day_reminder("colinangevine@gmail.com", u, u.subscription).deliver
     #       end
     #     end
     #
     #     @expired_trials = User.all(:conditions => ["email = ?", "info@linguazone.com"])
     #     unless @expired_trials.empty?
     #       @expired_trials.each do |u|
-    #         InvoiceMailer.deliver_trial_expired_reminder("colinangevine@gmail.com", u, u.subscription)
+    #         InvoiceMailer.trial_expired_reminder("colinangevine@gmail.com", u, u.subscription).deliver
     #       end
     #     end
   end

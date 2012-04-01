@@ -39,7 +39,7 @@ class PlayController < ApplicationController
   end
   
   def report_bug
-    ContactMailer.deliver_report_bug(params)
+    ContactMailer.report_bug(params).deliver
     render :text => "Message sent."
   end
 end
