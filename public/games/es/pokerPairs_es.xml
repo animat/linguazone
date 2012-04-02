@@ -6,7 +6,7 @@
     <header></header>
     <body>
       <trans-unit id="001" resname="IDS_CONGRATS">
-        <source>¡Bién hecho!</source>
+        <source>¡Bien hecho!</source>
       </trans-unit>
       <trans-unit id="002" resname="IDS_INSTRUCTIONS">
         <source>Encuentra todas las tarjetas que combinan para ganar el juego</source>
