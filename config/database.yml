@@ -6,8 +6,8 @@
 #  timeout: 5000
 
 development:
-  adapter: mysql
-  database: lz_heroku
+  adapter: mysql2
+  database: lz_dev
   username: root
   password: root
   timeout: 5000
