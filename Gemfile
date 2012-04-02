@@ -18,6 +18,7 @@ gem 'activeadmin'
 gem 'kaminari'
 gem 'happymapper'
 gem 'swf_fu', '>= 2.0'
+gem "airbrake"
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'

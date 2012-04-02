@@ -38,3 +38,5 @@ desc "A Capistrano task that runs a remote rake task."
 task :clear_sessions, :roles => :db do
   run "cd #{release_path}; rake db:sessions:clear RAILS_ENV=production"
 end
+        require './config/boot'
+        require 'airbrake/capistrano'

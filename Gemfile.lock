@@ -40,6 +40,9 @@ GEM
     activesupport (3.1.0)
       multi_json (~> 1.0)
     addressable (2.2.6)
+    airbrake (3.0.9)
+      activesupport
+      builder
     archive-tar-minitar (0.5.2)
     arel (2.2.1)
     authlogic (3.1.0)
@@ -278,6 +281,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  airbrake
   authlogic
   aws-s3 (= 0.6.2)
   capybara
