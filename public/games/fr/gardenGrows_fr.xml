@@ -9,7 +9,7 @@
         <source>Félicitations!</source>
       </trans-unit>
       <trans-unit id="002" resname="IDS_INSTRUCTIONS">
-        <source>Epele les mots avant que la fleur finit son développement pour avoir un bon jardin.</source>
+        <source>Epelle les mots avant que la fleur finisse son développement pour avoir un bon jardin.</source>
       </trans-unit>
       <trans-unit id="003" resname="IDS_PLAY_AGAIN">
         <source>Encore une fois?</source>
