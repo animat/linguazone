@@ -91,7 +91,7 @@ class Api::V1::WordListsController < ApplicationController
     def modify_linked_game(id, x, d)
       @g = Game.all(:conditions => {:id => id}).first
       if @g.nil?
-        debugger.log "Game has been deleted even though the linker has not been deleted"
+        
       else
         @g.xml = x
         @g.description = d
