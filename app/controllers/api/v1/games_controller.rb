@@ -10,7 +10,8 @@ class Api::V1::GamesController < ApplicationController
   
   def create
     @template = Template.new(:activity_id => params[:gameinfoid], :language_id => params[:languageid], 
-                              :description => "", :name => "", :admin => 0, :user_id => params[:userid])
+                              :description => "", :name => "", :admin => 0, :user_id => params[:userid],
+                              :xml => params[:templatebranch])
     @template.save
     @game = Game.new(:template_id => @template.id, :xml => params[:gamedatabranch], :description => params[:descriptext],
               :audio_ids => params[:activeaudiofiles],

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120405015720) do
+ActiveRecord::Schema.define(:version => 20120405021439) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -294,7 +294,7 @@ ActiveRecord::Schema.define(:version => 20120405015720) do
     t.integer "user_id",     :default => 0, :null => false
     t.string  "name"
     t.text    "description"
-    t.text    "xml"
+    t.text    "xml",                        :null => false
   end
 
   create_table "user_sessions", :force => true do |t|
