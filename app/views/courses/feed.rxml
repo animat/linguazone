@@ -3,9 +3,9 @@ xml.instruct!
 xml.rss "version" => "2.0" do
  xml.channel do
 
-   xml.title       "LinguaZone: "+@course.name+" at "+@course.user.school.name
+   xml.title       "LinguaZone: #{@course.name} at #{@course.user.school.name}"
    xml.link        "http://www.linguazone.com/class/"+String(@course.id)
-   xml.description "Games, word lists, and audio blogs for "+@course.name+" on LinguaZone.com"
+   xml.description "Games, word lists, and audio blogs for #{@course.name} on LinguaZone.com"
 
    @showing_posts.each do |post|
      xml.item do
