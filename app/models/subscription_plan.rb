@@ -27,4 +27,5 @@ class SubscriptionPlan < ActiveRecord::Base
     def unlimited_teachers?
       self.max_teachers == UNLIMITED_FLAG
     end
+    
 end

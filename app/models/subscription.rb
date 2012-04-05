@@ -10,6 +10,10 @@ class Subscription < ActiveRecord::Base
   def trial?
     self.subscription_plan.name == "trial"
   end
+  
+  def number_of_teachers
+    (self.max_teachers == UNLIMITED_FLAG) ? "unlimited" : self.max_teachers.to_s
+  end
 
   def school
     @teacher = User.first(:conditions => ["subscription_id = ?", self.id])
