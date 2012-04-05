@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120401023302) do
+ActiveRecord::Schema.define(:version => 20120405015720) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -288,13 +288,13 @@ ActiveRecord::Schema.define(:version => 20120401023302) do
   end
 
   create_table "templates", :force => true do |t|
-    t.integer "admin",                      :default => 0, :null => false
-    t.integer "activity_id",                :default => 0, :null => false
-    t.integer "language_id",                :default => 0, :null => false
-    t.integer "user_id",                    :default => 0, :null => false
-    t.string  "name",        :limit => 50,                 :null => false
-    t.string  "description", :limit => 150,                :null => false
-    t.text    "xml",                                       :null => false
+    t.integer "admin",       :default => 0, :null => false
+    t.integer "activity_id", :default => 0, :null => false
+    t.integer "language_id", :default => 0, :null => false
+    t.integer "user_id",     :default => 0, :null => false
+    t.string  "name"
+    t.text    "description"
+    t.text    "xml"
   end
 
   create_table "user_sessions", :force => true do |t|
