@@ -41,14 +41,19 @@ class CoursesController < ApplicationController
   end
   
   def feed
-    @course = Course.find(params[:id], :include => [:user, :school])
+    @course = Course.find(params[:id], :include => :user)
     
-    @showing_posts = @course.available_posts.showing
-    @showing_word_lists = @course.available_word_lists.showing
-    @showing_games = @course.available_games.showing.order("ordering")
+    @showing_posts = AvailablePost.all(:conditions => ["available_posts.course_id = ? AND hidden = ?", @course.id, false], :include => :post,
+                              :order => "posts.updated_at DESC")
+    @showing_word_lists = AvailableWordList.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, false], :include => :word_list,
+                              :order => "word_lists.updated_at DESC")
+    @showing_games = AvailableGame.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, false], :include => :game, 
+                              :order => "ordering ASC, games.updated_at DESC")
     
-    render :layout => false
     response.headers["Content-Type"] = "application/xml; charset=utf-8"
+    respond_to do |format|
+      format.xml
+    end
   end
   
   def update
