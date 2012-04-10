@@ -8,4 +8,4 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require swf_fu
-//= require autocomplete-rails.js
+//= require autocomplete-rails

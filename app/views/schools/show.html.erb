@@ -15,7 +15,7 @@
 		<ul>
 			<% for course in @courses do %>
 				<li>
-					<%= link_to course.name+" <span>taught by "+ course.user.display_name+"</span>", 
+					<%= link_to "#{course.name} <span>taught by #{course.user.display_name}</span>".html_safe, 
 							:controller => "courses", :action => "show", :id => course.id %>
 				</li>
 			

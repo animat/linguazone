@@ -1,5 +1,9 @@
 class SchoolsController < ApplicationController
-  autocomplete :schools, :name
+  #autocomplete :schools, :name
+
+  def autocomplete_name
+    @results = School.where(:name => "%friend%")
+  end
 
   def index
     redirect_to :controller => "students", :action => "login"
