@@ -79,11 +79,8 @@ class SchoolsController < ApplicationController
     else
       @subscription = session[:subscription]
       @school = School.new(:name => params[:school_name].titleize)
-      @states      = State.national.collect { |state| [state.name, state.id]}
-      @intl_states = State.international.collect { |state| [state.name, state.id]}
-      #@states = State.national.all
-      #@intl_states = State.international.all
-      logger.info @intl_states
+      @states      = State.national.all.collect { |state| [state.name, state.id]}
+      @intl_states = State.international.all.collect { |state| [state.name, state.id]}
     end
   end
 
