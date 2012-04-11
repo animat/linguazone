@@ -21,9 +21,13 @@ class SchoolsController < ApplicationController
 
   def search
     @schools = School.all(:conditions => ['LOWER(name) LIKE ?', '%'+params[:school][:name]+'%'])
+    puts "*"*50
+    puts "Searching for... #{@schools}"
     if @schools.length == 1
+      puts "Great! Found one school."
       redirect_to @schools
-    elsif @schools.length == 0
+    else
+      puts "Aww... could only find --#{@schools.length}-- schools."
       @states      = State.national
       @intl_states = State.international
     end
