@@ -46,8 +46,8 @@ class SchoolsController < ApplicationController
     if session[:subscription].nil?
       redirect_to :controller => "about", :action => "pricing"
     else
-      @similar_schools = School.all(:conditions => ['LOWER(name) LIKE ?', '%'+params[:school][:name]+'%'])
-      if @similar_schools.length == 1
+      @similar_schools = School.all(:conditions => ['LOWER(name) LIKE ?', "%#{params[:school][:name].downcase}%"])
+      if @similar_schools.length > 0
         @school = @similar_schools[0]
         if @school.subscription.nil?
           session[:school] = @school

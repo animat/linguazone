@@ -39,7 +39,7 @@ class StudentsController < ApplicationController
   end
 
   def find_school
-    @similar_schools = School.all(:conditions => ['LOWER(name) LIKE ?', params[:school][:name]])
+    @similar_schools = School.all(:conditions => ['LOWER(name) LIKE ?', params[:school][:name].downcase])
     if @similar_schools.length == 1
       @school = @similar_schools[0]
       @courses = Course.find_courses_at_school(@school)
