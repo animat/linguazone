@@ -1,10 +1,11 @@
 class SchoolsController < ApplicationController
-  #autocomplete :schools, :name
 
   def autocomplete_name
-    @results = School.where(:name => "%friend%")
+    @results = School.all(:conditions => ["LOWER(name) LIKE ?", "%#{params[:term].downcase}%"])
+    @results = @results.collect {|match| {"id" => match["id"], "label" => match["name"], "value" => match["name"] } }
+    render :json => @results
   end
-
+  
   def index
     redirect_to :controller => "students", :action => "login"
   end
