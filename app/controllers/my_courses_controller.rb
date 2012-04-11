@@ -2,7 +2,11 @@ class MyCoursesController < ApplicationController
   before_filter :check_expired
 
   def index
-    @courses = Course.all(:conditions => ["user_id = ?", current_user.id], :include => :course_registrations)
+    if current_user.nil?
+      redirect_to login_teachers_path
+    else
+      @courses = Course.all(:conditions => ["user_id = ?", current_user.id], :include => :course_registrations)
+    end
   end
 
   def show
