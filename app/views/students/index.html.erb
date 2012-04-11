@@ -18,7 +18,9 @@
 	<div id="list_classes">
 		<ul>
 		<% for reg_course in @registered_courses do %>
-			<li><%= link_to reg_course.course.name, :controller => "courses", :action => "show", :id => reg_course.course.id %></li>
+			<% unless reg_course.course.nil? %>
+				<li><%= link_to reg_course.course.name, :controller => "courses", :action => "show", :id => reg_course.course.id %></li>
+			<% end %>
 		<% end %>
 		</ul>
 	</div>
