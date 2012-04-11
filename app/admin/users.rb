@@ -3,7 +3,7 @@ ActiveAdmin.register User do
   filter :first_name
   filter :last_name
   filter :school
-  filter :school_id, :as => :text
+  filter :school_id, :as => :string
   filter :role, :as => :select, :collection => ["student", "teacher", "admin"]
   
   # TODO: Build scopes for admin interface
