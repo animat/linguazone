@@ -7,11 +7,11 @@ xml.rss "version" => "2.0" do
    xml.link        "http://www.linguazone.com/class/"+String(@course.id)
    xml.description "Games, word lists, and audio blogs for #{@course.name} on LinguaZone.com"
 
-   @showing_posts.each do |post|
+   @showing_posts.each do |sp|
      xml.item do
-       xml.title       "[Audio blog] "+post.title
-       xml.link        url_for :only_path => false, :controller => 'posts', :action => 'show', :id => post.id
-       xml.description post.content
+       xml.title       "[Audio blog] "+sp.post.title
+       xml.link        url_for :only_path => false, :controller => 'posts', :action => 'show', :id => sp.post.id
+       xml.description sp.post.content
      end
    end
    
