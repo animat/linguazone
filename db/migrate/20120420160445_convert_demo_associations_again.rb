@@ -1,11 +1,19 @@
 class ConvertDemoAssociationsAgain < ActiveRecord::Migration
   def up
-    change_column :demos, :language_id, :integer
-    change_column :demos, :activity_id, :integer
+    add_column :demos, :lang_holder, :int
+    add_column :demos, :activ_holder, :int
+    
+    demos = Demo.all
+    demos.each do |d|
+      d.lang_holder = d.language_id.to_i
+      d.activ_holder = d.activity_id.to_i
+      d.save
+    end
+    
   end
 
   def down
-    change_column :demos, :language_id, :string
-    change_column :demos, :activity_id, :string
+    remove_column :demos, :lang_holder
+    remove_column :demos, :activ_holder
   end
 end

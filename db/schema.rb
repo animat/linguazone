@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120420154833) do
+ActiveRecord::Schema.define(:version => 20120420225617) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -121,10 +121,10 @@ ActiveRecord::Schema.define(:version => 20120420154833) do
   end
 
   create_table "demos", :force => true do |t|
-    t.integer "language_id",                              :null => false
-    t.integer "activity_id",                              :null => false
     t.integer "game_id",                   :default => 0, :null => false
     t.string  "category",    :limit => 50,                :null => false
+    t.integer "language_id"
+    t.integer "activity_id"
   end
 
   create_table "discounts", :force => true do |t|
