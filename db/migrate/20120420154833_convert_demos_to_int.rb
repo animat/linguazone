@@ -1,7 +1,7 @@
 class ConvertDemosToInt < ActiveRecord::Migration
   def up
-    change_column :demos, :language_id, :integer
-    change_column :demos, :activity_id, :integer
+    change_column :demos, :language_id, :string
+    change_column :demos, :activity_id, :string
   end
 
   def down
