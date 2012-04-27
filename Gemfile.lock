@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    SystemTimer (1.2.3)
     actionmailer (3.1.0)
       actionpack (= 3.1.0)
       mail (~> 2.3.0)
@@ -173,6 +174,7 @@ GEM
       rack
     rack-test (0.6.1)
       rack (>= 1.0)
+    rack-timeout (0.0.3)
     rails (3.1.0)
       actionmailer (= 3.1.0)
       actionpack (= 3.1.0)
@@ -280,6 +282,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  SystemTimer
   activeadmin
   airbrake
   authlogic
@@ -307,6 +310,7 @@ DEPENDENCIES
   pg
   pry-rails
   rack-test
+  rack-timeout
   rails (= 3.1.0)
   rails3-jquery-autocomplete
   rdoc
