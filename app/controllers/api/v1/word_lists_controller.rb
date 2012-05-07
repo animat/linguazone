@@ -4,15 +4,17 @@ class Api::V1::WordListsController < ApplicationController
   end
   
   def create
-    @word_list = WordList.create!(:xml => params[:gamedatabranch], :description => params[:descriptext], :language_id => params[:languageid],
-              :created_at => Time.now, :updated_at => Time.now,
-              :created_by_id => params[:userid], :updated_by_id => params[:userid])
-    AvailableWordList.create!(:word_list_id => @word_list.id, :user_id => current_user.id, :course_id => 0, :order => 0, :hidden => 0)
-    update_classes(@word_list.id, params[:userid], params[:classes])
-    update_linked_games(@word_list.id, params[:gamedatabranch], params[:descriptext], params[:activatenewgames], 
-                          params[:languageid], params[:userid], params[:classes])
+    unless current_user.nil?
+      @word_list = WordList.create!(:xml => params[:gamedatabranch], :description => params[:descriptext], :language_id => params[:languageid],
+                :created_at => Time.now, :updated_at => Time.now,
+                :created_by_id => params[:userid], :updated_by_id => params[:userid])
+      AvailableWordList.create!(:word_list_id => @word_list.id, :user_id => current_user.id, :course_id => 0, :order => 0, :hidden => 0)
+      update_classes(@word_list.id, params[:userid], params[:classes])
+      update_linked_games(@word_list.id, params[:gamedatabranch], params[:descriptext], params[:activatenewgames], 
+                            params[:languageid], params[:userid], params[:classes])
     
-    render :text => '<?xml version="1.0" encoding="utf-8"?><msg>'+String(@word_list.id)+'</msg>'
+      render :text => '<?xml version="1.0" encoding="utf-8"?><msg>'+String(@word_list.id)+'</msg>'
+    end
   end
 
   def update
