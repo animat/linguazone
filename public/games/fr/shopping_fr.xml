@@ -5,14 +5,17 @@
   <file datatype="plaintext" original="shopping.fla" source-language="EN">
     <header></header>
     <body>
-      <trans-unit id="001" resname="IDS_INSTRUCTIONS">
-        <source></source>
+      <trans-unit id="001" resname="IDS_CONGRATS">
+        <source>Merci pour tout l&apos;assistance avec le shopping.</source>
       </trans-unit>
-      <trans-unit id="002" resname="IDS_CONGRATS">
-        <source></source>
+      <trans-unit id="002" resname="IDS_INSTRUCTIONS">
+        <source>Aide a trouver tout ce qu&apos;il y a sur la liste des courses (du shopping)</source>
       </trans-unit>
       <trans-unit id="003" resname="IDS_PLAY_AGAIN">
-        <source></source>
+        <source>Encore une fois?</source>
+      </trans-unit>
+      <trans-unit id="004" resname="IDS_PLAY_GAME">
+        <source>Viens jouer!</source>
       </trans-unit>
     </body>
   </file>
