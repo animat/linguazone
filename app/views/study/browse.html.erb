@@ -9,9 +9,9 @@
 		<tr>
 			<% node.elements.each do |n| %>
 				<% if n.name == "question" %>
-					<td width="50%"><%= n.attribute("content") %></td>
+					<td width="50%"><%=h n.attribute("content") %></td>
 				<% else %>
-					<td width="50%"><%= n.attribute("content") %></td>
+					<td width="50%"><%=h n.attribute("content") %></td>
 				<% end %>
 			<% end %>
 		</tr>
