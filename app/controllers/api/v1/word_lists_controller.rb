@@ -78,7 +78,7 @@ class Api::V1::WordListsController < ApplicationController
     end
     
     def create_linked_game(new_xml, descr, act, lang, uid, cls)
-      @template = Template.create(:activity_id => act, :language_id => lang, 
+      @template = Template.create(:activity_id => act, :language_id => lang, :xml => "<templatedata></templatedata>",
                                 :description => "", :name => "", :admin => 0, :user_id => uid)
       @game = Game.create(:template_id => @template.id, :xml => new_xml, :description => descr,
                 :audio_ids => "",
