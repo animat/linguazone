@@ -27,10 +27,11 @@ gem 'coffee-script'
 gem 'uglifier'
 gem 'jquery-rails'
 
+gem "rack-timeout"
+
 group :production do
   gem 'therubyracer', '0.9.4'
 	gem "SystemTimer", :require => "system_timer", :platforms => :ruby_18
-	gem "rack-timeout"
 end
 
 group :development, :test do
