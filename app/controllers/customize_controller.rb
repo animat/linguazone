@@ -17,10 +17,15 @@ class CustomizeController < ApplicationController
   end
 
   def edit
-    if params[:cmzr_type] == "game"
-      @embed_vars = "gameid="+params[:id]+"&userid="+String(current_user.id)+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
-    elsif params[:cmzr_type] == "list"
-      @embed_vars = "listid="+params[:id]+"&userid="+String(current_user.id)+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
+    if current_user.nil?
+      flash[:error] = "You need to login before accessing that page"
+      redirect_to login_teachers_path
+    else  
+      if params[:cmzr_type] == "game"
+        @embed_vars = "gameid="+params[:id]+"&userid="+String(current_user.id)+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
+      elsif params[:cmzr_type] == "list"
+        @embed_vars = "listid="+params[:id]+"&userid="+String(current_user.id)+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
+      end
     end
   end
 
