@@ -1,10 +1,10 @@
 <div id="select_course">
-	<%= form_remote_for @registration, :url => {:action => "select_course"} do |f| %>
+	<%= simple_form_for @registration, :url => {:action => "select_course"}, :remote => true do |f| %>
 		<% if @courses.empty? %>
 			<p>No classes have been created for this school yet.</p>
 		<% else %>
 			<% for course in @courses do %>
-				<%= f.radio_button :course_id, String(course.id) %> <%= f.label :course_id, course.name+" taught by "+course.user.display_name %><br />
+				<%= f.radio_button :course_id, String(course.id) %> <%= f.label :course_id, course.name+" taught by "+course.user.display_name, :value => course.id %><br />
 			<% end %>
 			<p><%= f.submit 'Continue registration', :disable_with => "Registering in class..." %></p>
 		<% end %>

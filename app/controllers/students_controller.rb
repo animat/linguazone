@@ -1,7 +1,8 @@
 class StudentsController < ApplicationController
   filter_access_to :index, :register, :search_for_school, :select_school, :enter_code, :auto_complete_for_school
   autocomplete :school, :name
-
+  respond_to :html, :js
+  
   def index
     @registered_courses = CourseRegistration.all(:conditions => ["user_id = ?", current_user.id], :include => :course)
   end
@@ -44,14 +45,6 @@ class StudentsController < ApplicationController
       @school = @similar_schools[0]
       @courses = Course.find_courses_at_school(@school)
       @registration = CourseRegistration.new
-      render :update do |page|
-        page.replace 'select_course', :partial => "select_course"
-      end
-    else
-      render :update do |page|
-        page.replace 'search_for_school', '<div id="search_for_school">Could not locate your school. Sorry!</div>'
-        page.visual_effect :highlight, 'search_for_school'
-      end
     end
   end
 
@@ -59,42 +52,16 @@ class StudentsController < ApplicationController
     @course = Course.find(params[:course_registration][:course_id])
     @registration = CourseRegistration.new(params[:course_registration])
     @registration.user_id = current_user.id
-    if @course.login_required == false
+    unless @course.login_required
       @registration.save
-    end
-    render :update do |page|
-      page.replace 'select_course', '<div id="select_course">'+@course.name+' taught by '+@course.user.display_name+'</div>'
-      page.visual_effect :highlight, 'select_course'
-      if @course.login_required == true
-        page.replace 'enter_code', :partial => "enter_code"
-      else
-        page.replace 'enter_code', '<div id="enter_code"><p>No class code needed! You are all set. '+
-                      (link_to "Visit the "+ @course.name+" class page", :controller => "courses", :action => "show", :id => @course.id) +
-                      ' and get started now.</p></div>'
-      end
     end
   end
 
   def enter_code
     @course = Course.find(params[:course_id])
-    @success = @course.code.downcase == params[:code].downcase
-
-    if @success == true
+    if @course.code.downcase == params[:code].downcase
       @registration = CourseRegistration.new({:course_id => params[:course_id], :user_id => current_user.id})
       @registration.save
-    end
-
-    render :update do |page|
-      if @success == true
-        page.replace 'enter_code', '<div id="enter_code"></div>'
-        page.replace 'confirm_code', '<div id="confirm_code"><p>Great! You are all set. '+
-                      (link_to "Visit the "+ @course.name+" class page", :controller => "courses", :action => "show", :id => @course.id) +
-                      ' and get started now.</p></div>'
-        page.visual_effect :highlight, 'confirm_code'
-      else
-        page.replace 'confirm_code', '<div id="confirm_code"><p>That code was incorrect. Please try again.</p></div>'
-        page.visual_effect :highlight, 'confirm_code'
-      end
     end
   end
 

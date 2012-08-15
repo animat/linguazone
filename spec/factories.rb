@@ -84,7 +84,6 @@ Factory.define :school do |s|
   s.city        "Salem Center"
   s.association :state
   s.zip         "19103"
-  s.pin          999
 end
 
 Factory.define :course do |c|

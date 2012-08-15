@@ -1,6 +1,8 @@
-<div id="enter_code">
-	<%= form_remote_tag :url => {:action => "enter_code"} do %>
-		<p>Please enter the <%= @course.name %> class code: <%= text_field_tag :code %> <%= submit_tag "Register" %></p>
-		<%= hidden_field_tag 'course_id', @course.id %>
-	<% end %>
-</div>
+<%= form_tag url_for(:controller => "students", :action => "enter_code"), :remote => true do %>
+	<p>
+		<label for="code">Please enter the <%= @course.name %> class code:</label> 
+		<%= text_field_tag :code %> 
+		<%= submit_tag "Register" %>
+	</p>
+	<%= hidden_field_tag 'course_id', @course.id %>
+<% end %>

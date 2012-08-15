@@ -1,0 +1,8 @@
+<% if @registration.nil? %>
+	$("#confirm_code").html("<p>That code was incorrect. Please try again.</p>");
+	$("#confirm_code").effect("highlight", {}, 3000);
+<% else %>
+	$("#enter_code").slideUp();
+	$("#confirm_code").html("<p>You are all set! <%= escape_javascript(link_to 'Click here to visit your class page', course_path(@course)) %> and get started.</p>");
+	$("#confirm_code").effect("highlight", {}, 3000);
+<% end %>

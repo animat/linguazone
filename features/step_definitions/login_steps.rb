@@ -30,6 +30,14 @@ Given /^I am logged in as "([^"]*)"$/ do |teacher_name|
   step %Q|I should see "Overview"|
 end
 
+Given /^I am logged in as a student$/ do
+  step %Q|I am on the student login page|
+  step %Q|I fill in "Username or email address:" with "tony@sopranos.com"|
+  step %Q|I fill in "Password:" with "badabing"|
+  step %Q|I press "Login"|
+  step %Q|I should see "Return to the student homepage"|
+end 
+
 Given /^I have logged out$/ do
   visit logout_path
 end
