@@ -45,7 +45,7 @@ $(function() {
 
 <% stylesheet 'post' %>
 
-<% content_for :title do %> LinguaZone - <%= "#{@post.course.name}" %> - Audio Blog - <%= @post.title %> <% end %>
+<% content_for :title do %> LinguaZone - <%= unless @post.course.nil? "#{@post.course.name} - " %> Audio Blog - <%= @post.title %> <% end %>
 
 <div onmouseover="showPostControls();" onmouseout="hidePostControls();">
 	<div id="title" >
