@@ -1,5 +1,5 @@
 <h2>Join the subscription</h2>
-<p>at <%= @school.name %></p>
+<p>at <%= "#{@school.name}" %></p>
 <br />
 <%= form_for @new_teacher, :url => {:controller => "subscription", :action => "join"} do |f| %>
 	<%= f.error_messages %>
