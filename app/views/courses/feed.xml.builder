@@ -1,5 +1,4 @@
 xml.instruct!
-
 xml.rss "version" => "2.0" do
  xml.channel do
 
@@ -21,17 +20,17 @@ xml.rss "version" => "2.0" do
         xml.link        url_for :only_path => false, :controller => 'study', :action => 'practice', :id => swl.word_list.id
         xml.description swl.word_list.description
       end
-    end
+   end
     
-    @showing_games.each do |sg|
+   @showing_games.each do |sg|
        unless sg.game.nil?
          xml.item do
            xml.title      "[Game] Play "+sg.game.activity.name
            xml.link        url_for :only_path => false, :controller => 'play', :action => 'show', :id => sg.game.id
            xml.description sg.game.description
          end
-       end
      end
-
+   end
+   
  end
 end

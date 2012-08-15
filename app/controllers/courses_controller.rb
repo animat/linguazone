@@ -1,6 +1,8 @@
 class CoursesController < ApplicationController
   filter_access_to :show, :attribute_check => true
   before_filter :check_expired
+  
+  respond_to :html, :js, :xml
 
   def index
     @states      = State.national
@@ -52,7 +54,8 @@ class CoursesController < ApplicationController
     
     response.headers["Content-Type"] = "application/xml; charset=utf-8"
     respond_to do |format|
-      format.xml
+      format.html { render "feed.xml" }
+      format.xml { render "feed.xml" }
     end
   end
   
