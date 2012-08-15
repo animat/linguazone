@@ -1,9 +1,8 @@
 class MediaController < ApplicationController
   
   def index
-    @to_dos = Media.all(:conditions => "published = 0", :order => "id DESC", :include => "media_keywords")
-    @assets = Media.all(:conditions => "published = 1", :order => "id DESC", :include => "media_keywords")
-    @assets = @assets.page(params[:page])
+    @to_dos = Media.where(:published => false).order("id DESC").includes(:media_keywords)
+    @assets = Media.where(:published => true).order("id DESC").includes(:media_keywords).page(params[:page])
     @user_session = UserSession.new
   end
   
