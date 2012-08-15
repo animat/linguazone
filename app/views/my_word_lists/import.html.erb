@@ -1,0 +1,6 @@
+<%= simple_form_for @word_list, :url => confirm_spreadsheet_import_my_word_lists_path do |f| %>
+	<%= f.input :description, :as => :string %>
+	<%= f.collection_select 'language_id', Language.all(:order => "name"), :id, :name, {:include_blank => "Select a language...", :selected => current_user.default_language_id} %>
+	<%= f.label "Upload a spreadsheet" %> <%= f.file_field :spreadsheet %>
+	<%= f.submit "Go!" %>
+<% end %>

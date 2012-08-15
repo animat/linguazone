@@ -37,6 +37,66 @@ class MyWordListsController < CourseItemsController
     end
   end
   
+  def import
+    @word_list = WordList.new
+  end
+  
+  def confirm_spreadsheet_import
+    tmp = params[:word_list][:spreadsheet].tempfile
+    #uploaded_io = params[:word_list][:spreadsheet]
+    #file = File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'w') do |f|
+    #  f.write(uploaded_io.read)
+    #end
+    book = Spreadsheet.open tmp
+    sheet1 = book.worksheet 0
+    @gamedata = ["<gamedata>"]
+    @errors = Hash.new
+    @counter = 0
+    
+    sheet1.each 1 do |row|
+      @counter+=1
+      @english = row[0]
+      @lang = row[1]
+      
+      node = '<node><question name="english" type="text" content="'+@english+'" /><response name="lang" type="text" content="'+@lang+'" /></node>'
+      
+      if true # TODO: Is there a way to validate this string?
+        @gamedata << node
+      else
+        @errors["#{@counter+1}"] = p.errors
+      end
+    end
+    @gamedata << "</gamedata>"
+    
+    if @errors.empty?
+      @feedback = "Successful!"
+      doc = REXML::Document.new(@gamedata.to_s)
+      @nodes = REXML::XPath.match(doc, "//node")
+    else
+      # render the import page with an error
+      @feedback = "Failed."
+    end
+    
+    @word_list = WordList.new(:xml => @gamedata, :language_id => params[:word_list][:language_id], 
+                                :description => params[:word_list][:description])
+    
+  end
+  
+  def create_by_spreadsheet
+    @word_list = WordList.new(params[:word_list])
+    @word_list.created_at = Time.now
+    @word_list.updated_at = Time.now
+    @word_list.created_by_id = current_user.id
+    @word_list.updated_by_id = current_user.id
+    if @word_list.save
+      flash[:success] = "Your word list has been imported and saved. Please make any changes then add it to your class pages."
+      redirect_to :controller => "customize", :action => "edit", :cmzr_type => "list", :id => @word_list.id
+    else
+      flash[:error] = "Oops! There was a problem importing your word list."
+      redirect_to import_my_word_lists_path
+    end
+  end
+  
   def joining_table
     AvailableWordList
   end
