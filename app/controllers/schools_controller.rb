@@ -20,12 +20,17 @@ class SchoolsController < ApplicationController
   end
 
   def search
-    @schools = School.all(:conditions => ['LOWER(name) LIKE ?', "%#{params[:school][:name].downcase}%"])
-    if @schools.length == 1
-      redirect_to @schools
-    else
+    if params[:school].nil?
       @states      = State.national
       @intl_states = State.international
+    else
+      @schools = School.all(:conditions => ['LOWER(name) LIKE ?', "%#{params[:school][:name].downcase}%"])
+      if @schools.length == 1
+        redirect_to @schools
+      else
+        @states      = State.national
+        @intl_states = State.international
+      end
     end
   end
 
