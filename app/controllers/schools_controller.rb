@@ -23,6 +23,7 @@ class SchoolsController < ApplicationController
     if params[:school].nil?
       @states      = State.national
       @intl_states = State.international
+      @schools = []
     else
       @schools = School.all(:conditions => ['LOWER(name) LIKE ?', "%#{params[:school][:name].downcase}%"])
       if @schools.length == 1
