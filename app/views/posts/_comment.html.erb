@@ -7,7 +7,7 @@
 		<% else%>
 			<div>
 				<div class="audio_player swf_window">
-					<%= swf_tag "/swfs/audio-widget.swf", {:size => "215x138", :flashvars => "audio_id="+String(comment.audio_id), , :wmode => "transparent", :quality => "high"} %>
+					<%= swf_tag "/swfs/audio-widget.swf", {:size => "215x138", :flashvars => "audio_id="+String(comment.audio_id), :wmode => "transparent", :quality => "high"} %>
 				</div>
 				<p><%= h(comment.content) %></p>
 				<br class="clearFloat" />
