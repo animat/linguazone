@@ -1,5 +1,5 @@
 <h1>Edit your LinguaZone <%= format_cmzr_type(params[:cmzr_type]) %></h1>
 <br />
 <div align="center swf_window">
-	<%= swf_tag '/swfs/customizer/main.lzx.swf', { :id => "customizer", :height => "600", :width => "700", :flashvars => @embed_vars, :parameters => {:path => "../../../"}, :wmode => "transparent", :quality => "high" } %>
+	<%= swf_tag '/swfs/customizer/main.lzx.swf', { :id => "customizer", :wmode => "transparent", :quality => "high", :height => "600", :width => "700", :flashvars => @embed_vars, :parameters => {:path => "../../../"} } %>
 </div>
