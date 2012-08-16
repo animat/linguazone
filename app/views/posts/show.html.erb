@@ -60,8 +60,8 @@ $(function() {
 			<p><%= @post.content %></p>
 		<% else %>
 			<div style="margin-top: 10px">
-				<div style="float: left; margin: 0px 15px;">
-					<%= swf_tag "/swfs/audio-widget.swf", {:size => "215x138", :flashvars => "audio_id="+String(@post.audio_id), :wmode => 'transparent'} %>
+				<div style="float: left; margin: 0px 15px;" class="swf_window">
+					<%= swf_tag "/swfs/audio-widget.swf", {:size => "215x138", :flashvars => "audio_id="+String(@post.audio_id), :wmode => "transparent", :quality => "high"} %>
 				</div>
 				<p><%= @post.content %></p>
 				<br class="clearFloat" />

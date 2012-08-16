@@ -41,8 +41,8 @@ function edit_password() {
   <br class="clearFloat" />
 </div>
 <br />
-<div id="player" style="margin: 0px auto; display: none;">
-  <%= swf_tag 'http://www.youtube.com/v/16OTJ6zfAIA&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6', :size => "600x400", :parameters => {:size => "600x400", :allowFullScreen => true, :scale => "exactfit", :allowScriptAccess => "always", :quality => "high", :align => "middle"} %>
+<div id="player" style="margin: 0px auto; display: none;" class="swf_window">
+  <%= swf_tag 'http://www.youtube.com/v/16OTJ6zfAIA&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6', :size => "600x400", :parameters => {:size => "600x400", :allowFullScreen => true, :scale => "exactfit", :allowScriptAccess => "always", :align => "middle", :wmode => "transparent", :quality => "high"} %>
   <br />
 </div>
 <div>

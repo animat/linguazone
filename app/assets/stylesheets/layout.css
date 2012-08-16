@@ -154,6 +154,9 @@ div.big_button:hover span {
 div::-moz-focus-inner {
   border: none;
 }
+.swf_window {
+	z-index: 1;
+}
 
 /*  ------------------- *
  *  General page layout *
@@ -219,15 +222,16 @@ div::-moz-focus-inner {
     position: absolute;
     margin: 0;
     padding: 0;
+	z-index: 2;
 }
 #nav li:hover li {
-    float: none;
+  float: none;
   text-align: left;
   font-size: .8em;
 }
 #nav li:hover li a {
   padding: 7px 6px;
-    color: #FF6600;
+  color: #FF6600;
   background-color: #FFFFFF;
   text-shadow: none;
   text-decoration: none;
