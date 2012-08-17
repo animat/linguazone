@@ -12,7 +12,7 @@
 					<%= f.text_area :content %>
 				</div>
 				<div class="floatRight swf_window" style="margin: 0px 5px;">
-					<%= swf_tag "/swfs/audio-widget.swf", {:size => "215x138", :wmode => "transparent", :quality => "high"} %>
+					<%= swf_tag "/swfs/audio-widget.swf", {:size => "215x138", :parameters => {:wmode => "transparent", :quality => "high"}} %>
 				</div>
 				<br class="clearFloat" />
 			</div>

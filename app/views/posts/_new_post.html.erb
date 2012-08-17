@@ -14,7 +14,7 @@
 		</p>
 		<p class="swf_window">
 			<%= f.label :audio_id, "Record audio (optional): "%><br />
-			<%= swf_tag "/swfs/audio-widget.swf", {:size => "215x138", :wmode => "transparent", :quality => "high"} %>
+			<%= swf_tag "/swfs/audio-widget.swf", {:size => "215x138", :parameters => {:wmode => "transparent", :quality => "high"}} %>
 		</p>
 		<p>
 			<%= f.check_box "shared" %> <%= f.label "shared", "Students can see each others' responses" %>
