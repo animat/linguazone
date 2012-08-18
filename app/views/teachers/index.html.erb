@@ -13,13 +13,13 @@ function showTutorial(type) {
     var descrip = '<h2>Now watching: Creating an audio blog on LinguaZone.com</h2><p>Create posts with text, audio, or both, and give your students a chance to comment on your posts with audio, too. A whole new way to interact outside of the classroom.</p>';
   }
 
-  $("player").innerHTML = swf;
-  $("player").style.display = "block";
+  $("#player").innerHTML = swf;
+  $("#player").show();
 }
 
 function edit_password() {
-  $("password_display").style.display = "none";
-  $("password_field").style.display = "block";
+	$("#password_display").hide();
+	$("#password_field").show();
 }
 
 </script>
