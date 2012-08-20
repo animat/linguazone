@@ -1,0 +1,21 @@
+<% if authentications %>
+  <% unless authentications.empty? %>
+    <p><strong>You can sign in to this account using:</strong></p>
+    <div class="authentications">
+      <% for authentication in authentications %>
+        <div class="authentication">
+					<%= link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove" %>
+          <%= image_tag "shared-buttons/#{authentication.provider}_32.png", :size => "32x32" %>
+          <div class="provider"><%= authentication.provider.titleize %></div>
+          <div class="uid"><%= authentication.uid %></div>
+        </div>
+      <% end %>
+      <div class="clear"></div>
+    </div>
+  <% end %>
+  <p>Add another service to sign in with:</p>
+<% else %>
+  <p>Sign in through one of these services:</p>
+<% end %>
+
+<%= link_to "Twitter", "/auth/twitter" %> . . . <%= link_to "Google", "/auth/google" %>

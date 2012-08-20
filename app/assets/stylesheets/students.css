@@ -83,24 +83,49 @@ fieldset.login {
 	list-style-type: none;
 }
 #list_classes ul li {
-	border-top:1px solid #194BA0; 
-	border-bottom: 1px solid #194BA0;
+	/*border-top:1px solid #194BA0; 
+	border-bottom: 1px solid #194BA0;*/
+	width: 600px;
+	border: 1px solid #E65C00;
+	border-radius: 10px;
+	margin: 15px;
+}
+#list_classes ul li span.course_name {
+	font-size: 1.5em;
+	text-decoration: underline;
+	color: #fff;
+}
+#list_classes ul li p.detail {
+	font-size: .9em;
+	color: #333;
 }
 #list_classes ul li a {
+	color: #fff;
+	background-color: #ff6600;
 	display: block;
+	border-radius: 10px;
 	padding: 10px;
 	text-decoration: none;
 	text-align: center;
 }
-#list_classes ul li a:hover {
-	color: #FFF;
-	background: #FF6600;
-	text-shadow: 1px 1px 1px #993300;
+#list_classes ul li a:hover span.course_name {
+	color: #000;
 }
-#list_classes ul li.register a:hover {
-	color: #FFF;
-	background: #4DBD33;
-	text-shadow: 1px 1px 1px #324F17;
+
+a.register_additional_class {
+	float: right;
+	color: green;
+}
+
+div.authentication {
+	width: 300px;
+	border: 1px solid #333;
+	background-color: #ccc;
+	padding: 5px;
+}
+div.authentication a.remove {
+	float: right;
+	background-color: #fff;
 }
 
 /* -----------

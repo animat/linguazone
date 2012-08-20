@@ -6,7 +6,7 @@ Feature: New student creates account
 	    | tony@sopranos.com | badabing  |
 		Given a school exists with a name of "LZAcademy"
 		And a teacher has a course at that school named "Latin 2"
-	@wip
+	
 	Scenario: Successfully create a new student account
 		When I am on the new student page
 		And I fill in "Your first name:" with "Carmella"
@@ -18,7 +18,7 @@ Feature: New student creates account
 		
 		And I should see "Overview"
 		And I should see "Register in a new class"
-	@wip
+	
 	Scenario: Fail to create a new student account with duplicate username
 		When I am on the new student page
 		And I fill in "Your first name:" with "Tony"
@@ -36,7 +36,7 @@ Feature: New student creates account
 		And I press "Create account"
 		Then I should see "Password can't be blank"
 	
-	@wip @javascript
+	@javascript
 	Scenario: Create a new student with a username instead of an email address
 		When I am on the new student page
 		And I fill in "Your first name:" with "Luca"
@@ -63,9 +63,3 @@ Feature: New student creates account
 		
 		And I fill in "Please enter the Latin 2 class code:" with "banana"
 		#And I press "Register"
-		
-		
-	# TODO @Len [later]: Any tips on how to use OAuth so that I can have users sign up with their Google Accounts?
-	#				Also, sometimes students report having bizarre login problems. No idea how to troubleshoot these issues.
-	#				The site used to use one service, then switched to Authlogic. Feeling like I'm in an in between state. Not sure how to move forward.
-	#		Related: could you help me consolidate duplicate student accounts?

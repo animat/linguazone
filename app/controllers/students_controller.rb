@@ -68,6 +68,10 @@ class StudentsController < ApplicationController
   def new
     @user = User.new
 
+    if session['omniauth']
+      @user.apply_omniauth(session['omniauth'])
+    end
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
@@ -75,7 +79,13 @@ class StudentsController < ApplicationController
   end
 
   def create
+    @next_id = User.last.id.to_i + 1
     @user = User.new(params[:user])
+    
+    if session['omniauth']
+      @user.apply_omniauth(session['omniauth'])
+    end
+    
     @user.first_name.titleize
     @user.last_name.titleize
     @user.role = "student"
@@ -84,9 +94,13 @@ class StudentsController < ApplicationController
     @user.receive_newsletter = 0
     @user.default_language_id = 0
     
-    @user.apply_omniauth(session['omniauth']) if session['omniauth']
-    if @user.authentications.any? and @user.password.blank?
-      @user.password = (0..16).to_a.map{|a| rand(16).to_s(16)}.join
+    if @user.authentications.any?
+      if @user.password.blank?
+        @user.password = (0..16).to_a.map{|a| rand(16).to_s(16)}.join
+      end
+      if @user.email.blank?
+        @user.email = "lz_student_#{@next_id}@linguazone.com"
+      end
     end
     
     respond_to do |format|

@@ -1,10 +1,20 @@
 <% stylesheet "students" %>
 <% stylesheet "teachers" %>
 
+<% content_for :head do %>
+<script type="text/javascript">
+$(function() {
+	
+})
+</script>
+<% end %>
+
 <div>
 	<div class="floatLeft" style="width: 80%">
 		<h1>Overview</h1>
-		<p>Welcome, <%= "#{current_user.first_name}" %>! Jump to your class page to access your LinguaZone games, word lists, and audio blogs.</p>
+		<p>Welcome, <%= "#{current_user.first_name}" %>!
+			<br />
+			Jump to your class page to access your LinguaZone games, word lists, and audio blogs.</p>
 	</div>
 	<div class="floatRight">
 		<%= link_to(logout_path, :class => "button") do %>
@@ -19,7 +29,12 @@
 		<ul>
 		<% for reg_course in @registered_courses do %>
 			<% unless reg_course.course.nil? %>
-				<li><%= link_to reg_course.course.name, :controller => "courses", :action => "show", :id => reg_course.course.id %></li>
+				<li>
+					<%= link_to course_path(reg_course.course) do %>
+						<p>Go to <span class="course_name"><%= "#{reg_course.course.name.titleize}" %></span> class page &rarr;</p>
+						<p class="detail"><%= "Taught by #{reg_course.course.user.display_name} at #{reg_course.course.user.school.name}" %></p>
+					<% end %>
+				</li>
 			<% end %>
 		<% end %>
 		</ul>
@@ -27,10 +42,22 @@
 <% end %>
 
 <br />
-<div align="center">
-	<%= link_to :action => "register" do %>
-		<div class="big_button" style="width: 300px">
-			<span>Register in a new class</span>
-		</div>
-	<% end %>
+
+<% if @registered_courses.empty? %>
+	<div align="center">
+		<%= link_to :action => "register" do %>
+			<div class="big_button" style="width: 300px">
+				<span>Register in a new class</span>
+			</div>
+		<% end %>
+	</div>
+<% else %>
+	<p><%= link_to "or click here to register in a new class", register_students_path, :class => "register_additional_class" %></p>
+<% end %>
+
+<h2>Account settings</h2>
+<div>
+	<p>Email: <em><%= "#{current_user.email}" %></em> <%= link_to "[edit]", "#" %></p>
+	<p>Password: <em>********</em> <%= link_to "[edit]", "#" %></p>
 </div>
+<%= render :partial => "authentications/list_authentications", :locals => {:authentications => current_user.authentications} %>

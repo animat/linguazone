@@ -13,7 +13,7 @@ $(function() {
 
 <h1>Create your student account</h1>
 <% if session['omniauth'] %>
-	<p>Enter some basic information here so that you can login with your <%= "#{session['omniauth']['provider'].titleize} "%> account or <%= link_to "or cancel", cancel_authentications_path, :method => :post %>.</p>
+	<p>Enter some basic information here so that you can login with your <%= "#{session['omniauth']['provider'].titleize} "%> account <%= link_to "or cancel", cancel_authentications_path, :method => :post %>.</p>
 <% end %>
 <br />
 <%= form_for(@user, :url => "create") do |f| %>
@@ -35,12 +35,12 @@ $(function() {
     </div>
     <br />
     <div>
-      <div class="floatLeft">
-   	    	<%= f.label :email, "Your email address:", :id => "email_address_label" %><br />
-          <%= f.text_field :email %><br />
-        	<span class="input_hint" id="email_hint">(don't have an email address? <%= link_to "click here", "#", :id => "no_email_address" %>)</span>
-      </div>
 			<% unless session['omniauth'] %>
+      	<div class="floatLeft">
+	   	    	<%= f.label :email, "Your email address:", :id => "email_address_label" %><br />
+	          <%= f.text_field :email %><br />
+	        	<span class="input_hint" id="email_hint">(don't have an email address? <%= link_to "click here", "#", :id => "no_email_address" %>)</span>
+	      </div>
       	<div style="float: right; margin-right: 80px">
 	        <%= f.label :password, "Create a LinguaZone password:" %><br />
 	          <%= f.password_field :password %><br />
