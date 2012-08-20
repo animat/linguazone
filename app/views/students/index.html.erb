@@ -4,7 +4,7 @@
 <div>
 	<div class="floatLeft" style="width: 80%">
 		<h1>Overview</h1>
-		<p>Jump to your class page from here for your LinguaZone games, word lists, and audio blogs.</p>
+		<p>Welcome, <%= "#{current_user.first_name}" %>! Jump to your class page to access your LinguaZone games, word lists, and audio blogs.</p>
 	</div>
 	<div class="floatRight">
 		<%= link_to(logout_path, :class => "button") do %>

@@ -84,12 +84,19 @@ class StudentsController < ApplicationController
     @user.receive_newsletter = 0
     @user.default_language_id = 0
     
+    @user.apply_omniauth(session['omniauth']) if session['omniauth']
+    if @user.authentications.any? and @user.password.blank?
+      @user.password = (0..16).to_a.map{|a| rand(16).to_s(16)}.join
+    end
+    
     respond_to do |format|
       if User.is_email_in_use(@user.email) 
         flash[:error] = "That username or email address is already in the database."
         format.html { render :action => "new" }
       else
         if @user.save
+          session['omniauth'] = nil
+          session.delete :omniauth
           UserSession.create @user
           format.html { redirect_to :controller => "students", :action => "index" }
         else

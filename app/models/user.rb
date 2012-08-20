@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :audio_clips
+  has_many :authentications
   belongs_to :subscription
   before_save :set_display_name
 
@@ -52,7 +53,14 @@ class User < ActiveRecord::Base
       false
     end
   end
-
+  
+  def apply_omniauth(omniauth)
+    #unless omniauth['user_info']['email'].blank?
+    #  self.email = omniauth['user_info']['email'] if email.blank?
+    #end
+    authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+  end
+  
   def self.is_valid_email_domain(addr)
     if addr.nil?
       false

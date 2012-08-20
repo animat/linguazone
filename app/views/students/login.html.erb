@@ -32,6 +32,8 @@
           </div>
         <% end %>
       </fieldset>
+			<p>Or login via one of these services...</p>
+			<p><%= link_to "Twitter", "/auth/twitter" %> or <%= link_to "Google", "/auth/google" %></p>
     </div>
 
     <p class="helper_links"><%= link_to "Create a username & password", new_student_path %></p>

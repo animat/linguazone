@@ -1,4 +1,6 @@
 Linguazone::Application.routes.draw do
+  resources :authentications
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -17,6 +19,13 @@ Linguazone::Application.routes.draw do
       get :login
     end
   end
+  
+  resources :authentications, :only => [:index, :create, :destroy] do
+    collection do 
+      post :cancel
+    end
+  end
+  match '/auth/:provider/callback' => 'authentications#create'
 
   resources :schools do
     collection do
