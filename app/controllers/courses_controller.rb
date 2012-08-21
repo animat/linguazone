@@ -32,11 +32,11 @@ class CoursesController < ApplicationController
       # TODO: Use cancan for authorization
       unless is_student_for(@course) or is_teacher_for(@course)
         if current_user
-          flash[:error] = "Please register in this class to see the class page."
+          flash[:error] = "Please register to see the <strong>#{@course.name}</strong> class page.".html_safe
           session[:attempting_to_access_course_id] = @course.id
           redirect_to confirm_course_enter_code_students_path
         else
-          flash[:error] = "Please login before accessing that class page."
+          flash[:error] = "Please login before accessing the <strong>#{@course.name}</strong> class page.".html_safe
           session[:attempting_to_access_course_id] = @course.id
           redirect_to login_students_url
         end
