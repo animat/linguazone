@@ -15,10 +15,14 @@ Linguazone::Application.routes.draw do
   resources :students do
     collection do
       get :select_school
+      get :confirm_course_enter_code
       get :register
+      get :find_class
       get :login
     end
   end
+  
+  resources :course_registrations, :only => [:destroy]
   
   resources :authentications, :only => [:index, :create, :destroy] do
     collection do 

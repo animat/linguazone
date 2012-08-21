@@ -34,6 +34,7 @@ $(function() {
 						<p>Go to <span class="course_name"><%= "#{reg_course.course.name.titleize}" %></span> class page &rarr;</p>
 						<p class="detail"><%= "Taught by #{reg_course.course.user.display_name} at #{reg_course.course.user.school.name}" %></p>
 					<% end %>
+					<%= link_to "unenroll", reg_course, :method => :delete, :confirm => "Are you sure you want to unenroll from this class?" %>
 				</li>
 			<% end %>
 		<% end %>

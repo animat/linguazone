@@ -7,7 +7,7 @@ class SchoolsController < ApplicationController
   end
   
   def index
-    redirect_to :controller => "students", :action => "login"
+    redirect_to find_class_students_path
   end
 
   def show

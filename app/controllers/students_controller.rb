@@ -29,10 +29,13 @@ class StudentsController < ApplicationController
     end
   end
 
-  def login
-    @user_session = UserSession.new
+  def find_class
     @states =      State.national
     @intl_states = State.international
+  end
+  
+  def login
+    @user_session = UserSession.new
   end
 
   def register
@@ -53,6 +56,10 @@ class StudentsController < ApplicationController
     @registration = CourseRegistration.new(params[:course_registration])
     @registration.user_id = current_user.id
     unless @course.login_required
+      if session[:attempting_to_access_course_id]
+        session[:attempting_to_access_course_id] = nil
+        session.delete :attempting_to_access_course_id
+      end
       @registration.save
     end
   end
@@ -62,6 +69,18 @@ class StudentsController < ApplicationController
     if @course.code.downcase == params[:code].downcase
       @registration = CourseRegistration.new({:course_id => params[:course_id], :user_id => current_user.id})
       @registration.save
+      if session[:attempting_to_access_course_id]
+        session[:attempting_to_access_course_id] = nil
+        session.delete :attempting_to_access_course_id
+      end
+    end
+  end
+  
+  def confirm_course_enter_code
+    if session[:attempting_to_access_course_id]
+      @course = Course.find(session[:attempting_to_access_course_id])
+    else
+      redirect_to students_path
     end
   end
 
@@ -112,7 +131,11 @@ class StudentsController < ApplicationController
           session['omniauth'] = nil
           session.delete :omniauth
           UserSession.create @user
-          format.html { redirect_to :controller => "students", :action => "index" }
+          if session[:attempting_to_access_course_id]
+            format.html { redirect_to confirm_course_enter_code_students_path }
+          else
+            format.html {redirect_to students_path }
+          end
         else
           flash[:error] = "There was an error creating your account."
           format.html { render :action => "new" }
