@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     # =>        Are there other places that database connections can be minimized? How to approach that?
     def get_teacher_courses
       unless current_user.nil?
-        @courses = Course.all(:conditions => ["user_id = ?", current_user.id]).order("name asc") if current_user.role == "teacher"
+        @courses = Course.all(:conditions => ["user_id = ?", current_user.id], :order => "name asc") if current_user.role == "teacher"
       end
     end
 
