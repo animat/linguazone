@@ -26,7 +26,7 @@ Feature: New student creates account
 		And I fill in "Your email address:" with "tony@sopranos.com"
 		And I fill in "Create a LinguaZone password:" with "new-lz-password"
 		And I press "Create account"
-		Then I should see "That username or email address is already in the database"
+		Then I should see "That username or email address (tony@sopranos.com) is already in the database"
 	
 	Scenario: Fail to create a new student account when omitting a password
 		When I am on the new student page
