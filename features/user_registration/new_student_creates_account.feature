@@ -28,8 +28,7 @@ Feature: New student creates account
 		And I press "Create account"
 		Then I should see "That username or email address is already in the database"
 	
-	#TODO: Could not complete this test...
-	@wip @javascript
+	@javascript
 	Scenario: Register in a password protected class page
 		Given I am logged in as a student
 		When I follow "Register in a new class"

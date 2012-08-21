@@ -59,13 +59,18 @@ fieldset.login {
 	background-color: #FF6600;
 	color: #FFF;
 }
-#list_schools ul li a span {
+#list_schools ul li span {
 	padding-left: 3px;
 	color: #666;
 	font-size: .8em;
 }
 #list_schools ul li a:hover span {
 	display: none;
+}
+#list_schools li.sortable_courses {
+	cursor: move;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 

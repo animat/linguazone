@@ -197,3 +197,15 @@ fieldset#login {
 a.purchase {
 	color: #0D5213;
 }
+p.extra_config {
+	margin-top: 50px;
+}
+a.reorder_classes {
+	font-size: .9em;
+	color: #333;
+	text-decoration: none;
+}
+a.reorder_classes:hover {
+	color: #666;
+	text-decoration: underline;
+}

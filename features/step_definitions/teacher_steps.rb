@@ -7,6 +7,15 @@ Given /^a teacher has a course at that school named "(.*?)"$/ do |course_name|
   @c.save
 end
 
+Given /^"(.*?)" has a course at "(.*?)" named "(.*?)"$/ do |teacher_name, school_name, course_name|
+  @school = School.find_by_name(school_name)
+  @teacher = User.find_by_first_name(teacher_name)
+  @teacher.school_id = @school.id
+  @teacher.save
+  @c = Course.create(:name => course_name, :user_id => @teacher.id)
+  @c.save
+end
+
 Given /^([^"]*) (has|have) (\d+) (games|posts|word lists|word_lists|courses)$/ do |teacher_name, verb, num, things|
   things = things.sub(" ", "_")
   if teacher_name == "I"

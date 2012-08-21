@@ -12,11 +12,21 @@ class SchoolsController < ApplicationController
 
   def show
     @school = School.find(params[:id])
-    @courses = Course.find_courses_at_school(@school)
+    @list_courses = Course.find_courses_at_school(@school)
+    @sorting = (params[:sorting] == "true" and current_user.school.id == @school.id)
     respond_to do |format|
       format.html # show.html.erb
       format.xml { render :xml => @school }
     end
+  end
+  
+  def update_course_order
+    params[:course].each_index do |i|
+      c = Course.find(params[:course][i])
+      c.ordering = i + 1
+      c.save
+    end
+    render :nothing => true
   end
 
   def search

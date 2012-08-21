@@ -36,5 +36,6 @@
 				<br class="clearFloat" />
 			</div>
 		<% end %>
+		<p class="extra_config"><%= link_to "Click here to reorganize the list of classes at your school.", {:controller => "schools", :action => "show", :id => current_user.school.id, :sorting => "true"}, :class => "reorder_classes" %></p>
 	<% end %>
 </div>

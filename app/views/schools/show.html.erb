@@ -1,5 +1,33 @@
 <% stylesheet "students" %>
 
+<% content_for :head do %>
+<% if @sorting %>
+<script type="text/javascript">
+$(function() {
+	$("#list_schools").sortable({
+		axis: 'y',
+		placeholder: 'ui-state-highlight',
+		cursor: 'move',
+		items: 'li',
+		opacity: 0.8,
+		scroll: true,
+		update: function(){
+		  $.ajax({
+		      type: 'post',
+		      data: $('#list_schools').sortable('serialize'),
+		      dataType: 'script',
+		      complete: function(request){
+		          $('#save_and_return_link').effect('highlight', {}, 3000);
+		        },
+		      url: 'update_course_order'})
+		  }
+	});
+	$("#list_schools").disableSelection();
+})
+</script>
+<% end %>
+<% end %>
+
 <h1>Classes at <%= @school.name %></h1>
 	
 <% if @school.address.nil? or @school.address == "" %>
@@ -8,17 +36,25 @@
 	<p><%= @school.address + ", " + @school.city %>, <%= @school.state.name %></p>
 <% end %>
 
+<% if @sorting %>
+	<br />
+	<p align="center">Drag and drop the classes in order, then <%= link_to "save and return to my classes", my_courses_path, :id => "save_and_return_link" %></p>
+<% end %>
+
 <br />
 
-<% unless @courses.nil? or @courses.empty? %>
+<% unless @list_courses.nil? or @list_courses.empty? %>
 	<div id="list_schools">
 		<ul>
-			<% for course in @courses do %>
-				<li>
-					<%= link_to "#{course.name} <span>taught by #{course.user.display_name}</span>".html_safe, 
-							:controller => "courses", :action => "show", :id => course.id %>
-				</li>
-			
+			<% for course in @list_courses do %>
+				<% if @sorting %>
+					<li id="course_<%= course.id %>" class="sortable_courses"><%= "#{course.name} <span>taught by #{course.user.display_name}</span>".html_safe %></li>
+				<% else %>
+					<li>
+						<%= link_to "#{course.name} <span>taught by #{course.user.display_name}</span>".html_safe, 
+								:controller => "courses", :action => "show", :id => course.id %>
+					</li>
+				<% end %>
 			<% end %>
 		</ul>
 	</div>

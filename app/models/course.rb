@@ -12,7 +12,7 @@ class Course < ActiveRecord::Base
   
   def self.find_courses_at_school(school)
     teacher_ids = User.all(:conditions => ["school_id = ? and role = ?", school.id, "teacher"]).map { |t| t.id }
-    courses = Course.all(:conditions => {:user_id => teacher_ids}, :order => "name")
+    courses = Course.all(:conditions => {:user_id => teacher_ids}, :order => "ordering asc, name asc")
   end
     
 end
