@@ -93,6 +93,10 @@ class User < ActiveRecord::Base
     @results = User.all(:conditions => ["email = ?", addr])
     @results.length > 0
   end
+  
+  def has_generic_lz_email?
+    (self.email =~ /lz_student_(\d+)@linguazone.com/) != nil
+  end
 
   ROLES = %w[admin teacher student]
 

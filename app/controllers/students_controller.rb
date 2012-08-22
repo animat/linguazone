@@ -1,10 +1,15 @@
 class StudentsController < ApplicationController
-  filter_access_to :index, :register, :search_for_school, :select_school, :enter_code, :auto_complete_for_school
+  filter_access_to :register, :search_for_school, :select_school, :enter_code, :auto_complete_for_school
   autocomplete :school, :name
   respond_to :html, :js
   
   def index
-    @registered_courses = CourseRegistration.all(:conditions => ["user_id = ?", current_user.id], :include => :course)
+    if current_user
+      @user = current_user
+      @registered_courses = CourseRegistration.all(:conditions => ["user_id = ?", current_user.id], :include => :course)
+    else
+      redirect_to find_class_students_path
+    end
   end
 
   def show
@@ -143,7 +148,31 @@ class StudentsController < ApplicationController
       end
     end
   end
-
+  
+  def update
+    @user = current_user
+    # Pseudo-validations and tweaks for email address changes
+    if params[:user][:email]
+      if User.is_email_in_use(params[:user][:email])
+        flash[:error] = "Sorry! That email address is already in use by another account."
+        redirect_to students_path and return
+      elsif params[:user][:email].blank?
+        @user.email = "lz_student_#{@user.id}@linguazone.com"
+        @user.save
+        flash[:success] = "Saved your settings."
+        redirect_to students_path and return
+      end
+    end
+    
+    if @user.update_attributes!(params[:user])
+      flash[:success] = "Saved your settings."
+    else
+      flash[:error] = "Could not save your settings."
+      flash[:notice] = @user.errors
+    end
+    redirect_to students_path
+  end
+  
   def destroy
     @user = User.find(params[:id])
     #@cr = CourseRegistration.all(:)

@@ -32,7 +32,7 @@ end
 
 Given /^I am logged in as a student$/ do
   step %Q|I am on the student login page|
-  step %Q|I fill in "Username or email address:" with "tony@sopranos.com"|
+  step %Q|I fill in "Your email address (or LinguaZone username):" with "tony@sopranos.com"|
   step %Q|I fill in "Password:" with "badabing"|
   step %Q|I press "Login"|
   step %Q|I should see "Return to the student homepage"|

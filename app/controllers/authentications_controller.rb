@@ -16,7 +16,7 @@ class AuthenticationsController < ApplicationController
     elsif current_user
       # The user is currently logged in and is creating a new authentication. Save this authentication to the database.
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
-      flash[:notice] = "Authentication successful."
+      flash[:success] = "Authentication successful."
       redirect_to students_path
     else
       # This is a new authentication from an anonymous user. Prompt user to make a new student account.
@@ -36,8 +36,12 @@ class AuthenticationsController < ApplicationController
   
   def destroy
     @authentication = current_user.authentications.find(params[:id])
-    @authentication.destroy
-    flash[:notice] = "Successfully destroyed authentication."
+    if current_user.authentications.length > 1 or !current_user.has_generic_lz_email?
+      @authentication.destroy
+      flash[:notice] = "Successfully destroyed authentication."
+    else
+      flash[:error] = "Sorry! We cannot delete that authentication. You need at least one way to login to LinguaZone."
+    end
     redirect_to students_path
   end
 end

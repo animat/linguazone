@@ -1,33 +1,9 @@
 <% stylesheet "students" %>
 
 <div>
-  <div style="width: 46%; float: right;">
-    <h1>Find your class page</h1>
-    <p>jump to your class page without creating a username</p>
-    <div id="search_schools">
-      <fieldset class="login">
-        <%= simple_form_for :school, :url => search_schools_path do |f| %>
-          <div class="loginLabel">
-            <%= f.label :name, "Your school's name:" %>
-          </div>
-          <div class="loginField">
-            <%= f.autocomplete_field :name, autocomplete_name_schools_path %>
-          </div>
-          <br />
-          <div align="center">
-            <%= f.submit "Find your class" %>
-          </div>
-        <% end %>
-      </fieldset>
-    </div>
-  </div>
-</div>
-
-<br class="clearFloat" />
-
-<hr />
-
-<h1>Browse for your class page</h1>
-<div id="list_states">
-  <%= render :partial => "schools/browse_for_school" %>
+  <h1>Find your class page</h1>
+	<p>To get started using LinguaZone.com, you first need to find your class page. Browse or search for your school below.</p>
+  <div id="list_states">
+	  <%= render :partial => "schools/browse_for_school" %>
+	</div>
 </div>

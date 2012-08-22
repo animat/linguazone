@@ -77,7 +77,7 @@ class TeachersController < ApplicationController
     @user = current_user
 
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Saved your preferences."
+      flash[:success] = "Saved your preferences."
       redirect_to :controller => "teachers", :action => "index"
     else
       @news_items = News.all(:limit => 4, :order => "created_at DESC")

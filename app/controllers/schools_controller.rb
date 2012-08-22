@@ -25,12 +25,15 @@ class SchoolsController < ApplicationController
       @intl_states = State.international
       @schools = []
     else
-      @schools = School.all(:conditions => ['LOWER(name) LIKE ?', "%#{params[:school][:name].downcase}%"])
+      @schools = School.all(:conditions => ['LOWER(name) LIKE ?', "%#{params[:school][:name].downcase}%"], :order => "name asc")
       if @schools.length == 1
         redirect_to @schools
       else
         @states      = State.national
         @intl_states = State.international
+        if @schools.empty?
+          flash[:notice] = "Sorry! We couldn't find any schools with that name. Use the links below to locate your school instead."
+        end
       end
     end
   end
