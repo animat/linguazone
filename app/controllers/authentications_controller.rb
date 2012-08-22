@@ -38,7 +38,7 @@ class AuthenticationsController < ApplicationController
     @authentication = current_user.authentications.find(params[:id])
     if current_user.authentications.length > 1 or !current_user.has_generic_lz_email?
       @authentication.destroy
-      flash[:notice] = "Successfully destroyed authentication."
+      flash[:notice] = "Successfully destroyed #{@authentication.provider.titleize} authentication."
     else
       flash[:error] = "Sorry! We cannot delete that authentication. You need at least one way to login to LinguaZone."
     end
