@@ -1,4 +1,5 @@
 <% if @registration.nil? %>
+	$("#code").select();
 	$("#confirm_code").html("<p>That code was incorrect. Please try again.</p>");
 	$("#confirm_code").effect("highlight", {}, 3000);
 <% else %>

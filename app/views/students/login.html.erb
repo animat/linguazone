@@ -1,71 +1,45 @@
-<% stylesheet "students" %>
+<% stylesheet 'students' %>
+
+<h1>Login to LinguaZone</h1>
+<p>for one-click access to class pages and for access to password-protected pages</p>
 
 <div>
-  <div style="width: 46%; float: left;">
-    <h1>Login to LinguaZone</h1>
-    <p>for one-click access to class pages and for access to password-protected pages <span style="color: green;">*optional</span></p>
-
-    <div>
-      <fieldset class="login">
-        <%= form_for (@user_session) do |f| %>
-          <%= f.error_messages %>
-          <div>
-            <%= f.label :email, "Username or email address:" %>
-            <br />
-            <%= f.text_field :email %>
-          </div>
-          <br class="clearFloat" />
-          <div>
-            <%= f.label :password, "Password:" %>
-            <br />
-            <%= f.password_field :password %>
-          </div>
-          <br class="clearFloat" />
-          <div align="center">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-          </div>
-          <br class="clearFloat" />
-          <div align="center">
-            <%= f.hidden_field :role, :value => "student" %>
-            <%= f.submit "Login" %>
-          </div>
-        <% end %>
-      </fieldset>
-    </div>
-
-    <p class="helper_links"><%= link_to "Create a username & password", new_student_path %></p>
-    <p class="helper_links"><%= link_to "I forgot my password", :controller => "password_resets", :action => "new" %></p>
-  </div>
-  <div style="width: 46%; float: right;">
-    <h1>Find your class page</h1>
-    <p>jump to your class page without creating a username</p>
-    <div id="search_schools">
-      <fieldset class="login">
-        <%= simple_form_for :school, :url => search_schools_path do |f| %>
-          <div class="loginLabel">
-            <%= f.label :name, "Your school's name:" %>
-          </div>
-          <div class="loginField">
-            <%= f.autocomplete_field :name, autocomplete_name_schools_path %>
-          </div>
-          <br />
-          <div align="center">
-            <%= f.submit "Find your class" %>
-          </div>
-        <% end %>
-      </fieldset>
-    </div>
-
-    <p class="helper_links">Can't find your class? Browse for your school below.</p>
-  </div>
-</div>
-
-<br class="clearFloat" />
-
-<hr />
-
-<h1>Browse for your class page</h1>
-<div id="list_states">
-  <%= render :partial => "schools/browse_for_school" %>
+  <fieldset class="lz_login">
+    <%= form_for (@user_session) do |f| %>
+      <%= f.error_messages %>
+      <div>
+        <%= f.label :email, "Your email address (or LinguaZone username):" %>
+        <br />
+        <%= f.text_field :email %>
+      </div>
+      <br class="clearFloat" />
+      <div>
+        <%= f.label :password, "Password:" %>
+        <br />
+        <%= f.password_field :password %>
+      </div>
+      <br class="clearFloat" />
+      <div align="center">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+      <br class="clearFloat" />
+      <div align="center">
+        <%= f.hidden_field :role, :value => "student" %>
+        <%= f.submit "Login" %>
+      </div>
+			<p class="helper_links"><%= link_to "Create a username & password", new_student_path %></p>
+			<p class="helper_links"><%= link_to "I forgot my password", :controller => "password_resets", :action => "new" %></p>
+    <% end %>
+  </fieldset>
+	<div class="oauth_login">
+		<p class="title_or">~ Or ~</p>
+		<p>...save yourself the hassle of needing to remember another password. Login to LinguaZone via one of these services:</p>
+		<p style="text-align: center;">
+			<%= link_to image_tag("shared-buttons/auth_buttons/twitter_64.png"), "/auth/twitter" %>
+			<%= link_to image_tag("shared-buttons/auth_buttons/google_64.png"), "/auth/google" %>
+			<%= link_to image_tag("shared-buttons/auth_buttons/facebook_64.png"), "/auth/facebook" %>
+		</p>
+	</div>
+	<br class="clearFloat" />
 </div>

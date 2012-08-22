@@ -11,10 +11,27 @@ fieldset {
 p.helper_links {
 	text-align: center;
 }
-fieldset.login {
+fieldset.lz_login {
+	width: 45%;
+	float: left;
+	background-color: #FAE2CF;
+	border: 3px solid #FF6600;
+}
+fieldset.school_name_search_area {
 	width: 80%;
 	background-color: #FAE2CF;
 	border: 3px solid #FF6600;
+}
+div.oauth_login{
+	width: 45%;
+	float: right;
+	padding: 20px;
+}
+p.title_or {
+	font-size: 3em;
+	font-family: "Gill Sans / Gill Sans MT", sans-serif;
+	color: #999;
+	text-align: center;
 }
 #list_states ul {
 	margin-left: 20px;
@@ -87,25 +104,72 @@ fieldset.login {
 	padding: 20px 0px;
 	list-style-type: none;
 }
-#list_classes ul li {
-	border-top:1px solid #194BA0; 
-	border-bottom: 1px solid #194BA0;
+#list_classes ul li span.course_name {
+	font-size: 1.5em;
+	text-decoration: underline;
+	color: #111;
+}
+#list_classes ul li p.detail {
+	font-size: .9em;
+	color: #333;
 }
 #list_classes ul li a {
-	display: block;
-	padding: 10px;
+	color: #131313;
 	text-decoration: none;
 	text-align: center;
 }
-#list_classes ul li a:hover {
-	color: #FFF;
-	background: #FF6600;
-	text-shadow: 1px 1px 1px #993300;
+#list_classes ul li a:hover span.course_name {
+	color: #333;
 }
-#list_classes ul li.register a:hover {
-	color: #FFF;
-	background: #4DBD33;
-	text-shadow: 1px 1px 1px #324F17;
+#list_classes li.go_to_course_button {
+	color:#08233e;
+	font-family: "Trebuchet MS", Futura, 'Century Gothic', AppleGothic, sans-serif;
+	padding:14px;
+	background:url("shared-buttons/button_overlay.png") repeat-x center #ffcc00;
+	background-color:rgba(255,147,31,1);
+	border:1px solid #ff6600;
+	-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;
+	border-bottom:1px solid #9f9f9f;
+	-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
+	cursor:pointer;
+}
+#list_classes li.go_to_course_button:hover{ 
+	background-color:rgba(255,204,0,0.8);
+	border:1px solid rgba(255,204,0,0.8); 
+}
+a.register_additional_class {
+	float: right;
+	color: green;
+}
+div#account_settings {
+	margin-top: 10px;
+}
+div#account_settings span.not_on_file {
+	color: #999;
+	font-style: italic;
+}
+div.authentications {
+	margin-top: 20px;
+}
+div.authentications div.authentication {
+	width: 200px;
+	height: 34px;
+	border: 1px solid #C1C9EB;
+	background-color: #EDEFF8;
+	padding: 5px;
+	margin: 5px;
+	border-radius: 5px;
+}
+div.authentications div.authentication span {
+	position: relative;
+	top: -10px;
+}
+div.authentications div.authentication a.remove {
+	float: right;
+	padding: 3px;
+	color: #AD2929;
+	text-decoration: none;
+	font-size: .8em;
 }
 
 /* -----------

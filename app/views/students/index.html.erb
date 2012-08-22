@@ -1,10 +1,36 @@
 <% stylesheet "students" %>
 <% stylesheet "teachers" %>
 
+<% content_for :head do %>
+<script type="text/javascript">
+$(function() {
+	$("#edit_email_address").hide();
+	$("#edit_password").hide();
+	<% if current_user.has_generic_lz_email? %>
+		$("#complete_display_password").hide();
+	<% end %>
+	
+	$("#edit_email_link").click(function() {
+		$("#display_email_address").fadeOut();
+		$("#edit_email_address").slideDown();
+		return false;
+	});
+	
+	$("#edit_password_link").click(function() {
+		$("#display_password").fadeOut();
+		$("#edit_password").slideDown();
+		return false;
+	});
+})
+</script>
+<% end %>
+
 <div>
 	<div class="floatLeft" style="width: 80%">
 		<h1>Overview</h1>
-		<p>Jump to your class page from here for your LinguaZone games, word lists, and audio blogs.</p>
+		<p>Welcome, <%= "#{current_user.first_name}" %>!
+			<br />
+			Jump to your class page to access your LinguaZone games, word lists, and audio blogs.</p>
 	</div>
 	<div class="floatRight">
 		<%= link_to(logout_path, :class => "button") do %>
@@ -19,7 +45,12 @@
 		<ul>
 		<% for reg_course in @registered_courses do %>
 			<% unless reg_course.course.nil? %>
-				<li><%= link_to reg_course.course.name, :controller => "courses", :action => "show", :id => reg_course.course.id %></li>
+				<li class="go_to_course_button">
+					<%= link_to course_path(reg_course.course) do %>
+						<p>Go to the <span class="course_name"><%= "#{reg_course.course.name.titleize}" %></span> class page &rarr;</p>
+						<p class="detail"><%= "Taught by #{reg_course.course.user.display_name} at #{reg_course.course.user.school.name}" %></p>
+					<% end %>
+				</li>
 			<% end %>
 		<% end %>
 		</ul>
@@ -27,10 +58,41 @@
 <% end %>
 
 <br />
-<div align="center">
-	<%= link_to :action => "register" do %>
-		<div class="big_button" style="width: 300px">
-			<span>Register in a new class</span>
-		</div>
-	<% end %>
+
+<% if @registered_courses.empty? %>
+	<div align="center">
+		<%= link_to :action => "register" do %>
+			<div class="big_button" style="width: 300px">
+				<span>Register in a new class</span>
+			</div>
+		<% end %>
+	</div>
+<% else %>
+	<p><%= link_to "or click here to register in a new class", register_students_path, :class => "register_additional_class" %></p>
+<% end %>
+
+<br />
+<hr />
+
+<h2>Account settings</h2>
+<div id="account_settings">
+	<p>Email:
+		<span id="display_email_address"><%= display_email_address %> <%= link_to "[edit]", "#", :id => "edit_email_link" %></span>
+	</p>
+	<div id="edit_email_address">
+		<%= form_for @user, :url => {:action => :update} do |f| %>
+       <%= f.text_field :email, :size => 20, :value => set_empty_value_if_default %>
+       <%= f.submit "Update my email address" %>
+		<% end %>
+	</div>
+	<p id="complete_display_password">Password: 
+		<span id="display_password"><em>********</em> <%= link_to "[edit]", "#", :id => "edit_password_link" %></span>
+	</p>
+	<div id="edit_password">
+		<%= form_for @user, :url => {:action => :update} do |f| %>
+       <%= f.password_field :password, :size => 20, :value => "" %>
+       <%= f.submit "Update my password" %>
+		<% end %>
+	</div>
 </div>
+<%= render :partial => "authentications/list_authentications", :locals => {:authentications => current_user.authentications} %>

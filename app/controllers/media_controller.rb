@@ -21,10 +21,10 @@ class MediaController < ApplicationController
   def create
     @asset = Media.new(params[:media])
     if @asset.save
-      flash[:notice] = "Added your media item"
+      flash[:success] = "Added your media item"
       redirect_to :action => "index"
     else
-      flash[:notice] = "There was an error creating your media item"
+      flash[:error] = "There was an error creating your media item"
       render :action => "edit"
     end
   end
@@ -59,9 +59,9 @@ class MediaController < ApplicationController
           flash[:notice] = "Sent an email to "+@email_addr+" about the new note."
         elsif params[:media][:swf] != nil or params[:media][:fla] != nil
           ContactMailer.updated_media_notify_admin(params[:media], @asset.descrip, @asset.notes, @asset.id).deliver
-          flash[:notice] = "Saved your artwork and notified admins."
+          flash[:success] = "Saved your artwork and notified admins."
         else
-          flash[:notice] = 'Media item was successfully updated.'
+          flash[:success] = 'Media item was successfully updated.'
         end
         format.html { redirect_to(:controller => "media", :action => "index") }
       else

@@ -1,0 +1,22 @@
+<% unless authentications.empty? %>
+  <div class="authentications">
+	<p>You can login to your LinguaZone.com account via:</p>
+    <% for authentication in authentications %>
+      <div class="authentication">
+			<%= image_tag "shared-buttons/auth_buttons/#{authentication.provider}_32.png", :size => "32x32" %>
+        <span><%= authentication.provider.titleize %></span>
+			<%= link_to "X", authentication, :confirm => 'Are you sure you want to remove this login option?', :method => :delete, :class => "remove" %>
+      </div>
+    <% end %>
+    <div class="clear"></div>
+  </div>
+  <p>Would you like to add another service to sign in?</p>
+<% else %>
+  <p>You may also login via one of the following services:</p>
+<% end %>
+
+<p>
+	<%= link_to image_tag("shared-buttons/auth_buttons/twitter_64.png"), "/auth/twitter" %>
+	<%= link_to image_tag("shared-buttons/auth_buttons/google_64.png"), "/auth/google" %>
+	<%= link_to image_tag("shared-buttons/auth_buttons/facebook_64.png"), "/auth/facebook" %>
+</p>

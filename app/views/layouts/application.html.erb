@@ -48,16 +48,16 @@
     <div id="body_header"></div>
     <div class="wrapper">
       <% unless flash[:notice].nil? %>
-        <p class="flash_notice"><%= flash[:notice]%></p>
+        <p class="flash_notice flash_msg"><%= flash[:notice]%></p>
       <% end %>
 			<% unless flash[:success].nil? %>
-				<p class="flash_notice"><%= flash[:success]%></p>
+				<p class="flash_success flash_msg"><%= flash[:success]%></p>
 			<% end %>
-			<% unless flash[:alert].nil? %>
-        <p class="flash_notice"><%= flash[:alert]%></p>
+			<% unless flash[:info].nil? %>
+        <p class="flash_info flash_msg"><%= flash[:info]%></p>
       <% end %>
       <% unless flash[:error].nil? %>
-        <p class="flash_error"><%= flash[:error] %></p>
+        <p class="flash_error flash_msg"><%= flash[:error] %></p>
       <% end %>
       <%= yield %>
     </div>

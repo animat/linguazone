@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  filter_access_to :show, :attribute_check => true
+  #filter_access_to :show, :attribute_check => true
   before_filter :check_expired
   
   respond_to :html, :js, :xml
@@ -31,8 +31,15 @@ class CoursesController < ApplicationController
     if @course.login_required
       # TODO: Use cancan for authorization
       unless is_student_for(@course) or is_teacher_for(@course)
-        flash[:error] = "You are not registered for that class."
-        redirect_to students_url
+        if current_user
+          flash[:error] = "Please register to see the <strong>#{@course.name}</strong> class page.".html_safe
+          session[:attempting_to_access_course_id] = @course.id
+          redirect_to confirm_course_enter_code_students_path
+        else
+          flash[:error] = "Please login before accessing the <strong>#{@course.name}</strong> class page.".html_safe
+          session[:attempting_to_access_course_id] = @course.id
+          redirect_to login_students_url
+        end
       end
     else
       respond_to do |format|

@@ -9,3 +9,4 @@
 //= require jquery_ujs
 //= require swf_fu
 //= require autocomplete-rails
+//= require flash_messages

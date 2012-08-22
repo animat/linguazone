@@ -9,7 +9,7 @@ Feature: An existing student and teacher can log in
 
 	Scenario: Login with existing student account
 	  Given I go to the student login page
-	  And I fill in "Username or email address:" with "tony@sopranos.com"
+	  And I fill in "Your email address (or LinguaZone username):" with "tony@sopranos.com"
 	  And I fill in "Password:" with "badabing"
 	  And I press "Login"
 	  Then I should see "Overview"

@@ -1,4 +1,20 @@
+<% content_for :head do %>
+<script type="text/javascript">
+$(function() {
+	$("#no_email_address").click(function() {
+		$("#email_hint").fadeOut();
+		$("#email_address_label").html("Create a new username to use LinguaZone:")
+		$("#email_address_label").effect("highlight", {}, 3000);
+		// TODO: Add a flag to note that the user is now entering a username, not an email address!
+	})
+})
+</script>
+<% end %>
+
 <h1>Create your student account</h1>
+<% if session['omniauth'] %>
+	<p>Enter some basic information here so that you can login with your <%= "#{session['omniauth']['provider'].titleize} "%> account <%= link_to "or cancel", cancel_authentications_path, :method => :post %>.</p>
+<% end %>
 <br />
 <%= form_for(@user, :url => "create") do |f| %>
   <%= f.error_messages %>
@@ -19,16 +35,18 @@
     </div>
     <br />
     <div>
-      <div class="floatLeft">
-        <%= f.label :email, "Email address or username:" %><br />
-          <%= f.text_field :email %><br />
-        <span class="input_hint">(create a username if you do not have an email address)</span>
-      </div>
-      <div style="float: right; margin-right: 80px">
-        <%= f.label :password, "Create a LinguaZone password:" %><br />
-          <%= f.password_field :password %><br />
-        <span class="input_hint">(anything you want &mdash; so long as you will remember it!)</span>
-      </div>
+			<% unless session['omniauth'] %>
+      	<div class="floatLeft">
+	   	    	<%= f.label :email, "Your email address:", :id => "email_address_label" %><br />
+	          <%= f.text_field :email %><br />
+	        	<span class="input_hint" id="email_hint">(don't have an email address? <%= link_to "click here", "#", :id => "no_email_address" %>)</span>
+	      </div>
+      	<div style="float: right; margin-right: 80px">
+	        <%= f.label :password, "Create a LinguaZone password:" %><br />
+	          <%= f.password_field :password %><br />
+	        <span class="input_hint">(anything you want &mdash; so long as you will remember it!)</span>
+	      </div>
+			<% end %>
       <br class="clearFloat" />
     </div>
 

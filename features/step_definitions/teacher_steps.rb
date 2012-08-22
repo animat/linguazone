@@ -16,6 +16,15 @@ Given /^"(.*?)" has a course at "(.*?)" named "(.*?)"$/ do |teacher_name, school
   @c.save
 end
 
+Given /^a teacher has a password\-protected course at that school named "(.*?)" with a code of "(.*?)"$/ do |course_name, code|
+  @school = School.last
+  @teacher = Factory.create(:teacher, :school => @school)
+  @teacher.school_id = @school.id
+  @teacher.save
+  @c = Course.create(:name => course_name, :user_id => @teacher.id, :login_required => 1, :code => code)
+  @c.save
+end
+
 Given /^([^"]*) (has|have) (\d+) (games|posts|word lists|word_lists|courses)$/ do |teacher_name, verb, num, things|
   things = things.sub(" ", "_")
   if teacher_name == "I"

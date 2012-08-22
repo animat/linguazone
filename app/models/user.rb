@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :audio_clips
+  has_many :authentications
   belongs_to :subscription
   before_save :set_display_name
 
@@ -52,7 +53,30 @@ class User < ActiveRecord::Base
       false
     end
   end
-
+  
+  def apply_omniauth(omniauth)
+    unless omniauth['info']['email'].blank?
+      self.email = omniauth['info']['email'] if self.email.blank?
+    end
+    unless omniauth['info']['first_name'].blank?
+      self.first_name = omniauth['info']['first_name'] if self.first_name.blank?
+    end
+    unless omniauth['info']['last_name'].blank?
+      self.last_name = omniauth['info']['last_name'] if self.last_name.blank?
+    end
+    
+    if omniauth['info']['first_name'].blank? and omniauth['info']['last_name'].blank? 
+      unless omniauth['info']['name'].blank?
+        if self.first_name.blank? and self.last_name.blank?
+          self.first_name = omniauth['info']['name'].split(" ")[0]
+          self.last_name = omniauth['info']['name'].split(" ")[1]
+        end 
+      end
+    end
+    
+    authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+  end
+  
   def self.is_valid_email_domain(addr)
     if addr.nil?
       false
@@ -68,6 +92,10 @@ class User < ActiveRecord::Base
   def self.is_email_in_use(addr)
     @results = User.all(:conditions => ["email = ?", addr])
     @results.length > 0
+  end
+  
+  def has_generic_lz_email?
+    (self.email =~ /lz_student_(\d+)@linguazone.com/) != nil
   end
 
   ROLES = %w[admin teacher student]

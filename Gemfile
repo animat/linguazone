@@ -19,6 +19,10 @@ gem 'kaminari'
 gem 'happymapper'
 gem 'swf_fu', '>= 2.0'
 gem "airbrake"
+gem "omniauth"
+gem "omniauth-twitter"
+gem "omniauth-openid"
+gem "omniauth-facebook"
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'
