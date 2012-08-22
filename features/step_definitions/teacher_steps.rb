@@ -1,8 +1,14 @@
-Given /^a teacher has a course at that school named "(.*?)"$/ do |course_name|
+Given /^([^"]*) has a course at that school named "(.*?)"$/ do |teacher_name, course_name|
   @school = School.last
-  @teacher = Factory.create(:teacher, :school => @school)
-  @teacher.school_id = @school.id
-  @teacher.save
+  if teacher_name == "a teacher"
+    @teacher = Factory.create(:teacher, :school => @school)
+    @teacher.school_id = @school.id
+    @teacher.save
+  else
+    @teacher = User.find_by_first_name(teacher_name)
+    @teacher.school_id = @school.id
+    @teacher.save
+  end
   @c = Course.create(:name => course_name, :user_id => @teacher.id)
   @c.save
 end

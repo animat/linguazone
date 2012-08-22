@@ -22,8 +22,6 @@ Linguazone::Application.routes.draw do
     end
   end
   
-  resources :course_registrations, :only => [:destroy]
-  
   resources :authentications, :only => [:index, :create, :destroy] do
     collection do 
       post :cancel
@@ -86,6 +84,8 @@ Linguazone::Application.routes.draw do
       match "show_word_list/:available_word_list_id" => "courses#show_word_list", :via => :post, :as => "show_word_list"
       match "show_post/:available_post_id" => "courses#show_post", :via => :post, :as => "show_post"
     end
+    
+    resources :course_registrations
   end
   
   resources :comments

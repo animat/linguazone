@@ -1,0 +1,24 @@
+<% stylesheet 'teachers' %>
+
+<h1><%= "#{@course.name} class list" %></h1>
+
+<% if @regs.empty? %>
+	<p>No students have registered yet in this class.</p>
+<% else %>
+	<table id="list_registrations">
+		<tr>
+			<th>First name</th>
+			<th>Last name</th>
+			<th>Logging in via...</th>
+			<th>Password</th>
+		</tr>
+		<% @regs.each do |cr| %>
+			<tr>
+				<td><%= "#{cr.user.first_name}"%></td>
+				<td><%= "#{cr.user.last_name}"%></td>
+				<td><%= single_line_authentications(cr.user) %></td>
+				<td><button>Reset password</button></td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>

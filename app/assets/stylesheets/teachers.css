@@ -197,3 +197,9 @@ fieldset#login {
 a.purchase {
 	color: #0D5213;
 }
+/* -----------
+ course registrations
+   ----------- */
+table#list_registrations {
+	width: 100%;
+}

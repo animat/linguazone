@@ -1,3 +1,12 @@
+Given /^there are (\d+) students enrolled in "(.*?)"$/ do |num_students, course_name|
+  @course = Course.find_or_create_by_name(course_name)
+  for i in 0...num_students.to_i do
+    @student = Factory.create(:student)
+    @student.save
+    CourseRegistration.create!(:course_id => @course.id, :user_id => @student.id)
+  end
+end
+
 Given /^"([^"]*)" has (\d+) (games|word lists|audio blog posts) showing$/ do |course_name, num, thing|
   @c = Course.find_by_name(course_name)
   num.to_i.times do
