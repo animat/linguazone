@@ -4,7 +4,7 @@
 class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user, :is_teacher_for, :is_student_for
-  before_filter :set_current_user, :get_teacher_courses
+  before_filter :set_current_user, :get_teacher_courses, :force_www
 
   protected
     # TODO: Cache the teacher's courses so that this query doesn't happen on every page
@@ -70,7 +70,13 @@ class ApplicationController < ActionController::Base
       rescue ActionController::RedirectBackError
         redirect_to path
     end
-
+    
+    def force_www
+      if Rails.env.production? and request.host[0..3] != "www."
+        redirect_to "#{request.protocol}www.#{request.host_with_port}#{request.fullpath}", :status => 301
+      end
+    end
+    
     def permission_denied
       flash[:error] = "You do not have permission to access that page. You may need to login first."
       redirect_to root_url
