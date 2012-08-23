@@ -8,9 +8,7 @@ class AuthenticationsController < ApplicationController
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if authentication
       # This authentication is currently in the database. Log user in (if needed) and redirect to students_path
-      unless current_user
-        UserSession.create(authentication.user)
-      end
+      UserSession.create(authentication.user) unless current_user
       flash[:success] = "Authentication successful."
       redirect_to students_path
     elsif current_user
