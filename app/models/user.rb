@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :audio_clips
-  has_many :authentications
+  has_many :authentications, :dependent => :destroy
   belongs_to :subscription
   before_save :set_display_name
 
