@@ -203,3 +203,9 @@ a.purchase {
 table#list_registrations {
 	width: 100%;
 }
+a.unenroll_student_link, a.reset_password_link {
+	font-size: .8em;
+}
+a.unenroll_student_link {
+	color: red;
+}

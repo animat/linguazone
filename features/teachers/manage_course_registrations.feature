@@ -12,3 +12,5 @@ Feature: A teacher can manage which students are registered in a given course
 	Scenario: View all students registered in a course
 		When I follow "10 students enrolled"
 		Then I should see "Sample Latin class list"
+		And I should see "Reset password"
+		And I should see "Remove from class"
