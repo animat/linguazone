@@ -23,6 +23,10 @@ module HtmlSelectorsHelpers
     when /^the first search result row$/
       [:xpath, "//div[@class='wrapper']/div[@class='game_listing'][1]"]
     
+    when /^the (\d+)(st|nd|rd|th) student listing$/
+      @student_row = $1.to_i + 1
+      [:xpath, "//table[@id='list_registrations']/tbody/tr[#{@student_row}]"]
+    
     when /^the wrapper$/
       ".wrapper"
     # TODO @Len: Can I capture "word list" and use Ruby to force into "word_list"?

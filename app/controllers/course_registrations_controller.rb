@@ -13,7 +13,9 @@ class CourseRegistrationsController < ApplicationController
   
   def destroy
     @cr = CourseRegistration.find(params[:id])
+    @course = Course.find(params[:course_id])
     @cr.destroy
-    redirect_to :back
+    flash[:notice] = "That student has been removed from #{@course.name}"
+    redirect_to course_course_registrations_path(@course)
   end
 end

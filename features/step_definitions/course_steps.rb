@@ -41,7 +41,8 @@ Then /^I should see (\d+) "([^"]*)" links for ([^"]*)$/ do |count, link_text, ar
 end
 
 Then /^I should see (\d+) "([^"]*)" links?$/ do |count, link_text|
-  all(:xpath, "//a[text()='#{link_text}']").length.should == count.to_i
+  #page.all(:xpath, "//a[text()='#{link_text}']").length.should == count.to_i
+  page.all(:css, "a:contains('#{link_text}')").length.should == count.to_i
 end
 
 When /^I hover over the course item teacher controls$/ do

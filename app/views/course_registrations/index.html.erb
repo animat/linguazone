@@ -7,10 +7,6 @@ $(function() {
 		alert("Showing student detail now...");
 		return false;
 	})
-	$(".unenroll_student_link").click(function() {
-		alert("Unenrolling student now...");
-		return false;
-	})
 	$(".unenroll_student_link").button({icons: {"primary": "ui-icon-close"}})
 	$(".reset_password_link").button({icons: {"primary": "ui-icon-pencil"}})
 })
@@ -47,7 +43,7 @@ $(function() {
 				<td><%= link_to "#{cr.user.display_name}", "#", :class => "view_student_detail_link" %></td>
 				<td><%= single_line_authentications(cr.user) %></td>
 				<td><%= reset_password_button(cr.user) %></td>
-				<td><%= link_to "Remove from class", "#", :class => "unenroll_student_link" %></td>
+				<td><%= link_to "Remove from class", course_course_registration_path(@course, cr), :method => :delete, :confirm => "Are you sure you want to remove this student from #{@course.name}?", :class => "unenroll_student_link" %></td>
 			</tr>
 		<% end %>
 	</table>
