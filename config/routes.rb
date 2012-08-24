@@ -89,6 +89,7 @@ Linguazone::Application.routes.draw do
     end
     
     resources :course_registrations
+    resources :feed_items, :only => [:index]
   end
   
   resources :course_registrations do

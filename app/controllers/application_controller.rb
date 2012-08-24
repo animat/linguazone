@@ -31,12 +31,8 @@ class ApplicationController < ActionController::Base
     
     # TODO: This is pretty gnarly code -- any other ways to make this work in a test environment?
     def record_feed_item(c_id)
-      @fi = FeedItem.new
-      if (Rails.env == "test")
-        @fi.user_id = User.where(:role => "student").last.id
-      elsif !current_user
-        return
-      else
+      if current_user
+        @fi = FeedItem.new
         @fi.user_id = current_user.id
         @fi.course_id = c_id unless c_id.nil?
         @fi.browser = request.env['HTTP_USER_AGENT']

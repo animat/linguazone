@@ -7,6 +7,12 @@ Given /^there (is|are) (\d+) students? enrolled in "(.*?)"$/ do |verb, num_stude
   end
 end
 
+Given /^"(.*?)" is enrolled in "(.*?)"$/ do |student_name, course_name|
+  @course = Course.find_by_name(course_name)
+  @student = User.where(:first_name => student_name, :role => "student").first
+  @cr = CourseRegistration.create!(:course_id => @course.id, :user_id => @student.id)
+end
+
 Given /^"([^"]*)" has (\d+) (games|word lists|audio blog posts) showing$/ do |course_name, num, thing|
   @c = Course.find_by_name(course_name)
   num.to_i.times do
