@@ -37,11 +37,13 @@ $(function() {
 		<tr>
 			<th>Name</th>
 			<th>Logging in via...</th>
+			<th>Last login</th>
 		</tr>
 		<% @regs.each do |cr| %>
 			<tr>
 				<td><%= link_to "#{cr.user.display_name}", "#", :class => "view_student_detail_link" %></td>
 				<td><%= single_line_authentications(cr.user) %></td>
+				<td><%= format_date_time(cr.user.last_request_at) %></td>
 				<td><%= reset_password_button(cr.user) %></td>
 				<td><%= link_to "Remove from class", course_course_registration_path(@course, cr), :method => :delete, :confirm => "Are you sure you want to remove this student from #{@course.name}?", :class => "unenroll_student_link" %></td>
 			</tr>
