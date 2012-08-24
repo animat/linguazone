@@ -80,7 +80,6 @@ $(function() {
 			<% end %>
 		</div>
 		<%= link_to "#{pluralize(@course.course_registrations.size, 'student')} enrolled", course_course_registrations_path(@course) %>
-		<%# TODO: render :partial => "my_courses/show_registered_students", :locals => {:course_id => params[:id], :cr => @course_registrations}%>
 	</div>
 	<div class="wrapper">
 <% end %>

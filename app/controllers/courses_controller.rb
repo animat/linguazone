@@ -17,7 +17,6 @@ class CoursesController < ApplicationController
     
     # TODO @Len [later]: What steps can I take to build an audit log of student activity across these three different things?
     # => Use a module with a participate method that will log all participation activities
-    # => Not sure how to merge these separate models into one "audit log" model
     #@showing_posts = @course.available_posts.showing.order()
     #@showing_word_lists = @course.available_word_lists.showing
     #@showing_games = @course.available_games.showing.order("ordering")
