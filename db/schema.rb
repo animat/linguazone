@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120819002116) do
+ActiveRecord::Schema.define(:version => 20120824022717) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20120819002116) do
     t.integer "grade",          :default => 0,     :null => false
     t.boolean "login_required", :default => false, :null => false
     t.string  "code"
+    t.integer "ordering"
   end
 
   create_table "demos", :force => true do |t|
@@ -332,6 +333,9 @@ ActiveRecord::Schema.define(:version => 20120819002116) do
     t.datetime  "last_login_at"
     t.integer   "login_count",                        :default => 0,     :null => false
     t.string    "last_login_ip",       :limit => 40
+    t.datetime  "current_login_at"
+    t.string    "current_login_ip"
+    t.datetime  "last_request_at"
   end
 
   create_table "word_lists", :force => true do |t|
