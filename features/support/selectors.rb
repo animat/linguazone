@@ -27,6 +27,9 @@ module HtmlSelectorsHelpers
       @student_row = $1.to_i + 1
       [:xpath, "//table[@id='list_registrations']/tbody/tr[#{@student_row}]"]
     
+    when /^the activity stream$/
+      [:xpath, "//div[@id='activity_stream']"]
+    
     when /^the wrapper$/
       ".wrapper"
     # TODO @Len: Can I capture "word list" and use Ruby to force into "word_list"?

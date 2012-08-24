@@ -15,12 +15,7 @@ class CoursesController < ApplicationController
       @course_registrations = CourseRegistration.all(:conditions => ["course_id = ?", @course.id], :include => :user, :order => "users.last_name ASC")
     end
     
-    # TODO @Len [later]: What steps can I take to build an audit log of student activity across these three different things?
-    # => Use a module with a participate method that will log all participation activities
-    #@showing_posts = @course.available_posts.showing.order()
-    #@showing_word_lists = @course.available_word_lists.showing
-    #@showing_games = @course.available_games.showing.order("ordering")
-    @showing_posts = AvailablePost.all(:conditions => ["available_posts.course_id = ? AND hidden = ?", @course.id, false], :include => :post,
+   @showing_posts = AvailablePost.all(:conditions => ["available_posts.course_id = ? AND hidden = ?", @course.id, false], :include => :post,
                               :order => "posts.updated_at DESC")
     @showing_word_lists = AvailableWordList.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, false], :include => :word_list,
                               :order => "word_lists.updated_at DESC")

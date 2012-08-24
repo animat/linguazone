@@ -1,4 +1,6 @@
 Linguazone::Application.routes.draw do
+  get "feed_items_controller/index"
+
   resources :authentications
 
   ActiveAdmin.routes(self)
@@ -20,6 +22,7 @@ Linguazone::Application.routes.draw do
       get :find_class
       get :login
     end
+    resources :feed_items, :only => [:index]
   end
   
   resources :authentications, :only => [:index, :create, :destroy] do
@@ -86,6 +89,10 @@ Linguazone::Application.routes.draw do
     end
     
     resources :course_registrations
+  end
+  
+  resources :course_registrations do
+    resources :feed_items, :only => [:index]
   end
   
   resources :comments

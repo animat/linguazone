@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :courses, :through => :course_registration
   has_many :posts
   has_many :comments
+  has_many :high_scores
+  has_many :study_histories
   has_many :audio_clips
   has_many :authentications
   belongs_to :subscription

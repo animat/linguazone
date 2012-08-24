@@ -2,12 +2,7 @@
 
 <% content_for :head do %>
 <script type="text/javascript">
-$(function() {
-	$(".view_student_detail_link").click(function() {
-		alert("Showing student detail now...");
-		return false;
-	})
-		
+$(function() {		
 	$(".unenroll_student_link").button({icons: {"primary": "ui-icon-close"}})
 	$(".reset_password_link").button({icons: {"primary": "ui-icon-pencil"}})
 })
@@ -42,7 +37,7 @@ $(function() {
 		</tr>
 		<% @regs.each do |cr| %>
 			<tr>
-				<td><%= link_to "#{cr.user.display_name}", "#", :class => "view_student_detail_link" %></td>
+				<td><%= link_to "#{cr.user.display_name}", course_registration_feed_items_path(cr) %></td>
 				<td class="user_authentications"><%= single_line_authentications(cr.user) %></td>
 				<td class="last_login_time"><%= format_date_time(cr.user.last_request_at) %></td>
 				<td><%= link_to("Reset password", password_resets_path(:email => cr.user.email), :remote => true, :method => :post, :class => "reset_password_link") if cr.user.has_personal_email? %></td>

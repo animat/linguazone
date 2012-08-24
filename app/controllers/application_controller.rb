@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   helper :all
-  helper_method :current_user, :is_teacher_for, :is_student_for
+  helper_method :current_user, :is_teacher_for, :is_student_for, :record_feed_item
   before_filter :set_current_user, :get_teacher_courses
 
   protected
@@ -27,6 +27,25 @@ class ApplicationController < ActionController::Base
     def current_user
       return @current_user if defined?(@current_user)
       @current_user = current_user_session && current_user_session.record
+    end
+    
+    # TODO: This is pretty gnarly code -- any other ways to make this work in a test environment?
+    def record_feed_item(c_id)
+      @fi = FeedItem.new
+      if (Rails.env == "test")
+        @fi.user_id = User.where(:role => "student").last.id
+      elsif !current_user
+        return
+      else
+        @fi.user_id = current_user.id
+        @fi.course_id = c_id unless c_id.nil?
+        @fi.browser = request.env['HTTP_USER_AGENT']
+        @fi.ip_address = request.env['REMOTE_ADDR']
+        @fi.controller = controller_name 
+        @fi.action = action_name
+        @fi.params = params.inspect
+        @fi.save
+      end
     end
 
     def is_teacher_for(course)

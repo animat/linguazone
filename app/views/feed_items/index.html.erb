@@ -1,0 +1,14 @@
+<h1>Activity stream</h1>
+<h2>for <%= @usage %></h2>
+<br />
+<% if @feed_items.empty? %>
+	<p>No activities have yet been recorded.</p>
+<% else %>
+	<div id="activity_stream">
+		<ul>
+			<% @feed_items.each do |fi| %>
+				<li class="feed_item"><%= format_feed_item(fi) %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>

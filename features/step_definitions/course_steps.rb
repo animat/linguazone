@@ -1,9 +1,9 @@
-Given /^there are (\d+) students enrolled in "(.*?)"$/ do |num_students, course_name|
+Given /^there (is|are) (\d+) students? enrolled in "(.*?)"$/ do |verb, num_students, course_name|
   @course = Course.find_or_create_by_name(course_name)
   for i in 0...num_students.to_i do
     @student = Factory.create(:student)
     @student.save
-    CourseRegistration.create!(:course_id => @course.id, :user_id => @student.id)
+    @cr = CourseRegistration.create!(:course_id => @course.id, :user_id => @student.id)
   end
 end
 

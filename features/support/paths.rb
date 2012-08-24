@@ -26,6 +26,8 @@ module NavigationHelpers
       school_path(School.find_by_name($1))
     when /^the "([^"]*)" (course|class) page$/
       course_path(Course.find_by_name($1))
+    when /^the "([^"]*)" course registrations page$/
+      course_course_registrations_path(Course.find_by_name($1))
     when /^the ([^"]*) demos page$/
       @lang = Language.where(:name => $1).first
       url_for(:controller => "about", :action => "demos", :language => @lang.id)

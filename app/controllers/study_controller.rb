@@ -2,7 +2,8 @@ class StudyController < ApplicationController
   before_filter :load_word_list
   
   def load_word_list
-    @list = WordList.find(params[:id])
+    @available_list = AvailableWordList.find(params[:id])
+    @list = @available_list.word_list
   end
   
   def browse
@@ -11,6 +12,7 @@ class StudyController < ApplicationController
       @sh.submitted_at = Time.now
       @sh.user_ip_address = request.remote_ip
       @sh.save
+      record_feed_item(@available_list.course.id)
     end
     doc = REXML::Document.new(@list.xml)
     @nodes = REXML::XPath.match(doc, "/gamedata/node")

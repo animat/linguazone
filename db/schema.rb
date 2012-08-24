@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824022717) do
+ActiveRecord::Schema.define(:version => 20120824152922) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -144,6 +144,18 @@ ActiveRecord::Schema.define(:version => 20120824022717) do
     t.string    "target_group", :limit => 25, :default => "", :null => false
     t.string    "code",         :limit => 25, :default => "", :null => false
     t.timestamp "expiration"
+  end
+
+  create_table "feed_items", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.string   "browser"
+    t.string   "ip_address"
+    t.string   "controller"
+    t.string   "action"
+    t.string   "params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "games", :force => true do |t|
