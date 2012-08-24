@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824152922) do
+ActiveRecord::Schema.define(:version => 20120824192101) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -96,13 +96,13 @@ ActiveRecord::Schema.define(:version => 20120824152922) do
   end
 
   create_table "comments", :force => true do |t|
-    t.integer  "post_id",      :null => false
-    t.integer  "user_id",      :null => false
+    t.integer  "user_id",           :null => false
     t.integer  "audio_id"
     t.text     "content"
     t.text     "teacher_note"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "available_post_id"
   end
 
   create_table "conference_signups", :force => true do |t|
@@ -188,11 +188,11 @@ ActiveRecord::Schema.define(:version => 20120824152922) do
   end
 
   create_table "high_scores", :force => true do |t|
-    t.string    "score",           :null => false
-    t.integer   "game_id",         :null => false
-    t.timestamp "submitted_at",    :null => false
-    t.integer   "user_id",         :null => false
-    t.string    "user_ip_address", :null => false
+    t.string    "score",             :null => false
+    t.timestamp "submitted_at",      :null => false
+    t.integer   "user_id",           :null => false
+    t.string    "user_ip_address",   :null => false
+    t.integer   "available_game_id"
   end
 
   create_table "languages", :force => true do |t|
@@ -287,11 +287,11 @@ ActiveRecord::Schema.define(:version => 20120824152922) do
   end
 
   create_table "study_histories", :force => true do |t|
-    t.integer   "user_id",         :null => false
-    t.integer   "word_list_id",    :null => false
-    t.string    "study_type",      :null => false
-    t.string    "user_ip_address", :null => false
-    t.timestamp "submitted_at",    :null => false
+    t.integer   "user_id",                :null => false
+    t.string    "study_type",             :null => false
+    t.string    "user_ip_address",        :null => false
+    t.timestamp "submitted_at",           :null => false
+    t.integer   "available_word_list_id"
   end
 
   create_table "subscription_plans", :force => true do |t|
