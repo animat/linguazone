@@ -203,6 +203,13 @@ a.purchase {
 table#list_registrations {
 	width: 100%;
 }
+table#list_registrations td.user_authentications {
+	font-size: .9em;
+}
+table#list_registrations td.last_login_time {
+	font-size: .8em;
+	color: #333;
+}
 a.unenroll_student_link, a.reset_password_link {
 	font-size: .8em;
 }

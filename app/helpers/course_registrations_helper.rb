@@ -9,12 +9,4 @@ module CourseRegistrationsHelper
     end
     str[0...-2].html_safe
   end
-  
-  def reset_password_button(user)
-    str = ""
-    unless user.has_generic_lz_email?
-      str << link_to("Reset password", "#", :class => "reset_password_link")
-    end
-    str.html_safe
-  end
 end

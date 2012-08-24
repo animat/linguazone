@@ -97,7 +97,15 @@ class User < ActiveRecord::Base
   def has_generic_lz_email?
     (self.email =~ /lz_student_(\d+)@linguazone.com/) != nil
   end
-
+  
+  def has_username?
+    (self.email =~ /(.*?)@(.*?)/) == nil
+  end
+  
+  def has_personal_email?
+    !self.has_username? and !self.has_generic_lz_email?
+  end
+  
   ROLES = %w[admin teacher student]
 
   def role_symbols
