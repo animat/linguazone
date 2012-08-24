@@ -42,7 +42,7 @@ end
 
 Then /^I should see (\d+) "([^"]*)" links?$/ do |count, link_text|
   #page.all(:xpath, "//a[text()='#{link_text}']").length.should == count.to_i
-  page.all(:css, "a:contains('#{link_text}')").length.should == count.to_i
+  page.all(:css, "a", :text => link_text).length.should == count.to_i
 end
 
 When /^I hover over the course item teacher controls$/ do

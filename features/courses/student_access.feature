@@ -15,7 +15,7 @@ Feature: Students access their own class page and use the course items
 	Scenario: Play games from page that is not password protected
 		Given the course "Latin 3A" has a code of "test-code"
 		When I am on the "Latin 3A" course page
-		Then I should see "class page is password-protected"
+		Then I should see "Please login before accessing"
 	
 	Scenario: Visit an audio blog post from the course page
 		Given I am on the "Latin 3A" course page
