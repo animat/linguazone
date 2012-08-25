@@ -50,9 +50,9 @@ class AboutController < ApplicationController
   end
   
   def play_demo
-    @game = Game.find(params[:id], :include => :activity)
-    @premium = true
-    @flashvars = "game_id="+String(@ag.id)+"&fullscreen_available="+String(@premium)+"&path=../&isFullscreen=false"
+    @raw_game = Game.find(params[:id], :include => :activity)
+    @game = AvailableGame.where(:game_id => @raw_game.id, :course_id => 0).first
+    @flashvars = "game_id="+String(@game.id)+"&fullscreen_available=true&path=../../../&isFullscreen=false"
   end
   
   def us
