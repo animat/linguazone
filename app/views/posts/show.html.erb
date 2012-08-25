@@ -91,7 +91,6 @@ $(function() {
 		<% if @ap.comments.length == 0 %>
 			<p>No comments have been left on this post yet.</p>
 		<% else %>
-			<% # TODO: Maybe AvailablePosts should be shared -- not Posts %>
 			<% if @post.shared? %>
 				<%= paginate @student_comments %>
 				<% @student_comments.each do |sc| %>

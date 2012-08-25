@@ -29,7 +29,6 @@ class ApplicationController < ActionController::Base
       @current_user = current_user_session && current_user_session.record
     end
     
-    # TODO: This is pretty gnarly code -- any other ways to make this work in a test environment?
     def record_feed_item(c_id)
       if current_user
         @fi = FeedItem.new

@@ -62,8 +62,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    # TODO (later): Warning -- the id that comes through is for a POST, not for an AvailablePost. 
-    #@ap = AvailablePost.find(params[:id])
+    # FIXME: Warning -- the id that comes through is for a POST, not for an AvailablePost. 
     @post = Post.find(params[:id])
     @ap = AvailablePost.find_by_course_id_and_post_id(params[:post][:course_id], @post.id)
 
