@@ -2,7 +2,7 @@
 	<div class="game_listing" id="<%= dom_id(item) %>">
 		<div class="game_details">
 			<% unless item.game.activity.nil? %>
-				<%= link_to image_tag('/games/'+item.game.activity.swf+'/display/icon-small.jpg', :alt => 'Play '+item.game.activity.name), play_path(item.game.id) %>
+				<%= link_to image_tag('/games/'+item.game.activity.swf+'/display/icon-small.jpg', :alt => 'Play '+item.game.activity.name), play_path(item.id) %>
 			<% end %>
 			<p>
 				<%= item.game.description %>

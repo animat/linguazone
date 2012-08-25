@@ -15,11 +15,12 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    @post = Post.find(params[:id], :include => [:course])
+    @ap = AvailablePost.find(params[:id])
+    @post = Post.find(@ap.post_id, :include => [:course])
     unless current_user.nil?
-      @comment = Comment.new( :post => @post )
+      @comment = Comment.new( :available_post => @ap )
     
-      @student_comments = @post.comments
+      @student_comments = @ap.comments
       @student_comments = @student_comments.page(params[:page])
     end
     respond_to do |format|

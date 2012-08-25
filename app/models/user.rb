@@ -35,11 +35,11 @@ class User < ActiveRecord::Base
   end
 
   def scores_in_game(id)
-    HighScore.all(:conditions => ["user_id = ? AND game_id = ?", self.id, id])
+    HighScore.all(:conditions => ["user_id = ? AND available_game_id = ?", self.id, id])
   end
 
   def study_history_in_word_list(id)
-    StudyHistory.all(:conditions => ["user_id = ? AND word_list_id = ?", self.id, id])
+    StudyHistory.all(:conditions => ["user_id = ? AND available_word_list_id = ?", self.id, id])
   end
 
   def is_teacher?

@@ -62,11 +62,11 @@ module ApplicationHelper
 
   def showing_item_pic_and_link(item)
     if item.class == AvailableGame
-      link_to image_tag(item.game.large_icon_src), play_path(item.game)
+      link_to image_tag(item.game.large_icon_src), play_path(item)
     elsif item.class == AvailableWordList
       ""
 	  elsif item.class == AvailablePost
-	    link_to image_tag("courses/show/speech_bubble.jpg"), post_path(item.post)
+	    link_to image_tag("courses/show/speech_bubble.jpg"), post_path(item)
     end
   end
   
@@ -76,10 +76,10 @@ module ApplicationHelper
   
   def showing_item_description(item)
     if item.class == AvailableWordList
-      review_link = link_to image_tag("word_lists/review_list.jpg"), url_for(:controller => "study", :action => "browse", :id => item.word_list.id)
-      print_link = link_to image_tag("word_lists/print_list.jpg"), url_for(:controller => "study", :action => "print", :id => item.word_list.id)
-      study_link = link_to image_tag("word_lists/study_list.jpg"), url_for(:controller => "study", :action => "practice", :id => item.word_list.id)
-      catch_link = link_to image_tag("word_lists/catch_words.jpg"), url_for(:controller => "study", :action => "catch", :id => item.word_list.id)
+      review_link = link_to image_tag("word_lists/review_list.jpg"), url_for(:controller => "study", :action => "browse", :id => item.id)
+      print_link = link_to image_tag("word_lists/print_list.jpg"), url_for(:controller => "study", :action => "print", :id => item.id)
+      study_link = link_to image_tag("word_lists/study_list.jpg"), url_for(:controller => "study", :action => "practice", :id => item.id)
+      catch_link = link_to image_tag("word_lists/catch_words.jpg"), url_for(:controller => "study", :action => "catch", :id => item.id)
       
       review_link + print_link + study_link + catch_link
     else
@@ -107,11 +107,11 @@ module ApplicationHelper
     end
   end
   
-  def view_stats_on_showing_item(item, course)
+  def view_stats_on_showing_item(item)
     if item.class == AvailableWordList
-      link_to "View stats", url_for(:controller => "study", :action => "stats", :id => item.word_list.id, :course => course.id)
+      link_to "View stats", url_for(:controller => "study", :action => "stats", :id => item.id)
     elsif item.class == AvailableGame
-      link_to "View stats", url_for(:controller => "play", :action => "stats", :id => item.game.id, :course => course.id)
+      link_to "View stats", url_for(:controller => "play", :action => "stats", :id => item.id)
     end
   end
 end

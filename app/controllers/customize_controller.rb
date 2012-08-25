@@ -1,4 +1,5 @@
 class CustomizeController < ApplicationController
+  # TODO: When you save a game, the "Play now" button will NOT work (because you can only play available games!)
   def new
     if current_user.nil?
       flash[:error] = "You need to login before accessing that page"
@@ -20,7 +21,8 @@ class CustomizeController < ApplicationController
   
   def create
   end
-
+  
+  # TODO: When you save a game, the "Play now" button will NOT work (because you can only play available games!)
   def edit
     if current_user.nil?
       flash[:error] = "You need to login before accessing that page"

@@ -75,8 +75,6 @@ class CoursesController < ApplicationController
         flash[:error] = "Could not update class settings"
       end
     end
-    logger.debug "Just finished updating! Great job! Redirecting to the course path... #{@course.id}"
-    logger.debug "**" * 40
     redirect_to course_path(@course)
   end
   

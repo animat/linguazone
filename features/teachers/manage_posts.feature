@@ -26,7 +26,7 @@ Feature: Teacher manages posts for audio blogs
 		And I am on the my posts page
 		Then I should see "Upgrade to use audio blogs"
 		And I should not see "You have not yet created any audio blog posts"
-	
+	@wip
 	Scenario: Create a new post
 		Given I am on the my posts page
 		When I follow "Create a new audio blog post"
