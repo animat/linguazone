@@ -37,8 +37,11 @@ Given /^([^"]*) (has|have) (\d+) (games|posts|word lists|word_lists|courses)$/ d
   else
     count.times do
       @g = Factory.create(things.singularize)
-      if things.singularize == "post" || things.singularize == "course"
+      if things.singularize == "course"
         @g.user_id = @t.id
+      elsif things.singularize == "post"
+        @g.user_id = @t.id
+        AvailablePost.create!(:user_id => @t.id, :post_id => @g.id, :course_id => 0, :hidden => 0, :ordering => 0)
       elsif things.singularize == "game"
         # TODO: Make sure that course items are made available when they are created
         AvailableGame.create!(:user_id => @t.id, :game_id => @g.id, :course_id => 0)

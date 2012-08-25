@@ -44,17 +44,15 @@ class AboutController < ApplicationController
     if params[:language].nil?
       redirect_to :action => "languages"
     else
-      # TODO: What class will the demo games be associated with? If course_id = 0, will that info just not show up?
-      # RED ALERT: This is currently broken with the new play routes
       @language = Language.find(params[:language].to_i)
-      @games = Demo.all(:conditions => ["language_id = ? and category != 'general'", @language.id], :include => "activity", :order => "activities.name")
-      @demos = []
-      @games.each do |g|
-        tmp = AvailableGame.where(["game_id = ? AND course_id = 0", g.id]).first
-        @demos.push(tmp)
-      end
-      puts @games
+      @demos = Demo.all(:conditions => ["language_id = ? and category != 'general'", @language.id], :include => "activity", :order => "activities.name")
     end
+  end
+  
+  def play_demo
+    @game = Game.find(params[:id], :include => :activity)
+    @premium = true
+    @flashvars = "game_id="+String(@ag.id)+"&fullscreen_available="+String(@premium)+"&path=../&isFullscreen=false"
   end
   
   def us

@@ -1,0 +1,9 @@
+<% stylesheet 'play' %>
+
+<h1>Play <%= @game.activity.name %></h1>
+
+<div id="game_window">
+	<div id="game" class="swf_window">
+		<%= swf_tag '/LZContainer/LZContainer.swf', {:id => "game", :flashvars => @flashvars, :size => "600x425", :parameters => {:allowFullScreen => true, :scale => "exactfit", :allowScriptAccess => "sameDomain", :wmode => "transparent", :quality => "high", :align => "middle", :width => "600", :height => "425", :game_id => @ag.id, :path => "../", :isFullscreen => "false"}} %>
+	</div>
+</div>

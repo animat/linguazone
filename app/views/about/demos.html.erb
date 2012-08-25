@@ -2,8 +2,8 @@
 <script type="text/javascript">
 
 function showHelp(game_div) {
-	var newStyle = $(game_div).style.display == "none" ? "block" : "none";
-	$(game_div).style.display = newStyle;
+	//var newStyle = $(game_div).style.display == "none" ? "block" : "none";
+	//$(game_div).style.display = newStyle;
 }
 
 </script>
@@ -22,13 +22,13 @@ function showHelp(game_div) {
 				<tr>
 			<% end %>
 				<td align="center" width="33%">
-					<%= link_to image_tag("/games/#{demo.game.activity.swf}/display/icon.jpg"), play_path(demo) %>
+					<%= link_to image_tag("/games/#{demo.activity.swf}/display/icon.jpg"), :controller => "about", :action => "play_demo", :id => demo.game_id %>
 					<br />
-					<%= demo.game.activity.name %>
-					<%= link_to_function image_tag("info-help.jpg"), "showHelp('#{demo.game.activity.swf}_help')" %>
+					<%= demo.activity.name %>
+					<%= link_to_function image_tag("info-help.jpg"), "showHelp('#{demo.activity.swf}_help')" %>
 					<div id="<%= demo.activity.swf %>_help" style="display: none; color: #666; font-size: .9em">
-						<%= demo.game.activity.help %><br />
-						<%= demo.game.activity.youtube_embed %>
+						<%= demo.activity.help %><br />
+						<%= demo.activity.youtube_embed %>
 					</div>
 				</td>
 			<% if index.modulo(3) == 2 %>
