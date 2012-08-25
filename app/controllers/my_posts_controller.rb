@@ -4,7 +4,7 @@ class MyPostsController < CourseItemsController
     unless current_user.is_premium_subscriber?
       redirect_to :controller => "posts", :action => "upgrade_reminder"
     end
-    @ap = AvailablePost.where(:user_id => current_user.id).order("updated_at DESC").page(params[:page])
+    @ap = AvailablePost.where(:user_id => current_user.id).includes(:post).order("posts.updated_at DESC").page(params[:page])
   end
   
   def joining_table

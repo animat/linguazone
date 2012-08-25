@@ -15,6 +15,7 @@
 		<%= f.check_box "shared" %> <%= f.label "shared", "Students can see each others' responses" %>
 	</p>
 	<p>
+		<%= f.hidden_field :course_id, :value => @ap.course_id %>
 		<%= f.submit 'Update' %>
 	</p>
 <% end %>

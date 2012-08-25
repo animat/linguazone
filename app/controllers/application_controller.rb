@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
     end
 
     def is_teacher_for(course)
-      return false if current_user.nil?
+      return false if current_user.nil? or course.nil?
       return course.user_id == current_user.id
     end
 

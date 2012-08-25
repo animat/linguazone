@@ -1,8 +1,6 @@
 class PostsController < ApplicationController
   filter_access_to :index, :new, :create, :edit, :update, :destroy
   
-  # GET /posts
-  # GET /posts.xml
   def index
     @posts = Post.all
 
@@ -12,11 +10,10 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/1
-  # GET /posts/1.xml
   def show
     @ap = AvailablePost.find(params[:id])
-    @post = Post.find(@ap.post_id, :include => [:course])
+    @post = Post.find(@ap.post_id)
+    @course = Course.find(@ap.course_id)
     unless current_user.nil?
       @comment = Comment.new( :available_post => @ap )
     
@@ -29,8 +26,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/new
-  # GET /posts/new.xml
   def new
     if current_user.is_premium_subscriber?
       @course_id = params[:course_id] || 0
@@ -46,40 +41,36 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = Post.find(params[:id])
+    @ap = AvailablePost.find(params[:id])
+    @post = @ap.post
   end
 
-  # POST /posts
-  # POST /posts.xml
   def create
     @post = Post.new(params[:post])
     
     respond_to do |format|
       if @post.save
-        
         @available_post = AvailablePost.new(:post_id => @post.id, :user_id => @post.user_id, :course_id => @post.course_id, :ordering => 0, :hidden => 0)
         @available_post.save
         flash[:success] = "Your new post has been created and added to the class page"
-        
-        format.html { redirect_to(@post) }
-        format.xml  { render :xml => @post, :status => :created, :location => @post }
+        format.html { redirect_to post_path(@available_post) }
       else
         flash[:error] = "There has been an error creating your new post"
         format.html { render :action => "new" }
-        format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # PUT /posts/1
-  # PUT /posts/1.xml
   def update
+    # TODO (later): Warning -- the id that comes through is for a POST, not for an AvailablePost. 
+    #@ap = AvailablePost.find(params[:id])
     @post = Post.find(params[:id])
+    @ap = AvailablePost.find_by_course_id_and_post_id(params[:post][:course_id], @post.id)
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to(@post) }
-        format.xml  { head :ok }
+        flash[:success] = "Your post has been updated"
+        format.html { redirect_to post_path(@ap) }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
@@ -87,15 +78,16 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1
-  # DELETE /posts/1.xml
   def destroy
-    @post = Post.find(params[:id])
-    @course_id = @post.course_id
+    @ap = AvailablePost.find(params[:id])
+    @course_id = @ap.course_id
+    @post = @ap.post
     @post.destroy
     
-    @available_post = AvailablePost.all(:conditions => ["post_id = ? AND course_id = ?", @post.id, @post.course_id])
-    @available_post[0].destroy
+    @available_post = AvailablePost.all(:conditions => ["post_id = ? AND course_id <> 0", @post.id])
+    @available_post.each do |ap|
+      ap.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to :controller => "courses", :action => "show", :id => @course_id }

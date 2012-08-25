@@ -1,7 +1,8 @@
 class AvailablePost < ActiveRecord::Base
   belongs_to :course
   belongs_to :post
-  has_many :comments, :dependent => :destroy
+  # TODO Maybe: We can students to still be able to access comments even if the teacher deleted the associated post, right?
+  has_many :comments
   belongs_to :user
   
   scope :showing, lambda {

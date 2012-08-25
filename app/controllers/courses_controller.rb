@@ -11,15 +11,11 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
-    if is_teacher_for(@course)
-      @course_registrations = CourseRegistration.all(:conditions => ["course_id = ?", @course.id], :include => :user, :order => "users.last_name ASC")
-    end
-    
-   @showing_posts = AvailablePost.all(:conditions => ["available_posts.course_id = ? AND hidden = ?", @course.id, false], :include => :post,
+    @showing_posts = AvailablePost.all(:conditions => ["available_posts.course_id = ? AND hidden = ?", @course.id, false], :include => :post,
                               :order => "posts.updated_at DESC")
     @showing_word_lists = AvailableWordList.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, false], :include => :word_list,
                               :order => "word_lists.updated_at DESC")
-    @showing_games = AvailableGame.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, false], :include => :game, 
+    @showing_games = AvailableGame.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, false], :include => [:game], 
                               :order => "ordering ASC, games.updated_at DESC")
     
     if @course.login_required

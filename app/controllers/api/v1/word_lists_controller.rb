@@ -1,6 +1,7 @@
 class Api::V1::WordListsController < ApplicationController
   def show
-    @word_list = WordList.find(params[:id], :include => :language)
+    @awl = AvailableWordList.find(params[:id])
+    @word_list = WordList.find(@awl.word_list_id, :include => :language)
   end
   
   def create

@@ -27,6 +27,6 @@ function lz_toggle_fullscreen_window(gameID, myPath) {
 
 <div id="game_window">
 	<div id="game" class="swf_window">
-		<%= swf_tag '/LZContainer/LZContainer.swf', {:id => "game", :flashvars => @flashvars, :size => "600x425", :parameters => {:allowFullScreen => true, :scale => "exactfit", :allowScriptAccess => "sameDomain", :wmode => "transparent", :quality => "high", :align => "middle", :width => "600", :height => "425", :game_id => @game.id, :path => "../", :isFullscreen => "false"}} %>
+		<%= swf_tag '/LZContainer/LZContainer.swf', {:id => "game", :flashvars => @flashvars, :size => "600x425", :parameters => {:allowFullScreen => true, :scale => "exactfit", :allowScriptAccess => "sameDomain", :wmode => "transparent", :quality => "high", :align => "middle", :width => "600", :height => "425", :game_id => @ag.id, :path => "../", :isFullscreen => "false"}} %>
 	</div>
 </div>

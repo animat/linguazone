@@ -93,7 +93,7 @@ module ApplicationHelper
     elsif item.class == AvailableWordList
       link_to "Edit this word list", url_for(:controller => "customize", :action => "edit", :id => item.word_list.id, :cmzr_type => "list")
     elsif item.class == AvailablePost
-      link_to "Edit this post", edit_post_path(item.post)
+      link_to "Edit this post", edit_post_path(item)
     end
   end
   
