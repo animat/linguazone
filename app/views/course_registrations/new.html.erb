@@ -1,0 +1,31 @@
+<% stylesheet 'teachers' %>
+<% content_for :head do %>
+<script type="text/javascript">
+$(function() {
+	var defaultText = "e.g. student@example.com, another_student@example.com"
+	$("#invite_emails").val(defaultText);
+	$("#invite_emails").addClass("default_example");
+	
+	$("#invite_emails").focus(function() {
+		if ($(this).val() == defaultText) {
+			$(this).val("");
+			$(this).addClass("user_input");
+			$(this).removeClass("default_example");
+		}
+	}).blur(function() {
+		if ($(this).val() == "") {
+			$(this).val(defaultText);
+			$(this).removeClass("user_input");
+			$(this).addClass("default_example");
+		}
+	})
+})
+</script>
+<% end %>
+
+<h1>Invite new students to <%= @course.name %></h1>
+<%= form_tag course_send_invites_path(@course) do %>
+	<%= label_tag :invite_emails, "Enter student email addresses here:" %><br />
+	<%= text_area_tag :invite_emails %><br />
+	<%= submit_tag "Send email invitations" %>
+<% end %>

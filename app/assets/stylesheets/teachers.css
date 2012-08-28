@@ -216,3 +216,19 @@ a.unenroll_student_link, a.reset_password_link {
 a.unenroll_student_link {
 	color: red;
 }
+textarea.default_example {
+	width: 600px;
+	height: 60px;
+	font-size: 1.1em;
+	color: #999;
+	font-style: italic;
+	margin: 5px 0px;
+}
+textarea.user_input {
+	width: 600px;
+	height: 60px;
+	font-size: 1.1em;
+	color: #000;
+	font-style: normal;
+	margin: 5px 0px;
+}

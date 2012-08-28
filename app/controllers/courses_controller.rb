@@ -19,7 +19,6 @@ class CoursesController < ApplicationController
                               :order => "ordering ASC, games.updated_at DESC")
     
     if @course.login_required
-      # TODO: Use cancan for authorization
       unless is_student_for(@course) or is_teacher_for(@course)
         if current_user
           flash[:error] = "Please register to see the <strong>#{@course.name}</strong> class page.".html_safe
@@ -72,6 +71,13 @@ class CoursesController < ApplicationController
       end
     end
     redirect_to course_path(@course)
+  end
+  
+  def send_invites
+    @course = Course.find(params[:course_id])
+    InvitationMailer.invite_student_to_course(params[:student_emails], @course).deliver
+    flash[:success] = "Email invitation (1 total) successfully sent"
+    redirect_back_or course_path(@course)
   end
   
   def add_post

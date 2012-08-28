@@ -88,6 +88,8 @@ Linguazone::Application.routes.draw do
       match "show_post/:available_post_id" => "courses#show_post", :via => :post, :as => "show_post"
     end
     
+    post :send_invites
+    
     resources :course_registrations
     resources :feed_items, :only => [:index]
   end
