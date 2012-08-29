@@ -10,13 +10,11 @@ class CoursesController < ApplicationController
   end
 
   def show
+    # TODO: Can these queries be optimized? e.g. the following query should get the course, the teacher, and teacher's school, subscription, etc
     @course = Course.find(params[:id])
-    @showing_posts = AvailablePost.all(:conditions => ["available_posts.course_id = ? AND hidden = ?", @course.id, false], :include => :post,
-                              :order => "posts.updated_at DESC")
-    @showing_word_lists = AvailableWordList.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, false], :include => :word_list,
-                              :order => "word_lists.updated_at DESC")
-    @showing_games = AvailableGame.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, false], :include => [:game], 
-                              :order => "ordering ASC, games.updated_at DESC")
+    @showing_posts = AvailablePost.showing.on_course(@course.id).includes(:post).order("posts.updated_at DESC")
+    @showing_word_lists = AvailableWordList.showing.on_course(@course.id).includes(:word_list).order("word_lists.updated_at DESC")
+    @showing_games = AvailableGame.showing.on_course(@course.id).includes({:game => :activity}).order("ordering ASC, games.updated_at DESC")
     
     if @course.login_required
       unless is_student_for(@course) or is_teacher_for(@course)

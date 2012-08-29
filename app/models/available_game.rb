@@ -7,6 +7,8 @@ class AvailableGame < ActiveRecord::Base
     where("hidden = ?", 0)
   }
   
+  scope :on_course, lambda { |c_id| where("course_id = ?", c_id) }
+  
   def parent_assoc
     game
   end

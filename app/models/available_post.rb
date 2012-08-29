@@ -9,6 +9,8 @@ class AvailablePost < ActiveRecord::Base
     where("hidden = ?", 0)
   }
   
+  scope :on_course, lambda { |c_id| where("available_posts.course_id = ?", c_id) }
+  
   def parent_assoc
     post
   end

@@ -4,7 +4,7 @@ class CourseRegistrationsController < ApplicationController
   def index
     if params[:course_id]
       @course = Course.find(params[:course_id])
-      @regs = CourseRegistration.where(:course_id => params[:course_id]).includes(:user).order("users.last_name")
+      @regs = CourseRegistration.students_in_course(params[:course_id]).includes({:user => :authentications}).order("users.last_name ASC")
     else
       flash[:notice] = "Please view class enrollments from a class page."
       redirect_to teachers_path

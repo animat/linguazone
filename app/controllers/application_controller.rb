@@ -69,7 +69,7 @@ class ApplicationController < ActionController::Base
       unless current_user.nil?
         if current_user.role == "teacher"
           if current_user.subscription.is_expired?
-            redirect_to :controller => "subscription", :action => "renew"
+            redirect_to :controller => "subscription", :action => "renew" and return
           end
         end
       end

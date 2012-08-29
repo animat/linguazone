@@ -12,6 +12,7 @@ module FeedItemsHelper
       (str + link).html_safe
     elsif fi.controller == "study"
       str = study_method(fi)
+      # TODO: This is causing a warning about object id... I think it's because of fi.params
       link = link_to "word list", url_for(:controller => "study", :action => fi.action, :id => fi.params.id)
       (str + link).html_safe
     end
