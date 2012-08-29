@@ -73,8 +73,13 @@ class CoursesController < ApplicationController
   
   def send_invites
     @course = Course.find(params[:course_id])
-    InvitationMailer.invite_student_to_course(params[:student_emails], @course).deliver
-    flash[:success] = "Email invitation (1 total) successfully sent"
+    @emails = params[:invite_emails].split(", ")
+    @emails.each do |email|
+      InvitationMailer.invite_student_to_course(email, @course).deliver
+    end
+    # TODO @Len: Is this really the best way to pluralize without the leading integer?
+    @invites = (@emails.length == 1) ? "invitation" : "invitations"
+    flash[:success] = "Email #{@invites} (#{@emails.length} total) successfully sent"
     redirect_back_or course_path(@course)
   end
   

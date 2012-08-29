@@ -19,7 +19,7 @@ class MyCoursesController < ApplicationController
 
   def create
     @course = Course.new(params[:course])
-
+    @course.guid = rand(36**24).to_s(36)
     if @course.login_required?
       if @course.code.blank?
         @course.login_required = false

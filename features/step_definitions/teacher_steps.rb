@@ -9,7 +9,7 @@ Given /^([^"]*) has a course at that school named "(.*?)"$/ do |teacher_name, co
     @teacher.school_id = @school.id
     @teacher.save
   end
-  @c = Course.create(:name => course_name, :user_id => @teacher.id)
+  @c = Course.create(:name => course_name, :user_id => @teacher.id, :guid => rand(21**10).to_s(36))
   @c.save
 end
 

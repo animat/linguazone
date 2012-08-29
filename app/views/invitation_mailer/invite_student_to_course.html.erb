@@ -1,6 +1,14 @@
-<p>Hi there!</p>
-<p>Your teacher, <%= @teacher.display_name %> has invited you to join the class page for <%= @course.name %> on LinguaZone.com. To get started, follow the link below and then login to LinguaZone.com.<br />
-GUID GOES HERE<br />
-From there you can create an account on LinguaZone.com or login by verifying your identity via Facebook, Twitter, or Google.</p>
-<p>Please let us know if you have any questions. All the best,<br />
-Colin Angevine and Margaret Roberts, Directors of LinguaZone</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+		<p>Hi there!</p>
+		<p>Your teacher, <%= @teacher.display_name %> has invited you to join the class page for <%= @course.name %> on LinguaZone.com. To get started, follow the link below and then login to LinguaZone.com.<br />
+		<%= link_to "Click here to register and get started", :controller => "students", :action => "login", :course_guid => @course_guid, :user_email => @student_email %><br />
+		From there you can create a new account on LinguaZone.com or login by verifying your identity via Facebook, Twitter, or Google.</p>
+		<p>Please let us know if you have any questions. All the best,<br />
+		Colin Angevine and Margaret Roberts, Directors of LinguaZone</p>
+	</body>
+</html>

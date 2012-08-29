@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824192101) do
+ActiveRecord::Schema.define(:version => 20120829033742) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20120824192101) do
     t.boolean "login_required", :default => false, :null => false
     t.string  "code"
     t.integer "ordering"
+    t.string  "guid"
   end
 
   create_table "demos", :force => true do |t|

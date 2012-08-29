@@ -88,6 +88,7 @@ end
 
 Factory.define :course do |c|
   c.name          "Latin 3A"
+  c.guid          rand(5**10).to_s(36)
   c.association   :user
 end
 
