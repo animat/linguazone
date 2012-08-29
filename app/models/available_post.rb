@@ -5,6 +5,8 @@ class AvailablePost < ActiveRecord::Base
   has_many :comments
   belongs_to :user
   
+  has_many :sources, :as => :sourceable
+  
   scope :showing, lambda {
     where("hidden = ?", 0)
   }
