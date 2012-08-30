@@ -80,7 +80,7 @@ class CoursesController < ApplicationController
     # TODO @Len: Is this really the best way to pluralize without the leading integer?
     @invites = (@emails.length == 1) ? "invitation" : "invitations"
     flash[:success] = "Email #{@invites} (#{@emails.length} total) successfully sent"
-    redirect_back_or course_path(@course)
+    redirect_to course_path(@course)
   end
   
   def add_post
