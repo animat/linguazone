@@ -8,7 +8,7 @@ class AvailablePost < ActiveRecord::Base
   has_many :sources, :as => :sourceable
   
   scope :showing, lambda {
-    where("hidden = ?", 0)
+    where("hidden = ?", false)
   }
   
   scope :on_course, lambda { |c_id| where("available_posts.course_id = ?", c_id) }

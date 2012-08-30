@@ -132,7 +132,7 @@ class CoursesController < ApplicationController
   
   def hide_game
     @showing_game = AvailableGame.find(params[:available_game_id])
-    @showing_game.hidden = 1
+    @showing_game.hidden = true
     if @showing_game.save
       render :text => "Saved successfully"
     else
@@ -142,7 +142,7 @@ class CoursesController < ApplicationController
   
   def hide_word_list
     @showing_word_list = AvailableWordList.find(params[:available_word_list_id])
-    @showing_word_list.hidden = 1
+    @showing_word_list.hidden = true
     if @showing_word_list.save
       render :text => "Saved successfully"
     else
@@ -152,7 +152,7 @@ class CoursesController < ApplicationController
   
   def hide_post
     @showing_post = AvailablePost.find(params[:available_post_id])
-    @showing_post.hidden = 1
+    @showing_post.hidden = true
     if @showing_post.save
       render :text => "Saved successfully"
     else
@@ -162,7 +162,7 @@ class CoursesController < ApplicationController
   
   def show_game
     @hidden_game = AvailableGame.find(params[:available_game_id])
-    @hidden_game.hidden = 0
+    @hidden_game.hidden = false
     if @hidden_game.save
       render :text => "Saved successfully"
     else
@@ -172,7 +172,7 @@ class CoursesController < ApplicationController
   
   def show_word_list
     @hidden_word_list = AvailableWordList.find(params[:available_word_list_id])
-    @hidden_word_list.hidden = 0
+    @hidden_word_list.hidden = false
     if @hidden_word_list.save
       render :text => "Saved successfully"
     else
@@ -182,7 +182,7 @@ class CoursesController < ApplicationController
   
   def show_post
     @hidden_post = AvailablePost.find(params[:available_post_id])
-    @hidden_post.hidden = 0
+    @hidden_post.hidden = false
     if @hidden_post.save
       render :text => "Saved successfully"
     else
