@@ -142,11 +142,8 @@ class StudentsController < ApplicationController
           session['omniauth'] = nil
           session.delete :omniauth
           UserSession.create @user
-          puts "*"*50
-          puts "Saving via omniauth... course guid: #{session['course_guid']}"
           if session[:course_guid]
             @course = Course.find_by_guid(session[:course_guid])
-            puts "Found the course! #{@course}."
             CourseRegistration.create!(:course => @course, :user => @user)
             session[:user_email] = nil
             session[:course_guid] = nil
