@@ -1,10 +1,10 @@
 module FeedItemsHelper
   def format_feed_item(show_user_name, fi)
-    if fi.controller == "high_scores"
+    if fi.sourceable_type == "HighScore"
       str = display_high_score_item(show_user_name, fi)
-    elsif fi.controller == "comments"
+    elsif fi.sourceable_type == "Comment"
       str = display_comment_item(show_user_name, fi)
-    elsif fi.controller == "study"
+    elsif fi.sourceable_type == "StudyHistory"
       str = display_study_item(show_user_name, fi)
     end
     str.html_safe

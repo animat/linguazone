@@ -4,8 +4,9 @@ Given /^"(.*?)" has recorded (\d+) high scores in "(.*?)"$/ do |student_name, nu
   @g = AvailableGame.where(:course_id => @c.id).last
   for i in 0...num_high_scores.to_i do
     @params = {:score => "10", :available_game_id => @g.id, :user_id => @s.id, :submitted_at => Time.now, :user_ip_address => "127.0.0.1"}
-    FeedItem.create!(:user_id => @s.id, :course_id => @c.id, :controller => "HighScore", :action => "create", :params => @params.inspect)
     HighScore.create!(@params)
+    FeedItem.create!(:user_id => @s.id, :course_id => @c.id, :controller => "HighScore", :action => "create", :params => @params.inspect,
+                      :sourceable_type => "HighScore", :sourceable_id => HighScore.last.id)
   end
 end
 
@@ -15,8 +16,9 @@ Given /^"(.*?)" has created (\d+) comment on a post in "(.*?)"$/ do |student_nam
   @p = AvailablePost.where(:course_id => @c.id).last
   for i in 0...num_comments.to_i do
     @params = {:audio_id => "10", :available_post_id => @p.id, :user_id => @s.id}
-    FeedItem.create(:user_id => @s.id, :course_id => @c.id, :controller => "Comment", :action => "create", :params => @params.inspect)
-    Comment.create(@params)
+    Comment.create!(@params)
+    FeedItem.create(:user_id => @s.id, :course_id => @c.id, :controller => "Comment", :action => "create", :params => @params.inspect,
+                      :sourceable_type => "Comment", :sourceable_id => Comment.last.id)
   end
 end
 
@@ -26,8 +28,9 @@ Given /^"(.*?)" has studied (\d+) word lists in "(.*?)"$/ do |student_name, num_
   @wl = AvailableWordList.where(:course_id => @c.id).last
   for i in 0...num_study_histories.to_i do
     @params = {:study_type => "browse", :available_word_list_id => @wl.id, :user_id => @s.id, :submitted_at => Time.now, :user_ip_address => "127.0.0.1"}
-    FeedItem.create(:user_id => @s.id, :course_id => @c.id, :controller => "StudyHistory", :action => "create", :params => @params.inspect)
     StudyHistory.create!(@params)
+    FeedItem.create(:user_id => @s.id, :course_id => @c.id, :controller => "StudyHistory", :action => "create", :params => @params.inspect,
+                      :sourceable_type => "StudyHistory", :sourceable_id => StudyHistory.last.id)
   end
 end
 
