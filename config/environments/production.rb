@@ -11,14 +11,5 @@ Linguazone::Application.configure do
   config.assets.precompile += %w[active_admin.css active_admin.js]
   config.assets.initialize_on_precompile = false
 
-  ActionMailer::Base.delivery_method = :smtp
-
-  ActionMailer::Base.smtp_settings = {
-    :address              => "spring.joyent.us",
-    :port                 => 25,
-    :domain               => "spring.joyent.us",
-    :user_name            => "info-linguazone",
-    :password             => "tamina01",
-    :authentication       => :plain
-  }
+  config.action_mailer.default_url_options = { :host => "www.linguazone.com" }
 end

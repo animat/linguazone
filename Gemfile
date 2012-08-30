@@ -53,6 +53,7 @@ group :development, :test do
   gem "factory_girl_rails", "1.1.0"
   gem 'pry-rails'
   gem 'mysql2'
+  gem 'bullet'
 end
 
 group :test do
@@ -61,4 +62,6 @@ group :test do
   gem "capybara"
   gem "shoulda"
   gem "timecop"
+  gem 'email_spec'
+  gem 'action_mailer_cache_delivery'
 end

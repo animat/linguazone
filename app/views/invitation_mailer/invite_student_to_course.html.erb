@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+		<p>Hi there!</p>
+		<p>Your teacher, <%= @teacher.display_name %>, has invited you to join the class page for <strong><%= @course.name %></strong> on LinguaZone.com. To get started, follow the link below and then login to LinguaZone.com.</p>
+		<p><%= link_to "Click here to register and get started", login_students_url(:course_guid => @course_guid, :user_email => @student_email) %></p>
+		<p>From there you can create a new account or login by verifying your identity via Facebook, Twitter, or Google.</p>
+		<p>Please let us know if you have any questions. All the best,<br />
+		Colin Angevine and Margaret Roberts, Directors of LinguaZone</p>
+	</body>
+</html>

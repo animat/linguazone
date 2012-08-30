@@ -197,6 +197,7 @@ fieldset#login {
 a.purchase {
 	color: #0D5213;
 }
+<<<<<<< HEAD
 p.extra_config {
 	margin-top: 50px;
 }
@@ -208,4 +209,72 @@ a.reorder_classes {
 a.reorder_classes:hover {
 	color: #666;
 	text-decoration: underline;
+=======
+/* -----------
+ course registrations
+   ----------- */
+table#list_registrations {
+	width: 100%;
+}
+table#list_registrations td.user_authentications {
+	font-size: .9em;
+}
+table#list_registrations td.last_login_time {
+	font-size: .8em;
+	color: #333;
+}
+a.unenroll_student_link, a.reset_password_link {
+	font-size: .8em;
+}
+a.unenroll_student_link {
+	color: red;
+}
+textarea.default_example {
+	width: 600px;
+	height: 60px;
+	font-size: 1.1em;
+	color: #999;
+	font-style: italic;
+	margin: 5px 0px;
+}
+textarea.user_input {
+	width: 600px;
+	height: 60px;
+	font-size: 1.1em;
+	color: #000;
+	font-style: normal;
+	margin: 5px 0px;
+}
+/* -----------
+ 	feed items
+   ----------- */
+li.feed_item {
+	list-style-type: none;
+	margin-bottom: 10px;
+}
+li.feed_item div.icon {
+	float: left;
+	width: 70px;
+}
+li.feed_item div.details {
+	float: left;
+	position: relative;
+	top: 8px;
+	left: 10px;
+}
+li.feed_item p {
+	margin: 0px;
+	padding: 0px;
+}
+li.feed_item p.preview {
+	color: #999;
+	font-size: .9em;
+}
+li.feed_item p.Comment {
+	font-style: italic;
+}
+li.feed_item span.time_ago {
+	color: #009900;
+	font-size: .9em;
+>>>>>>> manage-course-registrations
 }

@@ -1,4 +1,6 @@
 Linguazone::Application.routes.draw do
+  get "feed_items_controller/index"
+
   resources :authentications
 
   ActiveAdmin.routes(self)
@@ -20,9 +22,8 @@ Linguazone::Application.routes.draw do
       get :find_class
       get :login
     end
+    resources :feed_items, :only => [:index]
   end
-  
-  resources :course_registrations, :only => [:destroy]
   
   resources :authentications, :only => [:index, :create, :destroy] do
     collection do 
@@ -86,6 +87,15 @@ Linguazone::Application.routes.draw do
       match "show_word_list/:available_word_list_id" => "courses#show_word_list", :via => :post, :as => "show_word_list"
       match "show_post/:available_post_id" => "courses#show_post", :via => :post, :as => "show_post"
     end
+    
+    post :send_invites
+    
+    resources :course_registrations
+    resources :feed_items, :only => [:index]
+  end
+  
+  resources :course_registrations do
+    resources :feed_items, :only => [:index]
   end
   
   resources :comments

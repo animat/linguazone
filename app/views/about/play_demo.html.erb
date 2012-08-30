@@ -1,0 +1,26 @@
+<% stylesheet 'play' %>
+
+<% content_for :page_script do %>
+<script type="text/javascript">
+var newWindow;
+function lz_toggle_fullscreen_window(gameID, myPath) {
+	var params = "fullscreen=yes, ";
+	params += "width="+screen.width+", ";
+	params += "height="+screen.height+", ";
+	params += "top=0, left=0";
+	var newWindow = window.open(myPath+"LZContainer/fullscreen.html?id="+gameID, "LinguaZone", params);
+	newWindow.focus();
+	return false;
+}
+</script>
+<% end %>
+
+
+<h1><%= "Play a demo of #{@game.game.activity.name} in #{@game.game.language.name}" %></h1>
+<p><%= @game.game.activity.help %></p>
+
+<div id="game_window">
+	<div id="game" class="swf_window">
+		<%= swf_tag '/LZContainer/LZContainer.swf', {:id => "game", :flashvars => @flashvars, :size => "600x425", :parameters => {:allowFullScreen => true, :scale => "exactfit", :allowScriptAccess => "sameDomain", :wmode => "transparent", :quality => "high", :align => "middle", :width => "600", :height => "425", :game_id => @game.id, :path => "../../../", :isFullscreen => "false"}} %>
+	</div>
+</div>

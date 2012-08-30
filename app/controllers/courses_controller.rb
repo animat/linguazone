@@ -10,26 +10,13 @@ class CoursesController < ApplicationController
   end
 
   def show
+    # TODO: Can these queries be optimized? e.g. the following query should get the course, the teacher, and teacher's school, subscription, etc
     @course = Course.find(params[:id])
-    if is_teacher_for(@course)
-      @course_registrations = CourseRegistration.all(:conditions => ["course_id = ?", @course.id], :include => :user, :order => "users.last_name ASC")
-    end
-    
-    # TODO @Len [later]: What steps can I take to build an audit log of student activity across these three different things?
-    # => Use a module with a participate method that will log all participation activities
-    # => Not sure how to merge these separate models into one "audit log" model
-    #@showing_posts = @course.available_posts.showing.order()
-    #@showing_word_lists = @course.available_word_lists.showing
-    #@showing_games = @course.available_games.showing.order("ordering")
-    @showing_posts = AvailablePost.all(:conditions => ["available_posts.course_id = ? AND hidden = ?", @course.id, false], :include => :post,
-                              :order => "posts.updated_at DESC")
-    @showing_word_lists = AvailableWordList.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, false], :include => :word_list,
-                              :order => "word_lists.updated_at DESC")
-    @showing_games = AvailableGame.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, false], :include => :game, 
-                              :order => "ordering ASC, games.updated_at DESC")
+    @showing_posts = AvailablePost.showing.on_course(@course.id).includes(:post).order("posts.updated_at DESC")
+    @showing_word_lists = AvailableWordList.showing.on_course(@course.id).includes(:word_list).order("word_lists.updated_at DESC")
+    @showing_games = AvailableGame.showing.on_course(@course.id).includes({:game => :activity}).order("ordering ASC, games.updated_at DESC")
     
     if @course.login_required
-      # TODO: Use cancan for authorization
       unless is_student_for(@course) or is_teacher_for(@course)
         if current_user
           flash[:error] = "Please register to see the <strong>#{@course.name}</strong> class page.".html_safe
@@ -81,8 +68,18 @@ class CoursesController < ApplicationController
         flash[:error] = "Could not update class settings"
       end
     end
-    logger.debug "Just finished updating! Great job! Redirecting to the course path... #{@course.id}"
-    logger.debug "**" * 40
+    redirect_to course_path(@course)
+  end
+  
+  def send_invites
+    @course = Course.find(params[:course_id])
+    @emails = params[:invite_emails].split(", ")
+    @emails.each do |email|
+      InvitationMailer.invite_student_to_course(email, @course).deliver
+    end
+    # TODO @Len: Is this really the best way to pluralize without the leading integer?
+    @invites = (@emails.length == 1) ? "invitation" : "invitations"
+    flash[:success] = "Email #{@invites} (#{@emails.length} total) successfully sent"
     redirect_to course_path(@course)
   end
   
@@ -135,7 +132,7 @@ class CoursesController < ApplicationController
   
   def hide_game
     @showing_game = AvailableGame.find(params[:available_game_id])
-    @showing_game.hidden = 1
+    @showing_game.hidden = true
     if @showing_game.save
       render :text => "Saved successfully"
     else
@@ -145,7 +142,7 @@ class CoursesController < ApplicationController
   
   def hide_word_list
     @showing_word_list = AvailableWordList.find(params[:available_word_list_id])
-    @showing_word_list.hidden = 1
+    @showing_word_list.hidden = true
     if @showing_word_list.save
       render :text => "Saved successfully"
     else
@@ -155,7 +152,7 @@ class CoursesController < ApplicationController
   
   def hide_post
     @showing_post = AvailablePost.find(params[:available_post_id])
-    @showing_post.hidden = 1
+    @showing_post.hidden = true
     if @showing_post.save
       render :text => "Saved successfully"
     else
@@ -165,7 +162,7 @@ class CoursesController < ApplicationController
   
   def show_game
     @hidden_game = AvailableGame.find(params[:available_game_id])
-    @hidden_game.hidden = 0
+    @hidden_game.hidden = false
     if @hidden_game.save
       render :text => "Saved successfully"
     else
@@ -175,7 +172,7 @@ class CoursesController < ApplicationController
   
   def show_word_list
     @hidden_word_list = AvailableWordList.find(params[:available_word_list_id])
-    @hidden_word_list.hidden = 0
+    @hidden_word_list.hidden = false
     if @hidden_word_list.save
       render :text => "Saved successfully"
     else
@@ -185,7 +182,7 @@ class CoursesController < ApplicationController
   
   def show_post
     @hidden_post = AvailablePost.find(params[:available_post_id])
-    @hidden_post.hidden = 0
+    @hidden_post.hidden = false
     if @hidden_post.save
       render :text => "Saved successfully"
     else

@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   helper :all
-  helper_method :current_user, :is_teacher_for, :is_student_for
+  helper_method :current_user, :is_teacher_for, :is_student_for, :record_feed_item
   before_filter :set_current_user, :get_teacher_courses, :force_www
 
   protected
@@ -28,9 +28,24 @@ class ApplicationController < ActionController::Base
       return @current_user if defined?(@current_user)
       @current_user = current_user_session && current_user_session.record
     end
+    
+    def record_feed_item(c_id, src)
+      if current_user
+        @fi = FeedItem.new
+        @fi.user_id = current_user.id
+        @fi.course_id = c_id unless c_id.nil?
+        @fi.browser = request.env['HTTP_USER_AGENT']
+        @fi.ip_address = request.env['REMOTE_ADDR']
+        @fi.controller = controller_name 
+        @fi.action = action_name
+        @fi.params = params.inspect
+        @fi.sourceable = src
+        @fi.save
+      end
+    end
 
     def is_teacher_for(course)
-      return false if current_user.nil?
+      return false if current_user.nil? or course.nil?
       return course.user_id == current_user.id
     end
 
@@ -55,7 +70,7 @@ class ApplicationController < ActionController::Base
       unless current_user.nil?
         if current_user.role == "teacher"
           if current_user.subscription.is_expired?
-            redirect_to :controller => "subscription", :action => "renew"
+            redirect_to :controller => "subscription", :action => "renew" and return
           end
         end
       end

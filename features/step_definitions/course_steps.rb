@@ -1,3 +1,18 @@
+Given /^there (is|are) (\d+) students? enrolled in "(.*?)"$/ do |verb, num_students, course_name|
+  @course = Course.find_or_create_by_name(course_name)
+  for i in 0...num_students.to_i do
+    @student = Factory.create(:student)
+    @student.save
+    @cr = CourseRegistration.create!(:course_id => @course.id, :user_id => @student.id)
+  end
+end
+
+Given /^"(.*?)" is enrolled in "(.*?)"$/ do |student_name, course_name|
+  @course = Course.find_by_name(course_name)
+  @student = User.where(:first_name => student_name, :role => "student").first
+  @cr = CourseRegistration.create!(:course_id => @course.id, :user_id => @student.id)
+end
+
 Given /^"([^"]*)" has (\d+) (games|word lists|audio blog posts) showing$/ do |course_name, num, thing|
   @c = Course.find_by_name(course_name)
   num.to_i.times do
@@ -32,7 +47,8 @@ Then /^I should see (\d+) "([^"]*)" links for ([^"]*)$/ do |count, link_text, ar
 end
 
 Then /^I should see (\d+) "([^"]*)" links?$/ do |count, link_text|
-  all(:xpath, "//a[text()='#{link_text}']").length.should == count.to_i
+  #page.all(:xpath, "//a[text()='#{link_text}']").length.should == count.to_i
+  page.all(:css, "a", :text => link_text).length.should == count.to_i
 end
 
 When /^I hover over the course item teacher controls$/ do

@@ -1,9 +1,15 @@
-Given /^a teacher has a course at that school named "(.*?)"$/ do |course_name|
+Given /^([^"]*) has a course at that school named "(.*?)"$/ do |teacher_name, course_name|
   @school = School.last
-  @teacher = Factory.create(:teacher, :school => @school)
-  @teacher.school_id = @school.id
-  @teacher.save
-  @c = Course.create(:name => course_name, :user_id => @teacher.id)
+  if teacher_name == "a teacher"
+    @teacher = Factory.create(:teacher, :school => @school)
+    @teacher.school_id = @school.id
+    @teacher.save
+  else
+    @teacher = User.find_by_first_name(teacher_name)
+    @teacher.school_id = @school.id
+    @teacher.save
+  end
+  @c = Course.create(:name => course_name, :user_id => @teacher.id, :guid => rand(21**10).to_s(36))
   @c.save
 end
 
@@ -40,8 +46,11 @@ Given /^([^"]*) (has|have) (\d+) (games|posts|word lists|word_lists|courses)$/ d
   else
     count.times do
       @g = Factory.create(things.singularize)
-      if things.singularize == "post" || things.singularize == "course"
+      if things.singularize == "course"
         @g.user_id = @t.id
+      elsif things.singularize == "post"
+        @g.user_id = @t.id
+        AvailablePost.create!(:user_id => @t.id, :post_id => @g.id, :course_id => 0, :hidden => 0, :ordering => 0)
       elsif things.singularize == "game"
         # TODO: Make sure that course items are made available when they are created
         AvailableGame.create!(:user_id => @t.id, :game_id => @g.id, :course_id => 0)

@@ -1,10 +1,13 @@
 <% content_for :page_script do %>
 <script type="text/javascript">
 
-function showHelp(game_div) {
-	var newStyle = $(game_div).style.display == "none" ? "block" : "none";
-	$(game_div).style.display = newStyle;
-}
+$(function() {
+	$(".help_details").hide();
+	$(".help_link").click(function() {
+		$(this).parent().find(".help_details").slideToggle();
+		return false;
+	})
+});
 
 </script>
 <% end %>
@@ -22,13 +25,15 @@ function showHelp(game_div) {
 				<tr>
 			<% end %>
 				<td align="center" width="33%">
-					<%= link_to image_tag("/games/"+demo.activity.swf+"/display/icon.jpg"), :controller => "play", :action => "show", :id => demo.game_id %>
-					<br />
-					<%= demo.activity.name %>
-					<%= link_to_function image_tag("info-help.jpg"), "showHelp('"+demo.activity.swf+"_help')" %>
-					<div id="<%= demo.activity.swf %>_help" style="display: none; color: #666; font-size: .9em">
-						<%= demo.activity.help %><br />
-						<%= demo.activity.youtube_embed %>
+					<%= link_to image_tag("/games/#{demo.activity.swf}/display/icon.jpg"), :controller => "about", :action => "play_demo", :id => demo.game_id %>
+					<div>
+						<%= demo.activity.name %>
+						<%= link_to image_tag("info-help.jpg"), "#", :class => "help_link" %>
+						<div class="help_details">
+							<%= demo.activity.help.html_safe %><br />
+							<%# TODO: Use a lightbox (or something) to have videos appear in layover window %>
+							<%# demo.activity.youtube_embed.html_safe %>
+						</div>
 					</div>
 				</td>
 			<% if index.modulo(3) == 2 %>

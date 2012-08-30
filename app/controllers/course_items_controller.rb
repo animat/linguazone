@@ -26,6 +26,7 @@ class CourseItemsController < ApplicationController
     @search_type = "adopt"
   end
   
+  # TODO: Since the search is moving through joining tables (AvailableGame, AvailableWordList), duplicates are appearing!
   def search
     if params[:search].nil?
       redirect_to :action => :index

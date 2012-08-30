@@ -23,6 +23,7 @@ Feature: Teachers show hidden resources on their class page
 		When I follow "Show" within the first search result row
 		Then I should see 1 "Show" link
 		And I follow "Go to Test class class page"
+		And I hover over the course item teacher controls
 		And I should see 1 "Hide from students" link within the available games area
 
 	@javascript
@@ -33,6 +34,7 @@ Feature: Teachers show hidden resources on their class page
 		When I follow "Show" within the first search result row
 		Then I should see 1 "Show" link
 		And I follow "Go to Test class class page"
+		And I hover over the course item teacher controls
 		And I should see 1 "Hide from students" link within the available posts area
 
 	@javascript
@@ -43,4 +45,5 @@ Feature: Teachers show hidden resources on their class page
 		When I follow "Show" within the first search result row
 		Then I should see 1 "Show" link
 		And I follow "Go to Test class class page"
+		And I hover over the course item teacher controls
 		And I should see 1 "Hide from students" link within the available word lists area

@@ -1,11 +1,13 @@
 class Api::V1::GamesController < ApplicationController
   def show
-    @game = Game.find(params[:id], :include => [:activity, :template, :language])
+    @ag = AvailableGame.find(params[:id])
+    @game = Game.find(@ag.game_id, :include => [:activity, :template, :language])
   end
   
   # TODO: This is used by LZContainer.fla. This should eventually be subsumed by show action.
   def info
-    @game = Game.find(params[:id], :include => [:activity, :template, :language])
+    @ag = AvailableGame.find(params[:id])
+    @game = Game.find(@ag.game_id, :include => [:activity, :template, :language])
   end
   
   def create

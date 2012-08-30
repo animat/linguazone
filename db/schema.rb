@@ -10,7 +10,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823141206) do
+
+ActiveRecord::Schema.define(:version => 20120829192823) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -96,13 +97,13 @@ ActiveRecord::Schema.define(:version => 20120823141206) do
   end
 
   create_table "comments", :force => true do |t|
-    t.integer  "post_id",      :null => false
-    t.integer  "user_id",      :null => false
+    t.integer  "user_id",           :null => false
     t.integer  "audio_id"
     t.text     "content"
     t.text     "teacher_note"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "available_post_id"
   end
 
   create_table "conference_signups", :force => true do |t|
@@ -127,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20120823141206) do
     t.boolean "login_required", :default => false, :null => false
     t.string  "code"
     t.integer "ordering"
+    t.string  "guid"
   end
 
   create_table "demos", :force => true do |t|
@@ -144,6 +146,20 @@ ActiveRecord::Schema.define(:version => 20120823141206) do
     t.string    "target_group", :limit => 25, :default => "", :null => false
     t.string    "code",         :limit => 25, :default => "", :null => false
     t.timestamp "expiration"
+  end
+
+  create_table "feed_items", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.string   "browser"
+    t.string   "ip_address"
+    t.string   "controller"
+    t.string   "action"
+    t.text     "params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "sourceable_type"
+    t.integer  "sourceable_id"
   end
 
   create_table "games", :force => true do |t|
@@ -176,11 +192,11 @@ ActiveRecord::Schema.define(:version => 20120823141206) do
   end
 
   create_table "high_scores", :force => true do |t|
-    t.string    "score",           :null => false
-    t.integer   "game_id",         :null => false
-    t.timestamp "submitted_at",    :null => false
-    t.integer   "user_id",         :null => false
-    t.string    "user_ip_address", :null => false
+    t.string    "score",             :null => false
+    t.timestamp "submitted_at",      :null => false
+    t.integer   "user_id",           :null => false
+    t.string    "user_ip_address",   :null => false
+    t.integer   "available_game_id"
   end
 
   create_table "languages", :force => true do |t|
@@ -275,11 +291,11 @@ ActiveRecord::Schema.define(:version => 20120823141206) do
   end
 
   create_table "study_histories", :force => true do |t|
-    t.integer   "user_id",         :null => false
-    t.integer   "word_list_id",    :null => false
-    t.string    "study_type",      :null => false
-    t.string    "user_ip_address", :null => false
-    t.timestamp "submitted_at",    :null => false
+    t.integer   "user_id",                :null => false
+    t.string    "study_type",             :null => false
+    t.string    "user_ip_address",        :null => false
+    t.timestamp "submitted_at",           :null => false
+    t.integer   "available_word_list_id"
   end
 
   create_table "subscription_plans", :force => true do |t|
@@ -333,6 +349,9 @@ ActiveRecord::Schema.define(:version => 20120823141206) do
     t.datetime  "last_login_at"
     t.integer   "login_count",                        :default => 0,     :null => false
     t.string    "last_login_ip",       :limit => 40
+    t.datetime  "current_login_at"
+    t.string    "current_login_ip"
+    t.datetime  "last_request_at"
   end
 
   create_table "word_lists", :force => true do |t|

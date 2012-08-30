@@ -23,13 +23,12 @@ fieldset {
 	color: #003399;
 }
 #settings {
-	padding: 0px 25px 0px 40px;
-}
-h2#settingsHeader {
-	color: #666666;
-	background-color: #FFEFD5;
 	margin: 10px 15px 10px 11px;
-	padding: 5px 35px;
+	padding: 10px 25px 10px 40px;
+	background-color: #FFEFD5;
+}
+#settings h2 {
+	color: #454545;
 }
 #settings ul {
 	margin-left: 30px;

@@ -24,13 +24,8 @@ When /^I follow the (\d+)(st|nd|rd|th) link$/ do |num, suffix|
   find(:xpath, "a[#{num}]").click
 end
 
-Given /^I expect to click "([^"]*)" on a confirmation box saying "([^"]*)"$/ do |option, message|
-  retval = (option == "OK") ? "true" : "false"
-
-  page.evaluate_script("window.confirm = function (msg) {
-    $.cookie('confirm_message', msg)
-    return #{retval}
-  }")
-  
-  click_link option
+When /^I follow "([^"]*)" and click OK$/ do |text|
+  page.evaluate_script("window.alert = function(msg) { return true; }")
+  page.evaluate_script("window.confirm = function(msg) { return true; }")
+  step %{I follow "#{text}"}
 end

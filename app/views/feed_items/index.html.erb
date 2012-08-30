@@ -1,0 +1,26 @@
+<% stylesheet 'teachers' %>
+
+<h1>Activity stream</h1>
+<h2>for <%= @usage %></h2>
+<br />
+<% if @feed_items.empty? %>
+	<p>No activities have yet been recorded.</p>
+<% else %>
+	<div id="activity_stream">
+		<ul>
+			<% @feed_items.each do |fi| %>
+				<li class="feed_item">
+					<div class="icon">
+						<%= format_feed_img(fi) %>
+					</div>
+					<div class="details">
+						<%= format_feed_item(@show_user_name, fi) %>
+						<%= format_feed_item_preview(fi) %>
+					</div>
+					<br class="clearFloat" />
+				</li>
+			<% end %>
+		</ul>
+		<%= paginate @feed_items %>
+	</div>
+<% end %>

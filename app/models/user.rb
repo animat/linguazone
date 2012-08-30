@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :courses, :through => :course_registration
   has_many :posts
   has_many :comments
+  has_many :high_scores
+  has_many :study_histories
   has_many :audio_clips
   has_many :authentications, :dependent => :destroy
   belongs_to :subscription
@@ -33,11 +35,11 @@ class User < ActiveRecord::Base
   end
 
   def scores_in_game(id)
-    HighScore.all(:conditions => ["user_id = ? AND game_id = ?", self.id, id])
+    HighScore.all(:conditions => ["user_id = ? AND available_game_id = ?", self.id, id])
   end
 
   def study_history_in_word_list(id)
-    StudyHistory.all(:conditions => ["user_id = ? AND word_list_id = ?", self.id, id])
+    StudyHistory.all(:conditions => ["user_id = ? AND available_word_list_id = ?", self.id, id])
   end
 
   def is_teacher?
@@ -97,7 +99,15 @@ class User < ActiveRecord::Base
   def has_generic_lz_email?
     (self.email =~ /lz_student_(\d+)@linguazone.com/) != nil
   end
-
+  
+  def has_username?
+    (self.email =~ /(.*?)@(.*?)/) == nil
+  end
+  
+  def has_personal_email?
+    !self.has_username? and !self.has_generic_lz_email?
+  end
+  
   ROLES = %w[admin teacher student]
 
   def role_symbols

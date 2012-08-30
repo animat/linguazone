@@ -41,6 +41,13 @@ class StudentsController < ApplicationController
   
   def login
     @user_session = UserSession.new
+    
+    if params[:course_guid]
+      @course = Course.find_by_guid(params[:course_guid])
+      session[:course_guid] = params[:course_guid]
+      session[:user_email] = params[:user_email] unless params[:user_email].blank?
+      flash[:notice] = "Please login or create an account below to access your class page"
+    end
   end
 
   def register
@@ -92,9 +99,8 @@ class StudentsController < ApplicationController
   def new
     @user = User.new
 
-    if session['omniauth']
-      @user.apply_omniauth(session['omniauth'])
-    end
+    @user.email = session[:user_email] if session[:user_email]
+    @user.apply_omniauth(session['omniauth']) if session['omniauth']
 
     respond_to do |format|
       format.html # new.html.erb
@@ -136,7 +142,14 @@ class StudentsController < ApplicationController
           session['omniauth'] = nil
           session.delete :omniauth
           UserSession.create @user
-          if session[:attempting_to_access_course_id]
+          if session[:course_guid]
+            @course = Course.find_by_guid(session[:course_guid])
+            CourseRegistration.create!(:course => @course, :user => @user)
+            session[:user_email] = nil
+            session[:course_guid] = nil
+            flash[:success] = "You have successfully registered your new account in this class"
+            format.html { redirect_to course_path(@course) }
+          elsif session[:attempting_to_access_course_id]
             format.html { redirect_to confirm_course_enter_code_students_path }
           else
             format.html {redirect_to students_path }

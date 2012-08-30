@@ -10,18 +10,14 @@
 		<% @high_scores.each do |hs| %>
 			<li>
 				<p>
-					<% if hs.game.nil? %>
-						(Played game ID #<%= hs.game_id %> on <%= format_date_time(hs.submitted_at) %>, but this game has since been deleted from the database.)
-					<% else %>
-						<%= link_to image_tag('/games/'+hs.game.activity.swf+'/display/icon-small.jpg', :alt => 'Play '+hs.game.activity.name), play_path(hs.game.id) %>
-						<%= hs.game.activity.name %>: <%= hs.game.description %>
-					<% end %>
+					<%= link_to image_tag('/games/'+hs.available_game.game.activity.swf+'/display/icon-small.jpg', :alt => 'Play '+hs.available_game.game.activity.name), play_path(hs.available_game) %>
+					<%= hs.available_game.game.activity.name %>: <%= hs.available_game.game.description %>
 				</p>
 				<br class="clearFloat" />
 				<% unless hs.game.nil? %>
-					<% @student.scores_in_game(hs.game_id).each do |score| %>
+					<% @student.scores_in_game(hs.available_game.id).each do |score| %>
 						<p class="statsDetails">
-							<%= format_high_score(score.score, hs.game.activity.name) %>
+							<%= format_high_score(score.score, hs.available_game.game.activity.name) %>
 							 <span class="statsDate">on <%= format_date_time(score.submitted_at) %></span>
 						</p>
 					<% end %>
@@ -30,6 +26,3 @@
 		<% end %>
 	<% end %>
 </ul>
-
-<br />
-<p><%# link_to "Permanently delete this student account", @student, :method => "delete", :confirm => "Are you sure you want to permanently delete this student's account? Information cannot be recovered.", :class => "warning" %></p>

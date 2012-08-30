@@ -9,7 +9,7 @@ xml.rss "version" => "2.0" do
    @showing_posts.each do |sp|
      xml.item do
        xml.title       "[Audio blog] "+sp.post.title
-       xml.link        url_for :only_path => false, :controller => 'posts', :action => 'show', :id => sp.post.id
+       xml.link        url_for :only_path => false, :controller => 'posts', :action => 'show', :id => sp.id
        xml.description sp.post.content
      end
    end
@@ -17,7 +17,7 @@ xml.rss "version" => "2.0" do
    @showing_word_lists.each do |swl|
       xml.item do
         xml.title       "[Word list] Study your word list"
-        xml.link        url_for :only_path => false, :controller => 'study', :action => 'practice', :id => swl.word_list.id
+        xml.link        url_for :only_path => false, :controller => 'study', :action => 'practice', :id => swl.id
         xml.description swl.word_list.description
       end
    end
@@ -26,7 +26,7 @@ xml.rss "version" => "2.0" do
        unless sg.game.nil?
          xml.item do
            xml.title      "[Game] Play "+sg.game.activity.name
-           xml.link        url_for :only_path => false, :controller => 'play', :action => 'show', :id => sg.game.id
+           xml.link        url_for :only_path => false, :controller => 'play', :action => 'show', :id => sg.id
            xml.description sg.game.description
          end
      end

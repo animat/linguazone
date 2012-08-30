@@ -39,8 +39,8 @@ $(function() {
 
 <% if is_teacher_for(@course) and current_user.is_premium_subscriber? %>
 	</div><!-- end wrapper -->
-	<h2 id="settingsHeader">Class page settings</h2>
 	<div id="settings">
+		<h2>Class page settings</h2>
 		<!-- <p>
 					<div>
 						<div class="supercheckbox_left_blank"></div>
@@ -79,7 +79,11 @@ $(function() {
 			</p>
 			<% end %>
 		</div>
-		<%# TODO: render :partial => "my_courses/show_registered_students", :locals => {:course_id => params[:id], :cr => @course_registrations}%>
+		<div>
+			<%= link_to "#{pluralize(@course.course_registrations.size, 'student')} enrolled", course_course_registrations_path(@course), :class => "floatLeft" %>
+			<%= link_to "View activity on this class page", course_feed_items_path(@course), :class => "floatRight" %>
+			<br class="clearFloat" />
+		</div>
 	</div>
 	<div class="wrapper">
 <% end %>

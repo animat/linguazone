@@ -25,7 +25,8 @@ Feature: Teachers hide resources on their class page
 		When I hover over the course item teacher controls
 		And I follow "Hide from students" within the 1st post controls area
 		Then I should see 2 "Hide from students" links for posts
-
+	
+	# TODO @Len: Sometimes this test fails... but then passes as soon as I tag it 'in progress' and run it by itself
 	@javascript
 	Scenario: Hide a word list on the class page
 		Given I should see 3 "Hide from students" links for word_lists
