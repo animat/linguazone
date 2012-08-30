@@ -197,7 +197,6 @@ fieldset#login {
 a.purchase {
 	color: #0D5213;
 }
-<<<<<<< HEAD
 p.extra_config {
 	margin-top: 50px;
 }
@@ -209,7 +208,7 @@ a.reorder_classes {
 a.reorder_classes:hover {
 	color: #666;
 	text-decoration: underline;
-=======
+}
 /* -----------
  course registrations
    ----------- */
@@ -276,5 +275,4 @@ li.feed_item p.Comment {
 li.feed_item span.time_ago {
 	color: #009900;
 	font-size: .9em;
->>>>>>> manage-course-registrations
 }
