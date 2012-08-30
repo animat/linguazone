@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
       @current_user = current_user_session && current_user_session.record
     end
     
-    def record_feed_item(c_id)
+    def record_feed_item(c_id, src)
       if current_user
         @fi = FeedItem.new
         @fi.user_id = current_user.id
@@ -39,6 +39,7 @@ class ApplicationController < ActionController::Base
         @fi.controller = controller_name 
         @fi.action = action_name
         @fi.params = params.inspect
+        @fi.sourceable = src
         @fi.save
       end
     end

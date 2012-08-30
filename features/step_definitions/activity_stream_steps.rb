@@ -3,7 +3,6 @@ Given /^"(.*?)" has recorded (\d+) high scores in "(.*?)"$/ do |student_name, nu
   @c = Course.find_by_name(course_name)
   @g = AvailableGame.where(:course_id => @c.id).last
   for i in 0...num_high_scores.to_i do
-    #record_feed_item(@course.id)
     @params = {:score => "10", :available_game_id => @g.id, :user_id => @s.id, :submitted_at => Time.now, :user_ip_address => "127.0.0.1"}
     FeedItem.create!(:user_id => @s.id, :course_id => @c.id, :controller => "HighScore", :action => "create", :params => @params.inspect)
     HighScore.create!(@params)
@@ -15,7 +14,6 @@ Given /^"(.*?)" has created (\d+) comment on a post in "(.*?)"$/ do |student_nam
   @c = Course.find_by_name(course_name)
   @p = AvailablePost.where(:course_id => @c.id).last
   for i in 0...num_comments.to_i do
-    #record_feed_item(@course.id)
     @params = {:audio_id => "10", :available_post_id => @p.id, :user_id => @s.id}
     FeedItem.create(:user_id => @s.id, :course_id => @c.id, :controller => "Comment", :action => "create", :params => @params.inspect)
     Comment.create(@params)
@@ -27,7 +25,6 @@ Given /^"(.*?)" has studied (\d+) word lists in "(.*?)"$/ do |student_name, num_
   @c = Course.find_by_name(course_name)
   @wl = AvailableWordList.where(:course_id => @c.id).last
   for i in 0...num_study_histories.to_i do
-    #record_feed_item(@course.id)
     @params = {:study_type => "browse", :available_word_list_id => @wl.id, :user_id => @s.id, :submitted_at => Time.now, :user_ip_address => "127.0.0.1"}
     FeedItem.create(:user_id => @s.id, :course_id => @c.id, :controller => "StudyHistory", :action => "create", :params => @params.inspect)
     StudyHistory.create!(@params)

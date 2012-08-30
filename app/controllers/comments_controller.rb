@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
 
     if @comment.save
-      record_feed_item(@comment.available_post.course.id)
+      record_feed_item(@comment.available_post.course.id, @comment)
       redirect_to post_path(@comment.available_post)
     else
       flash[:error] = "Error creating comment: #{@comment.errors}"

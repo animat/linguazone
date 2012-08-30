@@ -232,3 +232,35 @@ textarea.user_input {
 	font-style: normal;
 	margin: 5px 0px;
 }
+/* -----------
+ 	feed items
+   ----------- */
+li.feed_item {
+	list-style-type: none;
+	margin-bottom: 10px;
+}
+li.feed_item div.icon {
+	float: left;
+	width: 70px;
+}
+li.feed_item div.details {
+	float: left;
+	position: relative;
+	top: 8px;
+	left: 10px;
+}
+li.feed_item p {
+	margin: 0px;
+	padding: 0px;
+}
+li.feed_item p.preview {
+	color: #999;
+	font-size: .9em;
+}
+li.feed_item p.Comment {
+	font-style: italic;
+}
+li.feed_item span.time_ago {
+	color: #009900;
+	font-size: .9em;
+}

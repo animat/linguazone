@@ -12,7 +12,7 @@ class StudyController < ApplicationController
       @sh.submitted_at = Time.now
       @sh.user_ip_address = request.remote_ip
       @sh.save
-      record_feed_item(@al.course.id)
+      record_feed_item(@al.course.id, @sh)
     end
     doc = REXML::Document.new(@list.xml)
     @nodes = REXML::XPath.match(doc, "/gamedata/node")
@@ -25,7 +25,7 @@ class StudyController < ApplicationController
       @sh.submitted_at = Time.now
       @sh.user_ip_address = request.remote_ip
       @sh.save
-      record_feed_item(@al.course.id)
+      record_feed_item(@al.course.id, @sh)
     end
     doc = REXML::Document.new(@list.xml)
     @nodes = REXML::XPath.match(doc, "/gamedata/node")
@@ -39,7 +39,7 @@ class StudyController < ApplicationController
       @sh.submitted_at = Time.now
       @sh.user_ip_address = request.remote_ip
       @sh.save
-      record_feed_item(@al.course.id)
+      record_feed_item(@al.course.id, @sh)
     end
   end
 
@@ -50,7 +50,7 @@ class StudyController < ApplicationController
       @sh.user_ip_address = request.remote_ip
       @sh.save
     end
-    record_feed_item(@al.course.id)
+    record_feed_item(@al.course.id, @sh)
   end
   
   def stats

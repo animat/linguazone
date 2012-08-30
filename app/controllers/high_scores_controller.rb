@@ -30,7 +30,7 @@ class HighScoresController < ApplicationController
       @high_score.user_ip_address = request.remote_ip
       if @high_score.save
         @ag = AvailableGame.find(params[:game_id])
-        record_feed_item(@ag.course_id)
+        record_feed_item(@ag.course_id, @high_score)
         render :text => "Your score has been saved and submitted to your teacher."
       else
         render :text => "Could not save score -- was missing some information."

@@ -1,33 +1,104 @@
 module FeedItemsHelper
-  # TODO @Len: This is basically working, but with some big flaws:
-  # =>    I can't eval the fi.params to access relevant data
-  # =>    Should I include a notes column on here so that I can have quick access to display data?
-  # =>    Or should I be querying the database to display a preview of the comment/ game icon/ etc every time?
-  def format_feed_item(fi)
+  def format_feed_item(show_user_name, fi)
     if fi.controller == "high_scores"
-      str = "Earned a high score!"
+      str = display_high_score_item(show_user_name, fi)
     elsif fi.controller == "comments"
-      str = "Recorded a "
-      link = link_to "comment", "#"
-      (str + link).html_safe
+      str = display_comment_item(show_user_name, fi)
     elsif fi.controller == "study"
-      str = study_method(fi)
-      # TODO: This is causing a warning about object id... I think it's because of fi.params
-      link = link_to "word list", url_for(:controller => "study", :action => fi.action, :id => fi.params.id)
-      (str + link).html_safe
+      str = display_study_item(show_user_name, fi)
+    end
+    str.html_safe
+  end
+  
+  def format_feed_img(fi)
+    case fi.sourceable_type
+    when "HighScore"
+      @activity = fi.sourceable.available_game.game.activity
+      image_tag("/games/#{@activity.swf}/display/icon-small.jpg", :alt => "Play #{@activity.name}")
+    when "StudyHistory"
+      image_tag("word_lists/study_word_list-small.png")
+    when "Comment"
+      image_tag("courses/show/speech_bubble-small.jpg")
     end
   end
   
-  def study_method(fi)
-    case fi.action
+  def display_high_score_item(show_user_name, fi)
+    @score = fi.sourceable.score
+    @activity = fi.sourceable.available_game.game.activity
+    @student = fi.sourceable.user    content = ""
+    content << link_to("#{@student.display_name}", student_feed_items_path(@student)) if show_user_name
+    content << format_score(show_user_name, @score, @activity)
+    content << link_to("#{@activity.name}", play_path(fi.sourceable.available_game), :class => "preview_link")
+    content << " "
+    content << content_tag(:span, "#{format_date_time(fi.created_at)}", :class => "time_ago")
+    content_tag(:p, content.html_safe)
+  end
+  
+  def display_comment_item(show_user_name, fi)
+    @student = fi.sourceable.user
+    content = ""
+    content << link_to("#{@student.display_name}", student_feed_items_path(@student)) if show_user_name
+    content << if (show_user_name) then " recorded a " else "Recorded a " end
+    content << link_to("comment", post_path(fi.sourceable.available_post), :class => "preview_link")
+    content << " "
+    content << content_tag(:span, "#{format_date_time(fi.created_at)}", :class => "time_ago")
+    content_tag(:p, content.html_safe)
+  end
+  
+  def display_study_item(show_user_name, fi)
+    @student = fi.sourceable.user
+    @study_type = fi.sourceable.study_type
+    @avail_list_id = fi.sourceable.available_word_list_id
+    content = ""
+    content << link_to("#{@student.display_name}", student_feed_items_path(@student)) if show_user_name
+    content << study_method(fi.sourceable.study_type, show_user_name)
+    content << link_to("word list", url_for(:controller => "study", :action => @study_type, :id => @avail_list_id), :class => "preview_link")
+    content << " "
+    content << content_tag(:span, "#{format_date_time(fi.created_at)}", :class => "time_ago")
+    content_tag(:p, content.html_safe)
+  end
+  
+  def study_method(study_type, show_user_name)
+    case study_type
     when "browse"
-      "Browsed a "
+      (show_user_name) ? " browsed a " : "Browsed a "
     when "print"
-      "Printed a "
+      (show_user_name) ? " printed a " : "Printed a "
     when "practice"
-      "Practiced a "
+      (show_user_name) ? " practiced a " : "Practiced a "
     when "catch"
-      "Caught a "
+      (show_user_name) ? " caught a " : "Caught a "
     end
+  end
+  
+  def format_score(show_user_name, score, activity)
+    display = format_high_score(score, activity.name)
+    str = ""
+    if display == "completed"
+      str << if (show_user_name) then " completed " else "Completed " end
+    else
+      str << if (show_user_name) then " earned " else "Earned " end
+      str << "a score of #{display} in "
+    end
+  end
+  
+  def format_feed_item_preview(fi)
+    @class_name = fi.sourceable_type
+    str = "<p class='preview #{@class_name}'>"
+    case fi.sourceable_type
+    when "HighScore"
+      str << image_tag("shared-buttons/swirl_right_arrow.jpg")
+      str << truncate(fi.sourceable.available_game.game.description, :length => 100, :omission => "...")
+    when "StudyHistory"
+      str << image_tag("shared-buttons/swirl_right_arrow.jpg")
+      str << truncate(fi.sourceable.available_word_list.word_list.description, :length => 100, :omission => "...")
+    when "Comment"
+      unless fi.sourceable.content.blank?
+        str << image_tag("shared-buttons/blockquote.jpg")
+        str << truncate(fi.sourceable.content, :length => 100, :omission => "...")
+      end
+    end
+    str << "</p>"
+    str.html_safe
   end
 end

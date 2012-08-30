@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @ap = AvailablePost.find(params[:id])
+    @ap = AvailablePost.includes({:comments => :user}).find(params[:id])
     @post = Post.find(@ap.post_id)
     @course = Course.find(@ap.course_id)
     unless current_user.nil?

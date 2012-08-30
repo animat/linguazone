@@ -23,7 +23,7 @@ Feature: A teacher can view all of the activities a student has logged on their 
 		And "Bob" has studied 2 word lists in "Sample Latin"
 		When I follow "Bob Smith"
 		Then I should see 6 feed items listed within the activity stream
-	
+	@wip
 	Scenario: View a full class's activity stream
 		Given a student exists with a first name of "Tommy"
 		And "Tommy" is enrolled in "Sample Latin"

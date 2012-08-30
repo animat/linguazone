@@ -3,8 +3,6 @@ class AvailableWordList < ActiveRecord::Base
   belongs_to :word_list
   belongs_to :user
   
-  has_many :sources, :as => :sourceable
-  
   scope :showing, lambda {
     where("hidden = ?", 0)
   }

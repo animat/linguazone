@@ -3,8 +3,6 @@ class AvailableGame < ActiveRecord::Base
   belongs_to :game
   belongs_to :user
   
-  has_many :sources, :as => :sourceable
-  
   scope :showing, lambda {
     where("hidden = ?", 0)
   }
