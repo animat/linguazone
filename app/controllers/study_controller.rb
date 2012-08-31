@@ -49,8 +49,8 @@ class StudyController < ApplicationController
       @sh.submitted_at = Time.now
       @sh.user_ip_address = request.remote_ip
       @sh.save
+      record_feed_item(@al.course.id, @sh)
     end
-    record_feed_item(@al.course.id, @sh)
   end
   
   def stats
