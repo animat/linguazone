@@ -197,3 +197,16 @@ fieldset#login {
 a.purchase {
 	color: #0D5213;
 }
+
+form#new_word_list {
+	width: 80%;
+	margin: 20px auto;
+	padding: 20px;
+	background-color: #fef8d7;
+}
+form#new_word_list label {
+	display: block;
+}
+form#new_word_list input, form#new_word_list textarea, form#new_word_list select {
+	margin-bottom: 10px;
+}

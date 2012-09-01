@@ -47,7 +47,7 @@ class MyWordListsController < CourseItemsController
       book = Spreadsheet.open tmp
       sheet1 = book.worksheet 0
       @gamedata = ["<gamedata>"]
-      @errors = Hash.new
+      @errors = []
       @counter = 0
     
       sheet1.each 0 do |row|
@@ -55,7 +55,7 @@ class MyWordListsController < CourseItemsController
         @lang = row[1]
       
         if @english.blank? or @lang.blank? # TODO: Is there a better way to validate this string?
-          @errors["#{@counter+1}"] = "There was a blank value at row ##{@counter+1}"
+          @errors.push "There was a blank value at row ##{@counter+1}"
         else
           node = '<node><question name="english" type="text" content="'+@english+'" /><response name="lang" type="text" content="'+@lang+'" /></node>'
           @gamedata << node
@@ -67,14 +67,12 @@ class MyWordListsController < CourseItemsController
       if @errors.empty?
         doc = REXML::Document.new(@gamedata.to_s)
         @nodes = REXML::XPath.match(doc, "//node")
+        @word_list = WordList.new(:xml => @gamedata, :language_id => params[:word_list][:language_id], 
+                                    :description => params[:word_list][:description])
       else
-        # render the import page with an error
-        flash[:error] = "We're sorry: there was an error importing your data. Please confirm that it has been formatted correctly."
+        flash[:error] = "We're sorry, there was an error importing your data. Please confirm that it has been formatted correctly."
         redirect_to import_my_word_lists_path and return
       end
-    
-      @word_list = WordList.new(:xml => @gamedata, :language_id => params[:word_list][:language_id], 
-                                  :description => params[:word_list][:description])
     else
       flash[:error] = "Please confirm that you are uploading an Excel Spreadsheet (.xls) and try again."
       redirect_to import_my_word_lists_path and return
