@@ -127,3 +127,16 @@ Then /^I should see (\d+) available (games|word_lists|posts)$/ do |count, things
     find(:xpath, "//div[@id='showing_#{things}']/div[@class='available_item']").length.should == count
   end
 end
+
+When /^I upload a spreadsheet with (\d+) rows of valid data$/ do |num_rows|
+  attach_file("word_list_spreadsheet", File.join(Rails.root, 'features', 'upload-files', 'word_list_ok.xls'))
+end
+When /^I upload a spreadsheet with invalid data$/ do
+  attach_file("word_list_spreadsheet", File.join(Rails.root, 'features', 'upload-files', 'word_list_invalid.xls'))
+end
+Given /^I upload a PDF$/ do
+  attach_file("word_list_spreadsheet", File.join(Rails.root, 'features', 'upload-files', 'word_list.pdf'))
+end
+Then /^I should see (\d+) word node rows$/ do |num_rows|
+  all(:xpath, "//div[@id='notepad']/table/tr").length.should == num_rows.to_i
+end

@@ -1,8 +1,10 @@
 <% stylesheet "study" %>
 
-<p>Ok... making progress!</p>
-<p><%= @feedback %></p>
-<p><%= link_to "Cancel and try again", import_my_word_lists_path %> or...</p>
+<h1>Verify and import</h1>
+<p>
+	Please double check that your data has been read properly, then continue or <%= link_to "cancel and try again", import_my_word_lists_path %>.<br />
+	<em>You will be able to make changes to your word list on the next page.</em>
+</p>
 
 <%= simple_form_for @word_list, :url => create_by_spreadsheet_my_word_lists_path do |f| %>
 	<%= f.input :description, :value => @word_list.description,		:as => :hidden %>

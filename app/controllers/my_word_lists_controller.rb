@@ -42,44 +42,43 @@ class MyWordListsController < CourseItemsController
   end
   
   def confirm_spreadsheet_import
-    tmp = params[:word_list][:spreadsheet].tempfile
-    #uploaded_io = params[:word_list][:spreadsheet]
-    #file = File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'w') do |f|
-    #  f.write(uploaded_io.read)
-    #end
-    book = Spreadsheet.open tmp
-    sheet1 = book.worksheet 0
-    @gamedata = ["<gamedata>"]
-    @errors = Hash.new
-    @counter = 0
+    if params[:word_list][:spreadsheet].original_filename.include? ".xls"  
+      tmp = params[:word_list][:spreadsheet].tempfile
+      book = Spreadsheet.open tmp
+      sheet1 = book.worksheet 0
+      @gamedata = ["<gamedata>"]
+      @errors = Hash.new
+      @counter = 0
     
-    sheet1.each 1 do |row|
-      @counter+=1
-      @english = row[0]
-      @lang = row[1]
+      sheet1.each 0 do |row|
+        @english = row[0]
+        @lang = row[1]
       
-      node = '<node><question name="english" type="text" content="'+@english+'" /><response name="lang" type="text" content="'+@lang+'" /></node>'
-      
-      if true # TODO: Is there a way to validate this string?
-        @gamedata << node
-      else
-        @errors["#{@counter+1}"] = p.errors
+        if @english.blank? or @lang.blank? # TODO: Is there a better way to validate this string?
+          @errors["#{@counter+1}"] = "There was a blank value at row ##{@counter+1}"
+        else
+          node = '<node><question name="english" type="text" content="'+@english+'" /><response name="lang" type="text" content="'+@lang+'" /></node>'
+          @gamedata << node
+        end
+        @counter+=1
       end
-    end
-    @gamedata << "</gamedata>"
+      @gamedata << "</gamedata>"
     
-    if @errors.empty?
-      @feedback = "Successful!"
-      doc = REXML::Document.new(@gamedata.to_s)
-      @nodes = REXML::XPath.match(doc, "//node")
+      if @errors.empty?
+        doc = REXML::Document.new(@gamedata.to_s)
+        @nodes = REXML::XPath.match(doc, "//node")
+      else
+        # render the import page with an error
+        flash[:error] = "We're sorry: there was an error importing your data. Please confirm that it has been formatted correctly."
+        redirect_to import_my_word_lists_path and return
+      end
+    
+      @word_list = WordList.new(:xml => @gamedata, :language_id => params[:word_list][:language_id], 
+                                  :description => params[:word_list][:description])
     else
-      # render the import page with an error
-      @feedback = "Failed."
+      flash[:error] = "Please confirm that you are uploading an Excel Spreadsheet (.xls) and try again."
+      redirect_to import_my_word_lists_path and return
     end
-    
-    @word_list = WordList.new(:xml => @gamedata, :language_id => params[:word_list][:language_id], 
-                                :description => params[:word_list][:description])
-    
   end
   
   def create_by_spreadsheet

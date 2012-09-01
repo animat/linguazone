@@ -29,7 +29,7 @@ Feature: New student creates account
 		Then I should see "That username or email address is already in the database"
 	
 	#TODO: Could not complete this test...
-	@wip @javascript
+	@javascript
 	Scenario: Register in a password protected class page
 		Given I am logged in as a student
 		When I follow "Register in a new class"
@@ -38,11 +38,10 @@ Feature: New student creates account
 		And I choose "Latin 2 taught by Joe Teacher"
 		And I press "Continue registration"
 		And I wait until "Continue registration" is not visible
-		Then show me the page
-		#Then I should see "Please enter the Latin 2 class code"
-		
+		#Then show me the page
+		Then I should see "Please enter the Latin 2 class code"
 		And I fill in "Please enter the Latin 2 class code:" with "banana"
-		#And I press "Register"
+		And I press "Register"
 		
 		
 	# TODO @Len [later]: Any tips on how to use OAuth so that I can have users sign up with their Google Accounts?
