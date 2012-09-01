@@ -1,0 +1,32 @@
+<% stylesheet "study" %>
+
+<h1>Verify and import</h1>
+<p>
+	Please double check that your data has been read properly or <%= link_to "cancel and try again", import_my_word_lists_path %>.<br />
+	<em>You will be able to make changes to your word list on the next page.</em>
+</p>
+
+<%= simple_form_for @word_list, :url => create_by_spreadsheet_my_word_lists_path do |f| %>
+	<%= f.input :description, :value => @word_list.description,		:as => :hidden %>
+	<%= f.input :language_id, :value => @word_list.language_id,		:as => :hidden %>
+	<%= f.input :xml, :value => @word_list.xml, 									:as => :hidden %>
+	<%= f.submit "CONTINUE" %>
+<% end %>
+<hr />
+<div id="notepad">
+	<table cellspacing="0" width="621px">
+	<% for node in @nodes do %>
+		<tr>
+			<% node.elements.each do |n| %>
+				<% if n.name == "question" %>
+					<td width="50%"><%= n.attribute("content").to_s.html_safe %></td>
+				<% else %>
+					<td width="50%"><%= n.attribute("content").to_s.html_safe %></td>
+				<% end %>
+			<% end %>
+		</tr>
+	<% end %>
+	</table>
+</div>
+	
+<div id="notepad_footer"></div>

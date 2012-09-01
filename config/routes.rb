@@ -48,9 +48,15 @@ Linguazone::Application.routes.draw do
     end
   end
   
-  resources :my_games, :my_word_lists, :my_posts do
+  resources :my_games, :my_posts do
     collection do
       get :search, :adopt
+    end
+  end
+  
+  resources :my_word_lists do
+    collection do
+      get :search, :adopt, :import, :confirm_spreadsheet_import, :create_by_spreadsheet
     end
   end
   #TODO @Len: Is there an efficient way to create a new path here and establish parameters?

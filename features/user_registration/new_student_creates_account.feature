@@ -30,7 +30,6 @@ Feature: New student creates account
 		Then I should see "That username or email address (tony@sopranos.com) is already in the database"
 	
 	@javascript
-	Scenario: Register in a password protected class page
 	Scenario: Fail to create a new student account when omitting a password
 		When I am on the new student page
 		And I fill in "Your first name:" with "Carmella"
@@ -55,6 +54,7 @@ Feature: New student creates account
 	Scenario: Navigate to a school, then course, then class page -- then register as a new student -- then direct back to class page
 		Given I am on the "LZAcademy" school page
 		And I follow "Secret Latin taught by Joe Teacher"
+		Then I should see "Please login before accessing"
 		And I follow "Create a username & password"
 		When I fill in "Your first name:" with "Meadow"
 		And I fill in "Your last name:" with "Soprano"

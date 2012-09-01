@@ -18,3 +18,25 @@ Feature: Teacher manages customized word lists
 		And I press "Search"
 		Then I should see "Adopt" within the first search result row
 		And I should not see "Edit" within the first search result row
+		
+	Scenario: Import a valid word list
+		Given I follow "Import a word list"
+		And I fill in "Description" with "Sample description"
+		And I upload a spreadsheet with 3 rows of valid data
+		And I press "Go!"
+		Then I should see "Verify and import"
+		And I should see 3 word node rows
+	
+	Scenario: Fail to import a word list with missing data
+		Given I follow "Import a word list"
+		And I fill in "Description" with "Failed import"
+		And I upload a spreadsheet with invalid data
+		And I press "Go!"
+		Then I should see "there was an error importing your data"
+	
+	Scenario: Fail to import a word list of an invalid type
+		Given I follow "Import a word list"
+		And I fill in "Description" with "Failed import"
+		And I upload a PDF
+		And I press "Go!"
+		Then I should see "Please confirm that you are uploading an Excel Spreadsheet"

@@ -23,6 +23,7 @@ gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-openid"
 gem "omniauth-facebook"
+gem "spreadsheet"
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'

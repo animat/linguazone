@@ -276,3 +276,18 @@ li.feed_item span.time_ago {
 	color: #009900;
 	font-size: .9em;
 }
+/* -----------
+ import word list
+   ----------- */
+form#new_word_list {
+	width: 80%;
+	margin: 20px auto;
+	padding: 20px;
+	background-color: #fef8d7;
+}
+form#new_word_list label {
+	display: block;
+}
+form#new_word_list input, form#new_word_list textarea, form#new_word_list select {
+	margin-bottom: 10px;
+}
