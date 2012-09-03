@@ -1,11 +1,11 @@
 class Api::V1::WordListsController < ApplicationController
   def show
-    if params[:action] == "edit"
-      @word_list = WordList.find(params[:id], :include => [:activity, :template, :language])
-    else
-      @awl = AvailableWordList.find(params[:id])
-      @word_list = WordList.find(@awl.word_list_id, :include => :language)
-    end
+    @awl = AvailableWordList.find(params[:id])
+    @word_list = WordList.find(@awl.word_list_id, :include => :language)
+  end
+  
+  def edit
+    @word_list = WordList.find(params[:id], :include => [:activity, :template, :language])
   end
   
   def create

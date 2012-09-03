@@ -1,11 +1,11 @@
 class Api::V1::GamesController < ApplicationController
   def show
-    if params[:action] == "edit"
-      @game = Game.find(params[:id], :include => [:activity, :template, :language])
-    else
-      @ag = AvailableGame.find(params[:id])
-      @game = Game.find(@ag.game_id, :include => [:activity, :template, :language])
-    end
+    @ag = AvailableGame.find(params[:id])
+    @game = Game.find(@ag.game_id, :include => [:activity, :template, :language])
+  end
+  
+  def edit
+    @game = Game.find(params[:id], :include => [:activity, :template, :language])
   end
   
   # TODO: This is used by LZContainer.fla. This should eventually be subsumed by show action.
