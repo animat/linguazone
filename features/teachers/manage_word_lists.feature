@@ -18,7 +18,7 @@ Feature: Teacher manages customized word lists
 		And I press "Search"
 		Then I should see "Adopt" within the first search result row
 		And I should not see "Edit" within the first search result row
-		
+	
 	Scenario: Import a valid word list
 		Given I follow "Import a word list"
 		And I fill in "Description" with "Sample description"
