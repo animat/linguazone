@@ -57,7 +57,10 @@ class MyWordListsController < CourseItemsController
         if @english.blank? or @lang.blank? # TODO: Is there a better way to validate this string?
           @errors.push "There was a blank value at row ##{@counter+1}"
         else
-          node = '<node><question name="english" type="text" content="'+@english+'" /><response name="lang" type="text" content="'+@lang+'" /></node>'
+          node = "<node>"
+          node << "<question name=\"english\" type=\"text\" content=\"#{@english}\" />"
+          node << "<response name=\"lang\" type=\"text\" content=\"#{@lang}\" />"
+          node << "</node>"
           @gamedata << node
         end
         @counter+=1
