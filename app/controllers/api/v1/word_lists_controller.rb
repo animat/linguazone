@@ -5,7 +5,7 @@ class Api::V1::WordListsController < ApplicationController
   end
   
   def edit
-    @word_list = WordList.find(params[:id], :include => [:activity, :template, :language])
+    @word_list = WordList.find(params[:id], :include => :language)
   end
   
   def create
