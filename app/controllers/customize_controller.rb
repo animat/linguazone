@@ -1,5 +1,4 @@
 class CustomizeController < ApplicationController
-  # TODO: When you save a game, the "Play now" button will NOT work (because you can only play available games!)
   def new
     if current_user.nil?
       flash[:error] = "You need to login before accessing that page"
@@ -22,16 +21,29 @@ class CustomizeController < ApplicationController
   def create
   end
   
-  # TODO: When you save a game, the "Play now" button will NOT work (because you can only play available games!)
   def edit
     if current_user.nil?
       flash[:error] = "You need to login before accessing that page"
       redirect_to login_teachers_path
-    else  
+    else
       if params[:cmzr_type] == "game"
-        @embed_vars = "gameid="+params[:id]+"&userid="+String(current_user.id)+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
+        @game = Game.find(params[:id])
+        # TODO: Add administrative options... this is a hack!
+        if current_user.id == @game.updated_by_id or current_user.id == 30
+          @embed_vars = "gameid="+params[:id]+"&userid="+String(current_user.id)+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
+        else
+          flash[:error] = "You do not have permission to edit that game"
+          redirect_to teachers_path and return
+        end
       elsif params[:cmzr_type] == "list"
-        @embed_vars = "listid="+params[:id]+"&userid="+String(current_user.id)+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
+        @list = WordList.find(params[:id])
+        # TODO: Add administrative options... this is a hack!
+        if current_user.id == @list.updated_by_id or current_user.id == 30
+          @embed_vars = "listid="+params[:id]+"&userid="+String(current_user.id)+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
+        else
+          flash[:error] = "You do not have permission to edit that word list"
+          redirect_to teachers_path and return
+        end
       end
     end
   end
