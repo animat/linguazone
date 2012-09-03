@@ -92,7 +92,7 @@ class MyWordListsController < CourseItemsController
       @awl = AvailableWordList.new(:user_id => current_user.id, :word_list_id => @word_list.id, :course_id => 0, :order => 0, :hidden => 0)
       @awl.save
       flash[:success] = "Your word list has been imported and saved. Please make any changes then add it to your class pages."
-      redirect_to :controller => "customize", :action => "edit", :cmzr_type => "list", :id => @word_list.id
+      redirect_to :controller => "customize", :action => "edit", :cmzr_type => "list", :id => @awl.id
     else
       flash[:error] = "Oops! There was a problem importing your word list."
       redirect_to import_my_word_lists_path

@@ -28,6 +28,8 @@ class CustomizeController < ApplicationController
     else
       if params[:cmzr_type] == "game"
         @game = Game.find(params[:id])
+        puts "*"*50
+        puts "You were looking for numer #{params[:id]} and you got #{@game.id}"
         # TODO: Add administrative options... this is a hack!
         if current_user.id == @game.updated_by_id or current_user.id == 30
           @embed_vars = "gameid="+params[:id]+"&userid="+String(current_user.id)+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
