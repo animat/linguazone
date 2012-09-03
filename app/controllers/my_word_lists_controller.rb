@@ -46,7 +46,7 @@ class MyWordListsController < CourseItemsController
       tmp = params[:word_list][:spreadsheet].tempfile
       book = Spreadsheet.open tmp
       sheet1 = book.worksheet 0
-      @gamedata = ["<gamedata>"]
+      @gamedata = "<gamedata>"
       @errors = []
       @counter = 0
     
@@ -68,7 +68,7 @@ class MyWordListsController < CourseItemsController
       @gamedata << "</gamedata>"
     
       if @errors.empty?
-        doc = REXML::Document.new(@gamedata.to_s)
+        doc = REXML::Document.new(@gamedata)
         @nodes = REXML::XPath.match(doc, "//node")
         @word_list = WordList.new(:xml => @gamedata, :language_id => params[:word_list][:language_id], 
                                     :description => params[:word_list][:description])
