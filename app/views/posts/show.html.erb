@@ -70,7 +70,7 @@ $(function() {
 			<ul id="post_controls" class="hide_controls">
 				<li>Teacher controls:</li>
 				<li><%= link_to "Edit post", edit_post_path(@ap) %></li>
-				<li><%= link_to "Delete post", @post, :method => :delete, :confirm => "Are you sure you want to delete this post?" %></li>
+				<li><%= link_to "Delete post", post_path(@ap), :method => :delete, :confirm => "Are you sure you want to delete this post?" %></li>
 			</ul>
 		<% end %>
 	</div>
