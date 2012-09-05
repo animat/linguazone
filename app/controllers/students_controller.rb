@@ -98,8 +98,12 @@ class StudentsController < ApplicationController
 
   def new
     @user = User.new
-
-    @user.email = session[:user_email] if session[:user_email]
+    
+    if session[:user_email]
+      @user.email = session[:user_email]
+      session[:user_email] = nil
+      session.delete :user_email
+    end
     @user.apply_omniauth(session['omniauth']) if session['omniauth']
 
     respond_to do |format|
