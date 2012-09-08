@@ -28,7 +28,10 @@ class SubscriptionController < ApplicationController
   end
 
   def join
-    if params[:user][:first_name].empty? or params[:user][:last_name].empty? or params[:user][:email].empty? or params[:user][:password].empty?
+    if params[:user].nil?
+      flash[:error] = "Please fill out the fields below before continuing."
+      render :action => "join_form"
+    elsif params[:user][:first_name].empty? or params[:user][:last_name].empty? or params[:user][:email].empty? or params[:user][:password].empty?
       flash[:error] = "Please fill out all of the fields before continuing."
       @subscription = session[:subscription]
       @school = session[:school]
