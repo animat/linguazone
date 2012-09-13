@@ -9,7 +9,7 @@
 		</div>
 	
 		<div class="manage_game">
-			<%= link_to 'Edit', :controller => "customize", :action => "edit", :id => item.word_list.id, :cmzr_type => "word_list" %>
+			<%= link_to 'Edit', :controller => "customize", :action => "edit", :id => item.word_list.id, :cmzr_type => "list" %>
 			<% unless show_in_course.nil? %>
 				|
 				<%= link_to "Show", show_word_list_courses_path(item), :class => "show_available_item" %>
