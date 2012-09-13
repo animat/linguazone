@@ -13,3 +13,4 @@ public/stylesheets/compiled
 *(Autosaved).rtfd/
 rake/*
 config/database.yml
+.powrc
