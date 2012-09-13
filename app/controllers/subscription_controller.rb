@@ -141,7 +141,7 @@ class SubscriptionController < ApplicationController
     end
     InvoiceMailer.extend_invoice("info@linguazone.com", current_user, @subscription, current_user.subscription.subscription_plan.cost).deliver
 
-    flash[:success] = "Your subscription has been renewed for one year.<br />Please check your email for an invoice that you can give to your school's business office.<br />Payment is due within one month."
+    flash[:success] = "Your subscription has been renewed for one year.<br />Please check your email for an invoice that you can give to your school's business office.<br />Payment is due within one month.".html_safe
     redirect_to :controller => "teachers"
   end
 
