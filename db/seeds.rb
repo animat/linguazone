@@ -25,3 +25,5 @@ school = School.create({:name => "Test School", :address => "111 Test Road", :ci
 #Test user's password: test
 teacher = User.create({:email => "test@lz.com", :crypted_password => "098f6bcd4621d373cade4e832627b4f6", :password_salt => "", :first_name => "Test", :last_name => "Teacher",
                 :school_id => school.id, :role => "teacher", :subscription_id => subscription.id, :created_at => Time.now})
+teacher.password= "password"
+teacher.save

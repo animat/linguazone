@@ -56,7 +56,6 @@ Feature: Manage classes
     Then I should see "Spanish 8 has been deleted"
     And I should be on the my courses page
 
-
   Scenario: Archive a class
     Given I am logged in as a teacher
     And the following course exists:

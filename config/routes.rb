@@ -1,4 +1,6 @@
 Linguazone::Application.routes.draw do
+
+  mount JasmineRails::Engine => "/specs" unless Rails.env.production?
   get "feed_items_controller/index"
 
   resources :authentications
@@ -59,6 +61,9 @@ Linguazone::Application.routes.draw do
       get :search, :adopt, :import, :confirm_spreadsheet_import, :create_by_spreadsheet
     end
   end
+
+  resources :game_data, :only => [:create]
+
   #TODO @Len: Is there an efficient way to create a new path here and establish parameters?
   #match 'my_games/search/hidden_games_on_class/:course_id' => 'my_games#search', params[:search][:hidden_equals] => 1, params[:search][:course_id] => nil
   #match 'my_word_lists/search/hidden_word_lists_on_class/:course_id' => 'my_word_lists#search', :search[:hidden_equals] => 1, :search[:course_id] => nil
