@@ -1,7 +1,14 @@
+<%= javascript_include_tag "backbone/linguazone" %>
 <h1>Create a new <%= format_cmzr_type(params[:cmzr_type]) %></h1>
 <br />
-<div align="center swf_window">
+<div class="body">
   <% @activities.each do |activity| %>
-    <%= activity.name %>
+    <div class="activity">
+      <h2><%= activity.name %></h2>
+      <a data-id="<%=activity.id %>" href="#">Customize Game</a>
+    </div>
   <% end %>
+
+  <div id="customizer">
+  </div>
 </div>
