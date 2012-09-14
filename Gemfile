@@ -24,6 +24,8 @@ gem "omniauth-twitter"
 gem "omniauth-openid"
 gem "omniauth-facebook"
 gem "spreadsheet"
+gem "rails-backbone"
+gem 'nokogiri'
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'
@@ -39,7 +41,7 @@ group :production do
 	gem "SystemTimer", :require => "system_timer", :platforms => :ruby_18
 end
 
-group :development, :test do
+group :development, :cucumber, :test do
   gem 'spork',           '~> 0.9.0.rc9'
   gem 'guard'
   gem 'guard-spork'
@@ -55,6 +57,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'mysql2'
   gem 'bullet'
+  gem "jasmine-rails"
+  gem "guard-jasmine-headless-webkit"
 end
 
 group :test do

@@ -11,7 +11,6 @@ require 'cucumber/formatter/unicode' # Remove this line if you don't want Cucumb
 require 'cucumber/rails/world'
 #require 'cucumber/web/tableish' # Tableish is depricated now.
 require 'factory_girl'
-require 'spec/factories'
 require 'factory_girl/step_definitions'
 require 'capybara/rails'
 require 'capybara/cucumber'

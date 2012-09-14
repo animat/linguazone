@@ -8,19 +8,20 @@ class CustomizeController < ApplicationController
       if @lang_id == 0 or @lang_id.nil?
         @lang_id = params[:language]
       end
-    
+
       if @lang_id.nil? or @lang_id == 0
         redirect_to :action => "select_language", :cmzr_type => params[:cmzr_type]
       else
         @language = Language.find(@lang_id)
-        @embed_vars = "userid="+String(current_user.id)+"&gamelanguage="+@language.name+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
+        @activities = Activity.all
+        @embed_vars = "userid=#{current_user.id}&gamelanguage=#{@language.name}&cmzrtype=#{params[:cmzr_type]}&path=../../../"
       end
     end
   end
-  
+
   def create
   end
-  
+
   def edit
     if current_user.nil?
       flash[:error] = "You need to login before accessing that page"

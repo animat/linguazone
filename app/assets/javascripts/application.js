@@ -10,3 +10,22 @@
 //= require swf_fu
 //= require autocomplete-rails
 //= require flash_messages
+//= require underscore
+//= require backbone
+// get querystring as an array split on "&"
+
+var QueryString = function() {
+  var querystring = location.search.replace( '?', '' ).split( '&' );
+
+  var queryObj = {};
+
+  for ( var i=0; i<querystring.length; i++ ) {
+        // get name and value
+        var name = querystring[i].split('=')[0];
+        var value = querystring[i].split('=')[1];
+        // populate object
+        queryObj[name] = value;
+  }
+
+  return queryObj;
+}();
