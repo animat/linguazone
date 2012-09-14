@@ -20,6 +20,7 @@ Feature: Users can upgrade and extend existing subscriptions, and renew expired 
 	  And a game exists with a getting started of "true"
 	  And a state exists with a name of "Pennsylvania"
 	
+	@javascript
 	Scenario: User extends annual subscription
 		Given I am logged in as "Bob"
 		When I follow "Purchase now and send me an invoice for $99" within "#extend"
@@ -46,3 +47,4 @@ Feature: Users can upgrade and extend existing subscriptions, and renew expired 
 		Then "trial@example.com" opens the email with subject "LinguaZone.com Invoice"
 		And they should see "Order total: $79" in the email body
 		And I should see "Your subscription has been renewed"
+		And "Bob" should receive an email

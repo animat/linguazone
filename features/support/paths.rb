@@ -10,6 +10,8 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
+    when /the customization page/
+      '/customize/new'
     when /the student login page/
       '/students/login'
     when /the pricing page/
