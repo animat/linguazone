@@ -54,3 +54,8 @@ end
 When /^I hover over the course item teacher controls$/ do
   page.execute_script "$(function() {	$('.available_item').toggleClass('available_item_controls'); })"
 end
+
+Then /^"(.*?)" should be archived$/ do |class_name|
+  @c = Course.find_by_name(class_name)
+  @c.archived.should == true
+end

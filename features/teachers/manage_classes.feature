@@ -55,3 +55,17 @@ Feature: Manage classes
 		When I follow "Delete"
 		Then I should see "Spanish 8 has been deleted"
 		And I should be on the my courses page
+	
+	
+	Scenario: Archive a class
+		Given I am logged in as a teacher
+		And the following course exists:
+  	 | name      | user             |
+		 | Spanish 8 | first_name: Tony |
+	  And I am on the my courses page
+	When I follow "Edit"
+	And I check "Archive this class"
+	And I press "Update this class"
+	Then I should be on the my courses page
+	And I should see "Your class has been updated"
+	And "Spanish 8" should be archived

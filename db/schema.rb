@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120913003042) do
+ActiveRecord::Schema.define(:version => 20120915152717) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20120913003042) do
     t.string  "code"
     t.integer "ordering"
     t.string  "guid"
+    t.boolean "archived",       :default => false
   end
 
   create_table "demos", :force => true do |t|
@@ -175,7 +176,6 @@ ActiveRecord::Schema.define(:version => 20120913003042) do
     t.boolean   "getting_started", :default => false, :null => false
   end
 
-  add_index "games", ["description"], :name => "game_descrip"
   add_index "games", ["getting_started"], :name => "index_games_on_getting_started"
 
   create_table "games_keywords", :primary_key => "game_keyword_id", :force => true do |t|

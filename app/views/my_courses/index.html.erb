@@ -25,7 +25,7 @@
 		<% for course in @courses do %>
 			<div class="game_listing">
 				<div class="game_details">
-					<p><%= link_to course.name, :controller => "courses", :action => "show", :id => course.id %></p>
+					<%= display_link_to_course(course) %>
 				</div>
 				<div class="manage_game">
 					<%= link_to "Edit", edit_my_course_path(course) %> | 
