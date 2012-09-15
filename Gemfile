@@ -64,5 +64,4 @@ group :test do
   gem "shoulda"
   gem "timecop"
   gem 'email_spec'
-  gem 'action_mailer_cache_delivery'
 end
