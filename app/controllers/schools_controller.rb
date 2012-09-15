@@ -12,7 +12,7 @@ class SchoolsController < ApplicationController
 
   def show
     @school = School.find(params[:id])
-    @list_courses = Course.find_courses_at_school(@school)
+    @list_courses = Course.find_active_courses_at_school(@school)
     @sorting = (params[:sorting] == "true" and current_user.school.id == @school.id)
     respond_to do |format|
       format.html # show.html.erb
