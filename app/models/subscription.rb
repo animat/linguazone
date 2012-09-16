@@ -14,7 +14,15 @@ class Subscription < ActiveRecord::Base
   def number_of_teachers
     (self.max_teachers == UNLIMITED_FLAG) ? "unlimited" : self.max_teachers.to_s
   end
-
+  
+  def extend_one_year
+    if self.expired_at < Time.now
+      self.expired_at = Time.now.advance(:years => 1)
+    else
+      self.expired_at.advance(:years => 1)
+    end
+  end
+  
   def school
     @teacher = User.first(:conditions => ["subscription_id = ?", self.id])
     @teacher.school

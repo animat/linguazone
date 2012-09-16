@@ -40,7 +40,7 @@ Feature: Teacher is prompted to upgrade
     Then I should see "Premium subscription for up to 5 teachers"
     Then I should see "Premium subscription for up to 22 teachers"
     Then I should see "Premium subscription for unlimited teachers"
-
+	
   Scenario: See message when no upgrades exist
     Given I am on the pricing page
     And I fill in "pin" with "66666"

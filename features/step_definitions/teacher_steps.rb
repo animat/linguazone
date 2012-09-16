@@ -155,6 +155,12 @@ Then /^I should see (\d+) available (games|word_lists|posts)$/ do |count, things
   end
 end
 
+Given /^"(.*?)"'s subscription has expired$/ do |teacher_name|
+  @s = User.find_by_first_name(teacher_name)
+  @s.subscription.expired_at = Time.now - 1.day
+  @s.subscription.save
+end
+
 When /^I upload a spreadsheet with (\d+) rows of valid data$/ do |num_rows|
   attach_file("word_list_spreadsheet", File.join(Rails.root, 'features', 'upload_files', 'word_list_ok.xls'))
 end

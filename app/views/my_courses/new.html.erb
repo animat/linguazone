@@ -2,7 +2,7 @@
 <br />
 <div>
 	<%= form_for @course, :url => {:action => "create"} do |f| %>
-		<%= render :partial => 'form', :locals => {:form => f} %>
+		<%= render :partial => 'form', :locals => {:form => f, :archiveable => false} %>
 		<p align="center"><%= f.submit "Create this class" %></p>
 	<% end %>
 </div>

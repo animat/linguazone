@@ -73,6 +73,8 @@ class ApplicationController < ActionController::Base
             redirect_to :controller => "subscription", :action => "renew" and return
           end
         end
+      else
+        redirect_to login_teachers_path
       end
     end
 

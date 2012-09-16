@@ -42,7 +42,7 @@ class SubscriptionController < ApplicationController
         @subscription = session[:subscription]
         @school = session[:school]
         @new_teacher = User.new(params[:user])
-        flash[:error] = "That email address is already in our database.<br />Please get in touch if you'd like help reactivating your account."
+        flash[:error] = "That email address is already in our database.<br />Please get in touch if you'd like help reactivating your account.".html_safe
         render :action => "join_form"
       else
         @teacher = User.new(params[:user])
@@ -72,27 +72,14 @@ class SubscriptionController < ApplicationController
   end
 
   def upgrade
-    unless params[:subscription].nil?
-      @new_plan = SubscriptionPlan.find(params[:subscription][:subscription_plan_id]) # Directed from a trial upgrade
-      @renew = true
-    end
-    unless params[:subscription_plan_id].nil?
-      @new_plan = SubscriptionPlan.find(params[:subscription_plan_id]) # Directed from a paying account upgrade
-      @renew = false
-    end
-
+    @new_plan = SubscriptionPlan.find(params[:subscription_plan_id]) # Directed from a paying account upgrade
     @current_plan = current_user.subscription.subscription_plan
     @subscription = current_user.subscription
 
     @cost = @current_plan.cost - @new_plan.cost
     @cost = @cost.abs
     @subscription.subscription_plan = @new_plan
-    if @renew
-      @subscription.expired_at = Time.now.advance(:years => 1)
-    end
     @subscription.save
-
-    current_user.subscription = @subscription
     current_user.save
 
     @other_teachers = User.find_all_by_school_id(current_user.school_id)
@@ -111,7 +98,7 @@ class SubscriptionController < ApplicationController
     end
     InvoiceMailer.upgrade_invoice("info@linguazone.com", current_user, @subscription, @cost).deliver
 
-    flash[:success] = "Your subscription has been upgraded.<br />Please check your email for an invoice that you can give to your school's business office.<br />Payment is due within one month."
+    flash[:success] = "Your subscription has been upgraded.<br />Please check your email for an invoice that you can give to your school's business office.<br />Payment is due within one month.".html_safe
     if params[:new_teacher] == "true"
       redirect_to :controller => "teachers", :action => "getting_started"
     else
@@ -120,26 +107,37 @@ class SubscriptionController < ApplicationController
   end
 
   def extend
-    @subscription = Subscription.find(params[:subscription_id])
-    @subscription.expired_at = @subscription.expired_at.advance(:years => 1)
+    if params[:subscription]
+      @new_plan = SubscriptionPlan.find(params[:subscription][:subscription_plan_id]) # Account has already expired
+      @renew = true
+    elsif params[:subscription_id]
+      if current_user.subscription.id != params[:subscription_id].to_i
+        flash[:error] = "We're sorry. There was an error renewing your subscription. Please contact us for help."
+        redirect_to teachers_path and return
+      else
+        @new_plan = Subscription.find(params[:subscription_id]).subscription_plan # Directed from the account overview page
+        @renew = false
+      end
+    end
+    @subscription = current_user.subscription
+    @subscription.subscription_plan = @new_plan
+    @subscription.extend_one_year
     @subscription.save
-
-    current_user.subscription = @subscription
-    current_user.save
-
+    
     @other_teachers = User.find_all_by_school_id(current_user.school_id)
+    # TODO: Only upgrade teachers who can fit in the subscription plan
     unless @other_teachers.nil?
       @other_teachers.each do |ot|
         ot.subscription = @subscription
-        ot.save
+        ot.subscription.save
       end
     end
-
+    
     @users = User.all(:conditions => ["subscription_id = ?", @subscription.id])
     @users.each do |user|
-      InvoiceMailer.extend_invoice(user.email, current_user, @subscription, current_user.subscription.subscription_plan.cost).deliver
+      InvoiceMailer.extend_invoice(user.email, current_user, @subscription, @subscription.subscription_plan.cost).deliver
     end
-    InvoiceMailer.extend_invoice("info@linguazone.com", current_user, @subscription, current_user.subscription.subscription_plan.cost).deliver
+    InvoiceMailer.extend_invoice("info@linguazone.com", current_user, @subscription, @subscription.subscription_plan.cost).deliver
 
     flash[:success] = "Your subscription has been renewed for one year.<br />Please check your email for an invoice that you can give to your school's business office.<br />Payment is due within one month.".html_safe
     redirect_to :controller => "teachers"
