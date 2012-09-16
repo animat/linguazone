@@ -29,17 +29,27 @@ div.activity {
 div.activity h3 {
 	font-size: 1.2em;
 	text-align: center;
+	margin-bottom: 5px;
 }
 div.activity div.icons {
 	float: left;
 	width: 120px;
+	padding: 5px;
 }
 div.activity div.detail {
 	float: left;
 	background-color: #ccc;
 }
-div.activity div.detail a {
+div.activity div.detail p {
+	padding: 3px;
 	background-color: white;
+}
+div.activity p.confirm_step_one { 
+	text-align: center 
+}
+div.activity p.confirm_step_one a {
+	color: #70a845;
+	text-decoration: none;
 }
 
 div#nodes input {
