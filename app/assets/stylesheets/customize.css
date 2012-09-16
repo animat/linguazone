@@ -18,3 +18,31 @@
 	color: #FFF;
 	background-color: #FF6600;
 }
+
+div.activity {
+	float: left;
+	width: 250px;
+	margin: 15px;
+	padding: 5px;
+	border: 1px solid red;
+}
+div.activity h3 {
+	font-size: 1.2em;
+	text-align: center;
+}
+div.activity div.icons {
+	float: left;
+	width: 120px;
+}
+div.activity div.detail {
+	float: left;
+	background-color: #ccc;
+}
+div.activity div.detail a {
+	background-color: white;
+}
+
+div#nodes input {
+	padding: 3px;
+	width: 200px;
+}

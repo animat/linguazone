@@ -1,14 +1,25 @@
+<%= stylesheet "customize" %>
 <%= javascript_include_tag "backbone/linguazone" %>
 <h1>Create a new <%= format_cmzr_type(params[:cmzr_type]) %></h1>
 <br />
 <div class="body">
-  <% @activities.each do |activity| %>
-    <div class="activity">
-      <h2><%= activity.name %></h2>
-      <a data-id="<%=activity.id %>" href="#">Customize Game</a>
-    </div>
-  <% end %>
-
+	<div>
+  	<% @activities.each do |activity| %>
+	    <div class="activity">
+				<h3><%= activity.name %></h3>
+				<div class="icons">
+	      	<%= image_tag("/games/#{activity.swf}/display/icon.jpg", :alt => "Customize #{activity.name}") %><br />
+					<%= image_tag("shared-buttons/flash_icons/info.png", :class => "floatLeft") %>
+					<%= image_tag("shared-buttons/flash_icons/warning.png", :class => "floatRight") %>
+				</div>
+				<div class="detail">
+	      	<a data-id="<%=activity.id %>" href="#">Customize Game</a>
+				</div>
+				<br class="clearFloat" />
+	    </div>
+	  <% end %>
+		<br class="clearFloat" />
+	</div>
   <div id="customizer">
   </div>
 </div>
