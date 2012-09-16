@@ -8,13 +8,15 @@
 	    <div class="activity">
 				<h3><%= activity.name %></h3>
 				<div class="icons">
-	      	<%= image_tag("/games/#{activity.swf}/display/icon.jpg", :alt => "Customize #{activity.name}") %><br />
+					<%# TODO: Game icons can be a link to a lightbox that will play a video preview of that game %>
+	      	<%= link_to image_tag("/games/#{activity.swf}/display/icon.jpg", :alt => "Customize #{activity.name}"), "#" %>
 					<%# image_tag("shared-buttons/flash_icons/info.png", :class => "floatLeft") %>
 					<%# image_tag("shared-buttons/flash_icons/warning.png", :class => "floatRight") %>
 				</div>
 				<p><%= activity.description %></p>
 				<br class="clearFloat" />
 				<p class="confirm_step_one">
+					<%# TODO: Rather than using the success flash icon, I would rather use make this a jQuery UI button %>
 					<a data-id="<%=activity.id %>" href="#"><%= image_tag("shared-buttons/flash_icons/success.png") %> Customize this game</a>
 				</p>
 	    </div>
