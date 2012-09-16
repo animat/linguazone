@@ -80,8 +80,7 @@ class SubscriptionController < ApplicationController
     @cost = @cost.abs
     @subscription.subscription_plan = @new_plan
     @subscription.save
-    current_user.save
-
+    
     @other_teachers = User.find_all_by_school_id(current_user.school_id)
     unless @other_teachers.nil?
       @other_teachers.each do |ot|
