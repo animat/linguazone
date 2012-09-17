@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LinguaZone Customizer</title>
+	<link href="/assets/layout.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/assets/jquery-ui-1.8.18.custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/assets/customize.css" media="screen" rel="stylesheet" type="text/css" />
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+	<script>
+		$(window).scroll(function(e){
+			$("#example_node").toggleClass("stick_to_top", $(this).scrollTop() > 515)
+		});
+		$(function() {
+			$("#nodes .question *").bind("focus", function() {
+				$("#example_node .question").toggleClass("highlight", true);
+			}).bind("focusout", function() {
+				$("#example_node .question").toggleClass("highlight", false);
+			});
+			$("#nodes .response *").bind("focus", function() {
+				$("#example_node .response").toggleClass("highlight", true);
+			}).bind("focusout", function() {
+				$("#example_node .response").toggleClass("highlight", false);
+			});
+			
+			$(".lzinput").tabs();
+			$(".tabs-bottom .ui-tabs-nav, .tabs-bottom .ui-tabs-nav > *").removeClass("ui-corner-all ui-corner-top").addClass("ui-corner-bottom");
+			
+			var $dialog = $('<div></div>').html('Playing a YouTube preview right now')
+						.dialog({ autoOpen: false, title: 'Leap Frog Preview', modal: true, height: 400, width: 400 });
+			$("a.preview_link").click(function() {
+				$dialog.dialog('open');
+				return false;
+			});
+		});
+	</script>
+</head>
+<body>
+  <div id="header">
+    <a href="/"><div id="header_home_link"></div></a>
+		<div id="header_frog"></div>
+    <br class="clearFloat" />
+    <div id="nav">
+    	<ul>
+				<li><a href="/teachers">OVERVIEW</a></li>
+				<li>
+					<a href="/my_courses">CLASSES</a>
+					<ul>
+							<li><a href="/courses/2027">Latin 2</a></li>
+							<li><a href="/courses/2335">Latin 3A</a></li>
+							<li><a href="/courses/1504">Latin Session 1</a></li>
+							<li><a href="/courses/1867">Latin Session 2</a></li>
+							<li><a href="/courses/1866">Spanish 8</a></li>
+						<li><a href="/my_courses/new">Create a class</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="/my_games">GAMES</a>
+					<ul>
+						<li><a href="/my_games">View all my games</a></li>
+						<li><a href="/my_games/adopt">Adopt a game</a></li>
+						<li><a href="/customize/new?cmzr_type=game">Create a new game</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="/my_word_lists">WORD LISTS</a>
+					<ul>
+						<li><a href="/my_word_lists">View all my word lists</a></li>
+						<li><a href="/my_word_lists/adopt">Adopt a word list</a></li>
+						<li><a href="/my_word_lists/import">Import a word list</a></li>
+						<li><a href="/customize/new?cmzr_type=list">Create a new word list</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="/my_posts">AUDIO BLOG</a>
+					<ul>
+						<li><a href="/my_posts">View all my audio blog posts</a></li>
+						<li><a href="/posts/new">Create a new audio blog post</a></li>
+					</ul>
+				</li>
+			</ul>
+    </div>
+  </div>
+  <div id="body">
+    <div id="body_header"></div>
+    <div class="wrapper">
+      
+			<div id="step_1">
+				<h1>Step #1: Select a game <img src="/assets/shared-buttons/flash_icons/info.png" /></h1>
+				<div class="selected_banner leapFrog">
+					<img src="/games/leapFrog/display/icon.jpg" />
+					<h2>Leap Frog</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<ul>
+						<li>Resource link</li>
+						<li>Resource link and recommendation</li>
+						<li>Resource link</li>
+						<li>Resource link and recommendation</li>
+						<li>Resource link and recommendation</li>
+						<li>Another recommendation here...</li>
+						<li>Resource link</li>
+					</ul>
+				</div>
+			</div><!-- End step_1 -->
+			
+			<div id="step_2">
+				<h1>Step #2: Enter your questions and answers</h1>
+				<div id="example_node" class="leapFrog">
+					<div class="node">
+						<div class="question">
+							<label>Prompt for students</label>
+							<p class="hint">
+								The question/ prompt at the top 
+								<a href="#" class="preview_link">
+									<img src="/assets/shared-buttons/flash_icons/error.png" />
+								</a>
+							</p>
+							<input type="text" disabled="true" value="e.g. rana" />
+						</div>
+						<div class="response">
+							<label>Response from students</label>
+							<p class="hint">
+								The answer that students type in 
+								<a href="#" class="preview_link">
+									<img src="/assets/shared-buttons/flash_icons/error.png" />
+								</a>
+							</p>
+							<input type="text" disabled="true" value="e.g. frog" />
+						</div>
+					</div>
+				</div>
+				<div id="nodes" class="leapFrog">
+					<div class="node">
+						<div class="question lzinput tabs-bottom">
+							<div id="question_1_text">
+								<input type="text" />
+							</div>
+							<div id="question_1_image">
+								<p>image picker</p>
+							</div>
+							<div id="question_1_audio">
+								<p>record audio</p>
+							</div>
+							<ul>
+								<li><a href="#question_1_text">text</a></li>
+								<li><a href="#question_1_image">image</a></li>
+								<li><a href="#question_1_audio">audio</a></li>
+							</ul>
+						</div>
+						<div class="response lzinput tabs-bottom">
+							<div id="response_1_text">
+								<input type="text" />
+							</div>
+							<div id="response_1_image">
+								<p>image picker</p>
+							</div>
+							<div id="response_1_audio">
+								<p>record audio</p>
+							</div>
+							<ul>
+								<li><a href="#response_1_text">text</a></li>
+								<li><a href="#response_1_image">image</a></li>
+								<li><a href="#response_1_audio">audio</a></li>
+							</ul>
+						</div>
+						<div class="controls">
+							<img src="/assets/shared-buttons/flash_icons/success.png" />
+						</div>
+						<br class="clearFloat" />
+					</div>
+					<div class="node">
+						<div class="question">
+							<input type="text" />
+						</div>
+						<div class="response">
+							<input type="text" />
+						</div>
+						<div class="controls">
+							<img src="/assets/shared-buttons/flash_icons/success.png" />
+						</div>
+						<br class="clearFloat" />
+					</div>
+					<div class="node">
+						<div class="question">
+							<input type="text" />
+						</div>
+						<div class="response">
+							<input type="text" />
+						</div>
+						<div class="controls">
+							<img src="/assets/shared-buttons/flash_icons/success.png" />
+						</div>
+						<br class="clearFloat" />
+					</div>
+					<div class="node">
+						<div class="question">
+							<input type="text" />
+						</div>
+						<div class="response">
+							<input type="text" />
+						</div>
+						<div class="controls">
+							<img src="/assets/shared-buttons/flash_icons/success.png" />
+						</div>
+						<br class="clearFloat" />
+					</div>
+					<div class="node">
+						<div class="question">
+							<input type="text" />
+						</div>
+						<div class="response">
+							<input type="text" />
+						</div>
+						<div class="controls">
+							<img src="/assets/shared-buttons/flash_icons/success.png" />
+						</div>
+						<br class="clearFloat" />
+					</div>
+					<div class="node">
+						<div class="question">
+							<input type="text" />
+						</div>
+						<div class="response">
+							<input type="text" />
+						</div>
+						<div class="controls">
+							<img src="/assets/shared-buttons/flash_icons/success.png" />
+						</div>
+						<br class="clearFloat" />
+					</div>
+					<div class="node">
+						<div class="question">
+							<input type="text" />
+						</div>
+						<div class="response">
+							<input type="text" />
+						</div>
+						<div class="controls">
+							<img src="/assets/shared-buttons/flash_icons/success.png" />
+						</div>
+						<br class="clearFloat" />
+					</div>
+					<div class="node">
+						<div class="question">
+							<input type="text" />
+						</div>
+						<div class="response">
+							<input type="text" />
+						</div>
+						<div class="controls">
+							<img src="/assets/shared-buttons/flash_icons/success.png" />
+						</div>
+						<br class="clearFloat" />
+					</div>
+					<div class="node">
+						<div class="question">
+							<input type="text" />
+						</div>
+						<div class="response">
+							<input type="text" />
+						</div>
+						<div class="controls">
+							<img src="/assets/shared-buttons/flash_icons/success.png" />
+						</div>
+						<br class="clearFloat" />
+					</div>
+				</div>
+			</div><!-- End step_2 -->
+			
+			
+    </div>
+    <div id="body_footer"></div>
+  </div>
+  <div id="footer">
+    <div id="animat_links">
+      <div id="prima_lingua">
+        <a href="http://www.primalingua.net"><img alt="Prima_lingua_frog" src="/assets/footer/prima_lingua_frog.gif" /></a>
+        <h4>PRIMA LINGUA</h4>
+        <p class="tag_line">The preparatory course<br /> for the study of foreign languages</p>
+      </div>
+      <div id="lz_camps">
+        <a href="http://www.linguazonecamps.com"><img alt="Camp_frog" src="/assets/footer/camp_frog.gif" /></a>
+        <h4>LZ LANGUAGE CAMPS</h4>
+        <p class="tag_line">Summer camps in 10 languages<br /> for ages 4 - 17 in Suburban Philadelphia</p>
+      </div>
+      <br class="clearFloat" />
+    </div>
+    <div id="get_to_know_us">
+      <h4>GET TO KNOW US</h4>
+      <p>We love languages, games, and technology. LinguaZone.com is the way we fuse all three together and offer fun and creative ways for teachers to interact with their 21st century students. We're all about activity-based programs and engaging language learning. <a href="/contact">Get in touch</a> if you're interested in learning more.</p>
+    </div>
+    <br class="clearFloat" />
+    <p class="copyright">&copy; Animat, LLC 2006 - 2012</p>
+  </div>
+</body>
+</html>

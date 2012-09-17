@@ -19,6 +19,9 @@
 	background-color: #FF6600;
 }
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			STEP 1
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 div.activity {
 	float: left;
 	width: 250px;
@@ -51,8 +54,86 @@ div.activity p.confirm_step_one a {
 	color: #70a845;
 	text-decoration: none;
 }
-
-div#nodes input {
+div.selected_banner {
+	background-color: #edf0f9;
+	margin-bottom: 20px;
+}
+div.selected_banner img {
+	float: left;
+	padding: 10px;
+}
+div.selected_banner ul {
+	width:800px;
+	overflow:hidden;
+}
+div.selected_banner ul li {
+	float:left;
+	width: 45%;
+	margin-left: 15px;
+	list-style-type: disc;
+	line-height:1.5em;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			STEP 2
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+div#nodes input, div#example_node input {
 	padding: 3px;
 	width: 200px;
+}
+div.node {
+	position: relative;
+}
+div#example_node {
+	background-color: #cacaca;
+	width: 900px;
+	/*position: relative;
+	left: -10px;*/
+	border: 1px solid #ccc;
+	height: 120px;
+}
+div.stick_to_top {
+	position: fixed;
+	top: 0;
+	z-index: 100;
+}
+div#example_node label {
+	font-size: 1.3em;
+}
+div#example_node p.hint {
+	font-size: .9em;
+	color: #666;
+	padding: 0px;
+	margin-bottom: 5px;
+}
+div#example_node input[type="text"] {
+	font-style: italic;
+	color: #666;
+}
+div#example_node div.highlight {
+	background-color: yellow;
+}
+div#nodes div.node div.controls {
+	float: right;
+}
+div.node div.lzinput {
+	border: none;
+	padding: 0;
+	background: none;
+}
+div.node ul li {
+	font-size: .7em;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			Game input
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+div.leapFrog div.node {
+	padding: 10px;
+	height: 80px;
+}
+div.leapFrog div.node div.question {
+	position: absolute;
+}
+div.leapFrog div.node div.response {
+	position: absolute;
+	left: 300px;
 }

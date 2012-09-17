@@ -2,7 +2,7 @@ class CustomizeController < ApplicationController
   def new
     if current_user.nil?
       flash[:error] = "You need to login before accessing that page"
-      redirect_to teachers_login_path
+      redirect_to login_teachers_path and return
     else
       @lang_id = current_user.default_language_id
       if @lang_id == 0 or @lang_id.nil?
