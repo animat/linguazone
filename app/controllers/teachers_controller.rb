@@ -30,6 +30,13 @@ class TeachersController < ApplicationController
   end
 
   def new
+    if params[:trial] == "true" and params[:school_id]
+      @subscription = Subscription.new(:subscription_plan => SubscriptionPlan.trial)
+      @school = School.find(params[:school_id])
+      session[:subscription] = @subscription
+      session[:school] = @school
+    end
+    
     if session[:subscription].nil?
       redirect_to :controller => "about", :action => "pricing"
     elsif session[:school].nil?
