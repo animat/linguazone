@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   #filter_access_to :show, :attribute_check => true
-  before_filter :check_expired
+  #before_filter :check_expired
   
   respond_to :html, :js, :xml
 
