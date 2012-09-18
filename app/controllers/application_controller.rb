@@ -53,7 +53,6 @@ class ApplicationController < ActionController::Base
       @course_registrations = CourseRegistration.all(:conditions => ["user_id = ?", student_id])
       @val = false
       @course_registrations.each do |cr|
-        logger.info "Current user and current course in "+cr.course.name+"... "+String(cr.course.user_id)+" --- "+String(current_user.id)
         if is_teacher_for(cr.course)
           @val = true
         end

@@ -21,10 +21,10 @@ class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
   belongs_to :subscription
   before_save :set_display_name
-
+  
   validates_presence_of :first_name, :last_name, :email, :on => :create
   validates_presence_of :password, :if => :password_not_parsed?
-
+  
   def password_not_parsed?
     !crypted_password?
   end

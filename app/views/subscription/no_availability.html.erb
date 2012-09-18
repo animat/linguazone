@@ -1,12 +1,22 @@
+<% content_for :head do %>
+<script type="text/javascript">
+$(function() {
+	$("#proceed_btn").click(function() {
+		$("#new_teacher").slideDown();
+		return false;
+	})
+	$("#proceed_btn").button();
+});
+</script>
+<% end %>
+
 <h2>Subscription is full</h2>
 <br />
 <p><%= @school.name %>'s subscription is for <%= format_max_teachers(@current_plan.max_teachers) %>, and is currently full. You will need to upgrade your school's subscription to create your account.</p>
 <br />
 <p align="center">Would you like to upgrade your subscription to allow <%= format_max_teachers(@upgrade_plan.max_teachers) %> for <%= format_cost(@cost) %>?</p>
 <p align="center">
-	<%= button_to_function "Proceed" do |page|
-		page.visual_effect :slide_down, 'new_teacher'
-	end %>
+	<a id="proceed_btn" href="#">Proceed</a>
 	or <%= link_to "cancel", :controller => "about", :action => "pricing" %>
 </p>
 

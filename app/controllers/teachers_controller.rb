@@ -63,15 +63,15 @@ class TeachersController < ApplicationController
 
     if params[:user][:first_name].blank? or params[:user][:last_name].blank? or params[:user][:email].blank? or params[:user][:password].blank?
       flash[:error] = "Please fill out all of the fields before continuing."
-      render :action => "new"
+      render :action => "new" and return
     else
       # unless User.is_valid_email_domain(params[:user][:email])
       #         flash[:error] = "Please make sure you have entered a valid email address."
       #         render :action => "new"
       #       end
       if User.is_email_in_use(params[:user][:email])
-        flash[:error] = "That email address is already in our database.<br />Please get in touch if you'd like help reactivating your account."
-        render :action => "new"
+        flash[:error] = "That email address is already in our database.<br />Please get in touch if you'd like help reactivating your account.".html_safe
+        render :action => "new" and return
       else
         @new_teacher.role = "teacher"
         session[:teacher] = @new_teacher

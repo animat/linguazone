@@ -16,6 +16,9 @@ class SubscriptionController < ApplicationController
     if @subscription.nil?
       flash[:error] = "Sorry - that pin number does not match any school in the database."
       redirect_to :controller => "about", :action => "pricing"
+    elsif @subscription.trial?
+      flash[:info] = "The pin number that you entered is for a single user trial account. Please try another pin."
+      redirect_to :controller => "about", :action => "pricing"
     else
       @school = @subscription.school
       session[:subscription] = @subscription
@@ -166,9 +169,12 @@ class SubscriptionController < ApplicationController
     # TODO for some reason rails 3 thinks these objects coming out
     # of the session are already persisted and will do an UPDATE in
     # SQL instead of an INSERT.
-    @subscription = Subscription.new session[:subscription].attributes
-    @school = School.new session[:school].attributes
-    @teacher = User.new session[:teacher].attributes
+    #@subscription = Subscription.new session[:subscription].attributes
+    #@school = School.new session[:school].attributes
+    #@teacher = User.new session[:teacher].attributes
+    @subscription = session[:subscription]
+    @school = session[:school]
+    @teacher = session[:teacher]
 
     if @subscription.trial?
       @subscription.expired_at = Time.now.advance(:weeks => 2)
@@ -176,12 +182,12 @@ class SubscriptionController < ApplicationController
       @subscription.expired_at = Time.now.advance(:years => 1)
     end
     @subscription.pin = 10001 + rand(89998)
-
+    
     @teacher.school = @school
     @teacher.subscription = @subscription
 
     @teacher.persistence_token = nil
-
+    
     @teacher.save
     UserSession.create @teacher
 
