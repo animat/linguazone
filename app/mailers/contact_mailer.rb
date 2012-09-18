@@ -14,7 +14,7 @@ class ContactMailer < ActionMailer::Base
     @city = email_params[:city]
     @state = email_params[:state]
     @main_msg = email_params[:body]
-    mail :to => "info@linguazone.com", :subject => "LinguaZone contact form", :reply_to => @address
+    mail :to => "info@linguazone.com", :subject => "LinguaZone contact form", :from => @address, :reply_to => @address
   end
   
   def report_bug(params)
