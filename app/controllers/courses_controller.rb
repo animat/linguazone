@@ -54,11 +54,16 @@ class CoursesController < ApplicationController
   def update
     unless params[:code].nil? or params[:id].nil?
       @course = Course.find(params[:id])
-      @course.code = params[:code]
-      if params[:code].blank?
-        @course.login_required = false
-      else
+      if params[:login_required]
+        if params[:code] == ""
+          flash[:error] = "Please enter a class code in order to password-protect this class page."
+          redirect_to course_path(@course) and return
+        end
+        @course.code = params[:code]
         @course.login_required = true
+      else
+        @course.code = ""
+        @course.login_required = false
       end
       if @course.save
         flash[:success] = "Updated class settings"
@@ -71,14 +76,30 @@ class CoursesController < ApplicationController
   
   def send_invites
     @course = Course.find(params[:course_id])
-    @emails = params[:invite_emails].split(", ")
-    @emails.each do |email|
-      InvitationMailer.invite_student_to_course(email, @course).deliver
+    @emails = params[:invite_emails].split(",")
+    @sent_count = 0
+    @errors = ""
+    if @emails[0] == "e.g. student@example.com"
+      flash[:info] = "Please enter your students' email addresses to send invitations to join this class page."
+      redirect_to new_course_course_registration_path(@course)
+    else
+      # TODO: I understand this is the foolish way to do this. But just how foolish is it? If classes are typically 10 - 40 kids?
+      @emails.each do |e|
+        email = e.strip
+        unless email == ""
+          if email =~ /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
+            InvitationMailer.invite_student_to_course(email, @course).deliver
+            @sent_count += 1
+          else
+            @errors << "#{email}<br />"
+          end
+        end
+      end
+      @invites = (@sent_count == 1) ? "invitation" : "invitations"
+      flash[:success] = "Email #{@invites} (#{@sent_count} total) successfully sent" unless @sent_count == 0
+      flash[:error] = "Could not send invitations to the following malformed addresses:<em><br />#{@errors}</em>".html_safe unless @errors == ""
+      redirect_to course_path(@course)
     end
-    # TODO @Len: Is this really the best way to pluralize without the leading integer?
-    @invites = (@emails.length == 1) ? "invitation" : "invitations"
-    flash[:success] = "Email #{@invites} (#{@emails.length} total) successfully sent"
-    redirect_to course_path(@course)
   end
   
   def add_post

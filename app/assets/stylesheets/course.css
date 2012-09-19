@@ -40,6 +40,28 @@ p.note {
 	font-size: .8em;
 	color: #666;
 }
+#login_explanation {
+	font-size: .7em;
+	color: #999;
+	padding: 5px;
+	position: relative;
+	top: -5px;
+}
+#login_details table {
+	width: 90%;
+	padding: 10px;
+}
+#login_details table td input[type="text"], #login_details table td input[type="checkbox"] {
+	position: relative;
+	top: -5px;
+}
+#login_details table td:first-child {
+	width: 63%;
+	padding: 0px 5px 10px 0px;
+}
+#login_details table tr:last-child td {
+	text-align: center;
+}
 .section_header {
 	background-color: #FF6600;
 	height: 38px;

@@ -7,15 +7,36 @@ Feature: Teachers control the resources available on their class page
 		And John has 2 posts
 		And the following course exists:
 		 | user             | name       |
-		 | first_name: John | Test class |
-		And all of John's games, word lists, and posts are showing on the "Test class" page
+		 | first_name: John | Latin test |
+		And all of John's games, word lists, and posts are showing on the "Latin test" page
 		And I am logged in as "John"
-		And I am on the "Test class" course page
+		And I am on the "Latin test" course page
 	
 	Scenario: Update the class code on the page
-		When I fill in "Students can register in this class using the class code:" with "code"
+		Given the course "Latin test" has a code of ""
+		When I check "login_required"
+		And I fill in "code" with "example"
 		And I press "Update"
 		Then I should see "Updated class settings"
+		And the "Latin test" class page should require students to login
+		
+	@javascript
+	Scenario: Disable login required on a class page
+		Given the course "Latin test" has a code of "rana"
+		And I am on the "Latin test" course page
+		When I uncheck "login_required"
+		And I press "Update"
+		Then I should see "Updated class settings"
+		And the "Latin test" class page should not require students to login
+		And the "login_required" checkbox should not be checked
+	
+	Scenario: Do not allow teacher to require login with no class code
+		Given I check "login_required"
+		And I fill in "code" with ""
+		And I press "Update"
+		Then I should see "Please enter a class code in order to password-protect this class page."
+		And I should not see "Updated class settings"
+		And the "Latin test" class page should not require students to login
 	
 	Scenario: Edit a game from the course page
 		When I follow "Edit this game" within the 1st game area
@@ -31,11 +52,11 @@ Feature: Teachers control the resources available on their class page
 	
 	Scenario: View stats on a game from the course page
 		When I follow "View stats" within the 1st game area
-		Then I should see "No students in Test class have played this game yet."
+		Then I should see "No students in Latin test have played this game yet."
 	
 	Scenario: View stats on a word list from the course page
 		When I follow "View stats" within the 1st word list area
-		Then I should see "No students in Test class have studied this word list yet."
+		Then I should see "No students in Latin test have studied this word list yet."
 	
 	Scenario: Teacher should not be able to view stats on a post from a course page
 		Then I should not see "View stats" within the 1st post area

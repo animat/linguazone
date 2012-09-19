@@ -22,7 +22,23 @@ Feature: Teacher can invite students to register in a given course
 		And "student2@example.com" should receive an email with subject /Join Sample Latin on LinguaZone.com/
 		And "student3@example.com" should receive an email with subject /Join Sample Latin on LinguaZone.com/
 		And I should see "Email invitations (3 total) successfully sent"
-		
+	
+	@javascript
+	Scenario: Do not send invites for default example email addresses
+		Given I follow "Invite students"
+		When I press "Send email invitations"
+		Then I should not see "successfully sent"
+		And I should see "Please enter your students' email addresses to send invitations to join this class page."
+	
+	Scenario: Do not send messages to poorly formed email addresses
+		Given I follow "Invite students"
+		And I fill in "Enter student email addresses here:" with "student@eg.com, @eg.com, studenteg.com, student@eg, test@eg.com"
+		When I press "Send email invitations"
+		Then I should see "(2 total) successfully sent"
+		And I should see "studenteg.com" within the error flash
+		And I should see "student@eg" within the error flash
+		And I should see "@eg.com" within the error flash
+	
 	Scenario: Student follows a link in an email to create an account and register in a class page
 		Given I follow "Invite students"
 		When I fill in "Enter student email addresses here:" with "student@example.com"

@@ -42,6 +42,14 @@ Given /^the course "([^"]*)" has a code of "([^"]*)"$/ do |course_name, code|
   @c.save
 end
 
+Then /^the "(.*?)" class page should( not)? require students to login$/ do |course_name, not_required|
+  @c = Course.find_by_name(course_name)
+  @c.login_required == not_required
+  if not_required
+    @c.code == ""
+  end
+end
+
 Then /^I should see (\d+) "([^"]*)" links for ([^"]*)$/ do |count, link_text, area|
   all(:xpath, "//div[@id='showing_#{area}']//a[text()='#{link_text}']").length.should == count.to_i
 end

@@ -4,16 +4,15 @@
 <% content_for :page_script do %>
 <link rel="alternate" type="application/rss+xml" title="rss" href="<%= @course.id %>/feed" />
 <script type="text/javascript">
-
-var loginRequired = false;
-function checkLoginRequired(val) {
-	if (val) {
-		$("#loginForm").show();
+function displayLoginDetails() {
+	if($("#login_required").is(":checked")) {
+		$("#class_code_area").show();
+		$("#login_explanation").html("(YES)")
 	} else {
-		$("#loginForm").hide();
+		$("#class_code_area").hide();
+		$("#login_explanation").html("(NO)")
 	}
 }
-
 $(function() {
 	$(".hide_available_item").live("click", function() {
 		$(this).text("Hiding...");
@@ -22,7 +21,12 @@ $(function() {
 		$.post(href, function() { $(div).slideUp(); })
 		  .error(function() { alert("We're sorry. There was an error hiding this item."); });
 		return false;
-	})
+	});
+	
+	$("#login_required").click(function() {
+		displayLoginDetails();
+	});
+	displayLoginDetails();
 });
 
 </script>
@@ -56,27 +60,27 @@ $(function() {
 					</div>
 					<br class="clearFloat" />
 				</p> -->
-		<div id="loginForm">
+		<div id="login_details">
 			<%= form_for(@course) do %>
-			<p>
-				<%= label_tag :code, "Students can register in this class using the class code:" %> 
-				<%= text_field_tag :code, @course.code, :size => 12 %>
-				<%= hidden_field_tag :id, @course.id %>
-				<%= submit_tag "Update" %>
-				<br />
-				<% if @course.login_required? %>
-					<p class="note">
-						To access this page, students must create their own username &amp; password then register in this class using the class code.<br />
-						To disable password-protection, audio blogs, and student tracking on this class page, enter an empty class code.
-					</p>
-				<% else %>
-					<p class="note">
-						Create a class code to password-protect this class page and turn on audio blogs and student tracking.<br />
-						Leave the class code blank to allow students to access this page without creating their own usernames and passwords.
-					</p>
-					</p>
-				<% end %>
-			</p>
+				<table>
+					<tr>
+						<td><%= label_tag :login_required, "Do students need to login to access this class page?" %></td>
+						<td><%= check_box_tag :login_required, 1, @course.login_required %> <span id="login_explanation"></span></td>
+					</tr>
+					<tr id="class_code_area">
+						<td><%= label_tag :code, "Students will create their own LinguaZone.com student accounts, then register in this class using the class code:" %></td>
+						<td><%= text_field_tag :code, @course.code, :size => 12 %></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<%= hidden_field_tag :id, @course.id %>
+							<%= submit_tag "Update" %>
+						</td>
+					</tr>
+				</table>
+				<p class="note">
+					* Audio blogs and tracking student participation are only available when students are required to login.
+				</p>
 			<% end %>
 		</div>
 		<div>
