@@ -89,7 +89,6 @@ div#example_node {
 	/*position: relative;
 	left: -10px;*/
 	border: 1px solid #ccc;
-	height: 120px;
 }
 div.stick_to_top {
 	position: fixed;
@@ -111,6 +110,11 @@ div#example_node input[type="text"] {
 }
 div#example_node div.highlight {
 	background-color: yellow;
+}
+div#quick_character_section {
+	background-color: blue;
+	margin: 0px 50px;
+	padding: 5px;
 }
 div#nodes div.node div.controls {
 	float: right;

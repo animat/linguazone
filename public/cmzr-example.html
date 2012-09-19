@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>LinguaZone Customizer</title>
 	<link href="/assets/layout.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="/assets/jquery-ui-1.8.18.custom.css" media="screen" rel="stylesheet" type="text/css" />
@@ -11,6 +12,52 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
 	<script src="/assets/lightbox.js"></script>
 	<script>
+		var textInFocus;
+		var lastTextInFocus;
+		// TODO: Can this function wait until vars are updated after all events fire?
+		function checkForSlideQuickCharacters() {
+			if (!textInFocus && $("#quick_character_section").is(":visible")) {
+				$("#quick_character_section").slideUp();
+			} else if (textInFocus && !$("#quick_character_section").is(":visible")) {
+				$("#quick_character_section").slideDown();
+			}
+		}
+		function updateTextInFocus(f) {
+			if (textInFocus == null && f != null) {
+				lastTextInFocus = f;
+				textInFocus = f;
+			} else if (textInFocus && f != null) {
+				lastTextInFocus = textInFocus;
+				textInFocus = f;
+			} else {
+				textInFocus = f;
+			}
+		}
+		$.fn.extend({
+			// TODO: Only appending to the end of the value. Also, this is not flexible for textareas as well.
+			insertAtCaret: function(myValue) {
+				console.log("Trying to insert "+myValue+" into "+this.val()+" at "+document.selection+" or "+this.selectionStart);
+				if (document.selection) {
+					this.focus();
+					sel = document.selection.createRange();
+					console.log("See? "+sel);
+					sel.text = myValue;
+					this.focus();
+        } else if (this.selectionStart || this.selectionStart == '0') {
+					var startPos = this.selectionStart;
+					var endPos = this.selectionEnd;
+					var scrollTop = this.scrollTop;
+					this.value = this.value.substring(0, startPos)+myValue+this.value.substring(endPos,this.value.length);
+					this.focus();
+					this.selectionStart = startPos + myValue.length;
+					this.selectionEnd = startPos + myValue.length;
+					this.scrollTop = scrollTop;
+        } else {
+					this.val(this.val() + myValue);
+					this.focus();
+        }
+			}
+		});
 		$(window).scroll(function(e){
 			// TODO: Remove the jumpiness of this change
 			$("#example_node").toggleClass("stick_to_top", $(this).scrollTop() > 515);
@@ -18,14 +65,28 @@
 		$(function() {
 			$("#nodes .question *").bind("focus", function() {
 				$("#example_node .question").toggleClass("highlight", true);
+				updateTextInFocus($(this));
+				checkForSlideQuickCharacters();
 			}).bind("focusout", function() {
 				$("#example_node .question").toggleClass("highlight", false);
+				updateTextInFocus(null);
+				checkForSlideQuickCharacters();
 			});
 			$("#nodes .response *").bind("focus", function() {
 				$("#example_node .response").toggleClass("highlight", true);
+				updateTextInFocus($(this));
+				checkForSlideQuickCharacters();
 			}).bind("focusout", function() {
 				$("#example_node .response").toggleClass("highlight", false);
+				updateTextInFocus(null);
+				checkForSlideQuickCharacters();
 			});
+			$("#quick_character_section").hide();
+			
+			$("#quick_character_section button").click(function() {
+				lastTextInFocus.insertAtCaret($(this).text());
+				textInFocus = lastTextInFocus;
+			})
 			
 			$(".lzinput").tabs();
 			$(".tabs-bottom .ui-tabs-nav, .tabs-bottom .ui-tabs-nav > *").removeClass("ui-corner-all ui-corner-top").addClass("ui-corner-bottom");
@@ -124,6 +185,10 @@
 							</p>
 							<input type="text" disabled="true" value="e.g. frog" />
 						</div>
+					</div>
+					<br class="clearFloat" />
+					<div id="quick_character_section">
+						<p>Add characters... <button>¿</button><button>é</button><button>ç</button></p>
 					</div>
 				</div>
 				<div id="nodes" class="leapFrog">
