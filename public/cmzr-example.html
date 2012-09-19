@@ -5,12 +5,15 @@
 	<link href="/assets/layout.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="/assets/jquery-ui-1.8.18.custom.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="/assets/customize.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/assets/lightbox.css" media="screen" rel="stylesheet" type="text/css" />
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+	<script src="/assets/lightbox.js"></script>
 	<script>
 		$(window).scroll(function(e){
-			$("#example_node").toggleClass("stick_to_top", $(this).scrollTop() > 515)
+			// TODO: Remove the jumpiness of this change
+			$("#example_node").toggleClass("stick_to_top", $(this).scrollTop() > 515);
 		});
 		$(function() {
 			$("#nodes .question *").bind("focus", function() {
@@ -26,13 +29,6 @@
 			
 			$(".lzinput").tabs();
 			$(".tabs-bottom .ui-tabs-nav, .tabs-bottom .ui-tabs-nav > *").removeClass("ui-corner-all ui-corner-top").addClass("ui-corner-bottom");
-			
-			var $dialog = $('<div></div>').html('Playing a YouTube preview right now')
-						.dialog({ autoOpen: false, title: 'Leap Frog Preview', modal: true, height: 400, width: 400 });
-			$("a.preview_link").click(function() {
-				$dialog.dialog('open');
-				return false;
-			});
 		});
 	</script>
 </head>
@@ -112,7 +108,7 @@
 							<label>Prompt for students</label>
 							<p class="hint">
 								The question/ prompt at the top 
-								<a href="#" class="preview_link">
+								<a href="/games/leapFrog/display/icon.jpg" class="preview_link" rel="lightbox">
 									<img src="/assets/shared-buttons/flash_icons/error.png" />
 								</a>
 							</p>
@@ -122,7 +118,7 @@
 							<label>Response from students</label>
 							<p class="hint">
 								The answer that students type in 
-								<a href="#" class="preview_link">
+								<a href="/games/leapFrog/display/icon.jpg" class="preview_link" rel="lightbox">
 									<img src="/assets/shared-buttons/flash_icons/error.png" />
 								</a>
 							</p>
