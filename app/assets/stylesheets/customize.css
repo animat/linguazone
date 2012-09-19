@@ -116,6 +116,11 @@ div#quick_character_section {
 	margin: 0px 50px;
 	padding: 5px;
 }
+div#quick_character_section button {
+	font-size: 1.1em;
+	padding: 2px;
+	margin: 0px 1px;
+}
 div#nodes div.node div.controls {
 	float: right;
 }
