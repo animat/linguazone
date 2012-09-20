@@ -16,4 +16,3 @@ class Linguazone.Views.Games.NodeView extends Backbone.View
   render: ->
     @$el.html _.template(@template)
     @
-
