@@ -22,5 +22,34 @@ Spork.prefork do
   end
 end
 
+# XML matcher stolen from http://johnleach.co.uk/words/585/testing-xml-with-rspec-xpath-and-libxml
+require 'libxml'
+Spec::Matchers.define :have_xml do |xpath, text|
+  match do |body|
+    parser = LibXML::XML::Parser.string body
+    doc = parser.parse
+    nodes = doc.find(xpath)
+    nodes.empty?.should be_false
+    if text
+      nodes.each do |node|
+        node.content.should == text
+      end
+    end
+    true
+  end
+
+  failure_message_for_should do |body|
+    "expected to find xml tag #{xpath} in:\n#{body}"
+  end
+
+  failure_message_for_should_not do |response|
+    "expected not to find xml tag #{xpath} in:\n#{body}"
+  end
+
+  description do
+    "have xml tag #{xpath}"
+  end
+end
+
 Spork.each_run do
 end
