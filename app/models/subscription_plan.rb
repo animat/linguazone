@@ -4,6 +4,11 @@ class SubscriptionPlan < ActiveRecord::Base
   has_many :subscriptions
 
   validates_presence_of :cost
+  
+  scope :trial_sub, where("subscription_plans.name = ?", "trial")
+  scope :basic_sub, where("subscription_plans.name = ?", "basic")
+  scope :premium_sub, where("subscription_plans.name = ?", "premium")
+  scope :paid_sub, where("subscription_plans.name != ?", "trial")
 
   def self.trial
     self.find(:first, :conditions => {:name => "trial"} )

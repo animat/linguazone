@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :audio_clips
   has_many :authentications, :dependent => :destroy
   belongs_to :subscription
+  has_one :subscription_plan, :through => :subscription
   before_save :set_display_name
   
   validates_presence_of :first_name, :last_name, :email, :on => :create

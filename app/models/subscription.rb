@@ -2,7 +2,11 @@ class Subscription < ActiveRecord::Base
 
   has_many :users
   belongs_to :subscription_plan
-
+  
+  scope :days_remaining, lambda { |d|
+    where("subscriptions.expired_at BETWEEN ? and ?", DateTime.now.beginning_of_day + d.to_i.days, DateTime.now.end_of_day + d.to_i.days)
+  }
+  
   def is_expired?
     self.expired_at < Time.now
   end
@@ -29,47 +33,35 @@ class Subscription < ActiveRecord::Base
   end
 
   def self.send_reminder_emails
-    @two_week_subs = User.all(:conditions => ["email = ?", "info@linguazone.com"])
+    @two_week_subs = User.joins(:subscription, :subscription_plan).merge(Subscription.days_remaining(14)).merge(SubscriptionPlan.paid_sub)
     unless @two_week_subs.empty?
-      @two_week_subs.each do |u|
-        InvoiceMailer.two_week_reminder("colinangevine@gmail.com", u, u.subscription).deliver
-      end
+      InvoiceMailer.two_week_reminder(@two_week_subs).deliver
     end
-
-    @one_week_subs = User.all(:conditions => ["email = ?", "info@linguazone.com"])
+    
+    @one_week_subs = User.joins(:subscription, :subscription_plan).merge(Subscription.days_remaining(7)).merge(SubscriptionPlan.paid_sub)
     unless @one_week_subs.empty?
-      @one_week_subs.each do |u|
-        InvoiceMailer.one_week_reminder("colinangevine@gmail.com", u, u.subscription).deliver
-      end
+      InvoiceMailer.one_week_reminder(@one_week_subs).deliver
     end
-
-    @two_day_subs = User.all(:conditions => ["email = ?", "info@linguazone.com"])
+    
+    @two_day_subs = User.joins(:subscription, :subscription_plan).merge(Subscription.days_remaining(2)).merge(SubscriptionPlan.paid_sub)
     unless @two_day_subs.empty?
-      @two_day_subs.each do |u|
-        InvoiceMailer.two_day_reminder("colinangevine@gmail.com", u, u.subscription).deliver
-      end
+      InvoiceMailer.two_day_reminder(@two_day_subs).deliver
     end
-
-    # @one_week_trials = User.all(:conditions => ["email = ?", "info@linguazone.com"])
-    #     unless @one_week_trials.empty?
-    #       @one_week_trials.each do |u|
-    #         InvoiceMailer.trial_one_week_reminder("colinangevine@gmail.com", u, u.subscription).deliver
-    #       end
-    #     end
-    #
-    #     @three_day_trials = User.all(:conditions => ["email = ?", "info@linguazone.com"])
-    #     unless @three_day_trials.empty?
-    #       @three_day_trials.each do |u|
-    #         InvoiceMailer.trial_three_day_reminder("colinangevine@gmail.com", u, u.subscription).deliver
-    #       end
-    #     end
-    #
-    #     @expired_trials = User.all(:conditions => ["email = ?", "info@linguazone.com"])
-    #     unless @expired_trials.empty?
-    #       @expired_trials.each do |u|
-    #         InvoiceMailer.trial_expired_reminder("colinangevine@gmail.com", u, u.subscription).deliver
-    #       end
-    #     end
+    
+    @one_week_trials = User.joins(:subscription, :subscription_plan).merge(Subscription.days_remaining(7)).merge(SubscriptionPlan.trial_sub)
+    unless @one_week_trials.empty?
+      InvoiceMailer.trial_one_week_reminder(@one_week_trials).deliver
+    end
+    
+    @three_day_trials = User.joins(:subscription, :subscription_plan).merge(Subscription.days_remaining(3)).merge(SubscriptionPlan.trial_sub)
+    unless @three_day_trials.empty?
+      InvoiceMailer.trial_three_day_reminder(@three_day_trials).deliver
+    end
+    
+    @expired_trials = User.joins(:subscription, :subscription_plan).merge(Subscription.days_remaining(-1)).merge(SubscriptionPlan.trial_sub)
+    unless @expired_trials.empty?
+      InvoiceMailer.trial_expired_reminder(@expired_trials).deliver
+    end
   end
 
 end
