@@ -20,6 +20,7 @@ class SubscriptionController < ApplicationController
       flash[:info] = "The pin number that you entered is for a single user trial account. Please try another pin."
       redirect_to :controller => "about", :action => "pricing"
     else
+      # TODO: This can be erroneous if there are two separate accounts (e.g. old trial, current paid subscription) at the same school
       @school = @subscription.school
       session[:subscription] = @subscription
       session[:school] = @school
