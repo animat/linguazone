@@ -25,6 +25,8 @@ class UserSessionsController < ApplicationController
   end
   
   def destroy
+    session.delete :course_guid
+    session.delete :user_email
     @user_session = UserSession.find
     @user_session.destroy unless @user_session.nil?
     redirect_to root_url
