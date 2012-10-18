@@ -89,23 +89,24 @@ module FeedItemsHelper
   def format_feed_item_preview(fi)
     @class_name = fi.sourceable_type
     str = "<p class='preview #{@class_name}'>"
-    case fi.sourceable_type
-    when "HighScore"
-      str << image_tag("shared-buttons/swirl_right_arrow.jpg")
-      str << truncate(fi.sourceable.available_game.game.description, :length => 100, :omission => "...")
-    when "StudyHistory"
-      str << image_tag("shared-buttons/swirl_right_arrow.jpg")
-      # TODO: Why is this breaking here? Is there any other way to manage this besides if statements? Is soft delete the only thing that can help?
-      unless fi.sourceable.available_word_list.nil?
+    unless fi.sourceable.nil?
+      case fi.sourceable_type
+      when "HighScore"
+        str << image_tag("shared-buttons/swirl_right_arrow.jpg")
+        str << truncate(fi.sourceable.available_game.game.description, :length => 100, :omission => "...")
+      when "StudyHistory"
+        str << image_tag("shared-buttons/swirl_right_arrow.jpg")
+        # TODO: Why is this breaking here? Is there any other way to manage this besides if statements? Is soft delete the only thing that can help?
         str << truncate(fi.sourceable.available_word_list.word_list.description, :length => 100, :omission => "...")
+      # TODO: This is breaking as well. Soft delete needed, I think!
+      when "Comment"
+        unless fi.sourceable.content.blank?
+          str << image_tag("shared-buttons/blockquote.jpg")
+          str << truncate(fi.sourceable.content, :length => 100, :omission => "...")
+        end
       end
-    when "Comment"
-      unless fi.sourceable.content.blank?
-        str << image_tag("shared-buttons/blockquote.jpg")
-        str << truncate(fi.sourceable.content, :length => 100, :omission => "...")
-      end
+      str << "</p>"
+      str.html_safe
     end
-    str << "</p>"
-    str.html_safe
   end
 end
