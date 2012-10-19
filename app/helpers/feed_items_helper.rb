@@ -95,9 +95,11 @@ module FeedItemsHelper
         str << image_tag("shared-buttons/swirl_right_arrow.jpg")
         str << truncate(fi.sourceable.available_game.game.description, :length => 100, :omission => "...")
       when "StudyHistory"
-        str << image_tag("shared-buttons/swirl_right_arrow.jpg")
-        # TODO: Why is this breaking here? Is there any other way to manage this besides if statements? Is soft delete the only thing that can help?
-        str << truncate(fi.sourceable.available_word_list.word_list.description, :length => 100, :omission => "...")
+        if fi.sourceable.available_word_list.word_list
+          str << image_tag("shared-buttons/swirl_right_arrow.jpg")
+          # TODO: Why is this breaking here? Is there any other way to manage this besides if statements? Is soft delete the only thing that can help?
+          str << truncate(fi.sourceable.available_word_list.word_list.description, :length => 100, :omission => "...")
+        end
       # TODO: This is breaking as well. Soft delete needed, I think!
       when "Comment"
         unless fi.sourceable.content.blank?
