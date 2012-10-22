@@ -10,7 +10,6 @@ Feature: Teacher creates custom games
       | Spanish |
     And I am logged in as "John"
 
-  @wip
   @javascript
   Scenario: Customize a game
     When I am on the customization page
@@ -23,5 +22,7 @@ Feature: Teacher creates custom games
     And I fill in "Student Answer" with "car"
     And I press "Create Game"
     Then I should see "Game Created"
+    When I follow "GAMES"
+    Then I should not see "You have not created any games yet"
     And there should be 1 "Leap Frog" Game
     Then there should be a template for "Leap Frog" Game

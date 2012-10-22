@@ -22,6 +22,10 @@ class GameDataController < ApplicationController
     template.activity = game.activity
     template.xml = game_data.to_xml
     template.save!
+
+
+    #TODO: is this the right thing todo here?
+    AvailableGame.create(:user_id => current_user.id, :game => game, :course_id => 0)
     head :no_content
   end
 end
