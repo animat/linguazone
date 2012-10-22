@@ -10,8 +10,10 @@ Feature: Teacher creates custom games
       | Spanish |
     And I am logged in as "John"
 
+
+  @wip
   @javascript
-  Scenario: Customize a game
+  Scenario: Create and Edit a Game
     When I am on the customization page
     And I follow "Spanish"
     And I follow "Customize Game"
@@ -25,3 +27,7 @@ Feature: Teacher creates custom games
     When I follow "GAMES"
     Then I should not see "You have not created any games yet"
     And there should be 1 "Leap Frog" Game
+    When I follow "Edit"
+    Then show me the page
+    And I should see "carro"
+
