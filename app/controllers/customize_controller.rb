@@ -31,7 +31,6 @@ class CustomizeController < ApplicationController
         @game = Game.find(params[:id])
         # TODO: Add administrative options... this is a hack!
         if current_user.id == @game.updated_by_id or current_user.id == 30
-          @embed_vars = "gameid="+params[:id]+"&userid="+String(current_user.id)+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
         else
           flash[:error] = "You do not have permission to edit that game"
           redirect_to teachers_path and return

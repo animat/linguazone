@@ -25,4 +25,3 @@ Feature: Teacher creates custom games
     When I follow "GAMES"
     Then I should not see "You have not created any games yet"
     And there should be 1 "Leap Frog" Game
-    Then there should be a template for "Leap Frog" Game
