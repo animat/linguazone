@@ -38,3 +38,32 @@ describe GameData do
   end
 end
 
+describe GameData do
+  describe ".from" do
+    let(:game) { Factory(:game, :xml => """
+<?xml version=\"1.0\"?>\n<gamedata>
+  <node>
+    <question type=\"text\" content=\"How are you?\"/>
+    <response type=\"text\" content=\"Fine\"/>  
+    <options>
+      <option type=\"text\" content=\"Fine\"/>
+      <option type=\"text\" content=\"Bad\"/>
+      <option type=\"text\" content=\"Okay\"/>
+    </options>
+  </node>
+</gamedata>
+""")}
+
+    it "hydrates game data from a game object" do
+      game_data = GameData.from(game)
+      game_data.should_not be_nil
+      game_data.nodes.length.should == 1
+      node = game_data.nodes.first
+      node.question.should == "How are you?"
+      node.response.should == "Fine"
+      node.options.length.should == 3
+      node.options.should include "Bad"
+      node.options.should include "Fine"
+    end
+  end
+end

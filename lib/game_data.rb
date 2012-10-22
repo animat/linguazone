@@ -4,6 +4,22 @@ require 'open-uri'
 class GameData
   attr_accessor :nodes
 
+  def self.from(game)
+    game_data = new
+
+    xml_doc  = Nokogiri::XML(game.xml)
+    xml_doc.xpath(".//node").each do |node|
+      question = node.xpath(".//question").first["content"]
+      response = node.xpath(".//response").first["content"]
+      options = []
+      node.xpath(".//option").each do |option|
+        options << option["content"]
+      end
+      game_data.add_node(GameData::Node.new question, response, options)
+    end
+    game_data
+  end
+
   def initialize
     @nodes = []
   end
