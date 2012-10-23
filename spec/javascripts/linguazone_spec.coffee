@@ -1,4 +1,16 @@
 describe 'Customizer', ->
+  describe "when presented with game data", ->
+    beforeEach ->
+      loadFixtures('edit.html')
+      @spy = sinon.stub(jQuery, 'ajax')
+      Linguazone.init()
+
+    afterEach ->
+      jQuery.ajax.restore()
+
+    it "loads the game", ->
+      expect(@spy.calledOnce).toBeTruthy()
+
   describe "selecting an activity", ->
     beforeEach ->
       loadFixtures('activity.html')
@@ -46,6 +58,19 @@ describe 'GameData', ->
   it 'can initialize', ->
     game = new Linguazone.Models.Game
     expect(game).toBeTruthy()
+
+  it 'can hydrate nodes from proper json', ->
+    json = {"description" : "good game", "nodes":[{"options":[],"response":"dd","question":"asdfasdf"},{"options":[],"response":"gggg","question":"ddd"}]}
+    @server = sinon.fakeServer.create()
+    @server.respondWith( "GET", "/game_data/13", [ 200, {"Content-Type": "application/json"}, JSON.stringify(json) ])
+
+    game = new Linguazone.Models.Game
+      id: 13
+    game.fetch()
+    @server.respond()
+    console.log game.get("nodes").models
+    expect(game.get("description")).toBe("good game")
+    expect(game.get("nodes").models.length).toBe(2)
 
 describe 'Node', ->
   beforeEach ->

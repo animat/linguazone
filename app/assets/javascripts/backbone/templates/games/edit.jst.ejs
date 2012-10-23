@@ -1,15 +1,15 @@
-<h1>Edit game_datum</h1>
+<h1>Edit Game</h1>
 
-<form id="edit-game_datum" name="game_datum">
-  <div class="field">
-    <label for="game_id"> game_id:</label>
-    <input type="text" name="game_id" id="game_id" value="<%= game_id %>" >
-  </div>
-
+<form id="new-game" name="game">
   <div class="actions">
-    <input type="submit" value="Update Game data" />
-  </div>
-
+    <div id="nodes"> </div>
+    <button class="addNode">Add Question</button>
+    <input id="create-game" type="submit" value="Update Game" />
+   </div>
 </form>
+
+<div id="confirmation" style="display:none">
+  Game Updated
+</div>
 
 <a href="#/index">Back</a>

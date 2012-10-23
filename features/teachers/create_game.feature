@@ -28,6 +28,4 @@ Feature: Teacher creates custom games
     Then I should not see "You have not created any games yet"
     And there should be 1 "Leap Frog" Game
     When I follow "Edit"
-    Then show me the page
     And I should see "carro"
-

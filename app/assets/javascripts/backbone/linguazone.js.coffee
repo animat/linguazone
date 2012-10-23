@@ -22,5 +22,16 @@ window.Linguazone =
       window.Linguazone.AppView = view.render()
       $("#customizer").append(window.Linguazone.AppView.el)
 
+     $editor = $("#game-editor")
+     if $editor.length
+       model = new Linguazone.Models.Game
+         id: $editor.data("gameId")
+       model.fetch()
+       view = new Linguazone.Views.Games.EditView
+         model: model
+       window.Linguazone.AppView = view.render()
+
+       $("#customizer").append(window.Linguazone.AppView.el)
+
 $ window.Linguazone.init
 

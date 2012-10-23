@@ -31,17 +31,17 @@ class GameData
   def to_xml
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.gamedata {
-        xml.nodes {
-          @nodes.each do |node|
-            xml.question :content => node.question, :type => "text"
-            xml.response :content => node.response, :type => "text"
-            xml.options {
-              node.options.each do |option|
-                xml.option :content => option, :type => "text"
-              end
-            }
-          end
-        }
+        @nodes.each do |node|
+          xml.node {
+              xml.question :content => node.question, :type => "text"
+              xml.response :content => node.response, :type => "text"
+              xml.options {
+                node.options.each do |option|
+                  xml.option :content => option, :type => "text"
+                end
+              }
+          }
+        end
       }
     end
 

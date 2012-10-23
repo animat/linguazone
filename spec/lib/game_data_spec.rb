@@ -31,9 +31,9 @@ describe GameData do
     it "is valid xml" do
       xml = game_data.to_xml
       xml.should_not be_nil
-      xml.should have_xml "/gamedata/nodes/question[@content='How are you?']"
-      xml.should have_xml "/gamedata/nodes/response[@content='Fine']"
-      xml.should have_xml "/gamedata/nodes/options/option[@content='Bad']"
+      xml.should have_xml "/gamedata/node/question[@content='How are you?']"
+      xml.should have_xml "/gamedata/node/response[@content='Fine']"
+      xml.should have_xml "/gamedata/node/options/option[@content='Bad']"
     end
   end
 end
@@ -41,7 +41,8 @@ end
 describe GameData do
   describe ".from" do
     let(:game) { Factory(:game, :xml => """
-<?xml version=\"1.0\"?>\n<gamedata>
+<?xml version=\"1.0\"?>
+<gamedata>
   <node>
     <question type=\"text\" content=\"How are you?\"/>
     <response type=\"text\" content=\"Fine\"/>  

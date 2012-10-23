@@ -1,5 +1,8 @@
+<%= javascript_include_tag "backbone/linguazone" %>
 <h1>Edit your LinguaZone <%= format_cmzr_type(params[:cmzr_type]) %></h1>
 <br />
-<div align="center swf_window">
-	<%= swf_tag '/swfs/customizer/main.lzx.swf', { :id => "customizer", :height => "600", :width => "700", :flashvars => @embed_vars, :parameters => {:path => "../../../", :wmode => "transparent", :quality => "high"} } %>
+
+<div id="game-editor" class="customizer" data-game-id="<%=params[:id]%>">
+  <div id="customizer"></div>
 </div>
+

@@ -11,7 +11,7 @@ class GameDataController < ApplicationController
     params[:nodes].each do |node_hash|
       game_data.add_node(GameData::Node.new node_hash[:question], node_hash[:response])
     end
-    #
+
     # TODO: get real description
     game.description = game.activity.name
     game.language = Language.find params[:language_id]
@@ -25,6 +25,6 @@ class GameDataController < ApplicationController
 
   def show
    @game = Game.find params[:id]
-   render :json => @game.to_json
+   render :json => @game.game_data.to_json
   end
 end

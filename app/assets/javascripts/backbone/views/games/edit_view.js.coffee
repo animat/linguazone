@@ -1,24 +1,9 @@
-Linguazone.Views.GameData ||= {}
+Linguazone.Views.Games ||= {}
 
-class Linguazone.Views.GameData.EditView extends Backbone.View
-  template : JST["backbone/templates/game_data/edit"]
+class Linguazone.Views.Games.EditView extends Linguazone.Views.Games.GameFormBaseView
+  template : JST["backbone/templates/games/edit"]
 
-  events :
-    "submit #edit-game_data" : "update"
+  constructor: (options) ->
+    super(options)
+    @model.bind "change", @render
 
-  update : (e) ->
-    e.preventDefault()
-    e.stopPropagation()
-
-    @model.save(null,
-      success : (game_data) =>
-        @model = game_data
-        window.location.hash = "/#{@model.id}"
-    )
-
-  render : ->
-    $(@el).html(@template(@model.toJSON() ))
-
-    this.$("form").backboneLink(@model)
-
-    return this
