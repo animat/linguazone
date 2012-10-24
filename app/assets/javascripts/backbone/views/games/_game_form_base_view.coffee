@@ -15,7 +15,6 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.View
     @model.save()
     @$el.find("form").hide()
     @$el.find("#confirmation").show()
-    return
 
   render: =>
     html = @template(@model.toJSON() )

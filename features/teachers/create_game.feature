@@ -17,15 +17,18 @@ Feature: Teacher creates custom games
     When I am on the customization page
     And I follow "Spanish"
     And I follow "Customize Game"
-    And I fill in "Your Input" with "niño"
     And I fill in "Student Answer" with "child"
+    And I fill in "Your Input" with "nino"
     And I press "Add Question"
-    And I fill in "Your Input" with "carro"
     And I fill in "Student Answer" with "car"
+    And I fill in "Your Input" with "carro"
+    Then show me the page
     And I press "Create Game"
     Then I should see "Game Created"
     When I follow "GAMES"
     Then I should not see "You have not created any games yet"
     And there should be 1 "Leap Frog" Game
     When I follow "Edit"
-    And I should see "carro"
+    Then wait a second
+    Then show me the page
+    Then I should see the answer "car"

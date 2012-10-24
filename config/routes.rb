@@ -62,7 +62,7 @@ Linguazone::Application.routes.draw do
     end
   end
 
-  resources :game_data, :only => [:create, :show]
+  resources :game_data, :only => [:create, :show, :update]
 
   #TODO @Len: Is there an efficient way to create a new path here and establish parameters?
   #match 'my_games/search/hidden_games_on_class/:course_id' => 'my_games#search', params[:search][:hidden_equals] => 1, params[:search][:course_id] => nil

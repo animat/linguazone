@@ -1,16 +1,18 @@
 require 'lib/game_data'
 class GameDataController < ApplicationController
+  def update
+    game = Game.find params[:id]
+    game_data = get_game_data
+    game.xml = game_data.to_xml
+    game.save!
+  end
 
   #TODO: refactor
   def create
-
     game = Game.new :created_by => current_user, :updated_by => current_user
     game.activity = Activity.find params[:activity_id]
 
-    game_data = GameData.new()
-    params[:nodes].each do |node_hash|
-      game_data.add_node(GameData::Node.new node_hash[:question], node_hash[:response])
-    end
+    game_data = get_game_data
 
     # TODO: get real description
     game.description = game.activity.name
@@ -27,4 +29,14 @@ class GameDataController < ApplicationController
    @game = Game.find params[:id]
    render :json => @game.game_data.to_json
   end
+
+  private
+
+    def get_game_data
+      game_data = GameData.new()
+      params[:nodes].each do |node_hash|
+        game_data.add_node(GameData::Node.new node_hash[:question], node_hash[:response])
+      end
+      game_data
+    end
 end
