@@ -1,3 +1,4 @@
+<%= stylesheet 'customize' %>
 <%= javascript_include_tag "backbone/linguazone" %>
 <h1>Create a new <%= format_cmzr_type(params[:cmzr_type]) %></h1>
 <br />
@@ -5,10 +6,15 @@
   <% @activities.each do |activity| %>
     <div class="activity">
       <h2><%= activity.name %></h2>
+			<div class="icons">
+				<%# TODO: Game icons can be a link to a lightbox that will play a video preview of that game %>
+      	<%= link_to image_tag("/games/#{activity.swf}/display/icon.jpg", :alt => "Customize #{activity.name}"), "#" %>
+			</div>
+			<p><%= activity.description %></p>
       <a data-id="<%=activity.id %>" href="#">Customize Game</a>
     </div>
   <% end %>
-
+	<br style="clear: both;" />
   <div id="customizer">
   </div>
 </div>

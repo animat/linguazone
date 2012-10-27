@@ -18,3 +18,135 @@
 	color: #FFF;
 	background-color: #FF6600;
 }
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			STEP 1
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+div.activity {
+	float: left;
+	width: 250px;
+	margin: 15px;
+	padding: 5px;
+	border: 1px solid red;
+}
+div.activity h3 {
+	font-size: 1.2em;
+	text-align: center;
+	margin-bottom: 5px;
+}
+div.activity div.icons {
+	float: left;
+	width: 120px;
+	padding: 5px;
+}
+div.activity div.detail {
+	float: left;
+	background-color: #ccc;
+}
+div.activity div.detail p {
+	padding: 3px;
+	background-color: white;
+}
+div.activity p.confirm_step_one { 
+	text-align: center 
+}
+div.activity p.confirm_step_one a {
+	color: #70a845;
+	text-decoration: none;
+}
+div.selected_banner {
+	background-color: #edf0f9;
+	margin-bottom: 20px;
+}
+div.selected_banner img {
+	float: left;
+	padding: 10px;
+}
+div.selected_banner ul {
+	width:800px;
+	overflow:hidden;
+}
+div.selected_banner ul li {
+	float:left;
+	width: 45%;
+	margin-left: 15px;
+	list-style-type: disc;
+	line-height:1.5em;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			STEP 2
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+div#nodes input, div#example_node input {
+	padding: 3px;
+	width: 200px;
+}
+div.node {
+	position: relative;
+}
+div#example_node {
+	background-color: #cacaca;
+	width: 900px;
+	/*position: relative;
+	left: -10px;*/
+	border: 1px solid #ccc;
+}
+div.stick_to_top {
+	position: fixed;
+	top: 0;
+	z-index: 100;
+}
+div#example_node label {
+	font-size: 1.3em;
+}
+div#example_node p.hint {
+	font-size: .9em;
+	color: #666;
+	padding: 0px;
+	margin-bottom: 5px;
+}
+div#example_node input[type="text"] {
+	font-style: italic;
+	color: #666;
+}
+div#example_node div.highlight {
+	background-color: yellow;
+}
+div#quick_character_section {
+	background-color: blue;
+	margin: 0px 50px;
+	padding: 5px;
+}
+div#quick_character_section button {
+	font-size: 1.1em;
+	padding: 2px;
+	margin: 0px 1px;
+}
+div#nodes div.node div.controls {
+	float: right;
+}
+div.node div.lzinput {
+	border: none;
+	padding: 0;
+	background: none;
+}
+div.node ul li {
+	font-size: .7em;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			Game input
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+div#nodes > div, div.leapFrog div.node {
+	padding: 10px;
+	height: 30px;
+}
+div#nodes > div > div.question, div.leapFrog div.node div.question {
+	position: absolute;
+}
+div#nodes > div > div.response, div.leapFrog div.node div.response {
+	position: absolute;
+	left: 600px;
+}
+div#nodes > div:last-child {
+	padding-bottom: 50px;
+}

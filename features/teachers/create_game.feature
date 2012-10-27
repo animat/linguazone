@@ -32,3 +32,17 @@ Feature: Teacher creates custom games
     Then wait a second
     Then show me the page
     Then I should see the answer "car"
+
+	@wip
+	Scenario: Customize a Garden Grows game
+		When I am on the customization page
+    And I follow "Spanish"
+    And I follow "Customize Garden Grows"
+    And I fill in "Target word" with "niño"
+    And I press "Add Question"
+    And I fill in "Target word" with "carro"
+    And I press "Create game"
+    Then I should see "Game Created"
+    When I follow "GAMES"
+    Then I should not see "You have not created any games yet"
+    And there should be 1 "Garden Grows" Game
