@@ -45,6 +45,14 @@ describe "Customizer", ->
     game_data = window.Linguazone.AppView.model
     expect(game_data.get("nodes").length).toBe 2
 
+  it "can delete a node", ->
+    $(".question input").val("Niño")
+    $(".response input").val("Child")
+    $("button.addNode").click()
+    $(".delete").last().click()
+    game_data = window.Linguazone.AppView.model
+    expect(game_data.get("nodes").length).toBe 1
+
   it "submits to ajax", ->
     @spy = sinon.stub(jQuery, 'ajax')
     $("input[type='submit']").click()
@@ -52,7 +60,6 @@ describe "Customizer", ->
     expect($("form")).toBeHidden()
     expect($("#customizer")).toContainHtml("Game Created")
     jQuery.ajax.restore()
-
 
 describe 'GameData', ->
   it 'can initialize', ->
@@ -68,7 +75,6 @@ describe 'GameData', ->
       id: 13
     game.fetch()
     @server.respond()
-    console.log game.get("nodes").models
     expect(game.get("description")).toBe("good game")
     expect(game.get("nodes").models.length).toBe(2)
 
@@ -102,10 +108,15 @@ describe 'NodeView', ->
     expect($(@nodeView.el)).toContainHtml("value=\"#{@node.get('question')}\"")
     expect($(@nodeView.el)).toContainHtml("value=\"#{@node.get('response')}\"")
 
+  it 'can delete itself', ->
+    $el = @nodeView.$el
+    $el.remove = sinon.spy()
+    $el.find(".delete").trigger("click")
+    expect($el.remove.calledOnce).toBeTruthy()
+    expect(@nodeView.options.node).not.toBeTruthy()
+
   it 'updates the node as the answer change', ->
     $answer = $(@nodeView.el).find(".response input")
-    console.log 'vieeew', $(@nodeView.el)
-    console.log $answer
     $answer.val("Better!")
     $answer.trigger("change")
     $answer.trigger("blur")

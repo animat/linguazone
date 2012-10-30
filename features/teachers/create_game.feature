@@ -3,8 +3,9 @@ Feature: Teacher creates custom games
   Background:
     Given a teacher exists with a first name of "John"
     And the following activities exist:
-      | name      |
-      | Leap Frog |
+      | name         |
+      | Leap Frog    |
+      | Garden Grows |
     And the following languages exist:
       | name    |
       | Spanish |
@@ -16,7 +17,7 @@ Feature: Teacher creates custom games
   Scenario: Create and Edit a Game
     When I am on the customization page
     And I follow "Spanish"
-    And I follow "Customize Game"
+    And I follow "Customize Leap Frog"
     And I fill in "Student Answer" with "child"
     And I fill in "Your Input" with "nino"
     And I press "Add Question"
@@ -33,9 +34,9 @@ Feature: Teacher creates custom games
     Then show me the page
     Then I should see the answer "car"
 
-	@wip
-	Scenario: Customize a Garden Grows game
-		When I am on the customization page
+  @wip
+  Scenario: Customize a Garden Grows game
+    When I am on the customization page
     And I follow "Spanish"
     And I follow "Customize Garden Grows"
     And I fill in "Target word" with "niño"

@@ -3,6 +3,7 @@ Linguazone.Views.Games ||= {}
 class Linguazone.Views.Games.NodeView extends Backbone.View
   events:
     "change input" : "updateModel",
+    "click .delete" : "delete",
 
   template: """
   <div class="question">
@@ -18,7 +19,16 @@ class Linguazone.Views.Games.NodeView extends Backbone.View
       <input type="text" value="<%= response %>">
     </label>
   </div>
+
+  <div class="delete_wrapper" style="float:right; padding-right:50px;">
+    <a href="#" class="delete">x</a>
+  </div>
   """
+
+  delete: =>
+    @trigger("remove")
+    @$el.remove()
+    @options.node = undefined
 
   updateModel: (e) =>
     @options.node.set

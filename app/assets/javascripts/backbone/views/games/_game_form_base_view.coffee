@@ -21,8 +21,10 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.View
     $(@el).html html
     $nodeDiv = $(@el).find("#nodes")
     $nodeDiv.html("")
-    _.each @model.get("nodes").models, (node) ->
+    _.each @model.get("nodes").models, (node) =>
       view = new Linguazone.Views.Games.NodeView
         node: node
+      view.on "remove", =>
+        @model.get("nodes").remove(node)
       $nodeDiv.append(view.render().el)
     @
