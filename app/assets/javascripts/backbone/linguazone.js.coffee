@@ -16,8 +16,10 @@ window.Linguazone =
       $(this).parent(".activity").show()
       $(this).hide()
       activity_id = $(this).data("id")
+
       view = new Linguazone.Views.Games.NewView
         activity_id: activity_id
+        game_type:   $(this).data("gameType")
         language_id: QueryString.language
       window.Linguazone.AppView = view.render()
       $("#customizer").append(window.Linguazone.AppView.el)
@@ -29,7 +31,7 @@ window.Linguazone =
        model.fetch()
        view = new Linguazone.Views.Games.EditView
          model: model
-       window.Linguazone.AppView = view.render()
+       window.Linguazone.AppView = view
 
        $("#customizer").append(window.Linguazone.AppView.el)
 

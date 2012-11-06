@@ -9,6 +9,8 @@ class Game < ActiveRecord::Base
   has_many :high_scores
   has_many :available_games, :dependent => :destroy
 
+  delegate :game_type, :to => :activity
+
   def large_icon_src
     "/games/#{self.activity.swf}/display/icon.jpg" unless self.activity.nil?
   end

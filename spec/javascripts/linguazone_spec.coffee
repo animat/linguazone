@@ -2,14 +2,15 @@ describe 'Customizer', ->
   describe "when presented with game data", ->
     beforeEach ->
       loadFixtures('edit.html')
-      @spy = sinon.stub(jQuery, 'ajax')
+      @server = sinon.fakeServer.create()
       Linguazone.init()
+      @server.requests[0].respond( 200, { "Content-Type": "application/json" }, '{"nodes":[{"options":[],"response":"asdfasdfs","question":""},{"options":[],"response":"asdfasdf","question":""},{"options":[],"response":"sadf","question":""}],"game_type":"TargetWord"}')
 
     afterEach ->
-      jQuery.ajax.restore()
+      @server.restore()
 
     it "loads the game", ->
-      expect(@spy.calledOnce).toBeTruthy()
+      expect(window.Linguazone.AppView.model.get("game_type")).toBe("TargetWord")
 
   describe "selecting an activity", ->
     beforeEach ->
@@ -30,6 +31,9 @@ describe 'Customizer', ->
 
     it "creates a customizer view", ->
       expect($("#customizer")).toContainHtml("Your Input")
+
+    it "passes the activity type to the game", ->
+      expect(window.Linguazone.AppView.model.get("game_type")).toBe("OneToOne")
 
 # this is a little integrationy?  but only client side.
 describe "Customizer", ->
@@ -99,10 +103,10 @@ describe 'Node', ->
     expect(spy.calledOnce).toBeTruthy()
     expect(spy.calledWith(@node, "cannot have an empty response")).toBeTruthy()
 
-describe 'NodeView', ->
+describe 'OneToOne Node View', ->
   beforeEach ->
     @node = new Linguazone.Models.Node({question: "How are you", response: "Good!"})
-    @nodeView = new Linguazone.Views.Games.NodeView(node: @node).render()
+    @nodeView = new Linguazone.Views.Games.OneToOne(node: @node).render()
 
   it 'renders the question and answer', ->
     expect($(@nodeView.el)).toContainHtml("value=\"#{@node.get('question')}\"")

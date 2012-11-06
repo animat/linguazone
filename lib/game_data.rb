@@ -2,10 +2,11 @@ require 'nokogiri'
 require 'open-uri'
 
 class GameData
-  attr_accessor :nodes
+  attr_accessor :nodes, :game_type
 
   def self.from(game)
     game_data = new
+    game_data.game_type = game.game_type
 
     xml_doc  = Nokogiri::XML(game.xml)
     xml_doc.xpath(".//node").each do |node|
@@ -22,6 +23,7 @@ class GameData
 
   def initialize
     @nodes = []
+    @game_type = "OneToOne"
   end
 
   def add_node(node)

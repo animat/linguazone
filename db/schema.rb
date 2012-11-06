@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120919021857) do
+ActiveRecord::Schema.define(:version => 20121106160610) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -28,12 +28,13 @@ ActiveRecord::Schema.define(:version => 20120919021857) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "activities", :force => true do |t|
-    t.string  "name",          :limit => 50,                    :null => false
-    t.string  "swf",           :limit => 40,                    :null => false
-    t.text    "hints_xml",                                      :null => false
-    t.string  "help",                                           :null => false
-    t.text    "youtube_embed",                                  :null => false
-    t.boolean "convertable",                 :default => false, :null => false
+    t.string  "name",          :limit => 50,                         :null => false
+    t.string  "swf",           :limit => 40,                         :null => false
+    t.text    "hints_xml",                                           :null => false
+    t.string  "help",                                                :null => false
+    t.text    "youtube_embed",                                       :null => false
+    t.boolean "convertable",                 :default => false,      :null => false
+    t.string  "game_type",                   :default => "OneToOne", :null => false
   end
 
   create_table "admin_users", :force => true do |t|
