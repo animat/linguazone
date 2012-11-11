@@ -9,7 +9,7 @@ class Linguazone.Views.Games.TargetWord extends Linguazone.Views.Games.NodeBaseV
     </label>
   </div>
 
-  <div class="delete_wrapper" style="float:right; padding-right:50px;">
+  <div class="controls_wrapper">
     <a href="#" class="delete">x</a>
   </div>
   """

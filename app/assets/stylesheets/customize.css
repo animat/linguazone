@@ -75,14 +75,11 @@ div.selected_banner ul li {
 	line-height:1.5em;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-			STEP 2
+			STEP 2: Input elements
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 div#nodes input, div#example_node input {
 	padding: 3px;
 	width: 200px;
-}
-div.node {
-	position: relative;
 }
 div#example_node {
 	background-color: #cacaca;
@@ -122,31 +119,60 @@ div#quick_character_section button {
 	padding: 2px;
 	margin: 0px 1px;
 }
-div#nodes div.node div.controls {
+div#nodes div.controls_wrapper {
 	float: right;
+	padding-right:20px;
 }
-div.node div.lzinput {
+div.lz_input {
 	border: none;
 	padding: 0;
 	background: none;
 }
-div.node ul li {
+ul.lz_input_toggle {
+	width: 250px;
+}
+ul.lz_input_toggle li {
 	font-size: .7em;
 }
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-			Game input
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-div#nodes > div, div.leapFrog div.node {
+div#nodes > div {
 	padding: 10px;
-	height: 30px;
 }
-div#nodes > div > div.question, div.leapFrog div.node div.question {
+div#nodes input {
+	width: 249px;
+}
+div#nodes div.lz_input_image, div#nodes div.lz_input_audio {
+	height: 100px;
+	width: 250px;
+	border: 1px solid #666;
+	font-size: .85em;
+}
+div#nodes div.lz_input_image a {
+	display: block;
+	color: #194BA0;
+}
+div#nodes div.lz_input_image a:hover {
+	background-color: #DAE0EB;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			Activity type inputs
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+div#nodes div.question {
+	float: left;
+}
+div#nodes div.response {
+	float: left;
+	margin-left: 50px;
+}
+/*
+div#nodes > div > div.question, div.leapFrog div.question {
 	position: absolute;
 }
-div#nodes > div > div.response, div.leapFrog div.node div.response {
+div#nodes > div > div.response, div.leapFrog div.response {
 	position: absolute;
 	left: 600px;
 }
+*/
 div#nodes > div:last-child {
 	padding-bottom: 50px;
 }
