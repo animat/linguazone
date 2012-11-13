@@ -14,6 +14,8 @@ window.Linguazone =
       e.preventDefault()
       $(".activity").hide()
       $(this).parent(".activity").show()
+      $(this).parent(".activity").addClass("selected_activity_banner")
+      $(this).parent(".activity").find(".activity_details").show()
       $(this).hide()
       activity_id = $(this).data("id")
 

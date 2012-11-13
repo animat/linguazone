@@ -55,19 +55,16 @@ div.activity p.confirm_step_one a {
 	color: #70a845;
 	text-decoration: none;
 }
-div.selected_banner {
+div.selected_activity_banner {
 	background-color: #edf0f9;
 	margin-bottom: 20px;
+	width: 95%;
 }
-div.selected_banner img {
-	float: left;
-	padding: 10px;
-}
-div.selected_banner ul {
+div.selected_activity_banner ul {
 	width:800px;
 	overflow:hidden;
 }
-div.selected_banner ul li {
+div.selected_activity_banner ul li {
 	float:left;
 	width: 45%;
 	margin-left: 15px;
@@ -141,17 +138,25 @@ div#nodes input {
 	width: 249px;
 }
 div#nodes div.lz_input_image, div#nodes div.lz_input_audio {
-	height: 100px;
-	width: 250px;
-	border: 1px solid #666;
+	width: 256px;
 	font-size: .85em;
 }
-div#nodes div.lz_input_image a {
-	display: block;
-	color: #194BA0;
+div#nodes div.lz_input_image > input[type="text"] {
+	font-size: .9em;
+	width: 165px;
+	color: #cacaca;
 }
-div#nodes div.lz_input_image a:hover {
-	background-color: #DAE0EB;
+div#nodes div.lz_input_image > input[type="submit"] {
+	font-size: .95em;
+	width: 65px;
+}
+div#nodes div.lz_input_audio {
+	height: 100px;
+	border: 1px solid #ff6600;
+	border-bottom-right-radius: 0px;
+	-khtml-border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+	-khtml-border-bottom-left-radius: 0px;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			Activity type inputs

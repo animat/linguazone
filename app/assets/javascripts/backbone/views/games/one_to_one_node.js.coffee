@@ -7,9 +7,8 @@ class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseVie
 			<input type="text" value="<%= question %>">
 		</div>
 		<div id="question_1_image" class="lz_input_image">
-			<h3>Select an image</h3>
-			<a>Browse LZ image gallery</a>
-			<a>Search LZ and web</a>
+			<input type="text" value="Search for an image" />
+			<input type="submit" value="Search" />
 		</div>
 		<div id="question_1_audio" class="lz_input_audio">
 			<p>audio recorder here</p>
