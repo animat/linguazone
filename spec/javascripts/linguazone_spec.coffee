@@ -30,7 +30,7 @@ describe 'Customizer', ->
       expect(game_data.get("activity_id")).toBe 95
 
     it "creates a customizer view", ->
-      expect($("#customizer")).toContainHtml("Your Input")
+      expect($("#customizer")).toContainHtml("Add Question")
 
     it "passes the activity type to the game", ->
       expect(window.Linguazone.AppView.model.get("game_type")).toBe("OneToOne")
