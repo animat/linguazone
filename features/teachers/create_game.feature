@@ -18,8 +18,7 @@ Feature: Teacher creates custom games
     When I am on the customization page
     And I follow "Spanish"
     And I follow "Customize Leap Frog"
-    Then I debug
-    And I fill in "Student Answer" with "child"
+    Then wait a second
     And I fill in "Your Input" with "nino"
     And I press "Add Question"
     And I fill in "Student Answer" with "car"
@@ -34,7 +33,6 @@ Feature: Teacher creates custom games
     Then show me the page
     Then I should see the answer "car"
 
-  @wip
   @javascript
   Scenario: Customize a Garden Grows game
     When I am on the customization page
@@ -43,7 +41,7 @@ Feature: Teacher creates custom games
     And I fill in "Target word" with "niño"
     And I press "Add Question"
     And I fill in "Target word" with "carro"
-    And I press "Create game"
+    And I press "create-game"
     Then I should see "Game Created"
     When I follow "GAMES"
     Then I should not see "You have not created any games yet"
