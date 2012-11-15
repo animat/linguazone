@@ -42,6 +42,7 @@ group :production do
 end
 
 group :development, :cucumber, :test do
+  gem 'capybara-webkit', '0.12.0'
   gem 'spork',           '~> 0.9.0.rc9'
   gem 'guard'
   gem 'guard-spork'
