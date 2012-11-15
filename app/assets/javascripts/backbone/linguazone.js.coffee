@@ -14,6 +14,7 @@ window.Linguazone =
       e.preventDefault()
       $(".activity").hide()
       $(this).parent(".activity").show()
+      # TODO: Would it be useful to consider adding a CSS class/ tweaking the UI to add a large banner image BG for each game?
       $(this).parent(".activity").addClass("selected_activity_banner")
       $(this).parent(".activity").find(".activity_details").show()
       $(this).hide()

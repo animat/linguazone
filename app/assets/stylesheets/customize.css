@@ -158,6 +158,20 @@ div#nodes div.lz_input_audio {
 	border-bottom-left-radius: 0px;
 	-khtml-border-bottom-left-radius: 0px;
 }
+div.actions a.addNode {
+	text-decoration: none;
+	color: #0da606;
+	display: block;
+	float: right;
+	padding: 0 10px 10px 10px;
+}
+div.actions a.addNode:hover {
+	background-color: #ebf6ea;
+}
+div.actions a.addNode img {
+	position: relative;
+	top: 20px;
+}
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			Activity type inputs
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -179,5 +193,5 @@ div#nodes > div > div.response, div.leapFrog div.response {
 }
 */
 div#nodes > div:last-child {
-	padding-bottom: 50px;
+	margin-bottom: 50px;
 }

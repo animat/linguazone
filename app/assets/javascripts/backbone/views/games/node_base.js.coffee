@@ -8,6 +8,13 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.View
     "mouseout" : "hideControls",
 		"load" : "hideControls",
 
+  initialize: =>
+    # TODO: Can it have the tabs added in as soon as it initializes? Not sure why this is failing.
+    @$el.find(".question").tabs()
+    @$el.find(".response").tabs()
+    @$el.find(".tabs-bottom .ui-tabs-nav, .tabs-bottom .ui-tabs-nav > *").removeClass("ui-corner-all ui-corner-top").addClass("ui-corner-bottom")
+    @$el.removeClass("ui-widget, ui-widget-content")
+
   delete: =>
     @trigger("remove")
     @$el.remove()
@@ -19,11 +26,12 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.View
       response: @getResponse()
 	
   showControls: (e) =>
+    @$el.find("ul.lz_input_toggle").show()
+    # Only here while it doesn't work in initialize
     @$el.find(".question").tabs()
     @$el.find(".response").tabs()
     @$el.find(".tabs-bottom .ui-tabs-nav, .tabs-bottom .ui-tabs-nav > *").removeClass("ui-corner-all ui-corner-top").addClass("ui-corner-bottom")
     @$el.removeClass("ui-widget, ui-widget-content")
-    @$el.find("ul.lz_input_toggle").show()
 	
   hideControls: (e) =>
     @$el.find("ul.lz_input_toggle").hide()

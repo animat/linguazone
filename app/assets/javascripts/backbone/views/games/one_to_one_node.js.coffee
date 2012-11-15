@@ -31,7 +31,7 @@ class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseVie
   </div>
 
   <div class="controls_wrapper">
-    <a href="#" class="delete">x</a>
+    <a href="#" class="delete"><img src="/images/customizer/remove_btn.png" alt="X" /></a>
   </div>
   <br class="clearFloat" />
   """
