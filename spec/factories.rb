@@ -111,6 +111,12 @@ Factory.define :media_type do |m|
   m.ext "swf"
 end
 
+Factory.define :example do |e|
+  e.default  true
+  e.association :activity
+  e.association :language
+end
+
 Factory.define :media do |m|
   m.name         "Unscrambling Game"
   m.descrip      "A fun game"
