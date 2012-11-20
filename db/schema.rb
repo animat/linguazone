@@ -160,11 +160,9 @@ ActiveRecord::Schema.define(:version => 20121120191737) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "question_name"
+    t.string   "input_text"
+    t.text     "node_xml"
   end
-
-  add_index "examples", ["activity_id"], :name => "index_examples_on_activity_id"
-  add_index "examples", ["default"], :name => "index_examples_on_default"
-  add_index "examples", ["language_id"], :name => "index_examples_on_language_id"
 
   create_table "feed_items", :force => true do |t|
     t.integer  "user_id"

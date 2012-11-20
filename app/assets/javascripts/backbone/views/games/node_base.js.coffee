@@ -2,11 +2,20 @@ Linguazone.Views.Games ||= {}
 
 class Linguazone.Views.Games.NodeBaseView extends Backbone.View
   events:
-    "change input" : "updateModel",
-    "click .delete" : "delete",
-    "mouseover" : "showControls"
-    "mouseout" : "hideControls",
-		"load" : "hideControls",
+    "change input"          : "updateModel",
+    "click .delete"         : "delete",
+    "mouseover"             : "showControls"
+    "mouseout"              : "hideControls"
+    "load"                  : "hideControls"
+    "focus .question input" : "showQuestion"
+    "blur .question input"  : "hideQuestion"
+    "focus .response input" : "showResponse"
+    "blur .response input"  : "hideResponse"
+
+  showQuestion: => $(".question-example").show()
+  hideQuestion: => $(".question-example").hide()
+  showResponse: => $(".response-example").show()
+  hideResponse: => $(".response-example").hide()
 
   initialize: =>
     # TODO: Can it have the tabs added in as soon as it initializes? Not sure why this is failing.
@@ -48,4 +57,3 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.View
     # TODO @Len: Is there a way to trigger the hideControls method when the view renders?
     this.hideControls()
     @
-
