@@ -10,7 +10,7 @@ class InvoiceMailer < ActionMailer::Base
 
   def trial_details(user)
     @user = user
-    mail :to => "colinangevine@gmail.com, magistraroberts@hotmail.com", :subject => "New trial subscription at LinguaZone.com"
+    mail :to => "colinangevine@gmail.com, magistraroberts@hotmail.com, liz@linguazone.com", :subject => "New trial subscription at LinguaZone.com"
   end
 
   def new_invoice(email_addr, user, subscription, cost)
