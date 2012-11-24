@@ -170,7 +170,11 @@ div.actions a.addNode:hover {
 }
 div.actions a.addNode img {
 	position: relative;
-	top: 20px;
+	top: 10px;
+}
+div.actions a.addNode span {
+	position: relative;
+	top: -10px;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			Activity type inputs
