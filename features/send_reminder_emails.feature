@@ -29,7 +29,7 @@ Feature: Send reminder emails to users whose accounts will soon expire
 		When the reminder emails are sent
 		Then "trial@example.com" should receive 1 email with subject "Subscribing to LinguaZone.com"
 		And "teacher@example.com" should receive 0 emails
-
+	
 	Scenario: Paid account will expire in two weeks
 		Given a teacher exists with an email of "paid@example.com"
  		And the basic subscription for "paid@example.com" will expire in 14 days

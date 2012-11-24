@@ -8,7 +8,6 @@ gem "authlogic"
 gem "meta_search", ">= 1.1.0.pre"
 gem "declarative_authorization"
 gem "rexml-expansion-fix"
-gem "whenever"
 gem 'paperclip', '2.3.6'
 gem 'simple_form'
 gem 'dynamic_form'
