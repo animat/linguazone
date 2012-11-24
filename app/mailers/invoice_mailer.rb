@@ -81,4 +81,9 @@ class InvoiceMailer < ActionMailer::Base
       mail :to => @user.email, :subject => "Subscribing to LinguaZone.com"
     end
   end
+  
+  def expiration_admin_update(notified_users)
+    @users = notified_users
+    mail :to => "info@linguazone.com", :subject => "LZ expiration notices"
+  end
 end
