@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120919021857) do
+ActiveRecord::Schema.define(:version => 20120925224924) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -345,7 +345,6 @@ ActiveRecord::Schema.define(:version => 20120919021857) do
     t.boolean   "receive_newsletter",                 :default => false, :null => false
     t.integer   "default_language_id",                :default => 0,     :null => false
     t.timestamp "created_at"
-    t.timestamp "expired_at"
     t.datetime  "last_login_at"
     t.integer   "login_count",                        :default => 0,     :null => false
     t.string    "last_login_ip",       :limit => 40

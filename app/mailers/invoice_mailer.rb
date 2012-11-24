@@ -34,39 +34,56 @@ class InvoiceMailer < ActionMailer::Base
     mail :to => email_addr, :subject => "LinguaZone.com Invoice"
   end
 
-  def two_week_reminder(email_addr, user, subscription)
-    @user = user
-    @subscription = user
-    mail :to => email_addr, :from => "Colin Angevine <info@linguazone.com>", :subject => "Time to renew your LinguaZone subscription"
+  def two_week_reminder(users)
+    users.each do |u|
+      @user = u
+      @subscription = u.subscription
+      mail :to => @user.email, :from => "Colin Angevine <info@linguazone.com>", :subject => "Time to renew your LinguaZone subscription"
+    end
   end
 
-  def one_week_reminder(email_addr, user, subscription)
-    @user = user
-    @subscription = subscription
-    mail :to => email_addr, :from => "Colin Angevine <info@linguazone.com>", :subject =>  "One week left: renew your LinguaZone subscription"
+  def one_week_reminder(users)
+    users.each do |u|
+      @user = u
+      @subscription = u.subscription
+      mail :to => @user.email, :from => "Colin Angevine <info@linguazone.com>", :subject =>  "One week left: renew your LinguaZone subscription"
+    end
   end
 
-  def two_day_reminder(email_addr, user, subscription)
-    @user = user
-    @subscription = subscription
-    mail :to => email_addr, :from => "Colin Angevine <info@linguazone.com>", :subject => "Checking in about your subscription to LinguaZone"
+  def two_day_reminder(users)
+    users.each do |u|
+      @user = u
+      @subscription = u.subscription
+      mail :to => @user.email, :from => "Colin Angevine <info@linguazone.com>", :subject => "Checking in about your subscription to LinguaZone"
+    end
   end
 
-  def trial_one_week_reminder(email_addr, user, subscription)
-    @user = user
-    @subscription = subscription
-    mail :to => email_addr, :subject => "One week left in your trial at LinguaZone.com"
+  def trial_one_week_reminder(users)
+    users.each do |u|
+      @user = u
+      @subscription = u.subscription
+      mail :to => @user.email, :subject => "One week left in your trial at LinguaZone.com"
+    end
   end
 
-  def trial_three_day_reminder(email_addr, user, subscription)
-    @user = user
-    @subscription = subscription
-    mail :to => email_addr, :subject => "Three days left in your trial at LinguaZone.com"
+  def trial_three_day_reminder(users)
+    users.each do |u|
+      @user = u
+      @subscription = u.subscription
+      mail :to => @user.email, :subject => "Three days left in your trial at LinguaZone.com"
+    end
   end
 
-  def trial_expired_reminder(email_addr, user, subscription)
-    @user = user
-    @subscription = subscription
-    mail :to => email_addr, :subject => "Subscribing to LinguaZone.com"
+  def trial_expired_reminder(users)
+    users.each do |u|
+      @user = u
+      @subscription = u.subscription
+      mail :to => @user.email, :subject => "Subscribing to LinguaZone.com"
+    end
+  end
+  
+  def expiration_admin_update(notified_users)
+    @users = notified_users
+    mail :to => "info@linguazone.com", :subject => "LZ expiration notices"
   end
 end
