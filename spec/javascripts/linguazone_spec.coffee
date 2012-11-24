@@ -30,7 +30,7 @@ describe 'Customizer', ->
       expect(game_data.get("activity_id")).toBe 95
 
     it "creates a customizer view", ->
-      expect($("#customizer")).toContainHtml("Add Question")
+      expect($("#customizer")).toContainHtml("Add another")
 
     it "passes the activity type to the game", ->
       expect(window.Linguazone.AppView.model.get("game_type")).toBe("OneToOne")
@@ -45,14 +45,14 @@ describe "Customizer", ->
   it "updates the nodes in GameData", ->
     $(".question input").val("Niño")
     $(".response input").val("Child")
-    $("button.addNode").click()
+    $("a.addNode").click()
     game_data = window.Linguazone.AppView.model
     expect(game_data.get("nodes").length).toBe 2
 
   it "can delete a node", ->
     $(".question input").val("Niño")
     $(".response input").val("Child")
-    $("button.addNode").click()
+    $("a.addNode").click()
     $(".delete").last().click()
     game_data = window.Linguazone.AppView.model
     expect(game_data.get("nodes").length).toBe 1
@@ -62,7 +62,7 @@ describe "Customizer", ->
     $("input[type='submit']").click()
     expect(@spy.calledOnce).toBeTruthy()
     expect($("form")).toBeHidden()
-    expect($("#customizer")).toContainHtml("Game Created")
+    expect($("#confirmation")).toContainHtml("Game Created")
     jQuery.ajax.restore()
 
 describe 'GameData', ->
