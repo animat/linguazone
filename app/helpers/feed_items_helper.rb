@@ -17,9 +17,12 @@ module FeedItemsHelper
   def format_feed_img(fi)
     case fi.sourceable_type
     when "HighScore"
-      if fi.sourceable.available_game.game?
-        @activity = fi.sourceable.available_game.game.activity
-        image_tag("/games/#{@activity.swf}/display/icon-small.jpg", :alt => "Play #{@activity.name}")
+      # TODO: Another monkeypatch until soft-delete is working!
+      unless fi.sourceable.available_game.nil?
+        unless fi.sourceable.available_game.game.nil?
+          @activity = fi.sourceable.available_game.game.activity
+          image_tag("/games/#{@activity.swf}/display/icon-small.jpg", :alt => "Play #{@activity.name}")
+        end
       end
     when "StudyHistory"
       image_tag("word_lists/study_word_list-small.png")
@@ -29,15 +32,19 @@ module FeedItemsHelper
   end
   
   def display_high_score_item(show_user_name, fi)
-    @score = fi.sourceable.score
-    @activity = fi.sourceable.available_game.game.activity
-    @student = fi.sourceable.user    content = ""
-    content << link_to("#{@student.display_name}", student_feed_items_path(@student)) if show_user_name
-    content << format_score(show_user_name, @score, @activity)
-    content << link_to("#{@activity.name}", play_path(fi.sourceable.available_game), :class => "preview_link")
-    content << " "
-    content << content_tag(:span, "#{format_date_time(fi.created_at)}", :class => "time_ago")
-    content_tag(:p, content.html_safe)
+    unless fi.sourceable.available_game.nil?
+      @score = fi.sourceable.score
+      @activity = fi.sourceable.available_game.game.activity
+      @student = fi.sourceable.user    content = ""
+      content << link_to("#{@student.display_name}", student_feed_items_path(@student)) if show_user_name
+      content << format_score(show_user_name, @score, @activity)
+      content << link_to("#{@activity.name}", play_path(fi.sourceable.available_game), :class => "preview_link")
+      content << " "
+      content << content_tag(:span, "#{format_date_time(fi.created_at)}", :class => "time_ago")
+      content_tag(:p, content.html_safe)
+    else
+      ""
+    end
   end
   
   def display_comment_item(show_user_name, fi)
@@ -94,8 +101,10 @@ module FeedItemsHelper
     unless fi.sourceable.nil?
       case fi.sourceable_type
       when "HighScore"
-        str << image_tag("shared-buttons/swirl_right_arrow.jpg")
-        str << truncate(fi.sourceable.available_game.game.description, :length => 100, :omission => "...")
+        unless fi.sourceable.available_game.nil?
+          str << image_tag("shared-buttons/swirl_right_arrow.jpg")
+          str << truncate(fi.sourceable.available_game.game.description, :length => 100, :omission => "...")
+        end
       when "StudyHistory"
         unless fi.sourceable.available_word_list.nil?
           str << image_tag("shared-buttons/swirl_right_arrow.jpg")
