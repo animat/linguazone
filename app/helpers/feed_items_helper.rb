@@ -42,6 +42,8 @@ module FeedItemsHelper
       content << " "
       content << content_tag(:span, "#{format_date_time(fi.created_at)}", :class => "time_ago")
       content_tag(:p, content.html_safe)
+    else
+      ""
     end
   end
   
