@@ -97,8 +97,10 @@ module FeedItemsHelper
     unless fi.sourceable.nil?
       case fi.sourceable_type
       when "HighScore"
-        str << image_tag("shared-buttons/swirl_right_arrow.jpg")
-        str << truncate(fi.sourceable.available_game.game.description, :length => 100, :omission => "...")
+        unless fi.sourceable.available_game.nil?
+          str << image_tag("shared-buttons/swirl_right_arrow.jpg")
+          str << truncate(fi.sourceable.available_game.game.description, :length => 100, :omission => "...")
+        end
       when "StudyHistory"
         unless fi.sourceable.available_word_list.nil?
           str << image_tag("shared-buttons/swirl_right_arrow.jpg")
