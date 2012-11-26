@@ -32,15 +32,17 @@ module FeedItemsHelper
   end
   
   def display_high_score_item(show_user_name, fi)
-    @score = fi.sourceable.score
-    @activity = fi.sourceable.available_game.game.activity
-    @student = fi.sourceable.user    content = ""
-    content << link_to("#{@student.display_name}", student_feed_items_path(@student)) if show_user_name
-    content << format_score(show_user_name, @score, @activity)
-    content << link_to("#{@activity.name}", play_path(fi.sourceable.available_game), :class => "preview_link")
-    content << " "
-    content << content_tag(:span, "#{format_date_time(fi.created_at)}", :class => "time_ago")
-    content_tag(:p, content.html_safe)
+    unless fi.sourceable.available_game.nil?
+      @score = fi.sourceable.score
+      @activity = fi.sourceable.available_game.game.activity
+      @student = fi.sourceable.user    content = ""
+      content << link_to("#{@student.display_name}", student_feed_items_path(@student)) if show_user_name
+      content << format_score(show_user_name, @score, @activity)
+      content << link_to("#{@activity.name}", play_path(fi.sourceable.available_game), :class => "preview_link")
+      content << " "
+      content << content_tag(:span, "#{format_date_time(fi.created_at)}", :class => "time_ago")
+      content_tag(:p, content.html_safe)
+    end
   end
   
   def display_comment_item(show_user_name, fi)
