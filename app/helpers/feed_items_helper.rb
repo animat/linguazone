@@ -17,9 +17,12 @@ module FeedItemsHelper
   def format_feed_img(fi)
     case fi.sourceable_type
     when "HighScore"
-      if fi.sourceable.available_game.game?
-        @activity = fi.sourceable.available_game.game.activity
-        image_tag("/games/#{@activity.swf}/display/icon-small.jpg", :alt => "Play #{@activity.name}")
+      # TODO: Another monkeypatch until soft-delete is working!
+      unless fi.sourceable.available_game.nil?
+        unless fi.sourceable.available_game.game.nil?
+          @activity = fi.sourceable.available_game.game.activity
+          image_tag("/games/#{@activity.swf}/display/icon-small.jpg", :alt => "Play #{@activity.name}")
+        end
       end
     when "StudyHistory"
       image_tag("word_lists/study_word_list-small.png")
