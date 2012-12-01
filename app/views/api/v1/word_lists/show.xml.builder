@@ -6,5 +6,9 @@ xml.xml do
   end
   xml.<< @word_list.xml
   xml.<< "<templatedata></templatedata>"
-  xml.language(@word_list.language.name)
+  if @word_list.language.nil?
+    xml.language("English")
+  else
+    xml.language(@word_list.language.name)
+  end
 end
