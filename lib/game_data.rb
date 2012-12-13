@@ -38,15 +38,17 @@ class GameData
       xml.gamedata {
         #TODO: let node render itself probably need to load different classes based on @game_type
         @nodes.each do |node|
-          xml.node {
-              xml.question :content => node.question, :type => "text"
-              xml.response :content => node.response, :type => "text"
-              xml.options {
-                node.options.each do |option|
-                  xml.option :content => option, :type => "text"
-                end
-              }
-          }
+          unless node.question.nil?
+            xml.node {
+                xml.question :content => node.question, :type => "text"
+                xml.response :content => node.response, :type => "text"
+                xml.options {
+                  node.options.each do |option|
+                    xml.option :content => option, :type => "text"
+                  end
+                }
+            }
+          end
         end
       }
     end

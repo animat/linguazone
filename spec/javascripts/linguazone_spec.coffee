@@ -1,3 +1,10 @@
+describe 'Node', ->
+  describe 'set', ->
+    it "trims every string value", ->
+      node = new Linguazone.Models.Node
+      node.set("response", " how are you ")
+      expect(node.get("response")).toBe("how are you")
+
 describe 'Customizer', ->
   describe "when presented with game data", ->
     beforeEach ->
