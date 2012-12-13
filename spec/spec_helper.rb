@@ -24,7 +24,7 @@ end
 
 # XML matcher stolen from http://johnleach.co.uk/words/585/testing-xml-with-rspec-xpath-and-libxml
 require 'libxml'
-Spec::Matchers.define :have_xml do |xpath, text|
+RSpec::Matchers.define :have_xml do |xpath, text|
   match do |body|
     parser = LibXML::XML::Parser.string body
     doc = parser.parse
