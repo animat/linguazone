@@ -8,6 +8,10 @@ class Example < ActiveRecord::Base
     self.find_all_by_activity_id_and_default(activity.id, true)
   end
 
+  def game_data
+    GameData.new
+  end
+
   has_attached_file :image,
     :storage => :s3,
     :s3_credentials => "#{Rails.root}/config/s3.yml",

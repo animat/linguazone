@@ -113,8 +113,10 @@ end
 
 Factory.define :example do |e|
   e.default  true
-  e.association :activity
-  e.association :language
+  e.association   :activity
+  e.association   :language
+  e.node_input    "hello"
+  e.question_name "question"
 end
 
 Factory.define :media do |m|

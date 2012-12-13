@@ -22,4 +22,12 @@ describe Example do
       end
     end
   end
+
+  describe "#game_data" do
+    let(:example) { Factory.build(:example) }
+
+    it "can be populated from xml" do
+      example.game_data.nodes.length.should == 2
+    end
+  end
 end
