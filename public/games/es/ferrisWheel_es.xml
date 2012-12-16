@@ -6,16 +6,16 @@
     <header></header>
     <body>
       <trans-unit id="001" resname="IDS_CONGRATS">
-        <source></source>
+        <source>¡Buen trabajo, ganaste en contra de la rueda de ferris!</source>
       </trans-unit>
-      <trans-unit id="002" resname="IDS_PLAY_AGAIN">
-        <source></source>
+      <trans-unit id="002" resname="IDS_INSTRUCTIONS">
+        <source>Deletrea la respuesta oprimiendo la barra de espacio cuando la letra correcta este iluminada. Usa el teclado de aros para controlar la velocidad de la rueda de ferris.</source>
       </trans-unit>
-      <trans-unit id="003" resname="IDS_INSTRUCTIONS">
-        <source></source>
+      <trans-unit id="003" resname="IDS_PLAY_AGAIN">
+        <source>¿Jugar otra vez?</source>
       </trans-unit>
       <trans-unit id="004" resname="IDS_PLAY_GAME">
-        <source></source>
+        <source>¡Juguemos!</source>
       </trans-unit>
     </body>
   </file>
