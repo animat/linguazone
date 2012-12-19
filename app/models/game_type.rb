@@ -11,10 +11,15 @@ class GameType
 
   def example_node_for(language)
     examples = Example.for(language, self.activity)
+    return nil unless examples.length
 
     question = examples.find{|e| e.question_name.downcase == "question"}
     response = examples.find{|e| e.question_name.downcase == "response"}
     Node.new question.try(:node_input), response.try(:node_input)
+  end
+
+  def name
+    activity.game_type
   end
 
   def self.for(activity)

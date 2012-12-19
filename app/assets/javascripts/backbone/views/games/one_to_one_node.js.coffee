@@ -1,6 +1,7 @@
 Linguazone.Views.Games ||= {}
 
 class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseView
+  game_type: "OneToOne",
   template: """
   <div class="question lz_input tabs-bottom">
     <div id="question_1_text">

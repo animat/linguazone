@@ -11,6 +11,10 @@ Linguazone::Application.routes.draw do
 
   resources :examples, :only => [:show, :index]
 
+  resources :activities do
+    resources :game_types, :only => [:index]
+  end
+
   resources :teachers do
     collection do
       get :getting_started
