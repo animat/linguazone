@@ -2,8 +2,9 @@ require 'spec_helper'
 require 'lib/game_data'
 
 describe GameData do
-  let(:game_data) { GameData.new }
-  let(:node) { GameData::Node.new("How are you?", "Fine", ["Fine", "Bad", "Okay"]) }
+  let(:game_data)  { GameData.new }
+  let(:node)       { GameData::Node.new("How are you?", "Fine", ["Fine", "Bad", "Okay"]) }
+  let(:empty_node) { GameData::Node.new(nil, nil, nil) }
 
   it "can add a node" do
     game_data.add_node(node)
@@ -34,6 +35,18 @@ describe GameData do
       xml.should have_xml "/gamedata/node/question[@content='How are you?']"
       xml.should have_xml "/gamedata/node/response[@content='Fine']"
       xml.should have_xml "/gamedata/node/options/option[@content='Bad']"
+    end
+  end
+
+  describe "#to_xml doesn't return empty nodes" do
+    before do
+      game_data.add_node(node)
+      game_data.add_node(empty_node)
+    end
+
+    it "is valid xml" do
+      xml = game_data.to_xml
+      GameData.from_xml(xml).nodes.length.should == 1
     end
   end
 end

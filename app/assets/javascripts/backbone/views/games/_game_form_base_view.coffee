@@ -10,8 +10,14 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.View
     @render()
 
   save: (e) ->
+    $errors = @$el.find(".errors")
+    $errors.hide()
     e.preventDefault()
     e.stopPropagation()
+    _.each @model.get("nodes").models, (node) =>
+      $errors.html(node.validation_errors()).show() if node.validation_errors()
+    return if @$el.find(".errors:visible").length
+
     @model.save()
     @$el.find("form").hide()
     @$el.find("#confirmation").show()

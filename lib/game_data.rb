@@ -5,10 +5,13 @@ class GameData
   attr_accessor :nodes, :game_type
 
   def self.from(game)
-    game_data = new
-    game_data.game_type = game.game_type
+    from_xml game.xml, game.game_type
+  end
 
-    xml_doc  = Nokogiri::XML(game.xml)
+  def self.from_xml(xml, game_type = "OneToOne")
+    game_data = new
+    game_data.game_type = game_type
+    xml_doc  = Nokogiri::XML(xml)
     xml_doc.xpath(".//node").each do |node|
       question = node.xpath(".//question").first["content"]
       response = node.xpath(".//response").first["content"]
@@ -33,16 +36,19 @@ class GameData
   def to_xml
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.gamedata {
+        #TODO: let node render itself probably need to load different classes based on @game_type
         @nodes.each do |node|
-          xml.node {
-              xml.question :content => node.question, :type => "text"
-              xml.response :content => node.response, :type => "text"
-              xml.options {
-                node.options.each do |option|
-                  xml.option :content => option, :type => "text"
-                end
-              }
-          }
+          unless node.question.nil?
+            xml.node {
+                xml.question :content => node.question, :type => "text"
+                xml.response :content => node.response, :type => "text"
+                xml.options {
+                  node.options.each do |option|
+                    xml.option :content => option, :type => "text"
+                  end
+                }
+            }
+          end
         end
       }
     end

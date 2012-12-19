@@ -9,6 +9,12 @@ Linguazone::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
+  resources :examples, :only => [:show, :index]
+
+  resources :activities do
+    resources :game_types, :only => [:index]
+  end
+
   resources :teachers do
     collection do
       get :getting_started
