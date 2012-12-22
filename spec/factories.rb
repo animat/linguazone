@@ -38,6 +38,11 @@ Factory.define :game do |g|
   g.association :language
 end
 
+Factory.define :template do |t|
+  t.xml "<templatedata></templatedata>"
+  t.association :game
+end
+
 Factory.define :demo do |d|
   d.association :game
   d.association :activity
