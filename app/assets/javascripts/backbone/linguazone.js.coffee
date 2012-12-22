@@ -29,6 +29,7 @@ window.Linguazone =
       game_type.fetch
         data:
           activity_id: activity_id
+          # TODO: The language ID won't always be available in the querystring (if the user has a default language set)
           language_id: QueryString.language
         success: ->
           view = new Linguazone.Views.GameType({ model: game_type })
