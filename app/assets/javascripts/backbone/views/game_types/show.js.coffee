@@ -2,7 +2,10 @@ Linguazone.Views.GameType ||= {}
 
 class Linguazone.Views.GameType extends Backbone.View
   className: "game-type"
+  # TODO: The following is in the wrong place... Each input element in the example should have a label and a hint
   template: """
+    <h2>Example prompt</h2>
+    <p>Example hint</p>
   """
   initialize: ->
     @name = @options.model.get("name")
