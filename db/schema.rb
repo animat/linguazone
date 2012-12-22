@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121120191737) do
+ActiveRecord::Schema.define(:version => 20121222194004) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -162,6 +162,8 @@ ActiveRecord::Schema.define(:version => 20121120191737) do
     t.datetime "image_updated_at"
     t.string   "question_name"
     t.string   "node_input"
+    t.string   "display_label"
+    t.string   "hint"
   end
 
   add_index "examples", ["activity_id"], :name => "index_examples_on_activity_id"
