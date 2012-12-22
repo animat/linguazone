@@ -3,6 +3,7 @@ Linguazone.Views.GameType ||= {}
 class Linguazone.Views.GameType extends Backbone.View
   className: "game-type"
   # TODO: The following is in the wrong place... Each input element in the example should have a label and a hint
+  # 				Where can this be changed? I'd also like to have the example node have some different UI and UX in other ways
   template: """
     <h2>Example prompt</h2>
     <p>Example hint</p>

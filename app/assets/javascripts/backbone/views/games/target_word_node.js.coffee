@@ -11,6 +11,6 @@ class Linguazone.Views.Games.TargetWord extends Linguazone.Views.Games.NodeBaseV
   </div>
 
   <div class="controls_wrapper">
-    <a href="#" class="delete">x</a>
+    <a href="#" class="delete" tabIndex="-1">x</a>
   </div>
   """

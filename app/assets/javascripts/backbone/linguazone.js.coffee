@@ -12,10 +12,12 @@ window.Linguazone =
   init: ->
     $(".activity a").click (e) ->
       e.preventDefault()
+      swf_name = $(this).data("swf")
       $(".activity").hide()
       $(this).parent(".activity").show()
-      # TODO: Would it be useful to consider adding a CSS class/ tweaking the UI to add a large banner image BG for each game?
+      $(this).parent(".activity").find(".icons").hide()
       $(this).parent(".activity").addClass("selected_activity_banner")
+      $(this).parent(".activity").css("background", "url(/games/"+swf_name+"/display/selected_banner.jpg) no-repeat")
       $(this).parent(".activity").find(".activity_details").show()
       $(this).hide()
       activity_id = $(this).data("id")

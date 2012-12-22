@@ -60,20 +60,12 @@ div.activity p.confirm_step_one a {
 	text-decoration: none;
 }
 div.selected_activity_banner {
+	border: none;
 	background-color: #edf0f9;
 	margin-bottom: 20px;
-	width: 95%;
-}
-div.selected_activity_banner ul {
-	width:800px;
-	overflow:hidden;
-}
-div.selected_activity_banner ul li {
-	float:left;
-	width: 45%;
-	margin-left: 15px;
-	list-style-type: disc;
-	line-height:1.5em;
+	width: 835px;
+	max-height: 185px;
+	overflow-y: scroll;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			STEP 2: Input elements
@@ -82,32 +74,34 @@ div#nodes input, div#example_node input {
 	padding: 3px;
 	width: 200px;
 }
-div#example_node {
-	background-color: #cacaca;
-	width: 900px;
-	/*position: relative;
-	left: -10px;*/
-	border: 1px solid #ccc;
+div#examples {
+	background-color: #FAF9F0;
+	width: 857px;
+	padding: 20px;
+	position: relative;
+	left: -9px;
+	border-top: 1px solid #F5EE93;
+	border-bottom: 1px solid #F5EE93;
 }
 div.stick_to_top {
 	position: fixed;
 	top: 0;
 	z-index: 100;
 }
-div#example_node label {
+div#examples label {
 	font-size: 1.3em;
 }
-div#example_node p.hint {
+div#examples p.hint {
 	font-size: .9em;
 	color: #666;
 	padding: 0px;
 	margin-bottom: 5px;
 }
-div#example_node input[type="text"] {
+div#examples input[type="text"] {
 	font-style: italic;
 	color: #666;
 }
-div#example_node div.highlight {
+div#examples div.highlight {
 	background-color: yellow;
 }
 div#quick_character_section {
@@ -138,23 +132,23 @@ ul.lz_input_toggle li {
 div#nodes > div {
 	padding: 10px;
 }
-div#nodes input {
+div#nodes input, div#examples input {
 	width: 249px;
 }
-div#nodes div.lz_input_image, div#nodes div.lz_input_audio {
+div.lz_input_image, div.lz_input_audio {
 	width: 256px;
 	font-size: .85em;
 }
-div#nodes div.lz_input_image > input[type="text"] {
+div.lz_input_image > input[type="text"] {
 	font-size: .9em;
 	width: 165px;
 	color: #cacaca;
 }
-div#nodes div.lz_input_image > input[type="submit"] {
+div.lz_input_image > input[type="submit"] {
 	font-size: .95em;
 	width: 65px;
 }
-div#nodes div.lz_input_audio {
+div.lz_input_audio {
 	height: 100px;
 	border: 1px solid #ff6600;
 	border-bottom-right-radius: 0px;
@@ -184,11 +178,10 @@ div.actions a.addNode span {
 			Activity type inputs
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-div#nodes div.question {
+div.question, div.response {
 	float: left;
 }
-div#nodes div.response {
-	float: left;
+div.response {
 	margin-left: 50px;
 }
 /*

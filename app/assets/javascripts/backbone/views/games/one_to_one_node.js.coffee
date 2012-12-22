@@ -15,9 +15,9 @@ class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseVie
       <p>audio recorder here</p>
     </div>
     <ul class="lz_input_toggle">
-      <li><a href="#question_1_text">text</a></li>
-      <li><a href="#question_1_image">image</a></li>
-      <li><a href="#question_1_audio">audio</a></li>
+      <li><a href="#question_1_text" tabIndex="-1">text</a></li>
+      <li><a href="#question_1_image" tabIndex="-1">image</a></li>
+      <li><a href="#question_1_audio" tabIndex="-1">audio</a></li>
     </ul>
 
   </div>
@@ -27,12 +27,12 @@ class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseVie
       <input type="text" value="<%= response %>">
     </div>
     <ul class="lz_input_toggle">
-      <li><a href="#question_1_text">text</a></li>
+      <li><a href="#question_1_text" tabIndex="-1">text</a></li>
     </ul>
   </div>
 
   <div class="controls_wrapper">
-    <a href="#" class="delete"><img src="/images/customizer/remove_btn.png" alt="X" /></a>
+    <a href="#" class="delete" tabIndex="-1"><img src="/images/customizer/remove_btn.png" alt="X" /></a>
   </div>
   <br class="clearFloat" />
   """
