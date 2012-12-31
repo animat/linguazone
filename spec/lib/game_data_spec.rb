@@ -1,18 +1,19 @@
 require 'spec_helper'
 require 'lib/game_data'
+require 'lib/game_data_node'
 
 describe GameData do
   context "Green Nodes" do
     let(:game_data)  { GameData.new }
-    let(:node)       { GameData::GreenNode.new("How are you?", "Fine", ["Fine", "Bad", "Okay"]) }
-    let(:empty_node) { GameData::GreenNode.new(nil, nil, nil) }
+    let(:node)       { OneToOneNode.new("How are you?", "Fine", ["Fine", "Bad", "Okay"]) }
+    let(:empty_node) { OneToOneNode.new(nil, nil, nil) }
 
     it "can add a node" do
       game_data.add_node(node)
       game_data.nodes.count.should == 1
     end
 
-    describe GameData::GreenNode do
+    describe OneToOneNode do
       it "has a question" do
         node.question.should == "How are you?"
       end
@@ -52,9 +53,9 @@ describe GameData do
     end
   end
 
-  context "Blue Nodes" do
+  context "DoubleWordMatchNode" do
     let(:game_data)  { GameData.new }
-    let(:node)       { GameData::BlueNode.new("How are you?", "Fine", ["Fine", "Bad", "Okay"]) }
+    let(:node)       { DoubleWordMatchNode.new("How are you?", "Fine", ["Fine", "Bad", "Okay"]) }
 
     describe "#to_xml" do
       before { game_data.add_node(node) }
@@ -104,6 +105,8 @@ describe GameData do
 """, :template => template) }
 
       it "populates the nodes" do
+        game.stubs(:game_type => "DoubleWordMatch")
+
         game_data = GameData.from(game)
         game_data.nodes.length.should == 2
         game_data.nodes.first.question.should == 'maison'
@@ -112,7 +115,7 @@ describe GameData do
       end
     end
 
-    context "for green games" do
+    context "for one to one games" do
       let(:game) { Factory(:game, :xml => """
   <?xml version=\"1.0\"?>
   <gamedata>
@@ -134,7 +137,6 @@ describe GameData do
         game_data.nodes.length.should == 1
         node = game_data.nodes.first
         node.question.should == "How are you?"
-        node.response.should == "Fine"
         node.options.length.should == 3
         node.options.should include "Bad"
         node.options.should include "Fine"
