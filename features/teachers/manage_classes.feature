@@ -31,7 +31,6 @@ Feature: Manage classes
 		And I am on the my courses page
 		Then I should see "Spanish 8"
 		And I should see "Prima Lingua 6-1"
-		And I should not see "Latin 3A"
 	
 	Scenario: Rename a class
 		Given I am logged in as a teacher

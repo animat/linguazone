@@ -35,7 +35,6 @@ Feature: Teachers control the resources available on their class page
 		And I fill in "code" with ""
 		And I press "Update"
 		Then I should see "Please enter a class code in order to password-protect this class page."
-		And I should not see "Updated class settings"
 		And the "Latin test" class page should not require students to login
 	
 	Scenario: Edit a game from the course page
@@ -60,15 +59,15 @@ Feature: Teachers control the resources available on their class page
 	
 	Scenario: Teacher should not be able to view stats on a post from a course page
 		Then I should not see "View stats" within the 1st post area
-		
+	
 	Scenario: Create a new game from the class page
 		When I follow "add a game" within the game header section
-		And I follow "Create a new game"
+		And I follow "Create a new game" within the wrapper
 		Then I should see "Select a language for your new game"
 	
 	Scenario: Create a new word list from the class page
 		When I follow "add a list" within the word_list header section
-		And I follow "Create a new word list"
+		And I follow "Create a new word list" within the wrapper
 		Then I should see "Select a language for your new word list"
 	
 	Scenario: Create a new post from the class page

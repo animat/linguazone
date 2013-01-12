@@ -11,7 +11,7 @@ Feature: Teacher manages customized word lists
 	
 	Scenario: View all my word lists
 		Then I should see "(11 total)"
-	
+	@wip
 	Scenario: Adopt a word list
 		Given I follow "Adopt a word list"
 		When I fill in "Search for:" with "adopt this list"

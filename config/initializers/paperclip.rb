@@ -1,7 +1,9 @@
-Paperclip.interpolates :media_category do |attachment, style|
-  attachment.instance.media_category.name
-end
+# TODO: Bring back Paperclip for media uploads!
 
-Paperclip.interpolates :name do |attachment, style|
-  attachment.instance.name
-end
+#Paperclip.interpolates :media_category do |attachment, style|
+#  attachment.instance.media_category.name
+#end
+#
+#Paperclip.interpolates :name do |attachment, style|
+#  attachment.instance.name
+#end

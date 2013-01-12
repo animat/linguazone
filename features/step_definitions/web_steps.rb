@@ -117,11 +117,13 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   end
 end
 
-Then /^(?:|I )should not see "([^"]*)"$/ do |text|
+Then /^(?:|I )should not see "([^"]*)"$/ do |t|
   if page.respond_to? :should
-    page.should have_no_content(text)
+    #page.should have_no_content(t)
+    page.should_not(have_content(t))
+    #page.should_not have_content(t)
   else
-    assert page.has_no_content?(text)
+    assert page.has_no_content?(t)
   end
 end
 

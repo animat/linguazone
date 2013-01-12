@@ -22,7 +22,7 @@ require 'email_spec'
 require 'email_spec/cucumber'
 
 Capybara.default_selector = :css
-Capybara.server_boot_timeout = 50
+#Capybara.server_boot_timeout = 50
 Capybara.default_wait_time = 3
 
 if defined?(ActiveRecord::Base)

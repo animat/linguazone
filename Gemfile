@@ -2,13 +2,13 @@ source 'http://rubygems.org'
 
 gem 'rdoc'
 gem 'rails3-jquery-autocomplete'
-gem 'rails', '3.1.10'
+gem 'rails', '3.2.11'
 gem "aws-s3", '0.6.2', :require => "aws/s3"
 gem "authlogic"
 gem "meta_search", ">= 1.1.0.pre"
 gem "declarative_authorization"
 gem "rexml-expansion-fix"
-gem 'paperclip', '2.3.6'
+#gem 'paperclip', "~> 2.8"
 gem 'simple_form'
 gem 'dynamic_form'
 gem 'pg'

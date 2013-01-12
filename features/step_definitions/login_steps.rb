@@ -14,28 +14,34 @@ Then /^I should see the following logins:$/ do |expected_logins_table|
 end
 
 Given /^I am logged in as a teacher$/ do
-  step %Q|I am on the teacher login page|
-  step %Q|I fill in "Email address:" with "test@example.com"|
-  step %Q|I fill in "Password:" with "test"|
-  step %Q|I press "Login"|
-  step %Q|I should see "Overview"|
+  steps %Q{
+    And I am on the teacher login page
+    And I fill in "Email address:" with "test@example.com"
+    And I fill in "Password:" with "test"
+    And I press "Login"
+    And I should see "Overview"
+  }
 end
 
 Given /^I am logged in as "([^"]*)"$/ do |teacher_name|
   @t = User.find_by_first_name(teacher_name)
-  step %Q|I am on the teacher login page|
-  step %Q|I fill in "Email address:" with "#{@t.email}"|
-  step %Q|I fill in "Password:" with "test"|
-  step %Q|I press "Login"|
-  step %Q|I should see "Overview"|
+  steps %Q{
+    And I am on the teacher login page
+    And I fill in "Email address:" with "#{@t.email}"
+    And I fill in "Password:" with "test"
+    And I press "Login"
+    And I should see "Overview"
+  }
 end
 
 Given /^I am logged in as a student$/ do
-  step %Q|I am on the student login page|
-  step %Q|I fill in "Your email address (or LinguaZone username):" with "tony@sopranos.com"|
-  step %Q|I fill in "Password:" with "badabing"|
-  step %Q|I press "Login"|
-  step %Q|I should see "Return to the student homepage"|
+  steps %Q{
+    And I am on the student login page
+    And I fill in "Your email address (or LinguaZone username):" with "tony@sopranos.com"
+    And I fill in "Password:" with "badabing"
+    And I press "Login"
+    And I should see "Return to the student homepage"
+  }
 end 
 
 Given /^I have logged out$/ do

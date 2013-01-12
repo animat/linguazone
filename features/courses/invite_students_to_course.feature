@@ -27,8 +27,7 @@ Feature: Teacher can invite students to register in a given course
 	Scenario: Do not send invites for default example email addresses
 		Given I follow "Invite students"
 		When I press "Send email invitations"
-		Then I should not see "successfully sent"
-		And I should see "Please enter your students' email addresses to send invitations to join this class page."
+		Then I should see "Please enter your students' email addresses to send invitations to join this class page."
 	
 	Scenario: Do not send messages to poorly formed email addresses
 		Given I follow "Invite students"
