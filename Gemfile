@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rdoc'
 gem 'rails3-jquery-autocomplete'
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.10'
 gem "aws-s3", '0.6.2', :require => "aws/s3"
 gem "authlogic"
 gem "meta_search", ">= 1.1.0.pre"
