@@ -10,6 +10,8 @@ class Linguazone.Models.Node extends Backbone.Model
   validation_errors: () ->
       return "Can not have an empty question" unless @get("question")
 
+class Linguazone.Models.DoubleWordMatchNode extends Linguazone.Models.Node
+
 class Linguazone.Models.TargetWordNode extends Linguazone.Models.Node
 
 class Linguazone.Models.OneToOneNode extends Linguazone.Models.Node

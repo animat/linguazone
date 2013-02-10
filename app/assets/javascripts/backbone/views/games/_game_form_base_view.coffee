@@ -1,30 +1,37 @@
 Linguazone.Views.Games ||= {}
 
-class Linguazone.Views.Games.GameFormBaseView extends Backbone.View
+class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemView
   createNode: =>
-    @model.get("nodes").add(new Linguazone.Models.Node )
+    @model.get("nodes").add(new Linguazone.Models["#{@model.get("game_type")}Node"] )
 
   addNode: (e) =>
     e.preventDefault()
     @createNode()
     @render()
 
+  ui:
+    form: "form"
+    confirmation: "#confirmation"
+
   save: (e) ->
+    @setWordLists()
+    e.preventDefault()
+
     $errors = @$el.find(".errors")
     $errors.hide()
-    e.preventDefault()
-    e.stopPropagation()
+
     _.each @model.get("nodes").models, (node) =>
       $errors.html(node.validation_errors()).show() if node.validation_errors()
     return if @$el.find(".errors:visible").length
 
     @model.save()
-    @$el.find("form").hide()
-    @$el.find("#confirmation").show()
+    @ui.form.hide()
+    @ui.confirmation.show()
 
-  render: =>
-    html = @template(@model.toJSON() )
-    $(@el).html html
+  #TODO: get this out of the view
+  setWordLists: => @model.set("word_list", Linguazone.WordLists())
+
+  onRender: =>
     $nodeDiv = $(@el).find("#nodes")
     $nodeDiv.html("")
 
@@ -34,4 +41,3 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.View
       view.on "remove", =>
         @model.get("nodes").remove(node)
       $nodeDiv.append(view.render().el)
-    @

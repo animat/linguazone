@@ -6,11 +6,17 @@ class Linguazone.Views.Games.NewView extends Linguazone.Views.Games.GameFormBase
     "submit #new-game": "save"
     "click .addNode": "addNode"
 
+  modelEvents:
+    "change": "render"
+
   constructor: (options) ->
     @model = new Linguazone.Models.Game
       activity_id: options.activity_id
       language_id: options.language_id
       game_type:   options.game_type
-    super(options)
-    @model.bind "change", @render
+    @model.addBlankNode()
+    super
 
+class Linguazone.Views.Games.MatchingNewView extends Linguazone.Views.Games.GameFormBaseView
+  constructor: (options) ->
+    super

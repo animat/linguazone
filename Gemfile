@@ -25,7 +25,6 @@ gem "omniauth-twitter"
 gem "omniauth-openid"
 gem "omniauth-facebook"
 gem "spreadsheet"
-gem "rails-backbone"
 gem 'nokogiri'
 
 # Rails 3.1 - Asset Pipeline

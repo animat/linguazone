@@ -11,7 +11,9 @@
 //= require autocomplete-rails
 //= require flash_messages
 //= require underscore
-//= require backbone
+//= require select2.min
+//= require backbone-min
+//= require backbone.marionette.min
 // get querystring as an array split on "&"
 
 var QueryString = function() {

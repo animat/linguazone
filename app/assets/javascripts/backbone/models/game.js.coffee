@@ -5,16 +5,17 @@ class Linguazone.Models.Game extends Backbone.Model
   initialize: ->
     @game_type = @get("game_type")
     @set("nodes",  new Linguazone.Collections.NodeCollection)
-    @get("nodes").add new Linguazone.Models["#{@game_type}Node"]
 
   fetch: ->
     super
-      success: (model, response) ->
+      success: (model, response) =>
         nodes = new Linguazone.Collections.NodeCollection
-        _.each response.nodes, (nodeHash) ->
-          node = new Linguazone.Models["#{@game_type}Node"] nodeHash
+        _.each response.nodes, (nodeHash) =>
+          node = new Linguazone.Models["#{@get("game_type")}Node"] nodeHash
           nodes.add node
         model.set("nodes", nodes)
+
+  addBlankNode: => @get("nodes").add new Linguazone.Models["#{@get("game_type")}Node"]
 
   defaults:
     activity_id: null

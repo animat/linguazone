@@ -1,8 +1,9 @@
 class GameType
-  attr_accessor :questions, :activity
+  attr_accessor :questions, :activity, :lists
 
   def initialize
     @questions = []
+    @lists = []
   end
 
   Question = Struct.new(:name)
@@ -38,6 +39,15 @@ class GameType
     rv = self.new
     rv.questions << Question.new("Question")
     rv.questions << Question.new("Answer")
+    rv
+  end
+
+  def self.double_word_match
+    rv = self.new
+    rv.lists = [
+      { :linkedto => "ltarget"},
+      { :linkedto => "rtarget"}
+    ]
     rv
   end
 end

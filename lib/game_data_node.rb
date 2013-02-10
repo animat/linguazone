@@ -8,14 +8,27 @@ class GameDataNode
   def self.from(node, type)
     const_get("#{type}Node").from_xml node
   end
-
 end
 
 class SingleWordMatchingNode < GameDataNode
+  attr_accessor :question, :options
+
+  def initialize(question)
+    @question = question
+  end
+
+  def self.from_xml(node)
+    question = node.xpath(".//question").first["content"]
+    self.new(question)
+  end
 end
 
 class DoubleWordMatchNode < GameDataNode
   attr_accessor :question, :ltarget, :rtarget
+
+  def self.from_hash(hash)
+    new hash[:question], hash[:ltarget], hash[:rtarget]
+  end
 
   def initialize(question, ltarget, rtarget)
     @question, @ltarget, @rtarget = question, ltarget, rtarget
@@ -27,6 +40,12 @@ class DoubleWordMatchNode < GameDataNode
     ltarget   = responses.first.xpath("ltarget").first["content"]
     rtarget   = responses.first.xpath("rtarget").first["content"]
     self.new(question, ltarget, rtarget)
+  end
+
+  def to_xml(xml)
+    xml.node do
+      xml.question :content => self.question, :type => "text"
+    end
   end
 end
 
@@ -44,7 +63,7 @@ class TargetWordNode < GameDataNode
     node.xpath(".//option").each do |option|
       options << option["content"]
     end
-    self.new(question, response, options)
+    self.new(question, options)
   end
 
   def to_xml(xml)
@@ -52,7 +71,7 @@ class TargetWordNode < GameDataNode
 
     xml.node do
       xml.question :content => self.question, :type => "text"
-      xml.response :content => self.response, :type => "text"
+      before_options(xml)
       if self.options.present?
         xml.options {
           self.options.each do |option|
@@ -62,6 +81,11 @@ class TargetWordNode < GameDataNode
       end
     end
   end
+
+  protected
+
+    def before_options(xml)
+    end
 end
 
 class OneToOneNode < TargetWordNode
@@ -83,7 +107,12 @@ class OneToOneNode < TargetWordNode
   end
 
   def to_xml(xml)
-    return unless self.response.present?
     super(xml)
   end
+
+  protected
+
+    def before_options(xml)
+      xml.response :content => self.response, :type => "text"
+    end
 end

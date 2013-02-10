@@ -5,7 +5,7 @@ class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseVie
   template: """
   <div class="question lz_input tabs-bottom">
     <div id="question_1_text">
-      <input type="text" value="<%= question %>">
+      <input class="question-input" type="text" value="<%= question %>">
     </div>
     <div id="question_1_image" class="lz_input_image">
       <input type="text" value="Search for an image" />

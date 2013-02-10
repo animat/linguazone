@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
+require 'game_data_node'
 
 class GameData
   attr_accessor :nodes, :game_type
@@ -19,13 +20,34 @@ class GameData
     game_data
   end
 
-  def add_template_data(data)
-
+  def node_constant
+    "#{@game_type}Node".constantize
   end
 
-  def initialize
+  def add_template_data(xml)
+    @template_data ||= TemplateData.from_xml(xml)
+  end
+
+  def template_data
+    @template_data ||= TemplateData.new
+  end
+
+  def template_data_xml
+    template_data.to_xml
+  end
+
+  def word_lists
+    template_data.lists
+  end
+
+  def add_word(list, word)
+    word_lists[list] = [] unless word_lists.has_key?(list)
+    word_lists[list] << word
+  end
+
+  def initialize(game_type = "OneToOne")
     @nodes = []
-    @game_type = "OneToOne"
+    @game_type = game_type
   end
 
   def add_node(node)
