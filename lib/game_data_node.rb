@@ -11,9 +11,19 @@ class GameDataNode
 end
 
 class SingleWordMatchingNode < GameDataNode
+  attr_accessor :question, :options
+
+  def initialize(question)
+    @question = question
+  end
+
+  def self.from_xml(node)
+    question = node.xpath(".//question").first["content"]
+    self.new(question)
+  end
 end
 
-class DoubleWordMatchNode < GameDataNode
+class DoubleWordMatchingNode < GameDataNode
   attr_accessor :question, :ltarget, :rtarget
 
   def initialize(question, ltarget, rtarget)
