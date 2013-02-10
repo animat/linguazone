@@ -2,7 +2,7 @@ Linguazone.Views.Games ||= {}
 
 class Linguazone.Views.Games.GameFormBaseView extends Backbone.View
   createNode: =>
-    @model.get("nodes").add(new Linguazone.Models.Node )
+    @model.get("nodes").add(new Linguazone.Models["#{@model.get("game_type")}Node"] )
 
   addNode: (e) =>
     e.preventDefault()

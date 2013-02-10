@@ -1,10 +1,10 @@
 require 'lib/game_data'
 class GameDataController < ApplicationController
   def update
-    game = Game.find params[:id]
-    game_data = get_game_data
-    game.xml = game_data.to_xml
-    game.save!
+    @game = Game.find params[:id]
+    @game_data = get_game_data(@game)
+    @game.xml = @game_data.to_xml
+    @game.save!
   end
 
   #TODO: refactor
@@ -12,7 +12,7 @@ class GameDataController < ApplicationController
     game = Game.new :created_by => current_user, :updated_by => current_user
     game.activity = Activity.find params[:activity_id]
 
-    game_data = get_game_data
+    game_data = get_game_data(game)
 
     # TODO: get real description
     game.description = game.activity.name
@@ -37,10 +37,10 @@ class GameDataController < ApplicationController
 
   private
 
-    def get_game_data
-      game_data = GameData.new()
+    def get_game_data(game)
+      game_data = GameData.new(game.game_type)
       params[:nodes].each do |node_hash|
-        game_data.add_node(GameData::Node.new node_hash[:question], node_hash[:response])
+        game_data.add_node(game_data.node_constant.new node_hash[:question], node_hash[:response])
       end
       game_data
     end

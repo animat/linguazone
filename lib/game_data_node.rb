@@ -8,7 +8,6 @@ class GameDataNode
   def self.from(node, type)
     const_get("#{type}Node").from_xml node
   end
-
 end
 
 class SingleWordMatchingNode < GameDataNode
@@ -44,7 +43,7 @@ class TargetWordNode < GameDataNode
     node.xpath(".//option").each do |option|
       options << option["content"]
     end
-    self.new(question, response, options)
+    self.new(question, options)
   end
 
   def to_xml(xml)
@@ -52,7 +51,6 @@ class TargetWordNode < GameDataNode
 
     xml.node do
       xml.question :content => self.question, :type => "text"
-      xml.response :content => self.response, :type => "text"
       if self.options.present?
         xml.options {
           self.options.each do |option|

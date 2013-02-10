@@ -55,7 +55,6 @@ window.Linguazone =
      if $editor.length
        model = new Linguazone.Models.Game
          id: $editor.data("gameId")
-         game_type: game_type
        model.fetch()
        view = new Linguazone.Views.Games.EditView
          model: model

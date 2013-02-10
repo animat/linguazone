@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
+require 'game_data_node'
 
 class GameData
   attr_accessor :nodes, :game_type
@@ -19,13 +20,16 @@ class GameData
     game_data
   end
 
-  def add_template_data(data)
-
+  def node_constant
+    "#{@game_type}Node".constantize
   end
 
-  def initialize
+  def add_template_data(data)
+  end
+
+  def initialize(game_type = "OneToOne")
     @nodes = []
-    @game_type = "OneToOne"
+    @game_type = game_type
   end
 
   def add_node(node)

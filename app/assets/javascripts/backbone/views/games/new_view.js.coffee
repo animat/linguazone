@@ -11,6 +11,7 @@ class Linguazone.Views.Games.NewView extends Linguazone.Views.Games.GameFormBase
       activity_id: options.activity_id
       language_id: options.language_id
       game_type:   options.game_type
+    @model.addBlankNode()
     super(options)
     @model.bind "change", @render
 
