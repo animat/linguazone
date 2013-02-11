@@ -3,7 +3,7 @@ require 'lib/game_data'
 require 'lib/game_data_node'
 
 describe GameDataNode do
-  describe DoubleWordMatchingNode do
+  describe DoubleWordMatchNode do
     let(:xml) {"""
       <node>
         <question type=\"text\" content=\"gato\"/>
@@ -15,7 +15,7 @@ describe GameDataNode do
     """}
 
     it "can populate from double word xml" do
-      node = DoubleWordMatchingNode.from_xml(Nokogiri::XML(xml))
+      node = DoubleWordMatchNode.from_xml(Nokogiri::XML(xml))
       node.question.should == "gato"
       node.ltarget.should  == "el"
       node.rtarget.should  == "masculine"

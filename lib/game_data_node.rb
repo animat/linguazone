@@ -23,7 +23,7 @@ class SingleWordMatchingNode < GameDataNode
   end
 end
 
-class DoubleWordMatchingNode < GameDataNode
+class DoubleWordMatchNode < GameDataNode
   attr_accessor :question, :ltarget, :rtarget
 
   def initialize(question, ltarget, rtarget)
@@ -61,6 +61,7 @@ class TargetWordNode < GameDataNode
 
     xml.node do
       xml.question :content => self.question, :type => "text"
+      before_options(xml)
       if self.options.present?
         xml.options {
           self.options.each do |option|
@@ -70,6 +71,11 @@ class TargetWordNode < GameDataNode
       end
     end
   end
+
+  protected
+
+    def before_options(xml)
+    end
 end
 
 class OneToOneNode < TargetWordNode
@@ -91,7 +97,12 @@ class OneToOneNode < TargetWordNode
   end
 
   def to_xml(xml)
-    return unless self.response.present?
     super(xml)
   end
+
+  protected
+
+    def before_options(xml)
+      xml.response :content => self.response, :type => "text"
+    end
 end
