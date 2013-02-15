@@ -2,7 +2,7 @@ Linguazone.Views.Games ||= {}
 Linguazone.Words ||= {}
 
 class Linguazone.Views.Games.WordListView extends Backbone.View
-  template: """<h1>Add Words to this List</h1><textarea style='height: 100px;'></textarea> """
+  template: """<h1>Add Words</h1><textarea style='height: 100px;'></textarea> """
   events: "blur textarea" : "updateWordList"
   initialize: (options) ->
     @name = options.name
@@ -17,4 +17,6 @@ class Linguazone.Views.Games.WordListView extends Backbone.View
 
   render: =>
     @$el.html(@template)
+    @$el.find("textarea").val("el\nlas\n\la\las")
+    @$el.css("float", "left").css("padding", "20px")
     return this

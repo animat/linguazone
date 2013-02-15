@@ -89,10 +89,10 @@ class Linguazone.Views.Games.DoubleWordMatch extends Linguazone.Views.Games.Node
 
     super
     if Linguazone.Words.ltarget
-      ldata = []
-      x = 1
-      _.each Linguazone.Words.ltarget, (word) ->
-        ldata.push { id: x, text: word }
+      ldata = Linguazone.Words.ltarget.to_select_to()
+
+    if Linguazone.Words.rtarget
+      rdata = Linguazone.Words.rtarget.to_select_to()
 
     @$el.find(".ltarget").select2
       data: ldata
