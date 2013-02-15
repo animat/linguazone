@@ -1,6 +1,6 @@
 Linguazone.Views.Games ||= {}
 
-class Linguazone.Views.Games.NodeBaseView extends Backbone.View
+class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
   events:
     "change input"          : "updateModel",
     "click .delete"         : "delete",
@@ -31,8 +31,8 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.View
 
   updateModel: (e) =>
     @options.node.set
-      question: @getQuestion(),
-      response: @getResponse()
+      question: @ui.question.val()
+      response: @ui.response.val()
 
   showControls: (e) =>
     @$el.find("ul.lz_input_toggle").show()
@@ -42,22 +42,19 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.View
     @$el.find(".tabs-bottom .ui-tabs-nav, .tabs-bottom .ui-tabs-nav > *").removeClass("ui-corner-all ui-corner-top").addClass("ui-corner-bottom")
     @$el.removeClass("ui-widget, ui-widget-content")
 
+  ui: {
+    question: ".question input"
+    response: ".response input"
+  }
+
   hideControls: (e) =>
     @$el.find("ul.lz_input_toggle").hide()
 
-  getQuestion: ->
-    @$el.find(".question input").val()
-
-  getResponse: ->
-    @$el.find(".response input").val()
-
-  render: ->
+  onRender: ->
     @options.node ||= new Linguazone.Models[@game_type]
     @$el.html _.template(@template, @options.node.attributes)
     @disable() if @options.exampleNode
-
-    # TODO @Len: Is there a way to trigger the hideControls method when the view renders?
-    this.hideControls()
+    @hideControls()
     @
 
   disable: =>
