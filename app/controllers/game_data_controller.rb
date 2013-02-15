@@ -16,10 +16,11 @@ class GameDataController < ApplicationController
 
     # TODO: get real description
     game.description = game.activity.name
+
     # TODO: the language id was not being passed along by the customizer; @CA hardcoded in the language ID for now
     #game.language = Language.find params[:language_id]
     game.language = Language.find(2)
-    game.template = Template.create(:activity => game.activity, :language_id => game.language, 
+    game.template = Template.create(:activity => game.activity, :language_id => game.language,
                               :description => "", :name => "", :admin => 0, :user_id => game.updated_by,
                               :xml => "<templatedata></templatedata>")
     game.xml = game_data.to_xml
@@ -42,6 +43,16 @@ class GameDataController < ApplicationController
       params[:nodes].each do |node_hash|
         game_data.add_node(game_data.node_constant.new node_hash[:question], node_hash[:response])
       end
+      add_word_lists_to(game_data)
       game_data
+    end
+
+    def add_word_lists_to(game_data)
+      return unless params[:lists]
+      params[:lists].each do |list|
+        list.words.each do |word|
+          game_data.add_word(list, word)
+        end
+      end
     end
 end

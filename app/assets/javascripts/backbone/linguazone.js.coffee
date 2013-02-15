@@ -35,21 +35,17 @@ window.Linguazone =
           language_id: QueryString.language
         success: ->
           view = new Linguazone.Views.GameType({ model: game_type })
-
-          #_.each examples.models, (model) ->
-
-          #  # setting this class name will let us position the examples correctly in css.
-          #  #
-          #  # TODO: consider moving to a question class, and having activities have a list of questions.
-          #  # that would still require something to know how to position questions.
-          #  className = "#{model.get("question_name")}-example"
-
-          #  view = new Linguazone.Views.Examples.ExampleView({ example: model, className: className})
           $("#examples").append(view.render().$el)
-          #  view.$el.hide()
-
       window.Linguazone.AppView = view.render()
-      $("#customizer").append(window.Linguazone.AppView.el)
+
+      $customizer = $("#customizer")
+
+      l_list_view = new Linguazone.Views.Games.WordListView({name: "ltarget"})
+      r_list_view = new Linguazone.Views.Games.WordListView({name: "rtarget"})
+
+      $customizer.append(l_list_view.render().el)
+      $customizer.append(r_list_view.render().el)
+      $customizer.append(window.Linguazone.AppView.el)
 
      $editor = $("#game-editor")
      if $editor.length

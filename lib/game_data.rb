@@ -24,7 +24,25 @@ class GameData
     "#{@game_type}Node".constantize
   end
 
-  def add_template_data(data)
+  def add_template_data(xml)
+    @template_data ||= TemplateData.from_xml(xml)
+  end
+
+  def template_data
+    @template_data ||= TemplateData.new
+  end
+
+  def template_data_xml
+    @template_data.to_xml
+  end
+
+  def word_lists
+    @template_data.lists
+  end
+
+  def add_word(list, word)
+    template_data[list] = [] unless template_data.has_key?(list)
+    template_data[list] << word
   end
 
   def initialize(game_type = "OneToOne")

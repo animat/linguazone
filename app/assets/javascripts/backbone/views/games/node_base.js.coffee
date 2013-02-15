@@ -64,3 +64,43 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.View
     @$el.find('.controls_wrapper').remove()
     @$el.find('input').attr("disabled", true)
 
+class Linguazone.Views.Games.DoubleWordMatch extends Linguazone.Views.Games.NodeBaseView
+  game_type: "DoubleWordMatch",
+
+  template: """
+  <div class="question lz_input">
+    <label>Question:</label>
+    <input type="text" name="question"/>
+
+    <label>LTarget:</label>
+    <input type="hidden" class="ltarget" name="ltarget"></input>
+
+    <label>RTarget:</label>
+    <input type="hidden" class="rtarget" name="rtarget"></input>
+  </div>
+  """
+
+  render: =>
+    ldata = [ {id: 1, text: 'el'}, {id: 5, text: 'las'}, {id: 2, text: 'la'}, {id: 3, text: 'los'}]
+    rdata = [ {id: 1, text: 'gato'}, {id: 5, text: 'gata'}, {id: 2, text: 'pero'}, {id: 3, text: 'cassa'}]
+
+    addLWord = (a, b) => { id: 99, text: a}
+    format = (item) -> item.text
+
+    super
+    if Linguazone.Words.ltarget
+      ldata = []
+      x = 1
+      _.each Linguazone.Words.ltarget, (word) ->
+        ldata.push { id: x, text: word }
+
+    @$el.find(".ltarget").select2
+      data: ldata
+      createSearchChoice: addLWord
+      placeholder: "Select Left Target"
+
+    @$el.find(".rtarget").select2
+      data: rdata
+      createSearchChoice: addLWord
+      placeholder: "Select Right Target"
+    this

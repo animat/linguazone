@@ -11,6 +11,7 @@
 //= require autocomplete-rails
 //= require flash_messages
 //= require underscore
+//= require select2.min
 //= require backbone
 // get querystring as an array split on "&"
 

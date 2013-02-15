@@ -1,0 +1,2 @@
+Linguazone.Views.Games ||= {}
+
