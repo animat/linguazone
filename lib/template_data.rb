@@ -22,7 +22,7 @@ class TemplateData
     Nokogiri::XML::Builder.new do |xml|
       xml.templatedata do
         lists.keys.each do |key|
-          xml.set do
+          xml.set :linkedto => key do
             lists[key].each do |value|
               xml.option :content => value, :type => "text"
             end

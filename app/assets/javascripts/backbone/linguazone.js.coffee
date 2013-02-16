@@ -15,7 +15,6 @@ Linguazone.App = new Backbone.Marionette.Application()
 Linguazone.App.addRegions
   customizer: "#customizer"
   examples:   "#examples"
-  wordLists:  "#word-lists"
 
 Linguazone.App.on "initialize:after", ->
   $(".activity a").click (e) ->
@@ -42,26 +41,21 @@ Linguazone.App.on "initialize:after", ->
         # TODO: The language ID won't always be available in the querystring (if the user has a default language set)
         language_id: QueryString.language
       success: ->
-        Linguazone.App.examples.show(view) new Linguazone.Views.GameType({ model: game_type })
+        Linguazone.App.examples.show new Linguazone.Views.GameType({ model: game_type })
+        _.each game_type.get("lists"), (list) ->
+          view = new Linguazone.Views.Games.WordListView({name: list.linkedto })
+          $("#word-lists").append(view.render().el)
 
-    window.Linguazone.AppView = view.render()
-
-    $customizer = $("#customizer")
-
-    l_list_view = new Linguazone.Views.Games.WordListView({name: "ltarget"})
-
-    Linguazone.App.wordLists.show l_list_view
-    Linguazone.App.customizer.show(window.Linguazone.AppView)
+    Linguazone.App.customizer.show view
 
    $editor = $("#game-editor")
    if $editor.length
      model = new Linguazone.Models.Game
        id: $editor.data("gameId")
      model.fetch()
-     view = new Linguazone.Views.Games.EditView
+     editView = new Linguazone.Views.Games.EditView
        model: model
-     window.Linguazone.AppView = view
 
-     $("#customizer").append(window.Linguazone.AppView.el)
+     Linguazone.App.customizer.show(editView)
 
 $ -> Linguazone.App.start()

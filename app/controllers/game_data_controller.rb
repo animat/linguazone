@@ -1,4 +1,6 @@
 require 'lib/game_data'
+require 'lib/template_data'
+
 class GameDataController < ApplicationController
   def update
     @game = Game.find params[:id]
@@ -22,7 +24,7 @@ class GameDataController < ApplicationController
     game.language = Language.find(2)
     game.template = Template.create(:activity => game.activity, :language_id => game.language,
                               :description => "", :name => "", :admin => 0, :user_id => game.updated_by,
-                              :xml => "<templatedata></templatedata>")
+                              :xml => game_data.template_data_xml)
     game.xml = game_data.to_xml
     game.save!
 
@@ -41,17 +43,19 @@ class GameDataController < ApplicationController
     def get_game_data(game)
       game_data = GameData.new(game.game_type)
       params[:nodes].each do |node_hash|
-        game_data.add_node(game_data.node_constant.new node_hash[:question], node_hash[:response])
+        game_data.add_node(game_data.node_constant.from_hash node_hash)
       end
       add_word_lists_to(game_data)
       game_data
     end
 
     def add_word_lists_to(game_data)
-      return unless params[:lists]
-      params[:lists].each do |list|
-        list.words.each do |word|
-          game_data.add_word(list, word)
+      return unless params[:word_list]
+      params[:word_list].each do |list|
+        list.keys.each do |key|
+          list[key].each do |word|
+            game_data.add_word(key, word)
+          end
         end
       end
     end

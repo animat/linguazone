@@ -33,16 +33,16 @@ class GameData
   end
 
   def template_data_xml
-    @template_data.to_xml
+    template_data.to_xml
   end
 
   def word_lists
-    @template_data.lists
+    template_data.lists
   end
 
   def add_word(list, word)
-    template_data[list] = [] unless template_data.has_key?(list)
-    template_data[list] << word
+    word_lists[list] = [] unless word_lists.has_key?(list)
+    word_lists[list] << word
   end
 
   def initialize(game_type = "OneToOne")

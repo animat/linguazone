@@ -11,3 +11,13 @@ class Linguazone.Collections.WordCollection extends Backbone.Collection
     _.each @models, (model) ->
       array.push {id: x, text: model.get("text")}
     array
+
+  to_a: ->
+    _.map @models, (model) -> model.get("text")
+
+Linguazone.WordLists = ->
+  rv = []
+  for name, collection of Linguazone.Words
+    rv.push { name: collection.to_a()}
+  rv
+

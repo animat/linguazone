@@ -26,6 +26,10 @@ end
 class DoubleWordMatchNode < GameDataNode
   attr_accessor :question, :ltarget, :rtarget
 
+  def self.from_hash(hash)
+    new hash[:question], hash[:ltarget], hash[:rtarget]
+  end
+
   def initialize(question, ltarget, rtarget)
     @question, @ltarget, @rtarget = question, ltarget, rtarget
   end
@@ -36,6 +40,12 @@ class DoubleWordMatchNode < GameDataNode
     ltarget   = responses.first.xpath("ltarget").first["content"]
     rtarget   = responses.first.xpath("rtarget").first["content"]
     self.new(question, ltarget, rtarget)
+  end
+
+  def to_xml(xml)
+    xml.node do
+      xml.question :content => self.question, :type => "text"
+    end
   end
 end
 
