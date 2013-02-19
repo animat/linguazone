@@ -18,6 +18,8 @@ class Linguazone.Collections.WordCollection extends Backbone.Collection
 Linguazone.WordLists = ->
   rv = []
   for name, collection of Linguazone.Words
-    rv.push { name: collection.to_a()}
+    obj = {}
+    obj[name] = collection.to_a()
+    rv.push obj
   rv
 

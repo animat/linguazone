@@ -45,6 +45,10 @@ class DoubleWordMatchNode < GameDataNode
   def to_xml(xml)
     xml.node do
       xml.question :content => self.question, :type => "text"
+      xml.responses do
+        xml.ltarget :content => self.ltarget, :type => "text"
+        xml.rtarget :content => self.rtarget, :type => "text"
+      end
     end
   end
 end
