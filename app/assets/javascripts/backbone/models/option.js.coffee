@@ -1,8 +1,8 @@
-class Linguazone.Models.Word extends Backbone.Model
+class Linguazone.Models.Option extends Backbone.Model
 
-class Linguazone.Collections.WordCollection extends Backbone.Collection
+class Linguazone.Collections.OptionCollection extends Backbone.Collection
   update_from: (words) ->
-    words = _.map(words, (word) -> new Linguazone.Models.Word({text: word}))
+    words = _.map(words, (word) -> new Linguazone.Models.Option({text: word}))
     @update(words)
 
   to_select_to: ->
@@ -15,9 +15,9 @@ class Linguazone.Collections.WordCollection extends Backbone.Collection
   to_a: ->
     _.map @models, (model) -> model.get("text")
 
-Linguazone.WordLists = ->
+Linguazone.OptionLists = ->
   rv = []
-  for name, collection of Linguazone.Words
+  for name, collection of Linguazone.Options
     obj = {}
     obj[name] = collection.to_a()
     rv.push obj

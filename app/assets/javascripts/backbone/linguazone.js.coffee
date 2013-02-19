@@ -43,8 +43,8 @@ Linguazone.App.on "initialize:after", ->
       success: ->
         Linguazone.App.examples.show new Linguazone.Views.GameType({ model: game_type })
         _.each game_type.get("lists"), (list) ->
-          view = new Linguazone.Views.Games.WordListView({name: list.linkedto })
-          $("#word-lists").append(view.render().el)
+          view = new Linguazone.Views.Games.OptionListView({name: list.linkedto })
+          $("#option-lists").append(view.render().el)
 
     Linguazone.App.customizer.show view
 

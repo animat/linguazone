@@ -14,7 +14,7 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
     confirmation: "#confirmation"
 
   save: (e) ->
-    @setWordLists()
+    @setOptionLists()
     e.preventDefault()
 
     $errors = @$el.find(".errors")
@@ -29,7 +29,7 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
     @ui.confirmation.show()
 
   #TODO: get this out of the view
-  setWordLists: => @model.set("word_list", Linguazone.WordLists())
+  setOptionLists: => @model.set("word_list", Linguazone.OptionLists())
 
   onRender: =>
     $nodeDiv = $(@el).find("#nodes")

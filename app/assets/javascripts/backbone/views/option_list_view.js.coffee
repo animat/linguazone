@@ -1,23 +1,23 @@
 Linguazone.Views.Games ||= {}
-Linguazone.Words ||= {}
+Linguazone.Options ||= {}
 
-class Linguazone.Views.Games.WordListView extends Backbone.View
+class Linguazone.Views.Games.OptionListView extends Backbone.View
   template: """<h4>Add Words</h4><textarea style='height: 100px;'></textarea> """
 
-  events: "blur textarea" : "updateWordList"
+  events: "blur textarea" : "updateOptionList"
 
   initialize: (options) ->
     @name = options.name
-    Linguazone.Words[@name] = new Linguazone.Collections.WordCollection
+    Linguazone.Options[@name] = new Linguazone.Collections.OptionCollection
 
   collection: =>
-    Linguazone.Words[@name]
+    Linguazone.Options[@name]
 
   words: () -> @$el.find("textarea").val().split("\n")
 
-  updateWordList: =>
+  updateOptionList: =>
     @collection().update_from @words()
-    Linguazone.Words[@name] = @collection()
+    Linguazone.Options[@name] = @collection()
     Linguazone.App.vent.trigger("wordlist:update")
 
   render: =>

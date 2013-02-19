@@ -29,12 +29,12 @@ class Linguazone.Views.Games.DoubleWordMatch extends Linguazone.Views.Games.Node
   render: =>
     super
     Linguazone.App.vent.off "wordlist:update"
-    Linguazone.App.vent.on "wordlist:update", @updateAllWordLists
+    Linguazone.App.vent.on "wordlist:update", @updateAllOptionLists
     @$ltarget = @$el.find(".ltarget")
     @$rtarget = @$el.find(".rtarget")
 
     @$el.find(".lz_input").hide()
-    @updateWordLists()
+    @updateOptionLists()
 
     if @model.get("ltarget")
       @$ltarget.val(@model.get("ltarget"))
@@ -43,12 +43,12 @@ class Linguazone.Views.Games.DoubleWordMatch extends Linguazone.Views.Games.Node
       @$rtarget.val(@model.get("rtarget"))
     this
 
-  hasEnoughWords: => Linguazone.Words.ltarget and Linguazone.Words.ltarget.models.length and Linguazone.Words.rtarget.models.length
+  hasEnoughOptions: => Linguazone.Options.ltarget and Linguazone.Options.ltarget.models.length and Linguazone.Options.rtarget.models.length
 
-  updateAllWordLists: => _.each(Linguazone.Views.Games.Nodes, (node) -> node.updateWordLists())
+  updateAllOptionLists: => _.each(Linguazone.Views.Games.Nodes, (node) -> node.updateOptionLists())
 
-  updateWordLists: =>
-    return unless @hasEnoughWords()
+  updateOptionLists: =>
+    return unless @hasEnoughOptions()
 
     @$el.find(".no-results").hide()
     @$el.find(".lz_input").show()
@@ -58,7 +58,7 @@ class Linguazone.Views.Games.DoubleWordMatch extends Linguazone.Views.Games.Node
 
   loadData: (dataType) ->
     $elem = @$el.find(".#{dataType}")
-    data = Linguazone.Words[dataType].to_select_to()
+    data = Linguazone.Options[dataType].to_select_to()
     val = $elem.val()
     $elem.html("")
     _.each data, (datum) => $elem.append("<option>#{datum.text}</option>")
