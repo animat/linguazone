@@ -22,4 +22,20 @@ class FeedItemsController < ApplicationController
       redirect_to :back
     end
   end
+  
+  def gradebook
+    @course = Course.find(params[:course_id])
+    @users = @course.course_registrations.includes("user").order("users.last_name").map {|r| r.user}
+    
+    @showing_posts = AvailablePost.showing.on_course(@course.id).includes(:post).order("posts.updated_at DESC")
+    @comments = @showing_posts.all.map{|p| p.comments.to_a}.flatten
+    
+    @showing_word_lists = AvailableWordList.showing.on_course(@course.id).includes(:word_list).order("word_lists.updated_at DESC")
+    @study_histories = @showing_word_lists.all.map{|wl| wl.study_histories.to_a}.flatten
+    
+    @showing_games = AvailableGame.showing.on_course(@course.id).includes({:game => :activity}).order("ordering ASC, games.updated_at DESC")
+    @high_scores = @showing_games.all.map{|g| g.high_scores.to_a}.flatten
+    
+    @activities = @showing_posts.all + @showing_word_lists.all + @showing_games.all
+  end
 end

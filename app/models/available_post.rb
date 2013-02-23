@@ -16,4 +16,8 @@ class AvailablePost < ActiveRecord::Base
   def parent_assoc
     post
   end
+  
+  def gradebook_column_header
+    post.title
+  end
 end

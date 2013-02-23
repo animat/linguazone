@@ -1,0 +1,55 @@
+<% stylesheet "teachers" %>
+
+<% content_for :page_script do %>
+<script type="text/javascript">
+$(function() {
+	$("th").tooltip({tooltipClass: "activity_tooltip", hide: false, position: {my: "center", at: "center top-40"}});
+	$("table").delegate("td", "mouseover mouseleave", function(e) {
+		if (e.type == "mouseover") {
+			$(this).parent().addClass("highlight_student_row");
+			if ($(this).index() != 0) {
+				$("colgroup").eq($(this).index()).addClass("highlight_activity_column");
+			}
+		} else {
+			$(this).parent().removeClass("highlight_student_row");
+			$("colgroup").eq($(this).index()).removeClass("highlight_activity_column");
+		}
+	});
+})
+</script>
+<% end %>
+
+<div id="gradebook_view">
+	<table width="<%= 250 + @activities.length * 60 %>px">
+		<% for i in 0..@activities.count do %>
+			<colgroup></colgroup>
+		<% end %>
+		<thead>
+			<tr>
+				<th class="student_name_column"></th>
+				<% @activities.each do |a| %>
+					<th class="activity_column">
+						<img src="<%= format_activity_column_bg_pic(a) %>" title="<%= format_gradebook_header(a) %>"/>
+					</th>
+				<% end %>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<% @users.each do |u| %>
+				<tr>
+					<td class="student_name_cell"><%= link_to truncate(u.display_name, {:length => 25}), student_feed_items_path(u) %></td>
+					<% @activities.each do |a| %>
+						<td><%= if a.class == AvailablePost
+							 				format_participation_in_post(u, a, @comments)
+										elsif a.class == AvailableWordList
+											format_participation_in_word_list(u, a, @study_histories)
+										elsif a.class == AvailableGame
+											format_participation_in_game(u, a, @high_scores)
+						end %></td>
+					<% end %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

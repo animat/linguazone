@@ -2,6 +2,7 @@ class AvailableWordList < ActiveRecord::Base
   belongs_to :course
   belongs_to :word_list
   belongs_to :user
+  has_many :study_histories
   
   scope :showing, lambda {
     where("hidden = ?", false)
@@ -11,5 +12,9 @@ class AvailableWordList < ActiveRecord::Base
   
   def parent_assoc
     word_list
+  end
+  
+  def gradebook_column_header
+    word_list.description
   end
 end

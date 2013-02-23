@@ -2,6 +2,7 @@ class AvailableGame < ActiveRecord::Base
   belongs_to :course
   belongs_to :game
   belongs_to :user
+  has_many :high_scores
   
   scope :showing, lambda {
     where("hidden = ?", false)
@@ -13,4 +14,7 @@ class AvailableGame < ActiveRecord::Base
     game
   end
   
+  def gradebook_column_header
+    game.description
+  end
 end

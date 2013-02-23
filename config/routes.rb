@@ -97,7 +97,12 @@ Linguazone::Application.routes.draw do
     post :send_invites
     
     resources :course_registrations
-    resources :feed_items, :only => [:index]
+    resources :feed_items do
+      collection do
+        get :index
+        get :gradebook
+      end
+    end
   end
   
   resources :course_registrations do

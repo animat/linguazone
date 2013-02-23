@@ -34,3 +34,18 @@ Feature: A teacher can view all of the activities a student has logged on their 
 		And "Bob" has studied 2 word lists in "Sample Latin"
 		When I am on the "Sample Latin" course feed items page
 		Then I should see 9 feed items listed within the activity stream
+	
+	@wip
+	Scenario: View the checklist view of the class's activity stream
+		Given a student exists with a first name of "Tommy"
+		And "Tommy" is enrolled in "Sample Latin"
+		And "Tommy" has created 1 comment on a post in "Sample Latin"
+		And "Tommy" has recorded 2 high scores in "Sample Latin"
+		And "Bob" has recorded 3 high scores in "Sample Latin"
+		And "Bob" has created 1 comment on a post in "Sample Latin"
+		And "Bob" has studied 2 word lists in "Sample Latin"
+		When I am on the "Sample Latin" course feed items page
+		Then I should see that "Tommy" has 2 high scores
+		And I should see that "Bob" has 3 high scores
+		And I should see that "Tommy" has studied 0 word lists
+		And I should see that "Bob" has studied 2 word lists 
