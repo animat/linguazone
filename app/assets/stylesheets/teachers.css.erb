@@ -277,20 +277,28 @@ li.feed_item span.time_ago {
 	font-size: .9em;
 }
 div#gradebook_view {
-	overflow-x: scroll;
 	width: 100%;
+	position: relative;
 }
-div#gradebook_view table {
+table#gradebook_students {
+	width: 200px;
+}
+
+div#gradebook_scroller {
+	position: absolute;
+	top: 0;
+	left: 201px;
+	overflow-x: scroll;
+	width: 650px;
+}
+table#gradebook, table#gradebook_students {
 	border-collapse: collapse;
 }
-div#gradebook_view table td {
+table#gradebook td, table#gradebook_students td {
 	border: 1px solid #666;
 	padding: 3px;
 }
-div#gradebook_view table td.student_name_cell {
-	width: 180px;
-}
-div#gradebook_view table th.activity_column {
+.activity_header {
 	width: 60px;
 	height: 52px;
 	font-size: .9em;
@@ -301,10 +309,18 @@ div#gradebook_view table th.activity_column {
 	padding: 10px;
 }
 .highlight_student_row {
-	background-color: yellow;
+	background-color: #fff6bf;
 }
 .highlight_activity_column {
-	background-color: red;
+	background-color: #fff6bf;
+}
+table#gradebook td {
+	color: #009900;
+	text-align: center;
+}
+span.completion_count {
+	font-size: .7em;
+	color: #999;
 }
 /* -----------
  import word list

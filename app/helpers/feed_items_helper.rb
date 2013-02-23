@@ -127,26 +127,31 @@ module FeedItemsHelper
     str = truncate(item.gradebook_column_header, {:length => 40})
     str.html_safe
   end
-  
-  def format_activity_column_bg_pic(item)
-    if item.class == AvailablePost
-      asset_path "courses/show/speech_bubble-small.jpg"
-    elsif item.class == AvailableWordList
-      asset_path "word_lists/study_word_list-small.png"
-    elsif item.class == AvailableGame
-      asset_path "/games/#{item.game.activity.swf}/display/icon-small.jpg"
-    end
-  end
-  
+    
   def format_participation_in_post(user, item, all_comments)
     num = all_comments.count {|c| c.available_post_id == item.id && c.user_id == user.id}
+    str = ""
+    if num > 0
+      str << "&#10004; " + content_tag(:span, "("+num.to_s+")", :class => "completion_count").html_safe
+    end
+    str.html_safe
   end
   
   def format_participation_in_word_list(user, item, all_word_lists)
     num = all_word_lists.count {|c| c.available_word_list_id == item.id && c.user_id == user.id}
+    str = ""
+    if num > 0
+      str << "&#10004; " + content_tag(:span, "("+num.to_s+")", :class => "completion_count").html_safe
+    end
+    str.html_safe
   end
   
   def format_participation_in_game(user, item, all_games)
     num = all_games.count {|c| c.available_game_id == item.id && c.user_id == user.id}
+    str = ""
+    if num > 0
+      str << "&#10004; " + content_tag(:span, "("+num.to_s+")", :class => "completion_count").html_safe
+    end
+    str.html_safe
   end
 end
