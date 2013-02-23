@@ -25,7 +25,7 @@ class PlayController < ApplicationController
     if @game.updated_by_id == current_user.id
       if params[:sort].nil?
         @scores = HighScore.find_all_by_available_game_id(params[:id])
-        @registrations = CourseRegistration.all(:conditions => ["course_id = ?", @course.id])
+        @registrations = CourseRegistration.where(:course_id => @course.id).includes(:user).order("users.last_name, users.first_name")
       else
         if params[:sort] == "name"
           @scores = HighScore.all(:conditions => ["available_game_id = ?", params[:id]], :order => "user_id")

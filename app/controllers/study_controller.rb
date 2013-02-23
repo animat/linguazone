@@ -59,7 +59,7 @@ class StudyController < ApplicationController
     if @list.updated_by_id == current_user.id
       if params[:sort].nil?
         @study_histories = StudyHistory.where(:available_word_list => @al.id)
-        @registrations = CourseRegistration.all(:conditions => ["course_id = ?", @course.id])
+        @registrations = CourseRegistration.where(:course_id => @course.id).includes(:user).order("users.last_name, users.first_name")
       else
         if params[:sort] == "name"
           @scores = StudyHistory.where(:conditions => ["available_word_list = ?", @al.id], :order => "user_id")
