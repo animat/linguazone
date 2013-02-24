@@ -1,4 +1,4 @@
-<div id="select_course">
+<div id="select_course_form">
 	<%= simple_form_for @registration, :url => {:action => "select_course"}, :remote => true do |f| %>
 		<% if @courses.empty? %>
 			<p>No classes have been created for this school yet.</p>

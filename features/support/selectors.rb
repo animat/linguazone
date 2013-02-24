@@ -29,6 +29,9 @@ module HtmlSelectorsHelpers
     
     when /^the activity stream$/
       [:xpath, "//div[@id='activity_stream']"]
+      
+    when /^the first sign up cell$/
+      [:xpath, "//table[@id='sign_up_basic']//tr[3]/td[1]"]
     
     when /^the wrapper$/
       ".wrapper"

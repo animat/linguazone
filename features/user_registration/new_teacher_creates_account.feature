@@ -21,10 +21,10 @@ Feature: A new teacher creates a trial account
     And I fill in my account details
     And I press "Create trial and get started!"
     Then I should see "Let's get started!"
-
+	
   Scenario: Sign up for a plan with a new school
     Given I am on the pricing page
-    And I press "Sign up"
+    And I press "Sign up" within the first sign up cell
     When I enter "Northwest" as my school
     And I fill in my school's address
     Then I should see "Lastly, create your account"

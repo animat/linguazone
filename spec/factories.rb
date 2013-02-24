@@ -22,8 +22,8 @@ Factory.define :language do |l|
 end
 
 Factory.define :activity do |a|
-  a.swf           "leapFrog"
-  a.name          "Leap Frog"
+  a.swf           "mantis"
+  a.name          "Mantis"
   a.hints_xml     "<hint></hint>"
   a.help          "click on it"
   a.youtube_embed "click on it"

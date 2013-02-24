@@ -55,9 +55,13 @@ Then /^I should see (\d+) "([^"]*)" links for ([^"]*)$/ do |count, link_text, ar
 end
 
 Then /^I should see (\d+) "([^"]*)" links?$/ do |count, link_text|
-  #page.all(:xpath, "//a//*[text()='#{link_text}']").size.should == count.to_i
-  page.all(:xpath, "//a[text()='#{link_text}']").size.should == count.to_i
-  #page.all(:css, "a", :text => link_text).length.should == count.to_i
+  if count.to_i > 0
+    stylized_span_links = all(:xpath, "//a//*[text()='#{link_text}']")
+    if stylized_span_links.length > 0
+      stylized_span_links.length.should == count.to_i
+    end
+  end
+  all(:xpath, "//a[text()='#{link_text}']").length.should == count.to_i
 end
 
 When /^I hover over the course item teacher controls$/ do

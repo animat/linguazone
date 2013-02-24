@@ -67,6 +67,7 @@ end
 Given /^([^"]*) has (\d+) games which are the "([^"]*)" activity$/ do |teacher_name, num_games, activity_name|
   @t = User.find_by_first_name(teacher_name)
   num_games.to_i.times do |counter|
+    # TODO: Incorrect use of factories is creating duplicate activities
     @a = Activity.find_by_name(activity_name)
     @g = Factory.create(:game)
     @g.activity = @a
@@ -153,6 +154,21 @@ Then /^I should see (\d+) available (games|word_lists|posts)$/ do |count, things
   else
     find(:xpath, "//div[@id='showing_#{things}']/div[@class='available_item']").length.should == count
   end
+end
+
+Then /^I should see that the (\d+)(st|nd|rd|th) student has (\d+) feed items in the gradebook$/ do |stu_num, suffix, item_count|
+  cells = page.all(:xpath, "//table[@id='gradebook']//tr[#{stu_num}]/td")
+  str = ""
+  cells.each do |c|
+    x = c.native
+    str << x.content
+  end
+  nums = str.gsub(/[^0-9]/, '')
+  sum = 0
+  nums.split("").each do |n|
+    sum += n.to_i
+  end
+  sum.should == item_count.to_i
 end
 
 Given /^"(.*?)"'s subscription has expired$/ do |teacher_name|

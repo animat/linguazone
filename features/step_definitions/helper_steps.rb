@@ -9,15 +9,11 @@ Then /^"([^"]*)" should not be visible$/ do |arg1|
 end
 
 When /^I wait until "([^"]*)" is visible$/ do |txt|
-  wait_until do
-    page.should have_xpath("//*[text()='#{txt}']", :visible => true)
-  end
+  page.should have_xpath("//*[text()='#{txt}']", :visible => true)
 end
 
 When /^I wait until "([^"]*)" is not visible$/ do |txt|
-  wait_until do
-    page.should have_xpath("//*[text()='#{txt}']", :visible => false)
-  end
+  page.should have_xpath("//*[text()='#{txt}']", :visible => false)
 end
 
 When /^I follow the (\d+)(st|nd|rd|th) link$/ do |num, suffix|

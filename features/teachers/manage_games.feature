@@ -26,7 +26,6 @@ Feature: Teacher manages customized games
 		And I press "Search"
 		Then I should see "Search results (1 total)"
 		And I should see "unique game for searching"
-		And I should not see "No games matched your search terms."
 		And I should see "Edit" within the first search result row
 	
 	Scenario: Search my games by game type
@@ -44,7 +43,7 @@ Feature: Teacher manages customized games
 		And I press "Search"
 		Then I should see "Hidden games in Test class (1 total)"
 		And I should see "Show" within the first search result row
-
+		
 	Scenario: Adopt a game
 		Given I follow "Adopt a game"
 		When I fill in "Search for:" with "adopt this game"

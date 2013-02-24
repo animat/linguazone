@@ -30,6 +30,8 @@ module NavigationHelpers
       course_course_registrations_path(Course.find_by_name($1))
     when /^the "([^"]*)" course feed items page$/
       course_feed_items_path(Course.find_by_name($1))
+    when /^the "([^"]*)" gradebook page$/
+      gradebook_course_feed_items_path(Course.find_by_name($1))
     when /^the ([^"]*) demos page$/
       @lang = Language.where(:name => $1).first
       url_for(:controller => "about", :action => "demos", :language => @lang.id)

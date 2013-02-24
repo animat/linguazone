@@ -118,24 +118,18 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
 end
 
 Then /^(?:|I )should not see "([^"]*)"$/ do |t|
-  if page.respond_to? :should
-    #page.should have_no_content(t)
-    page.should_not(have_content(t))
-    #page.should_not have_content(t)
-  else
-    assert page.has_no_content?(t)
-  end
+  page.has_no_text?(t)
 end
 
-Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
-  regexp = Regexp.new(regexp)
-
-  if page.respond_to? :should
-    page.should have_no_xpath('//*', :text => regexp)
-  else
-    assert page.has_no_xpath?('//*', :text => regexp)
-  end
-end
+#Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
+#  regexp = Regexp.new(regexp)
+#
+#  if page.respond_to? :should
+#    page.should have_no_xpath('//*', :text => regexp)
+#  else
+#    assert page.has_no_xpath?('//*', :text => regexp)
+#  end
+#end
 
 Then /^the "([^"]*)" field(?: within (.*))? should contain "([^"]*)"$/ do |field, parent, value|
   with_scope(parent) do
