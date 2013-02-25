@@ -1,4 +1,4 @@
-<div id="<%= dom_id(comment) %>" class="<%= comment_class_according_to_user(comment.user) %>" 
+<div id="<%= dom_id(comment) %>" class="<%= comment_class_according_to_user(comment.user) %>" data-comment-id="<%= comment.id %>"
 			onmouseover="document.getElementById('<%= dom_id(comment) %>_controls').className = 'controls'" 
 			onmouseout="document.getElementById('<%= dom_id(comment) %>_controls').className = 'hide_controls'">
 	<blockquote>
@@ -40,10 +40,17 @@
 			<li>Teacher controls:</li>
 			<li><%= link_to "Delete comment", comment, :method => "DELETE", :confirm => "Are you sure you want to delete this student's comment?", :remote => true %></li>
 			<li id="<%= "#{dom_id(comment)}_new_note_link" %>" <%= display_empty_note(comment) %> >
-				<%= link_to "Add teacher note to this comment", {}, :class => "new_teacher_note_link" %>
+				<%= link_to "Add teacher note", {}, :class => "new_teacher_note_link" %>
 			</li>
 			<li id="<%= "#{dom_id(comment)}_del_note_link" %>" <%= do_not_display_empty_note(comment) %> >
-				<%= link_to "Delete teacher note on this comment", {}, :class => "delete_teacher_note_link" %>
+				<%= link_to "Delete teacher note", {}, :class => "delete_teacher_note_link" %>
+			</li>
+			<li>Rate this comment: 
+						<%= link_to "1-star", {}, :class => "rate_comment_star", :data => {:rating_num => 1} %>
+						<%= link_to "2-stars", {}, :class => "rate_comment_star", :data => {:rating_num => 2} %>
+						<%= link_to "3-stars", {}, :class => "rate_comment_star", :data => {:rating_num => 3} %>
+						<%= link_to "4-stars", {}, :class => "rate_comment_star", :data => {:rating_num => 4} %>
+						<%= link_to "5-stars", {}, :class => "rate_comment_star", :data => {:rating_num => 5} %>
 			</li>
 		</ul>
 	<% elsif comment.user == current_user %>

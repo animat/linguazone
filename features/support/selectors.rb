@@ -19,6 +19,10 @@ module HtmlSelectorsHelpers
       @num = $1
       @type = $3.sub(" ", "_")
       [:xpath, "//div[@id='showing_#{@type}s']/div[@class='available_item'][#{@num}]"]
+    
+    when /^the (\d+)(st|nd|rd|th) comment area$/
+      @num = $1
+      [:xpath, "//div[@id='comments']/div[@class='comment'][#{@num}]"]
 
     when /^the first search result row$/
       [:xpath, "//div[@class='wrapper']/div[@class='game_listing'][1]"]

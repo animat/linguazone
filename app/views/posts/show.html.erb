@@ -36,6 +36,13 @@ $(function() {
 		return false;
 	})
 	
+	$(".rate_comment_star").live("click", function() {
+		var id = $(this).parent().parent().parent().data('comment-id');
+		var rating = $(this).data("rating-num");
+		alert("Going to rate comment #"+id+" as a "+rating+"!");
+		return false;
+	})
+	
 });
 
 </script>

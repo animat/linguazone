@@ -31,7 +31,7 @@ Given /^a teacher has a password\-protected course at that school named "(.*?)" 
   @c.save
 end
 
-Given /^([^"]*) (has|have) (\d+) (games|posts|word lists|word_lists|courses)$/ do |teacher_name, verb, num, things|
+Given /^([^"]*) (has|have) (\d+) (games|posts?|word lists|word_lists|courses)$/ do |teacher_name, verb, num, things|
   things = things.sub(" ", "_")
   if teacher_name == "I"
     @t = User.first
@@ -46,6 +46,7 @@ Given /^([^"]*) (has|have) (\d+) (games|posts|word lists|word_lists|courses)$/ d
   else
     count.times do
       @g = Factory.create(things.singularize)
+      # TODO @Len: This is automatically creating a new user because of my factory associations. Any tips here?
       if things.singularize == "course"
         @g.user_id = @t.id
       elsif things.singularize == "post"

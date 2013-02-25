@@ -34,6 +34,17 @@ Given /^I am logged in as "([^"]*)"$/ do |teacher_name|
   }
 end
 
+Given /^I am logged in as the student "([^"]*)"$/ do |student_name|
+  @stu = User.find_by_first_name(student_name)
+  steps %Q{
+    And I am on the student login page
+    And I fill in "Your email address (or LinguaZone username):" with "#{@stu.email}"
+    And I fill in "Password:" with "test"
+    And I press "Login"
+    And I should see "Return to the student homepage"
+  }
+end
+
 Given /^I am logged in as a student$/ do
   steps %Q{
     And I am on the student login page
