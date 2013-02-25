@@ -43,5 +43,5 @@ Feature: Students can add comments and get feedback
 		And I go to the "Sample class" class page
 		And I follow the 1st link within the 1st post area
 		When I hover over the comment teacher controls
-		And I follow the 3rd star rating link the 1st comment area
+		And I follow the 3rd star rating link within the 1st comment area
 		Then there should be a rating of 3 within the 1st comment area

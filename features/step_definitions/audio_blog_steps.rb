@@ -15,8 +15,12 @@ Given /^([^"]*) has left a comment on ([^"]*)'s (\d+)(st|nd|rd|th) post$/ do |st
   }
 end
 
+When /^I follow the (\d+)(st|nd|rd|th) star rating link$/ do |num, suffix|
+  find(:xpath, "//a[@class[contains(., 'rate_comment_star')]][#{num}]").click
+end
+
 Then /^there should be a rating of (\d+)$/ do |num|
-  find(:xpath, "(//*[@class[contains(., 'teacher_rating')]])[last()]").should have_text(num.to_s)
+  find(:xpath, "(//*[@class[contains(., 'numerical_rating')]])[last()]").should have_text(num.to_s)
 end
 
 Then /^the (\d+)(st|nd|rd|th) comment should have a note that says "([^"]*)"$/ do |num, suffix, msg|
