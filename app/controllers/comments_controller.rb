@@ -27,7 +27,17 @@ class CommentsController < ApplicationController
       format.js { render :layout => false }
     end
   end
-
+  
+  def set_rating
+    @comment = Comment.find(params[:comment_id])
+    if current_user
+      if @comment.available_post.user_id == current_user.id
+        @comment.rating = params[:rating].to_i
+        @comment.save
+      end
+    end
+  end
+  
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy

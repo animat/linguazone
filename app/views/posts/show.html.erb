@@ -38,8 +38,14 @@ $(function() {
 	
 	$(".rate_comment_star").live("click", function() {
 		var id = $(this).parent().parent().parent().data('comment-id');
-		var rating = $(this).data("rating-num");
-		alert("Going to rate comment #"+id+" as a "+rating+"!");
+		var r = $(this).data("rating-num");
+		$.ajax({
+			url: "<%= set_rating_comments_path %>",
+			type: "PUT",
+			data: {"comment_id": id, "rating": r}
+		}).error(function() {
+			alert("Sorry -- there was an error saving your rating in the database.");
+		})
 		return false;
 	})
 	

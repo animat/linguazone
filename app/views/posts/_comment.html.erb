@@ -18,6 +18,7 @@
 	<cite>
 		<span class="author"><%= comment.user.display_name %></span> 
 		<span class="date">on <%= format_date_time(comment.updated_at) %></span>
+		<span class="<%= dom_id(comment) %>_rating teacher_rating"><%= comment.rating unless comment.rating == 0 %></span>
 	</cite>
 	
 	<div id="<%= dom_id(comment) %>_new_teacher_note" class="new_comment_teacher_note" style="display: none">
@@ -45,12 +46,13 @@
 			<li id="<%= "#{dom_id(comment)}_del_note_link" %>" <%= do_not_display_empty_note(comment) %> >
 				<%= link_to "Delete teacher note", {}, :class => "delete_teacher_note_link" %>
 			</li>
-			<li>Rate this comment: 
-						<%= link_to "1-star", {}, :class => "rate_comment_star", :data => {:rating_num => 1} %>
-						<%= link_to "2-stars", {}, :class => "rate_comment_star", :data => {:rating_num => 2} %>
-						<%= link_to "3-stars", {}, :class => "rate_comment_star", :data => {:rating_num => 3} %>
-						<%= link_to "4-stars", {}, :class => "rate_comment_star", :data => {:rating_num => 4} %>
-						<%= link_to "5-stars", {}, :class => "rate_comment_star", :data => {:rating_num => 5} %>
+			<br />
+			<li>Rate this comment (<span class="<%= dom_id(comment) %>_rating teacher_rating"><%= comment.rating %></span>): 
+						<%= link_to "1-star", {}, :class => "rate_comment_star rate_1", :data => {:rating_num => 1} %>
+						<%= link_to "2-stars", {}, :class => "rate_comment_star rate_2", :data => {:rating_num => 2} %>
+						<%= link_to "3-stars", {}, :class => "rate_comment_star rate_3", :data => {:rating_num => 3} %>
+						<%= link_to "4-stars", {}, :class => "rate_comment_star rate_4", :data => {:rating_num => 4} %>
+						<%= link_to "5-stars", {}, :class => "rate_comment_star rate_5", :data => {:rating_num => 5} %>
 			</li>
 		</ul>
 	<% elsif comment.user == current_user %>
