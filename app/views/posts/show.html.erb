@@ -51,6 +51,21 @@ $(function() {
 	
 });
 
+function convertRatingNumToImage(id) {
+	var num = parseInt($("#"+id+"_rating").html());
+	$("#"+id+"_rating").hide();
+	var star_checked = '<%= image_tag "star-checked.png" %>';
+	var star_unchecked = '<%= image_tag "star-unchecked.png" %>';
+	var str = "";
+	for(var i = 0; i < num; i++) {
+		str += star_checked;
+	}
+	for (var i = num; i < 5; i++) {
+		str += star_unchecked;
+	}
+	$("#"+id+"_rating_images").html(str);
+}
+
 </script>
 <% end %>
 

@@ -18,7 +18,8 @@
 	<cite>
 		<span class="author"><%= comment.user.display_name %></span> 
 		<span class="date">on <%= format_date_time(comment.updated_at) %></span>
-		<span class="<%= dom_id(comment) %>_rating teacher_rating"><%= comment.rating unless comment.rating == 0 %></span>
+		<span id="<%= dom_id(comment) %>_rating" class="teacher_rating"><%= comment.rating unless comment.rating == 0 %></span>
+		<span id="<%= dom_id(comment) %>_rating_images"></span>
 	</cite>
 	
 	<div id="<%= dom_id(comment) %>_new_teacher_note" class="new_comment_teacher_note" style="display: none">
