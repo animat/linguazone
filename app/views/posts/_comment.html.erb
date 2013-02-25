@@ -1,6 +1,5 @@
 <div id="<%= dom_id(comment) %>" class="<%= comment_class_according_to_user(comment.user) %>" data-comment-id="<%= comment.id %>"
-			onmouseover="document.getElementById('<%= dom_id(comment) %>_controls').className = 'controls'" 
-			onmouseout="document.getElementById('<%= dom_id(comment) %>_controls').className = 'hide_controls'">
+			onmouseover="showCommentControls('<%= dom_id(comment) %>')" onmouseout="hideCommentControls('<%= dom_id(comment) %>')">
 	<blockquote>
 		<% if comment.audio_id == 0 %>
 			<p><%= h(comment.content) %></p>
@@ -18,8 +17,8 @@
 	<cite>
 		<span class="author"><%= comment.user.display_name %></span> 
 		<span class="date">on <%= format_date_time(comment.updated_at) %></span>
-		<span id="<%= dom_id(comment) %>_rating" class="numerical_rating"><%= comment.rating unless comment.rating == 0 %></span>
-		<span id="<%= dom_id(comment) %>_rating_images" class="student_view_rating"></span>
+		<span id="<%= dom_id(comment) %>_rating" class="numerical_rating"><%= comment.rating %></span>
+		<span class="<%= dom_id(comment) %>_rating_images student_view_rating"></span>
 	</cite>
 	
 	<div id="<%= dom_id(comment) %>_new_teacher_note" class="new_comment_teacher_note" style="display: none">
@@ -47,12 +46,13 @@
 			<li id="<%= "#{dom_id(comment)}_del_note_link" %>" <%= do_not_display_empty_note(comment) %> >
 				<%= link_to "Delete teacher note", {}, :class => "delete_teacher_note_link" %>
 			</li>
-			<li>Rating: 
+			<li id="<%= dom_id(comment) %>_ratings_links">Rating: 
 						<%= link_to "1-star", {}, :class => "rate_comment_star rate_1", :data => {:rating_num => 1} %>
 						<%= link_to "2-stars", {}, :class => "rate_comment_star rate_2", :data => {:rating_num => 2} %>
 						<%= link_to "3-stars", {}, :class => "rate_comment_star rate_3", :data => {:rating_num => 3} %>
 						<%= link_to "4-stars", {}, :class => "rate_comment_star rate_4", :data => {:rating_num => 4} %>
 						<%= link_to "5-stars", {}, :class => "rate_comment_star rate_5", :data => {:rating_num => 5} %>
+						<%= link_to "clear-rating", {}, :class => "clear_rating" %>
 			</li>
 		</ul>
 	<% elsif comment.user == current_user %>

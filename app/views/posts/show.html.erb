@@ -48,23 +48,52 @@ $(function() {
 		})
 		return false;
 	})
-	
-	$(".rate_comment_star").html('<%= image_tag "star-unchecked.png" %>');
+	$(".clear_rating").live("click", function() {
+		var id = $(this).parent().parent().parent().data('comment-id');
+		var r = 0;
+		$.ajax({
+			url: "<%= set_rating_comments_path %>",
+			type: "PUT",
+			data: {"comment_id": id, "rating": r}
+		}).error(function() {
+			alert("Sorry -- there was an error saving your rating in the database.");
+		})
+		return false;
+	})
+	$(".numerical_rating").each(function(index, elem) {
+		convertRatingNumToImage($(elem).parent().parent().attr("id"));
+	})
+	$(".numerical_rating").hide();
 });
-
+function hideCommentControls(id) {
+	$("#"+id+"_controls").removeClass("controls").addClass("hide_controls");
+}
+function showCommentControls(id) {
+	$("#"+id+"_controls").addClass("controls").removeClass("hide_controls");
+}
 function convertRatingNumToImage(id) {
 	var num = parseInt($("#"+id+"_rating").html());
 	$("#"+id+"_rating").hide();
 	var star_checked = '<%= image_tag "star-checked.png" %>';
 	var star_unchecked = '<%= image_tag "star-unchecked.png" %>';
 	var str = "";
+	var a = $("#"+id+"_ratings_links a");
 	for(var i = 0; i < num; i++) {
 		str += star_checked;
+		$(a[i]).html(star_checked);
 	}
 	for (var i = num; i < 5; i++) {
 		str += star_unchecked;
+		$(a[i]).html(star_unchecked);
 	}
-	$("#"+id+"_rating_images").html(str);
+	if (num == 0) {
+		$("."+id+"_rating_images").hide();
+		$("#"+id+"_ratings_links .clear_rating").hide();
+	} else {
+		$("."+id+"_rating_images").html(str).show();
+		$("#"+id+"_ratings_links .clear_rating").html('<%= image_tag "clear-x.png" %>');
+		$("#"+id+"_ratings_links .clear_rating").show();
+	}
 }
 
 </script>
