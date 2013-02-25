@@ -44,8 +44,11 @@ $(function() {
 						elsif a.class == AvailableWordList
 							link_to image_tag("word_lists/study_word_list-small.png", :title => format_gradebook_header(a)), :controller => "study", :action => "stats", :id => a.id
 						elsif a.class == AvailableGame
-							link_to image_tag("/games/#{a.game.activity.swf}/display/icon-small.jpg", :title => format_gradebook_header(a)), :controller => "play", :action => "stats", :id => a.id
-									end %>
+							unless a.game.nil?
+								link_to image_tag("/games/#{a.game.activity.swf}/display/icon-small.jpg", :title => format_gradebook_header(a)), :controller => "play", :action => "stats", :id => a.id
+							end
+						end
+				%>
 							
 						</th>
 					<% end %>
