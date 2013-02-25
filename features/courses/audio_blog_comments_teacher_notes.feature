@@ -36,12 +36,12 @@ Feature: Students can add comments and get feedback
 		And I press "Add note"
 		And the 1st comment should have a note that says "Example feedback on the comment"
 		
-	@javascript
+	@javascript @wip
 	Scenario: A teacher should be able to rate a comment
 		Given Bob has left a comment on Sarah's 1st post
 		And I am logged in as "Sarah"
 		And I go to the "Sample class" class page
 		And I follow the 1st link within the 1st post area
 		When I hover over the comment teacher controls
-		And I follow "3-stars"
+		And I follow the 3rd star rating link the 1st comment area
 		Then there should be a rating of 3 within the 1st comment area

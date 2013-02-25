@@ -32,11 +32,11 @@ ul.controls {
 	display: block;
 	margin-left: 30px;
 	margin-bottom: 5px;
-	padding: 10px;
+	padding: 7px;
 	background-color: #FFEFD5;
 }
 ul.controls li {
-	padding: 10px;
+	padding: 7px;
 	list-style: none;
 	display: inline;
 }
@@ -148,4 +148,8 @@ p.remove_spacing {
 .new_comment_teacher_note textarea {
 	width: 700px;
 	height: 60px;
+}
+
+span.student_view_rating {
+	margin-left: 15px;
 }
