@@ -50,4 +50,12 @@ class GameType
     ]
     rv
   end
+
+  def self.single_word_match
+    rv = self.new
+    rv.lists = [
+      { :linkedto => "ltarget"}
+    ]
+    rv
+  end
 end

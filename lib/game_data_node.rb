@@ -9,17 +9,31 @@ class GameDataNode
     const_get("#{type}Node").from_xml node
   end
 end
-
-class SingleWordMatchingNode < GameDataNode
-  attr_accessor :question, :options
-
-  def initialize(question)
-    @question = question
-  end
+class SingleWordMatchNode < GameDataNode
+  attr_accessor :question, :ltarget
 
   def self.from_xml(node)
     question = node.xpath(".//question").first["content"]
-    self.new(question)
+    responses = node.xpath(".//responses")
+    ltarget   = responses.first.xpath("ltarget").first["content"]
+    self.new(question, ltarget)
+  end
+
+  def self.from_hash(hash)
+    new hash[:question], hash[:ltarget]
+  end
+
+  def initialize(question, ltarget)
+    @question, @ltarget = question, ltarget
+  end
+
+  def to_xml(xml)
+    xml.node do
+      xml.question :content => self.question, :type => "text"
+      xml.responses do
+        xml.ltarget :content => self.ltarget, :type => "text"
+      end
+    end
   end
 end
 

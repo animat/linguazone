@@ -3,6 +3,23 @@ require 'lib/game_data'
 require 'lib/game_data_node'
 
 describe GameDataNode do
+  describe SingleWordMatchNode do
+    let(:xml) {"""
+      <node>
+        <question type=\"text\" content=\"gato\"/>
+        <responses answer=\"all\">
+          <ltarget name=\"ltarget\" content=\"el\" type=\"text\" />
+        </responses>
+      </node>
+    """}
+
+    it "can populate from double word xml" do
+      node = SingleWordMatchNode.from_xml(Nokogiri::XML(xml))
+      node.question.should == "gato"
+      node.ltarget.should  == "el"
+    end
+  end
+
   describe DoubleWordMatchNode do
     let(:xml) {"""
       <node>
