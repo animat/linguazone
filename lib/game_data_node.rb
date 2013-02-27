@@ -9,6 +9,7 @@ class GameDataNode
     const_get("#{type}Node").from_xml node
   end
 end
+
 class SingleWordMatchNode < GameDataNode
   attr_accessor :question, :ltarget
 

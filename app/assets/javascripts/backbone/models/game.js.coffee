@@ -16,8 +16,6 @@ class Linguazone.Models.Game extends Backbone.Model
         model.set("nodes", nodes)
 
   addBlankNode: =>
-    console.log 'yeah'
-    console.log "Game Type", @get("game_type")
     @get("nodes").add new Linguazone.Models["#{@get("game_type")}Node"]
 
   defaults:

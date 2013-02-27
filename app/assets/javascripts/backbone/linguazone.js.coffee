@@ -58,9 +58,14 @@ Linguazone.App.on "initialize:after", ->
     model = new Linguazone.Models.Game
       id: $editor.data("gameId")
     model.fetch().success =>
-      console.log "model", model
-      console.log '----0'
-      load_game_type model.get("activity_id"), model.get("language_id")
+      lists = model.get("lists")
+      views= []
+      for name of lists
+        view = new Linguazone.Views.Games.OptionListView({name: name, list: lists[name] })
+        views.push view
+        $("#option-lists").append(view.render().el)
+      for view in views
+        view.updateOptionList()
     editView = new Linguazone.Views.Games.EditView
       model: model
 

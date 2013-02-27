@@ -29,7 +29,7 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
     @ui.confirmation.show()
 
   #TODO: get this out of the view
-  setOptionLists: => @model.set("word_list", Linguazone.OptionLists())
+  setOptionLists: => @model.set("option_list", Linguazone.OptionLists())
 
   onRender: =>
     $nodeDiv = $(@el).find("#nodes")

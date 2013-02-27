@@ -9,6 +9,8 @@ class Linguazone.Views.Games.OptionListView extends Backbone.View
   initialize: (options) ->
     @name = options.name
     Linguazone.Options[@name] = new Linguazone.Collections.OptionCollection
+    if options.list
+      Linguazone.Options[@name].update_from options.list
 
   collection: =>
     Linguazone.Options[@name]
@@ -22,5 +24,7 @@ class Linguazone.Views.Games.OptionListView extends Backbone.View
 
   render: =>
     @$el.html(@template)
+    if @collection()
+      @$el.find("textarea").text(@collection().to_a().join("\n"))
     @$el.css("float", "left").css("padding", "20px")
     return this

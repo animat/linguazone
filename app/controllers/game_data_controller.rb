@@ -45,16 +45,16 @@ class GameDataController < ApplicationController
       params[:nodes].each do |node_hash|
         game_data.add_node(game_data.node_constant.from_hash node_hash)
       end
-      add_word_lists_to(game_data)
+      add_option_lists_to(game_data)
       game_data
     end
 
-    def add_word_lists_to(game_data)
-      return unless params[:word_list]
-      params[:word_list].each do |list|
+    def add_option_lists_to(game_data)
+      return unless params[:option_list]
+      params[:option_list].each do |list|
         list.keys.each do |key|
-          list[key].each do |word|
-            game_data.add_word(key, word)
+          list[key].each do |option|
+            game_data.add_option(key, option)
           end
         end
       end
