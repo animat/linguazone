@@ -3,10 +3,13 @@ require 'open-uri'
 require 'game_data_node'
 
 class GameData
-  attr_accessor :nodes, :game_type
+  attr_accessor :nodes, :game_type, :activity_id, :language_id
 
   def self.from(game)
-    from_xml game.xml, game.game_type, game.template.try(:xml)
+    game_data = from_xml game.xml, game.game_type, game.template.try(:xml)
+    game_data.activity_id = game.activity_id
+    game_data.language_id = game.language_id
+    game_data
   end
 
   def self.from_xml(xml, game_type = "OneToOne", template_data_xml = nil)

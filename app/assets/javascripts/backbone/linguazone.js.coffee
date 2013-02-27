@@ -17,7 +17,20 @@ Linguazone.App.addRegions
   examples:   "#examples"
 
 Linguazone.App.on "initialize:after", ->
-  $(".activity a").click (e) ->
+  load_game_type = (activity_id, language_id) =>
+    game_type = new Linguazone.Models.GameType
+    game_type.fetch
+      data:
+        activity_id: activity_id
+        # TODO: The language ID won't always be available in the querystring (if the user has a default language set)
+        language_id: language_id
+      success: ->
+        Linguazone.App.examples.show new Linguazone.Views.GameType({ model: game_type })
+        _.each game_type.get("lists"), (list) ->
+          view = new Linguazone.Views.Games.OptionListView({name: list.linkedto })
+          $("#option-lists").append(view.render().el)
+
+  show_customizer = (e)  ->
     e.preventDefault()
     swf_name = $(this).data("swf")
     $(".activity").hide()
@@ -34,28 +47,23 @@ Linguazone.App.on "initialize:after", ->
       game_type:   $(this).data("gameType")
       language_id: QueryString.language
 
-    game_type = new Linguazone.Models.GameType
-    game_type.fetch
-      data:
-        activity_id: activity_id
-        # TODO: The language ID won't always be available in the querystring (if the user has a default language set)
-        language_id: QueryString.language
-      success: ->
-        Linguazone.App.examples.show new Linguazone.Views.GameType({ model: game_type })
-        _.each game_type.get("lists"), (list) ->
-          view = new Linguazone.Views.Games.OptionListView({name: list.linkedto })
-          $("#option-lists").append(view.render().el)
+    load_game_type activity_id, QueryString.language
 
     Linguazone.App.customizer.show view
 
-   $editor = $("#game-editor")
-   if $editor.length
-     model = new Linguazone.Models.Game
-       id: $editor.data("gameId")
-     model.fetch()
-     editView = new Linguazone.Views.Games.EditView
-       model: model
+  $(".activity a").click show_customizer
 
-     Linguazone.App.customizer.show(editView)
+  $editor = $("#game-editor")
+  if $editor.length
+    model = new Linguazone.Models.Game
+      id: $editor.data("gameId")
+    model.fetch().success =>
+      console.log "model", model
+      console.log '----0'
+      load_game_type model.get("activity_id"), model.get("language_id")
+    editView = new Linguazone.Views.Games.EditView
+      model: model
+
+    Linguazone.App.customizer.show(editView)
 
 $ -> Linguazone.App.start()

@@ -34,7 +34,6 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
   onRender: =>
     $nodeDiv = $(@el).find("#nodes")
     $nodeDiv.html("")
-
     _.each @model.get("nodes").models, (node) =>
       view = new Linguazone.Views.Games[@model.get("game_type")]
         node: node
