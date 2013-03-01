@@ -19,6 +19,11 @@ class PostsController < ApplicationController
     
       @student_comments = @ap.comments
       @student_comments = @student_comments.page(params[:page])
+      
+      if current_user.is_student?
+        @solo_comments = @ap.comments.where(:user_id => current_user.id)
+        @solo_comments = @solo_comments.page(params[:page])
+      end
     end
     respond_to do |format|
       format.html # show.html.erb

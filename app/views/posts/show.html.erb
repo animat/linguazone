@@ -162,8 +162,10 @@ function convertRatingNumToImage(id) {
 						<%= render :partial => 'comment', :locals => {:comment => sc, :post => @post} %>
 					<% end %>
 				<% else %>
-					<p>You have left <%= pluralize(@student_comments.length, 'comment') %> on this post.</p>
-					<%= render :partial => 'comment', :collection => @student_comments %>
+					<p>You have left <%= pluralize(@solo_comments.length, 'comment') %> on this post.</p>
+					<% @solo_comments.each do |sc| %>
+						<%= render :partial => 'comment', :locals => {:comment => sc, :post => @post} %>
+					<% end %>
 				<% end %>
 			<% end %>
 		<% end %>

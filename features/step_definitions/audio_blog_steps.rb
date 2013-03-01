@@ -33,3 +33,14 @@ end
 When /^I hover over the comment teacher controls$/ do
   page.execute_script "$(function() {	$('.hide_controls').removeClass('hide_controls').addClass('controls'); $('.new_comment_teacher_note').show(); })"
 end
+
+Given /^([^"]*)'s comment has (\d+) stars$/ do |stu_name, star_num|
+  @u = User.find_by_first_name(stu_name)
+  @comment = Comment.where(:user_id => @u.id).first
+  @comment.rating = star_num
+  @comment.save
+end
+
+Then /^I should see (\d+) stars$/ do |num|
+  all(:xpath, "//span[@class='student_view_rating']/img").length.should == 0
+end

@@ -46,6 +46,10 @@ class User < ActiveRecord::Base
   def is_teacher?
     self.role == "teacher"
   end
+  
+  def is_student?
+    self.role == "student"
+  end
 
   def is_premium_subscriber?
     if self.role == "teacher"
