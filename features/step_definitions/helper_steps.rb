@@ -18,6 +18,7 @@ end
 
 When /^I follow the (\d+)(st|nd|rd|th) link$/ do |num, suffix|
   find(:xpath, "a[#{num}]").click
+  #all(:xpath, "//a")[num.to_i].click
 end
 
 When /^I follow "([^"]*)" and click OK$/ do |text|

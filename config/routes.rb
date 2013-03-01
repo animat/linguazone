@@ -109,7 +109,11 @@ Linguazone::Application.routes.draw do
     resources :feed_items, :only => [:index]
   end
   
-  resources :comments
+  resources :comments do
+    collection do
+      put :set_rating
+    end
+  end
 
   resources :my_courses
   resources :play, :high_scores

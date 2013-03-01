@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120925224924) do
+ActiveRecord::Schema.define(:version => 20130225043429) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -72,37 +72,42 @@ ActiveRecord::Schema.define(:version => 20120925224924) do
   end
 
   create_table "available_games", :force => true do |t|
-    t.integer "game_id",   :default => 0,     :null => false
-    t.integer "user_id",   :default => 0,     :null => false
-    t.integer "course_id", :default => 0,     :null => false
-    t.integer "ordering",  :default => 0,     :null => false
-    t.boolean "hidden",    :default => false, :null => false
+    t.integer  "game_id",    :default => 0,     :null => false
+    t.integer  "user_id",    :default => 0,     :null => false
+    t.integer  "course_id",  :default => 0,     :null => false
+    t.integer  "ordering",   :default => 0,     :null => false
+    t.boolean  "hidden",     :default => false, :null => false
+    t.datetime "deleted_at"
   end
 
   create_table "available_posts", :force => true do |t|
-    t.integer "post_id",   :null => false
-    t.integer "user_id",   :null => false
-    t.integer "course_id", :null => false
-    t.integer "ordering",  :null => false
-    t.boolean "hidden",    :null => false
+    t.integer  "post_id",    :null => false
+    t.integer  "user_id",    :null => false
+    t.integer  "course_id",  :null => false
+    t.integer  "ordering",   :null => false
+    t.boolean  "hidden",     :null => false
+    t.datetime "deleted_at"
   end
 
   create_table "available_word_lists", :force => true do |t|
-    t.integer "word_list_id", :default => 0, :null => false
-    t.integer "user_id",      :default => 0, :null => false
-    t.integer "course_id",    :default => 0, :null => false
-    t.integer "order",                       :null => false
-    t.boolean "hidden",                      :null => false
+    t.integer  "word_list_id", :default => 0, :null => false
+    t.integer  "user_id",      :default => 0, :null => false
+    t.integer  "course_id",    :default => 0, :null => false
+    t.integer  "order",                       :null => false
+    t.boolean  "hidden",                      :null => false
+    t.datetime "deleted_at"
   end
 
   create_table "comments", :force => true do |t|
-    t.integer  "user_id",           :null => false
+    t.integer  "user_id",                          :null => false
     t.integer  "audio_id"
     t.text     "content"
     t.text     "teacher_note"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.integer  "available_post_id"
+    t.datetime "deleted_at"
+    t.integer  "rating",            :default => 0
   end
 
   create_table "conference_signups", :force => true do |t|
@@ -118,17 +123,19 @@ ActiveRecord::Schema.define(:version => 20120925224924) do
     t.integer  "course_id",  :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.datetime "deleted_at"
   end
 
   create_table "courses", :force => true do |t|
-    t.integer "user_id",        :default => 0,     :null => false
-    t.string  "name",                              :null => false
-    t.integer "grade",          :default => 0,     :null => false
-    t.boolean "login_required", :default => false, :null => false
-    t.string  "code"
-    t.integer "ordering"
-    t.string  "guid"
-    t.boolean "archived",       :default => false
+    t.integer  "user_id",        :default => 0,     :null => false
+    t.string   "name",                              :null => false
+    t.integer  "grade",          :default => 0,     :null => false
+    t.boolean  "login_required", :default => false, :null => false
+    t.string   "code"
+    t.integer  "ordering"
+    t.string   "guid"
+    t.boolean  "archived",       :default => false
+    t.datetime "deleted_at"
   end
 
   create_table "demos", :force => true do |t|
@@ -160,6 +167,7 @@ ActiveRecord::Schema.define(:version => 20120925224924) do
     t.datetime "updated_at"
     t.string   "sourceable_type"
     t.integer  "sourceable_id"
+    t.datetime "deleted_at"
   end
 
   create_table "games", :force => true do |t|
@@ -174,6 +182,7 @@ ActiveRecord::Schema.define(:version => 20120925224924) do
     t.integer  "created_by_id",   :default => 0,     :null => false
     t.integer  "updated_by_id",   :default => 0,     :null => false
     t.boolean  "getting_started", :default => false, :null => false
+    t.datetime "deleted_at"
   end
 
   add_index "games", ["getting_started"], :name => "index_games_on_getting_started"
@@ -184,8 +193,9 @@ ActiveRecord::Schema.define(:version => 20120925224924) do
   end
 
   create_table "games_word_lists", :force => true do |t|
-    t.integer "word_list_id", :default => 0, :null => false
-    t.integer "game_id",      :default => 0, :null => false
+    t.integer  "word_list_id", :default => 0, :null => false
+    t.integer  "game_id",      :default => 0, :null => false
+    t.datetime "deleted_at"
   end
 
   create_table "high_scores", :force => true do |t|
@@ -257,6 +267,7 @@ ActiveRecord::Schema.define(:version => 20120925224924) do
     t.boolean  "shared",     :default => true, :null => false
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+    t.datetime "deleted_at"
   end
 
   create_table "schools", :force => true do |t|
@@ -293,6 +304,7 @@ ActiveRecord::Schema.define(:version => 20120925224924) do
     t.string   "user_ip_address",        :null => false
     t.datetime "submitted_at",           :null => false
     t.integer  "available_word_list_id"
+    t.datetime "deleted_at"
   end
 
   create_table "subscription_plans", :force => true do |t|
@@ -358,6 +370,7 @@ ActiveRecord::Schema.define(:version => 20120925224924) do
     t.datetime "updated_at"
     t.integer  "created_by_id", :default => 0, :null => false
     t.integer  "updated_by_id", :default => 0, :null => false
+    t.datetime "deleted_at"
   end
 
   create_table "word_lists_keywords", :force => true do |t|

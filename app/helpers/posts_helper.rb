@@ -9,11 +9,11 @@ module PostsHelper
   end
   
   def do_not_display_empty_note (comment)
-    "style='display: none'" if comment.teacher_note.blank?
+    "style='display: none'".html_safe if comment.teacher_note.blank?
   end
   
   def display_empty_note (comment)
-    "style='display: none'" unless comment.teacher_note.blank?
+    "style='display: none'".html_safe unless comment.teacher_note.blank?
   end
   
   def saved_note(comment_id)

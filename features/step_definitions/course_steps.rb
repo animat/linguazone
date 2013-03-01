@@ -13,10 +13,10 @@ Given /^"(.*?)" is enrolled in "(.*?)"$/ do |student_name, course_name|
   @cr = CourseRegistration.create!(:course_id => @course.id, :user_id => @student.id)
 end
 
-Given /^"([^"]*)" has (\d+) (games|word lists|audio blog posts) showing$/ do |course_name, num, thing|
+Given /^"([^"]*)" has (\d+) (games|word lists|audio blog posts?) showing$/ do |course_name, num, thing|
   @c = Course.find_by_name(course_name)
   num.to_i.times do
-    if thing == "audio blog posts"
+    if thing == "audio blog posts" or thing == "audio blog post"
       @p = Factory.create(:post)
       @p.course_id = @c.id
       @ap = AvailablePost.create!(:course_id => @c.id, :user_id => 0, :post_id => @p.id, :hidden => 0, :ordering => 0)
