@@ -32,7 +32,9 @@ Linguazone::Application.routes.draw do
     end
     resources :feed_items, :only => [:index]
   end
-  
+
+  resources :images
+
   resources :authentications, :only => [:index, :create, :destroy] do
     collection do 
       post :cancel

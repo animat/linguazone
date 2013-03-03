@@ -33,12 +33,14 @@ gem 'sass-rails'
 gem 'coffee-script'
 gem 'uglifier'
 gem 'jquery-rails'
+gem 'fine-uploader-rails', '~> 3.2'
+gem "qqfileuploader"
 
 gem "rack-timeout"
 
 group :production do
-  gem 'therubyracer', '0.9.4'
-	gem "SystemTimer", :require => "system_timer", :platforms => :ruby_18
+  gem "therubyracer", '~> 0.9.4'
+  gem "SystemTimer", :require => "system_timer", :platforms => :ruby_18
 end
 
 group :development, :cucumber, :test do

@@ -196,3 +196,14 @@ div#nodes > div > div.response, div.leapFrog div.response {
 div#nodes > div:last-child {
 	margin-bottom: 50px;
 }
+
+.thumb {
+  width: 300px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.thumb img {
+  width: 300px;
+}
+

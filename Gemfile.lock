@@ -115,6 +115,9 @@ GEM
       multipart-post (~> 1.1)
     fastercsv (1.5.5)
     ffi (1.1.5)
+    fine-uploader-rails (3.2)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
     formtastic (2.2.1)
       actionpack (>= 3.0)
     gherkin (2.11.2)
@@ -236,6 +239,8 @@ GEM
       slop (~> 3.3.1)
     pry-rails (0.2.1)
       pry (>= 0.9.10)
+    qqfileuploader (0.0.1)
+      rails (~> 3.1.0.rc8)
     rabl (0.7.6)
       activesupport (>= 2.3.14)
       multi_json (~> 1.0)
@@ -389,6 +394,7 @@ DEPENDENCIES
   email_spec
   factory_girl
   factory_girl_rails (= 1.1.0)
+  fine-uploader-rails (~> 3.2)
   guard
   guard-jasmine-headless-webkit
   guard-rspec
@@ -410,6 +416,7 @@ DEPENDENCIES
   paperclip (= 2.3.6)
   pg
   pry-rails
+  qqfileuploader
   rabl
   rack-test
   rack-timeout
@@ -427,7 +434,7 @@ DEPENDENCIES
   spork (~> 0.9.0.rc9)
   spreadsheet
   swf_fu (>= 2.0)
-  therubyracer (= 0.9.4)
+  therubyracer (~> 0.9.4)
   timecop
   uglifier
   whenever
