@@ -115,6 +115,10 @@ class OneToOneNode < TargetWordNode
     super(question, options)
   end
 
+  def self.from_hash(hash)
+    new hash[:question], hash[:response]
+  end
+
    def self.from_xml(node)
     question = node.xpath(".//question").first["content"]
     response = node.xpath(".//response").first["content"]
