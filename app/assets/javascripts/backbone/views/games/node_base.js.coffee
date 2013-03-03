@@ -77,6 +77,7 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
       $image = $("<img>", { src: responseJSON.url })
       u.append $image
       u.addClass("thumb")
+      @options.node.set "question", responseJSON.url
 
 
   disable: =>

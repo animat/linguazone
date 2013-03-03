@@ -15,8 +15,32 @@ describe GameDataNode do
 
     it "can populate from double word xml" do
       node = SingleWordMatchNode.from_xml(Nokogiri::XML(xml))
-      node.question.should == "gato"
-      node.ltarget.should  == "el"
+      node.question.content.should == "gato"
+      node.ltarget.content.should  == "el"
+    end
+
+    context "when question is an image" do
+      let(:xml) {"""
+        <node>
+          <question type=\"image\" content=\"/images/gato.jpg\"/>
+          <responses answer=\"all\">
+            <ltarget name=\"ltarget\" content=\"el\" type=\"text\" />
+          </responses>
+        </node>
+      """}
+
+      it "gets te correct node option" do
+        node = SingleWordMatchNode.from_xml(Nokogiri::XML(xml))
+        node.question.type.should == "image"
+      end
+
+      it "writes the correct content type in the url" do
+        node = SingleWordMatchNode.from_xml(Nokogiri::XML(xml))
+        xml = Nokogiri::XML::Builder.new do |xml|
+          node.to_xml xml
+        end
+        xml.to_xml.should have_xml '/node/question[@type="image"]'
+      end
     end
   end
 

@@ -1,3 +1,4 @@
+require 'node_option'
 #  Abstract Base class for nodes.
 #
 #  Nodes don't have much in common, so this base class's responsibility is
@@ -14,9 +15,9 @@ class SingleWordMatchNode < GameDataNode
   attr_accessor :question, :ltarget
 
   def self.from_xml(node)
-    question = node.xpath(".//question").first["content"]
     responses = node.xpath(".//responses")
-    ltarget   = responses.first.xpath("ltarget").first["content"]
+    question  = NodeOption.for "question", node.xpath(".//question").first["content"]
+    ltarget   = NodeOption.for "ltarget", responses.first.xpath("ltarget").first["content"]
     self.new(question, ltarget)
   end
 
@@ -25,14 +26,15 @@ class SingleWordMatchNode < GameDataNode
   end
 
   def initialize(question, ltarget)
+    raise "Question Must be a NodeOption" unless question.respond_to? "content"
     @question, @ltarget = question, ltarget
   end
 
   def to_xml(xml)
     xml.node do
-      xml.question :content => self.question, :type => "text"
+      question.to_xml(xml)
       xml.responses do
-        xml.ltarget :content => self.ltarget, :type => "text"
+        ltarget.to_xml(xml)
       end
     end
   end
