@@ -5,9 +5,6 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
     "change input"          : "updateModel",
     "change select"         : "updateModel",
     "click .delete"         : "delete",
-    "mouseover"             : "showControls"
-    "mouseout"              : "hideControls"
-    "load"                  : "hideControls"
     "focus .question input" : "showQuestion"
     "blur .question input"  : "hideQuestion"
     "focus .response input" : "showResponse"
@@ -20,11 +17,6 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
 
   initialize: =>
     @model = @options.node
-    # TODO: Can it have the tabs added in as soon as it initializes? Not sure why this is failing.
-    @$el.find(".question").tabs()
-    @$el.find(".response").tabs()
-    @$el.find(".tabs-bottom .ui-tabs-nav, .tabs-bottom .ui-tabs-nav > *").removeClass("ui-corner-all ui-corner-top").addClass("ui-corner-bottom")
-    @$el.removeClass("ui-widget, ui-widget-content")
 
   delete: =>
     @trigger("remove")
@@ -35,20 +27,9 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
     $target = $(e.currentTarget)
     @options.node.set $target.attr("name"), $target.val()
 
-  showControls: (e) =>
-    @$el.find("ul.lz_input_toggle").show()
-    # Only here while it doesn't work in initialize
-    @$el.find(".question").tabs()
-    @$el.find(".response").tabs()
-    @$el.find(".tabs-bottom .ui-tabs-nav, .tabs-bottom .ui-tabs-nav > *").removeClass("ui-corner-all ui-corner-top").addClass("ui-corner-bottom")
-    @$el.removeClass("ui-widget, ui-widget-content")
-
   ui:
-    question: ".question-input"
+    question: ".question input"
     response: ".response input"
-
-  hideControls: (e) =>
-    @$el.find("ul.lz_input_toggle").hide()
 
   render: =>
     @options.node ||= new Linguazone.Models[@game_type]
@@ -58,7 +39,6 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
 
   onRender: ->
     @showUploads()
-    @hideControls()
     @bindUIElements()
 
   showUploads: =>
@@ -79,8 +59,6 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
       u.addClass("thumb")
       @options.node.set "question", responseJSON.url
 
-
   disable: =>
     @$el.find('.controls_wrapper').remove()
     @$el.find('input').attr("disabled", true)
-
