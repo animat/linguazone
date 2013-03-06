@@ -7,6 +7,7 @@ class ImagesController < ApplicationController
     file = TempFile.new(truncate(form_data), filename, get_content_type(form_data))
     image = Image.new
     image.image = file
+    image.user = current_user
     image.save!
     render :json => { :url => image.image.url }
   end
