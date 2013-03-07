@@ -27,37 +27,11 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
     $target = $(e.currentTarget)
     @options.node.set $target.attr("name"), $target.val()
 
-  ui:
-    question: ".question input"
-    response: ".response input"
-
   render: =>
     @options.node ||= new Linguazone.Models[@game_type]
     @$el.html _.template(@template, @options.node.attributes)
     @onRender()
     this
-
-  onRender: ->
-    @showUploads()
-    @bindUIElements()
-
-  showUploads: =>
-    uploader = @$el.find(".upload").fineUploader
-      request:
-        endpoint: "/images"
-      text:
-        uploadButton: 'Select Files'
-      validation:
-        allowedExtensions: ['jpeg', 'jpg', 'png', 'gif'],
-        sizeLimit: 512000
-
-    uploader.on "complete", (event, id, fileName, responseJSON)  =>
-      u = @$el.find(".upload")
-      u.html("")
-      $image = $("<img>", { src: responseJSON.url })
-      u.append $image
-      u.addClass("thumb")
-      @options.node.set "question", responseJSON.url
 
   disable: =>
     @$el.find('.controls_wrapper').remove()

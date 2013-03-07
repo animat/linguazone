@@ -131,6 +131,10 @@ class OneToOneNode < TargetWordNode
     super(xml)
   end
 
+  def self.from_hash(hash)
+    new hash[:question], hash[:response]
+  end
+
   protected
 
     def before_options(xml)

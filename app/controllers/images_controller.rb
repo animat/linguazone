@@ -9,7 +9,7 @@ class ImagesController < ApplicationController
     image.image = file
     image.user = current_user
     image.save!
-    render :json => { :url => image.image.url }
+    render :json => { :url => image.image.url, :success => true }
   end
 
   private
