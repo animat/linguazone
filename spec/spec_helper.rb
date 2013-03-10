@@ -22,6 +22,16 @@ Spork.prefork do
   end
 end
 
+VCR.configure do |c|
+  c.ignore_request do |request|
+    #TODO: not really sure why jenkins is doing this.
+    URI(request.uri).host == '127.0.0.1'
+  end
+
+  c.cassette_library_dir = 'fixtures/vcr_cassettes'
+  c.hook_into :webmock # or :fakeweb
+end
+
 # XML matcher stolen from http://johnleach.co.uk/words/585/testing-xml-with-rspec-xpath-and-libxml
 require 'libxml'
 RSpec::Matchers.define :have_xml do |xpath, text|

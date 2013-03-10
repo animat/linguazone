@@ -207,3 +207,11 @@ div#nodes > div:last-child {
   width: 300px;
 }
 
+.small-thumb {
+  width: 100px;
+  height: 75px;
+  overflow: hidden;
+  float: left;
+  cursor: pointer;
+}
+

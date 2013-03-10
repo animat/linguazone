@@ -1,3 +1,5 @@
+require 'lib/flickr_search'
+
 class CustomizeController < ApplicationController
   def new
     if current_user.nil?

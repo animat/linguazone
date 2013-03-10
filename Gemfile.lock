@@ -118,6 +118,7 @@ GEM
     fine-uploader-rails (3.2)
       actionpack (>= 3.1)
       railties (>= 3.1)
+    flickraw (0.9.6)
     formtastic (2.2.1)
       actionpack (>= 3.0)
     gherkin (2.11.2)
@@ -365,6 +366,7 @@ GEM
       execjs (>= 0.3.0)
       multi_json (~> 1.3)
     uniform_notifier (1.0.2)
+    vcr (2.4.0)
     warden (1.2.1)
       rack (>= 1.0)
     whenever (0.7.3)
@@ -395,6 +397,7 @@ DEPENDENCIES
   factory_girl
   factory_girl_rails (= 1.1.0)
   fine-uploader-rails (~> 3.2)
+  flickraw
   guard
   guard-jasmine-headless-webkit
   guard-rspec
@@ -437,4 +440,5 @@ DEPENDENCIES
   therubyracer (~> 0.9.4)
   timecop
   uglifier
+  vcr
   whenever

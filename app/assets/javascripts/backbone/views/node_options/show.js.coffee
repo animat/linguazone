@@ -1,3 +1,4 @@
+#= require ../flickr_search/show
 class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
   template: """
     <div class="input">
@@ -11,16 +12,8 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
         <h3>Upload An Image</h3>
         <div class="uploader">Select Files...</div>
       </div>
-
       <p/>
-
-      <div class="image-search">
-        <h3>Search For an Image</h3>
-        <input type="text" placeholder="Search for an Image"/>
-        <div class="results">
-        </div>
-      </div>
-    </div>
+      <div class="image-search"></div>
   """
 
   events:
@@ -34,8 +27,12 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
   showModal: =>
     @modal = @$el.find(".modal").show().dialog
       title: "Select an Image."
-      height: 300
-      width: 350
+      height: 800
+      width: 1050
+    view = new Linguazone.Views.FlickrSearch.Show(model: @model)
+    view.on "select", (url) =>
+      @selectImageAndClose(url)
+    $(".image-search").html(view.render().el)
     false
 
   showUploads: =>
@@ -46,11 +43,14 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
         uploadButton: 'Select Files'
       validation:
         allowedExtensions: ['jpeg', 'jpg', 'png', 'gif'],
-        sizeLimit: 512000
+        sizeLimit: 1024000
 
     uploader.on "complete", (event, id, fileName, responseJSON)  =>
+      @selectImageAndClose(image_url)
+
+  selectImageAndClose: (image_url) =>
       @modal.dialog("close")
-      @showImage(responseJSON.url)
+      @showImage(image_url)
       @$el.find("a").hide()
 
   showImage: (image_url) =>

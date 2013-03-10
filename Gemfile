@@ -26,6 +26,7 @@ gem "omniauth-openid"
 gem "omniauth-facebook"
 gem "spreadsheet"
 gem 'nokogiri'
+gem 'flickraw'
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'
@@ -46,6 +47,7 @@ end
 group :development, :cucumber, :test do
   gem 'capybara-webkit', '0.12.0'
   gem 'spork',           '~> 0.9.0.rc9'
+  gem 'vcr'
   gem 'guard'
   gem 'guard-spork'
   gem 'guard-rspec'

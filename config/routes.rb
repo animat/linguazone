@@ -10,6 +10,7 @@ Linguazone::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   resources :examples, :only => [:show, :index]
+  resources :flickr_photos, :only => [:index]
 
   resources :activities do
     resources :game_types, :only => [:index]
