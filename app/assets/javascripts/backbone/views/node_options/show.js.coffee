@@ -50,17 +50,24 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
 
     uploader.on "complete", (event, id, fileName, responseJSON)  =>
       @modal.dialog("close")
-      u = @$el.find(".input")
-      u.html("")
-      $image = $("<img>", { src: responseJSON.url })
-      u.append $image
-      u.addClass("thumb")
-      @model.set("content", responseJSON.url)
+      @showImage(responseJSON.url)
       @$el.find("a").hide()
 
+  showImage: (image_url) =>
+    u = @$el.find(".input")
+    u.html("")
+    $image = $("<img>", { src: image_url })
+    u.append $image
+    u.addClass("thumb")
+    @model.set("content", image_url)
+
+  isImage: (content) =>
+     regex = /(.+\/.*\.(?:|gif|jpeg|png|jpg))/
+     content.match(regex)
 
   render: =>
     @$el.html _.template(@template, @model)
+    @showImage(@model.get("content")) if @isImage(@model.get("content"))
     @showUploads()
     this
 

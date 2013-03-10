@@ -7,6 +7,8 @@ class GameDataController < ApplicationController
     @game_data = get_game_data(@game)
     @game.xml = @game_data.to_xml
     @game.save!
+
+    head :no_content
   end
 
   #TODO: refactor
