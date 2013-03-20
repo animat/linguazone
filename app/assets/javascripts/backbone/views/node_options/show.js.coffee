@@ -8,12 +8,17 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
     <a href="#" class="image-link">image</a>
 
     <div class="modal" style="display:none;">
-      <div class="upload">
-        <h3>Upload An Image</h3>
-        <div class="uploader">Select Files...</div>
+      <div class="preview" style="display:none">
+        <h3>Change Image</h3>
+        <div class="image-div"></div>
       </div>
-      <p/>
-      <div class="image-search"></div>
+
+      <div class="upload">
+      <h3>Upload An Image</h3>
+      <div class="uploader">Select Files...</div>
+    </div>
+    <p/>
+    <div class="image-search"></div>
   """
 
   events:
@@ -25,15 +30,19 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
     @model.set("content", $(e.currentTarget).val())
 
   showModal: =>
-    @modal = @$el.find(".modal").show().dialog
+    @createModal() unless @modal
+    @modal.show().dialog("open")
+    @$preview ||= @modal.find(".preview")
+    false
+
+  createModal: =>
+    @modal ||= @$el.find(".modal").dialog
       title: "Select an Image."
       height: 800
       width: 1050
     view = new Linguazone.Views.FlickrSearch.Show(model: @model)
-    view.on "select", (url) =>
-      @selectImageAndClose(url)
-    $(".image-search").html(view.render().el)
-    false
+    view.on "select", (url) => @selectImageAndClose(url)
+    @modal.find(".image-search").html(view.render().el)
 
   showUploads: =>
     uploader = @$el.find(".uploader").fineUploader
@@ -57,9 +66,20 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
     u = @$el.find(".input")
     u.html("")
     $image = $("<img>", { src: image_url })
+
+    # need to ||= because $.fn.dialog removes the modal from the element.
+    @$preview ||= @$el.find(".preview")
+    @$preview.find(".image-div").append($image.clone())
+    @$preview.show()
+
+    $image.on "click", @selectNewImage
     u.append $image
     u.addClass("thumb")
+
     @model.set("content", image_url)
+
+  selectNewImage: =>
+    @showModal()
 
   isImage: (content) =>
      regex = /(.+\/.*\.(?:|gif|jpeg|png|jpg))/

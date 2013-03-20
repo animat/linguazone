@@ -31,14 +31,6 @@ class Linguazone.Views.FlickrSearch.Show extends Backbone.Marionette.ItemView
         view = new Linguazone.Views.FlickrImage model: photo
         $results.append view.render().el
 
-    catalog_photos = new Linguazone.Models.CatalogPhotoCollection(query)
-    catalog_photos.fetch().success =>
-      $results = @$el.find(".results")
-      $results.html("")
-      _.each photos.models, (photo) =>
-        photo.on("select", => @select(photo))
-        view = new Linguazone.Views.FlickrImage model: photo
-        $results.append view.render().el        
 
 class Linguazone.Views.FlickrImage extends Backbone.Marionette.ItemView
   template: """
