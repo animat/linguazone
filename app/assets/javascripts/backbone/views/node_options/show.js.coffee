@@ -4,7 +4,10 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
     <div class="input">
       <input type="text" value="<%= get("content") %>">
     </div>
+    <div class="image">
+    </div>
 
+    <a href="#" class="text-link">text</a>
     <a href="#" class="image-link">image</a>
 
     <div class="modal" style="display:none;">
@@ -21,15 +24,27 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
     <div class="image-search"></div>
   """
 
+  # HACK:
+  updateContent: =>
+    if @model and @model.get("content") and @model.get("content").content
+      @model.set("content", @model.get("content").content)
+
   events:
     "click .image-link"   : 'showModal'
+    "click .text-link"    : 'showInput'
     ".image-link click"   : 'showModal'
     'change .input input' : 'changeValue'
 
   changeValue: (e) =>
     @model.set("content", $(e.currentTarget).val())
 
+  showInput: =>
+    @$el.find(".input").show()
+    @$el.find(".image").hide()
+
+
   showModal: =>
+    @$el.find(".input").hide()
     @createModal() unless @modal
     @modal.show().dialog("open")
     @$preview ||= @modal.find(".preview")
@@ -58,19 +73,21 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
       @selectImageAndClose(image_url)
 
   selectImageAndClose: (image_url) =>
-      @modal.dialog("close")
-      @showImage(image_url)
-      @$el.find("a").hide()
+    @updateContent()
+    @modal.dialog("close")
+    @showImage(image_url)
 
   showImage: (image_url) =>
-    u = @$el.find(".input")
+    @$el.find(".input").hide()
+    u = @$el.find(".image").show()
     u.html("")
     $image = $("<img>", { src: image_url })
 
     # need to ||= because $.fn.dialog removes the modal from the element.
-    @$preview ||= @$el.find(".preview")
-    @$preview.find(".image-div").append($image.clone())
-    @$preview.show()
+    #@$preview ||= @$el.find(".preview")
+    #@$preview.html("")
+    #@$preview.find(".image-div").append($image.clone())
+    #@$preview.show()
 
     $image.on "click", @selectNewImage
     u.append $image
@@ -86,13 +103,16 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
      content.match(regex)
 
   render: =>
+    @updateContent()
     @$el.html _.template(@template, @model)
     @showImage(@model.get("content")) if @isImage(@model.get("content"))
     @showUploads()
     this
 
   ui:
-    input: "input"
+    input:      "input"
+    image_link: "image-link"
+    text_link:  "text-link"
 
   val: -> @ui.input.val()
 

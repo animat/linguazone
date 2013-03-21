@@ -10,7 +10,7 @@ gem "declarative_authorization"
 gem "rexml-expansion-fix"
 gem "rabl"
 gem "whenever"
-gem 'paperclip', '2.3.6'
+gem 'paperclip'
 gem 'simple_form'
 gem 'dynamic_form'
 gem 'pg'

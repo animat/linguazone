@@ -416,7 +416,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-openid
   omniauth-twitter
-  paperclip (= 2.3.6)
+  paperclip
   pg
   pry-rails
   qqfileuploader

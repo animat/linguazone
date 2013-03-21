@@ -91,7 +91,7 @@ class TargetWordNode < GameDataNode
     return unless question.present?
 
     xml.node do
-      xml.question :content => self.question, :type => "text"
+      question.to_node_option("question").to_xml(xml)
       before_options(xml)
       if self.options.present?
         xml.options {
@@ -118,8 +118,8 @@ class OneToOneNode < TargetWordNode
   end
 
    def self.from_xml(node)
-    question = node.xpath(".//question").first["content"]
-    response = node.xpath(".//response").first["content"]
+    question  = NodeOption.for "question", node.xpath(".//question").first["content"]
+    response  = NodeOption.for "response", node.xpath(".//response").first["content"]
     options = []
     node.xpath(".//option").each do |option|
       options << option["content"]
@@ -138,6 +138,6 @@ class OneToOneNode < TargetWordNode
   protected
 
     def before_options(xml)
-      xml.response :content => self.response, :type => "text"
+      response.to_node_option("response").to_xml(xml)
     end
 end
