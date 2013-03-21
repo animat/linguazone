@@ -262,16 +262,16 @@ ActiveRecord::Schema.define(:version => 20130315184836) do
   end
 
   create_table "medias", :force => true do |t|
-    t.string   "name",              :limit => 50,                     :null => false
-    t.string   "descrip",           :limit => 75,                     :null => false
-    t.string   "path",              :limit => 120,                    :null => false
-    t.integer  "media_type_id",     :limit => 2,                      :null => false
-    t.integer  "media_category_id",                                   :null => false
-    t.boolean  "published",                        :default => false, :null => false
-    t.boolean  "pending",                          :default => false, :null => false
-    t.string   "assigned_to",       :limit => 50,                     :null => false
-    t.text     "notes",                                               :null => false
-    t.integer  "used_count",                                          :null => false
+    t.string   "name",               :limit => 50,                     :null => false
+    t.string   "descrip",            :limit => 75,                     :null => false
+    t.string   "path",               :limit => 120,                    :null => false
+    t.integer  "media_type_id",      :limit => 2,                      :null => false
+    t.integer  "media_category_id",                                    :null => false
+    t.boolean  "published",                         :default => false, :null => false
+    t.boolean  "pending",                           :default => false, :null => false
+    t.string   "assigned_to",        :limit => 50,                     :null => false
+    t.text     "notes",                                                :null => false
+    t.integer  "used_count",                                           :null => false
     t.datetime "date_added"
     t.string   "fla_file_name"
     t.string   "fla_content_type"
@@ -281,6 +281,11 @@ ActiveRecord::Schema.define(:version => 20130315184836) do
     t.string   "swf_content_type"
     t.integer  "swf_file_size"
     t.datetime "swf_updated_at"
+    t.string   "image_name"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "medias", ["name", "descrip"], :name => "name"

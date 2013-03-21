@@ -7,12 +7,27 @@ class Media < ActiveRecord::Base
 
   before_save :set_path_and_artist
 
+  has_attached_file :image, :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml",
+                    :bucket  => "linguazone", :s3_protocol => "http",
+                    :url     => ":s3_domain_url", :path => "media/image/catalog/:name.:extension",
+                    :styles  => { :large => "1040", :thumb => { :geometry => "100x75" } }
+
+
   has_attached_file :fla, :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml",
                     :bucket => "linguazone", :s3_protocol => "http",
                     :url => ":s3_domain_url", :path => "media/image/:media_category/:name.:extension"
+
   has_attached_file :swf, :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml",
                     :bucket => "linguazone", :s3_protocol => "http",
                     :url => ":s3_domain_url", :path => "media/image/:media_category/:name.:extension"
+
+  def as_json(options={})
+    {
+      :photo_url     => self.image.url,
+      :thumbnail_url => self.image.url(:thumb),
+      :title         => self.name
+    }
+  end
 
   # validates_attachment_size :swf, :less_than => 40.kilobytes
   # validates_attachment_content_type :swf, :content_type => "application/x-shockwave-flash"
@@ -21,6 +36,6 @@ class Media < ActiveRecord::Base
   # TODO: Implement these validations
 
   def set_path_and_artist
-    self.path = "media/image/"+media_category.name+"/"
+    self.path = "media/image/#{media_category.name}"
   end
 end

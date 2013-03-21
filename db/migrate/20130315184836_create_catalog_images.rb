@@ -1,9 +1,9 @@
 class CreateCatalogImages < ActiveRecord::Migration
   def change
-    add_column :medias, :string,   :name
-    add_column :medias, :string,   :image_file_name
-    add_column :medias, :string,   :image_content_type
-    add_column :medias, :integer,  :image_file_size
-    add_column :medias, :datetime, :image_updated_at
+    add_column :medias, :image_name,         :string
+    add_column :medias, :image_file_name,    :string
+    add_column :medias, :image_content_type, :string
+    add_column :medias, :image_file_size,    :integer
+    add_column :medias, :image_updated_at,   :datetime
   end
 end
