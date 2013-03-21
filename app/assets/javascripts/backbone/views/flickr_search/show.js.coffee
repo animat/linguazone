@@ -23,8 +23,9 @@ class Linguazone.Views.FlickrSearch.Show extends Backbone.Marionette.ItemView
   loadResults: =>
     query = @$el.find("input").val()
     photos = new Linguazone.Models.FlickrPhotoCollection(query)
+    $results = @$el.find(".results")
+    $results.html("<img src='/assets/spinner.gif' alt='loading' title='loading'/>")
     photos.fetch().success =>
-      $results = @$el.find(".results")
       $results.html("")
       _.each photos.models, (photo) =>
         photo.on("select", => @select(photo))
