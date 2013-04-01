@@ -43,6 +43,7 @@ Linguazone::Application.routes.draw do
     end
   end
   match '/auth/:provider/callback' => 'authentications#create'
+  match '/media/images' => 'media#images'
 
   resources :schools do
     collection do

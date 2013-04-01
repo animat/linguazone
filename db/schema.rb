@@ -265,13 +265,13 @@ ActiveRecord::Schema.define(:version => 20130315184836) do
     t.string   "name",               :limit => 50,                     :null => false
     t.string   "descrip",            :limit => 75,                     :null => false
     t.string   "path",               :limit => 120,                    :null => false
-    t.integer  "media_type_id",      :limit => 2,                      :null => false
+    t.integer  "media_type_id"
     t.integer  "media_category_id",                                    :null => false
     t.boolean  "published",                         :default => false, :null => false
     t.boolean  "pending",                           :default => false, :null => false
-    t.string   "assigned_to",        :limit => 50,                     :null => false
+    t.string   "assigned_to"
     t.text     "notes",                                                :null => false
-    t.integer  "used_count",                                           :null => false
+    t.integer  "used_count",                        :default => 0,     :null => false
     t.datetime "date_added"
     t.string   "fla_file_name"
     t.string   "fla_content_type"

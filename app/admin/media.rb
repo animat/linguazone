@@ -3,6 +3,8 @@ ActiveAdmin.register Media do
     f.inputs "Media" do
       f.input :media_category
       f.input :name
+      f.input :descrip
+      f.input :keywords
       f.input :image, :hint => f.template.image_tag(f.object.image.url(:thumb))
     end
     f.buttons

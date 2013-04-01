@@ -22,15 +22,34 @@ class Linguazone.Views.FlickrSearch.Show extends Backbone.Marionette.ItemView
 
   loadResults: =>
     query = @$el.find("input").val()
+    @$results ||= @$el.find(".results")
+    @$results.html("<img src='/assets/spinner.gif' alt='loading' title='loading' class='spinner'/>")
+    @loadFlickrResults(query)
+    @loadMediaResults(query)
+
+  loadMediaResults: (query) =>
     photos = new Linguazone.Models.FlickrPhotoCollection(query)
-    $results = @$el.find(".results")
-    $results.html("<img src='/assets/spinner.gif' alt='loading' title='loading'/>")
+    photos.url = "/media/images?q=#{query}"
     photos.fetch().success =>
-      $results.html("")
+      @$results.find(".spinner").remove()
+      @$results.append("<hr/>")
+      @$results.append("<h1>LinguaZone Results</h1>")
       _.each photos.models, (photo) =>
         photo.on("select", => @select(photo))
         view = new Linguazone.Views.FlickrImage model: photo
-        $results.append view.render().el
+        @$results.append view.render().el
+
+  loadFlickrResults: (query) =>
+    photos = new Linguazone.Models.FlickrPhotoCollection(query)
+    photos.fetch().success =>
+      @$results.find(".spinner").remove()
+      @$results.append("<hr/>")
+      @$results.append("<h1>Flickr Results</h1>")
+      _.each photos.models, (photo) =>
+        photo.on("select", => @select(photo))
+        view = new Linguazone.Views.FlickrImage model: photo
+        @$results.append view.render().el
+
 
 
 class Linguazone.Views.FlickrImage extends Backbone.Marionette.ItemView

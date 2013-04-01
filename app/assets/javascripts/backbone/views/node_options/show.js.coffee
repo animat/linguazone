@@ -42,7 +42,6 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
     @$el.find(".input").show()
     @$el.find(".image").hide()
 
-
   showModal: =>
     @$el.find(".input").hide()
     @createModal() unless @modal
