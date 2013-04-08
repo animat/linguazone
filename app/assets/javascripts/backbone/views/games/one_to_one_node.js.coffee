@@ -13,6 +13,10 @@ class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseVie
     <a href="#" class="delete" tabIndex="-1"><img src="/images/customizer/remove_btn.png" alt="X" /></a>
   </div>
   <div class="clearFloat"></div>
+  <div class='question-label'>
+  </div>
+  <div class='response-label'>
+  </div>
   """
 
   onRender: =>
@@ -22,6 +26,7 @@ class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseVie
 
     questionView = new Linguazone.Views.Games.NodeOption
       model: question
+      node_options: @options.node_options?.question
 
     question.on "change", => @model.set("question", question.get("content"))
 
@@ -31,17 +36,13 @@ class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseVie
 
     responseView = new Linguazone.Views.Games.NodeOption
       model: response
+      node_options: @options.node_options?.response
 
     response.on "change", => @model.set("response", response.get("content"))
 
     @$el.find(".question").html questionView.render().el
     @$el.find(".response").html responseView.render().el
 
-    unless _.contains(@options.node_options.question, "image")
-      @$el.find(".question .image-link").hide()
-
-    unless _.contains(@options.node_options.response, "image")
-      @$el.find(".response .image-link").hide()
 
     #    @getQuestionRegion().show responseView
     #    @getResponseRegion().show questionView

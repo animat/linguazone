@@ -74,4 +74,5 @@ Linguazone.App.on "initialize:after", ->
 
     Linguazone.App.customizer.show(editView)
 
-$ -> Linguazone.App.start()
+$ ->
+  Linguazone.App.start()

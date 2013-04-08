@@ -10,6 +10,8 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
     <a href="#" class="text-link">text</a>
     <a href="#" class="image-link">image</a>
 
+    <div class="instruction-label"></div>
+
     <div class="modal" style="display:none;">
       <div class="preview" style="display:none">
         <h3>Change Image</h3>
@@ -94,8 +96,7 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
 
     @model.set("content", image_url)
 
-  selectNewImage: =>
-    @showModal()
+  selectNewImage: => @showModal()
 
   isImage: (content) =>
      regex = /(.+\/.*\.(?:|gif|jpeg|png|jpg))/
@@ -106,7 +107,19 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
     @$el.html _.template(@template, @model)
     @showImage(@model.get("content")) if @isImage(@model.get("content"))
     @showUploads()
+    @useOptions()
     this
+
+  useOptions: =>
+    console.log 'using options', @options.node_options
+    return unless @options.node_options #HACK WHY????
+    unless _.contains(@options.node_options.types, "image")
+      @$el.find(".image-link").hide()
+
+    unless _.contains(@options.node_options.types, "text")
+      @$el.find(".text-link").hide()
+
+    @$el.find(".instruction-label").text @options.node_options.prompt
 
   ui:
     input:      "input"
