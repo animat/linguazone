@@ -34,10 +34,14 @@ class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseVie
 
     response.on "change", => @model.set("response", response.get("content"))
 
-
-
     @$el.find(".question").html questionView.render().el
     @$el.find(".response").html responseView.render().el
+
+    unless _.contains(@options.node_options.question, "image")
+      @$el.find(".question .image-link").hide()
+
+    unless _.contains(@options.node_options.response, "image")
+      @$el.find(".response .image-link").hide()
 
     #    @getQuestionRegion().show responseView
     #    @getResponseRegion().show questionView

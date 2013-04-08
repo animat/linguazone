@@ -41,8 +41,11 @@ Linguazone.App.on "initialize:after", ->
     $(this).parent(".activity").find(".activity_details").show()
     $(this).hide()
     activity_id = $(this).data("id")
+    options = $(this).data("node-options")
+    options = JSON.parse options
 
     view = new Linguazone.Views.Games.NewView
+      options:     options
       activity_id: activity_id
       game_type:   $(this).data("gameType")
       language_id: QueryString.language

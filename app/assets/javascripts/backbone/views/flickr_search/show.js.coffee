@@ -50,8 +50,6 @@ class Linguazone.Views.FlickrSearch.Show extends Backbone.Marionette.ItemView
         view = new Linguazone.Views.FlickrImage model: photo
         @$results.append view.render().el
 
-
-
 class Linguazone.Views.FlickrImage extends Backbone.Marionette.ItemView
   template: """
   <div class="small-thumb">

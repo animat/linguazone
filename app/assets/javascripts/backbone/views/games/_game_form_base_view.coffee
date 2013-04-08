@@ -36,6 +36,7 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
     $nodeDiv.html("")
     _.each @model.get("nodes").models, (node) =>
       view = new Linguazone.Views.Games[@model.get("game_type")]
+        node_options: @options.options
         node: node
       view.on "remove", =>
         @model.get("nodes").remove(node)
