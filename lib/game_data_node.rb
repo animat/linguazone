@@ -9,6 +9,14 @@ class GameDataNode
   def self.from(node, type)
     const_get("#{type}Node").from_xml node
   end
+
+  def self.get_content(node, type)
+    options = []
+    node.xpath(".//#{type}").each do |n|
+      options << n["content"]
+    end
+    options.length > 1 ? options : options.first
+  end
 end
 
 class SingleWordMatchNode < GameDataNode
@@ -109,6 +117,22 @@ class TargetWordNode < GameDataNode
     end
 end
 
+class MultipleAnswerNode < GameDataNode
+  attr_accessor :question, :responses
+
+  def initialize(question, responses)
+    @responses = responses
+    @question= question
+  end
+
+  def self.from_xml(node)
+    question  = NodeOption.for "question", get_content(node, "question")
+    responses = [1, 2, 3]
+    self.new(question, responses)
+  end
+end
+
+
 class OneToOneNode < TargetWordNode
   attr_accessor :response
 
@@ -118,8 +142,8 @@ class OneToOneNode < TargetWordNode
   end
 
    def self.from_xml(node)
-    question  = NodeOption.for "question", node.xpath(".//question").first["content"]
-    response  = NodeOption.for "response", node.xpath(".//response").first["content"]
+    question  = NodeOption.for "question", get_content(node, "question")
+    response  = NodeOption.for "response", get_content(node, "response")
     options = []
     node.xpath(".//option").each do |option|
       options << option["content"]

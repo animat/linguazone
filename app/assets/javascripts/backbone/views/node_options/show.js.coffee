@@ -1,40 +1,32 @@
 #= require ../flickr_search/show
 class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
-  template: """
-    <div class="input">
-      <input type="text" value="<%= get("content") %>">
-    </div>
-    <div class="image">
-    </div>
+  views: []
 
-    <a href="#" class="text-link">text</a>
+  template: """
+    <div class="input"></div>
+
+    add: <a href="#" class="text-link">text</a>
     <a href="#" class="image-link">image</a>
 
     <div class="instruction-label"></div>
-
-    <div class="modal" style="display:none;">
-      <div class="preview" style="display:none">
-        <h3>Change Image</h3>
-        <div class="image-div"></div>
-      </div>
-
-      <div class="upload">
-      <h3>Upload An Image</h3>
-      <div class="uploader">Select Files...</div>
-    </div>
-    <p/>
-    <div class="image-search"></div>
+    <a href="#">add correct response</a>
   """
 
-  # HACK:
+  ui:
+    input:      "input"
+    image_link: "image-link"
+    text_link:  "text-link"
+
   updateContent: =>
     if @model and @model.get("content") and @model.get("content").content
       @model.set("content", @model.get("content").content)
 
   events:
-    "click .image-link"   : 'showModal'
-    "click .text-link"    : 'showInput'
-    ".image-link click"   : 'showModal'
+    #TODO: add new view here
+    "click .image-link"   : 'showImage'
+    ".image-link click"   : 'showImage'
+
+    "click .text-link"    : 'showText'
     'change .input input' : 'changeValue'
 
   changeValue: (e) =>
@@ -44,75 +36,48 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
     @$el.find(".input").show()
     @$el.find(".image").hide()
 
-  showModal: =>
-    @$el.find(".input").hide()
-    @createModal() unless @modal
-    @modal.show().dialog("open")
-    @$preview ||= @modal.find(".preview")
-    false
-
-  createModal: =>
-    @modal ||= @$el.find(".modal").dialog
-      title: "Select an Image."
-      height: 800
-      width: 1050
-    view = new Linguazone.Views.FlickrSearch.Show(model: @model)
-    view.on "select", (url) => @selectImageAndClose(url)
-    @modal.find(".image-search").html(view.render().el)
-
-  showUploads: =>
-    uploader = @$el.find(".uploader").fineUploader
-      request:
-        endpoint: "/images"
-      text:
-        uploadButton: 'Select Files'
-      validation:
-        allowedExtensions: ['jpeg', 'jpg', 'png', 'gif'],
-        sizeLimit: 1024000
-
-    uploader.on "complete", (event, id, fileName, responseJSON)  =>
-      @selectImageAndClose(image_url)
-
-  selectImageAndClose: (image_url) =>
-    @updateContent()
-    @modal.dialog("close")
-    @showImage(image_url)
-
-  showImage: (image_url) =>
-    @$el.find(".input").hide()
-    u = @$el.find(".image").show()
-    u.html("")
-    $image = $("<img>", { src: image_url })
-
-    # need to ||= because $.fn.dialog removes the modal from the element.
-    #@$preview ||= @$el.find(".preview")
-    #@$preview.html("")
-    #@$preview.find(".image-div").append($image.clone())
-    #@$preview.show()
-
-    $image.on "click", @selectNewImage
-    u.append $image
-    u.addClass("thumb")
-
-    @model.set("content", image_url)
-
-  selectNewImage: => @showModal()
-
   isImage: (content) =>
      regex = /(.+\/.*\.(?:|gif|jpeg|png|jpg))/
      content.match(regex)
 
+  showText: (content) =>
+    @removeEmptyViews()
+    content = null unless typeof content is "string"
+    view = new Linguazone.Views.Games.TextContent(content: content, model: @model)
+    @views.push view.render()
+    @$el.find(".input").append(view.el)
+
+  showImage: (image_url) =>
+    @removeEmptyViews()
+    image_url = null unless typeof image_url is "string"
+    view = new Linguazone.Views.Games.ImageContent(content: image_url, model: @model)
+    @views.push view.render()
+    @$el.find(".input").append(view.el)
+
+  removeEmptyViews: ->
+    emptyView = _.findWhere(@views, (v) -> not v.populated)
+    window.views = @views
+    console.log "EMPTY VIEW", emptyView
+    emptyView.remove() if emptyView
+
+  showInput: =>
+    if @isImage(@model.get("content"))
+      @showImage(@model.get("content"))
+    else
+      @showText(@model.get("content"))
+
   render: =>
     @updateContent()
     @$el.html _.template(@template, @model)
-    @showImage(@model.get("content")) if @isImage(@model.get("content"))
-    @showUploads()
+    @showInput()
     @useOptions()
     this
 
+  toggleAddMoreLink: =>
+
   useOptions: =>
-    console.log 'using options', @options.node_options
-    return unless @options.node_options #HACK WHY????
+    return unless @options.node_options
+
     unless _.contains(@options.node_options.types, "image")
       @$el.find(".image-link").hide()
 
@@ -120,11 +85,3 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
       @$el.find(".text-link").hide()
 
     @$el.find(".instruction-label").text @options.node_options.prompt
-
-  ui:
-    input:      "input"
-    image_link: "image-link"
-    text_link:  "text-link"
-
-  val: -> @ui.input.val()
-

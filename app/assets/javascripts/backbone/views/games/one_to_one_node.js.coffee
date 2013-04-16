@@ -43,7 +43,6 @@ class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseVie
     @$el.find(".question").html questionView.render().el
     @$el.find(".response").html responseView.render().el
 
-
     #    @getQuestionRegion().show responseView
     #    @getResponseRegion().show questionView
     #

@@ -136,7 +136,7 @@ describe GameData do
         game_data.should_not be_nil
         game_data.nodes.length.should == 1
         node = game_data.nodes.first
-        node.question.should == "How are you?"
+        node.question.content.content.should == "How are you?"
         node.options.length.should == 3
         node.options.should include "Bad"
         node.options.should include "Fine"

@@ -45,28 +45,29 @@ group :production do
 end
 
 group :development, :cucumber, :test do
-  gem 'capybara-webkit', '0.12.0'
   gem 'spork',           '~> 0.9.0.rc9'
-  gem 'vcr'
   gem 'guard'
   gem 'guard-spork'
-  gem 'guard-rspec'
-  gem 'rack-test'
-  gem 'rspec-rails'
   gem "launchy"
   gem "database_cleaner"
   gem "ruby-debug", :platforms => [:mri_18]
   gem "ruby-debug19", :platforms => [:mri_19]
-  gem "factory_girl"
-  gem "factory_girl_rails", "1.1.0"
   gem 'pry-rails'
   gem 'mysql2'
   gem 'bullet'
   gem "jasmine-rails"
-  gem "guard-jasmine-headless-webkit"
 end
 
-group :test do
+group :test, :cucumber do
+  gem 'webmock'
+  gem 'vcr'
+  gem 'guard-rspec'
+  gem 'rack-test'
+  gem 'rspec-rails'
+  gem "factory_girl"
+  gem "factory_girl_rails", "1.1.0"
+  gem 'capybara-webkit', '0.12.0'
+  gem "guard-jasmine-headless-webkit"
   gem "cucumber-rails"
   gem "mocha"
   gem "capybara"

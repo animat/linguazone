@@ -1,19 +1,26 @@
+require 'lib/node_value'
+
 class NodeOption
-  attr_accessor :content, :type, :name
+  attr_accessor :content, :name
 
   def self.for(name, content)
-    self.new name, content, get_content_type(content)
+    self.new name, content
   end
 
-  def initialize(name, content, type="text")
-    @content = content
-    @type = type
+  def initialize(name, content)
+    create_values(content)
     @name = name
   end
 
   def to_xml(xml)
-    create_local_image_if_remote_url(content) if NodeOption.is_image?(content)
-    xml.send name, :content => @content, :type => @type
+    if @content.kind_of?(Array)
+      @content.each do |n|
+        n.to_xml(xml, name)
+      end
+    else
+      @content.to_xml(xml, name)
+    end
+
   end
 
   def to_s
@@ -26,23 +33,15 @@ class NodeOption
 
   private
 
-    def create_local_image_if_remote_url(url)
-      image = Image.new
-      image.image_url= url
-      image.save!
-      @content = image.image.url
-    end
-
-    def self.image_regex
-      /(.+\/.*\.(?:|gif|jpeg|png|jpg))/
-    end
-
-    def self.is_image?(value)
-      value.match image_regex
-    end
-
-    def self.get_content_type(value)
-      is_image?(value) ? "image" : "text"
+    def create_values(content)
+      if content.kind_of?(Array)
+        @content = []
+        content.each do |v|
+          @content << NodeValue.new(v)
+        end
+      else
+        @content = NodeValue.new(content)
+      end
     end
 end
 
