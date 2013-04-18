@@ -6,16 +6,16 @@
     <header></header>
     <body>
       <trans-unit id="001" resname="IDS_CONGRATS">
-        <source></source>
+        <source>Gratuliere! Du hast Ferris Wheel geschlagen!</source>
       </trans-unit>
-      <trans-unit id="002" resname="IDS_PLAY_AGAIN">
-        <source></source>
+      <trans-unit id="002" resname="IDS_INSTRUCTIONS">
+        <source>Drücke auf die Leertaste, wenn der richtige Buchstabe der entsprechenden Antwort im Rampenlicht steht. Du kannst die Pfeiltaste benutzen, um das Tempo des Rads zu kontrollieren.</source>
       </trans-unit>
-      <trans-unit id="003" resname="IDS_INSTRUCTIONS">
-        <source></source>
+      <trans-unit id="003" resname="IDS_PLAY_AGAIN">
+        <source>Nochmal?</source>
       </trans-unit>
       <trans-unit id="004" resname="IDS_PLAY_GAME">
-        <source></source>
+        <source>Los geht&apos;s!</source>
       </trans-unit>
     </body>
   </file>

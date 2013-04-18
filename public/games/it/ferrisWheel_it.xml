@@ -6,16 +6,16 @@
     <header></header>
     <body>
       <trans-unit id="001" resname="IDS_CONGRATS">
-        <source></source>
+        <source>Benissimo! Hai battuto la Ruota Panoramica!</source>
       </trans-unit>
-      <trans-unit id="002" resname="IDS_PLAY_AGAIN">
-        <source></source>
+      <trans-unit id="002" resname="IDS_INSTRUCTIONS">
+        <source>Fai lo spelling della risposta battendo lo spazio quando la risposta e&apos; illuminata. Usa la freccia per controllare la velocita` della Ruota Panoramica.</source>
       </trans-unit>
-      <trans-unit id="003" resname="IDS_INSTRUCTIONS">
-        <source></source>
+      <trans-unit id="003" resname="IDS_PLAY_AGAIN">
+        <source>Vuoi giocare ancora?</source>
       </trans-unit>
       <trans-unit id="004" resname="IDS_PLAY_GAME">
-        <source></source>
+        <source>Giochiamo!</source>
       </trans-unit>
     </body>
   </file>
