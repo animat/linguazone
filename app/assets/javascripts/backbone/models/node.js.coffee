@@ -16,6 +16,8 @@ class Linguazone.Models.DoubleWordMatchNode extends Linguazone.Models.Node
 
 class Linguazone.Models.TargetWordNode extends Linguazone.Models.Node
 
+class Linguazone.Models.MultipleAnswerNode extends Linguazone.Models.Node
+
 class Linguazone.Models.OneToOneNode extends Linguazone.Models.Node
   defaults:
     "question":  "",

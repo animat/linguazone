@@ -130,7 +130,8 @@ describe GameDataNode do
     it "handles the correct node" do
       node = MultipleAnswerNode.from_xml(Nokogiri::XML(xml))
       node.question.content.content.should == "How are you?"
-      node.responses.content.length.should == 3
+      node.response.content.content.should == "Fine"
+      node.options.length.should == 3
     end
   end
 

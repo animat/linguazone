@@ -42,7 +42,7 @@ Linguazone.App.on "initialize:after", ->
     $(this).hide()
     activity_id = $(this).data("id")
     options = $(this).data("node-options")
-    options = JSON.parse options
+    options = JSON.parse options unless typeof options == "object"
 
     view = new Linguazone.Views.Games.NewView
       options:     options

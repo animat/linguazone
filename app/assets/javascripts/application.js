@@ -32,3 +32,32 @@ var QueryString = function() {
 
   return queryObj;
 }();
+
+$.fn.wizardify = function(el) {
+  var $el = $(this);
+  var step = 1;
+  var previousStep;
+
+  if ($el.data("step")) {
+    step = step.data("step");
+  }
+
+  $el.find(".step").hide();
+
+  var showCurrentStep = function() {
+    if(previousStep) $el.find(".step-" + previousStep).hide();
+    $el.find(".step-" + step).fadeIn();
+  }
+
+  $el.find(".previous").click(function() {
+    previousStep = step--;
+    showCurrentStep();
+  });
+
+  $el.find(".next").click(function() {
+    previousStep = step++;
+    showCurrentStep();
+  });
+
+  showCurrentStep();
+};

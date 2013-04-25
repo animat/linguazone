@@ -118,17 +118,26 @@ class TargetWordNode < GameDataNode
 end
 
 class MultipleAnswerNode < GameDataNode
-  attr_accessor :question, :responses
+  attr_accessor :question, :response, :options
 
-  def initialize(question, responses)
-    @responses = responses
-    @question= question
+  def initialize(question, response, options)
+    @response = response
+    @question = question
+    @options  = options
+  end
+
+  def self.from_hash(hash)
+    new hash[:question], hash[:response]
   end
 
   def self.from_xml(node)
-    question  = NodeOption.for "question", get_content(node, "question")
-    responses = [1, 2, 3]
-    self.new(question, responses)
+    question = NodeOption.for "question", get_content(node, "question")
+    response = NodeOption.for "response", get_content(node, "response")
+    options  = []
+    node.xpath(".//option").each do |option|
+      options << get_content(option, "option")
+    end
+    self.new(question, response, options)
   end
 end
 
