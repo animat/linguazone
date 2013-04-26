@@ -1,13 +1,16 @@
 Linguazone.Views.Games ||= {}
 
 class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemView
+  className: "game-form backbone"
+
   createNode: =>
-    @model.get("nodes").add(new Linguazone.Models["#{@model.get("game_type")}Node"] )
+    node = new Linguazone.Models["#{@model.get("game_type")}Node"]
+    @model.get("nodes").add node
+    return node
 
   addNode: (e) =>
     e.preventDefault()
-    @createNode()
-    @render()
+    @addNodeView @createNode(), @model.get("nodes").length - 1 # 0 index
 
   ui:
     form: "form"
@@ -32,12 +35,16 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
   setOptionLists: => @model.set("option_list", Linguazone.OptionLists())
 
   onRender: =>
-    $nodeDiv = $(@el).find("#nodes")
-    $nodeDiv.html("")
-    _.each @model.get("nodes").models, (node) =>
-      view = new Linguazone.Views.Games[@model.get("game_type")]
-        node_options: @options.options
-        node: node
-      view.on "remove", =>
-        @model.get("nodes").remove(node)
-      $nodeDiv.append(view.render().el)
+    @$nodeDiv = $(@el).find("#nodes")
+    @$nodeDiv.html("")
+    _.each @model.get("nodes").models, @addNodeView
+
+  addNodeView: (node, index) =>
+    view = new Linguazone.Views.Games[@model.get("game_type")]
+      node_options: @options.options
+      node: node
+
+    view.$el.addClass("node-#{index}")
+
+    view.on "remove", => @model.get("nodes").remove(node)
+    @$nodeDiv.append(view.render().el)

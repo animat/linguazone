@@ -209,6 +209,15 @@ end
 
 Then /^show me the page$/ do
   save_and_open_page
+  if Capybara.current_driver == :webkit
+    p '-|' * 44
+    p "Errors:"
+    p page.driver.error_messages
+    p '.' * 88
+    p "Messages:"
+    p page.driver.console_messages
+    p '-|' * 44
+  end
 end
 
 Then "wait a second" do

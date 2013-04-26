@@ -1,6 +1,7 @@
 #= require ../flickr_search/show
 class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
   views: []
+  className: "nodeOption backbone"
 
   template: """
     <div class="input"></div>
@@ -9,6 +10,7 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
     <a href="#" class="image-link">image</a>
 
     <div class="instruction-label"></div>
+
     <a href="#">add correct response</a>
   """
 
@@ -56,15 +58,13 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
 
   removeEmptyViews: ->
     emptyView = _.findWhere(@views, (v) -> not v.populated)
-    window.views = @views
-    console.log "EMPTY VIEW", emptyView
     emptyView.remove() if emptyView
 
   showInput: =>
-    if @isImage(@model.get("content"))
-      @showImage(@model.get("content"))
+    if @model.get("content").type == "image"
+      @showImage(@model.get("content").content)
     else
-      @showText(@model.get("content"))
+      @showText(@model.get("content").content)
 
   render: =>
     @updateContent()

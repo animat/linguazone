@@ -38,9 +38,9 @@ gem 'fine-uploader-rails', '~> 3.2'
 gem "qqfileuploader"
 
 gem "rack-timeout"
+gem "ejs"
 
 group :production do
-  gem "therubyracer", '~> 0.9.4'
   gem "SystemTimer", :require => "system_timer", :platforms => :ruby_18
 end
 
@@ -54,7 +54,6 @@ group :development, :cucumber, :test do
   gem "ruby-debug19", :platforms => [:mri_19]
   gem 'pry-rails'
   gem 'mysql2'
-  gem 'bullet'
   gem "jasmine-rails"
 end
 
@@ -68,7 +67,7 @@ group :test, :cucumber do
   gem "factory_girl_rails", "1.1.0"
   gem 'capybara-webkit', '0.12.0'
   gem "guard-jasmine-headless-webkit"
-  gem "cucumber-rails"
+  gem "cucumber-rails", :require => false
   gem "mocha"
   gem "capybara"
   gem "shoulda"

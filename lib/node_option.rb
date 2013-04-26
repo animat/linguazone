@@ -20,7 +20,6 @@ class NodeOption
     else
       @content.to_xml(xml, name)
     end
-
   end
 
   def to_s

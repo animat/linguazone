@@ -8,9 +8,8 @@
       <h2><%= activity.name %></h2>
       <div class="icons">
         <%# TODO: Game icons can be a link to a lightbox that will play a video preview of that game %>
-        <a data-game-type="<%= activity.game_type %>" data-id="<%=activity.id %>" href="#"><%= image_tag("/games/#{activity.swf}/display/icon.jpg", :alt => "Customize #{activity.name}") %></a>
+        <a data-node-options='<%= activity.node_options %>' data-game-type="<%= activity.game_type %>" data-id="<%=activity.id %>" data-swf="<%= activity.swf %>" href="#">Customize <%= activity.name %></a>
       </div>
-      <a data-node-options='<%= activity.node_options %>' data-game-type="<%= activity.game_type %>" data-id="<%=activity.id %>" data-swf="<%= activity.swf %>" href="#">Customize <%= activity.name %></a>
 			<div class="activity_details <%= activity.swf %>" style="display: none;">
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 			</div>

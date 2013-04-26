@@ -36,6 +36,7 @@ class Linguazone.Views.Games.MultipleAnswer extends Linguazone.Views.Games.NodeB
 
   updateModel: (e) =>
     super
+    $target = $(e.target)
     @setOptions() if $target.attr("name") is "response"
 
   setOptions: =>

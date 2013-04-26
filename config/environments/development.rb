@@ -15,5 +15,3 @@ end
 silence_warnings do
   IRB = Pry
 end
-
-

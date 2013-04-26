@@ -16,6 +16,10 @@ class GameDataController < ApplicationController
     game = Game.new :created_by => current_user, :updated_by => current_user
     game.activity = Activity.find params[:activity_id]
 
+    Rails.logger.info "*" * 88
+    Rails.logger.info "INSIDE CREATE"
+    Rails.logger.info "*" * 88
+
     game_data = get_game_data(game)
 
     # TODO: get real description
@@ -23,15 +27,17 @@ class GameDataController < ApplicationController
 
     # TODO: the language id was not being passed along by the customizer; @CA hardcoded in the language ID for now
     #game.language = Language.find params[:language_id]
-    game.language = Language.find(2)
+    game.language = Language.first
+
     game.template = Template.create(:activity => game.activity, :language_id => game.language,
                               :description => "", :name => "", :admin => 0, :user_id => game.updated_by,
                               :xml => game_data.template_data_xml)
-    game.xml = game_data.to_xml
-    game.save!
+    Rails.logger.info game.xml = game_data.to_xml
+    Rails.logger.info game.save!
 
     #TODO: is this the right thing todo here?
-    AvailableGame.create(:user_id => current_user.id, :game => game, :course_id => 0)
+    Rails.logger.info AvailableGame.create(:user_id => current_user.id, :game => game, :course_id => 0)
+    Rails.logger.info "*" * 88
     head :no_content
   end
 

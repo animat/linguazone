@@ -3,20 +3,17 @@ Linguazone.Views.Games ||= {}
 class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseView
   game_type: "OneToOne",
   template: """
-  <div class="question">
-  </div>
-
-  <div class="response">
-  </div>
+  <div class="question"></div>
+  <div class="response"></div>
 
   <div class="controls_wrapper">
     <a href="#" class="delete" tabIndex="-1"><img src="/images/customizer/remove_btn.png" alt="X" /></a>
   </div>
+
   <div class="clearFloat"></div>
-  <div class='question-label'>
-  </div>
-  <div class='response-label'>
-  </div>
+
+  <div class='question-label'></div>
+  <div class='response-label'></div>
   """
 
   onRender: =>

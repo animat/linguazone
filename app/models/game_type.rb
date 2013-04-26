@@ -42,6 +42,13 @@ class GameType
     rv
   end
 
+  def self.multiple_answer
+    rv = self.new
+    rv.questions << Question.new("Question")
+    rv.questions << Question.new("Answer")
+    rv
+  end
+
   def self.double_word_match
     rv = self.new
     rv.lists = [

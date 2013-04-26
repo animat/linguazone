@@ -1,5 +1,6 @@
 class Linguazone.Views.Games.NodeValue extends Backbone.View
   populated: false
+  className: "nodeValue backbone"
 
   constructor: (options) ->
     @content = options.content

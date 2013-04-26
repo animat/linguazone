@@ -1,9 +1,8 @@
 Linguazone.Views.Games ||= {}
 
 class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
+  className: "node backbone"
   events:
-    "change input"          : "updateModel",
-    "change select"         : "updateModel",
     "click .delete"         : "delete",
     "focus .question input" : "showQuestion"
     "blur .question input"  : "hideQuestion"
@@ -22,10 +21,6 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
     @trigger("remove")
     @$el.remove()
     @options.node = undefined
-
-  updateModel: (e) =>
-    $target = $(e.currentTarget)
-    @options.node.set $target.attr("name"), $target.val()
 
   render: =>
     @options.node ||= new Linguazone.Models[@game_type]

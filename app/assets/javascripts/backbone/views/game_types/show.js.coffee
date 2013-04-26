@@ -1,7 +1,7 @@
 Linguazone.Views.GameType ||= {}
 
 class Linguazone.Views.GameType extends Backbone.View
-  className: "game-type"
+  className: "game-type backbone"
   # TODO: The following is in the wrong place... Each input element in the example should have a label and a hint
   # 				Where can this be changed? I'd also like to have the example node have some different UI and UX in other ways
   template: """
@@ -17,4 +17,5 @@ class Linguazone.Views.GameType extends Backbone.View
   render: =>
     @$el.html(_.template(@template))
     @$el.append(@nodeView.render().el)
+    @nodeView.$el.addClass("node-example")
     @

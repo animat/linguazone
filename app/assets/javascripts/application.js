@@ -15,8 +15,8 @@
 //= require backbone-min
 //= require backbone.marionette.min
 //= require fineuploader.jquery
-// get querystring as an array split on "&"
 
+// get querystring as an array split on "&"
 var QueryString = function() {
   var querystring = location.search.replace( '?', '' ).split( '&' );
 

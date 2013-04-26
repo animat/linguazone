@@ -82,6 +82,10 @@ end
 class TargetWordNode < GameDataNode
   attr_accessor :question, :options
 
+  def self.from_hash(hash)
+    new hash[:question]
+  end
+
   def initialize(question, options = [])
     @question, @options = question, options
   end
