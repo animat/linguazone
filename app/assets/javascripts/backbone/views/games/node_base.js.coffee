@@ -2,6 +2,7 @@ Linguazone.Views.Games ||= {}
 
 class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
   className: "node backbone"
+
   events:
     "click .delete"         : "delete",
     "focus .question input" : "showQuestion"

@@ -131,7 +131,10 @@ class MultipleAnswerNode < GameDataNode
   end
 
   def self.from_hash(hash)
-    new hash[:question], hash[:response]
+    if hash["options"].class == String
+      hash["options"] = hash["options"].split(",")
+    end
+    new hash[:question], hash[:response], hash["options"]
   end
 
   def self.from_xml(node)
@@ -142,6 +145,16 @@ class MultipleAnswerNode < GameDataNode
       options << get_content(option, "option")
     end
     self.new(question, response, options)
+  end
+
+  def to_xml(xml)
+    question.to_node_option("question").to_xml(xml)
+    response.to_node_option("response").to_xml(xml)
+    xml.options {
+      self.options.each do |option|
+        xml.option :content => option, :type => "text"
+      end
+    }
   end
 end
 

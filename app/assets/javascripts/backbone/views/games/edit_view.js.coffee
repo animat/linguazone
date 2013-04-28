@@ -8,4 +8,3 @@ class Linguazone.Views.Games.EditView extends Linguazone.Views.Games.GameFormBas
 
   constructor: (options) ->
     super(options)
-    @model.bind "change", @render
