@@ -61,7 +61,6 @@ describe GameData do
       before { game_data.add_node(node) }
 
       it "is valid xml" do
-        pending
         xml = game_data.to_xml
       end
     end
