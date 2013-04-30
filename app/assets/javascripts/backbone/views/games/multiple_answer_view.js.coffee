@@ -46,10 +46,6 @@ class Linguazone.Views.Games.MultipleAnswer extends Linguazone.Views.Games.NodeB
     @optionList.on("wordlist:update", @updateWordList)
     @$el.wizardify()
 
-  updateModel: (e) =>
-    $target = $(e.target)
-    @model.set($target.attr("name"), $target.val())
-
   updateWordList: =>
     @$el.find("select.response").html("")
     _.each @optionList.collection().models, (word) =>

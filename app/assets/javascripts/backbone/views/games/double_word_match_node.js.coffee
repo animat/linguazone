@@ -62,15 +62,28 @@ class Linguazone.Views.Games.DoubleWordMatch extends Linguazone.Views.Games.Node
     Linguazone.Views.Games.Nodes.push(@)
     super
 
+  events:
+    "click .delete"          : "delete",
+    "focus .question input"  : "showQuestion"
+    "blur .question input"   : "hideQuestion"
+    "focus .response input"  : "showResponse"
+    "blur .response input"   : "hideResponse"
+    "change .rtarget"        : "updateModel"
+    "change .ltarget"        : "updateModel"
+    "change .question input" : "updateModel"
+
   game_type: "DoubleWordMatch",
 
   template: """
   <div class="no-results">
     <h3>Enter Some Words Before Continuing</h3>
   </div>
+
   <div style-"display:none" class="question lz_input">
-    <label>Question:</label>
-    <input type="text" name="question" value="<%= question %>"/>
+    <div class="question">
+      <label>Question:</label>
+      <input type="text" name="question" value="<%= question %>"/>
+    </div>
 
     <label>LTarget:</label>
     <select class="ltarget" name="ltarget">
@@ -82,8 +95,7 @@ class Linguazone.Views.Games.DoubleWordMatch extends Linguazone.Views.Games.Node
   </div>
   """
 
-  render: =>
-    super
+  onRender: =>
     Linguazone.App.vent.off "wordlist:update"
     Linguazone.App.vent.on "wordlist:update", @updateAllOptionLists
     @$ltarget = @$el.find(".ltarget")

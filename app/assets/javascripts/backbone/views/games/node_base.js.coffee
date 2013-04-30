@@ -29,6 +29,11 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
     @onRender() if @onRender
     this
 
+  updateModel: (e) =>
+    $target = $(e.target)
+    @model.set($target.attr("name"), $target.val())
+
+
   disable: =>
     @$el.find('.controls_wrapper').remove()
     @$el.find('input').attr("disabled", true)
