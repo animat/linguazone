@@ -25,6 +25,7 @@ When /^I move to the next step for node (\d+)$/ do |node_number|
 end
 
 Then "my game has been created" do
-  Game.count.should == 1
+  game = Game.last
+  game.should_not be_nil
+  game.game_data.nodes.length.should_not == 0
 end
-

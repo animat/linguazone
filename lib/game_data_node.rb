@@ -148,16 +148,17 @@ class MultipleAnswerNode < GameDataNode
   end
 
   def to_xml(xml)
-    question.to_node_option("question").to_xml(xml)
-    response.to_node_option("response").to_xml(xml)
-    xml.options {
-      self.options.each do |option|
-        xml.option :content => option, :type => "text"
-      end
-    }
+    xml.node do
+      question.to_node_option("question").to_xml(xml)
+      response.to_node_option("response").to_xml(xml)
+      xml.options {
+        self.options.each do |option|
+          xml.option :content => option, :type => "text"
+        end
+      }
+    end
   end
 end
-
 
 class OneToOneNode < TargetWordNode
   attr_accessor :response

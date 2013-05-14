@@ -33,7 +33,6 @@ Feature: Teacher creates custom games
     And there should be 1 "Leap Frog" Game
     When I follow "Edit"
     Then wait a second
-    Then show me the page
     Then I should see the answer "car"
 
 

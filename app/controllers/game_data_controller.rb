@@ -46,6 +46,9 @@ class GameDataController < ApplicationController
     def get_game_data(game)
       game_data = GameData.new(game.game_type)
       params[:nodes].each do |node_hash|
+        Rails.logger.info '(*)' * 44
+        Rails.logger.info node_hash
+        Rails.logger.info '(*)' * 44
         game_data.add_node(game_data.node_constant.from_hash node_hash)
       end
       add_option_lists_to(game_data)
