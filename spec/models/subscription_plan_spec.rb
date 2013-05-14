@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe SubscriptionPlan do
-  it "should create from factory" do
-    Factory(:subscription_plan)
+  before do
+    SubscriptionPlan.delete_all
   end
 
   describe ".trial" do

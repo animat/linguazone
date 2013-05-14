@@ -19,13 +19,13 @@ class Linguazone.Views.Games.TargetWord extends Linguazone.Views.Games.NodeBaseV
     question = new Linguazone.Models.NodeOption
       content: @model.get("question")
       name: "question"
+    console.log 'question', @model.get("question")
 
     questionView = new Linguazone.Views.Games.NodeOption
       model: question
       node_options: @options.node_options?.question
 
     question.on "change", =>
-      window.question = question
       @model.set("question", question.get("content"))
 
     @$el.find(".question").html questionView.render().el

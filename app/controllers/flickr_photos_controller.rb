@@ -1,4 +1,4 @@
-require 'lib/flickr_search'
+require './lib/flickr_search'
 
 class FlickrPhotosController < ApplicationController
   def index

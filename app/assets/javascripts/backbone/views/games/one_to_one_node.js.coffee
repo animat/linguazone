@@ -2,18 +2,19 @@ Linguazone.Views.Games ||= {}
 
 class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseView
   game_type: "OneToOne",
+
   template: """
-  <div class="question"></div>
-  <div class="response"></div>
+    <div class="question"></div>
+    <div class="response"></div>
 
-  <div class="controls_wrapper">
-    <a href="#" class="delete" tabIndex="-1"><img src="/images/customizer/remove_btn.png" alt="X" /></a>
-  </div>
+    <div class="controls_wrapper">
+      <a href="#" class="delete" tabIndex="-1"><img src="/images/customizer/remove_btn.png" alt="X" /></a>
+    </div>
 
-  <div class="clearFloat"></div>
+    <div class="clearFloat"></div>
 
-  <div class='question-label'></div>
-  <div class='response-label'></div>
+    <div class='question-label'></div>
+    <div class='response-label'></div>
   """
 
   onRender: =>
@@ -28,8 +29,8 @@ class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseVie
     question.on "change", => @model.set("question", question.get("content"))
 
     response = new Linguazone.Models.NodeOption
-        content: @model.get("response")
-        name: "response"
+      content: @model.get("response")
+      name: "response"
 
     responseView = new Linguazone.Views.Games.NodeOption
       model: response

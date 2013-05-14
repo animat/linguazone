@@ -67,12 +67,14 @@ Linguazone.App.on "initialize:after", ->
         view = new Linguazone.Views.Games.OptionListView({name: name, list: lists[name] })
         views.push view
         $("#option-lists").append(view.render().el)
+
       for view in views
         view.updateOptionList()
-    editView = new Linguazone.Views.Games.EditView
-      model: model
 
-    Linguazone.App.customizer.show(editView)
+      editView = new Linguazone.Views.Games.EditView
+        model: model
+
+      Linguazone.App.customizer.show(editView)
 
 $ ->
   Linguazone.App.start()

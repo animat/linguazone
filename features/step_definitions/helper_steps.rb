@@ -1,9 +1,3 @@
-require 'ruby-debug'
-
-When /^I debug$/ do
-  debugger; 1
-end
-
 Then /^"([^"]*)" should not be visible$/ do |arg1|
   find(:xpath, "//*[contains(.,'#{arg1}')]").should_not be_visible
 end

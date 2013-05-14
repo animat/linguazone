@@ -1,5 +1,5 @@
-require 'lib/game_data'
-require 'lib/template_data'
+require './lib/game_data'
+require './lib/template_data'
 
 class GameDataController < ApplicationController
   def update
@@ -29,9 +29,9 @@ class GameDataController < ApplicationController
     #game.language = Language.find params[:language_id]
     game.language = Language.first
 
-    game.template = Template.create(:activity => game.activity, :language_id => game.language,
-                              :description => "", :name => "", :admin => 0, :user_id => game.updated_by,
-                              :xml => game_data.template_data_xml)
+    game.template = Template.create(:user_id => current_user.id, :activity => game.activity, :language_id => game.language.id,
+                              :description => "", :name => "", :admin => 0, :xml => game_data.template_data_xml)
+
     Rails.logger.info game.xml = game_data.to_xml
     Rails.logger.info game.save!
 

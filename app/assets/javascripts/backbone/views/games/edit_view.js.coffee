@@ -5,6 +5,7 @@ class Linguazone.Views.Games.EditView extends Linguazone.Views.Games.GameFormBas
 
   events:
     "submit": "save"
+    "click .addNode": "addNode"
 
   constructor: (options) ->
-    super(options)
+    super

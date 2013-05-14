@@ -1,5 +1,9 @@
 require 'spec_helper'
 describe State do
+  before do
+    State.delete_all
+  end
+
   let(:international_state) { Factory(:state, :intl => true) }
   let(:national_state) { Factory(:state,      :intl => false) }
 

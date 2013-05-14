@@ -1,4 +1,4 @@
-require 'lib/flickr_search'
+require './lib/flickr_search'
 
 class CustomizeController < ApplicationController
   def new

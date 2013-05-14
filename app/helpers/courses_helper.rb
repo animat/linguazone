@@ -1,5 +1,4 @@
 module CoursesHelper
-  
   def is_showing_or_can_add_to(type, showing_items, course)
     unless showing_items.empty?
       true
@@ -26,5 +25,4 @@ module CoursesHelper
       end
     end
   end
-
 end

@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'lib/flickr_search'
+require './lib/flickr_search'
 
 describe FlickrSearch do
   describe "#search" do

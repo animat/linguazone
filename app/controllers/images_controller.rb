@@ -1,4 +1,4 @@
-require 'lib/temp_file'
+require './lib/temp_file'
 
 class ImagesController < ApplicationController
   def create

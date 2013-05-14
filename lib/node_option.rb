@@ -1,4 +1,4 @@
-require 'lib/node_value'
+require './lib/node_value'
 
 class NodeOption
   attr_accessor :content, :name

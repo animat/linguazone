@@ -40,9 +40,7 @@ module Linguazone
 
     # JOYENT DEPLOYMENT: Unpacked gems to vendor/gems, now adding this directory to load path
     #   followed tutorial at http://wiki.joyent.com/shared:kb:installing-rails
-    config.autoload_paths += Dir["#{Rails.root}/lib/**" "#{Rails.root}/vendor/gems/**"].map do |dir|
-      File.directory?(lib = "#{dir}/lib") ? lib : dir
-    end
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end
 

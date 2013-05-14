@@ -1,4 +1,4 @@
-require 'lib/game_data'
+require './lib/game_data'
 class Game < ActiveRecord::Base
   belongs_to :activity
   belongs_to :created_by, :class_name => 'User'

@@ -1,6 +1,6 @@
 require 'spec_helper'
-require 'lib/game_data'
-require 'lib/game_data_node'
+require './lib/game_data'
+require './lib/game_data_node'
 
 describe GameDataNode do
   describe SingleWordMatchNode do

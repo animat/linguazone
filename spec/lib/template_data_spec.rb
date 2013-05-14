@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'lib/template_data'
+require './lib/template_data'
 
 describe TemplateData do
   describe ".from_xml " do

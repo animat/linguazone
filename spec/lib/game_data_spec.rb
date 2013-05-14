@@ -1,6 +1,6 @@
 require 'spec_helper'
-require 'lib/game_data'
-require 'lib/game_data_node'
+require './lib/game_data'
+require './lib/game_data_node'
 
 describe GameData do
   context "Green Nodes" do
@@ -62,6 +62,47 @@ describe GameData do
 
       it "is valid xml" do
         xml = game_data.to_xml
+      end
+    end
+  end
+end
+
+describe GameData do
+  describe ".from" do
+    context "for blue games" do
+      let(:game) { Factory(:game, :xml => """
+<gamedata>
+    <node>
+      <question name='question' content='Here is question #1' type='text' />
+      <response name='response' content='The third option is CORRECT' type='text' />
+      <options>
+        <option name='option' content='This option is incorrect' type='text' />
+        <option name='option' content='Second option is incorrect' type='text' />
+        <option name='option' content='The third option is CORRECT' type='text' />
+        <option name='option' content='The last option is wrong' type='text' />
+      </options>
+    </node>
+
+    <node>
+      <question name='question' content='Here is question #2' type='text' />
+      <response name='response' content='Second option is CORRECT' type='text' />
+      <options>
+        <option name='option' content='This option is incorrect' type='text' />
+        <option name='option' content='Second option is CORRECT' type='text' />
+        <option name='option' content='The third option is incorrect' type='text' />
+        <option name='option' content='The last option is wrong' type='text' />
+      </options>
+    </node>
+ </gamedata>
+""", :template => Factory(:template, :xml => "<templatedata></templatedata>")) }
+
+      it "populates the nodes" do
+        game.stubs(:game_type => "MultipleAnswer")
+        game_data = GameData.from(game)
+        game_data.nodes.length.should == 2
+        game_data.nodes.first.question.content.content.should == 'Here is question #1'
+        game_data.nodes.first.response.content.content.should == "The third option is CORRECT"
+        game_data.nodes.first.options.length.should > 0
       end
     end
   end
