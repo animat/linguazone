@@ -91,7 +91,7 @@ class TargetWordNode < GameDataNode
   end
 
   def self.from_xml(node)
-    question = node.xpath(".//question").first["content"]
+    question  = NodeOption.for "question", get_content(node, "question")
     options = []
     node.xpath(".//option").each do |option|
       options << option["content"]

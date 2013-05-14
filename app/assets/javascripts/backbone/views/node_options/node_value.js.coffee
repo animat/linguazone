@@ -25,7 +25,7 @@ class Linguazone.Views.Games.TextContent extends Linguazone.Views.Games.NodeValu
   """
 
   render: ->
-    @$el.html(_.template(@template, { content: @model.get("content")}))
+    @$el.html(_.template(@template, { content: @model.get("content").content}))
     @populate() if @content
     this
 

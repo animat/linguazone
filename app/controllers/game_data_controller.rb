@@ -16,10 +16,6 @@ class GameDataController < ApplicationController
     game = Game.new :created_by => current_user, :updated_by => current_user
     game.activity = Activity.find params[:activity_id]
 
-    Rails.logger.info "*" * 88
-    Rails.logger.info "INSIDE CREATE"
-    Rails.logger.info "*" * 88
-
     game_data = get_game_data(game)
 
     # TODO: get real description
@@ -32,12 +28,11 @@ class GameDataController < ApplicationController
     game.template = Template.create(:user_id => current_user.id, :activity => game.activity, :language_id => game.language.id,
                               :description => "", :name => "", :admin => 0, :xml => game_data.template_data_xml)
 
-    Rails.logger.info game.xml = game_data.to_xml
-    Rails.logger.info game.save!
+    game.xml = game_data.to_xml
+    game.save!
 
     #TODO: is this the right thing todo here?
-    Rails.logger.info AvailableGame.create(:user_id => current_user.id, :game => game, :course_id => 0)
-    Rails.logger.info "*" * 88
+    AvailableGame.create(:user_id => current_user.id, :game => game, :course_id => 0)
     head :no_content
   end
 
