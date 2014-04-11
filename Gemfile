@@ -1,10 +1,12 @@
 source 'http://rubygems.org'
 
 gem 'rdoc'
-gem 'rails3-jquery-autocomplete'
-gem 'rails', '3.2.11'
+gem 'rails3-jquery-autocomplete', "~> 1.0.10"
+gem 'rails', '~> 3.2.11'
 gem "aws-s3", '0.6.2', :require => "aws/s3"
-gem "authlogic"
+gem "authlogic", "3.2.0"
+gem 'bcrypt-ruby', "3.0.1"
+gem 'scrypt', "1.0.2"
 gem "meta_search", ">= 1.1.0.pre"
 gem "declarative_authorization"
 gem "rexml-expansion-fix"
@@ -23,6 +25,7 @@ gem "omniauth-twitter"
 gem "omniauth-openid"
 gem "omniauth-facebook"
 gem "spreadsheet"
+gem "nokogiri", "1.5.10"
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'
@@ -30,19 +33,18 @@ gem 'sass-rails'
 gem 'coffee-script'
 gem 'uglifier'
 gem 'jquery-rails'
-
 gem "rack-timeout"
 
 group :production do
-  gem 'therubyracer', '0.9.4'
+  #gem 'therubyracer', "~> 0.9.4" # TODO: Make this work again!
 	gem "SystemTimer", :require => "system_timer", :platforms => :ruby_18
 end
-
+#
 group :development, :test do
   gem 'spork',           '~> 0.9.0.rc9'
-  gem 'guard'
-  gem 'guard-spork'
-  gem 'guard-rspec'
+#  gem 'guard'
+#  gem 'guard-spork'
+#  gem 'guard-rspec'
   gem 'rack-test'
   gem 'rspec-rails'
   gem "launchy"
@@ -52,15 +54,16 @@ group :development, :test do
   gem "factory_girl"
   gem "factory_girl_rails", "1.1.0"
   gem 'pry-rails'
-  gem 'mysql2'
-  gem 'bullet'
+  gem 'bullet', "2.3.1"
 end
-
+#
 group :test do
-  gem "cucumber-rails"
-  gem "mocha"
-  gem "capybara"
-  gem "shoulda"
-  gem "timecop"
+  gem "cucumber-rails", "~> 1.4.0"
+  gem "rubyzip", "0.9.9"
+  gem "selenium-webdriver", "~> 2.1.0"
+#  gem "mocha"
+  gem "capybara", "1.1.4"
+#  gem "shoulda"
+  gem "timecop", "0.5.0"
   gem 'email_spec'
 end

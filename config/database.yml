@@ -15,10 +15,9 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test: &test
-  adapter: mysql2
+  adapter: postgresql
   database: lz_test
-  username: root
-  password: root
+  host: localhost
   timeout: 5000
 
 

@@ -1,4 +1,4 @@
-ActiveAdmin::Dashboards.build do
+#ActiveAdmin::Dashboards.build do
 
   # Define your dashboard sections here. Each block will be
   # rendered on the dashboard in the context of the view. So just
@@ -35,4 +35,4 @@ ActiveAdmin::Dashboards.build do
   #
   # Will render the "Recent Users" then the "Recent Posts" sections on the dashboard.
 
-end
+  #end
