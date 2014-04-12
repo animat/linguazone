@@ -85,7 +85,7 @@ $(function() {
 		</div>
 		<div>
 			<%= link_to "#{pluralize(@course.course_registrations.size, 'student')} enrolled", course_course_registrations_path(@course), :class => "floatLeft" %>
-			<%= link_to "View activity on this class page", course_feed_items_path(@course), :class => "floatRight" %>
+			<%= link_to "View activity on this class page", gradebook_course_feed_items_path(@course), :class => "floatRight" %>
 			<br class="clearFloat" />
 		</div>
 	</div>

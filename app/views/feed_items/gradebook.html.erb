@@ -60,13 +60,19 @@ $(function() {
 					<tr>
 						<% @activities.each do |a| %>
 							<td>
-									<%= if a.class == AvailablePost
-								 				format_participation_in_post(u, a, @comments)
-											elsif a.class == AvailableWordList
-												format_participation_in_word_list(u, a, @study_histories)
-											elsif a.class == AvailableGame
-												format_participation_in_game(u, a, @high_scores)
-									end %>
+							<%= if a.class == AvailablePost
+									link_to post_path(a) do
+						 				format_participation_in_post(u, a, @comments)
+									end
+								elsif a.class == AvailableWordList
+									link_to :controller => "study", :action => "stats", :id => a.id do
+										format_participation_in_word_list(u, a, @study_histories)
+									end
+								elsif a.class == AvailableGame
+									link_to :controller => "play", :action => "stats", :id => a.id do
+										format_participation_in_game(u, a, @high_scores)
+									end
+								end %>
 							</td>
 						<% end %>
 					</tr>

@@ -132,7 +132,10 @@ module FeedItemsHelper
     num = all_comments.count {|c| c.available_post_id == item.id && c.user_id == user.id}
     str = ""
     if num > 0
-      str << "&#10004; " + content_tag(:span, "("+num.to_s+")", :class => "completion_count").html_safe
+      str << "&#10004; "
+      if num > 1
+        str << content_tag(:span, "("+num.to_s+"x)", :class => "completion_count").html_safe
+      end
     end
     str.html_safe
   end
@@ -141,7 +144,10 @@ module FeedItemsHelper
     num = all_word_lists.count {|c| c.available_word_list_id == item.id && c.user_id == user.id}
     str = ""
     if num > 0
-      str << "&#10004; " + content_tag(:span, "("+num.to_s+")", :class => "completion_count").html_safe
+      str << "&#10004; "
+      if num > 1
+        str << content_tag(:span, "("+num.to_s+"x)", :class => "completion_count").html_safe
+      end
     end
     str.html_safe
   end
@@ -150,7 +156,10 @@ module FeedItemsHelper
     num = all_games.count {|c| c.available_game_id == item.id && c.user_id == user.id}
     str = ""
     if num > 0
-      str << "&#10004; " + content_tag(:span, "("+num.to_s+")", :class => "completion_count").html_safe
+      str << "&#10004; "
+      if num > 1
+        str << content_tag(:span, "("+num.to_s+"x)", :class => "completion_count").html_safe
+      end
     end
     str.html_safe
   end

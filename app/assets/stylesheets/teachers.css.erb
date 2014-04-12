@@ -283,6 +283,9 @@ div#gradebook_view {
 table#gradebook_students {
 	width: 200px;
 }
+table#gradebook_students tr:first-child {
+	height: 59px;
+}
 
 div#gradebook_scroller {
 	position: absolute;
@@ -298,6 +301,7 @@ table#gradebook td, table#gradebook_students td {
 	border: 1px solid #666;
 	padding: 3px;
 }
+
 .activity_header {
 	width: 60px;
 	height: 52px;
@@ -316,7 +320,13 @@ table#gradebook td, table#gradebook_students td {
 }
 table#gradebook td {
 	color: #009900;
-	text-align: center;
+	text-align: left;
+}
+table#gradebook td a {
+	color: green;
+	text-decoration: none;
+	display: block;
+	padding-left: 25px;
 }
 span.completion_count {
 	font-size: .7em;
