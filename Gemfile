@@ -36,7 +36,7 @@ gem 'jquery-rails', "~> 2.1"
 gem "rack-timeout"
 
 group :production do
-  #gem 'therubyracer', "~> 0.9.4" # TODO: Make this work again!
+  gem 'therubyracer'
 	gem "SystemTimer", :require => "system_timer", :platforms => :ruby_18
 end
 #
