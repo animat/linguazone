@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+ruby "1.9.3"
+
 gem 'rdoc'
 gem 'rails3-jquery-autocomplete', "~> 1.0.10"
 gem 'rails', '~> 3.2.11'
