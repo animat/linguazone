@@ -38,6 +38,8 @@ gem 'jquery-rails', "~> 2.1"
 gem "rack-timeout"
 
 group :production do
+  gem "unicorn"
+  gem "newrelic_rpm"
   gem 'therubyracer'
 	gem "SystemTimer", :require => "system_timer", :platforms => :ruby_18
 end
