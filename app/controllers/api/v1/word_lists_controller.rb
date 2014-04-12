@@ -96,10 +96,8 @@ class Api::V1::WordListsController < ApplicationController
     end
     
     def modify_linked_game(id, x, d)
-      @g = Game.all(:conditions => {:id => id}).first
-      if @g.nil?
-        
-      else
+      @g = Game.find(id)
+      unless @g.nil?
         @g.xml = x
         @g.description = d
         @g.updated_at = Time.now
@@ -109,14 +107,17 @@ class Api::V1::WordListsController < ApplicationController
     
     def update_linked_games(list_id, updated_xml, descrip, new_activity_ids, lang_id, user_id, cls)
       @wl_games_linker = GamesWordList.all(:conditions => ["word_list_id = ?", list_id])
+      @existing_activity_ids = @wl_games_linker.map{|wlg| wlg.game.activity.id}
       @wl_games_linker.each do |wlg|
         modify_linked_game(wlg.game_id, updated_xml, descrip)
       end
       @activity_ids = new_activity_ids.split("_").map {|s| s.to_i}
       @activity_ids.each do |a|
-        unless a == 0
-          @new_game_id = create_linked_game(updated_xml, descrip, a, lang_id, user_id, cls)
-          GamesWordList.create(:game_id => @new_game_id, :word_list_id => list_id)
+        unless a == 0 
+          unless @existing_activity_ids.include? a
+            @new_game_id = create_linked_game(updated_xml, descrip, a, lang_id, user_id, cls)
+            GamesWordList.create(:game_id => @new_game_id, :word_list_id => list_id)
+          end
         end
       end
     end
