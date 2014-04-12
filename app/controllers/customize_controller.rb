@@ -73,6 +73,14 @@ class CustomizeController < ApplicationController
     flash[:success] = "This game has been added to your account.<br />Make changes and save to your class pages.".html_safe
     redirect_to :controller => "customize", :action => "edit", :cmzr_type => "game", :id => @new_game.id
   end
+  
+  def adopt_word_list
+    @wl = WordList.find(params[:id])
+    @new_wl = WordList.new(:xml => @wl.xml, :description => @wl.description, :language_id => @wl.language_id, :created_by_id => @wl.created_by_id, :updated_by_id => current_user.id)
+    @new_wl.save
+    flash[:success] = "This word list has been added to your account. <br />Make changes and save to your class pages.".html_safe
+    redirect_to :controller => "customize", :action => "edit", :cmzr_type => "list", :id => @new_wl.id
+  end
 
   def inspect
   end

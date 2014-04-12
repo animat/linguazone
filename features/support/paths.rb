@@ -39,6 +39,8 @@ module NavigationHelpers
       api_media_categories_path
     when /^the show game [0-9] api$/
       api_v1_game_path($1)
+    when /^the "Adopt a word list" page$/
+      adopt_my_word_lists_path
 
 
 

@@ -173,6 +173,10 @@ Then /^I should see that the (\d+)(st|nd|rd|th) student has (\d+) feed items in 
   sum.should == item_count.to_i
 end
 
+Then(/^there should be (\d+) word lists with a description of "(.*?)"$/) do |num, descrip|
+  WordList.where("description = ?", descrip).count.should == num.to_i
+end
+
 Given /^"(.*?)"'s subscription has expired$/ do |teacher_name|
   @s = User.find_by_first_name(teacher_name)
   @s.subscription.expired_at = Time.now - 1.day

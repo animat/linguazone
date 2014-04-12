@@ -12,12 +12,20 @@ Feature: Teacher manages customized word lists
 	Scenario: View all my word lists
 		Then I should see "(11 total)"
 	
-	Scenario: Adopt a word list
-		Given I follow "Adopt a word list"
+	Scenario: Adopting window does not allow you to edit
+		Given I am on the "Adopt a word list" page
 		When I fill in "Search for:" with "adopt this list"
 		And I press "Search"
 		Then I should see "Adopt" within the first search result row
 		And I should not see "Edit" within the first search result row
+	
+	Scenario: Adopt a word list accurately
+		Given I am on the "Adopt a word list" page
+		When I fill in "Search for:" with "adopt this list"
+		And I press "Search"
+		And I follow "Adopt" within the first search result row
+		Then I should see "This word list has been added to your account"
+		And there should be 2 word lists with a description of "adopt this list"
 	
 	Scenario: Import a valid word list
 		Given I follow "Import a word list"
