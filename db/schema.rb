@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(:version => 20130225043429) do
     t.integer  "course_id",  :default => 0,     :null => false
     t.integer  "ordering",   :default => 0,     :null => false
     t.boolean  "hidden",     :default => false, :null => false
-    t.datetime "deleted_at"
   end
 
   create_table "available_posts", :force => true do |t|
@@ -86,7 +85,6 @@ ActiveRecord::Schema.define(:version => 20130225043429) do
     t.integer  "course_id",  :null => false
     t.integer  "ordering",   :null => false
     t.boolean  "hidden",     :null => false
-    t.datetime "deleted_at"
   end
 
   create_table "available_word_lists", :force => true do |t|
@@ -95,7 +93,6 @@ ActiveRecord::Schema.define(:version => 20130225043429) do
     t.integer  "course_id",    :default => 0, :null => false
     t.integer  "order",                       :null => false
     t.boolean  "hidden",                      :null => false
-    t.datetime "deleted_at"
   end
 
   create_table "comments", :force => true do |t|
@@ -106,7 +103,6 @@ ActiveRecord::Schema.define(:version => 20130225043429) do
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
     t.integer  "available_post_id"
-    t.datetime "deleted_at"
     t.integer  "rating",            :default => 0
   end
 
@@ -123,7 +119,6 @@ ActiveRecord::Schema.define(:version => 20130225043429) do
     t.integer  "course_id",  :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.datetime "deleted_at"
   end
 
   create_table "courses", :force => true do |t|
@@ -135,7 +130,6 @@ ActiveRecord::Schema.define(:version => 20130225043429) do
     t.integer  "ordering"
     t.string   "guid"
     t.boolean  "archived",       :default => false
-    t.datetime "deleted_at"
   end
 
   create_table "demos", :force => true do |t|
@@ -167,7 +161,6 @@ ActiveRecord::Schema.define(:version => 20130225043429) do
     t.datetime "updated_at"
     t.string   "sourceable_type"
     t.integer  "sourceable_id"
-    t.datetime "deleted_at"
   end
 
   create_table "games", :force => true do |t|
@@ -182,7 +175,6 @@ ActiveRecord::Schema.define(:version => 20130225043429) do
     t.integer  "created_by_id",   :default => 0,     :null => false
     t.integer  "updated_by_id",   :default => 0,     :null => false
     t.boolean  "getting_started", :default => false, :null => false
-    t.datetime "deleted_at"
   end
 
   add_index "games", ["getting_started"], :name => "index_games_on_getting_started"
@@ -195,7 +187,6 @@ ActiveRecord::Schema.define(:version => 20130225043429) do
   create_table "games_word_lists", :force => true do |t|
     t.integer  "word_list_id", :default => 0, :null => false
     t.integer  "game_id",      :default => 0, :null => false
-    t.datetime "deleted_at"
   end
 
   create_table "high_scores", :force => true do |t|
@@ -267,7 +258,6 @@ ActiveRecord::Schema.define(:version => 20130225043429) do
     t.boolean  "shared",     :default => true, :null => false
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
-    t.datetime "deleted_at"
   end
 
   create_table "schools", :force => true do |t|
@@ -304,7 +294,6 @@ ActiveRecord::Schema.define(:version => 20130225043429) do
     t.string   "user_ip_address",        :null => false
     t.datetime "submitted_at",           :null => false
     t.integer  "available_word_list_id"
-    t.datetime "deleted_at"
   end
 
   create_table "subscription_plans", :force => true do |t|
@@ -370,7 +359,6 @@ ActiveRecord::Schema.define(:version => 20130225043429) do
     t.datetime "updated_at"
     t.integer  "created_by_id", :default => 0, :null => false
     t.integer  "updated_by_id", :default => 0, :null => false
-    t.datetime "deleted_at"
   end
 
   create_table "word_lists_keywords", :force => true do |t|
