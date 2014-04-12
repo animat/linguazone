@@ -99,7 +99,8 @@ end
 Given /^([^"]*) is subscribed with a basic subscription$/ do |teacher_name|
   @t = User.find_by_first_name(teacher_name)
   @p = SubscriptionPlan.create(:name => "basic", :max_teachers => 3, :cost => 6)
-  @t.subscription.subscription_plan = @p
+  @sub = Factory.create(:subscription, :subscription_plan => @p)
+  @t.subscription = @sub
   @t.subscription.save
 end
 
@@ -158,7 +159,7 @@ Then /^I should see (\d+) available (games|word_lists|posts)$/ do |count, things
 end
 
 Then /^I should see that the (\d+)(st|nd|rd|th) student has (\d+) feed items in the gradebook$/ do |stu_num, suffix, item_count|
-  cells = page.all(:xpath, "//table[@id='gradebook']//tr[#{stu_num}]/td")
+  cells = page.all(:xpath, "//table[@id='gradebook']//tbody//tr[#{stu_num.to_i}]")
   str = ""
   cells.each do |c|
     x = c.native

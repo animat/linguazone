@@ -16,13 +16,13 @@ $(function() {
 		$("#post_controls").addClass("hide_controls").removeClass("controls");
 		$("#post_controls").addClass("hold_spacing").removeClass("remove_spacing");
 	})
-	$(".new_teacher_note_link").live("click", function() {
+	$(".new_teacher_note_link").click(function() {
 		var comment_id = $(this).parent().parent().parent().attr('id');
 		$("#"+comment_id+"_new_teacher_note").slideDown();
 		return false;
 	})
 	
-	$(".delete_teacher_note_link").live("click", function() {
+	$(".delete_teacher_note_link").click(function() {
 		var comment_id = $(this).parent().parent().parent().attr('id');
 		$("#"+comment_id+"_teacher_note_text_area").val("");
 		$("#"+comment_id+"_teacher_note_form").submit();
@@ -30,13 +30,13 @@ $(function() {
 		return false;
 	})
 	
-	$(".cancel_note_link").live("click", function() {
+	$(".cancel_note_link").click(function() {
 		var comment_id = $(this).parent().parent().parent().attr('id');
 		$("#"+comment_id+"_new_teacher_note").slideUp();
 		return false;
 	})
 	
-	$(".rate_comment_star").live("click", function() {
+	$(".rate_comment_star").click(function() {
 		var id = $(this).parent().parent().parent().data('comment-id');
 		var r = $(this).data("rating-num");
 		$.ajax({
@@ -48,7 +48,7 @@ $(function() {
 		})
 		return false;
 	})
-	$(".clear_rating").live("click", function() {
+	$(".clear_rating").click(function() {
 		var id = $(this).parent().parent().parent().data('comment-id');
 		var r = 0;
 		$.ajax({

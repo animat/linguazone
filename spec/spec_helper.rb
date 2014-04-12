@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'spork'
-require 'factory_girl'
+require 'factory_girl_rails'
+FactoryGirl.find_definitions 
 
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'

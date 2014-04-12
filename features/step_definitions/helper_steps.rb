@@ -17,7 +17,8 @@ When /^I wait until "([^"]*)" is not visible$/ do |txt|
 end
 
 When /^I follow the (\d+)(st|nd|rd|th) link$/ do |num, suffix|
-  find(:xpath, "a[#{num}]").click
+  all(:css, "a")[num.to_i-1].click
+  #find(:xpath, "a[#{num.to_i}]").click
   #all(:xpath, "//a")[num.to_i].click
 end
 

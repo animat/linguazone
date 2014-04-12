@@ -32,6 +32,7 @@ Feature: Students can add comments and get feedback
 		When I go to the "Sample class" class page
 		And I follow the 1st link within the 1st post area
 		When I hover over the comment teacher controls
+		And I follow "Add teacher note"
 		And I fill in "comment_1_teacher_note_text_area" with "Example feedback on the comment"
 		And I press "Add note"
 		And the 1st comment should have a note that says "Example feedback on the comment"
@@ -46,8 +47,8 @@ Feature: Students can add comments and get feedback
 		And I follow the 3rd star rating link within the 1st comment area
 		Then there should be a rating of 3 within the 1st comment area
 	
-	# TODO: This test case is not yet finished
-	@javascript @wip
+	# TODO: This test case seems to go back and forth...
+	@javascript
 	Scenario: A student should not be able to see the rating on another student's comment
 		Given Bob has left a comment on Sarah's 1st post
 		And Bob's comment has 2 stars
@@ -58,7 +59,6 @@ Feature: Students can add comments and get feedback
 		And I am logged in as the student "Steve"
 		And I go to the "Sample class" class page
 		And I follow the 1st link within the 1st post area
-		Then show me the page
 		And I should see 0 stars within the 1st comment area
 	
 	Scenario: Students should not be able to rate comments at all

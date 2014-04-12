@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
 
     if @comment.save
+      flash[:success] = "Your comment has been created"
       record_feed_item(@comment.available_post.course.id, @comment)
       redirect_to post_path(@comment.available_post)
     else

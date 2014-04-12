@@ -32,7 +32,7 @@ gem 'json'
 gem 'sass-rails'
 gem 'coffee-script'
 gem 'uglifier'
-gem 'jquery-rails'
+gem 'jquery-rails', "~> 2.1"
 gem "rack-timeout"
 
 group :production do
@@ -49,9 +49,10 @@ group :development, :test do
   gem 'rspec-rails'
   gem "launchy"
   gem "database_cleaner"
-  gem "ruby-debug", :platforms => [:mri_18]
-  gem "ruby-debug19", :platforms => [:mri_19]
-  gem "factory_girl"
+  #gem "ruby-debug", :platforms => [:mri_18]
+  #gem "ruby-debug19", :platforms => [:mri_19]
+  gem "debugger"
+  #gem "factory_girl"
   gem "factory_girl_rails", "1.1.0"
   gem 'pry-rails'
   gem 'bullet', "2.3.1"
@@ -60,7 +61,7 @@ end
 group :test do
   gem "cucumber-rails", "~> 1.4.0"
   gem "rubyzip", "0.9.9"
-  gem "selenium-webdriver", "~> 2.1.0"
+  gem "selenium-webdriver"
 #  gem "mocha"
   gem "capybara", "1.1.4"
 #  gem "shoulda"

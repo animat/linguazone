@@ -25,7 +25,7 @@ module NavigationHelpers
     when /^the "([^"]*)" school page$/
       school_path(School.find_by_name($1))
     when /^the "([^"]*)" (course|class) page$/
-      course_path(Course.find_by_name($1))
+      course_path(Course.where("name = ?", $1).first)
     when /^the "([^"]*)" course registrations page$/
       course_course_registrations_path(Course.find_by_name($1))
     when /^the "([^"]*)" course feed items page$/

@@ -1,125 +1,135 @@
+FactoryGirl.define do
+  
+  factory :state do
+    name "Pennsylvania"
+    abbr 'PA'
+  end
 
-Factory.define :state do |p|
-  p.name "Pennsylvania"
-  p.abbr 'PA'
+  factory :user do
+    email      "john@smith.com"
+    password    "test"
+    first_name "John"
+    last_name  "Smith"
+    association :school
+  end
+
+  factory :student, :parent => :user do
+    role "student"
+  end
+
+  factory :language do
+    name "Spanish"
+    special_characters "N"
+  end
+
+  factory :activity do
+    swf           "mantis"
+    name          "Mantis"
+    hints_xml     "<hint></hint>"
+    help          "click on it"
+    youtube_embed "click on it"
+  end
+
+  factory :game do
+    description "Fun game"
+    audio_ids   "1,2"
+    template_id 2
+    xml         "<game></game>"
+    association :activity
+    association :language
+  end
+
+  factory :demo do
+    association :game
+    association :activity
+    association :language
+    category    "sample"
+  end
+
+  factory :word_list do
+    description "Challenging word list"
+    xml         "<game></game>"
+    association :language
+  end
+
+  factory :post do
+    title         "Sample post #___"
+    content       "Lorem ipsum text here..."
+    audio_id      3000
+    shared        true
+    created_at    Time.now
+    updated_at    Time.now
+    association   :course
+  end
+  
+  factory :comment do
+    association   :user
+    audio_id      1234
+    content       "This is a comment"
+    teacher_note  "Note from teacher"
+    association   :available_post
+  end
+
+  factory :available_game do 
+    association :game
+    association :user
+  end
+
+  factory :subscription_plan do
+    name          "trial"
+    max_teachers  50
+    cost          5
+  end
+
+  factory :subscription do
+    pin         "ABC12"
+    association :subscription_plan
+    expired_at  5.months.from_now
+  end
+
+  factory :school do
+    name        "Xavier's School of Gifted Youngsters"
+    address     "1407 Graymalkin Lane"
+    city        "Salem Center"
+    association :state
+    zip         "19103"
+  end
+
+  factory :course do
+    name          "Latin 3A"
+    guid          SecureRandom.base64(36)
+    association   :user
+  end
+
+  factory :teacher, :class => "User" do
+    email "test@example.com"
+    display_name "Joe Teacher"
+    password "test"
+    first_name "Joe"
+    last_name "Teacher"
+    role "teacher"
+    association :school
+    association :subscription
+  end
+
+  factory :media_category do
+    name "unscramble"
+  end
+
+  factory :media_type do
+    ext "swf"
+  end
+
+  factory :media do
+    name         "Unscrambling Game"
+    descrip      "A fun game"
+    path         "/"
+    assigned_to  "John"
+    published    true
+    pending      false
+    used_count   4
+    association  :media_type
+    association  :media_category
+  end
+
 end
-
-Factory.define :user do |u|
-  u.email      "john@smith.com"
-  u.password    "test"
-  u.first_name "John"
-  u.last_name  "Smith"
-  u.association :school
-end
-
-Factory.define :student, :parent => :user do |s|
-  s.role "student"
-end
-
-Factory.define :language do |l|
-  l.name "Spanish"
-  l.special_characters "N"
-end
-
-Factory.define :activity do |a|
-  a.swf           "mantis"
-  a.name          "Mantis"
-  a.hints_xml     "<hint></hint>"
-  a.help          "click on it"
-  a.youtube_embed "click on it"
-end
-
-Factory.define :game do |g|
-  g.description "Fun game"
-  g.audio_ids   "1,2"
-  g.template_id 2
-  g.xml         "<game></game>"
-  g.association :activity
-  g.association :language
-end
-
-Factory.define :demo do |d|
-  d.association :game
-  d.association :activity
-  d.association :language
-  d.category    "sample"
-end
-
-Factory.define :word_list do |g|
-  g.description "Challenging word list"
-  g.xml         "<game></game>"
-  g.association :language
-end
-
-Factory.define :post do |p|
-  p.title         "Sample post #___"
-  p.content       "Lorem ipsum text here..."
-  p.audio_id      3000
-  p.shared        true
-  p.created_at    Time.now
-  p.updated_at    Time.now
-  p.association   :course
-end
-
-Factory.define :available_game do |ag|
-  ag.association :game
-  ag.association :user
-end
-
-Factory.define :subscription_plan do |p|
-  p.name          "trial"
-  p.max_teachers  50
-  p.cost          5
-end
-
-Factory.define :subscription do |s|
-  s.pin         "ABC12"
-  s.association :subscription_plan
-  s.expired_at  5.months.from_now
-end
-
-Factory.define :school do |s|
-  s.name        "Xavier's School of Gifted Youngsters"
-  s.address     "1407 Graymalkin Lane"
-  s.city        "Salem Center"
-  s.association :state
-  s.zip         "19103"
-end
-
-Factory.define :course do |c|
-  c.name          "Latin 3A"
-  c.guid          rand(5**10).to_s(36)
-  c.association   :user
-end
-
-Factory.define :teacher, :class => "User" do |f|
-  f.email "test@example.com"
-  f.display_name "Joe Teacher"
-  f.password "test"
-  f.first_name "Joe"
-  f.last_name "Teacher"
-  f.role "teacher"
-  f.association :school
-  f.association :subscription
-end
-
-Factory.define :media_category do |m|
-  m.name "unscramble"
-end
-
-Factory.define :media_type do |m|
-  m.ext "swf"
-end
-
-Factory.define :media do |m|
-  m.name         "Unscrambling Game"
-  m.descrip      "A fun game"
-  m.path         "/"
-  m.assigned_to  "John"
-  m.published    true
-  m.pending      false
-  m.used_count   4
-  m.association  :media_type
-  m.association  :media_category
-end
-

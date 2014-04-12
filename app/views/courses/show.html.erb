@@ -14,7 +14,7 @@ function displayLoginDetails() {
 	}
 }
 $(function() {
-	$(".hide_available_item").live("click", function() {
+	$(".hide_available_item").click(function() {
 		$(this).text("Hiding...");
 		var href = $(this).attr("href");
 		var div = $(this).parent().parent().parent();

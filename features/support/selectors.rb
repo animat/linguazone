@@ -18,7 +18,8 @@ module HtmlSelectorsHelpers
     when /^the (\d+)(st|nd|rd|th) (game|word list|post) area$/
       @num = $1
       @type = $3.sub(" ", "_")
-      [:xpath, "//div[@id='showing_#{@type}s']/div[@class='available_item'][#{@num}]"]
+      #[:xpath, "//div[@id='showing_#{@type}s']/div[@class='available_item'][#{@num}]"]
+      [:xpath, "//div[@id='showing_#{@type}s']/div[#{@num}]"]
     
     when /^the (\d+)(st|nd|rd|th) comment area$/
       @num = $1

@@ -118,7 +118,7 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
 end
 
 Then /^(?:|I )should not see "([^"]*)"$/ do |t|
-  page.has_no_text?(t)
+  page.has_no_content?(t)
 end
 
 #Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|

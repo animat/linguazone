@@ -12,7 +12,7 @@ Feature: Students access their own class page and use the course items
 		And I should see "Latin 3A"
 		And I should see "Study word lists"
 	
-	Scenario: Play games from page that is not password protected
+	Scenario: Play games from page that is password protected
 		Given the course "Latin 3A" has a code of "test-code"
 		When I am on the "Latin 3A" course page
 		Then I should see "Please login before accessing"
@@ -21,11 +21,12 @@ Feature: Students access their own class page and use the course items
 		Given I am on the "Latin 3A" course page
 		When I follow the 1st link within the 1st post area
 		Then I should see "You must login to participate in this audio blog."
-	
+
 	Scenario: Play a game from the course page
 		Given I am on the "Latin 3A" course page
 		When I follow the 1st link within the 1st game area
-		Then I should see "Play fun"
+		Then show me the page
+		Then I should see "Play Mantis"
 		
 	Scenario Outline: Use all of the features of a word list
 		Given I am on the "Latin 3A" course page
