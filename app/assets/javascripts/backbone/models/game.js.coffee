@@ -9,12 +9,13 @@ class Linguazone.Models.Game extends Backbone.Model
     @classes.fetch
       success: (response, xhr) ->
        # console.log "Inside success"
-       # console.log response
+        console.log("are you ever getting here?")
+        console.log response
         #@metaclasses = new Linguazone.Views.ClassCollectionView
         return
 
       error: (errorResponse) ->
-        console.log errorResponse
+        console.log "Red alert!" + errorResponse
         return
 
 

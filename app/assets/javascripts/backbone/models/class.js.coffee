@@ -3,19 +3,19 @@ class Linguazone.Collections.ClassCollection extends Backbone.Collection
   #TODO: make this dynamic, add in userid
   url: 'http://localhost:3000/api/v1/available_games/search.xml?userid=30&type=game&gameid=0'
   initialize: ->
-    console.log("class collection init")
+    #console.log("class collection init")
 
   parse: (data) ->
     parsed = []
     $(data).find("class").each (index) ->
-      console.log($(this).attr("classname"))
-      parsed.push 
-        name: $(this).attr("classname")
-        id: $(this).attr("classid")
-        active: $(this).attr("classactive")
+      n = $(this).attr("classname")
+      i = $(this).attr("classid")
+      a = $(this).attr("classactive")
+      x = {name: n, id: i, active: a}
+      parsed.push(x)
       return
 
-    parsed
+    return parsed
 
   fetch: (options) ->
     options = options or {}
