@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130401200112) do
+ActiveRecord::Schema.define(:version => 20140625153021) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -39,8 +40,8 @@ ActiveRecord::Schema.define(:version => 20130401200112) do
   end
 
   create_table "admin_users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "email",                                                :null => false
+    t.string   "encrypted_password",     :limit => 128,                :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -108,13 +109,14 @@ ActiveRecord::Schema.define(:version => 20130401200112) do
   end
 
   create_table "comments", :force => true do |t|
-    t.integer  "user_id",           :null => false
+    t.integer  "user_id",                          :null => false
     t.integer  "audio_id"
     t.text     "content"
     t.text     "teacher_note"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.integer  "available_post_id"
+    t.integer  "rating",            :default => 0
   end
 
   create_table "conference_signups", :force => true do |t|
@@ -151,12 +153,12 @@ ActiveRecord::Schema.define(:version => 20130401200112) do
   end
 
   create_table "discounts", :force => true do |t|
-    t.integer  "percent",      :limit => 1,  :default => 0,  :null => false
-    t.integer  "single_cost",  :limit => 1,  :default => 0,  :null => false
-    t.integer  "school_cost",  :limit => 1,  :default => 0,  :null => false
-    t.string   "email_msg",                  :default => "", :null => false
-    t.string   "target_group", :limit => 25, :default => "", :null => false
-    t.string   "code",         :limit => 25, :default => "", :null => false
+    t.integer  "percent",                    :default => 0, :null => false
+    t.integer  "single_cost",                :default => 0, :null => false
+    t.integer  "school_cost",                :default => 0, :null => false
+    t.string   "email_msg",                                 :null => false
+    t.string   "target_group", :limit => 25,                :null => false
+    t.string   "code",         :limit => 25,                :null => false
     t.datetime "expiration"
   end
 
@@ -164,8 +166,8 @@ ActiveRecord::Schema.define(:version => 20130401200112) do
     t.integer  "language_id"
     t.integer  "activity_id"
     t.boolean  "default"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -195,27 +197,25 @@ ActiveRecord::Schema.define(:version => 20130401200112) do
   end
 
   create_table "games", :force => true do |t|
-    t.integer  "template_id",                    :default => 0,     :null => false
-    t.text     "xml",                                               :null => false
-    t.string   "description",     :limit => 250,                    :null => false
-    t.text     "audio_ids",                                         :null => false
-    t.integer  "activity_id",                    :default => 0,     :null => false
-    t.integer  "language_id",                    :default => 0,     :null => false
+    t.integer  "template_id",     :default => 0,     :null => false
+    t.text     "xml",                                :null => false
+    t.text     "description",                        :null => false
+    t.text     "audio_ids"
+    t.integer  "activity_id",     :default => 0,     :null => false
+    t.integer  "language_id",     :default => 0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "created_by_id",                  :default => 0,     :null => false
-    t.integer  "updated_by_id",                  :default => 0,     :null => false
-    t.boolean  "getting_started",                :default => false, :null => false
+    t.integer  "created_by_id",   :default => 0,     :null => false
+    t.integer  "updated_by_id",   :default => 0,     :null => false
+    t.boolean  "getting_started", :default => false, :null => false
   end
 
   add_index "games", ["getting_started"], :name => "index_games_on_getting_started"
 
   create_table "games_keywords", :primary_key => "game_keyword_id", :force => true do |t|
-    t.integer "game_id", :default => 0,  :null => false
-    t.string  "keyword", :default => "", :null => false
+    t.integer "game_id", :default => 0, :null => false
+    t.string  "keyword",                :null => false
   end
-
-  add_index "games_keywords", ["keyword"], :name => "keyword"
 
   create_table "games_word_lists", :force => true do |t|
     t.integer "word_list_id", :default => 0, :null => false
@@ -231,8 +231,8 @@ ActiveRecord::Schema.define(:version => 20130401200112) do
   end
 
   create_table "images", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -311,7 +311,7 @@ ActiveRecord::Schema.define(:version => 20130401200112) do
   end
 
   create_table "schools", :force => true do |t|
-    t.string   "name",                      :default => "",    :null => false
+    t.string   "name",                                         :null => false
     t.string   "address",    :limit => 200,                    :null => false
     t.string   "city",       :limit => 35,                     :null => false
     t.integer  "state_id",                  :default => 0,     :null => false
@@ -393,7 +393,6 @@ ActiveRecord::Schema.define(:version => 20130401200112) do
     t.boolean  "receive_newsletter",                 :default => false, :null => false
     t.integer  "default_language_id",                :default => 0,     :null => false
     t.datetime "created_at"
-    t.datetime "expired_at"
     t.datetime "last_login_at"
     t.integer  "login_count",                        :default => 0,     :null => false
     t.string   "last_login_ip",       :limit => 40
@@ -413,8 +412,8 @@ ActiveRecord::Schema.define(:version => 20130401200112) do
   end
 
   create_table "word_lists_keywords", :force => true do |t|
-    t.integer "word_list_id",               :default => 0,  :null => false
-    t.string  "keyword",      :limit => 40, :default => "", :null => false
+    t.integer "word_list_id",               :default => 0, :null => false
+    t.string  "keyword",      :limit => 40,                :null => false
   end
 
 end

@@ -32,29 +32,29 @@ Linguazone.App.on "initialize:after", ->
 
   show_customizer = (e)  ->
     e.preventDefault()
-    swf_name = $(this).data("swf")
+    swf_name = $(this).find("a").data("swf")
     $(".activity").hide()
-    $(this).parent(".activity").show()
-    $(this).parent(".activity").find(".icons").hide()
-    $(this).parent(".activity").addClass("selected_activity_banner")
-    $(this).parent(".activity").css("background", "url(/games/"+swf_name+"/display/selected_banner.jpg) no-repeat")
-    $(this).parent(".activity").find(".activity_details").show()
-    $(this).hide()
-    activity_id = $(this).data("id")
-    options = $(this).data("node-options")
+    $(this).show()
+    $(this).find(".icons").hide()
+    $(this).addClass("selected_activity_banner")
+    $(this).css("background", "url(/games/"+swf_name+"/display/selected_banner.jpg) no-repeat")
+    $(this).find(".activity_details").show()
+    activity_id = $(this).find("a").data("id")
+    options = $(this).find("a").data("node-options")
     options = JSON.parse options unless typeof options == "object"
 
+    
     view = new Linguazone.Views.Games.NewView
       options:     options
       activity_id: activity_id
-      game_type:   $(this).data("gameType")
+      game_type:   $(this).find("a").data("gameType")
       language_id: QueryString.language
 
     load_game_type activity_id, QueryString.language
 
     Linguazone.App.customizer.show view
 
-  $(".activity a").click show_customizer
+  $(".activity").click show_customizer
 
   $editor = $("#game-editor")
   if $editor.length

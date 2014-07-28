@@ -27,6 +27,7 @@ gem "omniauth-facebook"
 gem "spreadsheet"
 gem 'nokogiri'
 gem 'flickraw'
+gem "select2-rails"
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'
@@ -55,7 +56,6 @@ group :development, :cucumber, :test do
   gem "launchy"
   gem "database_cleaner"
   gem 'pry-rails'
-  gem 'mysql2'
   gem "jasmine-rails"
 end
 
@@ -67,7 +67,7 @@ group :test, :cucumber do
   gem 'rspec-rails'
   gem "factory_girl"
   gem "factory_girl_rails", "1.1.0"
-  gem 'capybara-webkit', '0.12.0'
+  #gem 'capybara-webkit', '0.12.0'
   gem "guard-jasmine-headless-webkit"
   gem "cucumber-rails", :require => false
   gem "mocha"

@@ -8,12 +8,17 @@
 			<img src="/images/customizer/add_btn.png" alt="+" />
 		</a>
 		<br class="clearFloat" />
-    <input id="create-game" type="submit" value="Create Game" />
+    <input id="metadata-step" type="submit" value="Next step" />
    </div>
 </form>
-
-<div id="confirmation" style="display:none">
-  Game Created
+<div id="metadata" style="display: none">
+  <label>Describe your game</label>
+  <input type="text" value="" id="description_input" />
+  <input id="submit_game" type="submit" value="Create Game" />
+  <div id="confirmation" style="display:none">
+    Game Created
+  </div>
 </div>
 
-<a href="#/index">Back</a>
+
+<a href="./select_language?cmzr_type=game">Back</a>

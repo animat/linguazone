@@ -8,7 +8,7 @@ class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseVie
     <div class="response"></div>
 
     <div class="controls_wrapper">
-      <a href="#" class="delete" tabIndex="-1"><img src="/images/customizer/remove_btn.png" alt="X" /></a>
+      <div class="delete" tabIndex="-1"><img src="/images/customizer/remove_btn.png" alt="X" /></d>
     </div>
 
     <div class="clearFloat"></div>

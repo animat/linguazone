@@ -5,6 +5,18 @@ class Linguazone.Models.Game extends Backbone.Model
   initialize: ->
     @game_type = @get("game_type")
     @set("nodes",  new Linguazone.Collections.NodeCollection)
+    @classes = new Linguazone.Collections.ClassCollection
+    @classes.fetch
+      success: (response, xhr) ->
+       # console.log "Inside success"
+       # console.log response
+        #@metaclasses = new Linguazone.Views.ClassCollectionView
+        return
+
+      error: (errorResponse) ->
+        console.log errorResponse
+        return
+
 
   fetch: ->
     super
@@ -20,6 +32,7 @@ class Linguazone.Models.Game extends Backbone.Model
 
   defaults:
     activity_id: null
+    description: "You ought to put a description on your games."
 
 class Linguazone.Collections.GameCollection extends Backbone.Collection
   model: Linguazone.Models.Game

@@ -19,14 +19,13 @@ class GameDataController < ApplicationController
     game_data = get_game_data(game)
 
     # TODO: get real description
-    game.description = game.activity.name
+    game.description = params[:description]
 
     # TODO: the language id was not being passed along by the customizer; @CA hardcoded in the language ID for now
-    #game.language = Language.find params[:language_id]
-    game.language = Language.first
+    game.language = Language.find params[:language_id]
 
     game.template = Template.create(:user_id => current_user.id, :activity => game.activity, :language_id => game.language.id,
-                              :description => "", :name => "", :admin => 0, :xml => game_data.template_data_xml)
+                              :description => game.description, :name => "", :admin => 0, :xml => game_data.template_data_xml)
 
     game.xml = game_data.to_xml
     game.save!

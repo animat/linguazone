@@ -15,6 +15,8 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
   ui:
     form: "form"
     confirmation: "#confirmation"
+    metadata: "#metadata"
+
 
   save: (e) ->
     @setOptionLists()
@@ -31,6 +33,11 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
     @ui.form.hide()
     @ui.confirmation.show()
 
+  metadataStep: (e) ->
+    e.preventDefault()
+    @ui.form.hide()
+    @ui.metadata.show()
+
   #TODO: get this out of the view
   setOptionLists: => @model.set("option_list", Linguazone.OptionLists())
 
@@ -40,6 +47,7 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
     _.each @model.get("nodes").models, @addNodeView
 
   addNodeView: (node, index) =>
+    console.log(Linguazone.Models)
     view = new Linguazone.Views.Games[@model.get("game_type")]
       node_options: @options.options
       node: node

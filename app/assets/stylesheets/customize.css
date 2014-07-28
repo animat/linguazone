@@ -32,7 +32,15 @@ div.activity {
 	width: 250px;
 	margin: 15px;
 	padding: 5px;
-	border: 1px solid red;
+	background: #FF6600;
+	//border: 1px solid red;
+}
+div.activity h2 {
+	text-shadow:
+	-1px -1px 0 #fff,  
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+     1px 1px 0 #fff;
 }
 div.activity h3 {
 	font-size: 1.2em;
@@ -43,6 +51,9 @@ div.activity div.icons {
 	float: left;
 	width: 120px;
 	padding: 5px;
+}
+div.activity div.icons a {
+	color: #fff;
 }
 div.activity div.detail {
 	float: left;
@@ -62,14 +73,87 @@ div.activity p.confirm_step_one a {
 div.selected_activity_banner {
 	border: none;
 	background-color: #edf0f9;
+	margin: 0px;
 	margin-bottom: 20px;
-	width: 835px;
+	//width: 835px;
+	width: 100%;
+	box-sizing: border-box;
 	max-height: 185px;
 	overflow-y: scroll;
+	padding: 20px;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			STEP 2: Input elements
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+label.preview_question {
+	font-weight: bold;
+	font-size: 18px;
+	font-style: italic;
+}
+div.answer_list_preview {
+	display: block;
+}
+div.answer_list_preview div.answer_preview {
+	display: block;
+	font-size: 14px;
+	font-weight: normal;
+}
+div.answer_list_preview div.answer_preview span {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border: 2px solid #00B347;
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	vertical-align: middle;
+}
+div.answer_list_preview div.correct_answer > span {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border: 2px solid #00B347;
+	background: #00B347;
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	vertical-align: middle;
+}
+div.step-2 span#question_text {
+	font-style: italic;
+}
+div#nodes label.wizard {
+	display: block;
+	font-weight: bold;
+	font-size: 18px;
+	margin-bottom: 8px;
+}
+div#nodes a.next, div#nodes a.previous {
+	display: inline-block;
+	width: 85px;
+	text-align: center;
+	height: 40px;
+	box-sizing: border-box;
+	padding: 10px;
+	background: #FF6600;
+	color: #fff;
+	margin-top: 10px;
+}
+div#nodes a.next:hover, div#nodes a.previous:hover {
+	color: #FF6600;
+	background: #ededed;
+	cursor: pointer;
+}
+div#examples div.delete {
+	display: none;
+}
+div.node {
+	width: auto;
+	border-bottom: 1px dotted #333;
+}
+div.delete:hover {
+	cursor: pointer;
+}
 div#nodes input, div#example_node input {
 	padding: 3px;
 	width: 200px;
@@ -115,8 +199,11 @@ div#quick_character_section button {
 	margin: 0px 1px;
 }
 div#nodes div.controls_wrapper {
-	float: right;
-	padding-right:20px;
+	//float: right;
+	//padding-right:20px;
+	padding-left: 20px;
+	display: inline-block;
+	vertical-align: middle;
 }
 div.lz_input {
 	border: none;
@@ -179,7 +266,9 @@ div.actions a.addNode span {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 div.question, div.response {
-	float: left;
+	//float: left;
+	display: inline-block;
+	vertical-align: middle;
 }
 div.response {
 	margin-left: 50px;

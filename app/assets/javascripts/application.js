@@ -15,6 +15,7 @@
 //= require backbone-min
 //= require backbone.marionette.min
 //= require fineuploader.jquery
+//= require select2
 
 // get querystring as an array split on "&"
 var QueryString = function() {

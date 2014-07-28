@@ -6,4 +6,5 @@
  *= require_tree ../../../vendor/assets/stylesheets
  *= require_tree .
  *= require fineuploader
+ *= require select2
 */

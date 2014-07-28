@@ -4,14 +4,15 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
   className: "nodeOption backbone"
 
   template: """
+    <div class="instruction-label"></div>
+
     <div class="input"></div>
 
     add: <a href="#" class="text-link">text</a>
     <a href="#" class="image-link">image</a>
-
-    <div class="instruction-label"></div>
-
+    <!--
     <a href="#">add correct response</a>
+    -->
   """
 
   ui:
@@ -61,6 +62,7 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
     emptyView.remove() if emptyView
 
   showInput: =>
+    console.log(@model)
     if @model.get("content").type == "image"
       @showImage(@model.get("content").content)
     else
@@ -72,6 +74,7 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
     @showInput()
     @useOptions()
     this
+    
 
   toggleAddMoreLink: =>
 

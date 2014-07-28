@@ -18,4 +18,3 @@ class Linguazone.Views.GameType extends Backbone.View
     @$el.html(_.template(@template))
     @$el.append(@nodeView.render().el)
     @nodeView.$el.addClass("node-example")
-    @

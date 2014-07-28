@@ -23,9 +23,13 @@ class SingleWordMatchNode < GameDataNode
   attr_accessor :question, :ltarget
 
   def self.from_xml(node)
+    #responses = node.xpath(".//responses")
+    #question  = NodeOption.for "question", node.xpath(".//question").first["content"]
+    #ltarget   = NodeOption.for "ltarget", responses.first.xpath("ltarget").first["content"]
+    #self.new(question, ltarget)
+    question = node.xpath(".//question").first["content"]
     responses = node.xpath(".//responses")
-    question  = NodeOption.for "question", node.xpath(".//question").first["content"]
-    ltarget   = NodeOption.for "ltarget", responses.first.xpath("ltarget").first["content"]
+    ltarget   = responses.first.xpath("ltarget").first["content"]
     self.new(question, ltarget)
   end
 
@@ -34,15 +38,23 @@ class SingleWordMatchNode < GameDataNode
   end
 
   def initialize(question, ltarget)
-    raise "Question Must be a NodeOption" unless question.respond_to? "content"
+    #raise "Question Must be a NodeOption" unless question.respond_to? "content"
     @question, @ltarget = question, ltarget
   end
 
+  #def to_xml(xml)
+  #  xml.node do
+  #    question.to_xml(xml)
+  #    xml.responses do
+  #      ltarget.to_xml(xml)
+  #    end
+  #  end
+  #end
   def to_xml(xml)
     xml.node do
-      question.to_xml(xml)
+      xml.question :content => self.question, :type => "text"
       xml.responses do
-        ltarget.to_xml(xml)
+        xml.ltarget :content => self.ltarget, :type => "text"
       end
     end
   end
@@ -122,6 +134,45 @@ class TargetWordNode < GameDataNode
 end
 
 class MultipleAnswerNode < GameDataNode
+  attr_accessor :question, :response, :options
+
+  def initialize(question, response, options)
+    @response = response
+    @question = question
+    @options  = options
+  end
+
+  def self.from_hash(hash)
+    if hash["options"].class == String
+      hash["options"] = hash["options"].split(",")
+    end
+    new hash[:question], hash[:response], hash["options"]
+  end
+
+  def self.from_xml(node)
+    question = NodeOption.for "question", get_content(node, "question")
+    response = NodeOption.for "response", get_content(node, "response")
+    options  = []
+    node.xpath(".//option").each do |option|
+      options << get_content(option, "option")
+    end
+    self.new(question, response, options)
+  end
+
+  def to_xml(xml)
+    xml.node do
+      question.to_node_option("question").to_xml(xml)
+      response.to_node_option("response").to_xml(xml)
+      xml.options {
+        self.options.each do |option|
+          xml.option :content => option, :type => "text"
+        end
+      }
+    end
+  end
+end
+
+class AnswerAndMatchNode < GameDataNode
   attr_accessor :question, :response, :options
 
   def initialize(question, response, options)

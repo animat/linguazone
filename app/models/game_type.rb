@@ -24,8 +24,18 @@ class GameType
   end
 
   def self.for(activity)
+    puts "**** for... #{activity.game_type}"
+    puts "*****     #{activity.game_type.underscore}"
     rv = self.send(activity.game_type.underscore)
     rv.activity = activity
+    rv
+  end
+
+  def self.answer_and_match
+    rv = self.new
+    rv.questions << Question.new("Question")
+    rv.questions << Question.new("Answer")
+    rv.questions << Question.new("Answer2")
     rv
   end
 

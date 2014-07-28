@@ -6,7 +6,16 @@ class Linguazone.Views.Games.SingleWordMatch extends Linguazone.Views.Games.Node
     Linguazone.Views.Games.Nodes.push(@)
     super
 
-  game_type: "DoubleWordMatch",
+  events:
+    "click .delete"          : "delete",
+    "focus .question input"  : "showQuestion"
+    "blur .question input"   : "hideQuestion"
+    "focus .response input"  : "showResponse"
+    "blur .response input"   : "hideResponse"
+    "change .ltarget"        : "updateModel"
+    "change .question input" : "updateModel"
+
+  game_type: "SingleWordMatch",
 
   template: """
   <div class="no-results">
@@ -27,6 +36,7 @@ class Linguazone.Views.Games.SingleWordMatch extends Linguazone.Views.Games.Node
     Linguazone.App.vent.off "wordlist:update"
     Linguazone.App.vent.on "wordlist:update", @updateAllOptionLists
     @$ltarget = @$el.find(".ltarget")
+    @$ltarget.select2({placeholder: "Select the answer"})
 
     @$el.find(".lz_input").hide()
     @updateOptionLists()
@@ -44,16 +54,17 @@ class Linguazone.Views.Games.SingleWordMatch extends Linguazone.Views.Games.Node
     return unless @hasEnoughOptions()
 
     @$el.find(".no-results").hide()
-    @$el.find(".lz_input").show()
+    @$el.find(".lz_input").css('display', 'inline-block')
 
     @loadData("ltarget")
+    @$ltarget.select2({placeholder: "Select the answer"})
 
   loadData: (dataType) ->
     $elem = @$el.find(".#{dataType}")
     data = Linguazone.Options[dataType].to_select_to()
     val = $elem.val()
     $elem.html("")
-    _.each data, (datum) => $elem.append("<option>#{datum.text}</option>")
+    _.each data, (datum) => $elem.append("<option value='#{datum.text}'>#{datum.text}</option>")
     $elem.val(val)
 
 class Linguazone.Views.Games.DoubleWordMatch extends Linguazone.Views.Games.NodeBaseView
@@ -93,6 +104,9 @@ class Linguazone.Views.Games.DoubleWordMatch extends Linguazone.Views.Games.Node
     <select class="rtarget" name="rtarget">
     </select>
   </div>
+  <div class="controls_wrapper">
+    <div class="delete" tabindex="-1"><img src="/images/customizer/remove_btn.png" alt="X">
+  </div>
   """
 
   onRender: =>
@@ -100,6 +114,8 @@ class Linguazone.Views.Games.DoubleWordMatch extends Linguazone.Views.Games.Node
     Linguazone.App.vent.on "wordlist:update", @updateAllOptionLists
     @$ltarget = @$el.find(".ltarget")
     @$rtarget = @$el.find(".rtarget")
+    @$ltarget.select2({placeholder: "Select first match"})
+    @$rtarget.select2({placeholder: "Select second match"})
 
     @$el.find(".lz_input").hide()
     @updateOptionLists()
@@ -119,10 +135,12 @@ class Linguazone.Views.Games.DoubleWordMatch extends Linguazone.Views.Games.Node
     return unless @hasEnoughOptions()
 
     @$el.find(".no-results").hide()
-    @$el.find(".lz_input").show()
+    @$el.find(".lz_input").css('display', 'inline-block')
 
     @loadData("ltarget")
     @loadData("rtarget")
+    @$ltarget.select2({placeholder: "Select first match"})
+    @$rtarget.select2({placeholder: "Select second match"})
 
   loadData: (dataType) ->
     $elem = @$el.find(".#{dataType}")

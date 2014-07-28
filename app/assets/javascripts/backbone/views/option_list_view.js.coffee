@@ -32,5 +32,5 @@ class Linguazone.Views.Games.OptionListView extends Backbone.View
     @$el.html(@template)
     if @collection()
       @$el.find("textarea").text(@collection().to_a().join("\n"))
-    @$el.css("float", "left").css("padding", "20px")
+    @$el.css("padding", "20px").css("display", "inline-block")
     return this
