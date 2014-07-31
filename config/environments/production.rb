@@ -12,4 +12,8 @@ Linguazone::Application.configure do
   config.assets.initialize_on_precompile = false
 
   config.action_mailer.default_url_options = { :host => "www.linguazone.com" }
+  
+  if ENV["MEMCACHEDCLOUD_SERVERS"]
+      config.cache_store = :dalli_store, ENV["MEMCACHEDCLOUD_SERVERS"].split(','), { :username => ENV["MEMCACHEDCLOUD_USERNAME"], :password => ENV["MEMCACHEDCLOUD_PASSWORD"] }
+  end
 end

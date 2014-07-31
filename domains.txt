@@ -1,0 +1,6 @@
+beta.linguazone.com
+linguazone-production.heroku.com
+linguazone-production.herokuapp.com
+linguazone.com
+www.linguazone.com
+

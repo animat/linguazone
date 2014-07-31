@@ -41,6 +41,8 @@ group :production do
   gem "unicorn"
   gem "newrelic_rpm"
   gem 'therubyracer'
+  gem "rails_12factor"
+  gem "dalli"
 	gem "SystemTimer", :require => "system_timer", :platforms => :ruby_18
 end
 #
