@@ -5,15 +5,15 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
 
   events:
     "click .delete"         : "delete",
-    "focus .question input" : "showQuestion"
-    "blur .question input"  : "hideQuestion"
-    "focus .response input" : "showResponse"
-    "blur .response input"  : "hideResponse"
+    "focus .question input" : "highlightQuestion"
+    "blur .question input"  : "dimQuestion"
+    "focus .response input" : "highlightResponse"
+    "blur .response input"  : "dimResponse"
 
-  showQuestion: => $(".question-example").show()
-  hideQuestion: => $(".question-example").hide()
-  showResponse: => $(".response-example").show()
-  hideResponse: => $(".response-example").hide()
+  highlightQuestion: => $(".node-example").find(".question input").addClass("highlight")
+  dimQuestion: => $(".node-example").find(".question input").removeClass("highlight")
+  highlightResponse: => $(".node-example").find(".response input").addClass("highlight")
+  dimResponse: => $(".node-example").find(".response input").removeClass("highlight")
 
   initialize: =>
     @model = @options.node

@@ -1,5 +1,7 @@
 class Linguazone.Models.NodeOption extends Backbone.Model
   urlRoot: '/node_options'
+  initialize: ->
+    @set("content", "")
 
   addContent: (content) ->
 
@@ -8,7 +10,6 @@ class Linguazone.Models.NodeOption extends Backbone.Model
       @get("content").push(content)
     else
       @set("content", content)
-    console.log(@get("content"))
 
   arrayify: ->
     @set("content", [@get("content")]) unless typeof @get("content") == 'object'

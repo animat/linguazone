@@ -23,17 +23,59 @@
   padding: 20px;
   color: #900;
 }
+#step_title, #step1_title {
+	font-size: 40px;
+	display: inline-block;
+	vertical-align: middle;
+}
+#create_a_new {
+	font-size: 20px;
+}
+.page_break {
+	width: 96%;
+	margin: 0 auto;
+	height: 1px;
+	background: #000;
+	margin-top: 10px;
+}
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 			STEP 1
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 div.activity {
-	float: left;
-	width: 250px;
-	margin: 15px;
-	padding: 5px;
-	background: #FF6600;
-	//border: 1px solid red;
+	display: inline-block;
+	width: 47%;
+	margin: 1%;
+	padding: 15px;
+	box-sizing: border-box;
+	text-align: right;
+	position: relative;
+	padding-left: 80px;
+	min-height: 160px;
+	transition: background .3s;
+}
+div.activity:hover {
+	background: #f7f7f7;
+	cursor: pointer;
+}
+div.activity div.circle_icon {
+	width: 120px;
+	height: 120px;
+	position: absolute;
+	top: 50%;
+	margin-top: -60px;
+	left: 30px;
+	-webkit-border-radius: 60px;
+	-moz-border-radius: 60px;
+	border-radius: 60px;
+}
+div.selected_activity_banner div.circle_icon {
+	margin-top: -40px;
+}
+div.selected_activity_banner h2 {
+	position: absolute;
+	top: 10px;
+	left: 30px;
 }
 div.activity h2 {
 	text-shadow:
@@ -48,12 +90,18 @@ div.activity h3 {
 	margin-bottom: 5px;
 }
 div.activity div.icons {
-	float: left;
-	width: 120px;
 	padding: 5px;
+	display: inline-block;
+	width: 70%;
 }
 div.activity div.icons a {
-	color: #fff;
+	color: #FF6600;
+	text-decoration: none;
+}
+div.activity_details {
+	box-sizing: border-box;
+	padding-left: 20px;
+	text-align: left;
 }
 div.activity div.detail {
 	float: left;
@@ -72,15 +120,24 @@ div.activity p.confirm_step_one a {
 }
 div.selected_activity_banner {
 	border: none;
-	background-color: #edf0f9;
+	//border-top: 1px solid #92F5F5;
+	//border-bottom: 1px solid #92F5F5;
 	margin: 0px;
 	margin-bottom: 20px;
 	//width: 835px;
 	width: 100%;
 	box-sizing: border-box;
-	max-height: 185px;
+	max-height: 200px;
 	overflow-y: scroll;
 	padding: 20px;
+	background-position: 140px, 0px;
+}
+div#change_game {
+	display: none;
+	vertical-align: middle;
+}
+div#change_game:hover {
+	cursor: pointer;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			STEP 2: Input elements
@@ -172,6 +229,15 @@ div.stick_to_top {
 	top: 0;
 	z-index: 100;
 }
+div.node input {
+	border: 2px solid #999;
+	background: #fff;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding: 3px;
+	outline: none;
+}
 div#examples label {
 	font-size: 1.3em;
 }
@@ -185,8 +251,9 @@ div#examples input[type="text"] {
 	font-style: italic;
 	color: #666;
 }
-div#examples div.highlight {
-	background-color: yellow;
+div#examples input.highlight {
+	background-color: #FDFCF9;
+	border: 2px solid #F5EE93;
 }
 div#quick_character_section {
 	background-color: blue;
@@ -260,6 +327,15 @@ div.actions a.addNode img {
 div.actions a.addNode span {
 	position: relative;
 	top: -10px;
+}
+a.text-link, a.image-link, a.audio-link {
+	background: #FAF9F0;
+	margin-top: 2px;
+	padding: 3px;
+	font-size: 12px;
+	color: #333;
+	text-decoration: none;
+	text-transform: uppercase;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			Activity type inputs

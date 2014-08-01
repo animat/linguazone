@@ -6,12 +6,12 @@ class Linguazone.Models.Game extends Backbone.Model
     @game_type = @get("game_type")
     @set("nodes",  new Linguazone.Collections.NodeCollection)
     @classes = new Linguazone.Collections.ClassCollection
+    console.log "Initializing the game model. Fetching classes."
+    console.log @classes
     @classes.fetch
       success: (response, xhr) ->
-       # console.log "Inside success"
-        console.log("are you ever getting here?")
-        console.log response
-        #@metaclasses = new Linguazone.Views.ClassCollectionView
+        console.log(response)
+        classCollectionView = new Linguazone.Views.ClassCollectionView({ collection: response, $el: $("#classes_metadata") })
         return
 
       error: (errorResponse) ->

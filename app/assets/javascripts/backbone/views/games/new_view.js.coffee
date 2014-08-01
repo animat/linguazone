@@ -13,8 +13,6 @@ class Linguazone.Views.Games.NewView extends Linguazone.Views.Games.GameFormBase
   #  "change": "render"
 
   constructor: (options) ->
-    console.log("incoming options")
-    console.log(options)
     @model = new Linguazone.Models.Game
       activity_id: options.activity_id
       language_id: options.language_id
@@ -25,7 +23,6 @@ class Linguazone.Views.Games.NewView extends Linguazone.Views.Games.GameFormBase
   updateMetadata: =>
     
     @model.set("description", $("#description_input").val())
-    console.log(@model.get('description'))
     return
 
 class Linguazone.Views.Games.MatchingNewView extends Linguazone.Views.Games.GameFormBaseView

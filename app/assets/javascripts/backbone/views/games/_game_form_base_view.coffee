@@ -34,6 +34,7 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
     @ui.confirmation.show()
 
   metadataStep: (e) ->
+    $("#step_title").html("Step 3: Describe and publish")
     e.preventDefault()
     @ui.form.hide()
     @ui.metadata.show()
@@ -42,6 +43,7 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
   setOptionLists: => @model.set("option_list", Linguazone.OptionLists())
 
   onRender: =>
+    $("#step_title").html("Step 2: Customize your game")
     @$nodeDiv = $(@el).find("#nodes")
     @$nodeDiv.html("")
     _.each @model.get("nodes").models, @addNodeView
