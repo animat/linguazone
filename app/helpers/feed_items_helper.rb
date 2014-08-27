@@ -160,6 +160,8 @@ module FeedItemsHelper
       if num > 1
         str << content_tag(:span, "("+num.to_s+"x)", :class => "completion_count").html_safe
       end
+      str << "</p>"
+      str.html_safe
     end
     str.html_safe
   end

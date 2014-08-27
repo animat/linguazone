@@ -1,3 +1,4 @@
+.jhw-cache
 tags
 log/*.log
 tmp/**/*
@@ -14,3 +15,4 @@ public/stylesheets/compiled
 rake/*
 config/database.yml
 .env
+.powrc

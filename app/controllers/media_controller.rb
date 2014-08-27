@@ -5,6 +5,12 @@ class MediaController < ApplicationController
     @assets = Media.where(:published => true).order("id DESC").includes(:media_keywords).page(params[:page])
     @user_session = UserSession.new
   end
+
+  def images
+    keywords = MediaKeyword.find_all_by_name(params[:q])
+    media = keywords.map { |m| m.media }
+    render :json => media.to_json
+  end
   
   def new
     unless current_user.nil?

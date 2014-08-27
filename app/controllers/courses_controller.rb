@@ -11,9 +11,9 @@ class CoursesController < ApplicationController
     # TODO: Can these queries be optimized? e.g. the following query should get the course, the teacher, and teacher's school, subscription, etc
     @course = Course.find(params[:id])
     @showing_posts = AvailablePost.showing.on_course(@course.id).includes(:post).order("posts.updated_at DESC")
-    @showing_word_lists = AvailableWordList.showing.on_course(@course.id).includes(:word_list).order("word_lists.updated_at DESC")
+    @showing_word_lists = AvailableWordList.for(@course)
     @showing_games = AvailableGame.showing.on_course(@course.id).includes({:game => :activity}).order("ordering ASC, games.updated_at DESC")
-    
+
     if @course.login_required
       unless is_student_for(@course) or is_teacher_for(@course)
         if current_user
@@ -36,14 +36,13 @@ class CoursesController < ApplicationController
   
   def feed
     @course = Course.find(params[:id], :include => :user)
-    
+
     @showing_posts = AvailablePost.all(:conditions => ["available_posts.course_id = ? AND hidden = ?", @course.id, false], :include => :post,
                               :order => "posts.updated_at DESC")
-    @showing_word_lists = AvailableWordList.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, false], :include => :word_list,
-                              :order => "word_lists.updated_at DESC")
+    @showing_word_lists = AvailableWordList.for @course
     @showing_games = AvailableGame.all(:conditions => ["course_id = ? AND hidden = ?", @course.id, false], :include => :game, 
                               :order => "ordering ASC, games.updated_at DESC")
-    
+
     response.headers["Content-Type"] = "application/xml; charset=utf-8"
     respond_to do |format|
       format.html { render "feed.xml" }

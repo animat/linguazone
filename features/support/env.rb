@@ -21,9 +21,12 @@ require 'selenium-webdriver'
 require 'email_spec'
 require 'email_spec/cucumber'
 
+
 Capybara.default_selector = :css
 #Capybara.server_boot_timeout = 50
 Capybara.default_wait_time = 3
+#Capybara.javascript_driver = :webkit
+Capybara.javascript_driver = :selenium
 
 if defined?(ActiveRecord::Base)
   begin
@@ -32,3 +35,5 @@ if defined?(ActiveRecord::Base)
   rescue LoadError => ignore_if_database_cleaner_not_present
   end
 end
+
+WebMock.disable_net_connect!(:allow_localhost => true)

@@ -1,3 +1,5 @@
+require './lib/flickr_search'
+
 class CustomizeController < ApplicationController
   def new
     if current_user.nil?
@@ -8,19 +10,20 @@ class CustomizeController < ApplicationController
       if @lang_id == 0 or @lang_id.nil?
         @lang_id = params[:language]
       end
-    
+
       if @lang_id.nil? or @lang_id == 0
         redirect_to :action => "select_language", :cmzr_type => params[:cmzr_type]
       else
         @language = Language.find(@lang_id)
-        @embed_vars = "userid="+String(current_user.id)+"&gamelanguage="+@language.name+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
+        @activities = Activity.all
+        @embed_vars = "userid=#{current_user.id}&gamelanguage=#{@language.name}&cmzrtype=#{params[:cmzr_type]}&path=../../../"
       end
     end
   end
-  
+
   def create
   end
-  
+
   def edit
     if current_user.nil?
       flash[:error] = "You need to login before accessing that page"
@@ -30,7 +33,6 @@ class CustomizeController < ApplicationController
         @game = Game.find(params[:id])
         # TODO: Add administrative options... this is a hack!
         if current_user.id == @game.updated_by_id or current_user.id == 30
-          @embed_vars = "gameid="+params[:id]+"&userid="+String(current_user.id)+"&cmzrtype="+params[:cmzr_type]+"&path=../../../"
         else
           flash[:error] = "You do not have permission to edit that game"
           redirect_to teachers_path and return

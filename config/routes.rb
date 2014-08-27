@@ -1,11 +1,22 @@
 Linguazone::Application.routes.draw do
+
+  mount JasmineRails::Engine => "/specs" unless Rails.env.production?
   get "feed_items_controller/index"
 
   resources :authentications
 
-  ActiveAdmin.routes(self)
+  #ActiveAdmin.routes(self)
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :admin_users 
+  #, ActiveAdmin::Devise.config
+
+  resources :examples, :only => [:show, :index]
+  resources :catalog_images, :only => [:index]
+  resources :flickr_photos, :only => [:index]
+
+  resources :activities do
+    resources :game_types, :only => [:index]
+  end
 
   resources :teachers do
     collection do
@@ -24,13 +35,16 @@ Linguazone::Application.routes.draw do
     end
     resources :feed_items, :only => [:index]
   end
-  
+
+  resources :images
+
   resources :authentications, :only => [:index, :create, :destroy] do
     collection do 
       post :cancel
     end
   end
   match '/auth/:provider/callback' => 'authentications#create'
+  match '/media/images' => 'media#images'
 
   resources :schools do
     collection do
@@ -59,6 +73,9 @@ Linguazone::Application.routes.draw do
       get :search, :adopt, :import, :confirm_spreadsheet_import, :create_by_spreadsheet
     end
   end
+
+  resources :game_data, :only => [:create, :show, :update]
+
   #TODO @Len: Is there an efficient way to create a new path here and establish parameters?
   #match 'my_games/search/hidden_games_on_class/:course_id' => 'my_games#search', params[:search][:hidden_equals] => 1, params[:search][:course_id] => nil
   #match 'my_word_lists/search/hidden_word_lists_on_class/:course_id' => 'my_word_lists#search', :search[:hidden_equals] => 1, :search[:course_id] => nil

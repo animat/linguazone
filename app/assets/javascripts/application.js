@@ -10,3 +10,55 @@
 //= require swf_fu
 //= require autocomplete-rails
 //= require flash_messages
+//= require underscore
+//= require select2.min
+//= require backbone-min
+//= require backbone.marionette.min
+//= require fineuploader.jquery
+//= require select2
+
+// get querystring as an array split on "&"
+var QueryString = function() {
+  var querystring = location.search.replace( '?', '' ).split( '&' );
+
+  var queryObj = {};
+
+  for ( var i=0; i<querystring.length; i++ ) {
+        // get name and value
+        var name = querystring[i].split('=')[0];
+        var value = querystring[i].split('=')[1];
+        // populate object
+        queryObj[name] = value;
+  }
+
+  return queryObj;
+}();
+
+$.fn.wizardify = function(el) {
+  var $el = $(this);
+  var step = 1;
+  var previousStep;
+
+  if ($el.data("step")) {
+    step = step.data("step");
+  }
+
+  $el.find(".step").hide();
+
+  var showCurrentStep = function() {
+    if(previousStep) $el.find(".step-" + previousStep).hide();
+    $el.find(".step-" + step).fadeIn();
+  }
+
+  $el.find(".previous").click(function() {
+    previousStep = step--;
+    showCurrentStep();
+  });
+
+  $el.find(".next").click(function() {
+    previousStep = step++;
+    showCurrentStep();
+  });
+
+  showCurrentStep();
+};

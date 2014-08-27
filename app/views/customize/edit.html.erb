@@ -1,5 +1,19 @@
-<h1>Edit your LinguaZone <%= format_cmzr_type(params[:cmzr_type]) %></h1>
-<br />
-<div align="center swf_window">
-	<%= swf_tag '/swfs/customizer/main.lzx.swf', { :id => "customizer", :height => "600", :width => "700", :flashvars => @embed_vars, :parameters => {:path => "../../../", :wmode => "transparent", :quality => "high"} } %>
-</div>
+<%= stylesheet 'customize' %>
+<%= javascript_include_tag "backbone/linguazone" %>
+<div class="body">
+  <h1>Edit your LinguaZone <%= format_cmzr_type(params[:cmzr_type]) %></h1>
+  <br />
+
+  <br style="clear: both;" />
+
+  <div id="examples"></div>
+  <div class="spacer"></div>
+  <div id="option-lists"></div>
+  <div class="spacer"></div>
+
+  <div id="game-editor" class="customizer" data-game-id="<%=params[:id]%>">
+    <div id="examples"></div>
+    <div id="customizer"></div>
+  </div>
+
+ </div>

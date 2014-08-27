@@ -132,4 +132,11 @@ FactoryGirl.define do
     association  :media_category
   end
 
+  factory :example do
+    default       true
+    association   :activity
+    association   :language
+    node_input    "hello"
+    question_name "question"
+  end
 end

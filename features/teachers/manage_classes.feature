@@ -1,9 +1,9 @@
 Feature: Manage classes
-	As a subscribing teacher
-	In order to control my class pages on LinguaZone.com
-	I want to be able to manage all class information
-	
-	Background:
+  As a subscribing teacher
+  In order to control my class pages on LinguaZone.com
+  I want to be able to manage all class information
+
+  Background:
     Given a teacher exists with a first name of "Tony"
 	
 	Scenario: Create a new class
