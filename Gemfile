@@ -42,7 +42,7 @@ group :production do
   gem "newrelic_rpm"
   gem 'therubyracer'
   gem "rails_12factor"
-  gem "dalli"
+  #gem "dalli" # TODO: Temporarily removed while loading errors persist 9/14
 	gem "SystemTimer", :require => "system_timer", :platforms => :ruby_18
 end
 #
