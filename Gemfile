@@ -42,7 +42,6 @@ group :production do
   gem "newrelic_rpm"
   gem 'therubyracer'
   gem "rails_12factor"
-  gem "memcached"
   gem "dalli"
 	gem "SystemTimer", :require => "system_timer", :platforms => :ruby_18
 end

@@ -150,7 +150,6 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    memcached (1.8.0)
     meta_search (1.1.3)
       actionpack (~> 3.1)
       activerecord (~> 3.1)
@@ -338,7 +337,6 @@ DEPENDENCIES
   json
   kaminari
   launchy
-  memcached
   meta_search (>= 1.1.0.pre)
   newrelic_rpm
   nokogiri (= 1.5.10)
