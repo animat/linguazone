@@ -4,4 +4,7 @@
 <cross-domain-policy>
 	<allow-access-from domain="*" />
 	<allow-access-from domain="127.0.0.1:8080" />
+	<allow-access-from domain="www.ivanix.com" />
+	<allow-access-from domain="192.249.61.253" />
+	<allow-access-from domain="180.176.226.111" />
 </cross-domain-policy>
