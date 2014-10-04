@@ -132,6 +132,7 @@ Linguazone::Application.routes.draw do
   match 'about/word_lists' => 'about#word_lists'
   match 'about/us' => 'about#us'
   match 'about/languages' => 'about#languages'
+  match 'about/help' => 'about#help'
   
   match 'logout' => 'user_sessions#destroy', :as => :logout
   match 'trial' => 'schools#check', :as => :trial, :trial => 'true'

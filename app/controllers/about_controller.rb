@@ -11,7 +11,10 @@ class AboutController < ApplicationController
       session[:teacher] = nil
     end
   end
-
+  
+  def help
+  end
+  
   def features
   end
   

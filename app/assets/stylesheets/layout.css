@@ -338,10 +338,25 @@ div::-moz-focus-inner {
 #get_to_know_us {
   float: right;
   width: 30%;
-  padding: 33px 2px 0px 5px;
+  padding: 22px 2px 0px 5px;
 }
-#get_to_know_us a {
-  color: #122d5d;
+#get_to_know_us > p {
+	color: #122d5d;
+}
+#get_to_know_us > p > a {
+	display: block;
+	padding: 10px;
+	margin: 5px 10px;
+	color: #122d5d;
+	text-decoration: none;
+	text-align: center;
+	border-radius: 5px;
+	background-color: #96B8F2;
+}
+#get_to_know_us > p > a:hover {
+	color: white;
+	background-color: #194BA0;
+	text-decoration: underline;
 }
 /*  --------------------- *
  *  Shared pages elements *

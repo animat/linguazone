@@ -160,3 +160,13 @@ table#sign_up_premium td {
 	float: right;
 	width: 280px;
 }
+
+/* --------------
+      Help
+   -------------- */
+#faq_section {
+	line-height: 1.4em
+}
+#faq_section > h3 {
+	text-indent: 20px;
+}
