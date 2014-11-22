@@ -129,9 +129,9 @@ module ApplicationHelper
   
   def audio_clip_s3_url(audio_id)
     if Rails.env.production?
-      "http://linguazone.s3.amazonaws.com/audio/#{audio_id}.mp3"
+      "https://linguazone.s3.amazonaws.com/audio/#{audio_id}.mp3"
     else
-      "http://linguazone.s3.amazonaws.com/transloadit/#{audio_id}.mp3"
+      "https://linguazone.s3.amazonaws.com/transloadit/#{audio_id}.mp3"
     end
   end
 end
