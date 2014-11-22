@@ -6,7 +6,10 @@
 		<% else%>
 			<div>
 				<div class="audio_player swf_window">
-					<%= swf_tag "/swfs/audio-widget.swf", {:size => "215x138", :flashvars => "audio_id="+String(comment.audio_id), :parameters => {:wmode => "transparent", :quality => "high"}} %>
+					<audio controls>
+						<source src="<%= audio_clip_s3_url(comment.audio_id) %>" />
+						Audio playback is not supported on this browser.
+					</audio>
 				</div>
 				<p><%= h(comment.content) %></p>
 				<br class="clearFloat" />

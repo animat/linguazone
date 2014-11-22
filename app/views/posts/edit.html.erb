@@ -1,14 +1,16 @@
+<% stylesheet 'post' %>
+
 <h1>Editing post</h1>
 
 <%= form_for(@post) do |f| %>
   <%= f.error_messages %>
 	
 	<p>
-		<%= f.label :title %>
+		<%= f.label :title %><br />
 		<%= f.text_field :title %>
 	</p>
 	<p>
-		<%= f.label :content %>
+		<%= f.label :content %><br />
 		<%= f.text_area :content %>
 	</p>
 	<p>
@@ -16,8 +18,6 @@
 	</p>
 	<p>
 		<%= f.hidden_field :course_id, :value => @ap.course_id %>
-		<%= f.submit 'Update' %>
+		<%= f.submit 'Update' %> or <%= link_to 'cancel', :back %>
 	</p>
 <% end %>
-
-<%= link_to 'Cancel', :back %>

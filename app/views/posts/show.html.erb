@@ -99,6 +99,11 @@ function convertRatingNumToImage(id) {
 </script>
 <% end %>
 
+<% stylesheet 'waverec/basic.css' %>
+<% stylesheet 'waverec/main.css' %>
+
+<% javascript 'waverec/recorder' %>
+<% javascript 'waverec/basic.js' %>
 <% stylesheet 'post' %>
 
 <% content_for :title do %> LinguaZone - <% "#{@course.name} - " unless @course.nil? %> Audio Blog - <%= @post.title %> <% end %>
@@ -116,6 +121,23 @@ function convertRatingNumToImage(id) {
 		<% else %>
 			<div style="margin-top: 10px">
 				<div style="float: left; margin: 0px 15px;">
+					
+					
+					
+					<!-- Cesar's implementation with Transloadit -->
+					<h1>Audio Post Created (wav2mp3)</h1>
+
+
+					<p> RESULTS: <%= params[:transloadit][:message] %> </p>
+					<p> NAME: <br><%= params[:upload][:name] %> </p> 
+					<p> DESC: <br><%= params[:upload][:description] %> </p>
+					<p> URL: <%= params[:transloadit][:results][:mp3].first[:url] %> </p>
+
+					<%= audio_tag( params[:transloadit][:results][:mp3].first[:url], autoplay: false, controls: true )%>
+					<!-- end -->
+					
+					
+					
 					<div class="swf_window">
 						<%= swf_tag "/swfs/audio-widget.swf", {:size => "215x138", :flashvars => "audio_id="+String(@post.audio_id), :parameters => {:wmode => "transparent", :quality => "high"}} %>
 					</div>

@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  include Transloadit::Rails::ParamsDecoder
+  require 'aws/s3'
   filter_access_to :index, :new, :create, :edit, :update, :destroy
   
   def index
@@ -54,11 +56,44 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     
     respond_to do |format|
+      # TODO: If the user TRIED to upload audio and it didn't work, alert them. Otherwise, ignore Transloadit.
+      if params[:transloadit] and params[:transloadit][:ok] == "ASSEMBLY_COMPLETED"
+        @path = params[:transloadit][:results][:mp3].first[:id]
+        @ext = params[:transloadit][:results][:mp3].first[:ext]
+        # TODO: Store relevant metadata along with the audio clip info
+        @new_audio_clip = AudioClip.create(user: current_user)
+        @post.audio_id = @new_audio_clip.id
+      else
+        flash[:error] = "There was an error recording your audio. Please try again."
+        format.html { render :action => "new" }
+      end
       if @post.save
-        @available_post = AvailablePost.new(:post_id => @post.id, :user_id => @post.user_id, :course_id => @post.course_id, :ordering => 0, :hidden => 0)
-        @available_post.save
-        flash[:success] = "Your new post has been created and added to the class page"
-        format.html { redirect_to post_path(@available_post) }
+        # TODO: Ignore if no file has been uploaded
+        cred = YAML.load(File.open("#{Rails.root}/config/s3.yml")).symbolize_keys!
+        AWS::S3::Base.establish_connection! cred
+        bucket = AWS::S3::Bucket.find('linguazone', :prefix => "transloadit")
+        key = "transloadit/#{@path}.#{@ext}"
+        obj = bucket[key]
+        while obj.nil? and bucket.is_truncated
+          bucket = AWS::S3::Bucket.find("linguazone", :prefix => "transloadit", :marker => lz.objects.last.key)
+          obj = bucket[key]
+        end
+        if obj.nil?
+          flash[:error] = "There was an error recording your audio. Please try again."
+          format.html { render :action => "new" }
+        else
+          # Only move into audio folder if in production environment. Otherwise simply rename.
+          if Rails.env.production?
+            obj.rename("audio/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
+          else
+            obj.rename("transloadit/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
+          end
+          
+          @available_post = AvailablePost.new(:post_id => @post.id, :user_id => @post.user_id, :course_id => @post.course_id, :ordering => 0, :hidden => 0)
+          @available_post.save
+          flash[:success] = "Your new post has been created and added to the class page"
+          format.html { redirect_to post_path(@available_post) }
+        end
       else
         flash[:error] = "There has been an error creating your new post"
         format.html { render :action => "new" }

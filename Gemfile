@@ -28,6 +28,7 @@ gem "omniauth-openid"
 gem "omniauth-facebook"
 gem "spreadsheet"
 gem "nokogiri", "1.5.10"
+gem "transloadit-rails"
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'

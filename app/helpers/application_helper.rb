@@ -126,4 +126,12 @@ module ApplicationHelper
       link_to "View stats", url_for(:controller => "play", :action => "stats", :id => item.id)
     end
   end
+  
+  def audio_clip_s3_url(audio_id)
+    if Rails.env.production?
+      "http://linguazone.s3.amazonaws.com/audio/#{audio_id}.mp3"
+    else
+      "http://linguazone.s3.amazonaws.com/transloadit/#{audio_id}.mp3"
+    end
+  end
 end

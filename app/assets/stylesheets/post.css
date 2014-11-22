@@ -17,6 +17,28 @@ textarea {
 	width: 100%;
 }
 
+.edit_post, .new_post, .new_comment, .edit_comment {
+	margin: 10px 30px;
+}
+
+.edit_post input[type="text"], .new_post input[type="text"] {
+	padding: 5px;
+	width: 50%;
+	font-size: .9em;
+}
+.edit_post textarea, .new_post textarea  {
+	padding: 5px;
+	font-size: .9em;
+	width: 50%;
+}
+.new_comment textarea {
+	padding: 5px;
+	font-size: .9em;
+}
+.new_comment .recording_area {
+	margin-top: 15px;
+}
+
 #title h1 {
 	float: left;
 }

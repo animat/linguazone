@@ -1,15 +1,4 @@
-<% content_for :page_script do %>
-<script type="text/javascript">
-
-var audioid;
-
-function setAudioID(num) {
-	audioid = num;
-	$("#post_audio_id").val(num);
-}
-
-</script>
-<% end %>
+<% stylesheet 'post' %>
 
 <% if @course_id == 0 %>
 	
