@@ -2,6 +2,7 @@
 <script type="text/javascript">
 
 var audioid;
+var jPlayers;
 
 function setAudioID(num) {
 	audioid = num;
@@ -64,6 +65,46 @@ $(function() {
 		convertRatingNumToImage($(elem).parent().parent().attr("id"));
 	})
 	$(".numerical_rating").hide();
+	
+	jPlayers = new Array();
+	$("audio").each(function(index, elem) {
+		var playerContent = '<div id="cp_container_'+index+'" class="cp-container"> \
+				<div class="cp-buffer-holder"> <!-- .cp-gt50 only needed when buffer is > than 50% --> \
+					<div class="cp-buffer-1"></div> \
+					<div class="cp-buffer-2"></div> \
+				</div> \
+				<div class="cp-progress-holder"> <!-- .cp-gt50 only needed when progress is > than 50% --> \
+					<div class="cp-progress-1"></div> \
+					<div class="cp-progress-2"></div> \
+				</div> \
+				<div class="cp-circle-control"></div> \
+				<ul class="cp-controls"> \
+					<li><a class="cp-play" tabindex="1">play</a></li> \
+					<li><a class="cp-pause" style="display:none;" tabindex="1">pause</a></li> <!-- Needs the inline style here, or jQuery.show() uses display:inline instead of display:block --> \
+				</ul> \
+			</div>';
+		var playerId = "jquery_player_"+index;
+		var playerContainer = '<div id="'+playerId+'" class="cp-jplayer"></div>';
+		var $audio = $(elem);
+		var audioSrc = $audio.find("source")[0].src;
+		console.log(audioSrc);
+		
+		$("body").append(playerContainer);
+		$audio.parent().append(playerContent);
+		var player = new CirclePlayer("#"+playerId, {
+			mp3: audioSrc
+		}, {
+			cssSelectorAncestor: "#cp_container_"+index,
+			swfPath: "/swfs",
+			supplied: "mp3",
+			smoothPlayBar: true,
+			keyEnabled: true,
+			volume: 1,
+			wmode: "window"
+		});
+		$audio.hide();
+		jPlayers.push(player);
+	});
 });
 function hideCommentControls(id) {
 	$("#"+id+"_controls").removeClass("controls").addClass("hide_controls");
@@ -108,6 +149,7 @@ function convertRatingNumToImage(id) {
 <% javascript 'jplayer/jquery.grab.js' %>
 <% javascript 'jplayer/jquery.transform2d.js' %>
 <% javascript 'jplayer/mod.csstransforms.min.js' %>
+<% javascript 'jplayer/circle.player.js' %>
 <% stylesheet 'circle_player' %>
 <% stylesheet 'post' %>
 
@@ -126,10 +168,9 @@ function convertRatingNumToImage(id) {
 		<% else %>
 			<div style="margin-top: 10px">
 				<div style="float: left; margin: 0px 15px;">
-					<div class="swf_window">
+					<div class="audio_player">
 						<audio controls>
 							<source src="<%= audio_clip_s3_url(@post.audio_id) %>" />
-							Audio playback is not supported on this browser.
 						</audio>
 					</div>
 				</div>

@@ -5,10 +5,9 @@
 			<p><%= h(comment.content) %></p>
 		<% else%>
 			<div>
-				<div class="audio_player swf_window">
+				<div class="audio_player">
 					<audio controls>
 						<source src="<%= audio_clip_s3_url(comment.audio_id) %>" />
-						Audio playback is not supported on this browser.
 					</audio>
 				</div>
 				<p><%= h(comment.content) %></p>
