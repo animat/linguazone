@@ -1,7 +1,8 @@
 Linguazone::Application.configure do
 
-  # The production environment is meant for finished, "live" apps.
-  # Code is not reloaded between requests
+  config.log_level = ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].to_sym : ('info').to_sym
+  
+  
   config.cache_classes = true
 
   config.action_controller.perform_caching             = true
