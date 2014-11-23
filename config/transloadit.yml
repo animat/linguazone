@@ -10,38 +10,24 @@ development:
     duration: 1800 # 30 minute validity period for signed upload forms
 
   templates:
-    # template identified by template_id
-    s3_store: 'S3_STORE_TEMPLATE_ID'
-
     audio_encode_s3: 'e36ca020604e11e48d057b2ba9676c48'
 
-    # template defined inline
-    image_resize:
-      steps:
-        resize:
-          robot : '/image/resize'
-          width : 320
-          height: 200
-
-production:
-  # the jquery_sdk version you want to use, read up on it here:
-  # https://transloadit.com/blog/2013/02/transloadit-javascript-plugin-and-jquery-1-9
-  # defaults to latest
-  # use "v1.0.0" if you need IE6 support (using jQuery < 1.9)
+staging:
   jquery_sdk_version: 'latest'
   auth:
-    key     : 'YOUR_KEY'
-    secret  : 'YOUR_SECRET' # this is optional, but highly recommended, https://transloadit.com/docs/authentication
+    key     : '79af1338b0364303b9caa569fc37641f'
+    secret  : '865d409375f5bcf7a5ad97ce81ee8abad5c5886a' # this is optional, but highly recommended, https://transloadit.com/docs/authentication
     duration: 1800 # 30 minute validity period for signed upload forms
 
   templates:
-    # template identified by template_id
-    s3_store: 'S3_STORE_TEMPLATE_ID'
+    audio_encode_s3: 'e36ca020604e11e48d057b2ba9676c48'
 
-    # template defined inline
-    image_resize:
-      steps:
-        resize:
-          robot : '/image/resize'
-          width : 320
-          height: 200
+production:
+  jquery_sdk_version: 'latest'
+  auth:
+    key     : '79af1338b0364303b9caa569fc37641f'
+    secret  : '865d409375f5bcf7a5ad97ce81ee8abad5c5886a' # this is optional, but highly recommended, https://transloadit.com/docs/authentication
+    duration: 1800 # 30 minute validity period for signed upload forms
+
+  templates:
+    audio_encode_s3: 'e36ca020604e11e48d057b2ba9676c48'
