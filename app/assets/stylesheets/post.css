@@ -119,17 +119,16 @@ p.remove_spacing {
 }
 .comment div.audio_player {
 	float: left; 
-	width: 215px; 
-	height: 138px; 
 	margin: 0px 15px; 
 	border: 1px solid #333399;
 }
 .teacher_comment div.audio_player {
 	float: left; 
-	width: 215px; 
-	height: 138px; 
 	margin: 0px 15px; 
 	border: 1px solid #FF6600;
+}
+#post .audio_player {
+	border: 1px solid #333399;
 }
 
 .comment p.details {
