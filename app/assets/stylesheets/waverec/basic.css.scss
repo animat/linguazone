@@ -129,36 +129,45 @@
 .recorder .start-recording {
     background: url( image-path("waverec/record.jpg") );
     background-repeat: no-repeat;
+	cursor: pointer;
 }
 .recorder .start-recording:active {
     background: url( image-path("waverec/record-down.jpg") );
+	cursor: pointer;
 }
 
 .recorder .stop-recording {
     background: url( image-path("waverec/stop.jpg") );
     background-repeat: no-repeat;
+	cursor: pointer;
 }
 .recorder .stop-recording:active {
     background: url( image-path("waverec/stop-down.jpg") );
+	cursor: pointer;
 }
 .recorder .start-playback {
     background: url( image-path("waverec/play.jpg") );
     background-repeat: no-repeat;
+	cursor: pointer;
 }
 .recorder .start-playback:active {
     background: url( image-path("waverec/play-down.jpg") );
+	cursor: pointer;
 }
 
 .recorder .stop-playback {
     background: url( image-path("waverec/stop.jpg") );
     background-repeat: no-repeat;
+	cursor: pointer;
 }
 .recorder .stop-playback:active {
     background: url( image-path("waverec/stop-down.jpg") );
+	cursor: pointer;
 }
 .recorder .launch-recorder {
     background: url( image-path("waverec/record.jpg") );
     background-repeat: no-repeat;
+	cursor: pointer;
     /*
     background-position-x: 20px;
     background-position-y: 5px;
@@ -166,6 +175,7 @@
 }
 .recorder .launch-recorder:active {
     background: url( image-path("waverec/record-down.jpg") );
+	cursor: pointer;
     /*
     background: #00aa00 url(/wavrec/images/record-down.jpg);
     background-position-x: 20px;
