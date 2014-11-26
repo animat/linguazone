@@ -8,10 +8,10 @@ class Linguazone.Views.Games.SingleWordMatch extends Linguazone.Views.Games.Node
 
   events:
     "click .delete"          : "delete",
-    "focus .question input"  : "showQuestion"
-    "blur .question input"   : "hideQuestion"
-    "focus .response input"  : "showResponse"
-    "blur .response input"   : "hideResponse"
+    "focus .question input"  : "highlightQuestion"
+    "blur .question input"   : "dimQuestion"
+    "focus .response input"  : "highlightResponse"
+    "blur .response input"   : "dimResponse"
     "change .ltarget"        : "updateModel"
     "change .question input" : "updateModel"
 

@@ -28,19 +28,17 @@ class Linguazone.Views.GameType extends Backbone.View
         return
 
   render: =>
-    console.log("RENDERING EXAMPLE STUFF")
     @$el.html(_.template(@template))
     @$el.append(@nodeView.render().el)
     @nodeView.$el.addClass("node-example")
 
     if @name = "OneToOne"
-      console.log("OneToOne is trueeee")
-      console.log(@examples.models)
+      console.log("The following examples:")
+      console.log(@examples)
       $("#examples .question").prepend(@template2)
-      console.log("prepended template")
       if @examples.models 
         $("#examples .question h2").append(@examples.models[0].display_label)
-      console.log("added display label")
+      console.log("Added display label")
 
     template2: """
       <h2></h2>

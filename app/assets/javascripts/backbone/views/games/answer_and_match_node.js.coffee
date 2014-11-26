@@ -6,10 +6,10 @@ class Linguazone.Views.Games.AnswerAndMatch extends Linguazone.Views.Games.NodeB
   #TODO: remove duplication:
   events:
     "click .delete"           : "delete",
-    "focus .question input"   : "showQuestion"
-    "blur .question input"    : "hideQuestion"
-    "focus .response input"   : "showResponse"
-    "blur .response input"    : "hideResponse"
+    "focus .question input"   : "highlightQuestion"
+    "blur .question input"    : "dimQuestion"
+    "focus .response input"   : "highlightResponse"
+    "blur .response input"    : "dimResponse"
     "change .question input"  : "updateModel"
     "click .next"             : "updateQuestion"
     "change .response select" : "updateModel"
@@ -135,10 +135,10 @@ class Linguazone.Views.Games.TwoAnswerAndMatch extends Linguazone.Views.Games.No
   #TODO: remove duplication:
   events:
     "click .delete"           : "delete",
-    "focus .question input"   : "showQuestion"
-    "blur .question input"    : "hideQuestion"
-    "focus .response input"   : "showResponse"
-    "blur .response input"    : "hideResponse"
+    "focus .question input"   : "highlightQuestion"
+    "blur .question input"    : "dimQuestion"
+    "focus .response input"   : "highlightResponse"
+    "blur .response input"    : "dimResponse"
     "change .question input"  : "updateModel"
     "click .next"             : "updateQuestion"
     "change .response select" : "updateModel"
