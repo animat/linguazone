@@ -5,10 +5,8 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
 
     if @comment.save
-      # TODO: If the user TRIED to upload audio and it didn't work, alert them. Otherwise, ignore Transloadit.
       if params[:transloadit]
         params[:transloadit] = JSON.parse(params[:transloadit])
-        puts params[:transloadit].inspect
         if params[:transloadit][:ok] == "ASSEMBLY_COMPLETED"
           @path = params[:transloadit][:results][:mp3].first[:id]
           @ext = params[:transloadit][:results][:mp3].first[:ext]
@@ -16,33 +14,36 @@ class CommentsController < ApplicationController
           @new_audio_clip = AudioClip.create(user: current_user)
           @comment.audio_id = @new_audio_clip.id
           @comment.save
+          
+          cred = YAML.load(File.open("#{Rails.root}/config/s3.yml")).symbolize_keys!
+          AWS::S3::Base.establish_connection! cred
+          bucket = AWS::S3::Bucket.find('linguazone', :prefix => "transloadit")
+          key = "transloadit/#{@path}.#{@ext}"
+          obj = bucket[key]
+          while obj.nil? and bucket.is_truncated
+            bucket = AWS::S3::Bucket.find("linguazone", :prefix => "transloadit", :marker => lz.objects.last.key)
+            obj = bucket[key]
+          end
+          if obj.nil?
+            flash[:error] = "There was an error recording your audio. Please try again."
+            redirect_to(@comment.available_post)
+          else
+            # Only move into audio folder if in production environment. Otherwise simply rename.
+            if Rails.env.production?
+              obj.rename("audio/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
+            else
+              obj.rename("transloadit/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
+            end
+      
+            flash[:success] = "Your comment has been created"
+            record_feed_item(@comment.available_post.course.id, @comment)
+            redirect_to post_path(@comment.available_post)
+          end
         else
           flash[:error] = "There was an error recording your audio. Please try again."
           redirect_to(@comment.available_post)
         end
-      end
-      
-      # TODO: Ignore if no file has been uploaded
-      cred = YAML.load(File.open("#{Rails.root}/config/s3.yml")).symbolize_keys!
-      AWS::S3::Base.establish_connection! cred
-      bucket = AWS::S3::Bucket.find('linguazone', :prefix => "transloadit")
-      key = "transloadit/#{@path}.#{@ext}"
-      obj = bucket[key]
-      while obj.nil? and bucket.is_truncated
-        bucket = AWS::S3::Bucket.find("linguazone", :prefix => "transloadit", :marker => lz.objects.last.key)
-        obj = bucket[key]
-      end
-      if obj.nil?
-        flash[:error] = "There was an error recording your audio. Please try again."
-        redirect_to(@comment.available_post)
       else
-        # Only move into audio folder if in production environment. Otherwise simply rename.
-        if Rails.env.production?
-          obj.rename("audio/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
-        else
-          obj.rename("transloadit/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
-        end
-      
         flash[:success] = "Your comment has been created"
         record_feed_item(@comment.available_post.course.id, @comment)
         redirect_to post_path(@comment.available_post)

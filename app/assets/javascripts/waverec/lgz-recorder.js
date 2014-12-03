@@ -16,7 +16,7 @@ var g = {};
 lgzRec.ClassDisplay = function () {
     'use strict';
     var thisObj, $canvas, canvas, level, ctx, slider, timeArr, timeloc,
-        mouse, color, font, blink, modePlay, $btnRedo, $overlay;
+        mouse, color, font, blink, modePlay, $btnRedo, $overlay, timew;
     thisObj = this;
     modePlay = false;
     $btnRedo =  $('#lgzBtnRedo');
@@ -88,15 +88,16 @@ lgzRec.ClassDisplay = function () {
     
 
     g.level = level;
-
+	
+    timew =  Math.round(ctx.measureText('99:99:99').width);
 
     timeArr = [];
     timeloc  = {};
     timeloc.tx = 5;
     timeloc.ty = canvas.height - 5;
-    timeloc.x1 = timeloc.tx;
+    timeloc.x1 = timeloc.tx - 2;
     timeloc.y1 = timeloc.ty - font.size + 2;
-    timeloc.x2 = 100 - 2;
+    timeloc.x2 = timew + 4;
     timeloc.y2 = font.size;
     timeloc.ts = 0;
     timeArr.push(timeloc);
@@ -104,9 +105,9 @@ lgzRec.ClassDisplay = function () {
     timeloc  = {};
     timeloc.tx =  canvas.width - Math.round(ctx.measureText('99:99:99').width) - 5;
     timeloc.ty = canvas.height - 5;
-    timeloc.x1 = timeloc.tx;
+    timeloc.x1 = timeloc.tx - 2;
     timeloc.y1 = timeloc.ty - font.size + 2;
-    timeloc.x2 = 95;
+    timeloc.x2 = timew + 4;
     timeloc.y2 = font.size;
     timeloc.ts = 0;
     timeArr.push(timeloc);
@@ -175,7 +176,7 @@ lgzRec.ClassDisplay = function () {
         }
     };
     thisObj.sliderDraw = function (pct) {
-        var timeLapse, timeDur;
+        var timeLapse;
         // pct = Math.floor(rawpct);
         if (pct < 0) {
             pct = 0;
@@ -197,25 +198,31 @@ lgzRec.ClassDisplay = function () {
          */
          // thisObj.timeLapse = (((timeLapseMS / 10)|0)/100);
          
-        timeDur = FWRecorder.duration('audio');
         thisObj.sliderPct = pct;
-        timeLapse = (pct * timeDur / 100);
+        timeLapse = (pct * thisObj.dur / 100);
         thisObj.timeDraw(timeLapse, 0);
 
     };
     thisObj.sliderPlay = function () {
-        var pct, ds, dmax, idx, rec;
+        var pct, ds, idx, rec;
 
-        dmax = FWRecorder.duration('audio');
         if (thisObj.playCont) {
             ds = FWRecorder.getCurrentTime('audio');
         } else {
-            ds = dmax;
+            ds = thisObj.dur;
         }
-        pct = Math.floor(100 * ds / dmax);
+        pct = Math.floor(10000 * ds / thisObj.dur) / 100;
         thisObj.sliderDraw(pct);
 
-        idx = Math.round(thisObj.sliderPct * thisObj.vuArr.length / 100);
+        idx = Math.round(pct * thisObj.vuArr.length / 100);
+        /*
+        console.debug('sliderPlay: '
+            + ' dmax=' + dmax
+            + ' ds=' + ds
+            + ' pct=' + pct
+            + ' idx=' + idx
+            );
+        */
         if (idx > thisObj.lastIdx) {
             idx = thisObj.lastIdx;
         }
@@ -229,10 +236,11 @@ lgzRec.ClassDisplay = function () {
         timeloc.ts = time;
 
         ftime = thisObj.fmtTimeSecsAsHHMMSS(time);
-        w = Math.round(ctx.measureText(ftime).width);
+        //w = Math.round(ctx.measureText(ftime).width);
 
         ctx.fillStyle = color.bg;
-        ctx.fillRect(timeloc.x1, timeloc.y1, w, timeloc.y2);
+        //ctx.fillRect(timeloc.x1, timeloc.y1, w, timeloc.y2);
+        ctx.fillRect(timeloc.x1, timeloc.y1, timeloc.x2, timeloc.y2);
         ctx.fillStyle = color.fg;
 
         ctx.fillText(ftime, timeloc.tx, timeloc.ty);
@@ -315,11 +323,15 @@ lgzRec.ClassDisplay = function () {
         // console.debug('recStop');
         ts = new Date();
         window.setTimeout(function () {
-            // console.debug('recStop: setTimeout update');
             thisObj.levelRec(0);
             thisObj.sliderInit();
         }, 100);
         $btnRedo.css('visibility', 'visible');
+        if (lgzRec.send) {
+            window.setTimeout(function () {
+                lgzRec.levelRec(0);
+            }, 100);
+        }
     };
     thisObj.playLoop = function () {
         var rec, timeLapse;
@@ -336,13 +348,12 @@ lgzRec.ClassDisplay = function () {
                
     };
     thisObj.playStart = function () {
-        var timeStart, timeEnd;
+        var timeStart;
         console.debug('playStart');
         $btnRedo.css('visibility', 'hidden');
             
         thisObj.stopByUser = false;
 
-        timeEnd = FWRecorder.duration('audio');
         if (thisObj.sliderPct === 100) {
             thisObj.sliderPct = 0;
         }
@@ -350,7 +361,7 @@ lgzRec.ClassDisplay = function () {
          * set timeStart to 2 decimal places, 
          * at 3 or more, FWRecord.playBackFrom('audio',starTime) will go haywire
          */
-        timeStart  = (Math.round(thisObj.sliderPct * timeEnd) / 100);
+        timeStart  = (Math.round(thisObj.sliderPct * thisObj.dur) / 100);
 
         thisObj.playCont = true;
         FWRecorder.playBackFrom('audio', timeStart);
@@ -373,6 +384,7 @@ lgzRec.ClassDisplay = function () {
         if (!thisObj.stopByUser) {
             thisObj.sliderPlay();
         }
+        thisObj.levelDraw(0);
     };
     thisObj.mouseCoords = function (event) {
         var box, ms;
@@ -484,42 +496,39 @@ lgzRec.ClassDisplay = function () {
         }, 10000);
     };
     thisObj.sliderInit = function () {
-        var dur;
         mouse.drag = false;
         modePlay = true;
         thisObj.lastIdx = thisObj.vuArr.length - 1;
-        dur = FWRecorder.duration('audio');
-        thisObj.timeDraw(dur, 1);
+        thisObj.dur = FWRecorder.duration('audio');
+        thisObj.timeDraw(thisObj.dur, 1);
         thisObj.write('');
         thisObj.sliderPlay();
     };
     thisObj.redo = function () {
-        lgzRec.btn.className = 'start-recording';
         thisObj.reset();
     };
     thisObj.resetTO = function () {
+        lgzRec.btn.className = 'start-recording';
+        $btnRedo.css('visibility', 'hidden');
         thisObj.clear();
         thisObj.write('READY TO RECORD');
     };
     thisObj.reset = function () {
-        $btnRedo.css('visibility', 'hidden');
         modePlay = false;
         window.setTimeout(function () {
             thisObj.resetTO();
         }, 500);
     };
-	
 	thisObj.showOverlay = function() {
 		$overlay = $('<div id="recording_overlay"></div>').appendTo("body");
-	};
+	}
 	thisObj.hideOverlay = function() {
 		$overlay.remove();
 	}
-	
     thisObj.init = function () {
         thisObj.clear();
         if (lgzRec.hasFlash()) {
-            $('#lgzBtnRedo')[0].onclick = function () { thisObj.redo(); };
+            $('#lgzBtnRedo')[0].onclick = function () { thisObj.redo(); return false; };
             canvas.addEventListener("mousedown", thisObj.mouseDown, false);
             canvas.addEventListener("mousemove", thisObj.mouseMove, false);
             window.addEventListener("mouseup", thisObj.mouseUp, false);
@@ -561,10 +570,9 @@ lgzRec.isMobile = {
         return (this.Android() || this.BlackBerry() || this.iOS() || this.Windows());
     }
 };
-lgzRec.addBlob = function ($form) {
+lgzRec.addBlob0 = function ($form) {
     'use strict';
     var  blob, fd, uploader;
-    // console.debug('lgzRec.addBlob():');
 
     blob  = FWRecorder.getBlob('audio');
     fd = new FormData($form);
@@ -572,15 +580,49 @@ lgzRec.addBlob = function ($form) {
 
     uploader = $form.data('transloadit.uploader');
     uploader._options.formData = fd;
+    //ivanix: debug
+    // "interval": 2500,
+    // "pollTimeout": 8000,
+    // "poll404Retries": 15,
+    console.debug('interval: ' + uploader._options.interval);
+    console.debug('pollTimeout: ' + uploader._options.pollTimeout);
+    console.debug('poll404Retries: ' + uploader._options.poll404Retries);
+};
+lgzRec.addBlob = function ($form) {
+    'use strict';
+    var blob, fd, uploader;
+    console.debug('lgzRec.addBlob: entered');
+    blob = FWRecorder.getBlob('audio');
+    console.debug('lgzRec.addBlob: got blob');
+    fd = [];
+    console.debug('lgzRec.addBlob: new form');
+    fd.push(["file", blob, "blob.wav"]);
+    console.debug('lgzRec.addBlob: appended blob to new form');
+    uploader = $form.data('transloadit.uploader');
+    uploader._options.formData = fd;
+    //ivanix: debug
+    // "interval": 2500,
+    // "pollTimeout": 8000,
+    // "poll404Retries": 15,
+    console.debug('interval: ' + uploader._options.interval);
+    console.debug('pollTimeout: ' + uploader._options.pollTimeout);
+    console.debug('poll404Retries: ' + uploader._options.poll404Retries);
+	
+	this.display.hideOverlay();
+	$("#lgzWinSending").attr("class", "winInit");
 };
 lgzRec.addMov = function ($form) {
     'use strict';
     var  blob, fd, uploader;
     return;
 };
-lgzRec.manualSend = function (formid) {
+lgzRec._manualSend = function (formid) {
     'use strict';
     var  blob, $form, empty;
+    console.debug('lgzRec._manualSend');
+	
+	this.display.showOverlay();
+    $('#lgzWinSending').attr('class', 'winShow');
         
     $form = $(formid);
     empty = false;
@@ -599,10 +641,46 @@ lgzRec.manualSend = function (formid) {
        // skip transloadit script
         $form[0].submit();
     } else {
-        $form.submit();
+        console.debug('lgzRec._manualSend: submit.transloadit');
+        // $form.submit();
+        $form.trigger('submit.transloadit');
     }
 };
+lgzRec._manualSendTO = function (formid) {
+    'use strict';
+    console.debug('lgzRec._manualSendTO');
+    window.setTimeout(function () {
+        lgzRec._manualSend(formid);
+    }, 500);
 
+};
+lgzRec.manualSend = function (formid) {
+    'use strict';
+    var classAction;
+    console.debug('lgzRec.manualSend');
+
+    $('#lgzWinSending').attr('class', 'winShow');
+
+    switch (lgzRec.btn.className) {
+    case 'start-recording':
+        lgzRec._manualSendTO(formid);
+        break;
+    case 'start-playback':
+        lgzRec._manualSendTO(formid);
+        break;
+    case 'launch-recorder':
+        lgzRec._manualSendTO(formid);
+        break;
+    case 'stop-recording':
+        lgzRec.doAction(lgzRec.btn.className);
+        lgzRec._manualSendTO(formid);
+        break;
+    case 'stop-playback':
+        lgzRec.doAction(lgzRec.btn.className);
+        lgzRec._manualSendTO(formid);
+        break;
+    }
+};
 lgzRec.hideWinPerm = function () {
     'use strict';
 	this.display.hideOverlay();
@@ -633,7 +711,7 @@ lgzRec.launchMobileRecorder = function (event) {
 };
 lgzRec.onClickFWR = function (event) {
     'use strict';
-    lgzRec.btn = event.target;
+    // lgzRec.btn = event.target;
     if (!FWRecorder.isMicrophoneAccessible()) {
         lgzRec.showWinPermFWR();
         return false;
@@ -642,7 +720,7 @@ lgzRec.onClickFWR = function (event) {
 };
 lgzRec.onClickMobile = function (event) {
     'use strict';
-    lgzRec.btn = event.target;
+    // lgzRec.btn = event.target;
     lgzRec.doAction(lgzRec.btn.className);
 };
 lgzRec.doAction = function (classAction) {
@@ -678,13 +756,20 @@ lgzRec.initFWR = function (formid, script) {
     'use strict';
     var  $form;
     console.debug('lgzRec.initFWR');
-
     $form = $(formid);
+                //
+                // transloadit jquery default props
+                // "interval": 2500,
+                // "pollTimeout": 8000,
+                // "poll404Retries": 15,
     $.getScript(script, function () {
         $form
             .attr('enctype', 'multipart/form-data')
             .transloadit({
 		        "wait": true,
+                "interval": 2500,
+                "pollTimeout": 8000,
+                "poll404Retries": 20,
 		        "beforeStart": function () { lgzRec.addBlob($form); return true; }
 		    });
     });
@@ -739,6 +824,8 @@ lgzRec.initIOS = function (formid, script) {
 };
 lgzRec.init = function (formid, script) {
     'use strict';
+
+    lgzRec.btn = $('#lgzBtnMain')[0];
 
     lgzRec.display = new lgzRec.ClassDisplay(lgzRec);
 

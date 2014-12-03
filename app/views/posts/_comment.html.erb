@@ -5,11 +5,13 @@
 			<p><%= h(comment.content) %></p>
 		<% else%>
 			<div>
-				<div class="audio_player">
-					<audio controls>
-						<source src="<%= audio_clip_s3_url(comment.audio_id) %>" />
-					</audio>
-				</div>
+				<% unless comment.audio_id.nil? %>
+					<div class="audio_player">
+						<audio controls>
+							<source src="<%= audio_clip_s3_url(comment.audio_id) %>" />
+						</audio>
+					</div>
+				<% end %>
 				<p><%= h(comment.content) %></p>
 				<br class="clearFloat" />
 			</div>
