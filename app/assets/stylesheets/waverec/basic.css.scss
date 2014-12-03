@@ -81,6 +81,8 @@
     margin-right: auto;
     display: flex;
     padding: 30px;
+	
+	
 }
 .recorder .msgbox p {
     width: 50%;
@@ -184,6 +186,10 @@
 }
 input#upload_file {
     visibility: hidden;
+}
+#lgzWinSending p {
+	width: 100%;
+	text-align:center;
 }
 .recorder .slider {
     border-top: 1px solid;
