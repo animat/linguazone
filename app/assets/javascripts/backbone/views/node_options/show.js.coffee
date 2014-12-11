@@ -44,6 +44,7 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
      content.match(regex)
 
   showText: (content) =>
+    arguments[0].preventDefault() if _.isFunction(arguments[0]?.preventDefault)
     @removeEmptyViews()
     content = null unless typeof content is "string"
     view = new Linguazone.Views.Games.TextContent(content: content, model: @model)
@@ -51,6 +52,7 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
     @$el.find(".input").append(view.el)
 
   showImage: (image_url) =>
+    arguments[0].preventDefault() if _.isFunction(arguments[0].preventDefault)
     @removeEmptyViews()
     image_url = null unless typeof image_url is "string"
     view = new Linguazone.Views.Games.ImageContent(content: image_url, model: @model)
