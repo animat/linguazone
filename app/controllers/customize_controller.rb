@@ -16,6 +16,8 @@ class CustomizeController < ApplicationController
       else
         @language = Language.find(@lang_id)
         @activities = Activity.all
+        @categories = @activities.map{ |a| a.category}.uniq
+
         @embed_vars = "userid=#{current_user.id}&gamelanguage=#{@language.name}&cmzrtype=#{params[:cmzr_type]}&path=../../../"
       end
     end

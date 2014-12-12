@@ -75,7 +75,6 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
     @showInput()
     @useOptions()
     this
-    
 
   toggleAddMoreLink: =>
 

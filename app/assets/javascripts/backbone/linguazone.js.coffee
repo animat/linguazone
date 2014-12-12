@@ -33,6 +33,7 @@ Linguazone.App.on "initialize:after", ->
   show_customizer = (e)  ->
     e.preventDefault()
     swf_name = $(this).find("a").data("swf")
+    $("#categories").hide()
     $(".activity").hide()
     $(this).show()
     $(this).find(".icons").hide()
@@ -46,7 +47,6 @@ Linguazone.App.on "initialize:after", ->
     options = $(this).find("a").data("node-options")
     options = JSON.parse options unless typeof options == "object"
 
-    
     view = new Linguazone.Views.Games.NewView
       options:     options
       activity_id: activity_id
@@ -81,3 +81,4 @@ Linguazone.App.on "initialize:after", ->
 
 $ ->
   Linguazone.App.start()
+  $('.body').mixItUp()

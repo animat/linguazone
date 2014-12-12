@@ -16,29 +16,27 @@ class Linguazone.Views.GameType extends Backbone.View
     @node.set @options.model.get("node")
     @nodeView  = new Linguazone.Views.Games[@name](node: @node, exampleNode: true)
     @examples = new Linguazone.Collections.ExampleCollection
-    obj = this
+
     @examples.fetch
       success: (response, xhr) =>
-        @examples = response;
-        obj.render()
-        return
+        @examples = response
+        @render()
 
-      error: (errorResponse) ->
-        console.log "Red alert!" + errorResponse
-        return
+      error: (errorResponse) =>
+        console.warn "Could not find an example for #{@name}"
 
   render: =>
     @$el.html(_.template(@template))
     @$el.append(@nodeView.render().el)
+
     @nodeView.$el.addClass("node-example")
 
     if @name = "OneToOne"
-      console.log("The following examples:")
-      console.log(@examples)
       $("#examples .question").prepend(@template2)
-      if @examples.models 
-        $("#examples .question h2").append(@examples.models[0].display_label)
-      console.log("Added display label")
+
+      if @examples.models?.length
+        console.log "Appending example...", @examples.models[0]
+        $("#examples .question h2").append(@examples.models[0].get("display_label"))
 
     template2: """
       <h2></h2>
@@ -47,7 +45,7 @@ class Linguazone.Views.GameType extends Backbone.View
 
 class Linguazone.Collections.ExampleCollection extends Backbone.Collection
   #TODO: make this dynamic, add in userid
-  url: 'http://localhost:3000/examples?activity_id=2&language_id=6'
+  url: '/examples?activity_id=2&language_id=6'
   initialize: ->
 
   parse: (data) ->

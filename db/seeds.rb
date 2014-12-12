@@ -25,5 +25,12 @@ school = School.create({:name => "Test School", :address => "111 Test Road", :ci
 #Test user's password: test
 teacher = User.create({:email => "test@lz.com", :crypted_password => "098f6bcd4621d373cade4e832627b4f6", :password_salt => "", :first_name => "Test", :last_name => "Teacher",
                 :school_id => school.id, :role => "teacher", :subscription_id => subscription.id, :created_at => Time.now})
+
 teacher.password= "password"
 teacher.save
+
+Language.create :name=>"French", :special_characters => "%"
+
+Activity.create :name => "Great", :swf => "blah.swf", :hints_xml => "<xml></xml>", :help => "", :youtube_embed => "", :node_options => '{ "question": { "prompt": "The question a student sees", "types": ["text", "image"], "count": 1  }, "response": { "prompt": "The response image", "types": ["image"], "count": 5  }}'
+
+Activity.create :name => "Better", :swf => "blah.swf", :hints_xml => "<xml></xml>", :help => "", :youtube_embed => "", :category => "Matchy Matchy", :node_options => '{ "question": { "prompt": "The question a student sees", "types": ["text", "image"], "count": 1  }, "response": { "prompt": "The response image", "types": ["image"], "count": 5  }}'
