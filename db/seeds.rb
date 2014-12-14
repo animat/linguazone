@@ -31,6 +31,6 @@ teacher.save
 
 Language.create :name=>"French", :special_characters => "%"
 
-Activity.create :name => "Great", :swf => "blah.swf", :hints_xml => "<xml></xml>", :help => "", :youtube_embed => "", :node_options => '{ "question": { "prompt": "The question a student sees", "types": ["text", "image"], "count": 1  }, "response": { "prompt": "The response image", "types": ["image"], "count": 5  }}'
+Activity.create :name => "Downfall", :swf => "blah.swf", :hints_xml => "<xml></xml>", :help => "", :youtube_embed => "https://www.youtube.com/watch?v=_kXiH1Yiemw#t=728", :description => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", :node_options => '{ "question": { "prompt": "The question a student sees", "types": ["text", "image"], "count": 1  }, "response": { "prompt": "The response image", "types": ["text", "image"], "count": 5  }}'
 
 Activity.create :name => "Better", :swf => "blah.swf", :hints_xml => "<xml></xml>", :help => "", :youtube_embed => "", :category => "Matchy Matchy", :node_options => '{ "question": { "prompt": "The question a student sees", "types": ["text", "image"], "count": 1  }, "response": { "prompt": "The response image", "types": ["image"], "count": 5  }}'

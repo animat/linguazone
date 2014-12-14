@@ -81,4 +81,5 @@ Linguazone.App.on "initialize:after", ->
 
 $ ->
   Linguazone.App.start()
+  $(".venobox").venobox()
   $('.body').mixItUp()

@@ -1,6 +1,25 @@
 #categories button {
   padding: 10px;
   font-size: 1.1em;
+  cursor: pointer;
+}
+
+#categories {
+  float: right;
+}
+
+.activity_details {
+  margin-left: 70px;
+
+}
+
+#categories:after, .clear {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
 }
 
 .body .mix {

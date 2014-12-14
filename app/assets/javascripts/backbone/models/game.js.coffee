@@ -12,11 +12,9 @@ class Linguazone.Models.Game extends Backbone.Model
       success: (response, xhr) ->
         console.log(response)
         classCollectionView = new Linguazone.Views.ClassCollectionView({ collection: response, $el: $("#classes_metadata") })
-        return
 
       error: (errorResponse) ->
-        console.log "Red alert!" + errorResponse
-        return
+        console.log "Red alert!", errorResponse
 
 
   fetch: ->

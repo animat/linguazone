@@ -8,6 +8,7 @@ class Linguazone.Views.GameType extends Backbone.View
     <h2>Example prompt</h2>
     <p>Example hint</p>
   """
+
   initialize: ->
     @name = @options.model.get("name")
     @node = new Linguazone.Models["#{@name}Node"]

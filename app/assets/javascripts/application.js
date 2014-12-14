@@ -17,6 +17,7 @@
 //= require fineuploader.jquery
 //= require select2
 //= require jquery.mixitup
+//= require venobox.min
 
 // get querystring as an array split on "&"
 var QueryString = function() {
