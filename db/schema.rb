@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141211030348) do
+ActiveRecord::Schema.define(:version => 20141213014112) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(:version => 20141211030348) do
     t.string  "game_type",                   :default => "OneToOne",   :null => false
     t.text    "node_options"
     t.string  "category",                    :default => "Unscramble"
+    t.string  "description"
+    t.string  "video_link"
   end
 
   create_table "admin_users", :force => true do |t|
@@ -60,9 +62,9 @@ ActiveRecord::Schema.define(:version => 20141211030348) do
 
   create_table "audio_clips", :force => true do |t|
     t.integer  "user_id",             :null => false
-    t.integer  "used_in_games_tally", :null => false
-    t.integer  "post_id",             :null => false
-    t.integer  "comment_id",          :null => false
+    t.integer  "used_in_games_tally"
+    t.integer  "post_id"
+    t.integer  "comment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -322,6 +324,15 @@ ActiveRecord::Schema.define(:version => 20141211030348) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "simple_captcha_data", :force => true do |t|
+    t.string   "key",        :limit => 40
+    t.string   "value",      :limit => 6
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "simple_captcha_data", ["key"], :name => "idx_key"
 
   create_table "states", :force => true do |t|
     t.string  "name", :limit => 30,                    :null => false
