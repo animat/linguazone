@@ -1,8 +1,7 @@
 <%= stylesheet 'customize' %>
 <%= javascript_include_tag "backbone/linguazone" %>
 
-<h1 id="create_a_new">Create a new <%= format_cmzr_type(params[:cmzr_type]) %></h1>
-<h4 id="step1_title">Step 1: Select a Game</h4><div id="change_game"><img src="/images/customizer/change_game.png" alt="change game" /></div>
+<h4 id="step1_title">Step 1: Select a Game to Create</h4><div id="change_game"><img src="/images/customizer/change_game.png" alt="change game" /></div>
 <div class="page_break"></div>
 <br />
 <div class="body">
@@ -18,28 +17,31 @@
   <% @activities.each do |activity| %>
     <div class="mix activity <%= activity.category.gsub(/ /, "") %>" data-my-order="<%= activity.id %>">
       <div class="circle_icon" style="background: url('http://www.linguazone.com/games/<%= activity.name.gsub(/\s/,'_').camelize(:lower) %>/display/icon.jpg') no-repeat center;"></div>
-      <h2><%= activity.name %></h2>
+      <h2>
+        <%= activity.name %>
+
+    </h2>
       <div class="icons">
         <%# TODO: Game icons can be a link to a lightbox that will play a video preview of that game %>
         <a data-node-options="<%= activity.node_options %>" data-game-type="<%= activity.game_type %>" data-id="<%=activity.id %>" data-swf="<%= activity.swf %>" href="#"><%= activity.help %></a>
+        <div class="video-link">
+          <% if activity.video_link.present? %>
+            <a class="venobox" data-type="youtube" href="<%= activity.video_link %>"><i class="fa fa-play"></i></a>
+          <% end %>
+        </div>
       </div>
 
       <div class="activity_details <%= activity.swf %>">
 
         <p><%= activity.description %></p>
 
-        <span class="video-link">
-          <% if activity.video_link.present? %>
-            <a class="venobox" data-type="youtube" href="<%= activity.video_link %>"><i class="fa fa-play"></i></a>
-          <% end %>
-        </span>
       </div>
     </div>
   <% end %>
 
   <br style="clear: both;" />
   <h4 id="step_title"></h4>
-  <div id="examples"></div>
+  <div id="examples" style="display:none"></div>
   <div class="spacer"></div>
   <div id="option-lists"></div>
   <div class="spacer"></div>

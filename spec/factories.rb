@@ -39,6 +39,11 @@ FactoryGirl.define do
     association :language
   end
 
+  factory:template do
+    xml "<templatedata></templatedata>"
+    association :game
+  end
+
   factory :demo do
     association :game
     association :activity
@@ -123,6 +128,7 @@ FactoryGirl.define do
   factory :media do
     name         "Unscrambling Game"
     descrip      "A fun game"
+    notes        "A great media"
     path         "/"
     assigned_to  "John"
     published    true

@@ -12,7 +12,7 @@ describe Example do
       let!(:specific_example2)  { Factory(:example, :language => english, :activity => activity, :question_name => "no") }
 
       it "returns the example" do
-        Example.for(english, activity).should == [specific_example1, specific_example2]
+        Example.for(english, activity).should == [specific_example2, specific_example1]
       end
     end
 
