@@ -17,10 +17,7 @@
   <% @activities.each do |activity| %>
     <div class="mix activity <%= activity.category.gsub(/ /, "") %>" data-my-order="<%= activity.id %>">
       <div class="circle_icon" style="background: url('http://www.linguazone.com/games/<%= activity.name.gsub(/\s/,'_').camelize(:lower) %>/display/icon.jpg') no-repeat center;"></div>
-      <h2>
-        <%= activity.name %>
-
-    </h2>
+      <h2><a data-node-options="<%= activity.node_options %>" data-game-type="<%= activity.game_type %>" data-id="<%=activity.id %>" data-swf="<%= activity.swf %>" href="#"><%= activity.name %></a></h2>
       <div class="icons">
         <%# TODO: Game icons can be a link to a lightbox that will play a video preview of that game %>
         <a data-node-options="<%= activity.node_options %>" data-game-type="<%= activity.game_type %>" data-id="<%=activity.id %>" data-swf="<%= activity.swf %>" href="#"><%= activity.help %></a>

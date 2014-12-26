@@ -16,18 +16,17 @@ Feature: Teacher creates custom games
 
   @customizer
   @javascript
-  @wip
   Scenario: Create and Edit a Game
     When I am on the customization page
     And I follow "Spanish"
-	Then show me the page
-    And I choose to customize "Leap Frog"
+    And I follow "Leap Frog"
     Then wait a second
     And I enter "niño" for node 1 for "question"
     And I enter "boy" for node 1 for "response"
     And I add another node
     And I enter "carro" for node 2 for "question"
     And I enter "car" for node 2 for "response"
+    And I press "Next step"
     And I press "Create Game"
     Then I should see "Game Created"
     When I follow "GAMES"
@@ -41,57 +40,8 @@ Feature: Teacher creates custom games
   # TODO: test multiple answers
   @customizer
   @javascript
-  Scenario: Customize a Garden Grows game
-    When I am on the customization page
-    And I follow "Spanish"
-    And I follow "Customize Garden Grows"
-    And I enter "niño" for node 1 for "question"
-    And I add another node
-    And I enter "carro" for node 2 for "question"
-    And I press "create-game"
-    And I should not see "not have"
-    Then wait a second
-    And my game has been created
-
-  # TODO: test multiple answers
-  @customizer
-  @javascript
-  Scenario: Customize a Quiz Show Game
-    When I am on the customization page
-    And I follow "Spanish"
-    And I follow "Customize Quiz Show"
-    Then wait a second
-    And I fill in word list 1 with "car,goat,cow"
-    And I move to the next step for node 1
-    Then wait a second
-    And I enter "carro" for node 1 for "question"
-    And I select "car" for node 1 for "response"
-    And I enter "carro" for node 1 for "question"
-    And I add another node
-    And I fill in word list 2 with "bird,goat,cow"
-    And I enter "vaca" for node 2 for "question"
-    And I select "cow" for node 2 for "response"
-    And I enter "vaca" for node 2 for "question"
-    And I press "create-game"
-    And I should not see "not have"
-    Then wait a second
-    When I follow "GAMES"
-    Then I should not see "You have not created any games yet"
-    And there should be 1 "Quiz Show" Game
-    When I follow "Edit"
-    When I debug
-    Then wait a second
-    And I select "goat" for node 2 for "response"
-    And I press "create-game"
-    Then I should see "Game Updated"
-
-  # TODO: test multiple answers
-  @customizer
-  @javascript
-  Scenario: Customize a Quiz Show Game
-    When I am on the customization page
-    And I follow "Spanish"
-    And I follow "Customize Quiz Show"
+  @wip
+  Scenario: Customize Quiz Show"
     Then wait a second
     And I fill in word list 1 with "car,goat,cow"
     And I move to the next step for node 1

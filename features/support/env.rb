@@ -20,13 +20,22 @@ require 'cucumber/rails'
 require 'selenium-webdriver'
 require 'email_spec'
 require 'email_spec/cucumber'
+require 'capybara/poltergeist'
+require 'capybara-screenshot/cucumber'
+
+Capybara.register_driver :poltergeist do |app|
+  options = { :js_errors => false }
+  Capybara::Poltergeist::Driver.new(app, options)
+end
 
 
 Capybara.default_selector = :css
 #Capybara.server_boot_timeout = 50
 Capybara.default_wait_time = 3
 #Capybara.javascript_driver = :webkit
-Capybara.javascript_driver = :selenium
+#Capybara.javascript_driver = :selenium
+Capybara.javascript_driver = :poltergeist
+
 
 if defined?(ActiveRecord::Base)
   begin

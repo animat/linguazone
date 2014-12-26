@@ -13,4 +13,3 @@ class Linguazone.Models.NodeOption extends Backbone.Model
 
   arrayify: ->
     @set("content", [@get("content")]) unless typeof @get("content") == 'object'
-

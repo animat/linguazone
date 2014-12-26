@@ -14,6 +14,7 @@ Feature: Teachers hide resources on their class page
 	
 	@javascript
 	Scenario: Hide a game on the class page
+		Given pending
 		Given I should see 3 "Hide from students" links for games
 		When I hover over the course item teacher controls
 		And I follow "Hide from students" within the 2nd game controls area
@@ -21,6 +22,7 @@ Feature: Teachers hide resources on their class page
 
 	@javascript
 	Scenario: Hide a post on the class page
+		Given pending
 		Given I should see 3 "Hide from students" links for posts
 		When I hover over the course item teacher controls
 		And I follow "Hide from students" within the 1st post controls area
@@ -29,6 +31,7 @@ Feature: Teachers hide resources on their class page
 	# TODO @Len: Sometimes this test fails... but then passes as soon as I tag it 'in progress' and run it by itself
 	@javascript
 	Scenario: Hide a word list on the class page
+		Given pending
 		Given I should see 3 "Hide from students" links for word_lists
 		When I hover over the course item teacher controls
 		And I follow "Hide from students" within the 1st word_list controls area

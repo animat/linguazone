@@ -20,6 +20,7 @@ class Linguazone.Views.GameType extends Backbone.View
 
     @examples.fetch
       success: (response, xhr) =>
+        $("#examples").show()
         @examples = response
         @render()
 

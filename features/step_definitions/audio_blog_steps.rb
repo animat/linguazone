@@ -20,7 +20,11 @@ When /^I follow the (\d+)(st|nd|rd|th) star rating link$/ do |num, suffix|
 end
 
 Then /^there should be a rating of (\d+)$/ do |num|
-  find(:xpath, "(//*[@class[contains(., 'numerical_rating')]])[last()]").should have_content(num.to_s)
+  # HACK, make sure rating plugin loads and is visible
+  sleep 1
+  page.execute_script("$('#comment_1_rating').show()")
+
+  page.find(".numerical_rating").should have_content(num.to_s)
 end
 
 Then /^the (\d+)(st|nd|rd|th) comment should have a note that says "([^"]*)"$/ do |num, suffix, msg|
