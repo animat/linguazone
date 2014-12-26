@@ -50,7 +50,7 @@ Linguazone.App.on "initialize:after", ->
 
     style_activity($activity)
 
-    $("#categories").hide()
+    $(".step1").hide()
     $(".activity").hide()
 
     activity_id = $activity.find("a").data("id")
@@ -58,12 +58,6 @@ Linguazone.App.on "initialize:after", ->
 
     if options and typeof options isnt "object"
       options = JSON.parse options
-
-    console.log
-      options:     options
-      activity_id: activity_id
-      game_type:   $activity.find("a").data("gameType")
-      language_id: QueryString.language
 
     view = new Linguazone.Views.Games.NewView
       options:     options

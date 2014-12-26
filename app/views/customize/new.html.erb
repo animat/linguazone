@@ -1,11 +1,13 @@
 <%= stylesheet 'customize' %>
 <%= javascript_include_tag "backbone/linguazone" %>
 
-<h4 id="step1_title">Step 1: Select a Game to Create</h4><div id="change_game"><img src="/images/customizer/change_game.png" alt="change game" /></div>
-<div class="page_break"></div>
-<br />
+<div class="step1">
+  <h4 id="step1_title">Step 1: Select a Game to Create</h4><div id="change_game"><img src="/images/customizer/change_game.png" alt="change game" /></div>
+  <div class="page_break"></div>
+  <br />
+</div>
 <div class="body">
-  <div id="categories">
+  <div id="categories" class="step1">
     <button class="filter" data-filter=".activity">All</button>
 
     <% @categories.each do |category| %>

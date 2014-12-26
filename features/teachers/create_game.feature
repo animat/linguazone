@@ -10,8 +10,15 @@ Feature: Teacher creates custom games
       | Downfall     | DoubleWordMatch | { "question": { "prompt": "The question a student sees", "types": [ "text", "image" ], "count": 1 }, "response": { "prompt": "The response image", "types": [ "image" ], "count": 5 } } |
 
     And the following languages exist:
-      | name    |
-      | Spanish |
+      | name     |
+      | Spanish  |
+      | English  |
+      | French   |
+      | Italian  |
+      | Polish   |
+      | Klingon  |
+      | Korean   |
+      | Mandarin |
     And I am logged in as "John"
 
   @customizer
