@@ -17,21 +17,6 @@ Linguazone.App.addRegions
   examples:   "#examples"
 
 Linguazone.App.on "initialize:after", ->
-  load_game_type = (activity_id, language_id) =>
-
-    game_type = new Linguazone.Models.GameType
-    game_type.fetch
-      data:
-        activity_id: activity_id
-        # TODO: The language ID won't always be available in the querystring (if the user has a default language set)
-        language_id: language_id
-
-      success: ->
-        Linguazone.App.examples.show new Linguazone.Views.GameType({ model: game_type })
-
-        _.each game_type.get("lists"), (list) ->
-          view = new Linguazone.Views.Games.OptionListView({name: list.linkedto })
-          $("#option-lists").append(view.render().el)
 
   style_activity = ($activity) ->
     swf_name = $activity.find("a").data("swf")
@@ -48,29 +33,29 @@ Linguazone.App.on "initialize:after", ->
     e.preventDefault()
     $activity = $(this)
 
+    activityId = $activity.find("a").data("id")
+    gameType = $activity.find("a").data("gameType")
+
     style_activity($activity)
 
     $(".step1").hide()
     $(".activity").hide()
 
-    activity_id = $activity.find("a").data("id")
+    route = "activity/#{activityId}/gameType/#{gameType}/new"
+
     options = $activity.find("a").data("node-options")
 
     if options and typeof options isnt "object"
       options = JSON.parse options
 
-    view = new Linguazone.Views.Games.NewView
-      options:     options
-      activity_id: activity_id
-      game_type:   $activity.find("a").data("gameType")
-      language_id: QueryString.language
+    # HACK: move all this data client side instead of DOM
+    Linguazone.currentNodeOptions = options
 
-    load_game_type activity_id, QueryString.language
-
-    Linguazone.App.customizer.show view
+    Backbone.history.navigate route, trigger: true
 
   $(".activity").click show_customizer
-  $(".activity a").click show_customizer
+
+  Backbone.history.start()
 
   $editor = $("#game-editor")
 

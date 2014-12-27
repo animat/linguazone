@@ -1,4 +1,4 @@
-class Linguazone.Routers.GameDataRouter extends Backbone.Router
+class Linguazone.Routers.GameDataRouter extends Backbone.Marionette.AppRouter
   initialize: (options) ->
     @gameData = new Linguazone.Collections.GameDataCollection()
     @gameData.reset options.gameData

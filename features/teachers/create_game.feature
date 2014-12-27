@@ -36,13 +36,13 @@ Feature: Teacher creates custom games
     And I press "Next step"
     And I press "Create Game"
     Then I should see "Game Created"
-    When I follow "GAMES"
+    Then wait a second
     Then I should not see "You have not created any games yet"
     And there should be 1 "Leap Frog" Game
     When I follow "Edit"
-    Then wait a second
+    And wait a second
     Then I should see the answer "car"
-
+    And I should see the answer "boy"
 
   # TODO: test multiple answers
   @customizer
