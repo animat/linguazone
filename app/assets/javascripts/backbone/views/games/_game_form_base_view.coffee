@@ -17,7 +17,6 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
     confirmation: "#confirmation"
     metadata: "#metadata"
 
-
   save: (e) ->
     @setOptionLists()
     e.preventDefault()
@@ -29,8 +28,10 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
       $errors.html(node.validation_errors()).show() if node.validation_errors()
     return if @$el.find(".errors:visible").length
 
-    @model.save()
+    @model.save().success =>
+      @trigger "save"
     @ui.form.hide()
+
     @ui.confirmation.show()
 
   metadataStep: (e) ->
@@ -49,7 +50,6 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
     _.each @model.get("nodes").models, @addNodeView
 
   addNodeView: (node, index) =>
-    console.log(Linguazone.Models)
     view = new Linguazone.Views.Games[@model.get("game_type")]
       node_options: @options.options
       node: node

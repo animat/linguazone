@@ -5,7 +5,7 @@ describe GameDataController do
   let(:activity) { Factory(:activity, :game_type => "MultipleAnswer") }
 
   describe "POST #create" do
-    let(:arguments) { {"activity_id"=>activity.id, "language_id"=>language.id, "game_type"=>"MultipleAnswer", "nodes"=>[{"question"=>"asdfa", "options"=>"one,two", "response"=>"two"}], "option_list"=>[{"response"=>["one", "two"]}]}}
+    let(:arguments) { {"activity_id"=>activity.id, "language_id"=>language.id, "game_type"=>"MultipleAnswer", "nodes"=>[{"question"=>"asdfa", "options"=>"one,two", "response"=>"two"}], "description"=> "cool", "option_list"=>[{"response"=>["one", "two"]}]}}
     let(:user) { Factory(:user) }
 
     before do

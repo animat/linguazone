@@ -73,6 +73,8 @@ group :production, :test, :cucumber do
 end
 
 group :test, :cucumber do
+  gem 'poltergeist', github: 'teampoltergeist/poltergeist'
+  gem 'capybara-screenshot'
   gem 'webmock'
   gem 'vcr'
   gem 'guard-rspec'
@@ -85,7 +87,7 @@ group :test, :cucumber do
   gem "rubyzip", "0.9.9"
   gem "selenium-webdriver"
   gem "mocha"
-  gem "capybara", "1.1.4"
+  gem "capybara"
   gem "shoulda"
   gem "timecop", "0.5.0"
   gem 'email_spec'

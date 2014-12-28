@@ -6,6 +6,12 @@
 
 #categories {
   float: right;
+  padding-right: 20px;
+}
+
+.activity h2 a {
+  text-decoration: none;
+  color: #194BA0;
 }
 
 .activity_details {
@@ -56,8 +62,8 @@
 	display: inline-block;
 	vertical-align: middle;
 }
-#create_a_new {
-	font-size: 20px;
+#step1_title {
+  padding-left: 20px;
 }
 .page_break {
 	width: 96%;

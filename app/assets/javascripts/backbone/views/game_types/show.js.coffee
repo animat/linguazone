@@ -20,6 +20,7 @@ class Linguazone.Views.GameType extends Backbone.View
 
     @examples.fetch
       success: (response, xhr) =>
+        $("#examples").show()
         @examples = response
         @render()
 
@@ -36,7 +37,6 @@ class Linguazone.Views.GameType extends Backbone.View
       $("#examples .question").prepend(@template2)
 
       if @examples.models?.length
-        console.log "Appending example...", @examples.models[0]
         $("#examples .question h2").append(@examples.models[0].get("display_label"))
 
     template2: """

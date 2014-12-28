@@ -2,11 +2,11 @@ class Subscription < ActiveRecord::Base
 
   has_many :users
   belongs_to :subscription_plan
-  
+
   scope :days_remaining, lambda { |d|
     where("subscriptions.expired_at BETWEEN ? and ?", DateTime.now.beginning_of_day + d.to_i.days, DateTime.now.end_of_day + d.to_i.days)
   }
-  
+
   def is_expired?
     self.expired_at < Time.now
   end
@@ -14,11 +14,11 @@ class Subscription < ActiveRecord::Base
   def trial?
     self.subscription_plan.name == "trial"
   end
-  
+
   def number_of_teachers
     (self.max_teachers == UNLIMITED_FLAG) ? "unlimited" : self.max_teachers.to_s
   end
-  
+
   def extend_one_year
     if self.expired_at < Time.now
       self.expired_at = Time.now.advance(:years => 1)

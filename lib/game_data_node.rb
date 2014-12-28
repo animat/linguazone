@@ -23,13 +23,11 @@ class SingleWordMatchNode < GameDataNode
   attr_accessor :question, :ltarget
 
   def self.from_xml(node)
-    #responses = node.xpath(".//responses")
-    #question  = NodeOption.for "question", node.xpath(".//question").first["content"]
-    #ltarget   = NodeOption.for "ltarget", responses.first.xpath("ltarget").first["content"]
-    #self.new(question, ltarget)
-    question = node.xpath(".//question").first["content"]
     responses = node.xpath(".//responses")
-    ltarget   = responses.first.xpath("ltarget").first["content"]
+    question  = NodeOption.for "question", node.xpath(".//question").first["content"]
+    ltarget   = NodeOption.for "ltarget", responses.first.xpath("ltarget").first["content"]
+
+
     self.new(question, ltarget)
   end
 
@@ -42,19 +40,11 @@ class SingleWordMatchNode < GameDataNode
     @question, @ltarget = question, ltarget
   end
 
-  #def to_xml(xml)
-  #  xml.node do
-  #    question.to_xml(xml)
-  #    xml.responses do
-  #      ltarget.to_xml(xml)
-  #    end
-  #  end
-  #end
   def to_xml(xml)
     xml.node do
-      xml.question :content => self.question, :type => "text"
+      question.to_xml(xml)
       xml.responses do
-        xml.ltarget :content => self.ltarget, :type => "text"
+        ltarget.to_xml(xml)
       end
     end
   end

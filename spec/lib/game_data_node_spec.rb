@@ -37,9 +37,11 @@ describe GameDataNode do
       it "writes the correct content type in the url" do
         NodeValue.any_instance.stubs(:create_local_image_if_remote_url => nil)
         node = SingleWordMatchNode.from_xml(Nokogiri::XML(xml))
+
         xml = Nokogiri::XML::Builder.new do |xml|
           node.to_xml xml
         end
+
         xml.to_xml.should have_xml '/node/question[@type="image"]'
       end
     end

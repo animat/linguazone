@@ -17,7 +17,7 @@ class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseVie
     <div class='response-label'></div>
   """
 
-  onRender: =>
+  getQuestion: ->
     question = new Linguazone.Models.NodeOption
       content: @model.get("question")
       name: "question"
@@ -26,8 +26,12 @@ class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseVie
       model: question
       node_options: @options.node_options?.question
 
-    question.on "change", => @model.set("question", question.get("content"))
+    question.on "change", =>
+      @model.set("question", question.get("content"))
 
+    @$el.find(".question").html questionView.render().el
+
+  getResponse: ->
     response = new Linguazone.Models.NodeOption
       content: @model.get("response")
       name: "response"
@@ -36,17 +40,12 @@ class Linguazone.Views.Games.OneToOne extends Linguazone.Views.Games.NodeBaseVie
       model: response
       node_options: @options.node_options?.response
 
-    response.on "change", => @model.set("response", response.get("content"))
+    response.on "change", =>
+      @model.set("response", response.get("content"))
 
-    @$el.find(".question").html questionView.render().el
     @$el.find(".response").html responseView.render().el
 
-    #    @getQuestionRegion().show responseView
-    #    @getResponseRegion().show questionView
-    #
-    #  getQuestionRegion: =>
-    #    @questionRegion ||= new Backbone.Marionette.Region
-    #      el: 
-    #  getResponseRegion: =>
-    #    @responseRegion ||= new Backbone.Marionette.Region
-    #      el: @$el.find(".response")
+  onRender: =>
+    @getQuestion()
+    @getResponse()
+

@@ -2,7 +2,7 @@ class Media < ActiveRecord::Base
   set_table_name 'medias'
 
   has_many :media_keywords
-  belongs_to :media_category
+  belongs_to :media_category, :counter_cache => true
   belongs_to :media_type
 
   before_save :set_path_and_artist
@@ -15,7 +15,6 @@ class Media < ActiveRecord::Base
   #                  :bucket => "linguazone", :s3_protocol => "http",
   #                  :url => ":s3_domain_url", :path => "media/image/:media_category/:name.:extension"
   #
-  
   has_attached_file :image, :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml",
                     :bucket  => "linguazone", :s3_protocol => "http",
                     :url     => ":s3_domain_url", :path => "media/image/catalog/:name.:extension",
