@@ -19,7 +19,7 @@ Scenario: I browse my posts
     Then I should see "Sample post"
 
 Scenario: I am booted because I am not a premium subscriber
-  Given pending - basic subscribers can still log in?
+  Given pending - I'm not sure why this one isn't working... my guess is that clutter in the Users table is the culprit. Help?
   Given I have logged out
   And John is subscribed with a basic subscription
   And John has 0 posts

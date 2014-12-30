@@ -219,6 +219,10 @@ Then /^show me the page$/ do
   end
 end
 
+Then /^I debug$/ do
+  debugger;
+end
+
 Then "wait a second" do
   sleep 2
 end
