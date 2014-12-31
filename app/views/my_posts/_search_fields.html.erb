@@ -2,6 +2,8 @@
 	<p>
 		<%= f.label :post_title_like, "Search for:" %>
 		<%= f.text_field :post_title_like %>
+		<%= link_to_function "more options...", "showMoreOptions(true);", :id => "more_options_link" %>
+		<%= link_to_function "fewer options...", "hideMoreOptions(true);", :id => "fewer_options_link" %>
 	</p>
 	<div id="more_options">
 		<% if @search_type == "adopt" %>

@@ -1,11 +1,62 @@
-<% stylesheet "my_games" %>
+<% content_for :page_script do %>
+<script type="text/javascript">
+function showMoreOptions(animate) {
+	if (animate) {
+		$('#more_options').show("blind", 500);	
+	} else {
+		$('#more_options').show();
+	}
+	$('#more_options_link').hide();
+	$('#fewer_options_link').show();
+}
+function hideMoreOptions(animate) {
+	if (animate) {
+		$('#more_options').hide("blind", 500);	
+	} else {
+		$('#more_options').hide();
+	}
+	$('#more_options_link').show();
+	$('#fewer_options_link').hide();
+}
+$(function() {
+	if (<%= hash_is_blank_except?(params[:search], "game_description_like") %>) {
+		hideMoreOptions(false);
+	} else {
+		showMoreOptions(false);
+	}
+});
 
-<h1>All of my audio blog posts</h1>
+</script>
+<% end %>
+
+<% stylesheet "my_games" %>
+<% stylesheet "teachers" %>
+
+<div>
+	<div class="floatLeft">
+		<h1>My audio blog posts</h1>
+		<p>Create, edit, and manage your blog posts.</p>
+	</div>
+	<div class="floatRight">
+		<%= link_to new_post_path do %>
+			<div class="new_button">
+				<span>Create a new post</span>
+			</div>
+		<% end %>	
+	</div>
+	<br class="clearFloat" />
+</div>
+
+<fieldset>
+	<legend>Search my LinguaZone audio blog posts</legend>
+	<%= render :partial => "search_fields", :locals => {:search_type => "default"} %>
+</fieldset>
 
 <% unless @ap.nil? or @ap.empty? %>
+	<h2>Browsing posts (<%= @total_posts %> total)</h2>
 	<%= paginate @ap %>
 	<% @ap.each do |p| %>
-			<p><%= link_to p.post.title, post_path(p) %> <span class="date"><%= format_date_with_year(p.post.updated_at) %></span></p>
+		<%= render :partial => "default_item", :locals => {:item => p} %>
 	<% end %>
 	<%= paginate @ap %>
 <% else %>

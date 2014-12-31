@@ -8,10 +8,10 @@ Feature: Teacher manages posts for audio blogs
 		 | user             | name       |
 		 | first_name: John | Test class |
 		And I am logged in as "John"
-	
+  
   Scenario: I do not have any posts and the site points me to create a new post
 		Given I have 0 posts
-    When I am on the my posts page
+    	When I am on the my posts page
 		Then I should see "create your first one"
 	
 	Scenario: I browse my posts
