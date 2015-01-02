@@ -45,23 +45,29 @@ Feature: Teacher creates custom games
     And I should see the answer "boy"
 
   # TODO: test multiple answers
-  @customizer
+  @customizer2
   @javascript
-  @wip
-  Scenario: Customize Quiz Show"
+  Scenario: Customize Quiz Show
+    When I am on the customization page
+    And I follow "Spanish"
+    And I follow "Quiz Show"
+
     Then wait a second
-    And I fill in word list 1 with "car,goat,cow"
+    And I enter "niño" for node 1 for "question"
     And I move to the next step for node 1
-    Then wait a second
-    And I enter "carro" for node 1 for "question"
-    And I select "car" for node 1 for "response"
-    And I enter "carro" for node 1 for "question"
+    And I fill in word list 1 with "car,goat,child"
+    And I move to the next step for node 1
+    And I select "car" as the correct answer for node 1
     And I add another node
-    And I fill in word list 2 with "bird,goat,cow"
-    And I enter "vaca" for node 2 for "question"
-    And I select "cow" for node 2 for "response"
-    And I enter "vaca" for node 2 for "question"
-    And I press "create-game"
-    And I should not see "not have"
+
+    And I enter "azule" for node 2 for "question"
+    And I move to the next step for node 2
+    And I fill in word list 2 with "blue,green,red"
+    And I move to the next step for node 2
+    And I select "blue" as the correct answer for node 2
+    And I press "Next step"
+    And I press "Create Game"
+
     Then wait a second
-    And my game has been created
+    Then I should not see "You have not created any games yet"
+    And there should be 1 "Quiz Show" Game

@@ -23,7 +23,7 @@ class Linguazone.Views.Games.OptionListView extends Backbone.View
   words: () -> @$el.find("textarea").val().split("\n")
 
   updateOptionList: =>
-    @collection().update_from @words()
+    @collection().update_from _.compact(@words())
     Linguazone.Options[@name] = @collection() if @name
     @trigger("wordlist:update")
     Linguazone.App.vent.trigger("wordlist:update")

@@ -127,9 +127,9 @@ class MultipleAnswerNode < GameDataNode
   attr_accessor :question, :response, :options
 
   def initialize(question, response, options)
-    @response = response
-    @question = question
-    @options  = options
+    raise "Question required" unless @question = question
+    raise "Response required" unless @response = response
+    raise "Options required" unless @options  = options
   end
 
   def self.from_hash(hash)

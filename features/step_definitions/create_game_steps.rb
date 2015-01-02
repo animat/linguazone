@@ -20,6 +20,15 @@ When /^I fill in word list (\d+) with "(.*?)"$/ do |node_number, words|
   page.find(".node-#{node_number.to_i - 1} textarea").set(words)
 end
 
+When /^I select "(.*?)" as the correct answer for node (\d+)$/ do |response, node_number|
+  selector = ".node-#{node_number.to_i - 1} .step-3 select"
+
+  page.execute_script("$('#{selector}').val('#{response}');")
+  page.execute_script("console.log($('#{selector}').val());")
+
+  step "I move to the next step for node #{node_number}"
+end
+
 When /^I move to the next step for node (\d+)$/ do |node_number|
   page.find(".node-#{node_number.to_i - 1} .next").click
 end

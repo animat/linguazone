@@ -1,10 +1,9 @@
 class Linguazone.Views.Games.MultipleAnswer extends Linguazone.Views.Games.NodeBaseView
-
-  game_type: "MultipleAnswer",
+  game_type: "MultipleAnswer"
 
   # TODO: remove duplication:
   events:
-    "click .delete"           : "delete",
+    "click .delete"           : "delete"
     "focus .question input"   : "highlightQuestion"
     "blur .question input"    : "dimQuestion"
     "focus .response input"   : "highlightResponse"
@@ -34,10 +33,14 @@ class Linguazone.Views.Games.MultipleAnswer extends Linguazone.Views.Games.NodeB
     <div class="step-3 step">
       <label class="wizard">Step 3: Select the Correct Response</label>
       <div class="response">
+
         <label>Which Response is Correct?</label>
+
         <select name="response" class="response">
-          <option selected="selected" disabled="disabled">Select a correct answer</option>
+          <option selected="selected">Select a correct answer</option>
         </select>
+
+        <hr/>
       </div>
       <br />
       <a class="previous">Previous</a>
@@ -48,7 +51,6 @@ class Linguazone.Views.Games.MultipleAnswer extends Linguazone.Views.Games.NodeB
       <div style="margin-left: 20px;">
         <label class="preview_question"></label>
         <div class="answer_list_preview">
-      
         </div>
       </div>
       <br />
@@ -69,9 +71,7 @@ class Linguazone.Views.Games.MultipleAnswer extends Linguazone.Views.Games.NodeB
   updateWordList: =>
     @$el.find("select.response").html("<option disabled='true' selected='true'>Select an Option</option>")
     _.each @optionList.collection().models, (word) =>
-      @$el.find("select.response").append("<option>#{word.get("text")}</option>")
-    window.model = @model
-    window.optionList = @optionList
+      @$el.find("select.response").append("<option value=\"#{word.get("text")}\">#{word.get("text")}</option>")
     @model.set "options", @optionList.collection().to_a()
 
   updateQuestion: =>
@@ -80,7 +80,5 @@ class Linguazone.Views.Games.MultipleAnswer extends Linguazone.Views.Games.NodeB
     optionsArray = @model.get("options").split(",")
     @$el.find(".answer_list_preview").html("")
     for element, index in optionsArray
-        @$el.find(".answer_list_preview").append('<div class="answer_preview '+"value_"+optionsArray[index]+'"><span></span>'+optionsArray[index]+'</div>')
+      @$el.find(".answer_list_preview").append('<div class="answer_preview '+"value_"+optionsArray[index]+'"><span></span>'+optionsArray[index]+'</div>')
     @$el.find(".value_"+@model.get("response")).addClass("correct_answer")
-    
-

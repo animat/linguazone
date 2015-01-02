@@ -7,6 +7,7 @@ class GameType
   end
 
   Question = Struct.new(:name)
+
   #TODO: hard coded for OneToOne
   Node = Struct.new(:question, :response)
 
@@ -24,8 +25,6 @@ class GameType
   end
 
   def self.for(activity)
-    puts "**** for... #{activity.game_type}"
-    puts "*****     #{activity.game_type.underscore}"
     rv = self.send(activity.game_type.underscore)
     rv.activity = activity
     rv
