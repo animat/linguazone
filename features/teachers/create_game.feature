@@ -44,8 +44,6 @@ Feature: Teacher creates custom games
     Then I should see the answer "car"
     And I should see the answer "boy"
 
-  # TODO: test multiple answers
-  @customizer2
   @javascript
   Scenario: Customize Quiz Show
     When I am on the customization page

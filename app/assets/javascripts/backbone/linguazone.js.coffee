@@ -78,6 +78,10 @@ Linguazone.App.on "initialize:after", ->
 
       Linguazone.App.customizer.show(editView)
 
+Linguazone.App.commands.addHandler "message", (message, type="log") ->
+  console[type]?(message)
+  alert(message)
+
 $ ->
   Linguazone.App.start()
   $(".venobox").venobox()

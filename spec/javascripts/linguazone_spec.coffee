@@ -55,3 +55,21 @@ describe 'OneToOne Node View', ->
     $answer.trigger("change")
     $answer.trigger("blur")
     expect(@nodeView.options.node.get("response")).toBe "Better!"
+
+describe "Views.Games.MultipleAnswer", ->
+  beforeEach ->
+    @view = new Linguazone.Views.Games.MultipleAnswer
+      node: new Linguazone.Models.Node
+    @view.render()
+
+  it "can run through the wizard", ->
+    @view.$el.find(".question").val("Gato")
+    @view.$el.find(".step-1 .next").click()
+
+    @view.$(".step-2 textarea").val("cat\ndog").trigger("blur")
+    @view.$el.find(".step-2 .next").click()
+
+    @view.$(".step-3 .response").val("cat").trigger("blur")
+    @view.$el.find(".step-3 .next").click()
+
+    expect(@view.$(".value_cat")).toHaveClass("correct_answer")

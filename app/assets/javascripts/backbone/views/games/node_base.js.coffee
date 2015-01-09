@@ -15,8 +15,10 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
   highlightResponse: => $(".node-example").find(".response input").addClass("highlight")
   dimResponse: => $(".node-example").find(".response input").removeClass("highlight")
 
-  initialize: =>
-    @model = @options.node
+  initialize: (options) =>
+    super
+    @model = options.node
+    @game_type ||= options.game_type
 
   delete: =>
     @trigger("remove")
@@ -24,7 +26,7 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
     @options.node = undefined
 
   render: =>
-    @options.node ||= new Linguazone.Models[@game_type]
+    @options.node ||= new Linguazone.Models["#{@game_type}Node"]
     @$el.html _.template(@template, @options.node.attributes)
     @onRender() if @onRender
     this
