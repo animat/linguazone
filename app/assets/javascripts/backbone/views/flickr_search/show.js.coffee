@@ -13,7 +13,9 @@ class Linguazone.Views.FlickrSearch.Show extends Backbone.Marionette.ItemView
   class: "flickr-search"
 
   render: =>
-    html = _.template(@template, @model)
+    attributes = @model.attributes
+    attributes or= @model
+    html = _.template(@template)(attributes)
     @$el.html(html)
     @
 
@@ -64,6 +66,6 @@ class Linguazone.Views.FlickrImage extends Backbone.Marionette.ItemView
     @model.trigger("select")
 
   render: =>
-    html = _.template(@template, @model.toJSON())
+    html = _.template(@template)(@model.toJSON())
     @$el.html(html)
     @

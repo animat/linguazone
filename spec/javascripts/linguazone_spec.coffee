@@ -35,7 +35,7 @@ describe 'Node', ->
 
 describe 'OneToOne Node View', ->
   beforeEach ->
-    @node = new Linguazone.Models.Node({question: { content: { content: "How are you"} } , response: { content: { content: "Good!"} }})
+    @node = new Linguazone.Models.Node( { question: { content: { content: "How are you"} } , response: { content: { content: "Good!"} }})
     @nodeView = new Linguazone.Views.Games.OneToOne(node: @node).render()
 
   it 'renders the question and answer', ->
@@ -73,3 +73,14 @@ describe "Views.Games.MultipleAnswer", ->
     @view.$el.find(".step-3 .next").click()
 
     expect(@view.$(".value_cat")).toHaveClass("correct_answer")
+
+  describe "Linguazone.Views.Games.Preview", ->
+    beforeEach ->
+      @view = new Linguazone.Views.Games.Preview
+        model: new Backbone.Model
+          question: "what is up"
+          options: "cool,dude"
+      @view.render()
+
+    it "renders the question", ->
+      expect(@view.$(".preview_question")).toHaveText("what is up")

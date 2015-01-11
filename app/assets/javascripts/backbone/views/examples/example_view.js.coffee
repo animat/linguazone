@@ -12,7 +12,7 @@ class Linguazone.Views.Examples.ExampleView extends Backbone.View
     @nodeView = new Linguazone.Views.Games.NodeView model: @options.node, exampleNode: true
 
   render: =>
-    @$el.html(_.template(@template, { example: @example }))
+    @$el.html(_.template(@template)?({ example: @example }))
     view = @nodeView.render()
     view.$el.find("input").prop("disabled", true)
     @$el.append(view.el)

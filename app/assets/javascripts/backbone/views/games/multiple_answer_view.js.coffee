@@ -109,12 +109,16 @@ class Linguazone.Views.Games.MultipleAnswer extends Linguazone.Views.Games.NodeB
     @$el.find(".answer_list_wrapper").html("").append view.render().$el
 
 class Linguazone.Views.Games.Preview extends Backbone.Marionette.ItemView
-  template: """<div style="margin-left: 20px;">
-        <label class="preview_question"><%=@question%></label>
-        <div class="answer_list_preview">
-        </div>
-      </div>"""
+  template: """
+      <div style="margin-left: 20px;">
+        <label class="preview_question"><%= question %></label>
+        <div class="answer_list_preview"></div>
+      </div>
+  """
+
   onRender: ->
+    throw "options must be a string" unless _.isString(@model.get("options"))
+
     options = @model.get("options").split(",")
     for element, index in options
       div = "<div class='answer_preview value_#{options[index]}'><span></span>#{options[index]}</div>"

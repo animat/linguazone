@@ -1,34 +1,34 @@
-class Linguazone.Views.Games.NodeValue extends Backbone.View
-  populated: false
+class Linguazone.Views.Games.NodeValue extends Backbone.Marionette.ItemView
   className: "nodeValue backbone"
 
   constructor: (options) ->
     @content = options.content || ""
-    @model   = options.model
-    @options = options
     super
 
   events:
-    "change input" : "populate"
+    "change input"         : "populate"
     "click .deleteContent" : "remove"
 
   populate: =>
     @$el.find(".deleteContent").show()
-    @populated = true
 
 class Linguazone.Views.Games.TextContent extends Linguazone.Views.Games.NodeValue
   className: "textRow"
 
   template: """
-    <input type="text" value="<%= content %>">
-    <span class="deleteContent" style="display:none">x</span>
+    <h2></h2>
+
+    <div class="textContent">
+      <input type="text" value="<%= getContent() %>">
+      <span class="deleteContent" style="display:none">x</span>
+    </div>
   """
 
-  render: ->
-    @$el.html(_.template(@template, { content: @model.get("content").content}))
-    @populate() if @content
-    this
+  templateHelpers: ->
+    getContent: => @content
 
+  onRender: ->
+    @populate() if @content
 
 class Linguazone.Views.Games.ImageContent extends Linguazone.Views.Games.NodeValue
   template: """
@@ -47,7 +47,6 @@ class Linguazone.Views.Games.ImageContent extends Linguazone.Views.Games.NodeVal
     </div>
     <p/>
     <div class="image-search"></div>
-
   """
 
   showModal: =>

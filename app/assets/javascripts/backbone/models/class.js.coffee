@@ -28,14 +28,9 @@ class Linguazone.Views.ClassCollectionView extends Backbone.View
   render: ->
     i = 0
     while i < @collection.length
-      console.log(@$el)
       @$el.append("<input type='checkbox' name='"+@collection.models[i].name+"'/>"+@collection.models[i].name)
       i++
-    return
-  
+
   template: """
-    <form>
-
-
-    </form>
+    <form></form>
     """

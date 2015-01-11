@@ -17,7 +17,6 @@ Linguazone.App.addRegions
   examples:   "#examples"
 
 Linguazone.App.on "initialize:after", ->
-
   style_activity = ($activity) ->
     swf_name = $activity.find("a").data("swf")
 
@@ -81,6 +80,13 @@ Linguazone.App.on "initialize:after", ->
 Linguazone.App.commands.addHandler "message", (message, type="log") ->
   console[type]?(message)
   alert(message)
+
+_.extend Backbone.Marionette.Renderer,
+  render: (template, data) ->
+    if _.isFunction(template)
+      template(data)
+    else
+      _.template(template)?(data)
 
 $ ->
   Linguazone.App.start()
