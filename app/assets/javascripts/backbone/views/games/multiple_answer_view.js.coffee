@@ -18,7 +18,7 @@ class Linguazone.Views.Games.MultipleAnswer extends Linguazone.Views.Games.NodeB
       <label class="wizard">Step 1: Enter Your Question</label>
       <div class="question">
         <label>Question:</label>
-        <input type="text" class="question" name="question" value="<%= question %>"/>
+        <input type="text" class="question" name="question" value="<%= getQuestion() %>"/>
       </div>
       <br />
       <a class="next">Next</a>
@@ -58,11 +58,15 @@ class Linguazone.Views.Games.MultipleAnswer extends Linguazone.Views.Games.NodeB
     </div>
   """
 
+  templateHelpers: =>
+    getQuestion: =>
+      @model.get("question")?.content?.content
+
   onRender: =>
     @currentStep = 1
     @optionList = new Linguazone.Views.Games.OptionListView
       name: "response"
-      list: []
+      list: @model.get("options") || []
 
     @$el.find(".optionlist").append(@optionList.render().el)
 

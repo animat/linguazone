@@ -8,7 +8,7 @@ class Linguazone.Models.Node extends Backbone.Model
   url: '/gamedata/'
 
   validation_errors: () ->
-      return "Can not have an empty question" unless @get("question")
+    "Can not have an empty question" unless @get("question")
 
 class Linguazone.Models.AnswerAndMatchNode extends Linguazone.Models.Node
 
@@ -17,7 +17,7 @@ class Linguazone.Models.TwoAnswerAndMatchNode extends Linguazone.Models.Node
 class Linguazone.Models.SingleWordMatchNode extends Linguazone.Models.Node
 
 class Linguazone.Models.DoubleWordMatchNode extends Linguazone.Models.Node
-  defautls: 
+  defaults: 
     "question": "",
     "match1": "",
     "match2": ""
