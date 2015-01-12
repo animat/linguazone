@@ -27,7 +27,7 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
 
   render: =>
     @options.node ||= new Linguazone.Models["#{@game_type}Node"]
-    data = _.defaults(@options.node.attributes, @templateHelpers())
+    data = _.defaults(@options.node.attributes, @templateHelpers?())
     @$el.html _.template(@template)?(data)
     @onRender() if @onRender
     this
