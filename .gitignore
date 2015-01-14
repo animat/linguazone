@@ -14,3 +14,4 @@ public/stylesheets/compiled
 rake/*
 config/database.yml
 .env
+public/game_dev
