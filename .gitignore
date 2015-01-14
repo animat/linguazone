@@ -16,3 +16,4 @@ rake/*
 config/database.yml
 .env
 .powrc
+public/game_dev
