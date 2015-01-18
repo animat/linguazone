@@ -65,6 +65,9 @@
 #step1_title {
   padding-left: 20px;
 }
+.activity-wrapper #step1_title {
+  padding-left: 0px;
+}
 .page_break {
 	width: 96%;
 	margin: 0 auto;
@@ -87,6 +90,20 @@ div.activity {
 	padding-left: 80px;
 	min-height: 160px;
 	transition: background .3s;
+}
+
+div.activity-wrapper div.activity {
+	background-color: #FAF9F0;
+	width: 857px;
+	padding: 20px;
+	position: relative;
+	left: -9px;
+	border-top: 1px solid #F5EE93;
+	border-bottom: 1px solid #F5EE93;
+}
+
+div.activity-wrapper h4 {
+	font-size: 1.5em;
 }
 div.activity:hover {
 	background: #f7f7f7;
