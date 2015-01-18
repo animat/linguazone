@@ -63,16 +63,16 @@ describe "Views.Games.MultipleAnswer", ->
     @view.render()
 
   it "can run through the wizard", ->
-    @view.$el.find(".question").val("Gato")
+    @view.$el.find(".question").val("Mi gato")
     @view.$el.find(".step-1 .next").click()
 
-    @view.$(".step-2 textarea").val("cat\ndog").trigger("blur")
+    @view.$(".step-2 textarea").val("My Cat\nMy Dog").trigger("blur")
     @view.$el.find(".step-2 .next").click()
 
-    @view.$(".step-3 .response").val("cat").trigger("blur")
+    @view.$(".step-3 .response").val("My Cat").trigger("blur")
     @view.$el.find(".step-3 .next").click()
 
-    expect(@view.$(".value_cat")).toHaveClass("correct_answer")
+    expect(@view.$(".value_my_cat")).toHaveClass("correct_answer")
 
   describe "Linguazone.Views.Games.Preview", ->
     beforeEach ->
