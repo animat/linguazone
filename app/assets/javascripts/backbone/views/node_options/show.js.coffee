@@ -8,8 +8,8 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
 
     <div class="input"></div>
 
-    <a href="#" class="text-link">+ text</a>
-    <a href="#" class="image-link">+ image</a>
+    <a href="#" class="text-link" tabindex="-1">+ text</a>
+    <a href="#" class="image-link" tabindex="-1">+ image</a>
   """
 
   ui:

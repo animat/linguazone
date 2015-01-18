@@ -11,6 +11,7 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
   addNode: (e) =>
     e.preventDefault()
     @addNodeView @createNode(), @model.get("nodes").length - 1 # 0 index
+    $(".node").last().children().first().find("input").focus()
 
   ui:
     form: "form"

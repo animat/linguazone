@@ -5,6 +5,7 @@ class Linguazone.Views.Games.NewView extends Linguazone.Views.Games.GameFormBase
   events:
     "submit #new-game": "metadataStep"
     "click .addNode": "addNode"
+    "focus .addNode": "addNode"
     "click #submit_game": "save"
     "change #description_input": "updateMetadata"
 
