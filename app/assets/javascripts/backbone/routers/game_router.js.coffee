@@ -4,15 +4,30 @@ class Linguazone.Routers.GameRouter extends Backbone.Marionette.AppRouter
   appRoutes:
     "activity/:activityId/gameType/:gameType/new" : "new"
 
-load_game_type = (activity_id, language_id) =>
+load_game_details = (activity_id, language_id) =>
+
   game_type = new Linguazone.Models.GameType
-  xhr = game_type.fetch
+  game_type.fetch
     data:
       activity_id: activity_id
       language_id: language_id
-  xhr.success ->
-    Linguazone.App.examples.show new Linguazone.Views.GameType({ model: game_type })
 
+  examples = new Linguazone.Collections.ExampleCollection
+  examples.url = "/examples?activity_id=#{activity_id}&language_id=#{language_id}"
+  examples.fetch().error ->
+    console.error "Could not find an example for #{@name}"
+
+  # Load Examples
+  Linguazone.App.execute "when:fetched", [game_type, examples], ->
+    view = new Linguazone.Views.Example
+      model: game_type
+      examples: examples
+
+    Linguazone.App.examples.show view
+    $("#examples").show()
+
+  # Load Option Lists
+  Linguazone.App.execute "when:fetched", game_type, ->
     _.each game_type.get("lists"), (list) ->
       view = new Linguazone.Views.Games.OptionListView({name: list.linkedto })
       $("#option-lists").append(view.render().el)
@@ -35,6 +50,6 @@ new Linguazone.Routers.GameRouter
       view.on "save", ->
         window.location = "/my_games"
 
-      load_game_type activityId, QueryString.language
+      load_game_details activityId, QueryString.language
 
       Linguazone.App.customizer.show view

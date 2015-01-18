@@ -84,3 +84,10 @@ describe "Views.Games.MultipleAnswer", ->
 
     it "renders the question", ->
       expect(@view.$(".preview_question")).toHaveText("what is up")
+
+describe "Linguazone.App.request('current_activity_id')", ->
+  it "can get the current activity id", ->
+    Backbone.history.getFragment = ->
+      "activity/33/gameType/MultipleAnswer/new"
+    activity_id = Linguazone.App.request("current_activity_id")
+    expect(activity_id).toEqual '33'

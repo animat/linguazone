@@ -1,53 +1,37 @@
-Linguazone.Views.GameType ||= {}
-
-class Linguazone.Views.GameType extends Backbone.View
-  className: "game-type backbone"
-  # TODO: The following is in the wrong place... Each input element in the example should have a label and a hint
-  # 				Where can this be changed? I'd also like to have the example node have some different UI and UX in other ways
+class Linguazone.Views.Example extends Backbone.Marionette.Layout
   template: """
-    <h2>Example prompt</h2>
-    <p>Example hint</p>
+    <h3>Example Question</h3>
+    <div id='example'></div>
   """
 
-  initialize: ->
-    @name = @options.model.get("name")
-    @node = new Linguazone.Models["#{@name}Node"]
-    @node.set("question", "")
-    @node.set("response", "")
-    @node.set @options.model.get("node")
-    @nodeView  = new Linguazone.Views.Games[@name](node: @node, exampleNode: true)
-    @examples = new Linguazone.Collections.ExampleCollection
+  regions:
+    "example" : "#example"
 
-    @examples.fetch
-      success: (response, xhr) =>
-        $("#examples").show()
-        @examples = response
-        @render()
+  onRender: ->
+    @loadNodeView()
+    setTimeout((=> @makeSticky()), 200)
 
-      error: (errorResponse) =>
-        console.warn "Could not find an example for #{@name}"
+  loadNodeView: ->
+    name = @model.get('name')
+    klass = Linguazone.Views.Games[name]
 
-  render: =>
-    @$el.html(_.template(@template))
-    @$el.append(@nodeView.render().el)
+    @node = new Linguazone.Models["#{name}Node"]
+    @nodeView  = new klass(node: @node, exampleNode: true)
+    @example.show @nodeView
 
-    @nodeView.$el.addClass("node-example")
+  makeSticky: ->
+    $example = $("#examples")
 
-    if @name = "OneToOne"
-      $("#examples .question").prepend(@template2)
+    originalTop = $example.offset().top
+    originalLeft = $example.position().left
 
-      if @examples.models?.length
-        $("#examples .question h2").append(@examples.models[0].get("display_label"))
+    updatePosition = =>
+      if $(window).scrollTop() > originalTop
+        $example.css({ 'position': 'fixed', 'top':0, 'left': originalLeft})
+      else
+        $example.css({ 'position': 'relative', 'left': '-10px' }) # HACK: why -10 px???
 
-    template2: """
-      <h2></h2>
-      <p></p>
-    """
+    updatePosition()
+    $(window).scroll(updatePosition)
 
 class Linguazone.Collections.ExampleCollection extends Backbone.Collection
-  #TODO: make this dynamic, add in userid
-  url: '/examples?activity_id=2&language_id=6'
-  initialize: ->
-
-  parse: (data) ->
-    return data

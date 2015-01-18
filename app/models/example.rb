@@ -5,6 +5,7 @@ class Example < ActiveRecord::Base
   def self.for(language, activity)
     result = self.find_all_by_language_id_and_activity_id(language.id, activity.id)
     return result if result.length > 0
+    Rails.logger.warn "Could not find Example for #{activity} with #{language}. Resorting to Default."
     self.find_all_by_activity_id_and_default(activity.id, true)
   end
 
