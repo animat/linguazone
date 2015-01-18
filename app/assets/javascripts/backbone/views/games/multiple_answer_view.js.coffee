@@ -123,9 +123,12 @@ class Linguazone.Views.Games.Preview extends Backbone.Marionette.ItemView
   onRender: ->
     throw "options must be a string" unless _.isString(@model.get("options"))
 
-    options = @model.get("options").split(",")
-    for element, index in options
-      div = "<div class='answer_preview value_#{options[index]}'><span></span>#{options[index]}</div>"
-      @$(".answer_list_preview").append div
+    getValClass = (v) -> "value_" + v.toLowerCase().replace(" ", "_")
 
-    @$(".value_#{@model.get('response')}").addClass("correct_answer")
+    options = @model.get("options").split(",")
+
+    for element, index in options
+      val = options[index]
+      answer_class = if val is @model.get("response") then "correct_answer" else ""
+      div = "<div class='answer_preview #{answer_class} #{getValClass(val)}'><span></span>#{val}</div>"
+      @$(".answer_list_preview").append div

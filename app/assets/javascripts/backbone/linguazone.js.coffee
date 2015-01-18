@@ -81,12 +81,57 @@ Linguazone.App.commands.addHandler "message", (message, type="log") ->
   console[type]?(message)
   alert(message)
 
+Linguazone.App.reqres.addHandler "current_activity_id", ->
+  re = /activity\/([0-9]+)\/(.)+/
+  Backbone.history.getFragment().match(re)[1]
+
 _.extend Backbone.Marionette.Renderer,
   render: (template, data) ->
     if _.isFunction(template)
       template(data)
     else
       _.template(template)?(data)
+
+
+
+# When Fetched Helper
+# Stolen from Brian Mann. http://backbonerails.com
+#
+# But a _fetch variable on a backbone colleciton that'll contain an xhr of the sync performed.
+do (Backbone) ->
+  _sync = Backbone.sync
+
+  Backbone.sync = (method, entity, options = {}) ->
+    _.defaults options,
+      beforeSend: _.bind(methods.beforeSend,  entity)
+      complete:   _.bind(methods.complete,    entity)
+
+    sync = _sync(method, entity, options)
+    if !entity._fetch and method is "read"
+      entity._fetch = sync
+    sync
+
+  methods =
+    beforeSend: ->
+      @trigger "sync:start", @
+
+    complete: ->
+      @trigger "sync:stop", @
+
+# Perform the callback only after all entities passed in have been
+# fetched.  Can take a single collection or an array.
+Linguazone.App.commands.addHandler "when:fetched", (entities, options) ->
+  if _.isFunction(options)
+    success = options
+  else
+    { success, error, always } = options
+
+  xhrs = _.chain([entities]).flatten().pluck("_fetch").value()
+
+  $.when(xhrs...).done(success)  if success
+  $.when(xhrs...).always(always) if always
+  $.when(xhrs...).fail(error)    if error
+
 
 $ ->
   Linguazone.App.start()
