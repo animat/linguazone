@@ -15,7 +15,7 @@ class Linguazone.Views.Games.MultipleAnswer extends Linguazone.Views.Games.NodeB
 
   template: """
     <div class="step-1 step" style="display:none">
-      <label class="wizard">Step 1: Enter Your Question</label>
+      <label class="wizard">First, enter your question</label>
       <div class="question">
         <label>Question:</label>
         <input type="text" class="question" name="question" value="<%= getQuestion() %>"/>
@@ -25,7 +25,7 @@ class Linguazone.Views.Games.MultipleAnswer extends Linguazone.Views.Games.NodeB
     </div>
 
     <div class="step-2 step" style="display:none">
-      <label class="wizard">Step 2: Add Possible Responses to "<span class="question_text"></span>"</label>
+      <label class="wizard">Next, add possible responses to "<span class="question_text"></span>"</label>
       <div class="optionlist">
       </div>
       <br />
@@ -34,7 +34,7 @@ class Linguazone.Views.Games.MultipleAnswer extends Linguazone.Views.Games.NodeB
     </div>
 
     <div class="step-3 step" style="display:none">
-      <label class="wizard">Step 3: Select the Correct Response</label>
+      <label class="wizard">Finally, select the correct response</label>
       <div class="response">
         <label>Which Response is Correct?</label>
 
@@ -49,12 +49,11 @@ class Linguazone.Views.Games.MultipleAnswer extends Linguazone.Views.Games.NodeB
     </div>
 
     <div class="step-4 step">
-      <label class="wizard">Step 4: Preview your Question</label>
       <div class="answer_list_wrapper">
 
       </div>
       <br />
-      <a class="previous">Previous</a>
+      <a class="previous">Edit</a>
     </div>
   """
 

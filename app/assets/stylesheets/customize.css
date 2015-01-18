@@ -371,6 +371,11 @@ a.text-link, a.image-link, a.audio-link {
 	text-decoration: none;
 	text-transform: uppercase;
 }
+textarea.create_option_set {
+	height: 100px;
+	padding: 5px;
+	font-size: .9em;
+}
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			Activity type inputs
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

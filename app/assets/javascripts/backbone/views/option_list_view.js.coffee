@@ -3,7 +3,7 @@ Linguazone.Options ||= {}
 
 class Linguazone.Views.Games.OptionListView extends Backbone.View
   template: """<h4>Add Words</h4>
-    <textarea style='height: 100px;'></textarea>
+    <textarea class="create_option_set"></textarea>
   """
 
   events: "blur textarea" : "updateOptionList"
