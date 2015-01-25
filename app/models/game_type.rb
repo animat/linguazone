@@ -8,16 +8,15 @@ class GameType
 
   Question = Struct.new(:name)
 
-  #TODO: hard coded for OneToOne
-  Node = Struct.new(:question, :response)
+  #TODO: hard coded for OneToOne Node = Struct.new(:question, :response)
 
   def example_node_for(language)
     examples = Example.for(language, self.activity)
     return nil unless examples.length
 
-    question = examples.find{|e| e.question_name.downcase == "question"}
-    response = examples.find{|e| e.question_name.downcase == "response"}
-    Node.new question.try(:node_input), response.try(:node_input)
+    question = examples.find{|e| e.node_key_name.downcase == "question"}
+    response = examples.find{|e| e.node_key_name.downcase == "response"}
+    activity.node_class.new question.try(:node_value), response.try(:node_value)
   end
 
   def name

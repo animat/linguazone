@@ -1,4 +1,6 @@
 require 'spec_helper'
+require './lib/game_data'
+require './lib/game_data_node'
 
 describe GameType do
   describe ".target_word" do
@@ -19,8 +21,8 @@ describe GameType do
 
   describe ".for" do
     let!(:activity) { Factory(:activity, :game_type => "OneToOne") }
-    let!(:example1) { Factory(:example,  :default => false, :activity => activity, :question_name => "question", :node_input => "how are you") }
-    let!(:example2) { Factory(:example,  :default => false, :activity => activity, :question_name => "response", :node_input => "good", :language => example1.language) }
+    let!(:example1) { Factory(:example,  :default => false, :activity => activity, :node_key_name => "question", :node_value => "how are you") }
+    let!(:example2) { Factory(:example,  :default => false, :activity => activity, :node_key_name => "response", :node_value => "good", :language => example1.language) }
 
     it "news up the correct instance of itself" do
       activity.game_type = "BlahToBlah"

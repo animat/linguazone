@@ -13,8 +13,9 @@ window.Linguazone =
 Linguazone.App = new Backbone.Marionette.Application()
 
 Linguazone.App.addRegions
-  customizer: "#customizer"
-  examples:   "#examples"
+  customizer:  "#customizer"
+  gameDetails: "#game-details"
+  examples:    "#examples"
 
 Linguazone.App.on "initialize:after", ->
   style_activity = ($activity) ->
@@ -91,7 +92,6 @@ _.extend Backbone.Marionette.Renderer,
       template(data)
     else
       _.template(template)?(data)
-
 
 
 # When Fetched Helper

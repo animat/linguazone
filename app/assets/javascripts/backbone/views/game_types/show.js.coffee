@@ -1,15 +1,15 @@
-class Linguazone.Views.Example extends Backbone.Marionette.Layout
+class Linguazone.Views.GameType extends Backbone.Marionette.Layout
   template: """
     <h3>Example Question</h3>
     <div id='example'></div>
   """
 
   regions:
-    "example" : "#example"
+    "example"  : "#example"
 
   onRender: ->
     @loadNodeView()
-    setTimeout((=> @makeSticky()), 200)
+    setTimeout((=> @makeSticky()), 40)
 
   loadNodeView: ->
     name = @model.get('name')

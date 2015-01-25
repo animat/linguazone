@@ -142,7 +142,7 @@ FactoryGirl.define do
     default       true
     association   :activity
     association   :language
-    node_input    "hello"
-    question_name "question"
+    node_value    "hello"
+    node_key_name "question"
   end
 end
