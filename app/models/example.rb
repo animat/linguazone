@@ -1,3 +1,13 @@
+# An example is for one input per node.
+#
+# Examples:
+#   node_key_name:     "response"
+#   node_value:        "gato"
+#   input_description: "the answer response"
+#
+#   node_key_name:     "response"
+#   node_value:        "http://flic.kr/cat.jpg"
+#   input_description: "an image response"
 class Example < ActiveRecord::Base
   belongs_to :language
   belongs_to :activity

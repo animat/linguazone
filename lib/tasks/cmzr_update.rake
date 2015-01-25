@@ -2,8 +2,8 @@ namespace :cmzr_upate do
   
   desc "Update database with examples"
   task :add_examples => :environment do
-    Example.create(:language_id => 6, :default => true, :activity_id => 2, :display_label => "Display label for que goes here", :hint => "Hint for que goes here", :question_name => "question")
-    Example.create(:language_id => 6, :default => true, :activity_id => 2, :display_label => "Display label for resp goes here", :hint => "Hint for resp goes here", :question_name => "response")
+    Example.create(:language_id => 6, :default => true, :activity_id => 2, :input_description => "Display label for que goes here", :hint => "Hint for que goes here", :node_key_name => "question")
+    Example.create(:language_id => 6, :default => true, :activity_id => 2, :input_description => "Display label for resp goes here", :hint => "Hint for resp goes here", :node_key_name => "response")
     puts "Examples have been added successfully at #{Time.now}"
   end
   

@@ -14,5 +14,5 @@ When browsing in development mode, press cmd+ctrl+x to see where all the dom on 
 
   * Still missing something conceptual with GameType
   * Node needs polymporhism, hard coded to OneForOne right now
-  * Example#question_name is tied to Activity#game_type, but there's nothing enforcing this tie
+  * Example#node_key_name is tied to Activity#game_type, but there's nothing enforcing this tie
 
