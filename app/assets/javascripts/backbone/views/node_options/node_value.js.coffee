@@ -3,6 +3,7 @@ class Linguazone.Views.Games.NodeValue extends Backbone.Marionette.ItemView
 
   constructor: (options) ->
     @content = options.content || ""
+    @multiple = options.multiple || false
     super
 
   events:
@@ -10,7 +11,7 @@ class Linguazone.Views.Games.NodeValue extends Backbone.Marionette.ItemView
     "click .deleteContent" : "remove"
 
   populate: =>
-    @$el.find(".deleteContent").show()
+    @$el.find(".deleteContent").show() if @content and @multiple
 
 class Linguazone.Views.Games.TextContent extends Linguazone.Views.Games.NodeValue
   className: "textRow"
@@ -28,7 +29,7 @@ class Linguazone.Views.Games.TextContent extends Linguazone.Views.Games.NodeValu
     getContent: => @content
 
   onRender: ->
-    @populate() if @content
+    @populate()
 
 class Linguazone.Views.Games.ImageContent extends Linguazone.Views.Games.NodeValue
   template: """

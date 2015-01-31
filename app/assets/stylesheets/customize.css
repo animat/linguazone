@@ -402,6 +402,13 @@ div.question, div.response {
 	display: inline-block;
 	vertical-align: middle;
 }
+
+div.question-label, div.response-label {
+  float: left;
+  height: 20px;
+  width: 320px;
+}
+
 div.response {
 	margin-left: 50px;
 }
@@ -428,6 +435,10 @@ div#nodes > div:last-child {
   width: 300px;
 }
 
+.deleteContent {
+  cursor: pointer;
+}
+
 .small-thumb {
   width: 100px;
   height: 75px;
@@ -436,3 +447,8 @@ div#nodes > div:last-child {
   cursor: pointer;
 }
 
+.btn {
+  padding: 20px;
+  font-size: 1.1em;
+  font-weight:bold;
+}

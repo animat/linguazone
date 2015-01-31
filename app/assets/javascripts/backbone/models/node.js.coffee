@@ -10,6 +10,9 @@ class Linguazone.Models.Node extends Backbone.Model
   validation_errors: () ->
     "Can not have an empty question" unless @get("question")
 
+  responseAsKey: () ->
+    @get("response").toLowerCase().replace(" ", "_")
+
 class Linguazone.Models.AnswerAndMatchNode extends Linguazone.Models.Node
 
 class Linguazone.Models.TwoAnswerAndMatchNode extends Linguazone.Models.Node
@@ -36,5 +39,8 @@ class Linguazone.Models.OneToOneNode extends Linguazone.Models.Node
     "response":  ""
 
   validation_errors: () ->
-      return "Can not have an empty response" unless @get("response")
-      super()
+    unless @get("response")
+      console.log "@attributes", @attributes
+
+    return "Can not have an empty response" unless @get("response")
+    super()

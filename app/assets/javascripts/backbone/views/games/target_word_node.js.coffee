@@ -1,6 +1,6 @@
 Linguazone.Views.Games ||= {}
 
-class Linguazone.Views.Games.TargetWord extends Linguazone.Views.Games.NodeBaseView 
+class Linguazone.Views.Games.TargetWord extends Linguazone.Views.Games.NodeBaseView
   game_type: "TargetWord",
 
   template: """
@@ -20,9 +20,17 @@ class Linguazone.Views.Games.TargetWord extends Linguazone.Views.Games.NodeBaseV
       content: @model.get("question")
       name: "question"
 
+    nodeOptionDefaults =
+      prompt: "Enter a word:"
+      allowImage: false
+      multiple: false
+
     questionView = new Linguazone.Views.Games.NodeOption
       model: question
-      node_options: @options.node_options?.question
+      node_options: _.defaults(nodeOptionDefaults, @options.node_options)
+
+    @listenTo questionView, "enter:pressed", ->
+      Linguazone.App.vent.trigger("node:new")
 
     question.on "change", =>
       @model.set("question", question.get("content"))

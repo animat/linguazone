@@ -9,7 +9,7 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
     return node
 
   addNode: (e) =>
-    e.preventDefault()
+    e?.preventDefault?()
     @addNodeView @createNode(), @model.get("nodes").length - 1 # 0 index
     $(".node").last().children().first().find("input").focus()
 
@@ -49,6 +49,10 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
     @$nodeDiv = $(@el).find("#nodes")
     @$nodeDiv.html("")
     _.each @model.get("nodes").models, @addNodeView
+
+  initialize: ->
+    Linguazone.App.vent.on "node:new", =>
+      @addNode()
 
   addNodeView: (node, index) =>
     view = new Linguazone.Views.Games[@model.get("game_type")]

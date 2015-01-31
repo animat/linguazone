@@ -12,6 +12,10 @@ class Example < ActiveRecord::Base
   belongs_to :language
   belongs_to :activity
 
+  validates_presence_of :activity_id
+  validates_presence_of :node_key_name
+  validates_presence_of :node_value
+
   def self.for(language, activity)
     result = self.find_all_by_language_id_and_activity_id(language.id, activity.id)
     return result if result.length > 0
