@@ -6,10 +6,6 @@ class TargetWordNode < GameDataNode
   # Each node will have one value.  Image nodes are not valid.
   attr_accessor :question, :options
 
-  def self.from_hash(hash)
-    new hash[:question]
-  end
-
   def initialize(question, options = [])
     @question, @options = question, options
   end
@@ -20,36 +16,29 @@ class TargetWordNode < GameDataNode
   #      (see example at lib/target_word_node.rb's EOF)
   def self.from_xml(xml)
     question  = NodeOption.for "question", get_content(xml, "question")
-    options = []
-    xml.xpath(".//option").each do |option|
-      options << option["content"]
-    end
-    self.new(question, options)
+    self.new(question, self.get_options_from(xml))
+  end
+
+  # Construct this node from a hash
+  # (i.e. from controller params)
+  # TODO: how does this ever get options??
+  def self.from_hash(hash)
+    new hash[:question]
   end
 
   # Get an XMl version of the Node
   # Params:
   # xml: an existing xml object to use
   def to_xml(xml)
+    # TODO: should this raise?
     return unless question.present?
 
     xml.node do
       question.to_node_option("question").to_xml(xml)
-      before_options_xml(xml)
-      if self.options.present?
-        xml.options {
-          self.options.each do |option|
-            xml.option :content => option, :type => "text"
-          end
-        }
-      end
+      add_options_to xml
     end
   end
 
-  protected
-
-  # Append more XML before writing the options node
-  def before_options_xml(xml);end
 end
 
 __END__
