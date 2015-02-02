@@ -20,7 +20,8 @@ class Linguazone.Views.Games.NodeBaseView extends Backbone.Marionette.ItemView
     @model = options.node
     @game_type ||= options.game_type
 
-  delete: =>
+  delete: (e) =>
+    e.preventDefault()
     @trigger("remove")
     @$el.remove()
     @options.node = undefined

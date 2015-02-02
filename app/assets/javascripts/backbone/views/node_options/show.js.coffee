@@ -8,14 +8,17 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
 
     <div class="input"></div>
 
-    <a href="#" class="text-link" tabindex="-1">+ text</a>
-    <a href="#" class="image-link" tabindex="-1">+ image</a>
+    <span class="add-content">
+      <a href="#" class="text-link" tabindex="-1">+ text</a>
+      <a href="#" class="image-link" tabindex="-1">+ image</a>
+    </span>
   """
 
   ui:
-    input:      "input"
-    image_link: "image-link"
-    text_link:  "text-link"
+    input:       "input"
+    image_link:  ".image-link"
+    text_link:   ".text-link"
+    add_content: ".add-content"
 
   updateContent: =>
     if @model and @model.get("content") and @model.get("content").content
@@ -28,6 +31,12 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
 
     "click .text-link"    : 'showText'
     'change .input input' : 'changeValue'
+    'keydown .input input': 'checkEnter'
+
+  checkEnter: (e) ->
+    return unless (e.keyCode is 13 or e.keyCode is 10)
+    e.preventDefault()
+    @trigger("enter:pressed")
 
   changeValue: (e) =>
     @model.set("content", $(e.currentTarget).val())
@@ -58,7 +67,12 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
     if @model.get("content")?.type == "image"
       @showImage(@model.get("content").content)
     else
-      @showText(@model.get("content")?.content)
+      content = @model.get("content")
+      # HACK: can this still happen?
+      if content.content
+        @showText(content.content)
+      else
+        @showText(content)
 
   onRender: =>
     @updateContent()
@@ -68,10 +82,16 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
   useOptions: =>
     return unless @options.node_options
 
-    unless _.contains(@options.node_options.types, "image")
-      @$el.find(".image-link").hide()
+    if @options.node_options.multiple is false
+      @ui.add_content.hide()
 
-    unless _.contains(@options.node_options.types, "text")
-      @$el.find(".text-link").hide()
+    unless @options.node_options.allowImage
+      @ui.image_link.hide()
+
+    if _.contains(@options.node_options.types, "image")
+      @$el.find(".image-link").show()
+
+    if _.contains(@options.node_options.types, "text")
+      @$el.find(".text-link").show()
 
     @$el.find(".instruction-label").text @options.node_options.prompt

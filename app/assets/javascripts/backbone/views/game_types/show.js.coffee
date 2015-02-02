@@ -9,7 +9,14 @@ class Linguazone.Views.GameType extends Backbone.Marionette.Layout
 
   onRender: ->
     @loadNodeView()
-    setTimeout((=> @makeSticky()), 40)
+    @setExampleValues()
+    #setTimeout((=> @makeSticky()), 100)
+
+  setExampleValues: ->
+    if _.isFunction @nodeView.loadExamples
+      @nodeView.loadExamples @options.examples
+    else
+      console.error "Can't load examples for ", @model
 
   loadNodeView: ->
     name = @model.get('name')
@@ -22,16 +29,18 @@ class Linguazone.Views.GameType extends Backbone.Marionette.Layout
   makeSticky: ->
     $example = $("#examples")
 
-    originalTop = $example.offset().top
-    originalLeft = $example.position().left
-
     updatePosition = =>
+      unless @isSticky
+        originalTop = $example.offset().top
+        originalLeft = $example.position().left
+
       if $(window).scrollTop() > originalTop
-        $example.css({ 'position': 'fixed', 'top':0, 'left': originalLeft})
+        $example.css({ 'position': 'fixed', 'top' : '-5px', 'left': originalLeft})
+        @isSticky = true
       else
+        @isSticky = false
         $example.css({ 'position': 'relative', 'left': '-10px' }) # HACK: why -10 px???
 
     updatePosition()
     $(window).scroll(updatePosition)
 
-class Linguazone.Collections.ExampleCollection extends Backbone.Collection

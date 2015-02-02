@@ -21,7 +21,6 @@ class Linguazone.Views.Games.AnswerAndMatch extends Linguazone.Views.Games.NodeB
       <label class="wizard">Step 1: Enter a Term</label>
       <div class="question">
         <label>Question:</label>
-        
       </div>
       <br />
       <a class="next">Next</a>

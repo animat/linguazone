@@ -1,3 +1,6 @@
+require './lib/game_data'
+require './lib/game_data_node'
+
 class Activity < ActiveRecord::Base
   has_many :games
 
