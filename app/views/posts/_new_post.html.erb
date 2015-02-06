@@ -125,7 +125,7 @@ $(document).on("fields_added.nested_form_fields", function(event, param) {
         <%= ff.label :embed, "Add resource URL" %>
         <%= ff.text_field :embed, class: "embed_txt" %>
         <%= ff.hidden_field :source, class: "source", value: "" %>
-        <%= ff.remove_nested_fields_link %>
+        <%= ff.remove_nested_fields_link "remove" %>
       <% end %>
     </div>
   
