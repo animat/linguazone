@@ -10,4 +10,5 @@
 //= require swf_fu
 //= require autocomplete-rails
 //= require flash_messages
+//= require nested_form_fields
 //= require waverec/lgz-recorder

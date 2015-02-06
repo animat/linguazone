@@ -29,8 +29,17 @@ Feature: Teacher manages posts for audio blogs
 	
 	Scenario: Create a new post
 		Given I am on the my posts page
-		When I follow "Create a new audio blog post"
+		When I follow "Create a new post"
 		And I follow "Test class" within the wrapper
 		And I fill in "Enter a title for your post" with "Sample title of an audio blog post"
 		And I press "Create"
 		Then I should see "Your new post has been created and added to the class page"
+  
+  @wip @javascript
+  Scenario: Create a new post with YouTube video
+    Given I am on the "Test class" page for making a new post
+    And I fill in "Enter a title for your post" with "This a post!"
+    And I follow "Add a video from YouTube"
+    And I fill in "YouTube URL" with "https://www.youtube.com/watch?v=c-g7DX-wFOQ"
+    And I press "Create"
+    Then I should see "Your new post has been created and added to the class page"

@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141122031528) do
+ActiveRecord::Schema.define(:version => 20150205035050) do
+
+  create_table "ab_media_resources", :force => true do |t|
+    t.string   "source"
+    t.text     "embed"
+    t.text     "description"
+    t.integer  "post_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -29,14 +38,17 @@ ActiveRecord::Schema.define(:version => 20141122031528) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "activities", :force => true do |t|
-    t.string  "name",          :limit => 50,                         :null => false
-    t.string  "swf",           :limit => 40,                         :null => false
-    t.text    "hints_xml",                                           :null => false
-    t.string  "help",                                                :null => false
-    t.text    "youtube_embed",                                       :null => false
-    t.boolean "convertable",                 :default => false,      :null => false
-    t.string  "game_type",                   :default => "OneToOne", :null => false
+    t.string  "name",          :limit => 50,                           :null => false
+    t.string  "swf",           :limit => 40,                           :null => false
+    t.text    "hints_xml",                                             :null => false
+    t.string  "help",                                                  :null => false
+    t.text    "youtube_embed",                                         :null => false
+    t.boolean "convertable",                 :default => false,        :null => false
+    t.string  "game_type",                   :default => "OneToOne",   :null => false
     t.text    "node_options"
+    t.string  "category",                    :default => "Unscramble"
+    t.string  "description"
+    t.string  "video_link"
   end
 
   create_table "admin_users", :force => true do |t|
@@ -162,9 +174,9 @@ ActiveRecord::Schema.define(:version => 20141122031528) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.string   "question_name"
-    t.string   "node_input"
-    t.string   "display_label"
+    t.string   "node_key_name"
+    t.string   "node_value"
+    t.string   "input_description"
     t.string   "hint"
   end
 
@@ -238,7 +250,8 @@ ActiveRecord::Schema.define(:version => 20141122031528) do
   end
 
   create_table "media_categories", :force => true do |t|
-    t.string "name", :limit => 50, :null => false
+    t.string  "name",        :limit => 50,                :null => false
+    t.integer "media_count",               :default => 0, :null => false
   end
 
   create_table "media_keywords", :force => true do |t|

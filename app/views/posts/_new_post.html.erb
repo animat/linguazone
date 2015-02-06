@@ -4,32 +4,34 @@
 <% javascript 'waverec/recorder' %>
 <% javascript 'waverec/basic.js' %>
 
-<h1>Create a new post</h1>
-
-<%= form_for(@post, :html => {:id => 'upload'}) do |f| %>
- 	<%= f.error_messages %>
-	
-
-	<p>
-		<%= f.label :title, "Enter a title for your post" %><br />
-		<%= f.text_field :title, :size => 40 %>
-	</p>
-	<p>
-		<%= f.label :content, "Enter text for your post (optional)" %><br />
-		<%= f.text_area :content, :rows => 10, :cols => 82 %>
-	</p>
-	<p>
-		<%= f.check_box "shared" %> <%= f.label "shared", "Students can see each others' responses" %>
-	</p>
-	<%= f.hidden_field :course_id, :value => @course_id %>
-	<%= f.hidden_field :user_id, :value => current_user.id %>
-	<%= f.hidden_field :audio_id, :value => 0 %>
-
-	<input id="upload_file" name="upload[file]" type="file" accept="audio/*.wav" capture="microphone" ><br>
-	<%= transloadit :audio_encode_s3 %>
+<% content_for :page_script do %>
+<script type="text/javascript">
+$(document).on("fields_added.nested_form_fields", function(event, param) {
+  var $el = $("#addedMedia").find("fieldset").last();
+  var clicked = event.currentTarget.activeElement;
+  if ($(clicked).hasClass("YouTubeEmbed")) {
+    var type = "YouTube";
+    var msg = "Enter a YouTube URL";
+  } else if ($(clicked).hasClass("UploadImg")) {
+    var type = "UploadImg";
+    var msg = "Select a file from your computer";
+    var $tmp = $el.find("input.embed_txt").first();
+    var n = $tmp.attr("name");
+    var id = $tmp.attr("id");
+    $tmp.remove();
+    var $fileInput = $("<input />", {"name": n, "id": id, "size": 30, "type": "file"});
+    $fileInput.insertAfter($el.find("label"));
+  }
+  $el.find("label").html(msg);
+  $el.find(".source").val(type);
+});
+</script>
 <% end %>
 
+<h1>Create a new post</h1>
+
 <div class="recording_container">
+    <label>Record audio for your post</label>
     <section class="recorder-container">
 
         <!-- Recorder control buttons -->
@@ -81,6 +83,52 @@
         </div>
     </section>
 </div>
+
+<%= form_for(@post, :html => {:id => 'upload'}) do |f| %>
+ 	<%= f.error_messages %>
+	
+
+	<p id="audio_blog_post_title">
+		<%= f.label :title, "Enter a title for your post" %><br />
+		<%= f.text_field :title, :size => 40 %>
+	</p>
+	<p>
+		<%= f.label :content, "Enter text for your post (optional)" %><br />
+		<%= f.text_area :content, :rows => 10, :cols => 82 %>
+	</p>
+	<%= f.hidden_field :course_id, :value => @course_id %>
+	<%= f.hidden_field :user_id, :value => current_user.id %>
+	<%= f.hidden_field :audio_id, :value => 0 %>
+
+	<input id="upload_file" name="upload[file]" type="file" accept="audio/*.wav" capture="microphone" ><br>
+	<%= transloadit :audio_encode_s3 %>
+  
+  <div id="addMedia">
+    <p>Add additional media (optional)</p>
+    <p>
+        <i class="fa fa-youtube fa-2x"></i>
+        <%= f.add_nested_fields_link :ab_media_resources, "Add a video from YouTube", class: "YouTubeEmbed" %>
+    </p>
+    <p>
+        <i class="fa fa-upload fa-2x"></i>
+        <%= f.add_nested_fields_link :ab_media_resources, "Upload an image from my computer", class: "UploadImg" %>
+    </p>
+  </div>
+  
+  <div id="addedMedia">
+    <%= f.nested_fields_for :ab_media_resources do |ff| %>
+      <%= ff.label :embed, "Add resource URL" %>
+      <%= ff.text_field :embed, class: "embed_txt" %>
+      <%= ff.hidden_field :source, class: "source", value: "" %>
+      <%= ff.remove_nested_fields_link %>
+    <% end %>
+  </div>
+  
+	<p id="comment_visibility_setting">
+		<%= f.check_box "shared" %> <%= f.label "shared", "Students can see each others' responses" %>
+	</p>
+<% end %>
+
 <button id="create_audio_blog_post" onclick="lgzRec.manualSend('#upload');" >Create post</button>
 <script>
 var script = '/assets/waverec/transloadit-custom.js';

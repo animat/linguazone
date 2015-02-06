@@ -29,6 +29,8 @@ gem "omniauth-facebook"
 gem "spreadsheet"
 gem "nokogiri", "1.5.10"
 gem "transloadit-rails"
+gem "nested_form_fields"
+gem "youtube_addy"
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'

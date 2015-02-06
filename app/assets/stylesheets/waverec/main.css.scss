@@ -1,10 +1,26 @@
+form#upload {
+  position: relative;
+  top: -170px;
+  margin-bottom: -170px;
+}
+
+#audio_blog_post_title {
+  margin-bottom: 180px;
+}
+
 .recording_container {
     width: 400px;
-    margin: 5px 0px;
-    padding-left: 30px;
-    font-family: sans-serif;
-    font-size: 14px;
+    margin-left: 30px;
+    position: relative;
+    top: 80px;
+    /*font-family: sans-serif;
+    font-size: 14px;*/
     border-radius: 22px;
+}
+
+#comment_visibility_setting {
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 button#create_audio_blog_post, #create_audio_comment {

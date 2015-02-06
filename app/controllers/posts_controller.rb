@@ -60,6 +60,9 @@ class PostsController < ApplicationController
         if params[:transloadit][:ok] == "ASSEMBLY_COMPLETED"
           @path = params[:transloadit][:results][:mp3].first[:id]
           @ext = params[:transloadit][:results][:mp3].first[:ext]
+          
+          # TODO: Check for image upload data, save URL and source along with model
+          
           # TODO: Store relevant metadata along with the audio clip info
           @new_audio_clip = AudioClip.create(user: current_user)
           @post.audio_id = @new_audio_clip.id

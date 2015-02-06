@@ -33,5 +33,11 @@ module PostsHelper
     end
   end
   
+  def display_optional_media(media)
+    if media.source == "YouTube"
+      YouTubeAddy.youtube_embed_url("http://youtu.be/#{media.embed}", 420, 315)
+    end
+  end
+  
 end
 
