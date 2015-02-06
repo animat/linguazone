@@ -17,9 +17,13 @@ $(document).on("fields_added.nested_form_fields", function(event, param) {
     var msg = "Select a file from your computer";
     var $tmp = $el.find("input.embed_txt").first();
     var n = $tmp.attr("name");
-    var id = $tmp.attr("id");
+    var reg = /\d+/;
+    var num = n.match(reg)[0];
+    var newName = "post[ab_media_resources_attributes]["+num+"][pic]";
+    var newId = "post_ab_media_resources_attributes_"+num+"_pic";
+    var $fileInput = $("<input />", {"name": newName, "id": newId, "type": "file"});
+    
     $tmp.remove();
-    var $fileInput = $("<input />", {"name": n, "id": id, "size": 30, "type": "file"});
     $fileInput.insertAfter($el.find("label"));
   }
   $el.find("label").html(msg);
@@ -30,108 +34,110 @@ $(document).on("fields_added.nested_form_fields", function(event, param) {
 
 <h1>Create a new post</h1>
 
-<div class="recording_container">
-    <label>Record audio for your post</label>
-    <section class="recorder-container">
+<div id="new_post_container">
+  <div class="recording_container">
+      <label>Record audio for your post</label>
+      <section class="recorder-container">
 
-        <!-- Recorder control buttons -->
-        <div class="recorder">
-            <div class="recorder-border">
-                <button id="lgzBtnMain" class="start-recording" onclick="lgzRec.onClick(event);">
-                </button>
+          <!-- Recorder control buttons -->
+          <div class="recorder">
+              <div class="recorder-border">
+                  <button id="lgzBtnMain" class="start-recording" onclick="lgzRec.onClick(event);">
+                  </button>
 
-                <canvas id="lgzRecCanvas" width="250" height="120"  ></canvas>
+                  <canvas id="lgzRecCanvas" width="250" height="120"  ></canvas>
 
-            </div>
-            <br>
-            <a id="lgzBtnRedo" href="#" >click to clear recording and try again</a>
+              </div>
+              <br>
+              <a id="lgzBtnRedo" href="#" >click to clear recording and try again</a>
 
-            <div id="lgzWinPermFWR" class="winInit" >
-	            <div class="msgbox flash_info" >
-	                <p> 
-	                Please select 'Allow' option to access your microphone for recording.
-	                <br><br>
-	                Select the 'Remember' checkbox to skip this prompt on future recordings.
-	                </p> 
-	                <div id="lgzRecorderFlashDiv">
-	                    <p>Your browser must have JavaScript enabled and the Adobe Flash Player installed.</p>
-	                </div>
-	            </div>
-            </div>
-			<div id="lgzWinSending" class="winInit" >
-				<div class="msgbox flash_info" >
-					<p> 
-						<br>
-						Processing
-						<br>
-						...
-						<br>
-						Please wait
-						<br>
-					</p> 
-				</div>
-			</div>
-            <div id="lgzWinMobile" class="winInit" >
-            <div class="msgbox flash_info" >
-                <p> 
-                Launching your mobile audio/video recorder app to record audio.
-                </p> 
-                <br>
-                <button onclick="lgzRec.launchMobileRecorder();">OK</button>
-            </div>
-            </div>
-        </div>
-    </section>
-</div>
+              <div id="lgzWinPermFWR" class="winInit" >
+  	            <div class="msgbox flash_info" >
+  	                <p> 
+  	                Please select 'Allow' option to access your microphone for recording.
+  	                <br><br>
+  	                Select the 'Remember' checkbox to skip this prompt on future recordings.
+  	                </p> 
+  	                <div id="lgzRecorderFlashDiv">
+  	                    <p>Your browser must have JavaScript enabled and the Adobe Flash Player installed.</p>
+  	                </div>
+  	            </div>
+              </div>
+  			<div id="lgzWinSending" class="winInit" >
+  				<div class="msgbox flash_info" >
+  					<p> 
+  						<br>
+  						Processing
+  						<br>
+  						...
+  						<br>
+  						Please wait
+  						<br>
+  					</p> 
+  				</div>
+  			</div>
+              <div id="lgzWinMobile" class="winInit" >
+              <div class="msgbox flash_info" >
+                  <p> 
+                  Launching your mobile audio/video recorder app to record audio.
+                  </p> 
+                  <br>
+                  <button onclick="lgzRec.launchMobileRecorder();">OK</button>
+              </div>
+              </div>
+          </div>
+      </section>
+  </div>
 
-<%= form_for(@post, :html => {:id => 'upload'}) do |f| %>
- 	<%= f.error_messages %>
+  <%= form_for(@post, :html => {:id => 'upload'}) do |f| %>
+   	<%= f.error_messages %>
 	
 
-	<p id="audio_blog_post_title">
-		<%= f.label :title, "Enter a title for your post" %><br />
-		<%= f.text_field :title, :size => 40 %>
-	</p>
-	<p>
-		<%= f.label :content, "Enter text for your post (optional)" %><br />
-		<%= f.text_area :content, :rows => 10, :cols => 82 %>
-	</p>
-	<%= f.hidden_field :course_id, :value => @course_id %>
-	<%= f.hidden_field :user_id, :value => current_user.id %>
-	<%= f.hidden_field :audio_id, :value => 0 %>
+  	<p id="audio_blog_post_title">
+  		<%= f.label :title, "Enter a title for your post" %><br />
+  		<%= f.text_field :title, :size => 40 %>
+  	</p>
+  	<p>
+  		<%= f.label :content, "Enter text for your post (optional)" %><br />
+  		<%= f.text_area :content, :rows => 10, :cols => 82 %>
+  	</p>
+  	<%= f.hidden_field :course_id, :value => @course_id %>
+  	<%= f.hidden_field :user_id, :value => current_user.id %>
+  	<%= f.hidden_field :audio_id, :value => 0 %>
 
-	<input id="upload_file" name="upload[file]" type="file" accept="audio/*.wav" capture="microphone" ><br>
-	<%= transloadit :audio_encode_s3 %>
+  	<input id="upload_file" name="upload[file]" type="file" accept="audio/*.wav" capture="microphone" ><br>
+  	<%= transloadit :audio_encode_s3 %>
   
-  <div id="addMedia">
-    <p>Add additional media (optional)</p>
-    <p>
-        <i class="fa fa-youtube fa-2x"></i>
-        <%= f.add_nested_fields_link :ab_media_resources, "Add a video from YouTube", class: "YouTubeEmbed" %>
-    </p>
-    <p>
-        <i class="fa fa-upload fa-2x"></i>
-        <%= f.add_nested_fields_link :ab_media_resources, "Upload an image from my computer", class: "UploadImg" %>
-    </p>
-  </div>
+    <div id="addMedia">
+      <p>Add additional media (optional)</p>
+      <p>
+          <i class="fa fa-youtube fa-2x"></i>
+          <%= f.add_nested_fields_link :ab_media_resources, "Add a video from YouTube", class: "YouTubeEmbed" %>
+      </p>
+      <p>
+          <i class="fa fa-upload fa-2x"></i>
+          <%= f.add_nested_fields_link :ab_media_resources, "Upload an image from my computer", class: "UploadImg" %>
+      </p>
+    </div>
   
-  <div id="addedMedia">
-    <%= f.nested_fields_for :ab_media_resources do |ff| %>
-      <%= ff.label :embed, "Add resource URL" %>
-      <%= ff.text_field :embed, class: "embed_txt" %>
-      <%= ff.hidden_field :source, class: "source", value: "" %>
-      <%= ff.remove_nested_fields_link %>
-    <% end %>
-  </div>
+    <div id="addedMedia">
+      <%= f.nested_fields_for :ab_media_resources do |ff| %>
+        <%= ff.label :embed, "Add resource URL" %>
+        <%= ff.text_field :embed, class: "embed_txt" %>
+        <%= ff.hidden_field :source, class: "source", value: "" %>
+        <%= ff.remove_nested_fields_link %>
+      <% end %>
+    </div>
   
-	<p id="comment_visibility_setting">
-		<%= f.check_box "shared" %> <%= f.label "shared", "Students can see each others' responses" %>
-	</p>
-<% end %>
+  	<p id="comment_visibility_setting">
+  		<%= f.check_box "shared" %> <%= f.label "shared", "Students can see each others' responses" %>
+  	</p>
+  <% end %>
 
-<button id="create_audio_blog_post" onclick="lgzRec.manualSend('#upload');" >Create post</button>
-<script>
-var script = '/assets/waverec/transloadit-custom.js';
-lgzRec.init('#upload', script);
+  <button id="create_audio_blog_post" onclick="lgzRec.manualSend('#upload');" >Create post</button>
+  <script>
+  var script = '/assets/waverec/transloadit-custom.js';
+  lgzRec.init('#upload', script);
 
-</script>
+  </script>
+</div>

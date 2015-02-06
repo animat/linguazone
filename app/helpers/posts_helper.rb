@@ -35,7 +35,25 @@ module PostsHelper
   
   def display_optional_media(media)
     if media.source == "YouTube"
-      YouTubeAddy.youtube_embed_url("http://youtu.be/#{media.embed}", 420, 315)
+      if media.embed == ""
+        YouTubeAddy.youtube_embed_url("http://youtu.be/1", 420, 315)
+      else
+        YouTubeAddy.youtube_embed_url("http://youtu.be/#{media.embed}", 420, 315)
+      end
+    elsif media.source == "UploadImg"
+      image_tag media.pic.url(:square)
+    end
+  end
+  
+  def display_optional_media_small(media)
+    if media.source == "YouTube"
+      if media.embed == ""
+        YouTubeAddy.youtube_embed_url("http://youtu.be/1", 200, 200)
+      else
+        YouTubeAddy.youtube_embed_url("http://youtu.be/#{media.embed}", 200, 200)
+      end
+    elsif media.source == "UploadImg"
+      image_tag media.pic.url(:square)
     end
   end
   

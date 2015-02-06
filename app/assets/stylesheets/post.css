@@ -26,6 +26,13 @@ textarea {
 	width: 50%;
 	font-size: .9em;
 }
+.edit_post #addedMedia > div, #display_post_area #addedMedia > div {
+  display: inline-block;
+  margin: 10px;
+}
+.edit_post #addedMedia p {
+  text-align: center;
+}
 .edit_post textarea, .new_post textarea  {
 	padding: 5px;
 	font-size: .9em;

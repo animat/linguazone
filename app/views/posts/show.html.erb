@@ -179,9 +179,11 @@ function convertRatingNumToImage(id) {
 			</div>
 		<% end %>
     <% if @post.ab_media_resources.any? %>
-      <% @post.ab_media_resources.each do |m| %>
-        <p><%= display_optional_media(m).html_safe %></p>
-      <% end %>
+      <div id="addedMedia">
+        <% @post.ab_media_resources.each do |m| %>
+          <div><%= display_optional_media_small(m).html_safe %></div>
+        <% end %>
+      </div>
     <% end %>
 		<% if is_teacher_for(@course) %>
 			<ul id="post_controls" class="hide_controls">

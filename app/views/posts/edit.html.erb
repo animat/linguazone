@@ -13,6 +13,14 @@
 		<%= f.label :content %><br />
 		<%= f.text_area :content %>
 	</p>
+  <div id="addedMedia">
+    <%= f.fields_for :ab_media_resources do |builder| %>
+      <div>
+        <%= display_optional_media_small(builder.object).html_safe %>
+        <p><%= builder.check_box :_destroy %> <%= builder.label :_destroy, "remove" %></p>
+      </div>
+    <% end %>
+  </div>
 	<p>
 		<%= f.check_box "shared" %> <%= f.label "shared", "Students can see each others' responses" %>
 	</p>

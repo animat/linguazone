@@ -5,14 +5,15 @@ ruby "1.9.3"
 gem 'rdoc'
 gem 'rails3-jquery-autocomplete', "~> 1.0.10"
 gem 'rails', '~> 3.2.11'
-gem "aws-s3", '0.6.2', :require => "aws/s3"
+gem "aws-sdk"
 gem "authlogic", "3.2.0"
 gem 'bcrypt-ruby', "3.0.1"
 gem 'scrypt', "1.0.2"
 gem "meta_search", ">= 1.1.0.pre"
 gem "declarative_authorization"
 gem "rexml-expansion-fix"
-#gem 'paperclip', "~> 2.8"
+gem 'paperclip'
+gem "rmagick"
 gem 'simple_form'
 gem 'dynamic_form'
 gem 'pg'

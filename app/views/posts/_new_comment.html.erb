@@ -1,4 +1,4 @@
-<fieldset>
+<fieldset id="new_comment_fieldset">
 	<legend><span>Leave a comment</span></legend>
 		<%= form_for(@comment, :html => {:id => 'upload'}) do |f| %>
 			<%= f.hidden_field :available_post_id, :value => @ap.id %>

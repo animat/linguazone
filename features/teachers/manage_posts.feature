@@ -35,7 +35,7 @@ Feature: Teacher manages posts for audio blogs
 		And I press "Create"
 		Then I should see "Your new post has been created and added to the class page"
   
-  @wip @javascript
+  @javascript
   Scenario: Create a new post with YouTube video
     Given I am on the "Test class" page for making a new post
     And I fill in "Enter a title for your post" with "This a post!"
