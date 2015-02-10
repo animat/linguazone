@@ -85,9 +85,9 @@ class PostsController < ApplicationController
             else
               # Only move into audio folder if in production environment. Otherwise simply rename.
               if Rails.env.production?
-                obj.rename("audio/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
+                obj.move_to("audio/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
               else
-                obj.rename("transloadit/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
+                obj.move_to("transloadit/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
               end
           
               @available_post = AvailablePost.new(:post_id => @post.id, :user_id => @post.user_id, :course_id => @post.course_id, :ordering => 0, :hidden => 0)
