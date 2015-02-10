@@ -15,15 +15,19 @@ class CommentsController < ApplicationController
           @comment.audio_id = @new_audio_clip.id
           @comment.save
           
-          cred = YAML.load(File.open("#{Rails.root}/config/s3.yml")).symbolize_keys!
-          AWS::S3::Base.establish_connection! cred
-          bucket = AWS::S3::Bucket.find('linguazone', :prefix => "transloadit")
+          #cred = YAML.load(File.open("#{Rails.root}/config/s3.yml")).symbolize_keys!
+          #AWS::S3::Base.establish_connection! cred
+          s3 = AWS::S3.new(access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'])
+          bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
+          
           key = "transloadit/#{@path}.#{@ext}"
           obj = bucket[key]
-          while obj.nil? and bucket.is_truncated
-            bucket = AWS::S3::Bucket.find("linguazone", :prefix => "transloadit", :marker => lz.objects.last.key)
-            obj = bucket[key]
-          end
+          
+          # TODO: Confirm that newer aws-sdk does not need to loop through truncated results
+          #while obj.nil? and bucket.is_truncated
+          #  bucket = AWS::S3::Bucket.find("linguazone", :prefix => "transloadit", :marker => lz.objects.last.key)
+          #  obj = bucket[key]
+          #end
           if obj.nil?
             flash[:error] = "There was an error recording your audio. Please try again."
             redirect_to(@comment.available_post)
