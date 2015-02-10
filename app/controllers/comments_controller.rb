@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
           bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
           
           key = "transloadit/#{@path}.#{@ext}"
-          obj = bucket[key]
+          obj = bucket.objects[key]
           
           # TODO: Confirm that newer aws-sdk does not need to loop through truncated results
           #while obj.nil? and bucket.is_truncated
