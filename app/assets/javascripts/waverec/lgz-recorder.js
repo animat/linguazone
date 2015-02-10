@@ -520,7 +520,7 @@ lgzRec.ClassDisplay = function () {
         }, 500);
     };
 	thisObj.showOverlay = function() {
-		$overlay = $('<div id="recording_overlay"></div>').appendTo("body");
+		$overlay = $('<div id="recording_overlay"></div>').prependTo(".recorder");
 	}
 	thisObj.hideOverlay = function() {
 		$overlay.remove();

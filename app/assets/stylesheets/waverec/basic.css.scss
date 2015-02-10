@@ -54,8 +54,7 @@
 	width: 100%; 
 	height: 100%; 
 	display: block; 
-	opacity: 0.9; 
-	z-index: 9998; 
+	opacity: 0.9;  
 	background-color: rgb(255, 255, 255);
 }
 .recorder .winInit {
@@ -68,7 +67,6 @@
     position: fixed;
     top: 25%;
     width: 70%;
-	z-index: 9999;
 }
 .recorder .winHide {
     position: relative;
