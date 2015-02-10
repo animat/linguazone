@@ -89,7 +89,7 @@ $(document).on("fields_added.nested_form_fields", function(event, param) {
       </section>
   </div>
 
-  <%= form_for(@post, :html => {:id => 'upload'}) do |f| %>
+  <%= form_for(@post, :html => {:id => 'upload', :multipart => true}) do |f| %>
    	<%= f.error_messages %>
 	
 
