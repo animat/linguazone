@@ -10,7 +10,7 @@ development:
     duration: 1800 # 30 minute validity period for signed upload forms
 
   templates:
-    audio_encode_s3: 'e36ca020604e11e48d057b2ba9676c48'
+    audio_encode_s3: '3e01cb70b1a611e49853952f7f0c814f'
 
 test:
   # the jquery_sdk version you want to use, read up on it here:
@@ -24,7 +24,7 @@ test:
     duration: 1800 # 30 minute validity period for signed upload forms
 
   templates:
-    audio_encode_s3: 'e36ca020604e11e48d057b2ba9676c48'
+    audio_encode_s3: '3e01cb70b1a611e49853952f7f0c814f'
 
 staging:
   jquery_sdk_version: 'latest'
@@ -34,7 +34,7 @@ staging:
     duration: 1800 # 30 minute validity period for signed upload forms
 
   templates:
-    audio_encode_s3: 'e36ca020604e11e48d057b2ba9676c48'
+    audio_encode_s3: '3e01cb70b1a611e49853952f7f0c814f'
 
 production:
   jquery_sdk_version: 'latest'
