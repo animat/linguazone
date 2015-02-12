@@ -181,7 +181,9 @@ function convertRatingNumToImage(id) {
     <% if @post.ab_media_resources.any? %>
       <div id="addedMedia">
         <% @post.ab_media_resources.each do |m| %>
-          <div><%= display_optional_media_small(m).html_safe %></div>
+          <% unless m.nil? %>
+            <div><%= display_optional_media_small(m).html_safe %></div>
+          <% end %>
         <% end %>
       </div>
     <% end %>
