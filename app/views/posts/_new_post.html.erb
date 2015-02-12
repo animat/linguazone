@@ -7,14 +7,28 @@
 <% content_for :page_script do %>
 <script type="text/javascript">
 
-$(document).function() {
+$(document).ready(function() {
+  var latestMediaSource;
+  
+  $(".YouTubeEmbed").on("click", function() {
+    latestMediaSource = "YouTubeEmbed";
+  });
+  $(".UploadImg").on("click", function() {
+    latestMediaSource = "UploadImg";
+  });
+  $(".YouTubeEmbed").on("tap", function() {
+    latestMediaSource = "YouTubeEmbed";
+  });
+  $(".UploadImg").on("tap", function() {
+    latestMediaSource = "UploadImg";
+  });
+  
   $(document).on("fields_added.nested_form_fields", function(ev, param) {
     var $el = $("#addedMedia").find("fieldset").last();
-    var clicked = ev.currentTarget.activeElement;
-    if ($(clicked).hasClass("YouTubeEmbed")) {
+    if (latestMediaSource == "YouTubeEmbed") {
       var type = "YouTube";
       var msg = "Enter a YouTube URL";
-    } else if ($(clicked).hasClass("UploadImg")) {
+    } else if (latestMediaSource == "UploadImg") {
       var type = "UploadImg";
       var msg = "Select a file from your computer";
       var $tmp = $el.find("input.embed_txt").first();
