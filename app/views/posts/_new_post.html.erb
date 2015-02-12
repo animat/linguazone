@@ -6,28 +6,31 @@
 
 <% content_for :page_script do %>
 <script type="text/javascript">
-$(document).on("fields_added.nested_form_fields", function(event, param) {
-  var $el = $("#addedMedia").find("fieldset").last();
-  var clicked = event.currentTarget.activeElement;
-  if ($(clicked).hasClass("YouTubeEmbed")) {
-    var type = "YouTube";
-    var msg = "Enter a YouTube URL";
-  } else if ($(clicked).hasClass("UploadImg")) {
-    var type = "UploadImg";
-    var msg = "Select a file from your computer";
-    var $tmp = $el.find("input.embed_txt").first();
-    var n = $tmp.attr("name");
-    var reg = /\d+/;
-    var num = n.match(reg)[0];
-    var newName = "post[ab_media_resources_attributes]["+num+"][pic]";
-    var newId = "post_ab_media_resources_attributes_"+num+"_pic";
-    var $fileInput = $("<input />", {"name": newName, "id": newId, "type": "file"});
+
+$(function() {
+  $(document).on("fields_added.nested_form_fields", function(event, param) {
+    var $el = $("#addedMedia").find("fieldset").last();
+    var clicked = event.currentTarget.activeElement;
+    if ($(clicked).hasClass("YouTubeEmbed")) {
+      var type = "YouTube";
+      var msg = "Enter a YouTube URL";
+    } else if ($(clicked).hasClass("UploadImg")) {
+      var type = "UploadImg";
+      var msg = "Select a file from your computer";
+      var $tmp = $el.find("input.embed_txt").first();
+      var n = $tmp.attr("name");
+      var reg = /\d+/;
+      var num = n.match(reg)[0];
+      var newName = "post[ab_media_resources_attributes]["+num+"][pic]";
+      var newId = "post_ab_media_resources_attributes_"+num+"_pic";
+      var $fileInput = $("<input />", {"name": newName, "id": newId, "type": "file"});
     
-    $tmp.remove();
-    $fileInput.insertAfter($el.find("label"));
-  }
-  $el.find("label").html(msg);
-  $el.find(".source").val(type);
+      $tmp.remove();
+      $fileInput.insertAfter($el.find("label"));
+    }
+    $el.find("label").html(msg);
+    $el.find(".source").val(type);
+  });
 });
 </script>
 <% end %>
