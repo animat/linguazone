@@ -774,6 +774,7 @@ lgzRec.initFWR = function (formid, script) {
               "autoSubmit": false,
               "onSuccess": function(assembly) {
                 $("#post_audio_id").val(assembly.assembly_id);
+                $("#comment_audio_id").val(assembly.assembly_id);
                 $form[0].submit();
               }
 		    });
@@ -820,6 +821,7 @@ lgzRec.initIOS = function (formid, script) {
               "autoSubmit": false,
               "onSuccess": function(assembly) {
                 $("#post_audio_id").val(assembly.assembly_id);
+                $("#comment_audio_id").val(assembly.assembly_id);
                 $form[0].submit();
               }
 		    });
