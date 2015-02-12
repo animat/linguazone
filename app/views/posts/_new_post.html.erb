@@ -7,10 +7,10 @@
 <% content_for :page_script do %>
 <script type="text/javascript">
 
-$(function() {
-  $(document).on("fields_added.nested_form_fields", function(event, param) {
+$(document).function() {
+  $(document).on("fields_added.nested_form_fields", function(ev, param) {
     var $el = $("#addedMedia").find("fieldset").last();
-    var clicked = event.currentTarget.activeElement;
+    var clicked = ev.currentTarget.activeElement;
     if ($(clicked).hasClass("YouTubeEmbed")) {
       var type = "YouTube";
       var msg = "Enter a YouTube URL";
