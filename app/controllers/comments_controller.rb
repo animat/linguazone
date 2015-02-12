@@ -5,54 +5,48 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
 
     if @comment.save
-      if params[:transloadit]
-        params[:transloadit] = JSON.parse(params[:transloadit])
-        if params[:transloadit][:ok] == "ASSEMBLY_COMPLETED"
-          @path = params[:transloadit][:results][:mp3].first[:id]
-          @ext = params[:transloadit][:results][:mp3].first[:ext]
-          # TODO: Store relevant metadata along with the audio clip info
-          @new_audio_clip = AudioClip.create(user: current_user)
-          @comment.audio_id = @new_audio_clip.id
-          @comment.save
-          
-          #cred = YAML.load(File.open("#{Rails.root}/config/s3.yml")).symbolize_keys!
-          #AWS::S3::Base.establish_connection! cred
-          s3 = AWS::S3.new(access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'])
-          bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
-          
-          key = "transloadit/#{@path}.#{@ext}"
-          obj = bucket.objects[key]
-          
-          # TODO: Confirm that newer aws-sdk does not need to loop through truncated results
-          #while obj.nil? and bucket.is_truncated
-          #  bucket = AWS::S3::Bucket.find("linguazone", :prefix => "transloadit", :marker => lz.objects.last.key)
-          #  obj = bucket[key]
-          #end
-          if obj.nil?
-            flash[:error] = "There was an error recording your audio. Please try again."
-            redirect_to(@comment.available_post)
-          else
-            # Only move into audio folder if in production environment. Otherwise simply rename.
-            if Rails.env.production?
-              obj.move_to("audio/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
-            else
-              obj.move_to("transloadit/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
-            end
-      
-            flash[:success] = "Your comment has been created"
-            record_feed_item(@comment.available_post.course.id, @comment)
-            redirect_to post_path(@comment.available_post)
-          end
-        else
+      if params[:comment][:audio_id] != 0 # Save an audio clip and move it on S3
+        @path = params[:comment][:audio_id]
+        @ext = "mp3"
+        # TODO: Store relevant metadata along with the audio clip info
+        @new_audio_clip = AudioClip.create(user: current_user)
+        @comment.audio_id = @new_audio_clip.id
+        @comment.save
+        
+        #cred = YAML.load(File.open("#{Rails.root}/config/s3.yml")).symbolize_keys!
+        #AWS::S3::Base.establish_connection! cred
+        s3 = AWS::S3.new(access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'])
+        bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
+        
+        key = "transloadit/#{@path}.#{@ext}"
+        obj = bucket.objects[key]
+        
+        # TODO: Confirm that newer aws-sdk does not need to loop through truncated results
+        #while obj.nil? and bucket.is_truncated
+        #  bucket = AWS::S3::Bucket.find("linguazone", :prefix => "transloadit", :marker => lz.objects.last.key)
+        #  obj = bucket[key]
+        #end
+        if obj.nil?
           flash[:error] = "There was an error recording your audio. Please try again."
           redirect_to(@comment.available_post)
+        else
+          # Only move into audio folder if in production environment. Otherwise simply rename.
+          if Rails.env.production?
+            obj.move_to("audio/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
+          else
+            obj.move_to("transloadit/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
+          end
+    
+          flash[:success] = "Your comment has been created"
+          record_feed_item(@comment.available_post.course.id, @comment)
+          redirect_to post_path(@comment.available_post)
         end
-      else
+      else # No audio on this comment; just update metadata on the save.
         flash[:success] = "Your comment has been created"
         record_feed_item(@comment.available_post.course.id, @comment)
         redirect_to post_path(@comment.available_post)
       end
-    else
+    else # Comment could not save
       flash[:error] = "Error creating comment: #{@comment.errors}"
       redirect_to(@comment.available_post)
     end

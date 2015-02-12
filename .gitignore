@@ -13,6 +13,7 @@ public/stylesheets/compiled
 *(Autosaved).rtfd/
 rake/*
 config/database.yml
+config/s3.yml
 .env
 public/game_dev
 public/system

@@ -770,7 +770,12 @@ lgzRec.initFWR = function (formid, script) {
                 "interval": 2500,
                 "pollTimeout": 8000,
                 "poll404Retries": 20,
-		        "beforeStart": function () { lgzRec.addBlob($form); return true; }
+		        "beforeStart": function () { lgzRec.addBlob($form); return true; },
+              "autoSubmit": false,
+              "onSuccess": function(assembly) {
+                $("#post_audio_id").val(assembly.assembly_id);
+                $form[0].submit();
+              }
 		    });
     });
     /*
@@ -811,7 +816,12 @@ lgzRec.initIOS = function (formid, script) {
             .attr('enctype', 'multipart/form-data')
             .transloadit({
 		        "wait": true,
-		        "beforeStart": function () { lgzRec.addMov($form); return true; }
+		        "beforeStart": function () { lgzRec.addMov($form); return true; },
+              "autoSubmit": false,
+              "onSuccess": function(assembly) {
+                $("#post_audio_id").val(assembly.assembly_id);
+                $form[0].submit();
+              }
 		    });
     });
     /*

@@ -66,6 +66,7 @@ group :development, :test do
   gem "factory_girl_rails", "1.1.0"
   gem 'pry-rails'
   gem 'bullet', "2.3.1"
+  gem "dotenv-rails"
 end
 #
 group :test do

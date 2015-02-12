@@ -3,6 +3,7 @@
 		<%= form_for(@comment, :html => {:id => 'upload'}) do |f| %>
 			<%= f.hidden_field :available_post_id, :value => @ap.id %>
 			<%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :audio_id, :value => 0 %>
 			<p>
 				Your name: <%= current_user.display_name %> (<%= link_to "logout", logout_path %>)
 			</p>

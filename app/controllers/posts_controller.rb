@@ -56,49 +56,44 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     
     respond_to do |format|
-      if params[:transloadit]
-        if params[:transloadit][:ok] == "ASSEMBLY_COMPLETED"
-          @path = params[:transloadit][:results][:mp3].first[:id]
-          @ext = params[:transloadit][:results][:mp3].first[:ext]
-                    
-          # TODO: Store relevant metadata along with the audio clip info
-          @new_audio_clip = AudioClip.create(user: current_user)
-          @post.audio_id = @new_audio_clip.id
+      if params[:post][:audio_id] != 0
+        @path = params[:post][:audio_id]
+        @ext = "mp3"
+                  
+        # TODO: Store relevant metadata along with the audio clip info
+        @new_audio_clip = AudioClip.create(user: current_user)
+        @post.audio_id = @new_audio_clip.id
+        
+        if @post.save
+          s3 = AWS::S3.new(access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'])
+          bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
           
-          if @post.save
-            #cred = YAML.load(File.open("#{Rails.root}/config/s3.yml")).symbolize_keys!
-            #AWS::S3::Base.establish_connection! cred
-            s3 = AWS::S3.new(access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'])
-            bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
-            
-            key = "transloadit/#{@path}.#{@ext}"
-            obj = bucket.objects[key]
-            
-            # TODO: Confirm that newer aws-sdk does not need to loop through truncated results
-            #while obj.nil? and bucket.is_truncated
-            #  bucket = AWS::S3::Bucket.find("linguazone", :prefix => "transloadit", :marker => lz.objects.last.key)
-            #  obj = bucket[key]
-            #end
-            if obj.nil?
-              flash[:error] = "There was an error recording your audio. Please try again."
-              format.html { render :action => "new" }
+          key = "transloadit/#{@path}.#{@ext}"
+          obj = bucket.objects[key]
+          
+          # TODO: Confirm that newer aws-sdk does not need to loop through truncated results
+          #while obj.nil? and bucket.is_truncated
+          #  bucket = AWS::S3::Bucket.find("linguazone", :prefix => "transloadit", :marker => lz.objects.last.key)
+          #  obj = bucket[key]
+          #end
+          if obj.nil? # Cannot find the recording
+            flash[:error] = "There was an error recording your audio. Please try again."
+            format.html { render :action => "new" }
+          else # Found the recording. Rename, reset permissions, and (only on production) move the file. Save it.
+            if Rails.env.production?
+              obj.move_to("audio/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
             else
-              # Only move into audio folder if in production environment. Otherwise simply rename.
-              if Rails.env.production?
-                obj.move_to("audio/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
-              else
-                obj.move_to("transloadit/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
-              end
-          
-              @available_post = AvailablePost.new(:post_id => @post.id, :user_id => @post.user_id, :course_id => @post.course_id, :ordering => 0, :hidden => 0)
-              @available_post.save
-              flash[:success] = "Your new post has been created and added to the class page"
-              format.html { redirect_to post_path(@available_post) }
+              obj.move_to("transloadit/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
             end
-          else
-            flash[:error] = "There has been an error creating your new post"
-            format.html { redirect_to :back }
+        
+            @available_post = AvailablePost.new(:post_id => @post.id, :user_id => @post.user_id, :course_id => @post.course_id, :ordering => 0, :hidden => 0)
+            @available_post.save
+            flash[:success] = "Your new post has been created and added to the class page"
+            format.html { redirect_to post_path(@available_post) }
           end
+        else # If save fails...
+          flash[:error] = "There has been an error creating your new post"
+          format.html { redirect_to :back }
         end
       else
         # Condition for no audio recording, just text
