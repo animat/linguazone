@@ -131,7 +131,7 @@ module ApplicationHelper
     if Rails.env.production?
       "http://linguazone.s3.amazonaws.com/audio/#{audio_id}.mp3"
     else
-      "http://linguazone.s3.amazonaws.com/transloadit/#{audio_id}.mp3"
+      "http://lz-staging.s3.amazonaws.com/transloadit/#{audio_id}.mp3"
     end
   end
 end
