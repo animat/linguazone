@@ -588,6 +588,7 @@ lgzRec.addBlob0 = function ($form) {
     console.debug('pollTimeout: ' + uploader._options.pollTimeout);
     console.debug('poll404Retries: ' + uploader._options.poll404Retries);
 };
+// TODO: @Cesar Not working on Firefox. There is an argument error with FormData.
 lgzRec.addBlob = function ($form) {
     'use strict';
     var blob, fd, uploader;
@@ -791,9 +792,9 @@ lgzRec.mobileFileStatus = function () {
     'use strict';
     lgzRec.display.clear();
     if (lgzRec.fieldFile.value === '') {
-        lgzRec.display.write('MEDIA EMPTY');
+        lgzRec.display.write('READY TO RECORD');
     } else {
-        lgzRec.display.write('MEDIA FOUND');
+        lgzRec.display.write('RECORDING FOUND');
     }
 };
 lgzRec.initIOS = function (formid, script) {
@@ -810,7 +811,7 @@ lgzRec.initIOS = function (formid, script) {
     lgzRec.fieldFile.onchange = function () { lgzRec.mobileFileStatus(); };
     lgzRec.mobileFileStatus();
 
-
+    // TODO: On iOS, addMov adds images AND the video to the Transloadit upload. We need video ONLY to function.
     $form = $(formid);
     $.getScript(script, function () {
         $form
