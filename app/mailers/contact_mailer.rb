@@ -18,8 +18,8 @@ class ContactMailer < ActionMailer::Base
   end
   
   def report_bug(params)
-    if params[:user_id] and params[:user_id] != 0 and params[:user_id] != "undefined"
-      @user = User.find(params[:user_id])
+    if params[:user_id] and params[:user_id].to_i != 0 and params[:user_id] != "undefined"
+      @user = User.find(params[:user_id].to_i)
       @reply_address = '"'+@user.display_name+'" <'+@user.email+'>'
     else
       @reply_address = ""
