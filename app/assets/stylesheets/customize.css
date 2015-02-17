@@ -81,13 +81,12 @@
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 div.activity {
 	display: inline-block;
-	width: 47%;
+	width: 30%;
 	margin: 1%;
-	padding: 15px;
+	padding: 15px 3px 3px 3px;
 	box-sizing: border-box;
-	text-align: right;
 	position: relative;
-	padding-left: 80px;
+  border-radius: 10px;
 	min-height: 160px;
 	transition: background .3s;
 }
@@ -106,34 +105,27 @@ div.activity-wrapper h4 {
 	font-size: 1.5em;
 }
 div.activity:hover {
-	background: #f7f7f7;
+	border: 2px solid #f7f7f7;
 	cursor: pointer;
+  padding: 13px 1px 1px 1px;
 }
-div.activity div.circle_icon {
-	width: 120px;
-	height: 120px;
-	position: absolute;
-	top: 50%;
-	margin-top: -60px;
-	left: 30px;
-	-webkit-border-radius: 60px;
-	-moz-border-radius: 60px;
-	border-radius: 60px;
+div.activity:hover h2 {
+  text-decoration: underline;
+	text-shadow: 0px 0px 4px #fff742;
 }
-div.selected_activity_banner div.circle_icon {
-	margin-top: -40px;
+div.activity > div.game_title {
+  padding-left: 60px;
+  position: relative;
+  top: -20px;
 }
-div.selected_activity_banner h2 {
-	position: absolute;
-	top: 10px;
-	left: 30px;
+div.video-link a {
+  padding: 5px;
+  font-size: .95em;
+  color: #5786d6;
+  text-decoration: none;
 }
-div.activity h2 {
-	text-shadow:
-	-1px -1px 0 #fff,  
-    1px -1px 0 #fff,
-    -1px 1px 0 #fff,
-     1px 1px 0 #fff;
+div.video-link a:hover {
+  color: #ff6600;
 }
 div.activity h3 {
 	font-size: 1.2em;
@@ -143,11 +135,15 @@ div.activity h3 {
 div.activity div.icons {
 	padding: 5px;
 	display: inline-block;
-	width: 70%;
 }
 div.activity div.icons a {
-	color: #FF6600;
+	color: #000;
 	text-decoration: none;
+}
+div.selected_activity_banner h2 {
+	position: absolute;
+	top: 10px;
+	left: 30px;
 }
 div.activity_details {
 	box-sizing: border-box;

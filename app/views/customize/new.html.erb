@@ -2,7 +2,7 @@
 <%= javascript_include_tag "backbone/linguazone" %>
 
 <div class="step1">
-  <h4 id="step1_title">Step 1: Select a Game to Create</h4><div id="change_game"><img src="/images/customizer/change_game.png" alt="change game" /></div>
+  <h4 id="step1_title">Step 1: Select a game</h4><div id="change_game"><img src="/images/customizer/change_game.png" alt="change game" /></div>
   <div class="page_break"></div>
   <br />
 </div>
@@ -17,23 +17,20 @@
   <div class="clear"></div>
 
   <% @activities.each do |activity| %>
-    <div class="mix activity <%= activity.category.gsub(/ /, "") %>" data-my-order="<%= activity.id %>">
-      <div class="circle_icon" style="background: url('http://www.linguazone.com/games/<%= activity.name.gsub(/\s/,'_').camelize(:lower) %>/display/icon.jpg') no-repeat center;"></div>
-
-      <h2><a data-node-options="<%= activity.node_options %>" data-game-type="<%= activity.game_type %>" data-id="<%=activity.id %>" data-swf="<%= activity.swf %>" href="#"><%= activity.name %></a></h2>
-
+    <div class="mix activity <%= activity.category.gsub(/ /, "") %>" data-my-order="<%= activity.id %>" style="background: url('http://www.linguazone.com/games/<%= activity.name.gsub(/\s/,'_').camelize(:lower) %>/display/icon-small.jpg') no-repeat;">
+      <div class="game_title">
+        <h2>
+          <a data-node-options="<%= activity.node_options %>" data-game-type="<%= activity.game_type %>" data-id="<%=activity.id %>" data-swf="<%= activity.swf %>" href="#"><%= activity.name %></a>
+        </h2>
+        <% if activity.video_link.present? %>
+          <div class="video-link">
+            <a class="venobox" data-type="youtube" href="<%= activity.video_link %>">View demo <i class="fa fa-play-circle-o"></i></a>
+          </div>
+        <% end %>
+      </div>
       <div class="icons">
         <%# TODO: Game icons can be a link to a lightbox that will play a video preview of that game %>
         <a data-node-options="<%= activity.node_options %>" data-game-type="<%= activity.game_type %>" data-id="<%=activity.id %>" data-swf="<%= activity.swf %>" href="#"><%= activity.help %></a>
-        <div class="video-link">
-          <% if activity.video_link.present? %>
-            <a class="venobox" data-type="youtube" href="<%= activity.video_link %>"><i class="fa fa-play"></i></a>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="activity_details <%= activity.swf %>">
-        <p><%= activity.description %></p>
       </div>
     </div>
   <% end %>
