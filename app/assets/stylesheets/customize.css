@@ -403,10 +403,18 @@ textarea.create_option_set {
 	padding: 5px;
 	font-size: .9em;
 }
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			jQuery UI overrides
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.ui-widget-overlay {
+   position: fixed;
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			Activity type inputs
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
 div.question, div.response {
 	//float: left;
 	display: inline-block;
@@ -443,18 +451,22 @@ div#nodes > div:last-child {
 
 .thumb img {
   width: 300px;
+  cursor: pointer;
 }
-
 .deleteContent {
   cursor: pointer;
 }
 
 .small-thumb {
+  padding: 1px;
   width: 100px;
   height: 75px;
   overflow: hidden;
   float: left;
   cursor: pointer;
+}
+.small-thumb:hover {
+  background-color: #ff6600;
 }
 
 .btn {

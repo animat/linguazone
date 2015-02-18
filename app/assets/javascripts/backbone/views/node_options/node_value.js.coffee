@@ -43,8 +43,8 @@ class Linguazone.Views.Games.ImageContent extends Linguazone.Views.Games.NodeVal
       </div>
 
       <div class="upload">
-      <h3>Upload An Image</h3>
-      <div class="uploader">Select Files...</div>
+      <h2>Upload an image</h2>
+      <div class="uploader">Select files...</div>
     </div>
     <p/>
     <div class="image-search"></div>
@@ -57,13 +57,22 @@ class Linguazone.Views.Games.ImageContent extends Linguazone.Views.Games.NodeVal
     false
 
   createModal: =>
+    # TODO: Yuck. Why doesn't the modal overlay cover the rest of the screen once I scroll?
     @modal ||= @$el.find(".modal").dialog
-      title: "Select an Image."
-      height: 800
-      width: 1050
+      title: "Add an image"
+      height: 600
+      width: 945
+      draggable: false
+      modal: true
+      # TODO @Len: Clicking outside of the modal window should dismiss it
+      #open: ->
+      #  $('.ui-widget-overlay').bind('click', ->
+      #    $('.modal').dialog('close');
+    
     view = new Linguazone.Views.FlickrSearch.Show(model: @model)
     view.on "select", (url) => @selectImageAndClose(url)
     @modal.find(".image-search").html(view.render().el)
+    @modal.find(".search").focus()
 
   showUploads: =>
     uploader = @$el.find(".uploader").fineUploader

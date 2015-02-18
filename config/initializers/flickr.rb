@@ -12,6 +12,10 @@ module FlickRaw
     def thumbnail_url
       "http://farm#{farm}.staticflickr.com/#{server}/#{id}_#{secret}_t.jpg"
     end
+    
+    def square_url
+      "http://farm#{farm}.staticflickr.com/#{server}/#{id}_#{secret}_s.jpg"
+    end
 
     def url
       "http://flickr.com/photo.gne?id=#{id}"

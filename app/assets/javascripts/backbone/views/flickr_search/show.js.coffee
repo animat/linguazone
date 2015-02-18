@@ -9,6 +9,7 @@ class Linguazone.Views.FlickrSearch.Show extends Backbone.Marionette.ItemView
 """
   events:
     "click button" : "loadResults"
+    "keyup .search": "checkForEnterKey"
 
   class: "flickr-search"
 
@@ -21,7 +22,11 @@ class Linguazone.Views.FlickrSearch.Show extends Backbone.Marionette.ItemView
 
   select: (photo) =>
     @trigger("select", photo.get("photo_url"))
-
+  
+  checkForEnterKey: (event) =>
+    if (event.keyCode == 13)
+      @loadResults()
+  
   loadResults: =>
     query = @$el.find("input").val()
     @$results ||= @$el.find(".results")
@@ -33,26 +38,28 @@ class Linguazone.Views.FlickrSearch.Show extends Backbone.Marionette.ItemView
     photos = new Linguazone.Models.FlickrPhotoCollection(query)
     photos.url = "/media/images?q=#{query}"
     photos.fetch().success =>
-      @$results.find(".spinner").remove()
-      @$results.append("<hr/>")
-      @$results.append("<h1>LinguaZone Results</h1>")
-      _.each photos.models, (photo) =>
-        photo.on("select", => @select(photo))
-        view = new Linguazone.Views.FlickrImage model: photo
-        @$results.append view.render().el
+      if photos.models.length > 0
+        @$results.find(".spinner").remove()
+        @$results.append("<hr/>")
+        @$results.append("<h2>LinguaZone Results</h2>")
+        _.each photos.models, (photo) =>
+          photo.on("select", => @select(photo))
+          view = new Linguazone.Views.FlickrImage model: photo
+          @$results.append view.render().el
 
   loadFlickrResults: (query) =>
     photos = new Linguazone.Models.FlickrPhotoCollection(query)
     photos.fetch().success =>
       @$results.find(".spinner").remove()
       @$results.append("<hr/>")
-      @$results.append("<h1>Flickr Results</h1>")
+      @$results.append("<h2>Flickr Results</h2>")
       _.each photos.models, (photo) =>
         photo.on("select", => @select(photo))
         view = new Linguazone.Views.FlickrImage model: photo
         @$results.append view.render().el
 
 class Linguazone.Views.FlickrImage extends Backbone.Marionette.ItemView
+  # TODO @Len: I would like to load a square image rather than a thumbnail in order to make the UI more consistent
   template: """
   <div class="small-thumb">
     <img src="<%= thumbnail_url %>" alt="<%= title %>" title="<%= title %>"/>
