@@ -12,17 +12,32 @@
    </div>
 </form>
 <div id="metadata" style="display: none">
-  <label>Describe your game</label>
-  <input type="text" value="" id="description_input" />
-  <label>Check which classes apply</label>
-  <form id="classes_metadata">
+  <h1 class="step_header">Step 3: Describe and publish</h1>
+  <div id="description_area">
+    <label for="description_input">Description of this game to appear on class pages:</label>
+    <textarea value="" id="description_input"></textarea>
+  </div>
+  <div id="optional_metadata">
+    <p>
+      When students play this game...<br />
+      <label><input type="radio" name="shuffle_questions" value="all" /> use all questions in random order</label><br />
+      <label><input type="radio" name="shuffle_questions" value="fixed_number" /> use [X] random questions per game</label><br />
+    </p>
+    <p>
+      <label for="keywords_input">Keywords (optional):</label><br/>
+      <input type="text" id="keywords_input" />
+    </p>
+  </div>
+  <br class="clearFloat" />
+  <div id="publish_to_classes">
+    <label>Add this game to the following class pages...</label>
+    
+    <form id="classes_metadata">
 
-  </form>
-  <input id="submit_game" type="submit" value="Create Game" />
+    </form>
+  </div>
+  <a id="submit_game"><i class="fa fa-3x fa-floppy-o"></i><br />Save & publish</a>
   <div id="confirmation" style="display:none">
     Game Created
   </div>
 </div>
-
-
-<a href="./select_language?cmzr_type=game">Back</a>

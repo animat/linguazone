@@ -14,7 +14,9 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
     $(".node").last().children().first().find("input").focus()
 
   ui:
-    form: "form"
+    nodes: "#nodes"
+    addButton: ".addNode"
+    nextButton: "#metadata-step"
     confirmation: "#confirmation"
     metadata: "#metadata"
 
@@ -31,14 +33,16 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
 
     @model.save().success =>
       @trigger "save"
-    @ui.form.hide()
+    @ui.nodes.hide()
 
     @ui.confirmation.show()
 
   metadataStep: (e) ->
-    $("#step_title").html("Step 3: Describe and publish")
     e.preventDefault()
-    @ui.form.hide()
+    # TODO Toggle in a summary view. e.g. Number of nodes, other relevant info
+    @ui.nodes.hide()
+    @ui.addButton.hide()
+    @ui.nextButton.hide()
     @ui.metadata.show()
 
   #TODO: get this out of the view

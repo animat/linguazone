@@ -26,10 +26,18 @@ class Linguazone.Views.ClassCollectionView extends Backbone.View
     #@listenTo @collection, "reset sync add remove", @render
 
   render: ->
-    i = 0
-    while i < @collection.length
-      @$el.append("<input type='checkbox' name='"+@collection.models[i].name+"'/>"+@collection.models[i].name)
-      i++
+    if @collection.length == 0
+      # TODO @Len: For some reason @$el is not retaining the jQuery selector. Hardcoding it below.
+      #             Also, sometimes this view is being rendered twice
+      $("#classes_metadata").append("<label><input type='checkbox' name='0' disabled/> You have not yet created any classes</label>")
+    else
+      i = 0
+      while i < @collection.length
+        id = @collection.models[i].attributes.id
+        n = @collection.models[i].attributes.name
+        a = (@collection.models[i].attributes.active == "true") ? "checked" : ""
+        $("#classes_metadata").append("<label><input type='checkbox' name='"+id+"' "+a+"/> "+n+"</label>")
+        i++
 
   template: """
     <form></form>

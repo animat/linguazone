@@ -52,7 +52,7 @@
   padding: 20px;
   color: #900;
 }
-#step_title, #step1_title {
+.step_header {
 	font-size: 40px;
 	display: inline-block;
 	vertical-align: middle;
@@ -272,7 +272,7 @@ div.node {
 div.delete:hover {
 	cursor: pointer;
 }
-div#nodes input, div#example_node input {
+div#nodes input, div#example_node input, #metadata input[type='text'] {
 	padding: 3px;
 	width: 200px;
 }
@@ -290,7 +290,7 @@ div.stick_to_top {
 	top: 0;
 	z-index: 100;
 }
-div.node input {
+div.node input, #metadata textarea, #metadata input[type='text'] {
 	border: 2px solid #999;
 	background: #fff;
 	-webkit-border-radius: 4px;
@@ -377,6 +377,9 @@ div.actions a.addNode {
 	display: block;
 	float: right;
 	padding: 0 10px 10px 10px;
+  cursor: pointer;
+  border: 2px solid #ebf6ea;
+  border-radius: 3px;
 }
 div.actions a.addNode:hover {
 	background-color: #ebf6ea;
@@ -473,4 +476,52 @@ div#nodes > div:last-child {
   padding: 20px;
   font-size: 1.1em;
   font-weight:bold;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			Metadata
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#description_area {
+  display: inline-block;
+  width: 45%;
+}
+#description_area > textarea {
+  width: 100%;
+  height: 60px;
+  font-family: Helvetica, Lucida Sans Unicode, sans-serif;
+  font-size: 1.2em;
+  color: #333;
+}
+#optional_metadata {
+  display: inline-block;
+  width: 45%;
+  float: right;
+  vertical-align: top;
+}
+#optional_metadata input[type='radio'] {
+  margin-left: 20px;
+}
+#classes_metadata label:first-child {
+  margin-left: 0px;
+}
+#classes_metadata label {
+  margin-left: 20px;
+  display: inline-block;
+}
+
+#submit_game {
+  margin: 30px auto 0px auto;
+  display: block;
+  font-size: 1.2em;
+	text-decoration: none;
+	color: #0da606;
+	padding: 10px;
+  width: 150px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid #ebf6ea;
+  border-radius: 3px;
+}
+#submit_game:hover {
+	background-color: #ebf6ea;
 }
