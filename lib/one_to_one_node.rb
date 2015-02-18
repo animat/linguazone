@@ -1,9 +1,12 @@
 class OneToOneNode < TargetWordNode
-  # A node where one question has one answer
+  # A node with two corresponding elements: a question and a response
   #
-  # An example is Poker Pairs: https://www.youtube.com/watch?v=660tRSk32AM
+  # Examples include Poker Pairs: https://www.youtube.com/watch?v=660tRSk32AM
+  # =>      as well as Leap Frog: https://www.youtube.com/watch?v=12hrGdHQHYc
   #
-  # Each node will have one question and one response.
+  # As of right now, each OneToOne node has single question and single response.
+  # Ideally, cmzr3 would allow a user to enter multiple possible responses for each node.
+  # => e.g. "mangus" as the question could accept "big" _or_ "large" as an appropriate response.
   #
   # (This class just extends TargetWordNode adding response)
   attr_accessor :response
@@ -50,15 +53,18 @@ __END__
   <gamedata>
     <node>
       <question name="english" content="30" type="audio" />
+    	<response name="lang" content="facietur" type="text" />
     </node>
+    
+    <node>
+			<question name="english" content="I will be loved" type="text" />
+			<response name="lang" content="amabor" type="text" />
+		</node>
 
     <node>
-      <question name="english" content="I will be loved" type="text" />
-    </node>
-
-    <node>
-      <question name="english" content="media/image/food/cake.swf" type="image" />
-    </node>
+			<question name="english" content="media/image/food/cake.swf" type="image" />
+			<response name="lang" content="audiebar" type="text" />
+		</node>    
   </gamedata>
 
   <templatedata></templatedata>

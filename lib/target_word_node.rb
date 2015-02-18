@@ -1,9 +1,10 @@
 class TargetWordNode < GameDataNode
   # A node representing a simple question.
+  # In this game type, the user is challenged to complete the word without any other stimulus/prompt.
   #
   # Only valid for Garden Grows: http://youtube.com/watch?v=4EoRPRgil2M
   #
-  # Each node will have one value.  Image nodes are not valid.
+  # Each node will have one value.  Image and audio nodes are not valid.
   attr_accessor :question, :options
 
   def initialize(question, options = [])
