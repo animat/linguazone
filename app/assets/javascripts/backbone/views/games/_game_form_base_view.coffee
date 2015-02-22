@@ -14,6 +14,7 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
     $(".node").last().children().first().find("input").focus()
 
   ui:
+    form: "form"
     nodes: "#nodes"
     addButton: ".addNode"
     nextButton: "#metadata-step"
@@ -37,6 +38,15 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
 
     @ui.confirmation.show()
 
+  questionsStep: (e) ->
+    e.preventDefault()
+    $("#step_title").html("Step 2: Customize your game")
+    e.preventDefault()
+    @ui.metadata.hide()
+    @ui.form.show()
+    @ui.nodes.show()
+    @ui.nextButton.show()
+
   metadataStep: (e) ->
     e.preventDefault()
     # TODO Toggle in a summary view. e.g. Number of nodes, other relevant info
@@ -48,7 +58,7 @@ class Linguazone.Views.Games.GameFormBaseView extends Backbone.Marionette.ItemVi
   #TODO: get this out of the view
   setOptionLists: => @model.set("option_list", Linguazone.OptionLists())
 
-  onRender: =>
+  onRender: ->
     $("#step_title").html("Step 2: Customize your game")
     @$nodeDiv = $(@el).find("#nodes")
     @$nodeDiv.html("")

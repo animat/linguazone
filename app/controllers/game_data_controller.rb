@@ -30,8 +30,10 @@ class GameDataController < ApplicationController
     game.xml = game_data.to_xml
     game.save!
 
-    #TODO: is this the right thing todo here?
-    AvailableGame.create(:user_id => current_user.id, :game => game, :course_id => 0)
+    params[:class_ids].each do |class_id|
+      AvailableGame.create(:user_id => current_user.id, :game => game, :course_id => class_id)
+    end
+
     head :no_content
   end
 

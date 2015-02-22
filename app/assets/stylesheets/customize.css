@@ -472,6 +472,11 @@ div#nodes > div:last-child {
   background-color: #ff6600;
 }
 
+.button-error {
+  background: rgb(202, 60, 60);
+  color: white;
+}
+
 .btn {
   padding: 20px;
   font-size: 1.1em;

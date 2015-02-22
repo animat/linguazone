@@ -1,10 +1,16 @@
 class CoursesController < ApplicationController
-  
   respond_to :html, :js, :xml
 
   def index
-    @states      = State.national
-    @intl_states = State.international
+    respond_to do |format|
+      format.html do
+        @states      = State.national
+        @intl_states = State.international
+      end
+      format.js do
+        render json: get_teacher_courses
+      end
+    end
   end
 
   def show

@@ -132,7 +132,6 @@ Linguazone.App.commands.addHandler "when:fetched", (entities, options) ->
   $.when(xhrs...).always(always) if always
   $.when(xhrs...).fail(error)    if error
 
-
 $ ->
   Linguazone.App.start()
   $(".venobox").venobox()

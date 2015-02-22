@@ -22,7 +22,7 @@ class Linguazone.Views.Activity extends Backbone.Marionette.ItemView
   """
   templateHelpers: =>
     backgroundIcon: =>
-      name = @model.get("swf")
+      name = @model.get("name").toLowerCase()
       "http://www.linguazone.com/games/#{name}/display/icon.jpg"
     changeGameButton: =>
       # TODO @Len: How would I implement a button reset the user back to step 1?

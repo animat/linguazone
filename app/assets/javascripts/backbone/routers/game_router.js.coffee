@@ -55,6 +55,7 @@ new Linguazone.Routers.GameRouter
 
       view = new Linguazone.Views.Games.NewView
         model: game
+        courses: Linguazone.App.request "entities:courses:list"
 
       #TODO: move all of the saving here.
       view.on "save", ->
