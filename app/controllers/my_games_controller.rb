@@ -4,8 +4,8 @@ class MyGamesController < CourseItemsController
   def index
     @search = AvailableGame.search(params[:search])
     @hidden_equals_val = ""
-    @all_games = AvailableGame.includes(:game).where(:user_id => current_user.id, :course_id => 0).order("games.updated_at DESC").page(params[:page])
-    @total_games = AvailableGame.where(:user_id => current_user.id, :course_id => 0).length
+    @all_games = AvailableGame.includes(:game).where(:user_id => current_user.id).order("games.updated_at DESC").page(params[:page])
+    @total_games = AvailableGame.where(:user_id => current_user.id).length
   end
   
   def show

@@ -12,7 +12,6 @@ load_game_details = (activity_id, language_id) =>
       activity_id: activity_id
       language_id: language_id
 
-
   examples = new Linguazone.Collections.ExampleCollection
   examples.url = "/examples?activity_id=#{activity_id}&language_id=#{language_id}"
   examples.fetch().error ->
