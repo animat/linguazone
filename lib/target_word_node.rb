@@ -36,7 +36,6 @@ class TargetWordNode < GameDataNode
 
     xml.node do
       question.to_node_option("question").to_xml(xml)
-      question.to_node_option("response").to_xml(xml)
       add_options_to xml
     end
   end
@@ -47,7 +46,9 @@ class TargetWordNode < GameDataNode
   # version of garden grows needs a response node, even though
   # it doesn't get used.
   def before_options_xml(xml)
-    response.to_node_option("response").to_xml(xml)
+    if self.class == TargetWordNode
+      question.to_node_option("response").to_xml(xml)
+    end
   end
 end
 
