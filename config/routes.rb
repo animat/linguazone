@@ -141,7 +141,6 @@ Linguazone::Application.routes.draw do
   match 'class/:id/feed' => 'courses#feed'
   match 'courses/:id/feed' => 'courses#feed'
     
-  # TODO: Is there any way to simplify these statements?
   match 'about/pricing' => 'about#pricing', :as => :pricing
   match 'about/features' => 'about#features'
   match 'about/games' => 'about#games'

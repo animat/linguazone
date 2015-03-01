@@ -134,6 +134,9 @@ div.activity > div.game_title {
   position: relative;
   top: -20px;
 }
+div.game_title h2 {
+  margin: 0px;
+}
 div.video-link a {
   padding: 5px;
   font-size: .95em;

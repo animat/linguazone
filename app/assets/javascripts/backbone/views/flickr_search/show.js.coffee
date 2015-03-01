@@ -59,7 +59,6 @@ class Linguazone.Views.FlickrSearch.Show extends Backbone.Marionette.ItemView
         @$results.append view.render().el
 
 class Linguazone.Views.FlickrImage extends Backbone.Marionette.ItemView
-  # TODO @Len: I would like to load a square image rather than a thumbnail in order to make the UI more consistent
   template: """
   <div class="small-thumb">
     <img src="<%= thumbnail_url %>" alt="<%= title %>" title="<%= title %>"/>
