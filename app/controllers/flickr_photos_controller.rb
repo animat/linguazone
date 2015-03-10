@@ -6,6 +6,6 @@ class FlickrPhotosController < ApplicationController
       :url           => photo.url,
       :photo_url     => photo.photo_url,
       :title         => photo.title,
-      :thumbnail_url => photo.thumbnail_url } }.to_json
+      :thumbnail_url => photo.square_url } }.to_json
   end
 end

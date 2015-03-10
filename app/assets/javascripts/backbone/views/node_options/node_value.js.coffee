@@ -68,14 +68,13 @@ class Linguazone.Views.Games.ImageContent extends Linguazone.Views.Games.NodeVal
       #open: ->
       #  $('.ui-widget-overlay').bind('click', ->
       #    $('.modal').dialog('close');
-    
     view = new Linguazone.Views.FlickrSearch.Show(model: @model)
     view.on "select", (url) => @selectImageAndClose(url)
     @modal.find(".image-search").html(view.render().el)
     @modal.find(".search").focus()
 
   showUploads: =>
-    uploader = @$el.find(".uploader").fineUploader
+    uploader = $(".uploader").fineUploader
       request:
         endpoint: "/images"
       text:

@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :high_scores
   has_many :study_histories
   has_many :audio_clips
+  has_many :available_games
   has_many :authentications, :dependent => :destroy
   belongs_to :subscription
   has_one :subscription_plan, :through => :subscription
