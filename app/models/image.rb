@@ -63,6 +63,8 @@ class Image < ActiveRecord::Base
     :url => ":s3_domain_url",
     :path => "media/image/game/:id.:extension"
 
+  validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
   def remote_url=(url)
     self.image = open(url)
   end
