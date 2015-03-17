@@ -1,8 +1,9 @@
 <% stylesheet 'waverec/basic.css' %>
 <% stylesheet 'waverec/main.css' %>
 
-<% javascript 'waverec/recorder' %>
+<% javascript 'waverec/recorder.js' %>
 <% javascript 'waverec/basic.js' %>
+
 
 <% content_for :page_script do %>
 <script type="text/javascript">
@@ -153,7 +154,8 @@ $(document).ready(function() {
 
   <button id="create_audio_blog_post" onclick="lgzRec.manualSend('#upload');" >Create post</button>
   <script>
-  var script = '/assets/waverec/transloadit-custom.js';
+  var script = '/assets/waverec/jquery.transloadit2-latest.js';
+
   lgzRec.init('#upload', script);
 
   </script>
