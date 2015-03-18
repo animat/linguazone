@@ -30,7 +30,7 @@ $(function () {
 	
     window.fwr_event_handler = function fwr_event_handler() {
         var name, $controls, mic, ts;
-        // console.debug('fwr_event_handler: ' + arguments[0]);
+        // console.log('fwr_event_handler: ' + arguments[0]);
         switch (arguments[0]) {
         case "ready":
             // lgzRec.delayedinit();
@@ -39,7 +39,7 @@ $(function () {
             FWRecorder.connect(RECORDER_APP_ID, 0);
             FWRecorder.recorderOriginalWidth = appWidth;
             FWRecorder.recorderOriginalHeight = appHeight;
-            // console.debug('check mic');
+            // console.log('check mic');
             break;
 
         case "microphone_user_request":
@@ -69,7 +69,7 @@ $(function () {
             break;
 
         case "microphone_level":
-            // console.debug('microphone_level: ' + arguments[1]);
+            // console.log('microphone_level: ' + arguments[1]);
             lgzRec.display.levelRec(arguments[1] * 100);
             // $level.css({height: arguments[1] * 100 + '%'});
             break;
@@ -103,11 +103,11 @@ $(function () {
             break;
 
         case "playback_started":
-            console.debug('playback_started');
+            console.log('playback_started');
             break;
 
         case "stopped":
-            console.debug('playback_stopped');
+            console.log('playback_stopped');
             lgzRec.btn.className = 'start-playback';
             lgzRec.display.playStop();
             break;
