@@ -68,9 +68,10 @@ class Linguazone.Views.Games.NodeOption extends Backbone.Marionette.ItemView
       @showImage(@model.get("content").content)
     else
       content = @model.get("content")
-      # HACK: can this still happen?
-      if content.content
-        @showText(content.content)
+      content = content.content if content.content
+
+      if @isImage(content)
+        @showImage(content)
       else
         @showText(content)
 
