@@ -28,9 +28,9 @@ module AcceptUrls
 
   def valid_image_url?
     return false unless image_url_provided?
-    io = open(URI.parse(image_url))
+    open(URI.parse(image_url))
     true
-  rescue Exception => e
+  rescue Exception
     false
   end
 

@@ -84,7 +84,7 @@ class Linguazone.Views.Games.ImageContent extends Linguazone.Views.Games.NodeVal
         sizeLimit: 1024000
 
     uploader.on "complete", (event, id, fileName, responseJSON)  =>
-      @selectImageAndClose(image_url)
+      @selectImageAndClose(responseJSON.url)
 
   displayImage: (image_url) =>
     return unless image_url

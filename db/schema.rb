@@ -165,9 +165,9 @@ ActiveRecord::Schema.define(:version => 20141214220449) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.string   "question_name"
-    t.string   "node_input"
-    t.string   "display_label"
+    t.string   "node_key_name"
+    t.string   "node_value"
+    t.string   "input_description"
     t.string   "hint"
   end
 
