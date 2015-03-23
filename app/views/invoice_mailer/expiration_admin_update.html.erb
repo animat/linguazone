@@ -2,16 +2,13 @@
 <p>The following users have been notified about their LinguaZone.com accounts soon expiring...</p>
 
 <br />
-
-<h2>Paid subscriptions</h2>
-<p><strong>In two days</strong></p>
-<% @users[:two_day_subs].each do |u| %>
+<h2>Trial subscriptions</h2>
+<p><strong>In one week</strong></p>
+<% @users[:one_week_trials].each do |u| %>
 	<%= "- #{u.display_name} <#{u.email}> <br />"%>
 <% end %>
-<br />
-<h2>Trial subscriptions</h2>
 <p><strong>In three days</strong></p>
-<% @users[:three_day_trials].each do |u| %>
+<% @users[:four_day_trials].each do |u| %>
 	<%= "- #{u.display_name} <#{u.email}> <br />"%>
 <% end %>
 <br />
@@ -24,7 +21,15 @@
 <hr />
 <br />
 
-<h2>Also soon expiring...</h2>
+<h2>Paid subscriptions</h2>
+<p><strong>In two days</strong></p>
+<% @users[:two_day_subs].each do |u| %>
+	<%= "- #{u.display_name} <#{u.email}> <br />"%>
+<% end %>
+
+<br />
+<br />
+
 <p><strong>In one week</strong></p>
 <% @users[:one_week_subs].each do |u| %>
 	<%= "- #{u.display_name} <#{u.email}> <br />"%>

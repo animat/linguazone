@@ -62,15 +62,15 @@ class InvoiceMailer < ActionMailer::Base
     users.each do |u|
       @user = u
       @subscription = u.subscription
-      mail :to => @user.email, :subject => "One week left in your trial at LinguaZone.com"
+      mail :to => @user.email, :from => "Colin Angevine <info@linguazone.com>", :subject => "One week left in your trial at LinguaZone.com"
     end
   end
 
-  def trial_three_day_reminder(users)
+  def trial_four_day_reminder(users)
     users.each do |u|
       @user = u
       @subscription = u.subscription
-      mail :to => @user.email, :subject => "Three days left in your trial at LinguaZone.com"
+      mail :to => @user.email, :from => "Colin Angevine <info@linguazone.com>", :subject => "Four days left in your trial at LinguaZone.com"
     end
   end
 
@@ -78,7 +78,7 @@ class InvoiceMailer < ActionMailer::Base
     users.each do |u|
       @user = u
       @subscription = u.subscription
-      mail :to => @user.email, :subject => "Subscribing to LinguaZone.com"
+      mail :to => @user.email, :from => "Colin Angevine <info@linguazone.com>", :subject => "Subscribing to LinguaZone.com"
     end
   end
   
