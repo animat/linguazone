@@ -216,7 +216,7 @@ lgzRec.ClassDisplay = function () {
 
         idx = Math.round(pct * thisObj.vuArr.length / 100);
         /*
-        console.debug('sliderPlay: '
+        console.log('sliderPlay: '
             + ' dmax=' + dmax
             + ' ds=' + ds
             + ' pct=' + pct
@@ -306,7 +306,7 @@ lgzRec.ClassDisplay = function () {
         g.vuArr = thisObj.vuArr;
     };
     thisObj.recInit = function (level) {
-        // console.debug('recInit');
+        // console.log('recInit');
         blink = 0;
         thisObj.clear();
         thisObj.write('RECORDING', color.active);
@@ -320,7 +320,7 @@ lgzRec.ClassDisplay = function () {
     };
     thisObj.recStop = function (level) {
         var ts;
-        // console.debug('recStop');
+        // console.log('recStop');
         ts = new Date();
         window.setTimeout(function () {
             thisObj.levelRec(0);
@@ -349,7 +349,7 @@ lgzRec.ClassDisplay = function () {
     };
     thisObj.playStart = function () {
         var timeStart;
-        console.debug('playStart');
+        console.log('playStart');
         $btnRedo.css('visibility', 'hidden');
             
         thisObj.stopByUser = false;
@@ -398,33 +398,33 @@ lgzRec.ClassDisplay = function () {
     thisObj.mouseStopTrue = function (event) {
         var ms;
         ms = thisObj.mouseCoords(event);
-        //console.debug('mouseStopTrue: ');
+        //console.log('mouseStopTrue: ');
 
         if ((slider.pos  <  ms.x && ms.x < (slider.pos + slider.thumbw)) &&
                 (slider.y1 <  ms.y && ms.y < (slider.y1 + slider.y2))) {
-            //console.debug('mouseStopTrue: pointer');
+            //console.log('mouseStopTrue: pointer');
             $canvas.css('cursor', 'pointer');
         } else {
             if (!mouse.drag) {
-                //console.debug('mouseStopTrue: default');
+                //console.log('mouseStopTrue: default');
                 $canvas.css('cursor', 'default');
             }
         }
         if (!mouse.drag) {
-            // console.debug('mouseStopTrue: !mouse.drag');
+            // console.log('mouseStopTrue: !mouse.drag');
             thisObj.sliderDraw(slider.pct);
         }
 
     };
     thisObj.mouseStopCheckTO = function (event) {
-        //console.debug('mouseStopCheckTO:');
+        //console.log('mouseStopCheckTO:');
         mouse.move -= 1;
         if (!mouse.move) {
             thisObj.mouseStopTrue(event);
         }
     };
     thisObj.mouseStopCheck = function (event) {
-        //console.debug('mouseStopCheck:');
+        //console.log('mouseStopCheck:');
         mouse.move += 1;
         window.setTimeout(function () {
             thisObj.mouseStopCheckTO(event);
@@ -436,10 +436,10 @@ lgzRec.ClassDisplay = function () {
             return;
         }
         if (mouse.drag) {
-            // console.debug('mouseMove: (' + event.clientX + ',' + event.clientY + ')');
+            // console.log('mouseMove: (' + event.clientX + ',' + event.clientY + ')');
             ms = thisObj.mouseCoords(event);
             xpct = (ms.x - slider.x1 - slider.thumbww) / slider.pctRatio;
-            // console.debug('xpct: ' + xpct);
+            // console.log('xpct: ' + xpct);
             thisObj.sliderDraw(xpct);
             
             //ivanix: debug
@@ -450,7 +450,7 @@ lgzRec.ClassDisplay = function () {
         if (!modePlay) {
             return;
         }
-        // console.debug('mouseUp: (' + event.clientX + ',' + event.clientY + ')');
+        // console.log('mouseUp: (' + event.clientX + ',' + event.clientY + ')');
         if (mouse.drag && mouse.playCont) {
             lgzRec.doAction('start-playback');
         }
@@ -462,7 +462,7 @@ lgzRec.ClassDisplay = function () {
         if (!modePlay) {
             return;
         }
-       // console.debug('mouseDown: (' + event.clientX + ',' + event.clientY + ')');
+       // console.log('mouseDown: (' + event.clientX + ',' + event.clientY + ')');
         ms = thisObj.mouseCoords(event);
         if (slider.pos  <  ms.x && ms.x < (slider.pos + slider.thumbw)) {
             if (slider.y1 <  ms.y && ms.y < (slider.y1 + slider.y2)) {
@@ -542,9 +542,7 @@ lgzRec.ClassDisplay = function () {
 };
 lgzRec.hasFlash = function () {
     'use strict';
-    //ivanix: debug for mobile
-    // return false;
-    return navigator.mimeTypes['application/x-shockwave-flash']  !== undefined;
+    return swfobject.hasFlashPlayerVersion("11.0.1");
 };
 lgzRec.isMobile = {
     Android: function () {
@@ -553,16 +551,16 @@ lgzRec.isMobile = {
     },
     BlackBerry: function () {
         'use strict';
+        //ivanix:todo: bb mobile are not supported. should remove
         return (/BlackBerry/i.test(navigator.userAgent));
     },
     iOS: function () {
         'use strict';
-    //ivanix: debug for mobile
-    // return true;
         return (/iPhone|iPad|iPod/i.test(navigator.userAgent));
     },
     Windows: function () {
         'use strict';
+        //ivanix:todo: windows mobile are not supported. should remove
         return (/IEMobile/i.test(navigator.userAgent));
     },
     any: function () {
@@ -570,44 +568,25 @@ lgzRec.isMobile = {
         return (this.Android() || this.BlackBerry() || this.iOS() || this.Windows());
     }
 };
-lgzRec.addBlob0 = function ($form) {
-    'use strict';
-    var  blob, fd, uploader;
-
-    blob  = FWRecorder.getBlob('audio');
-    fd = new FormData($form);
-    fd.append("file", blob, "blob.wav");
-
-    uploader = $form.data('transloadit.uploader');
-    uploader._options.formData = fd;
-    //ivanix: debug
-    // "interval": 2500,
-    // "pollTimeout": 8000,
-    // "poll404Retries": 15,
-    console.debug('interval: ' + uploader._options.interval);
-    console.debug('pollTimeout: ' + uploader._options.pollTimeout);
-    console.debug('poll404Retries: ' + uploader._options.poll404Retries);
-};
-// TODO: @Cesar Not working on Firefox. There is an argument error with FormData.
 lgzRec.addBlob = function ($form) {
     'use strict';
     var blob, fd, uploader;
-    console.debug('lgzRec.addBlob: entered');
+    console.log('lgzRec.addBlob: entered');
     blob = FWRecorder.getBlob('audio');
-    console.debug('lgzRec.addBlob: got blob');
+    console.log('lgzRec.addBlob: got blob');
     fd = [];
-    console.debug('lgzRec.addBlob: new form');
+    console.log('lgzRec.addBlob: new form');
     fd.push(["file", blob, "blob.wav"]);
-    console.debug('lgzRec.addBlob: appended blob to new form');
+    console.log('lgzRec.addBlob: appended blob to new form');
     uploader = $form.data('transloadit.uploader');
     uploader._options.formData = fd;
     //ivanix: debug
     // "interval": 2500,
     // "pollTimeout": 8000,
     // "poll404Retries": 15,
-    console.debug('interval: ' + uploader._options.interval);
-    console.debug('pollTimeout: ' + uploader._options.pollTimeout);
-    console.debug('poll404Retries: ' + uploader._options.poll404Retries);
+    console.log('interval: ' + uploader._options.interval);
+    console.log('pollTimeout: ' + uploader._options.pollTimeout);
+    console.log('poll404Retries: ' + uploader._options.poll404Retries);
 	
 	this.display.hideOverlay();
 	$("#lgzWinSending").attr("class", "winInit");
@@ -620,7 +599,7 @@ lgzRec.addMov = function ($form) {
 lgzRec._manualSend = function (formid) {
     'use strict';
     var  blob, $form, empty;
-    console.debug('lgzRec._manualSend');
+    console.log('lgzRec._manualSend');
 	
 	this.display.showOverlay();
     $('#lgzWinSending').attr('class', 'winShow');
@@ -642,14 +621,14 @@ lgzRec._manualSend = function (formid) {
        // skip transloadit script
         $form[0].submit();
     } else {
-        console.debug('lgzRec._manualSend: submit.transloadit');
+        console.log('lgzRec._manualSend: submit.transloadit');
         // $form.submit();
         $form.trigger('submit.transloadit');
     }
 };
 lgzRec._manualSendTO = function (formid) {
     'use strict';
-    console.debug('lgzRec._manualSendTO');
+    console.log('lgzRec._manualSendTO');
     window.setTimeout(function () {
         lgzRec._manualSend(formid);
     }, 500);
@@ -658,7 +637,7 @@ lgzRec._manualSendTO = function (formid) {
 lgzRec.manualSend = function (formid) {
     'use strict';
     var classAction;
-    console.debug('lgzRec.manualSend');
+    console.log('lgzRec.manualSend');
 
     $('#lgzWinSending').attr('class', 'winShow');
 
@@ -682,12 +661,20 @@ lgzRec.manualSend = function (formid) {
         break;
     }
 };
+lgzRec.winHide = function (winid) {
+    'use strict';
+    $(winid).css('visibility', 'hidden');
+};
+lgzRec.winShow = function (winid) {
+    'use strict';
+    $(winid).css('visibility', 'visible');
+};
 lgzRec.hideWinPerm = function () {
     'use strict';
 	this.display.hideOverlay();
     $('#lgzWinPermFWR').attr('class', 'winHide');
 };
-lgzRec.showWinPermFWR = function (event) {
+lgzRec.showWinPermFWR = function () {
     'use strict';
     
     $('#lgzWinPermFWR').attr('class', 'winShow');
@@ -695,12 +682,12 @@ lgzRec.showWinPermFWR = function (event) {
     // FWRecorder.showPermissionWindow();
     FWRecorder.showPermissionWindow({permanent: true});
 };
-lgzRec.hideWinMobile = function (event) {
+lgzRec.hideWinMobile = function () {
     'use strict';
 	this.display.hideOverlay();
     $('#lgzWinMobile').attr('class', 'winHide');
 };
-lgzRec.showWinMobile = function (event) {
+lgzRec.showWinMobile = function () {
     'use strict';
 	this.display.showOverlay();
     $('#lgzWinMobile').attr('class', 'winShow');
@@ -726,7 +713,7 @@ lgzRec.onClickMobile = function (event) {
 };
 lgzRec.doAction = function (classAction) {
     'use strict';
-    // console.debug('lgzRec.doAction:  ' + classAction);
+    // console.log('lgzRec.doAction:  ' + classAction);
     switch (classAction) {
     case 'start-recording':
         //note: lgzRec.btn called by fwr_event_handler
@@ -735,7 +722,7 @@ lgzRec.doAction = function (classAction) {
         FWRecorder.record('audio', 'audio.wav');
         break;
     case 'stop-recording':
-        console.debug('doAction: stop-recording');
+        console.log('doAction: stop-recording');
         lgzRec.btn.className = 'start-playback';
         FWRecorder.stopRecording('audio');
         break;
@@ -756,7 +743,7 @@ lgzRec.doAction = function (classAction) {
 lgzRec.initFWR = function (formid, script) {
     'use strict';
     var  $form;
-    console.debug('lgzRec.initFWR');
+    console.log('lgzRec.initFWR');
     $form = $(formid);
                 //
                 // transloadit jquery default props
@@ -799,9 +786,9 @@ lgzRec.mobileFileStatus = function () {
 };
 lgzRec.initIOS = function (formid, script) {
     'use strict';
-    console.debug('lgzRec.initIOS');
+    console.log('lgzRec.initIOS');
     var  $form;
-    console.debug('lgzRec.initIOS:');
+    console.log('lgzRec.initIOS:');
 
     $('#lgzBtnMain').attr('class', 'launch-recorder');
     $('#lgzRecorderFlashDiv').css('display', 'none');
@@ -835,22 +822,60 @@ lgzRec.initIOS = function (formid, script) {
     });
     */
 };
+lgzRec.isModern = function (formid, script) {
+    'use strict';
+    if(!window.FormData) { return false; }
+    if(!window.atob) { return false; }
+    if(!window.Uint8Array) { return false; }
+    return true;
+};
+lgzRec.initDisplay = function (formid, script) {
+    'use strict';
+    lgzRec.btn = $('#lgzBtnMain')[0];
+    lgzRec.display = new lgzRec.ClassDisplay(lgzRec);
+};
+lgzRec.isFlashBlocked = function () {
+    if (FWRecorder.isActive()) {
+        lgzRec.winHide('#lgzWinFlashBlocked');
+        return;
+    }
+    lgzRec.winShow('#lgzWinFlashBlocked');
+    window.setTimeout(function () {
+        lgzRec.isFlashBlocked();
+    }, 1000);
+};
 lgzRec.init = function (formid, script) {
     'use strict';
 
-    lgzRec.btn = $('#lgzBtnMain')[0];
-
-    lgzRec.display = new lgzRec.ClassDisplay(lgzRec);
-
-    if (lgzRec.hasFlash()) {
-        lgzRec.onClick = lgzRec.onClickFWR;
-        lgzRec.initFWR(formid, script);
+    if (!lgzRec.isModern()) {
+        lgzRec.winShow('#lgzWinUpgradeBrowser');
         return;
-    }
+    };
+
     if (lgzRec.isMobile.any()) {
+        console.debug('isMobile');
+        lgzRec.initDisplay();
         lgzRec.onClick = lgzRec.onClickMobile;
         lgzRec.initIOS(formid, script);
         return;
     }
+    if (lgzRec.hasFlash()) {
+        /*
+        if (!FWRecorder.isActive()) {
+            lgzRec.winShow('#lgzWinFlashBlocked');
+            return;
+        }
+        */
+        lgzRec.initDisplay();
+        lgzRec.onClick = lgzRec.onClickFWR;
+        lgzRec.initFWR(formid, script);
+        //lgzRec.isFlashBlocked();
+        window.setTimeout(function () {
+            lgzRec.isFlashBlocked();
+        }, 1000);
+        return;
+    }
+
+    lgzRec.winShow('#lgzWinUpgradeFlash');
 
 };

@@ -117,6 +117,12 @@
     	return Recorder.recorder.getCurrentTime(name);
     },
 
+    isActive: function() {
+      if (Recorder.recorder) {
+        return true;
+      }
+      return false;
+    },
     isMicrophoneAccessible: function() {
       return Recorder.recorder.isMicrophoneAccessible();
     },
