@@ -71,8 +71,6 @@ class Subscription < ActiveRecord::Base
       @notified_users[:expired_trials] = @expired_trials
     end
     
-    unless @notified_users.empty?
-      InvoiceMailer.expiration_admin_update(@notified_users).deliver
-    end
+    InvoiceMailer.expiration_admin_update(@notified_users).deliver
   end
 end
