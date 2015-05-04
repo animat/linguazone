@@ -10,6 +10,12 @@ class AvailableGame < ActiveRecord::Base
   
   scope :on_course, lambda { |c_id| where("course_id = ?", c_id) }
   
+  def as_json(options)
+    super(:include => {:game => {
+                          :include => { :activity => { :only => [:name, :swf]}},
+                        :only => [:description]}})
+  end
+  
   def parent_assoc
     game
   end

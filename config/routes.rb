@@ -79,6 +79,11 @@ Linguazone::Application.routes.draw do
         end
       end
     end
+    namespace :v2 do
+      resources :courses, only: :show do
+        resources :games, only: [:index, :show]
+      end
+    end
   end
 
   resources :courses do
