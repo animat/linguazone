@@ -80,9 +80,9 @@ Linguazone::Application.routes.draw do
       end
     end
     namespace :v2 do
-      resources :courses, only: :show do
-        resources :games, only: [:index, :show]
-      end
+      resources :courses, only: :show
+      resources :games, only: [:index, :show]
+      resources :feed_items, only: :student
     end
   end
 
