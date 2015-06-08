@@ -83,6 +83,7 @@ Linguazone::Application.routes.draw do
       resources :courses, only: :show
       resources :games, only: [:index, :show]
       resources :feed_items, only: :student
+      resources :students, only: :show
     end
   end
 
