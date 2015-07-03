@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150206032158) do
+ActiveRecord::Schema.define(:version => 20150703195431) do
 
   create_table "ab_media_resources", :force => true do |t|
     t.string   "source"
@@ -250,7 +250,7 @@ ActiveRecord::Schema.define(:version => 20150206032158) do
 
   create_table "languages", :force => true do |t|
     t.string "name",               :limit => 60, :null => false
-    t.string "special_characters",               :null => false
+    t.text   "special_characters",               :null => false
   end
 
   create_table "media_categories", :force => true do |t|
