@@ -20,6 +20,6 @@ class Api::V2::PostsController < ApplicationController
         @solo_comments = @solo_comments.page(params[:page])
       end
     end
-    render json: {post: @post, course: @course, comments: @student_comments}
+    render json: {post: @post, comments: @student_comments.to_json(:include => {:user => {:only => :display_name}})}
   end
 end
