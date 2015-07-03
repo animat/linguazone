@@ -1,4 +1,4 @@
-class  Api::V2::WordListsController < ApplicationController
+class  Api::V2::AvailableWordListsController < ApplicationController
   def index
     @course = Course.find(params[:course_id])
     @awls = @course.available_word_lists.include(:word_list).where(hidden: false).order(:ordering)

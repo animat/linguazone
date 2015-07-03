@@ -1,4 +1,4 @@
-class  Api::V2::GamesController < ApplicationController
+class  Api::V2::AvailableGamesController < ApplicationController
   def index
     @course = Course.find(params[:course_id])
     @ags = @course.available_games.includes(:game => :activity).where(hidden: false).order(:ordering)
