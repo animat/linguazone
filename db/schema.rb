@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150703195431) do
+ActiveRecord::Schema.define(:version => 20150705224818) do
 
   create_table "ab_media_resources", :force => true do |t|
     t.string   "source"
@@ -415,6 +415,7 @@ ActiveRecord::Schema.define(:version => 20150703195431) do
     t.datetime "current_login_at"
     t.string   "current_login_ip"
     t.datetime "last_request_at"
+    t.string   "single_access_token"
   end
 
   create_table "word_lists", :force => true do |t|

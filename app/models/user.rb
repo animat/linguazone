@@ -123,4 +123,10 @@ class User < ActiveRecord::Base
     def set_display_name
       self.display_name = "#{self.first_name} #{self.last_name}"
     end
+  
+  private
+    def single_access_allowed?
+      true
+    end
+    
 end

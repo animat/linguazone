@@ -53,7 +53,9 @@ class SubscriptionController < ApplicationController
         @teacher.subscription = session[:school].subscription
         @teacher.school = session[:school]
         @teacher.role = "teacher"
-
+        
+        @teacher.reset_single_access_token!
+        
         @teacher.save
         UserSession.create @teacher
 
@@ -188,6 +190,8 @@ class SubscriptionController < ApplicationController
     @teacher.subscription = @subscription
 
     @teacher.persistence_token = nil
+    
+    @teacher.reset_single_access_token!
     
     @teacher.save
     UserSession.create @teacher

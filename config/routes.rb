@@ -83,6 +83,7 @@ Linguazone::Application.routes.draw do
       resources :courses, :games, :posts, :word_lists, :students, only: :show
       resources :available_games, :available_word_lists, :available_posts, only: [:index, :show]
       resources :feed_items, only: :student
+      match "auth/sign_in" => "user_sessions#create", :via => :post
     end
   end
 

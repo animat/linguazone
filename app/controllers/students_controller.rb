@@ -42,6 +42,7 @@ class StudentsController < ApplicationController
   def login
     @user_session = UserSession.new
     
+    
     if params[:course_guid]
       @course = Course.find_by_guid(params[:course_guid])
       session[:course_guid] = params[:course_guid]
@@ -146,6 +147,7 @@ class StudentsController < ApplicationController
           session['omniauth'] = nil
           session.delete :omniauth
           UserSession.create @user
+          @user.reset_single_access_token!
           if session[:course_guid]
             @course = Course.find_by_guid(session[:course_guid])
             CourseRegistration.create!(:course => @course, :user => @user)
