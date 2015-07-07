@@ -26,6 +26,11 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :email, :on => :create
   validates_presence_of :password, :if => :password_not_parsed?
   
+  def as_json(options={})
+    options[:except] = [:crypted_password, :password_salt, :perishable_token, :persistence_token]
+    super
+  end
+  
   def password_not_parsed?
     !crypted_password?
   end

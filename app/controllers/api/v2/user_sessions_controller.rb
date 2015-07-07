@@ -10,15 +10,22 @@ class Api::V2::UserSessionsController < ApplicationController
     @user.reset_single_access_token!
     
     data = {
-      user: @user.as_json(except: [:crypted_password, :password_salt, :perishable_token, :persistence_token]),
-      "access-token" => @user.single_access_token,
-      "token-type" => "Bearer",
-      id: @user.id,
+      info: @user,
+      token: @user.single_access_token,
+      uid: @user.id,
       provider: "email",
       expiry: 1.year.from_now
     }
     
     render json: {data: data}, status: 201
+  end
+  
+  def destroy
+    @auth = JSON.parse ActiveSupport::JSON.decode request.headers["Authorization"]
+    @user = User.find_by_id_and_single_access_token(@auth["uid"], @auth["token"])
+    return invalid_credentials unless @user
+    @user.reset_single_access_token!
+    render json: {}, status: 201
   end
 
   private
