@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   
   def as_json(options={})
     options[:except] = [:crypted_password, :password_salt, :perishable_token, :persistence_token]
-    super
+    super(options)
   end
   
   def password_not_parsed?
