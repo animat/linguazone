@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :if => :password_not_parsed?
   
   def as_json(options={})
-    options[:except] = [:crypted_password, :password_salt, :perishable_token, :persistence_token]
+    options[:except] = [:crypted_password, :password_salt, :perishable_token, :persistence_token, :single_access_token]
     super(options)
   end
   

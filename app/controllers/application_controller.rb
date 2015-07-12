@@ -95,6 +95,14 @@ class ApplicationController < ActionController::Base
         redirect_to path
     end
     
+    def missing_params
+      render json: {}, status: 400
+    end
+
+    def invalid_credentials
+      render json: {}, status: 401
+    end
+    
     def force_www
       if Rails.env.production? and request.host[0..3] != "www."
         redirect_to "#{request.protocol}www.#{request.host_with_port}#{request.fullpath}", :status => 301

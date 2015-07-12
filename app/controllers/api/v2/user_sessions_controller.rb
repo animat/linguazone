@@ -36,13 +36,4 @@ class Api::V2::UserSessionsController < ApplicationController
         end
       end
     end
-
-    def missing_params
-      render json: {}, status: 400
-    end
-
-    def invalid_credentials
-      render json: {}, status: 401
-    end
-      
 end
