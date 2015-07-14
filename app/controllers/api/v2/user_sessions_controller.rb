@@ -1,11 +1,16 @@
 class Api::V2::UserSessionsController < ApplicationController
   def create
-    unless (params[:email] && params[:password])
+    unless (params[:email] && params[:password] && params[:role])
       return missing_params
     end
     
     @user = user_from_credentials || nil
     return invalid_credentials unless @user
+    
+    unless @user.role == params[:role]
+      render json: {message: "You must be a #{params[:role]} to login."}, status: 422
+      return
+    end
     
     @user.reset_single_access_token!
     

@@ -96,11 +96,11 @@ class ApplicationController < ActionController::Base
     end
     
     def missing_params
-      render json: {}, status: 400
+      render json: { message: "Please make sure to complete all required fields." }, status: 400
     end
 
     def invalid_credentials
-      render json: {}, status: 401
+      render json: { message: "There was a problem with your username or password." }, status: 401
     end
     
     def force_www
