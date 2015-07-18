@@ -113,4 +113,8 @@ class ApplicationController < ActionController::Base
       flash[:error] = "You do not have permission to access that page. You may need to login first."
       redirect_to root_url
     end
+    
+    def permission_denied_api
+      render json: { message: "You do not have access to that information." }, status: 401
+    end
 end

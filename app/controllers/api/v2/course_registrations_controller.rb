@@ -9,7 +9,7 @@ class Api::V2::CourseRegistrationsController < ApplicationController
     return invalid_credentials unless @user
     
     @user.reset_single_access_token!
-    # TODO: This header is not being intercepted by Angular properly...
+    # TODO: This header is not being intercepted by Angular properly... must be included in data response as "token"
     response.headers["X-AUTH-TOKEN"] = @user.single_access_token
     
     @cr = CourseRegistration.where(course_id: params[:courseId], user_id: @user.id).first_or_create!

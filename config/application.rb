@@ -44,6 +44,8 @@ module Linguazone
       File.directory?(lib = "#{dir}/lib") ? lib : dir
     end
     
+    config.encoding = "UTF-8"
+    
     config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (-> { Rails.logger }) do
       allow do
         origins '*'

@@ -66,6 +66,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  def is_student_in_course(cid) 
+    CourseRegistration.where(user_id: self.id, course_id: cid).all.count > 0
+  end
+  
   def apply_omniauth(omniauth)
     unless omniauth['info']['email'].blank?
       self.email = omniauth['info']['email'] if self.email.blank?
