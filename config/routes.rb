@@ -82,7 +82,7 @@ Linguazone::Application.routes.draw do
     namespace :v2 do
       resources :courses, :games, :posts, :word_lists, :schools, only: :show
       resources :available_games, :available_word_lists, :available_posts, :states, only: [:index, :show]
-      resources :course_registrations, only: [:create]
+      resources :course_registrations, :comments, only: [:create]
       resources :feed_items, only: :student
       resources :students, only: [:show, :create]
       match "students/validate_unique_email" => "students#validate_unique_email", :via => :post
