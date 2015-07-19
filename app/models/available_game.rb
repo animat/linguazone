@@ -12,7 +12,7 @@ class AvailableGame < ActiveRecord::Base
   
   def as_json(options)
     super(:include => {:game => {
-                          :include => { :activity => { :only => [:name, :swf]}},
+                          :include => { :activity => { :only => [:name, :swf, :html5_compatible]}},
                         :only => [:description]}})
   end
   
