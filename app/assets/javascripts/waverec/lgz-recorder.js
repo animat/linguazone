@@ -755,16 +755,17 @@ lgzRec.initFWR = function (formid, script) {
             .attr('enctype', 'multipart/form-data')
             .transloadit({
 		        "wait": true,
-                "interval": 2500,
-                "pollTimeout": 8000,
-                "poll404Retries": 20,
+            "interval": 2500,
+            "pollTimeout": 8000,
+            "poll404Retries": 20,
+            "exclude": "transloadit_ignore",
 		        "beforeStart": function () { lgzRec.addBlob($form); return true; },
-              "autoSubmit": false,
-              "onSuccess": function(assembly) {
-                $("#post_audio_id").val(assembly.assembly_id);
-                $("#comment_audio_id").val(assembly.assembly_id);
-                $form[0].submit();
-              }
+            "autoSubmit": false,
+            "onSuccess": function(assembly) {
+              $("#post_audio_id").val(assembly.assembly_id);
+              $("#comment_audio_id").val(assembly.assembly_id);
+              $form[0].submit();
+            }
 		    });
     });
     /*
