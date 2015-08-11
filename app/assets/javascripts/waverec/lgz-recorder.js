@@ -758,7 +758,6 @@ lgzRec.initFWR = function (formid, script) {
             "interval": 2500,
             "pollTimeout": 8000,
             "poll404Retries": 20,
-            "exclude": "transloadit_ignore",
 		        "beforeStart": function () { lgzRec.addBlob($form); return true; },
             "autoSubmit": false,
             "onSuccess": function(assembly) {

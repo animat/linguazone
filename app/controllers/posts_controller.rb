@@ -56,7 +56,7 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     
     respond_to do |format|
-      if params[:post][:audio_id].to_i != 0
+      if params[:post][:audio_id] != ""
         @path = params[:post][:audio_id]
         @ext = "mp3"
                   

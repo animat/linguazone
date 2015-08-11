@@ -38,7 +38,7 @@ $(document).ready(function() {
       var num = n.match(reg)[0];
       var newName = "post[ab_media_resources_attributes]["+num+"][pic]";
       var newId = "post_ab_media_resources_attributes_"+num+"_pic";
-      var $fileInput = $("<input />", {"name": newName, "id": newId, "type": "file", "class": "transloadit_ignore"});
+      var $fileInput = $("<input />", {"name": newName, "id": newId, "type": "file"});
     
       $tmp.remove();
       $fileInput.insertAfter($el.find("label"));
@@ -142,7 +142,7 @@ $(document).ready(function() {
   	</p>
   	<%= f.hidden_field :course_id, :value => @course_id %>
   	<%= f.hidden_field :user_id, :value => current_user.id %>
-  	<%= f.hidden_field :audio_id, :value => 0 %>
+  	<%= f.hidden_field :audio_id, :value => "" %>
 
   	<input id="upload_file" name="upload[file]" type="file" accept="audio/*.wav" capture="microphone" ><br>
   	<%= transloadit :audio_encode_s3 %>
@@ -162,8 +162,8 @@ $(document).ready(function() {
     <div id="addedMedia">
       <%= f.nested_fields_for :ab_media_resources do |ff| %>
         <%= ff.label :embed, "Add resource URL" %>
-        <%= ff.text_field :embed, class: "embed_txt transloadit_ignore" %>
-        <%= ff.hidden_field :source, class: "source transloadit_ignore", value: "" %>
+        <%= ff.text_field :embed, class: "embed_txt" %>
+        <%= ff.hidden_field :source, class: "source", value: "" %>
         <%= ff.remove_nested_fields_link "remove" %>
       <% end %>
     </div>

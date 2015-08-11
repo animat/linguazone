@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
 
     if @comment.save
-      if params[:comment][:audio_id].to_i != 0 # Save an audio clip and move it on S3
+      if params[:comment][:audio_id] != "" # Save an audio clip and move it on S3
         @path = params[:comment][:audio_id]
         @ext = "mp3"
         # TODO: Store relevant metadata along with the audio clip info
