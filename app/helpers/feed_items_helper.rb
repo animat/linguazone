@@ -47,6 +47,15 @@ module FeedItemsHelper
     end
   end
   
+  def get_high_score_item_json(fi)
+    unless fi.sourceable.available_game.nil?
+      @score = fi.sourceable.score
+      @activity = fi.sourceable.available_game.game.activity
+      @student = fi.sourceable.user
+      {sourceable_type: "HighScore", activity: @activity, score: format_score(false, @score, @activity), student: @student, high_score: fi.sourceable}
+    end
+  end
+  
   def display_comment_item(show_user_name, fi)
     @student = fi.sourceable.user
     content = ""
@@ -56,6 +65,10 @@ module FeedItemsHelper
     content << " "
     content << content_tag(:span, "#{format_date_time(fi.created_at)}", :class => "time_ago")
     content_tag(:p, content.html_safe)
+  end
+  
+  def get_comment_item_json(fi)
+    {sourceable_type: "Comment", student: fi.sourceable.user, post: fi.sourceable.available_post.post, comment: fi.sourceable}
   end
   
   def display_study_item(show_user_name, fi)
@@ -69,6 +82,10 @@ module FeedItemsHelper
     content << " "
     content << content_tag(:span, "#{format_date_time(fi.created_at)}", :class => "time_ago")
     content_tag(:p, content.html_safe)
+  end
+  
+  def get_study_item_json(fi)
+    {sourceable_type: "StudyHistory", student: fi.sourceable.user, study_history: fi.sourceable, word_list: fi.sourceable.available_word_list.word_list}
   end
   
   def study_method(study_type, show_user_name)
