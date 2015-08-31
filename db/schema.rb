@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150805005956) do
+ActiveRecord::Schema.define(:version => 20150831020726) do
 
   create_table "ab_media_resources", :force => true do |t|
     t.string   "source"
