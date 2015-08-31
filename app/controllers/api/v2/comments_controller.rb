@@ -11,7 +11,7 @@ class  Api::V2::CommentsController < ApplicationController
     response.headers["X-AUTH-TOKEN"] = @user.single_access_token
     
     if @comment.save
-      if params[:audioId].to_i != 0 # Save an audio clip and move it on S3
+      if params[:audioId].to_s.length > 1 # Save an audio clip and move it on S3
         @path = params[:audioId]
         @ext = "mp3"
         # TODO: Store relevant metadata along with the audio clip info
@@ -36,12 +36,8 @@ class  Api::V2::CommentsController < ApplicationController
           flash[:error] = "There was an error recording your audio. Please try again."
           redirect_to(@comment.available_post)
         else
-          # Only move into audio folder if in production environment. Otherwise simply rename.
-          if Rails.env.production?
-            obj.move_to("audio/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
-          else
-            obj.move_to("transloadit/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
-          end
+          # Move to audio folder in any environment, knowing that dev and staging use lz-staging S3 bucket
+          obj.move_to("audio/#{@new_audio_clip.id}.#{@ext}", :acl => :public_read)
   
           record_feed_item(@comment.available_post.course.id, @comment)
           
@@ -56,3 +52,4 @@ class  Api::V2::CommentsController < ApplicationController
       render json: { token: @user.single_access_token, message: "Error while saving your comment" }, status: 400
     end
   end
+end
