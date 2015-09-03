@@ -11,12 +11,14 @@ class PlayController < ApplicationController
     else
       @game_src = "http://lz-staging.s3.amazonaws.com/games"
     end
-    
     @ag = AvailableGame.find(params[:id])
     @game = Game.find(@ag.game_id, :include => [:activity, :updated_by])
     @premium = (@game.updated_by.nil?) ? false : @game.updated_by.is_premium_subscriber?
     @flashvars = "game_id="+String(@ag.id)+"&fullscreen_available="+String(@premium)+"&path=../&isFullscreen=false"
-    unless current_user.nil?
+    if current_user.nil?
+      @uid = 0
+    else
+      @uid = current_user.id
       if current_user.role == "student"
         @flashvars += "&user_id="+String(current_user.id)
       end
