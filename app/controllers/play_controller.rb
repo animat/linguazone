@@ -6,6 +6,12 @@ class PlayController < ApplicationController
   end
   
   def show
+    if Rails.env.production?
+      @game_src = "http://linguazone.s3.amazonaws.com/games"
+    else
+      @game_src = "http://lz-staging.s3.amazonaws.com/games"
+    end
+    
     @ag = AvailableGame.find(params[:id])
     @game = Game.find(@ag.game_id, :include => [:activity, :updated_by])
     @premium = (@game.updated_by.nil?) ? false : @game.updated_by.is_premium_subscriber?
