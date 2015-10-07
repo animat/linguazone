@@ -30,7 +30,7 @@ function lz_toggle_fullscreen_window(gameID, myPath) {
     <iframe id="lgzFrame" src="<%= @game_src %>/Frame/parent.html?gameid=<%= @ag.id %>&userid=<%= @uid %>&gameswf=<%= @game.activity.swf %>" height="425" width="600" frameBorder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
   <% else %>
   	<div id="game" class="swf_window">
-  		<%= swf_tag '/LZContainer/LZContainer.swf', {:id => "game", :flashvars => @flashvars, :size => "600x425", :parameters => {:allowFullScreen => true, :scale => "exactfit", :allowScriptAccess => "sameDomain", :wmode => "transparent", :quality => "high", :align => "middle", :width => "600", :height => "425", :game_id => @ag.id, :path => "../", :isFullscreen => "false"}} %>
+  		<%= swf_tag '/LZContainer/LZContainer.swf', {:id => "game", :flashvars => @flashvars, :size => "600x425", :parameters => {:allowFullScreen => true, :scale => "exactfit", :allowScriptAccess => "sameDomain", :wmode => "transparent", :quality => "high", :align => "middle", :width => "600", :height => "430", :game_id => @ag.id, :path => "../", :isFullscreen => "false"}} %>
   	</div>
   <% end %>
 </div>
