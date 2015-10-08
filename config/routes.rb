@@ -79,6 +79,16 @@ Linguazone::Application.routes.draw do
         end
       end
     end
+    namespace :v2 do
+      resources :courses, :games, :posts, :word_lists, :schools, only: :show
+      resources :available_games, :available_word_lists, :available_posts, :states, only: [:index, :show]
+      resources :course_registrations, :comments, only: [:create]
+      resources :feed_items, only: :student
+      resources :students, only: [:show, :create]
+      match "students/validate_unique_email" => "students#validate_unique_email", :via => :post
+      match "auth/sign_in" => "user_sessions#create", :via => :post
+      match "auth/sign_out" => "user_sessions#destroy", :via => :delete
+    end
   end
 
   resources :courses do

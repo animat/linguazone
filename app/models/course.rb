@@ -17,7 +17,7 @@ class Course < ActiveRecord::Base
   
   def self.find_active_courses_at_school(school)
     teacher_ids = User.all(:conditions => ["school_id = ? and role = ?", school.id, "teacher"]).map { |t| t.id }
-    courses = Course.all(:conditions => {:user_id => teacher_ids, :archived => false}, :order => "ordering asc, name asc")
+    courses = Course.all(:conditions => {:user_id => teacher_ids, :archived => false}, :order => "ordering asc, name asc", :include => :user)
   end
   
 end

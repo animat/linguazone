@@ -9,7 +9,6 @@ xml.xml do
   xml.description do
     xml.text(@game.description)
   end
-  # TODO: This is not scrambling the order of the questions!
   xml.<< @nodes
   xml.<< @game.template.xml
   xml.language(@game.language.name)

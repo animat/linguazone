@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150206032158) do
+ActiveRecord::Schema.define(:version => 20150831020726) do
 
   create_table "ab_media_resources", :force => true do |t|
     t.string   "source"
@@ -42,17 +42,18 @@ ActiveRecord::Schema.define(:version => 20150206032158) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "activities", :force => true do |t|
-    t.string  "name",          :limit => 50,                           :null => false
-    t.string  "swf",           :limit => 40,                           :null => false
-    t.text    "hints_xml",                                             :null => false
-    t.string  "help",                                                  :null => false
-    t.text    "youtube_embed",                                         :null => false
-    t.boolean "convertable",                 :default => false,        :null => false
-    t.string  "game_type",                   :default => "OneToOne",   :null => false
+    t.string  "name",             :limit => 50,                           :null => false
+    t.string  "swf",              :limit => 40,                           :null => false
+    t.text    "hints_xml",                                                :null => false
+    t.string  "help",                                                     :null => false
+    t.text    "youtube_embed",                                            :null => false
+    t.boolean "convertable",                    :default => false,        :null => false
+    t.string  "game_type",                      :default => "OneToOne",   :null => false
     t.text    "node_options"
-    t.string  "category",                    :default => "Unscramble"
+    t.string  "category",                       :default => "Unscramble"
     t.string  "description"
     t.string  "video_link"
+    t.boolean "html5_compatible",               :default => false
   end
 
   create_table "admin_users", :force => true do |t|
@@ -250,7 +251,7 @@ ActiveRecord::Schema.define(:version => 20150206032158) do
 
   create_table "languages", :force => true do |t|
     t.string "name",               :limit => 60, :null => false
-    t.string "special_characters",               :null => false
+    t.text   "special_characters",               :null => false
   end
 
   create_table "media_categories", :force => true do |t|
@@ -415,6 +416,7 @@ ActiveRecord::Schema.define(:version => 20150206032158) do
     t.datetime "current_login_at"
     t.string   "current_login_ip"
     t.datetime "last_request_at"
+    t.string   "single_access_token"
   end
 
   create_table "word_lists", :force => true do |t|

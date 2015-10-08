@@ -13,6 +13,10 @@ class AvailablePost < ActiveRecord::Base
   
   scope :on_course, lambda { |c_id| where("available_posts.course_id = ?", c_id) }
   
+  def as_json(options)
+    super(:include => {:post => {:only => [:title, :content]}})
+  end
+  
   def parent_assoc
     post
   end

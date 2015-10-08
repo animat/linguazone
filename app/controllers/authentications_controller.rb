@@ -9,6 +9,7 @@ class AuthenticationsController < ApplicationController
     if authentication
       # This authentication is currently in the database. Log user in (if needed) and redirect to students_path
       UserSession.create(authentication.user) unless current_user
+      authentication.user.reset_single_access_token!
       flash[:success] = "Authentication successful."
       redirect_to students_path
     elsif current_user

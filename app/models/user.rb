@@ -26,6 +26,11 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :email, :on => :create
   validates_presence_of :password, :if => :password_not_parsed?
   
+  def as_json(options={})
+    options[:except] = [:crypted_password, :password_salt, :perishable_token, :persistence_token, :single_access_token]
+    super(options)
+  end
+  
   def password_not_parsed?
     !crypted_password?
   end
@@ -59,6 +64,10 @@ class User < ActiveRecord::Base
     else
       false
     end
+  end
+  
+  def is_student_in_course(cid) 
+    CourseRegistration.where(user_id: self.id, course_id: cid).all.count > 0
   end
   
   def apply_omniauth(omniauth)
@@ -123,4 +132,10 @@ class User < ActiveRecord::Base
     def set_display_name
       self.display_name = "#{self.first_name} #{self.last_name}"
     end
+  
+  private
+    def single_access_allowed?
+      true
+    end
+    
 end

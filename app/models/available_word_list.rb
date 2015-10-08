@@ -10,6 +10,10 @@ class AvailableWordList < ActiveRecord::Base
   
   scope :on_course, lambda { |c_id| where("course_id = ?", c_id) }
   
+  def as_json(options)
+    super(:include => {:word_list => {:only => [:description]}})
+  end
+  
   def parent_assoc
     word_list
   end
