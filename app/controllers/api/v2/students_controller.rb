@@ -23,6 +23,7 @@ class  Api::V2::StudentsController < ApplicationController
     @stu = User.find(params[:id])
     @registered_courses = CourseRegistration.includes(:course).all(:conditions => ["user_id = ?", @stu.id])
     
+    return invalid_credentials unless request.headers["Authorization"]
     @auth = JSON.parse ActiveSupport::JSON.decode request.headers["Authorization"]
     @user = User.find_by_id_and_single_access_token(@auth["uid"], @auth["token"]) || nil
     return invalid_credentials unless @user
