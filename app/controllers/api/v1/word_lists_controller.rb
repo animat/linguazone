@@ -107,7 +107,7 @@ class Api::V1::WordListsController < ApplicationController
     
     def update_linked_games(list_id, updated_xml, descrip, new_activity_ids, lang_id, user_id, cls)
       @wl_games_linker = GamesWordList.all(:conditions => ["word_list_id = ?", list_id])
-      @existing_activity_ids = @wl_games_linker.map{|wlg| wlg.game.activity.id}
+      @existing_activity_ids = @wl_games_linker.reject{ |wlg| wlg.game.activity.nil? }.map{|wlg| wlg.game.activity.id }
       @wl_games_linker.each do |wlg|
         modify_linked_game(wlg.game_id, updated_xml, descrip)
       end
