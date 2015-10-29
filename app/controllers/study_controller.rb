@@ -1,3 +1,4 @@
+#Encoding: UTF-8
 class StudyController < ApplicationController
   before_filter :load_word_list
   
