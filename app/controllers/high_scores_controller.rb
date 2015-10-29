@@ -25,6 +25,11 @@ class HighScoresController < ApplicationController
         @high_score.score = params[:score]
         @high_score.user_id = params[:user_id]
         @high_score.available_game_id = params[:game_id]
+      else
+        @high_score = HighScore.new
+        @high_score.score = ""
+        @high_score.user_id = params[:user_id]
+        @high_score.available_game_id = params[:game_id]
       end
       @high_score.submitted_at = Time.now
       @high_score.user_ip_address = request.remote_ip
