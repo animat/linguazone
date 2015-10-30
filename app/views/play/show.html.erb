@@ -34,3 +34,5 @@ function lz_toggle_fullscreen_window(gameID, myPath) {
   	</div>
   <% end %>
 </div>
+
+<p><%= link_to("Return to #{@ag.course.name}", course_path(@ag.course)) unless @ag.course.nil? %></p>
