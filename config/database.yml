@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+
+development:
+  <<: *default
+  database: linguazone_customizer_development
+  host: localhost
+  username: postgres
+  password: postgres
+test:
+  <<: *default
+  database: linguazone_customizer_test
+  host: localhost
+  username: postgres
+  password: postgres
+production:
+  <<: *default
+  database: linguazone_customizer_production
