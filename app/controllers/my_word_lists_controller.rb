@@ -42,6 +42,10 @@ class MyWordListsController < CourseItemsController
   end
   
   def confirm_spreadsheet_import
+    if params[:word_list][:spreadsheet].nil?
+      flash[:error] = "Please select a file to upload and try again."
+      redirect_to import_my_word_lists_path and return
+    end
     if params[:word_list][:spreadsheet].original_filename.include? ".xls"  
       tmp = params[:word_list][:spreadsheet].tempfile
       book = Spreadsheet.open tmp
