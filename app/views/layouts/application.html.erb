@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>LinguazoneCustomizer</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<title>LinguazoneCustomizer</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
 </head>
-<body>
-
-<%= yield %>
-
+<body class="container-fluid" ng-app="linguazone_customizer">
+	<div ui-view>
+		
+	</div>
+	<div>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	</div>
 </body>
 </html>
