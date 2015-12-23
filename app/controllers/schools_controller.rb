@@ -93,8 +93,8 @@ class SchoolsController < ApplicationController
   end
 
   def new
-    if session[:subscription].nil?
-      redirect_to :controller => "about", :action => "pricing"
+    if session[:subscription].nil? or params[:school_name].nil?
+      redirect_to pricing_path
     else
       @subscription = session[:subscription]
       @school = School.new(:name => params[:school_name].titleize)
