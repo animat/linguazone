@@ -5,22 +5,19 @@
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
 </head>
-<body class="container-fluid" ng-app="linguazone_customizer">
-	<div class="panel panel-success">
+<body class="container-fluid container-fixed" ng-app="linguazone_customizer">
+	<div class="panel container-main">
 		<div class="panel-heading">
-		<h1 ng-if="name">Hello, {{name}}. Welcome to LinguaZone Customizer application</h1>
+		
+		<%= render :partial => "header" %>
 		</div>
 		<div class="panel-body">
-			<form class="form-inline">
-				<div class="form-group">
-					<input class="form-control" type="text" placeholder="Enter your name" autofocus ng-model="name">
-				</div>
-			</form>
+			<div ui-view>
+				
+			</div>
 		</div>
 	</div>
-	<!-- <div ui-view>
-		
-	</div> -->
+	
 	<div>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	</div>
