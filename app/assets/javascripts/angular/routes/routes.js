@@ -20,8 +20,8 @@ linguazone_customizer.config(function ($stateProvider, $urlRouterProvider, $http
                         templateProvider: function ($templateFactory) {
                                 return $templateFactory.fromUrl('/assets/home.html');
                            
-                        }//,
-                        // controller: 'LoginCtrl'
+                        },
+                        controller: 'HomeCtrl'
                     }
                 }
             
