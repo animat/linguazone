@@ -4,8 +4,8 @@
 class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user, :is_teacher_for, :is_student_for, :record_feed_item
-  before_filter :set_current_user, :get_teacher_courses, :force_www, :check_for_single_access_token
-  
+  before_filter :set_current_user, :get_teacher_courses, :check_for_single_access_token
+  #,:force_www,
   protected
     # TODO: Cache the teacher's courses so that this query doesn't happen on every page
     # =>        Are there other places that database connections can be minimized? How to approach that?
