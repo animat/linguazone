@@ -1,0 +1,12 @@
+<div class="progressHeader"><%= image_tag "shared-buttons/progress-button-1.jpg" %><h3>First, select your subscription plan.</h3></div>
+<% unless @subscription.nil? or @subscription.subscription_plan.nil? %>
+	<div class="progressContent">
+		<p>
+			<%= @subscription.subscription_plan.name.titleize %> subscription for 
+			<%= format_max_teachers(@subscription.subscription_plan.max_teachers) %>: 
+			<span style="color: green;">
+				<%= format_cost(@subscription.subscription_plan.cost) %>
+			</span>
+		</p>
+	</div>
+<% end %>

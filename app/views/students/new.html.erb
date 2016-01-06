@@ -1,0 +1,62 @@
+<% content_for :head do %>
+<script type="text/javascript">
+$(function() {
+	$("#no_email_address").click(function() {
+		$("#email_hint").fadeOut();
+		$("#email_address_label").html("Create a new username to use LinguaZone:")
+		$("#email_address_label").effect("highlight", {}, 3000);
+	})
+})
+</script>
+<% end %>
+
+<h1>Create your student account</h1>
+<% if session['omniauth'] %>
+	<p>Enter some basic information here so that you can login with your <%= "#{session['omniauth']['provider'].titleize} "%> account <%= link_to "or cancel", cancel_authentications_path, :method => :post %>.</p>
+<% end %>
+<br />
+<%= form_for(@user, :url => "create") do |f| %>
+  <%= f.error_messages %>
+
+  <div>
+
+    <div>
+      <div class="floatLeft">
+        <%= f.label :first_name, "Your first name:" %><br />
+          <%= f.text_field :first_name %>
+      </div>
+      <div style="float: right; margin-right: 80px">
+        <%= f.label :last_name, "Your last name:" %><br />
+          <%= f.text_field :last_name %><br />
+        <span class="input_hint">(only your teacher and classmates can see your name)</span>
+      </div>
+      <br class="clearFloat" />
+    </div>
+    <br />
+    <div>
+			<% unless session['omniauth'] %>
+      	<div class="floatLeft">
+	   	    	<%= f.label :email, "Your email address:", :id => "email_address_label" %><br />
+	          <%= f.text_field :email %><br />
+	        	<span class="input_hint" id="email_hint">(don't have an email address? <%= link_to "click here", "#", :id => "no_email_address" %>)</span>
+	      </div>
+      	<div style="float: right; margin-right: 80px">
+	        <%= f.label :password, "Create a LinguaZone password:" %><br />
+	          <%= f.password_field :password %><br />
+	        <span class="input_hint">(anything you want &mdash; so long as you will remember it!)</span>
+	      </div>
+			<% end %>
+      <br class="clearFloat" />
+    </div>
+
+    <br />
+    <%= f.hidden_field :role, :value => "student" %>
+    <%= f.hidden_field :subscription_id, :value => 0 %>
+
+  </div>
+
+  <p>
+    <%= f.submit 'Create account' %>
+  </p>
+
+<% end %>

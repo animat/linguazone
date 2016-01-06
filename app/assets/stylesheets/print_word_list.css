@@ -1,0 +1,52 @@
+@media screen {
+	* {
+		margin:0;
+		padding:0;
+	}
+	a {
+		margin: 0px auto;
+		font-size: 18pt;
+		color: #0000FF;
+	}
+	#instructions {
+		width:100%;
+		text-align: center;
+		padding: 20px 0 20px 0;
+		background-color:#FFFF00;
+	}
+	#instructions span {
+		font:48px 'Verdana', arial, sans-serif;
+	}
+	#instructions span a {
+		font:48px 'Verdana', arial, sans-serif;
+	}
+	#instructions p {
+		font: 14px 'Verdana', arial, sans-serif;
+	}
+	table {
+		clear:both;
+		width:100%;
+		border:2px solid #000;
+		border-width:2px 0;
+		margin:10px 0;
+		page-break-after:always;
+	}
+	table#last {
+		page-break-after:always;
+	}
+	td {
+		text-align:center;
+		font:12pt 'Verdana','Century Gothic','Lucida Grande',arial,sans-serif;
+		border-bottom:1px dashed #bbb;
+		height:1.75in;
+		width:50%;
+		padding-left:15px;
+	}
+	.left{
+		border-right:1px solid #bbb;
+		padding:0 15px 0 0;
+	}
+	tr.last td {
+		border-bottom: none;
+	}
+}

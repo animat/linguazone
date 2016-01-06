@@ -1,0 +1,35 @@
+<% stylesheet 'course' %>
+
+<h1>Hidden posts in <%= @course.name %></h1>
+<p><%= link_to "Return to "+@course.name+" class page", :controller => "courses", :action => "show", :id => @course.id %></p>
+<fieldset>
+	<legend>Search hidden posts in <%= @course.name %></legend>
+	<%= form_for @search do |f| %>
+		<%= f.hidden_field :user_id_equals, :value => current_user.id %>
+		<%= f.hidden_field :course_id_equals, :value => @course.id %>
+		<%= f.hidden_field :hidden_equals, :value => 1 %>
+		<%= f.label :post_title_like, "Search for:" %>
+		<%= f.text_field :post_title_like %>
+		<%= f.submit "Search", :name => nil %>
+	<% end %>
+	<% if @user_searching %>
+		<p style="font-size: .7em;">
+			<%= link_to "Clear search", 
+					"/courses/search_hidden_posts?search[user_id_equals]=" + String(current_user.id) +
+					"&search[course_id_equals]=" + String(@course.id) +
+					"&search[hidden_equals]=1"  %>
+		</p>
+	<% end %>
+</fieldset>
+
+<% unless @available_posts.nil? or @available_posts.empty? %>
+	<% @available_posts.each do |available_post| %>
+		<% unless available_post.nil? %>
+			<%= render :partial => "hidden_post", :locals => {:hidden_post => available_post} %>
+		<% end %>
+		<br />
+	<% end %>
+<% else %>
+	<br />
+	<p align="center">No posts are hidden in <%= @course.name %></p>
+<% end %>

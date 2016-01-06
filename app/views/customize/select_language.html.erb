@@ -1,0 +1,14 @@
+<% stylesheet "customize" %>
+
+<h1>Select a language for your new <%= format_cmzr_type(params[:cmzr_type]) %></h1>
+
+<div id="languages">
+	<ul>
+		<% @languages.each do |language| %>
+			<li>
+				<%= link_to language.name, :controller => "customize", :action => "new", :cmzr_type => @cmzr_type, :language => language.id %>
+			</li>
+		<% end %>
+	</ul>
+	<br class="clearFloat" />
+</div>

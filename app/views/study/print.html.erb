@@ -1,0 +1,39 @@
+<% content_for(:title) do "Study word list: #{@list.description}" end %>
+<div id="instructions">
+	<p><span>Print your list as <%= link_to_function "flash cards", "window.print()" %>.</span></p>
+	<p>Click the link above to print. Cut the paper along the dotted lines, then fold in half and begin studying!</p>
+</div>
+
+<% counter = 0 %>
+<% lastPage = false %>
+<% @nodes.each_with_index do |node, index| %>
+	<% pages = @nodes.length % 5 %>
+	
+	<% if lastPage == false and index >= pages * 5 %>
+		<table id="last">
+		<% lastPage = true %>
+	<% elsif counter == 0 %>
+		<table>
+	<% end %>
+	
+	<% if counter == 4 or index == @nodes.length - 1 %>
+		<tr class="last">
+	<% else %>
+		<tr class="win_<%= counter %>">
+	<% end %>
+			<% node.elements.each do |n| %>
+				<% if n.name == "question" %>
+					<td class="left"><%= n.attribute("content") %></td>
+				<% else %>
+					<td><%= n.attribute("content") %></td>
+				<% end %>
+			<% end %>
+		</tr>
+	<% counter += 1 %>
+	
+	<% if counter == 5 %>
+		<% counter = 0 %>
+		</table>
+	<% end %>
+	
+<% end %>

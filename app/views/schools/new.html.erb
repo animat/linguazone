@@ -1,0 +1,20 @@
+<%= render "subscription/checkpoint", {:subscription => @subscription} %>
+<%= render "checkpoint" %>
+
+<div class="progressContent">
+  <%= simple_form_for @school do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :name,    :label => "Your school's name:",    :size => 30 %>
+    <%= f.input :address, :label => "Your school's address:", :size => 30 %>
+    <%= f.input :city,    :label => "Your school's city:",   :size => 30 %>
+		<div class="input required">
+			<%= f.label :state_id, "* Your school's state:" %>
+	    <%= f.select :state_id, grouped_options_for_select(@grouped_state_options), :include_blank => true %>
+		</div>
+    <%= f.input :zip, :label => "Your school's zip code:", :size => 5 %>
+
+    <%= f.submit "Add your school to the database" %>
+  <% end %>
+</div>
+
+<%= render "teachers/checkpoint" %>

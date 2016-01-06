@@ -1,0 +1,21 @@
+<%= render "subscription/checkpoint" %>
+
+<%= render "schools/checkpoint" %>
+
+<%= render "checkpoint" %>
+
+<div class="progressContent">
+  <%= form_for @new_teacher, :url => {:controller => "teachers", :action => "create"} do |f| %>
+    <div>
+      <%= render "new_teacher_form", {:f => f} %>
+    </div>
+    <br />
+    <p>
+      <% if @subscription.trial? %>
+        <%= f.submit 'Create trial and get started!' %>
+      <% else %>
+        <%= f.submit 'Continue to confirmation page' %>
+      <% end %>
+    </p>
+  <% end %>
+</div>

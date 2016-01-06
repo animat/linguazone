@@ -1,0 +1,13 @@
+<h2>Join the subscription</h2>
+<p>at <%= "#{@school.name}" %></p>
+<br />
+<%= form_for @new_teacher, :url => {:controller => "subscription", :action => "join"} do |f| %>
+	<%= f.error_messages %>
+	<div>
+		<%= render :partial => "teachers/new_teacher_form", :locals => {:f => f} %>
+	</div>
+	<br />
+	<p>
+		<%= f.submit 'Create account and get started!' %>
+	</p>
+<% end %>

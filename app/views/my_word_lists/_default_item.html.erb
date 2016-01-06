@@ -1,0 +1,16 @@
+<div class="game_listing" id="<%= dom_id(item) %>">
+	<div class="game_details">
+		<p>
+			<%= item.word_list.description %>
+			<br />
+			<span class="date">Last updated <%= format_short_date(item.word_list.updated_at) %></span>
+		</p>
+	</div>
+
+	<div class="manage_game">
+		<%= link_to 'Edit', :controller => "customize", :action => "edit", :id => item.word_list.id, :cmzr_type => "list" %>
+		|
+		<%= link_to 'Delete', my_word_list_path(item.word_list), :method => :delete, :confirm => "Are you sure you want to delete this word list?" %>
+	</div>
+	<br class="clearFloat" />
+</div>

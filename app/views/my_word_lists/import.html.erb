@@ -1,0 +1,21 @@
+<% stylesheet "teachers" %>
+
+<h1>Create a new word list via import</h1>
+<p>Upload an Excel Spreadsheet (.xls file) to give yourself a quick boost in creating a word list.</p>
+<h2>A note about formatting</h2>
+<p>The format of your spreadsheet must follow a certain pattern to be interpreted properly. Use <em>column #1</em> (for terms) and <em>column #2</em> (for definitions). You will be able to verify your data before creating the new word list on the next page.</p>
+
+<%= simple_form_for @word_list, :url => confirm_spreadsheet_import_my_word_lists_path do |f| %>
+	<% unless @errors.nil? or @errors.empty? %>
+		<ul>
+			<% @errors.each do |e| %>
+				<li><%= e %></li>
+			<% end %>
+		</ul>
+	<% end %>
+	<%= f.input :description, :as => :string %>
+	<%= f.label :language_id, "This word list will be in..." %>
+	<%= f.collection_select 'language_id', Language.all(:order => "name"), :id, :name, {:include_blank => "Select a language...", :selected => current_user.default_language_id} %>
+	<%= f.label "Upload a spreadsheet" %> <%= f.file_field :spreadsheet %>
+	<%= f.submit "Go!" %>
+<% end %>

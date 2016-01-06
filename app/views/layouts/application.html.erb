@@ -1,25 +1,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>LinguaZone - Customizer</title>
-	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-	<%= csrf_meta_tags %>
-</head>
-<body class="container-fluid container-fixed" ng-app="linguazone_customizer">
-	<div class="panel container-main">
-		<div class="panel-heading">
-		
-		<%= render :partial => "header" %>
-		</div>
-		<div class="panel-body">
-			<div ui-view>
-				
-			</div>
-		</div>
-	</div>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<%= csrf_meta_tag %>
 	
-	<div>
-		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-	</div>
+  <title><%= yield(:title) || 'LinguaZone' %></title>
+  
+	<%= stylesheet_link_tag 'layout' %>
+	<%= stylesheet_link_tag 'jquery-ui-1.8.18.custom.css' %>
+  <%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' %>
+	<%= javascript_include_tag :application %>
+  <%= yield(:head) %>
+  <%= yield(:page_script) %>
+	<% if !request.local? %>
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-90617-2']);
+	  _gaq.push(['_setDomainName', 'linguazone.com']);
+	  _gaq.push(['_trackPageview']);
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+	<% end %>
+</head>
+<body ontouchstart="">
+  <div id="header">
+    <%= link_to root_path do %>
+      <div id="header_home_link"></div>
+    <% end %>
+    <div id="header_frog"></div>
+    <br class="clearFloat" />
+    <div id="nav">
+      <% if current_user.nil? %>
+        <%= render :partial => "layouts/standard_nav" %>
+      <% else %>
+        <% if current_user.role == "teacher" %>
+          <%= render :partial => "layouts/teachers_nav" %>
+        <% elsif current_user.role == "student" %>
+          <%= render :partial => "layouts/students_nav" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div id="body">
+    <div id="body_header"></div>
+    <div class="wrapper">
+      <% unless flash[:notice].nil? %>
+        <p class="flash_notice flash_msg"><%= flash[:notice]%></p>
+      <% end %>
+		<% unless flash[:success].nil? %>
+			<p class="flash_success flash_msg"><%= flash[:success]%></p>
+		<% end %>
+		<% unless flash[:info].nil? %>
+        <p class="flash_info flash_msg"><%= flash[:info]%></p>
+      <% end %>
+      <% unless flash[:error].nil? %>
+        <p class="flash_error flash_msg"><%= flash[:error] %></p>
+      <% end %>
+      <%= yield %>
+    </div>
+    <div id="body_footer"></div>
+  </div>
+  <div id="footer">
+    <div id="animat_links">
+      <div id="prima_lingua">
+        <%= link_to image_tag("footer/prima_lingua_frog.gif"), "http://www.primalingua.net" %>
+        <h4>PRIMA LINGUA</h4>
+        <p class="tag_line">The preparatory course<br /> for the study of foreign languages</p>
+      </div>
+      <div id="lz_camps">
+        <%= link_to image_tag("footer/camp_frog.gif"), "http://www.lzacademy.com" %>
+        <h4>LZ LANGUAGE CAMPS</h4>
+        <p class="tag_line">Summer camps in 10 languages<br /> for ages 4 - 17 in Suburban Philadelphia</p>
+      </div>
+      <br class="clearFloat" />
+    </div>
+    <div id="get_to_know_us">
+      <p>Have questions or ideas about LinguaZone? We'd love to hear from you. <%= link_to "Get in touch with us", contact_path %></p>
+	  <p>Need some help getting started? Check out our FAQ and tutorial videos. <%= link_to "Click here for help", about_help_path %></p>
+    </div>
+    <br class="clearFloat" />
+    <p class="copyright">&copy; Animat, LLC 2006 - <%= Time.now.year %></p>
+  </div>
 </body>
 </html>

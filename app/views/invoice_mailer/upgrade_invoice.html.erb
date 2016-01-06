@@ -1,0 +1,57 @@
+<p>
+	LinguaZone.com Invoice<br />
+	<%= format_date_with_year(Time.now) %>
+</p>
+<br />
+<p>
+	<strong>Ordered by:</strong><br />
+	<%= @user.first_name %> <%= @user.last_name %><br />
+	<%= @user.email %><br />
+	<%= @user.school.name %><br />
+	<%= @user.school.city %>, <%= @user.school.state.name %>
+</p>
+<br />
+<p><strong>Upgrade order details:</strong></p>
+<table border="0" cellspacing="10">
+	<tr>
+		<td>Qty</td>
+		<td>Description</td>
+		<td>Price</td>
+	</tr>
+	<tr>
+		<td>---</td>
+		<td>------------------------------------------</td>
+		<td>-------</td>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>Upgrade to a <%= @subscription.subscription_plan.name %> subscription for <%= format_max_teachers(@subscription.subscription_plan.max_teachers) %></td>
+		<td><%= format_cost(@cost) %></td>
+	</tr>
+</table>
+<p>
+	<strong>Order total: <%= format_cost(@cost) %></strong>
+</p>
+<br />
+<p>Payment can be received as check, money order, or certified check. We do accept purchase orders.</p>
+<p>
+	Submit payment to:<br />
+	LinguaZone<br />
+	417 Yorkshire Way<br />
+	Bryn Mawr, PA 19010
+</p>
+<p>
+	Payment due by: <%= format_date_with_year(Time.now.advance(:months => 1)) %><br />
+	If payment is not received by this time the account will be suspended until payment is received.
+</p>
+<p>
+	For any questions please contact info@linguazone.com.<br />
+	Thanks for your interest, and have fun with the games!
+</p>
+<p>
+	LinguaZone<br />
+	417 Yorkshire Way<br />
+	Bryn Mawr, PA 19010<br />
+	Tel: 215.948.2153<br />
+	Web: <%= link_to "http://www.LinguaZone.com", "http://www.LinguaZone.com" %>
+</p>

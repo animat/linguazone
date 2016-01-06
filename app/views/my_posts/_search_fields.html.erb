@@ -1,0 +1,23 @@
+<%= form_for @search, :url => {:action => "search"} do |f| %>
+	<p>
+		<%= f.label :post_title_like, "Search for:" %>
+		<%= f.text_field :post_title_like %>
+		<%= link_to_function "more options...", "showMoreOptions(true);", :id => "more_options_link" %>
+		<%= link_to_function "fewer options...", "hideMoreOptions(true);", :id => "fewer_options_link" %>
+	</p>
+	<div id="more_options">
+		<% if @search_type == "adopt" %>
+			<p>
+				<%= f.label :post_updated_by_last_name_like, "created by (teacher's last name)... " %>
+				<%= f.text_field :post_updated_by_last_name_like, :size => 25 %>
+				<%= f.hidden_field :post_updated_by_id_does_not_equal, :value => current_user.id %>
+			</p>
+		<% else %>
+			<%= f.hidden_field :user_id_equals, :value => current_user.id %>
+			<%= render :partial => "shared/search_course_filter", :locals => {:f => f}%>
+		<% end %>
+	</div>
+	<p align="center">
+		<%= f.submit "Search", :name => nil %>
+	</p>
+<% end %>

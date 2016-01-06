@@ -1,0 +1,36 @@
+<ul>
+	<li><%= link_to "OVERVIEW", teachers_path %></li>
+	<li>
+		<%= link_to "CLASSES", my_courses_path %>
+		<ul>
+			<% for course in @courses do %>
+				<li><%= link_to course.name, course_path(course) %></li>
+			<% end %>
+			<li><%= link_to "Create a class", new_my_course_path %></li>
+		</ul>
+	</li>
+	<li>
+		<%= link_to "GAMES", my_games_path %>
+		<ul>
+			<li><%= link_to "View all my games", my_games_path %></li>
+			<li><%= link_to "Adopt a game", adopt_my_games_path %></li>
+			<li><%= link_to "Create a new game", :controller => "customize", :action => "new", :cmzr_type => "game" %></li>
+		</ul>
+	</li>
+	<li>
+		<%= link_to "WORD LISTS", my_word_lists_path %>
+		<ul>
+			<li><%= link_to "View all my word lists", my_word_lists_path %></li>
+			<li><%= link_to "Adopt a word list", adopt_my_word_lists_path %></li>
+			<li><%= link_to "Import a word list", import_my_word_lists_path %></li>
+			<li><%= link_to "Create a new word list", :controller => "customize", :action => "new", :cmzr_type => "list" %></li>
+		</ul>
+	</li>
+	<li>
+		<%= link_to "AUDIO BLOG", my_posts_path %>
+		<ul>
+			<li><%= link_to "View all my audio blog posts", :controller => "my_posts" %></li>
+			<li><%= link_to "Create a new audio blog post", :controller => "posts", :action => "new" %></li>
+		</ul>
+	</li>
+</ul>

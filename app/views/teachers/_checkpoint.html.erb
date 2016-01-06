@@ -1,0 +1,8 @@
+<div class="progressHeader"><%= image_tag "shared-buttons/progress-button-3.jpg" %><h3>Lastly, create your account.</h3></div>
+<% unless @teacher.nil? %>
+	<div class="progressContent">
+		<p>
+			<%= @teacher.first_name+" "+@teacher.last_name %> (<%= @teacher.email %>)
+		</p>
+	</div>
+<% end %>

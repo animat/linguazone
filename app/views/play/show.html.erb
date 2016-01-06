@@ -1,0 +1,38 @@
+<% content_for :page_script do %>
+<script type="text/javascript">
+var newWindow;
+function lz_toggle_fullscreen_window(gameID, myPath) {
+	var params = "fullscreen=yes, ";
+	params += "width="+screen.width+", ";
+	params += "height="+screen.height+", ";
+	params += "top=0, left=0";
+	var newWindow = window.open(myPath+"LZContainer/fullscreen.html?id="+gameID, "LinguaZone", params);
+	newWindow.focus();
+	return false;
+}
+</script>
+<% end %>
+
+<% stylesheet 'play' %>
+
+<h1>Play <%= @game.activity.name %></h1>
+<p>
+	<%= @game.description %>
+	<% unless current_user.nil? %>
+		<% if @game.updated_by_id == current_user.id %>
+			<%= link_to "[edit this game]", :controller => "customize", :action => "edit", :cmzr_type => "game", :id => @game.id%>
+		<% end %>
+	<% end %>
+</p>
+
+<div id="game_window">
+  <% if @game.activity.html5_compatible %>
+    <iframe id="lgzFrame" src="<%= @game_src %>/Frame/parent.html?gameid=<%= @ag.id %>&userid=<%= @uid %>&gameswf=<%= @game.activity.swf %>" height="430" width="600" frameBorder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+  <% else %>
+  	<div id="game" class="swf_window">
+  		<%= swf_tag '/LZContainer/LZContainer.swf', {:id => "game", :flashvars => @flashvars, :size => "600x425", :parameters => {:allowFullScreen => true, :scale => "exactfit", :allowScriptAccess => "sameDomain", :wmode => "transparent", :quality => "high", :align => "middle", :width => "600", :height => "430", :game_id => @ag.id, :path => "../", :isFullscreen => "false"}} %>
+  	</div>
+  <% end %>
+</div>
+
+<p><%= link_to("Return to #{@ag.course.name}", course_path(@ag.course)) unless @ag.course.nil? %></p>

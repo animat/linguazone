@@ -1,0 +1,23 @@
+<% unless cr.empty? %>
+	<p id="view_students_registered_<%= String(course_id) %>" style="margin-left: 15px">
+		<%= link_to_function "View students registered" do |page|
+			page.hide "view_students_registered_"+String(course_id)
+			page.show "hide_students_registered_"+String(course_id)
+			page.show "registered_students_"+String(course_id)
+		end %>
+	</p>
+	<p id="hide_students_registered_<%= String(course_id) %>" style="display: none; margin-left: 15px">
+		<%= link_to_function "Hide students registered" do |page|
+			page.show "view_students_registered_"+String(course_id)
+			page.hide "hide_students_registered_"+String(course_id)
+			page.hide "registered_students_"+String(course_id)
+		end %>
+	</p>
+	<ul id="registered_students_<%= String(course_id) %>" style="display: none;">
+		<% cr.each do |student| %>
+			<% unless student.user.nil? %>
+				<li><%= link_to student.user.display_name, :controller => "students", :action => "show", :id => student.user.id %></li>
+			<% end %>
+		<% end %>
+	</ul>
+<% end %>

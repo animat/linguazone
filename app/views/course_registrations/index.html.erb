@@ -1,0 +1,48 @@
+<% stylesheet 'teachers' %>
+
+<% content_for :head do %>
+<script type="text/javascript">
+$(function() {		
+	$(".unenroll_student_link").button({icons: {"primary": "ui-icon-close"}})
+	$(".reset_password_link").button({icons: {"primary": "ui-icon-pencil"}})
+})
+</script>
+<% end %>
+
+<div>
+	<div class="floatLeft">
+		<h1><%= "#{@course.name} class list" %></h1>
+		<p>Manage the student accounts enrolled in this class page.</p>
+	</div>
+	<div class="floatRight">
+		<%= link_to new_course_course_registration_path(@course) do %>
+			<div class="new_button">
+				<span>Invite students</span>
+			</div>
+		<% end %>	
+	</div>
+	<br class="clearFloat" />
+</div>
+
+<br />
+
+<% if @regs.empty? %>
+	<p>No students have registered yet in this class.</p>
+<% else %>
+	<table id="list_registrations">
+		<tr>
+			<th>Name</th>
+			<th>Logging in via...</th>
+			<th>Last login</th>
+		</tr>
+		<% @regs.each do |cr| %>
+			<tr>
+				<td><%= link_to "#{cr.user.display_name}", course_registration_feed_items_path(cr) %></td>
+				<td class="user_authentications"><%= single_line_authentications(cr.user) %></td>
+				<td class="last_login_time"><%= format_date_time(cr.user.last_request_at) %></td>
+				<td><%= link_to("Reset password", password_resets_path(:email => cr.user.email), :remote => true, :method => :post, :class => "reset_password_link") if cr.user.has_personal_email? %></td>
+				<td><%= link_to "Remove from class", course_course_registration_path(@course, cr), :method => :delete, :confirm => "Are you sure you want to remove this student from #{@course.name}?", :class => "unenroll_student_link" %></td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>

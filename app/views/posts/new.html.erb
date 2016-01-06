@@ -1,0 +1,18 @@
+<% stylesheet 'post' %>
+
+<% if @course_id == 0 %>
+	
+	<% if @courses.length == 0 %>
+		<p align="center">Please <%= link_to "create a class", :controller => "my_courses", :action => "new" %> first.</p>
+	<% else %>
+		<h1>Create a new audio blog post in...</h1>
+		<ul>
+		<% @courses.each do |course| %>
+			<li><%= link_to course.name, :controller => "posts", :action => "new", :course_id => course.id %></li>
+		<% end %>
+		</ul>
+	<% end %>
+	
+<% else %>
+	<%= render :partial => 'new_post' %>
+<% end %>

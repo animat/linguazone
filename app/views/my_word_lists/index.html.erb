@@ -1,0 +1,66 @@
+<% content_for :page_script do %>
+<script type="text/javascript">
+function showMoreOptions(animate) {
+	if (animate) {
+		$('#more_options').show("blind", 500);	
+	} else {
+		$('#more_options').show();
+	}
+	$('#more_options_link').hide();
+	$('#fewer_options_link').show();
+}
+function hideMoreOptions(animate) {
+	if (animate) {
+		$('#more_options').hide("blind", 500);	
+	} else {
+		$('#more_options').hide();
+	}
+	$('#more_options_link').show();
+	$('#fewer_options_link').hide();
+}
+$(function() {
+	if (<%= hash_is_blank_except?(params[:search], "game_description_like") %>) {
+		hideMoreOptions(false);
+	} else {
+		showMoreOptions(false);
+	}
+});
+
+</script>
+<% end %>
+
+<% stylesheet 'my_games' %>
+<% stylesheet 'teachers' %>
+
+<div>
+	<div class="floatLeft">
+		<h1>My word lists</h1>
+		<p>Create, edit, and manage your LinguaZone word lists.</p>
+	</div>
+	<div class="floatRight">
+		<%= link_to :controller => "customize", :action => "new", :cmzr_type => "list" do %>
+			<div class="new_button">
+				<span>Create a new word list</span>
+			</div>
+		<% end %>	
+	</div>
+	<br class="clearFloat" />
+</div>
+
+<fieldset>
+	<legend>Search my LinguaZone word lists</legend>
+	<%= render :partial => "search_fields" %>
+</fieldset>
+
+<br />
+
+<% unless @word_lists.nil? or @word_lists.empty? %>
+	<h2>Browsing word lists (<%= @total_word_lists_count %> total)</h2>
+	<%= paginate @word_lists %>
+	<% @word_lists.each do |wl| %>
+		<%= render :partial => "default_item", :locals => {:item => wl} unless wl.word_list.nil? %>
+	<% end %>
+	<%= paginate @word_lists %>
+<% else %>
+	<h2>You have not created any word lists yet. Try creating a new one!</h2>
+<% end %>

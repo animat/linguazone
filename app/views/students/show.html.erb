@@ -1,0 +1,28 @@
+<% stylesheet 'students' %>
+<h1><%= @student.first_name %> <%= @student.last_name %></h1>
+
+<p>Recent student activity...</p>
+
+<ul id="high_score_listing">
+	<% if @high_scores.empty? %>
+		<p>There are no scores saved for this student in the database.</p>
+	<% else %>
+		<% @high_scores.each do |hs| %>
+			<li>
+				<p>
+					<%= link_to image_tag('/games/'+hs.available_game.game.activity.swf+'/display/icon-small.jpg', :alt => 'Play '+hs.available_game.game.activity.name), play_path(hs.available_game) %>
+					<%= hs.available_game.game.activity.name %>: <%= hs.available_game.game.description %>
+				</p>
+				<br class="clearFloat" />
+				<% unless hs.game.nil? %>
+					<% @student.scores_in_game(hs.available_game.id).each do |score| %>
+						<p class="statsDetails">
+							<%= format_high_score(score.score, hs.available_game.game.activity.name) %>
+							 <span class="statsDate">on <%= format_date_time(score.submitted_at) %></span>
+						</p>
+					<% end %>
+				<% end %>
+			</li>
+		<% end %>
+	<% end %>
+</ul>

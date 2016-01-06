@@ -1,0 +1,78 @@
+<fieldset id="new_comment_fieldset">
+	<legend><span>Leave a comment</span></legend>
+		<%= form_for(@comment, :html => {:id => 'upload'}) do |f| %>
+			<%= f.hidden_field :available_post_id, :value => @ap.id %>
+			<%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :audio_id, :value => "" %>
+			<p>
+				Your name: <%= current_user.display_name %> (<%= link_to "logout", logout_path %>)
+			</p>
+			<div>
+				<div class="floatLeft" style="width: 60%">
+					<%= f.label :content, "Your comment:" %><br />
+					<%= f.text_area :content %>
+				</div>
+				<br class="clearFloat" />
+			</div>
+			<input id="upload_file" name="upload[file]" type="file" accept="audio/*.wav" capture="microphone" ><br>
+			<%= transloadit :audio_encode_s3 %>
+		<% end %>
+		<div class="recording_container">
+		    <section class="recorder-container">
+
+		        <!-- Recorder control buttons -->
+		        <div class="recorder">
+		            <div class="recorder-border">
+		                <button id="lgzBtnMain" class="start-recording" onclick="lgzRec.onClick(event);">
+		                </button>
+
+		                <canvas id="lgzRecCanvas" width="250" height="120"  ></canvas>
+
+		            </div>
+		            <br>
+		            <a id="lgzBtnRedo" href="#" >click to clear recording and try again</a>
+
+		            <div id="lgzWinPermFWR" class="winInit" >
+			            <div class="msgbox flash_info" >
+			                <p> 
+			                Please select 'Allow' option to access your microphone for recording.
+			                <br><br>
+			                Select the 'Remember' checkbox to skip this prompt on future recordings.
+			                </p> 
+			                <div id="lgzRecorderFlashDiv">
+			                    <p>Your browser must have JavaScript enabled and the Adobe Flash Player installed.</p>
+			                </div>
+			            </div>
+		            </div>
+					<div id="lgzWinSending" class="winInit" >
+						<div class="msgbox flash_info" >
+							<p> 
+								<br>
+								Processing
+								<br>
+								...
+								<br>
+								Please wait
+								<br>
+							</p> 
+						</div>
+					</div>
+		            <div id="lgzWinMobile" class="winInit" >
+		            <div class="msgbox flash_info" >
+		                <p> 
+		                Launching your mobile audio/video recorder app to record audio.
+		                </p> 
+		                <br>
+		                <button onclick="lgzRec.launchMobileRecorder();">OK</button>
+		            </div>
+		            </div>
+		        </div>
+		    </section>
+		</div>
+		<button id="create_audio_comment" onclick="lgzRec.manualSend('#upload');" >Create comment</button>
+		<script>
+		var script = '/assets/waverec/jquery.transloadit2-latest.js';
+		lgzRec.init('#upload', script);
+
+		</script>
+</fieldset>

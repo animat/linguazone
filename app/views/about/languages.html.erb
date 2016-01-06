@@ -1,0 +1,24 @@
+<% stylesheet "about" %>
+
+<h1>Available in <%= @languages.size %> languages and counting!</h1>
+<p>LinguaZone's audio blogs, games, and word lists currently work in <%= @languages.size %> different languages, and we're growing according to teacher demand. Do you teach a language we don't support and you want to use LinguaZone with your students? <%= link_to "Get in touch", contact_path %> and let us know &mdash; we'll do our best to add support for a new language just for you.</p>
+
+<h2>Don't forget about English!</h2>
+<p>LinguaZone is designed for language teachers, but audio blogs, games, and word lists are used by teachers of other subjects, too. With a little creativity, language arts teachers, math teachers, and history teachers have been using LinguaZone by customizing their class pages to fit their curricula.</p>
+
+<h2>Try demos of the games</h2>
+<p>Select a language below to play demos of the games.</p>
+<div id="languages">
+	<ul>
+		<% @languages.each do |language| %>
+			<li>
+				<%= link_to :controller => "about", :action => "demos", :language => language.id do %>
+					<div class="big_button" style="width: 200px">
+						<span><%= language.name %></span>
+					</div>
+				<% end %>
+			</li>
+		<% end %>
+	</ul>
+	<br class="clearFloat" />
+</div>

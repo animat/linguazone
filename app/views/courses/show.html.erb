@@ -1,0 +1,163 @@
+<% stylesheet 'course' %>
+<% stylesheet 'teachers' %>
+<% content_for :title do %>LinguaZone - <%= @course.name %> at <%= @course.user.school.name %><% end %>
+<% content_for :page_script do %>
+<link rel="alternate" type="application/rss+xml" title="rss" href="<%= @course.id %>/feed" />
+<script type="text/javascript">
+function displayLoginDetails() {
+	if($("#login_required").is(":checked")) {
+		$("#class_code_area").show();
+		$("#login_explanation").html("(YES)")
+	} else {
+		$("#class_code_area").hide();
+		$("#login_explanation").html("(NO)")
+	}
+}
+$(function() {
+	$(".hide_available_item").click(function() {
+		$(this).text("Hiding...");
+		var href = $(this).attr("href");
+		var div = $(this).parent().parent().parent();
+		$.post(href, function() { $(div).slideUp(); })
+		  .error(function() { alert("We're sorry. There was an error hiding this item."); });
+		return false;
+	});
+	
+	$("#login_required").click(function() {
+		displayLoginDetails();
+	});
+	displayLoginDetails();
+});
+
+</script>
+<% end %>
+
+<div id="school_info">
+	<h1><%= @course.name %></h1>
+	<p>taught by <%= @course.user.display_name %>
+		<br />
+		at <%= @course.user.school.name %>
+	</p>
+	<br class="clearFloat" />
+</div>
+
+<% if is_teacher_for(@course) and current_user.is_premium_subscriber? %>
+	</div><!-- end wrapper -->
+	<div id="settings">
+		<h2>Class page settings</h2>
+		<!-- <p>
+					<div>
+						<div class="supercheckbox_left_blank"></div>
+						<div class="supercheckbox_center">Students must login to view this page</div>
+						<div class="supercheckbox_right"></div>
+					</div>
+					<br class="clearFloat" />
+					
+					<div>
+						<div class="supercheckbox_left_blank"></div>
+						<div class="supercheckbox_center">Post student high scores on game pages</div>
+						<div class="supercheckbox_right"></div>
+					</div>
+					<br class="clearFloat" />
+				</p> -->
+		<div id="login_details">
+			<%= form_for(@course) do %>
+				<table>
+					<tr>
+						<td><%= label_tag :login_required, "Do students need to login to access this class page?" %></td>
+						<td><%= check_box_tag :login_required, 1, @course.login_required %> <span id="login_explanation"></span></td>
+					</tr>
+					<tr id="class_code_area">
+						<td><%= label_tag :code, "Students will create their own LinguaZone.com student accounts, then register in this class using the class code:" %></td>
+						<td><%= text_field_tag :code, @course.code, :size => 12 %></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<%= hidden_field_tag :id, @course.id %>
+							<%= submit_tag "Update" %>
+						</td>
+					</tr>
+				</table>
+				<p class="note">
+					* Audio blogs and tracking student participation are only available when students are required to login.
+				</p>
+			<% end %>
+		</div>
+		<div>
+			<%= link_to "#{pluralize(@course.course_registrations.size, 'student')} enrolled", course_course_registrations_path(@course), :class => "floatLeft" %>
+			<%= link_to "View activity on this class page", gradebook_course_feed_items_path(@course), :class => "floatRight" %>
+			<br class="clearFloat" />
+		</div>
+	</div>
+	<div class="wrapper">
+<% end %>
+
+<% if is_showing_or_can_add_to("audio_blog", @showing_posts, @course) %>
+	</div><!-- end wrapper -->
+	<div class="section_header" id="post_header">
+		<h2>Audio blog</h2>
+		<% if is_teacher_for(@course) %>
+			<div class="add"><p><%= link_to "add a post", :controller => "courses", :action => "add_post", :id => @course.id %></p></div>
+		<% end %>
+		<br class="clearFloat" />
+	</div>
+	<div class="wrapper">
+<% end %>
+<% unless @showing_posts.nil? %>
+	<div id="showing_posts">
+		<% for showing_post in @showing_posts do %>
+			<%= render :partial => "showing_item", :locals => {:showing_item => showing_post, :course => @course} %>
+		<% end %>
+	</div>
+	<br class="clearFloat" />
+<% end %>
+
+<% if is_showing_or_can_add_to("word_lists", @showing_word_lists, @course) %>
+	</div><!-- end wrapper -->
+	<div class="section_header" id="word_list_header">
+		<h2>Study word lists</h2>
+		<% if is_teacher_for(@course) %>
+			<div class="add"><p><%= link_to "add a list", :controller => "courses", :action => "add_list", :id => @course.id %></p></div>
+		<% end %>
+		<br class="clearFloat" />
+	</div>
+	<div class="wrapper">
+<% end %>
+<% unless @showing_word_lists.nil? or @showing_word_lists.empty? %>
+	<div id="showing_word_lists">
+		<% for showing_word_list in @showing_word_lists do %>
+			<%= render :partial => "showing_item", :locals => {:showing_item => showing_word_list, :course => @course}%>
+		<% end %>
+		<br class="clearFloat" />
+	</div>
+<% end %>
+
+<% if is_showing_or_can_add_to("games", @showing_games, @course) %>
+	</div><!-- end wrapper -->
+	<div class="section_header" id="game_header">
+		<h2>Play games</h2>
+		<% if is_teacher_for(@course) %>
+			<div class="add"><p><%= link_to "add a game", :controller => "courses", :action => "add_game", :id => @course.id %></p></div>
+			<% if @showing_games.length > 1 %>
+				<div class="order"><p>
+					<%= link_to "reorder", :controller => "courses", :action => "order_games", :id => @course.id %>
+				</p></div>
+			<% end %>
+		<% end %>
+		<br class="clearFloat" />
+	</div>
+	<div class="wrapper">
+<% end %>
+
+<% unless @showing_games.nil? %>
+	<div id="showing_games">
+		<% for showing_game in @showing_games do %>
+			<%= render :partial => "showing_item", :locals => {:showing_item => showing_game, :course => @course} unless showing_game.game.nil? %>
+		<% end %>
+	</div>
+	<br class="clearFloat" />
+<% end %>
+
+<% if (current_user.nil? or current_user.role == "student") and @showing_posts.empty? and @showing_word_lists.empty? and @showing_games.empty? %>
+	<p align="center">Your teacher has not yet created your class page.</p>
+<% end %>

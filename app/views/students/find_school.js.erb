@@ -1,0 +1,6 @@
+<% if @similar_schools.length == 1 %>
+	$("#select_course").html("<%= escape_javascript(render("select_course")) %>");
+<% else %>
+	$("#search_for_school").html("Could not locate your school. Sorry!");
+	$("#search_for_school").effect("highlight", {}, 3000);
+<% end %>

@@ -1,0 +1,8 @@
+$("#select_course").html("<%= "#{@course.name} taught by #{@course.user.display_name}" %>");
+$("#select_course").effect("highlight", {}, 3000);
+
+<% if @course.login_required %>
+	$("#enter_code").html("<%= escape_javascript(render("enter_code")) %>");
+<% else %>
+	$("#enter_code").html("<p>You are all set! <%= escape_javascript(link_to 'Click here to visit your class page', course_path(@course)) %> and get started.</p>")
+<% end %>

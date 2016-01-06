@@ -1,0 +1,18 @@
+<% stylesheet 'play' %>
+
+<h1><%= @list.description %></h1>
+
+<% if @registrations.nil? or @registrations.empty? %>
+	<br />
+	<p align="center">No students in <%= @course.name %> have studied this word list yet.</p>
+<% else %>
+	<% @registrations.each do |reg| %>
+		<p class="statsHeader"><%= reg.user.display_name %></p>
+		<% reg.user.study_history_in_word_list(params[:id]).each do |sh| %>
+			<p class="statsDetails">
+				<%= format_study_history(sh.study_type) %>
+				 <span class="statsDate">on <%= format_date_time(sh.submitted_at) %></span>
+			</p>
+		<% end %>
+	<% end %>
+<% end %>

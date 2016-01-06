@@ -1,0 +1,39 @@
+<% stylesheet 'about' %>
+
+<h1>Made by language teachers. Made for language teachers.</h1>
+<p>
+	LinguaZone offers new ways for world and classical language teachers to challenge and connect with their students through web-based multimedia tools. Developed by teachers in the classroom and used by schools around the world, LinguaZone is constantly adding creating ways complement and enhance the classroom experience.
+</p>
+
+<div class="feature_left">
+	<h2>Customize your own language games.</h2>
+	<p>Use the material you are teaching in your own classes to build animated, fun online games in a matter of minutes. Select one of our templates then add the material your students are learning, and before you know it, you'll have a great way to encourage students to drill and practice new material. <%= link_to "Learn more...", :action => "games" %></p>
+</div>
+<div class="feature_pic_right">
+	<%= link_to image_tag("about/features/games.gif"), :action => "games" %>
+</div>
+<br class="clearFloat" />
+<div class="feature_pic_left">
+	<%= link_to image_tag("about/features/word_lists.gif"), :action => "word_lists" %>
+</div>
+<div class="feature_right">
+	<h2>Create vocabulary study guides for your students.</h2>
+	<p>Creating a word list on LinguaZone is just like creating a game: it only takes a few minutes, and it's a powerful resource for you to use right away. Create multiple games based on a word list with a single click, or add word lists to your class pages to give students tool to study vocabulary lists,  online and offline.  <%= link_to "Learn more...", :action => "word_lists" %></p>
+</div>
+<br class="clearFloat" />
+<div class="feature_left">
+	<h2>Record audio for teachers and students.</h2>
+	<p>Create an audio blog on your class pages to leave messages for your students with text, audio, or both. Students can then create comments on your posts with text and audio to engage you and each other. Connect with your students and continue to practice oral and aural skills outside of the classroom. <%= link_to "Learn more...", :action => "audio_blogs" %></p>
+</div>
+<div class="feature_pic_right">
+	<%= link_to image_tag("about/features/audio_blogs.gif"), :controller => "about", :action => "audio_blogs" %>
+</div>
+<br class="clearFloat" />
+<div>
+	<h2>Track student participation for best results.</h2>
+	<p>It's easy for premium subscribers to make sure that students are using LinguaZone outside of the class. Check to see which students played LinguaZone games for last night's homework, and see who did not, or make sure that all of your students leave an audio comment on your post to keep speaking in the target language outside of the classroom.</p>
+</div>
+<div>
+	<h2>Password-protected class pages.</h2>
+	<p>All class pages made by teachers with premium subscriptions automatically have password-protect class pages. Only your students can access your audio blog, games, and word lists, and you can track who is using LinguaZone and who is not.</p>
+</div>

@@ -1,0 +1,89 @@
+<% if current_user.nil? %>
+	<h1>Artist login</h1>
+	<%= form_for (@user_session) do |f| %>
+		<%= f.error_messages %>
+		<div style="width: 600px; margin: 20px auto; padding: 10px; background-color: #C9DEFF; border: 3px solid #194BA0" align="center">
+			<p><%= f.label :email, "Email address:" %>	<%= f.text_field :email, :cols => 30 %></p>
+			<p><%= f.label :password, "Password:" %> <%= f.password_field :password, :cols => 30 %></p>
+			<p><%= f.check_box :remember_me %><%= f.label :remember_me %></p>
+			<%= f.hidden_field :role, :value => "artist" %>
+			<%= f.submit "Login" %>		
+		</div>
+	<% end %>
+<% end %>
+
+<% if current_user && current._user.id == 30 %>
+	<h1>To-do list</h1>
+	<% unless current_user.nil? %>
+		<% if current_user.id == 30 || current_user.id == 31 %>
+			<p><%= link_to "Create a new media item", :action => "new" %></p>
+		<% end %>
+	<% end %>
+	<table width="100%">
+		<tr>
+			<th>Description</th>
+			<th>Category</th>
+			<th>In progress?</th>
+			<th>Last updated</th>
+		</tr>
+		<% @to_dos.each do |d| %>
+			<tr>
+				<td><%= d.descrip %></td>
+				<td><%= d.media_category.name %></td>
+				<td><%= d.assigned_to %></td>
+				<td><%= format_date_time(d.swf_updated_at) %></td>
+				<td align="right">
+					<% unless current_user.nil? %>
+						<% if current_user.role == "artist" %>
+							<% if d.swf_file_size.nil? %>
+								<%= link_to "Submit", :action => "edit", :id => d.id %>
+							<% else %>
+								<%= link_to "Pending", :action => "edit", :id => d.id %>
+							<% end %>
+						<% elsif current_user.id == 30 || current_user.id == 31 %>
+							<%= link_to "View", :action => "edit", :id => d.id %>
+						<% end %>
+					<% end %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>
+
+<br />
+<hr />
+<br />
+
+<h1>Listing all published media</h1>
+<%= paginate @assets %>
+<table width="100%" cellspacing="5">
+	<tr>
+		<th>Description</th>
+		<th>Category</th>
+		<th>Image</th>
+	</tr>
+	<% @assets.each do |a| %>
+		<tr>
+			<td width="300">
+				<%= a.descrip %><br />
+				<span style="font-size: .8em; color: #999;">
+					<%= a.id %>: 
+					<% a.media_keywords.each do |mk| %>
+						<%= mk.name %>  
+					<% end %>
+				</span>
+			</td>
+			<td><%= a.media_category.name %></td>
+			<td><%= swf_tag 'http://linguazone.s3.amazonaws.com/' + a.path + a.name + ".swf" , { :height => "100", :width => "100" } %></td>
+			<% unless current_user.nil? %>
+				<% if current_user.id == 30 || current_user.id == 31 %>
+					<td align="right"><%= link_to "Edit", :action => "edit", :id => a.id %></td>
+				<% else %>
+						<td align="right"><%= link_to "Zoom in", :action => "show", :id => a.id %></td>
+				<% end %>
+			<% else %>
+				<td align="right"><%= link_to "Zoom in", :action => "show", :id => a.id %></td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>

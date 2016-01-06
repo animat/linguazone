@@ -1,5 +1,17 @@
-require 'rails_helper'
+require 'spec_helper'
+describe State do
+  let(:international_state) { Factory(:state, :intl => true) }
+  let(:national_state) { Factory(:state,      :intl => false) }
 
-RSpec.describe State, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '.international' do
+    it "returns international states" do
+      State.international.should == [international_state]
+    end
+  end
+
+  describe '.national' do
+    it "returns national states" do
+      State.national.should == [national_state]
+    end
+  end
 end

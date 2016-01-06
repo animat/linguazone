@@ -1,0 +1,51 @@
+<h1>Expiration notices</h1>
+<p>The following users have been notified about their LinguaZone.com accounts soon expiring...</p>
+
+<br />
+<h2>Trial subscriptions</h2>
+<% unless @users[:one_week_trials].nil? %>
+  <p><strong>In one week</strong></p>
+  <% @users[:one_week_trials].each do |u| %>
+  	<%= "- #{u.display_name} <#{u.email}> <br />"%>
+  <% end %>
+<% end %>
+<% unless @users[:four_day_trials].nil? %>
+  <p><strong>In three days</strong></p>
+  <% @users[:four_day_trials].each do |u| %>
+  	<%= "- #{u.display_name} <#{u.email}> <br />"%>
+  <% end %>
+<% end %>
+<br />
+<p><strong>Expiring today</strong></p>
+<% unless @users[:expired_trials].nil? %>
+  <% @users[:expired_trials].each do |u| %>
+  	<%= "- #{u.display_name} <#{u.email}> <br />"%>
+  <% end %>
+<% end %>
+
+<br />
+<hr />
+<br />
+
+<h2>Paid subscriptions</h2>
+<% unless @users[:two_day_subs].nil? %>
+  <p><strong>In two days</strong></p>
+  <% @users[:two_day_subs].each do |u| %>
+  	<%= "- #{u.display_name} <#{u.email}> <br />"%>
+  <% end %>
+<% end %>
+
+<br />
+<% unless @users[:one_week_subs].nil? %>
+  <p><strong>In one week</strong></p>
+  <% @users[:one_week_subs].each do |u| %>
+  	<%= "- #{u.display_name} <#{u.email}> <br />"%>
+  <% end %>
+<% end %>
+<br />
+<% unless @users[:two_week_subs].nil? %>
+  <p><strong>In two weeks</strong></p>
+  <% @users[:two_week_subs].each do |u| %>
+  	<%= "- #{u.display_name} <#{u.email}> <br />"%>
+  <% end %>
+<% end %>

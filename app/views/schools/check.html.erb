@@ -1,0 +1,14 @@
+<%= render "subscription/checkpoint" %>
+
+<%= render "checkpoint" %>
+
+<div class="progressContent">
+  <%= simple_form_for @school, :url => confirm_or_new_schools_path do |f| %>
+    <div>
+      <%= f.input :name, :label => "Your school's name:", :url => autocomplete_name_schools_path, :as => :autocomplete %>
+      <%= f.submit "Check the database" %>
+    </div>
+  <% end %>
+</div>
+
+<%= render "teachers/checkpoint" %>

@@ -1,0 +1,183 @@
+<% stylesheet 'waverec/basic.css' %>
+<% stylesheet 'waverec/main.css' %>
+
+<% javascript 'waverec/recorder.js' %>
+<% javascript 'waverec/basic.js' %>
+
+
+<% content_for :page_script do %>
+<script type="text/javascript">
+
+$(document).ready(function() {
+  var latestMediaSource;
+  
+  $(".YouTubeEmbed").on("click", function() {
+    latestMediaSource = "YouTubeEmbed";
+  });
+  $(".UploadImg").on("click", function() {
+    latestMediaSource = "UploadImg";
+  });
+  $(".YouTubeEmbed").on("tap", function() {
+    latestMediaSource = "YouTubeEmbed";
+  });
+  $(".UploadImg").on("tap", function() {
+    latestMediaSource = "UploadImg";
+  });
+  
+  $(document).on("fields_added.nested_form_fields", function(ev, param) {
+    var $el = $("#addedMedia").find("fieldset").last();
+    if (latestMediaSource == "YouTubeEmbed") {
+      var type = "YouTube";
+      var msg = "Enter a YouTube URL";
+    } else if (latestMediaSource == "UploadImg") {
+      var type = "UploadImg";
+      var msg = "Select a file from your computer";
+      var $tmp = $el.find("input.embed_txt").first();
+      var n = $tmp.attr("name");
+      var reg = /\d+/;
+      var num = n.match(reg)[0];
+      var newName = "post[ab_media_resources_attributes]["+num+"][pic]";
+      var newId = "post_ab_media_resources_attributes_"+num+"_pic";
+      var $fileInput = $("<input />", {"name": newName, "id": newId, "type": "file"});
+    
+      $tmp.remove();
+      $fileInput.insertAfter($el.find("label"));
+    }
+    $el.find("label").html(msg);
+    $el.find(".source").val(type);
+  });
+});
+</script>
+<% end %>
+
+<h1>Create a new post</h1>
+
+<div id="new_post_container">
+  <div class="recording_container">
+      <label>Record audio for your post</label>
+      <section class="recorder-container">
+
+          <!-- Recorder control buttons -->
+          <div class="recorder">
+              <div class="recorder-border">
+                  <button id="lgzBtnMain" class="start-recording" onclick="lgzRec.onClick(event);">
+                  </button>
+
+                  <canvas id="lgzRecCanvas" width="250" height="120"  ></canvas>
+
+              </div>
+              <br>
+              <a id="lgzBtnRedo" href="#" >click to clear recording and try again</a>
+
+              <div id="lgzWinUpgradeBrowser" class="alertbox" >
+                <p>
+                Your browser not supported.
+                <br>
+  	            Please upgrade to a current version.
+                </p>
+              </div>
+              <div id="lgzWinUpgradeFlash" class="alertbox" >
+	             <p>
+                 A supported version of Adobe Flash Player was not detected.
+                 <br>
+  	             Please upgrade to a current version Adobe Flash Player.
+                 </p>
+              </div>
+              <div id="lgzWinFlashBlocked" class="alertbox" >
+	             <p>
+                  Adobe Flash Player was detected but is not active.
+                 <br>
+  	             Please check browser for blocked plugin.
+                 </p>
+              </div>
+              <div id="lgzWinPermFWR" class="winInit" >
+  	            <div class="msgbox flash_info" >
+  	                <p> 
+  	                Please select 'Allow' option to access your microphone for recording.
+  	                <br><br>
+  	                Select the 'Remember' checkbox to skip this prompt on future recordings.
+  	                </p> 
+  	                <div id="lgzRecorderFlashDiv">
+  	                    <p>Your browser must have JavaScript enabled and the Adobe Flash Player installed.</p>
+  	                </div>
+  	            </div>
+              </div>
+  			<div id="lgzWinSending" class="winInit" >
+  				<div class="msgbox flash_info" >
+  					<p> 
+  						<br>
+  						Processing
+  						<br>
+  						...
+  						<br>
+  						Please wait
+  						<br>
+  					</p> 
+  				</div>
+  			</div>
+              <div id="lgzWinMobile" class="winInit" >
+              <div class="msgbox flash_info" >
+                  <p> 
+                  Launching your mobile audio/video recorder app to record audio.
+                  </p> 
+                  <br>
+                  <button onclick="lgzRec.launchMobileRecorder();">OK</button>
+              </div>
+              </div>
+          </div>
+      </section>
+  </div>
+
+  <%= form_for(@post, :html => {:id => 'upload', :multipart => true}) do |f| %>
+   	<%= f.error_messages %>
+	
+
+  	<p id="audio_blog_post_title">
+  		<%= f.label :title, "Enter a title for your post" %><br />
+  		<%= f.text_field :title, :size => 40 %>
+  	</p>
+  	<p>
+  		<%= f.label :content, "Enter text for your post (optional)" %><br />
+  		<%= f.text_area :content, :rows => 10, :cols => 82 %>
+  	</p>
+  	<%= f.hidden_field :course_id, :value => @course_id %>
+  	<%= f.hidden_field :user_id, :value => current_user.id %>
+  	<%= f.hidden_field :audio_id, :value => "" %>
+
+  	<input id="upload_file" name="upload[file]" type="file" accept="audio/*.wav" capture="microphone" ><br>
+  	<%= transloadit :audio_encode_s3 %>
+  
+    <div id="addMedia">
+      <p>Add additional media (optional)</p>
+      <p>
+          <i class="fa fa-youtube fa-2x"></i>
+          <%= f.add_nested_fields_link :ab_media_resources, "Add a video from YouTube", class: "YouTubeEmbed" %>
+      </p>
+      <p>
+          <i class="fa fa-upload fa-2x"></i>
+          <%= f.add_nested_fields_link :ab_media_resources, "Upload an image from my computer", class: "UploadImg" %>
+      </p>
+    </div>
+  
+    <div id="addedMedia">
+      <%= f.nested_fields_for :ab_media_resources do |ff| %>
+        <%= ff.label :embed, "Add resource URL" %>
+        <%= ff.text_field :embed, class: "embed_txt" %>
+        <%= ff.hidden_field :source, class: "source", value: "" %>
+        <%= ff.remove_nested_fields_link "remove" %>
+      <% end %>
+    </div>
+  
+  	<p id="comment_visibility_setting">
+  		<%= f.check_box "shared" %> <%= f.label "shared", "Students can see each others' responses" %>
+  	</p>
+  <% end %>
+
+  <button id="create_audio_blog_post" onclick="lgzRec.manualSend('#upload');" >Create post</button>
+  <script>
+  var script = '/assets/waverec/jquery.transloadit2-latest.js';
+
+  lgzRec.init('#upload', script);
+
+  </script>
+</div>

@@ -1,0 +1,21 @@
+<br />
+<h1 align="center">You're all set!</h1>
+<p align="center">Make sure the details are correct, then click the button below to get started.</p>
+
+<%= render :partial => "checkpoint" %>
+
+<%= render :partial => "schools/checkpoint" %>
+
+<%= render :partial => "teachers/checkpoint" %>
+
+<br />
+
+<div>
+	<p align="center">
+		<%= link_to :action => "create" do %>
+			<div class="big_button" style="width: 325px"><span>Email invoice and get started!</span></div>
+		<% end %>
+		<br />
+		Your total balance of $<%= @subscription.subscription_plan.cost %> will be due within one month, or <%= link_to "cancel now", :controller => "about", :action => "pricing" %>.
+	</p>
+</div>

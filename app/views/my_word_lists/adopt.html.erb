@@ -1,0 +1,39 @@
+<% content_for :page_script do %>
+<script type="text/javascript">
+function showMoreOptions(animate) {
+	if (animate) {
+		$('#more_options').show("blind", 500);	
+	} else {
+		$('#more_options').show();
+	}
+	$('#more_options_link').hide();
+	$('#fewer_options_link').show();
+}
+function hideMoreOptions(animate) {
+	if (animate) {
+		$('#more_options').hide("blind", 500);	
+	} else {
+		$('#more_options').hide();
+	}
+	$('#more_options_link').show();
+	$('#fewer_options_link').hide();
+}
+$(function() {
+	if (<%= hash_is_blank_except?(params[:search], "word_list_description_like") %>) {
+		hideMoreOptions(false);
+	} else {
+		showMoreOptions(false);
+	}
+});
+
+</script>
+<% end %>
+
+<% stylesheet 'my_games' %>
+
+<h1>Adopt a word list made by another teacher</h1>
+<fieldset>
+	<legend>Search word lists made by other LinguaZone teachers</legend>
+		<%= render :partial => "search_fields" %>
+</fieldset>
+<br />

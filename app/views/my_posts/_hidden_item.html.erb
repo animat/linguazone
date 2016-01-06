@@ -1,0 +1,20 @@
+<% unless item.post.nil? %>
+	<div class="game_listing" id="<%= dom_id(item) %>">
+		<div class="game_details">
+			<p>
+				<%= item.post.title %>
+				<br />
+				<span class="date">Last updated <%= format_short_date(item.post.updated_at) %></span>
+			</p>
+		</div>
+	
+		<div class="manage_game">
+			<%= link_to 'Edit', edit_post_path(item.post) %>
+			<% unless show_in_course.nil? %>
+				|
+				<%= link_to "Show", show_post_courses_path(item), :class => "show_available_item" %>
+			<% end %>
+		</div>
+		<br class="clearFloat" />
+	</div>
+<% end %>

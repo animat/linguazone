@@ -1,0 +1,84 @@
+<% stylesheet "teachers" %>
+
+<% content_for :page_script do %>
+<script type="text/javascript">
+$(function() {
+	$("table#gradebook th").tooltip({tooltipClass: "activity_tooltip", hide: false, position: {my: "center", at: "center top-40"}});
+	$("table#gradebook").delegate("td", "mouseover mouseleave", function(e) {
+		if (e.type == "mouseover") {
+			$(this).parent().addClass("highlight_student_row");
+			$("colgroup").eq($(this).index()).addClass("highlight_activity_column");
+			$("table#gradebook thead tr").css("background-color", "white")
+		} else {
+			$(this).parent().removeClass("highlight_student_row");
+			$("colgroup").eq($(this).index()).removeClass("highlight_activity_column");
+		}
+	});
+})
+</script>
+<% end %>
+
+<div id="gradebook_view">
+	<table id="gradebook_students">
+		<tr>
+			<th height="58px"></th>
+		</tr>
+		<% @users.each do |u| %>
+			<tr>
+				<td><%= link_to truncate(u.display_name, {:length => 25}), student_feed_items_path(u) %></td>
+			</tr>
+		<% end %>
+	</table>
+
+	<div id="gradebook_scroller">
+		<table id="gradebook" width="<%= 250 + @activities.length * 60 %>px">
+			<% for i in 1..@activities.count do %>
+				<colgroup></colgroup>
+			<% end %>
+			<thead>
+				<tr>
+					<% @activities.each do |a| %>
+						<th class="activity_header">
+				<%= if a.class == AvailablePost 
+							link_to image_tag("courses/show/speech_bubble-small.jpg", :title => format_gradebook_header(a)), post_path(a)
+						elsif a.class == AvailableWordList
+							link_to image_tag("word_lists/study_word_list-small.png", :title => format_gradebook_header(a)), :controller => "study", :action => "stats", :id => a.id
+						elsif a.class == AvailableGame
+							unless a.game.nil?
+								link_to image_tag("/games/#{a.game.activity.swf}/display/icon-small.jpg", :title => format_gradebook_header(a)), :controller => "play", :action => "stats", :id => a.id
+							end
+						end
+				%>
+							
+						</th>
+					<% end %>
+				</tr>
+			</thead>
+		
+			<tbody>
+				<% @users.each do |u| %>
+					<tr>
+						<% @activities.each do |a| %>
+							<td>
+							<%= if a.class == AvailablePost
+									link_to post_path(a) do
+						 				format_participation_in_post(u, a, @comments)
+									end
+								elsif a.class == AvailableWordList
+									link_to :controller => "study", :action => "stats", :id => a.id do
+										format_participation_in_word_list(u, a, @study_histories)
+									end
+								elsif a.class == AvailableGame
+									link_to :controller => "play", :action => "stats", :id => a.id do
+										format_participation_in_game(u, a, @high_scores)
+									end
+								end %>
+							</td>
+						<% end %>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+<br class="clearFloat" />

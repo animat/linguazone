@@ -1,0 +1,64 @@
+<% content_for :page_script do %>
+<script type="text/javascript">
+function showMoreOptions(animate) {
+	if (animate) {
+		$('#more_options').show("blind", 500);	
+	} else {
+		$('#more_options').show();
+	}
+	$('#more_options_link').hide();
+	$('#fewer_options_link').show();
+}
+function hideMoreOptions(animate) {
+	if (animate) {
+		$('#more_options').hide("blind", 500);	
+	} else {
+		$('#more_options').hide();
+	}
+	$('#more_options_link').show();
+	$('#fewer_options_link').hide();
+}
+$(function() {
+	if (<%= hash_is_blank_except?(params[:search], "game_description_like") %>) {
+		hideMoreOptions(false);
+	} else {
+		showMoreOptions(false);
+	}
+	$(".show_available_item").click(function() {
+		$(this).text("Showing...");
+		var href = $(this).attr("href");
+		var div = $(this).parent().parent();
+		$.post(href, function() { $(div).slideUp(); })
+		  .error(function() { alert("We're sorry. There was an error showing this item."); });
+		return false;
+	})
+});
+
+</script>
+<% end %>
+
+<% stylesheet 'my_games' %>
+<% stylesheet 'course' %>
+
+<fieldset>
+	<legend><%= refine_search_text(@search_type) %></legend>
+	<%= render :partial => "search_fields" %>
+</fieldset>
+<br />
+
+<% if @search_type == "hidden" %>
+	<h1>Hidden games in <%= @course.name %> (<%= @available_items_count %> total)</h1>
+	<p><%= link_to "Go to "+@course.name+" class page", :controller => "courses", :action => "show", :id => @course.id %></p>
+<% else %>
+	<h1>Search results (<%= @available_items_count %> total)</h1>
+<% end %>
+
+<% unless @available_items.empty? %>
+	<%= paginate @available_items %>
+	<% @available_items.each do |available_item| %>
+		<%= render :partial => "#{@search_type}_item", :locals => {:item => available_item, :show_in_course => @course} %>
+	<% end %>
+	<%= paginate @available_items %>
+<% else %>
+	<p>No items matched your search terms.</p>
+<% end %>

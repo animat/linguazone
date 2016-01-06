@@ -1,0 +1,45 @@
+<% content_for :page_script do %>
+<script type="text/javascript">
+
+$(function() {
+	$(".help_details").hide();
+	$(".help_link").click(function() {
+		$(this).parent().find(".help_details").slideToggle();
+		return false;
+	})
+});
+
+</script>
+<% end %>
+
+<h1>Game demos in <%= @language.name.titleize %></h1>
+<br />
+
+<% if @demos.empty? %>
+	<p align="center">Sorry, demos for <%= @language.name.titleize%> are not yet available.</p>
+<% else %>
+	<table border="0" cellspacing="2" width="100%" align="center">
+	
+		<% @demos.each_with_index do |demo, index| %>
+			<% if index.modulo(3) == 0 %>
+				<tr>
+			<% end %>
+				<td align="center" width="33%">
+					<%= link_to image_tag("/games/#{demo.activity.swf}/display/icon.jpg"), :controller => "about", :action => "play_demo", :id => demo.game_id %>
+					<div>
+						<%= demo.activity.name %>
+						<%= link_to image_tag("info-help.jpg"), "#", :class => "help_link" %>
+						<div class="help_details">
+							<%= demo.activity.help.html_safe %><br />
+							<%# TODO: Use a lightbox (or something) to have videos appear in layover window %>
+							<%# demo.activity.youtube_embed.html_safe %>
+						</div>
+					</div>
+				</td>
+			<% if index.modulo(3) == 2 %>
+				</tr>
+			<% end %>
+		<% end %>
+	
+	</table>
+<% end %>

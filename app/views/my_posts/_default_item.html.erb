@@ -1,0 +1,19 @@
+<% unless item.post.nil? %>
+	<div class="game_listing" id="<%= dom_id(item) %>">
+		<div class="game_details">
+			<%= link_to image_tag("courses/show/speech_bubble.jpg"), post_path(item) %>
+			<p>
+				<%= item.post.title %>
+				<br />
+				<span class="date">Last updated <%= format_short_date(item.post.updated_at) %></span>
+			</p>
+		</div>
+	
+		<div class="manage_game">
+			<%= link_to "Edit", :controller => "posts", :action => "edit", :id => item.id %>
+			|
+			<%= link_to 'Delete', my_post_path(item), :method => :delete, :confirm => "Are you sure you want to delete this post?" %>
+		</div>
+		<br class="clearFloat" />
+	</div>
+<% end %>

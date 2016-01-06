@@ -1,0 +1,3 @@
+<h2><%= @asset.descrip %></h2>
+<br />
+<p><%= swf_tag 'http://linguazone.s3.amazonaws.com/' + @asset.path + @asset.name + ".swf" , { :height => "700", :width => "700" } %></p>

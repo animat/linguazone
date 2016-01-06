@@ -1,0 +1,50 @@
+<%= form.error_messages %>
+
+<table width="100%" border="0" cellspacing="10">
+  <tr>
+    <td width="40%" align="right" valign="top"><%= form.label :name, "Class name: "%><br /></td>
+    <td>
+      <%= form.text_field :name %>
+      <br />
+      <span class="input_hint">(e.g. "Spanish AP", "6th Grade Latin")</span>
+    </td>
+  </tr>
+  <% if current_user.is_premium_subscriber? %>
+    <tr>
+      <td align="right" valign="top">
+        <%= form.label :code, "Password-protect this page with a class code: " %>
+				<br />
+        <span style="color: green; font-size: .9em">*optional</span>
+      </td>
+      <td>
+        <%= form.text_field :code %>
+        <br />
+        <span class="input_hint">
+          (Leave blank to allow students to access this page without logging in.<br />
+          Only password-protected pages can use audio blogs and student tracking.)
+				</span>
+      </td>
+    </tr>
+  <% else %>
+    <%= form.hidden_field :login_required, :value => false %>
+  <% end %>
+	<% if archiveable %>
+		<tr>
+			<td align="right" valign="top">
+				<%= form.label :archived, "Archive this class" %>
+				<br />
+				<span style="color: green; font-size: .9em">*optional</span>
+			</td>
+			<td>
+				<%= form.check_box :archived %>
+				<br />
+				<span class="input_hint">
+					(Archived classes will not appear for students in the list of classes at your school.)
+				</span>
+			</td>
+		</tr>
+	<% end %>
+</table>
+<br />
+<%= form.hidden_field :user_id, :value => current_user.id %>
+

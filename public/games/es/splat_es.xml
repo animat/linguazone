@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xliff version="1.0" xml:lang="es">
+
+  <file datatype="plaintext" original="splat.fla" source-language="EN">
+    <header></header>
+    <body>
+      <trans-unit id="001" resname="IDS_CONGRATS">
+        <source>¡Felicitaciones!</source>
+      </trans-unit>
+      <trans-unit id="002" resname="IDS_INSTRUCTIONS">
+        <source>Explota cada globo para soltar los pedazos dentro de ellos y luego arrastra los pedazos hacia los espacios para descifrar la respuesta correcta.</source>
+      </trans-unit>
+      <trans-unit id="003" resname="IDS_PLAY_AGAIN">
+        <source>¿Jugar otra vez?</source>
+      </trans-unit>
+      <trans-unit id="004" resname="IDS_PLAY_GAME">
+        <source>¡Juguemos!</source>
+      </trans-unit>
+      <trans-unit id="005" resname="IDS_WIN">
+        <source>¡Excelente trabajo! Terminaste el juego.</source>
+      </trans-unit>
+    </body>
+  </file>
+
+</xliff>

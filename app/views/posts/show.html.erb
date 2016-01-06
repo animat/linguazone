@@ -1,0 +1,241 @@
+<% content_for :page_script do %>
+<script type="text/javascript">
+
+var audioid;
+var jPlayers;
+
+function setAudioID(num) {
+	audioid = num;
+	$("#comment_audio_id").val(num);
+}
+
+$(function() {
+	$("#display_post_area").mouseover(function() {
+		$("#post_controls").addClass("controls").removeClass("hide_controls");
+		$("#post_controls").addClass("remove_spacing").removeClass("hold_spacing");
+	}).mouseout(function() {
+		$("#post_controls").addClass("hide_controls").removeClass("controls");
+		$("#post_controls").addClass("hold_spacing").removeClass("remove_spacing");
+	})
+	$(".new_teacher_note_link").click(function() {
+		var comment_id = $(this).parent().parent().parent().attr('id');
+		$("#"+comment_id+"_new_teacher_note").slideDown();
+		return false;
+	})
+	
+	$(".delete_teacher_note_link").click(function() {
+		var comment_id = $(this).parent().parent().parent().attr('id');
+		$("#"+comment_id+"_teacher_note_text_area").val("");
+		$("#"+comment_id+"_teacher_note_form").submit();
+		$("#"+comment_id+"_teacher_note").slideUp();
+		return false;
+	})
+	
+	$(".cancel_note_link").click(function() {
+		var comment_id = $(this).parent().parent().parent().attr('id');
+		$("#"+comment_id+"_new_teacher_note").slideUp();
+		return false;
+	})
+	
+	$(".rate_comment_star").click(function() {
+		var id = $(this).parent().parent().parent().data('comment-id');
+		var r = $(this).data("rating-num");
+		$.ajax({
+			url: "<%= set_rating_comments_path %>",
+			type: "PUT",
+			data: {"comment_id": id, "rating": r}
+		}).error(function() {
+			alert("Sorry -- there was an error saving your rating in the database.");
+		})
+		return false;
+	})
+	$(".clear_rating").click(function() {
+		var id = $(this).parent().parent().parent().data('comment-id');
+		var r = 0;
+		$.ajax({
+			url: "<%= set_rating_comments_path %>",
+			type: "PUT",
+			data: {"comment_id": id, "rating": r}
+		}).error(function() {
+			alert("Sorry -- there was an error saving your rating in the database.");
+		})
+		return false;
+	})
+	$(".numerical_rating").each(function(index, elem) {
+		convertRatingNumToImage($(elem).parent().parent().attr("id"));
+	})
+	$(".numerical_rating").hide();
+	
+	jPlayers = new Array();
+	$("audio").each(function(index, elem) {
+		var playerContent = '<div id="cp_container_'+index+'" class="cp-container"> \
+				<div class="cp-buffer-holder"> <!-- .cp-gt50 only needed when buffer is > than 50% --> \
+					<div class="cp-buffer-1"></div> \
+					<div class="cp-buffer-2"></div> \
+				</div> \
+				<div class="cp-progress-holder"> <!-- .cp-gt50 only needed when progress is > than 50% --> \
+					<div class="cp-progress-1"></div> \
+					<div class="cp-progress-2"></div> \
+				</div> \
+				<div class="cp-circle-control"></div> \
+				<ul class="cp-controls"> \
+					<li><a class="cp-play" tabindex="1">play</a></li> \
+					<li><a class="cp-pause" style="display:none;" tabindex="1">pause</a></li> <!-- Needs the inline style here, or jQuery.show() uses display:inline instead of display:block --> \
+				</ul> \
+			</div>';
+		var playerId = "jquery_player_"+index;
+		var playerContainer = '<div id="'+playerId+'" class="cp-jplayer"></div>';
+		var $audio = $(elem);
+		var audioSrc = $audio.find("source")[0].src;
+		console.log(audioSrc);
+		
+		$("body").append(playerContainer);
+		$audio.parent().append(playerContent);
+		var player = new CirclePlayer("#"+playerId, {
+			mp3: audioSrc
+		}, {
+			cssSelectorAncestor: "#cp_container_"+index,
+			swfPath: "/swfs",
+			supplied: "mp3",
+			smoothPlayBar: true,
+			keyEnabled: true,
+			volume: 1,
+			wmode: "window"
+		});
+		$audio.hide();
+		jPlayers.push(player);
+	});
+});
+function hideCommentControls(id) {
+	$("#"+id+"_controls").removeClass("controls").addClass("hide_controls");
+}
+function showCommentControls(id) {
+	$("#"+id+"_controls").addClass("controls").removeClass("hide_controls");
+}
+function convertRatingNumToImage(id) {
+	var num = parseInt($("#"+id+"_rating").html());
+	$("#"+id+"_rating").hide();
+	var star_checked = '<%= image_tag "star-checked.png" %>';
+	var star_unchecked = '<%= image_tag "star-unchecked.png" %>';
+	var str = "";
+	var a = $("#"+id+"_ratings_links a");
+	for(var i = 0; i < num; i++) {
+		str += star_checked;
+		$(a[i]).html(star_checked);
+	}
+	for (var i = num; i < 5; i++) {
+		str += star_unchecked;
+		$(a[i]).html(star_unchecked);
+	}
+	if (num == 0) {
+		$("."+id+"_rating_images").hide();
+		$("#"+id+"_ratings_links .clear_rating").hide();
+	} else {
+		$("."+id+"_rating_images").html(str).show();
+		$("#"+id+"_ratings_links .clear_rating").html('<%= image_tag "clear-x.png" %>');
+		$("#"+id+"_ratings_links .clear_rating").show();
+	}
+}
+
+</script>
+<% end %>
+
+<% stylesheet 'waverec/basic.css' %>
+<% stylesheet 'waverec/main.css' %>
+
+<% javascript 'waverec/recorder' %>
+<% javascript 'waverec/basic.js' %>
+<% javascript 'jplayer/jquery.jplayer.min.js' %>
+<% javascript 'jplayer/jquery.grab.js' %>
+<% javascript 'jplayer/jquery.transform2d.js' %>
+<% javascript 'jplayer/mod.csstransforms.min.js' %>
+<% javascript 'jplayer/circle.player.js' %>
+<% stylesheet 'circle_player' %>
+<% stylesheet 'post' %>
+
+<% content_for :title do %> LinguaZone - <% "#{@course.name} - " unless @course.nil? %> Audio Blog - <%= @post.title %> <% end %>
+
+<div id="display_post_area">
+	<div id="title" >
+		<h1><%= @post.title %></h1>
+		<p class="date"><%= format_date(@post.updated_at) %></p>
+		<br class="clearFloat" />
+	</div>
+
+	<div id="post">
+		<% if @post.audio_id == 0 %>
+			<p><%= @post.content %></p>
+		<% else %>
+			<div style="margin-top: 10px">
+				<div style="float: left; margin: 0px 15px;">
+					<div class="audio_player">
+						<audio controls>
+							<source src="<%= audio_clip_s3_url(@post.audio_id) %>" />
+						</audio>
+					</div>
+				</div>
+				<p><%= @post.content %></p>
+				<br class="clearFloat" />
+			</div>
+		<% end %>
+    <% if @post.ab_media_resources.any? %>
+      <div id="addedMedia">
+        <% @post.ab_media_resources.each do |m| %>
+          <% unless m.nil? %>
+            <div><%= display_optional_media_small(m).html_safe %></div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+		<% if is_teacher_for(@course) %>
+			<ul id="post_controls" class="hide_controls">
+				<li>Teacher controls:</li>
+				<li><%= link_to "Edit post", edit_post_path(@ap) %></li>
+				<li><%= link_to "Delete post", post_path(@ap), :method => :delete, :confirm => "Are you sure you want to delete this post?" %></li>
+			</ul>
+		<% end %>
+	</div>
+</div>
+
+<p id="backToClass" class="hold_spacing"><%= link_to 'Back to class page', course_path(@course) %></p>
+
+<hr />
+
+<% if current_user.nil? %>
+	<div align="center">
+		<p><strong>You must login</strong> to participate in this audio blog.</p>
+		<p>Please <%= link_to "return to the login window", :controller => "students", :action => "login" %>, or <%= link_to "let us know", contact_path %> if you're running into any problems.</p>
+	</div>
+<% else %>
+	<div id="comments">
+		<h2>Comments</h2>
+		<% if @ap.comments.length == 0 %>
+			<p>No comments have been left on this post yet.</p>
+		<% else %>
+			<% if @post.shared? %>
+				<%= paginate @student_comments %>
+				<% @student_comments.each do |sc| %>
+					<%= render :partial => 'comment', :locals => {:comment => sc, :post => @post} %>
+				<% end %>
+			<% else %>
+				<% if is_teacher_for (@course) %>
+					<p>Students cannot see each other's comments &mdash; only you can see student comments.</p>
+					<%= paginate @student_comments %>
+					<% @student_comments.each do |sc| %>
+						<%= render :partial => 'comment', :locals => {:comment => sc, :post => @post} %>
+					<% end %>
+				<% else %>
+					<p>You have left <%= pluralize(@solo_comments.length, 'comment') %> on this post.</p>
+					<% @solo_comments.each do |sc| %>
+						<%= render :partial => 'comment', :locals => {:comment => sc, :post => @post} %>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	</div>
+
+	<%= render :partial => 'new_comment' %>
+
+
+	<%= link_to 'Back to class page', course_path(@course) %>
+<% end %>

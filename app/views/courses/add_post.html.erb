@@ -1,0 +1,20 @@
+<h1>Add a post to <%= @course.name %></h1>
+<p><%= link_to "Return to "+@course.name+" class page", :controller => "courses", :action => "show", :id => @course.id %></p>
+
+
+<br />
+<div align="center">
+	<%= link_to :controller => "posts", :action => "new", :course_id => @course.id do %>
+		<div class="big_button" style="width: 200px">
+			<span>Create a post</span>
+		</div>
+	<% end %>
+		
+	<%= link_to "/my_posts/search?search[user_id_equals]=" + String(current_user.id) +
+					"&search[course_id_equals]=" + String(@course.id) +
+					"&search[hidden_equals]=1" do %>
+		<div class="big_button" style="width: 200px">
+			<span>Show a hidden post</span>
+		</div>
+	<% end %>
+</div>

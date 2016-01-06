@@ -1,59 +1,82 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
-# Ruby version
-ruby '2.2.1'
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
-# Use postgresql as the database for Active Record
+ruby "1.9.3"
+
+gem 'rdoc'
+gem 'rails3-jquery-autocomplete', "~> 1.0.10"
+gem 'rails', '~> 3.2.11'
+gem "aws-sdk"
+gem "authlogic", "3.2.0"
+gem 'bcrypt-ruby', "3.0.1"
+gem 'scrypt', "1.0.2"
+gem "meta_search", ">= 1.1.0.pre"
+gem "declarative_authorization"
+gem "rexml-expansion-fix"
+gem 'paperclip'
+gem "rmagick"
+gem 'simple_form'
+gem 'dynamic_form'
 gem 'pg'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'seed-fu'
+gem 'activeadmin'
+gem 'kaminari'
+gem 'happymapper'
+gem 'swf_fu', '>= 2.0'
+gem "airbrake"
+gem "omniauth"
+gem "omniauth-twitter"
+gem "omniauth-openid"
+gem "omniauth-facebook"
+gem "spreadsheet"
+gem "nokogiri", "1.5.10"
+gem "transloadit-rails"
+gem "nested_form_fields"
+gem "youtube_addy"
+gem "rack-cors", :require => "rack/cors"
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+# Rails 3.1 - Asset Pipeline
+gem 'json'
+gem 'sass-rails'
+gem 'coffee-script'
+gem 'uglifier'
+gem 'jquery-rails', "~> 2.1"
+gem "rack-timeout"
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Bower Rails Gem to link Rails app with Bower
-gem 'bower-rails'
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-  gem "rspec-rails"
-  gem "capybara"
-end
-
-group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-end
-
-gem "foreman"
-group :production, :staging do
+group :production do
+  gem "unicorn"
+  gem "newrelic_rpm"
+  gem 'therubyracer'
   gem "rails_12factor"
-  gem "rails_stdout_logging"
-  gem "rails_serve_static_assets"
+  #gem "dalli" # TODO: Temporarily removed while loading errors persist 9/14
+	gem "SystemTimer", :require => "system_timer", :platforms => :ruby_18
 end
-
+#
+group :development, :test do
+  gem 'spork',           '~> 0.9.0.rc9'
+#  gem 'guard'
+#  gem 'guard-spork'
+#  gem 'guard-rspec'
+  gem 'rack-test'
+  gem 'rspec-rails'
+  gem "launchy"
+  gem "database_cleaner"
+  #gem "ruby-debug", :platforms => [:mri_18]
+  #gem "ruby-debug19", :platforms => [:mri_19]
+  gem "debugger"
+  #gem "factory_girl"
+  gem "factory_girl_rails", "1.1.0"
+  gem 'pry-rails'
+  gem 'bullet', "2.3.1"
+  gem "dotenv-rails"
+end
+#
+group :test do
+  gem "cucumber-rails", "~> 1.4.0"
+  gem "rubyzip", "0.9.9"
+  gem "selenium-webdriver"
+#  gem "mocha"
+  gem "capybara", "1.1.4"
+#  gem "shoulda"
+  gem "timecop", "0.5.0"
+  gem 'email_spec'
+end

@@ -1,0 +1,21 @@
+<div class="available_post" id="<%= dom_id(showing_post) %>" onmouseover="this.className = 'available_post_controls'" onmouseout="this.className = 'available_post'">
+		<%= link_to :controller => "posts", :action => "show", :id => showing_post.post.id do %><h3><%= showing_post.post.title %></h3><% end %>
+		<span class="date"><%= format_date(showing_post.post.updated_at)%></span>
+		<br class="clearFloat" />
+		<%= link_to (image_tag 'courses/show/speech_bubble.jpg'), :controller => "posts", :action => "show", :id => showing_post.post.id %>
+		<p><%= truncate(showing_post.post.content, :length => 300, :separator => " ") %> <%= link_to "More...", :controller => "posts", :action => "show", :id => showing_post.post.id %></p>
+	<br class="clearFloat" />
+	<% if is_teacher_for(@course) %>
+		<ul>
+			<li>Teacher controls:</li>
+			<li><%= link_to "Edit this post", :controller => "posts", :action => "edit", :id => showing_post.post.id %></li>
+			<li>
+				<%# link_to_remote "Hide from students",
+						:loading => "$('hide_"+dom_id(showing_post)+"').replace('Hiding...')",
+						:url => {:controller => "courses", :action => "hide_post", :id => showing_post.id },
+						:html => {:id => "hide_"+dom_id(showing_post) } 
+				%>
+			</li>
+		</ul>
+	<% end %>
+</div>

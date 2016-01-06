@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xliff version="1.0" xml:lang="de">
+
+  <file datatype="plaintext" original="alphabetTree.fla" source-language="EN">
+    <header></header>
+    <body>
+      <trans-unit id="001" resname="IDS_CONGRATS">
+        <source>Du hast es geschafft! Das Spiel ist beendet. Gute Arbeit.</source>
+      </trans-unit>
+      <trans-unit id="002" resname="IDS_INSTRUCTIONS">
+        <source>Zieh die Antworten vom Boden zum Baum.</source>
+      </trans-unit>
+      <trans-unit id="003" resname="IDS_PLAY_AGAIN">
+        <source>Nochmal?</source>
+      </trans-unit>
+      <trans-unit id="004" resname="IDS_PLAY_GAME">
+        <source>Los geht&apos;s!</source>
+      </trans-unit>
+    </body>
+  </file>
+
+</xliff>
