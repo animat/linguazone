@@ -59,6 +59,7 @@ GEM
     bourbon (3.2.3)
       sass (~> 3.2)
       thor
+    bower-rails (0.10.0)
     builder (3.0.4)
     bullet (2.3.1)
       uniform_notifier (~> 1.0.0)
@@ -354,6 +355,7 @@ DEPENDENCIES
   authlogic (= 3.2.0)
   aws-sdk
   bcrypt-ruby (= 3.0.1)
+  bower-rails
   bullet (= 2.3.1)
   capybara (= 1.1.4)
   coffee-script
@@ -406,6 +408,3 @@ DEPENDENCIES
   uglifier
   unicorn
   youtube_addy
-
-BUNDLED WITH
-   1.11.2

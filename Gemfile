@@ -34,6 +34,9 @@ gem "nested_form_fields"
 gem "youtube_addy"
 gem "rack-cors", :require => "rack/cors"
 
+# Bower Rails Gem to link Rails app with Bower
+gem 'bower-rails'
+
 # Rails 3.1 - Asset Pipeline
 gem 'json'
 gem 'sass-rails'

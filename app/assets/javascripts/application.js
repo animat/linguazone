@@ -4,11 +4,14 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require jquery
-//= require jquery-ui
+//= require jquery/dist/jquery.min
+//= require jquery-ui/jquery-ui.min
 //= require jquery_ujs
 //= require swf_fu
 //= require autocomplete-rails
 //= require flash_messages
 //= require nested_form_fields
 //= require waverec/lgz-recorder
+//= require bootstrap/dist/js/bootstrap.min
+//= require angular/angular.min
+//= require angular-ui-router/release/angular-ui-router.min

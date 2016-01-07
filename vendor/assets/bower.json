@@ -1,0 +1,10 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "jquery-ui": "latest",
+    "angular": "latest",
+    "bootstrap": "latest",
+    "angular-ui-router": "latest",
+    "angular-bootstrap": "latest"
+  }
+}
