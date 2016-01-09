@@ -1,23 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<xliff version="1.0" xml:lang="en">
-
-  <file datatype="plaintext" original="swish.fla" source-language="EN">
-    <header></header>
-    <body>
-      <trans-unit id="001" resname="IDS_INSTRUCTIONS">
-        <source>Type in the correct answer to respond to the prompt, then shoot the ball into the  hoop to match your answer.Good luck!</source>
-      </trans-unit>
-      <trans-unit id="002" resname="IDS_WIN">
-        <source>You beat Swish! Good job!</source>
-      </trans-unit>
-      <trans-unit id="003" resname="IDS_PLAY">
-        <source>Play the Game</source>
-      </trans-unit>
-      <trans-unit id="004" resname="IDS_PLAY_AGAIN">
-        <source>Play again?</source>
-      </trans-unit>
-    </body>
-  </file>
-
-</xliff>
