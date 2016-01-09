@@ -35,39 +35,55 @@ function showOverview() {
 <% end %>
 <% stylesheet 'about' %>
 
-<h1 align="center">Customize your own audio blog, games, and word lists</h1>
+<h1 align="center">Step 1: Choose your game</h1>
 <p align="center">
-	for you and your students to use at school or home.
+	Select a game for which you want to generate the XML.
 	<%= link_to "Watch the overview video again.", {}, :id => "overview_link" %>
 </p>
 <br />
 <div id="container">
-	<div id="player">
-		<object width="600" height="400"><param name="movie" value="http://www.youtube.com/v/BkhFTVcrUbQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&autoplay=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/BkhFTVcrUbQ&hl=en_US&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6&autoplay=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="400"></embed></object>
-	</div>
-	<div id="categories">
-		<div class="category">
-			<h2>Games</h2>
-			<p>Customize over 20 colorful, fun games to challenge your students</p>
-			<p class="links"><%= link_to_function "&larr; View tutorial".html_safe, "showTutorial('games');" %> | <%= link_to "Learn more &rarr;".html_safe, :action => "games" %></p>
-		</div>
-		<div class="category">
-			<h2>Word lists</h2>
-			<p>Create study tools for students to use with or without a computer</p>
-			<p class="links"><%= link_to_function "&larr; View tutorial".html_safe, "showTutorial('word_lists');" %> | <%= link_to "Learn more &rarr;".html_safe, :action => "word_lists" %></p>
-		</div>
-		<div class="category" style="border-bottom: 0">
-			<h2>Audio blogs</h2>
-			<p>Teacher posts &amp; student comments can be text, audio, or both</p>
-			<p class="links"><%= link_to_function "&larr; View tutorial".html_safe, "showTutorial('audio_blog');" %> | <%= link_to "Learn more &rarr;".html_safe, :action => "audio_blogs" %></p>
-		</div>
-	</div>
-	<br class="clearFloat" />
+	<table>
+		<tr>
+			<td><button class="customButtom" disabled="true">Alphabet Tree</button></td>
+			<td><button class="customButtom" disabled="true">Bath Tub Bubbles</button></td>
+			<td><button class="customButtom" disabled="true">Cliffhanger</button></td>
+			<td><button class="customButtom" disabled="true">Downfall</button></td>
+		</tr>
+
+		<tr>
+			<td><button class="customButtom" disabled="true">Ferris Wheel</button></td>
+			<td><button class="customButtom" disabled="true">Fishing</button></td>
+			<td><button class="customButtom" disabled="true">Garden Grows</button></td>
+			<td><button class="customButtom" style="background-color: white">Leap Frog</button></td>
+		</tr>
+
+		<tr>
+			<td><button class="customButtom" disabled="true">Magnetized</button></td>
+			<td><button class="customButtom" disabled="true">Mantis</button></td>
+			<td><button class="customButtom" disabled="true">Number Pop</button></td>
+			<td><button class="customButtom" disabled="true">On The Air</button></td>
+		</tr>
+
+		<tr>
+			<td><button class="customButtom" disabled="true">Oracle</button></td>
+			<td><button class="customButtom" disabled="true">Poker Paris</button></td>
+			<td><button class="customButtom" disabled="true">Quiz Show</button></td>
+			<td><button class="customButtom" disabled="true">Sentence Swiper</button></td>
+		</tr>
+
+		<tr>
+			<td><button class="customButtom" disabled="true">Shopping</button></td>
+			<td><button class="customButtom" disabled="true">Slingshot</button></td>
+			<td><button class="customButtom" disabled="true">Splat</button></td>
+			<td><button class="customButtom" disabled="true">Swish</button></td>
+		</tr>
+
+		<tr>
+			<td><button class="customButtom" disabled="true">Thumper</button></td>
+		</tr>
+	</table>
 </div>
-<div id="now_playing">
-	<h2>Now watching: Highlight reel of LinguaZone games</h2>
-	<p>Take a quick look at a number of different games customized by world language teachers.</p>
-</div>
+
 
 <br /><br />
 <p align="center">Get started in just a few minutes with a <%= link_to "free 2-week trial", trial_path %> or <%= link_to "learn more about LinguaZone", :action => "features" %>.</p>
