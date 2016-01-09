@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xliff version="1.0" xml:lang="fr">
+
+  <file datatype="plaintext" original="magnetized.fla" source-language="EN">
+    <header></header>
+    <body>
+      <trans-unit id="001" resname="IDS_CONGRATS">
+        <source>Félicitations! Tu as terminé le jeu.</source>
+      </trans-unit>
+      <trans-unit id="002" resname="IDS_INSTRUCTIONS">
+        <source>Arrange tous les aimants pour qu&apos;ils completent l&apos;expression.  Traine et laisse tomber les aimants l&apos;un sur l&apos;autre pour les faire mettre sur place.  </source>
+      </trans-unit>
+      <trans-unit id="003" resname="IDS_PLAY_AGAIN">
+        <source>Encore une fois?</source>
+      </trans-unit>
+      <trans-unit id="004" resname="IDS_PLAY_GAME">
+        <source>Viens jouer!</source>
+      </trans-unit>
+    </body>
+  </file>
+
+</xliff>

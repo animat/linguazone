@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xliff version="1.0" xml:lang="en">
+
+  <file datatype="plaintext" original="slingshot.fla" source-language="EN">
+    <header></header>
+    <body>
+      <trans-unit id="001" resname="IDS_CONGRATS">
+        <source>Congratulations</source>
+      </trans-unit>
+      <trans-unit id="002" resname="IDS_INSTRUCTIONS">
+        <source>Pull and release the slingshot to shoot the correct balloon</source>
+      </trans-unit>
+      <trans-unit id="003" resname="IDS_OUT_OF">
+        <source>out of</source>
+      </trans-unit>
+      <trans-unit id="004" resname="IDS_PLAY">
+        <source>Play</source>
+      </trans-unit>
+      <trans-unit id="005" resname="IDS_PLAY_AGAIN">
+        <source>Play again?</source>
+      </trans-unit>
+      <trans-unit id="006" resname="IDS_WIN">
+        <source>Great job! You beat the game.</source>
+      </trans-unit>
+    </body>
+  </file>
+
+</xliff>

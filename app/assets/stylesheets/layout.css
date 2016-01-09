@@ -463,11 +463,7 @@ ul#teacherMenu li {
   font-size: .8em;
 }
 
-.customButtom {
-  width: 193px;
-    height: 45px;
-    font-size: 15px;
+.customText {
     color: #FF6600;
-    border-radius: 10px;
-    margin: 5px 5px 5px 5px;
+    text-align: center;
 }

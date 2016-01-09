@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xliff version="1.0" xml:lang="es">
+
+  <file datatype="plaintext" original="fishing.fla" source-language="EN">
+    <header></header>
+    <body>
+      <trans-unit id="001" resname="IDS_CONGRATS">
+        <source>¡Felicitaciones!</source>
+      </trans-unit>
+      <trans-unit id="002" resname="IDS_CONGRATS_SUB">
+        <source>¡Excelente trabajo! Terminaste el juego.</source>
+      </trans-unit>
+      <trans-unit id="003" resname="IDS_INSTRUCTIONS">
+        <source>Atrapa las respuestas correctas al escojer el pescado que corresponde a la pista en el cielo</source>
+      </trans-unit>
+      <trans-unit id="004" resname="IDS_PLAY_AGAIN_BTN">
+        <source>¿Jugar otra vez?</source>
+      </trans-unit>
+      <trans-unit id="005" resname="IDS_PLAY_BTN">
+        <source>¡Juguemos!</source>
+      </trans-unit>
+    </body>
+  </file>
+
+</xliff>

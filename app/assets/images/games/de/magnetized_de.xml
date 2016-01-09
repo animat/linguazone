@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xliff version="1.0" xml:lang="de">
+
+  <file datatype="plaintext" original="magnetized.fla" source-language="EN">
+    <header></header>
+    <body>
+      <trans-unit id="001" resname="IDS_CONGRATS">
+        <source>Super! Du hast das Spiel beendet.</source>
+      </trans-unit>
+      <trans-unit id="002" resname="IDS_INSTRUCTIONS">
+        <source>Sortiere die Magneten, sodass der Satz vervollständigt werden kann. Ziehe dann die Magneten übereinander und lass sie an der richtigen Stelle fallen.</source>
+      </trans-unit>
+      <trans-unit id="003" resname="IDS_PLAY_AGAIN">
+        <source>Nochmal?</source>
+      </trans-unit>
+      <trans-unit id="004" resname="IDS_PLAY_GAME">
+        <source>Los geht&apos;s!</source>
+      </trans-unit>
+    </body>
+  </file>
+
+</xliff>
