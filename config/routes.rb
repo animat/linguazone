@@ -89,6 +89,13 @@ Linguazone::Application.routes.draw do
       match "auth/sign_in" => "user_sessions#create", :via => :post
       match "auth/sign_out" => "user_sessions#destroy", :via => :delete
     end
+    namespace :v3 do
+      resources :about, only: [:get_languages] do
+        collection do
+          get :get_languages
+        end
+      end
+    end
   end
 
   resources :courses do

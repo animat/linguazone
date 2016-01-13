@@ -1,5 +1,4 @@
 class AboutController < ApplicationController
-  
   def index
     if session[:school] != nil
       session[:school] = nil

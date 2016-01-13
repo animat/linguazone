@@ -467,3 +467,31 @@ ul#teacherMenu li {
     color: #FF6600;
     text-align: center;
 }
+
+.customOptions {
+  border-style: solid;
+    border-color: orange;
+    border-width: 2px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 13px #888889;
+    width: 85%;
+    margin: 15px 0px 15px 65px;
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+}
+
+.customButton {
+    width: 105px;
+    height: 28px;
+    font-size: 15px;
+    border-radius: 7px;
+    border-color: orange;
+}
+
+.customDropdown {
+    border-style: solid;
+    border-radius: 4px;
+    border-color: orange;
+    width: 125px;
+    height: 25px;
+}

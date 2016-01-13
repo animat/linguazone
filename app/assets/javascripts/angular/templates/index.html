@@ -1,1 +1,47 @@
-Hello brodsfsdfsdf
+<div id="body">
+	<div id="body_header"></div>
+	<div class="wrapper">
+
+		<h1 align="center">{{heading}}</h1>
+		<p align="center">
+			{{heading_description}}
+		</p>
+		<br />
+		<div id="container">
+			<div class="customOptions">
+				<div ng-show="step==1">
+					<label>Select Language</label>
+					<br />
+					<br />
+					<select class="customDropdown" 
+							ng-model="language"
+							ng-options="language.id as language.name for language in languages"
+							ng-change="editXML()">
+					</select>
+					<br />
+					<br />
+					<button class="customButton" ng-click="step=2; changeText();">Next</button>
+				</div>
+				<div ng-show="step==2">
+					<label>Name: </label> <input type="textfield">
+					<label>Description: </label> <input type="textfield">
+					<button ng-click="step=1">Prevoius</button>
+					<button ng-click="step=3">Next</button>
+				</div>
+				<div ng-show="step==3">
+					<label>Select Game: </label>
+					<button ng-click="step=2">Prevoius</button>
+					<button>Submit</button>
+				</div>
+			</div>
+			
+			<div class="customOptions">
+				<textarea rows="30" cols="30" disabled="">
+					{{xmlString}}
+				</textarea>
+				
+			</div>
+		</div>
+	</div>
+	<div id="body_footer"></div>
+</div>

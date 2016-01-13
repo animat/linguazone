@@ -1,9 +1,10 @@
-var lz_custom = angular.module('lz_custom', [
+var lz = angular.module('lz', [
 				'ui.router',
-            	'ui.bootstrap'
+            	'ui.bootstrap',
+            	'cb.x2js'
     			]);
 
-lz_custom.config(["$httpProvider", function ($httpProvider) {
+lz.config(["$httpProvider", function ($httpProvider) {
         csrfToken = $('meta[name=csrf-token]').attr('content');
         $httpProvider.defaults.headers.post['X-CSRF-Token'] = csrfToken;
         $httpProvider.defaults.headers.put['X-CSRF-Token'] = csrfToken;

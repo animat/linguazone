@@ -20,14 +20,16 @@
 	  _gaq.push(['_setDomainName', 'linguazone.com']);
 	  _gaq.push(['_trackPageview']);
 	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
 	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	  })();
 	</script>
 	<% end %>
 </head>
-<body ontouchstart="">
+<body ontouchstart="" ng-app="lz">
   <div id="header">
     <%= link_to root_path do %>
       <div id="header_home_link"></div>
@@ -46,25 +48,8 @@
       <% end %>
     </div>
   </div>
-  <div id="body">
-    <div id="body_header"></div>
-    <div class="wrapper">
-      <% unless flash[:notice].nil? %>
-        <p class="flash_notice flash_msg"><%= flash[:notice]%></p>
-      <% end %>
-		<% unless flash[:success].nil? %>
-			<p class="flash_success flash_msg"><%= flash[:success]%></p>
-		<% end %>
-		<% unless flash[:info].nil? %>
-        <p class="flash_info flash_msg"><%= flash[:info]%></p>
-      <% end %>
-      <% unless flash[:error].nil? %>
-        <p class="flash_error flash_msg"><%= flash[:error] %></p>
-      <% end %>
-      <%= yield %>
-    </div>
-    <div id="body_footer"></div>
-  </div>
+  <div ui-view=""></div>
+  
   <div id="footer">
     <div id="animat_links">
       <div id="prima_lingua">
