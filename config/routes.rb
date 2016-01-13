@@ -93,6 +93,7 @@ Linguazone::Application.routes.draw do
       resources :about, only: [:get_languages] do
         collection do
           get :get_languages
+          get :get_activities
         end
       end
     end

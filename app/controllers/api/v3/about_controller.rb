@@ -3,4 +3,9 @@ class  Api::V3::AboutController < ApplicationController
 		@languages = Language.all(:order => "name")
 		render json: @languages
 	end
+
+	def get_activities
+		@activities = Activity.all(:order => "name")
+		render json: @activities
+	end
 end

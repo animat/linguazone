@@ -33,14 +33,32 @@
 					<button class="customButton" ng-click="step=3; changeText();">Next</button>
 				</div>
 				<div ng-show="step==3">
-					<label>Select Game: </label>
-					<button ng-click="step=2">Prevoius</button>
-					<button>Submit</button>
+					<div ng-repeat="activity in activities" class="customText" style="width: 20%; float: left">
+						<a href="" ng-click="leapFrog(activity.swf)"><img type="image" ng-src="/assets/games/{{activity.swf}}/icon-small.jpg" alt="No Image"/></a>
+						<br />
+						<p>{{activity.name}}</p>
+					</div>
+					<br />
+					<br />
+					<button class="customButton" ng-click="step=2; changeText();">Prevoius</button>
+				</div>
+				<div ng-show="step==4">
+					<div ng-repeat="meta in metaData">
+						<label>Question: </label> <input class="customTextbox" type="textfield" ng-model="meta.question">
+						<label>Answer: </label> <input class="customTextbox" type="textfield" ng-model="meta.response"><br /><br />
+					</div>
+					<br />
+					<button class="customButton" ng-click="addToMeta()">Add Q/A</button>
+					<button class="customButton" ng-click="removeFromMeta()">Remove Q/A</button>
+					<br />
+					<br />
+					<button class="customButton" ng-click="step=3; changeText();">Prevoius</button>
+					<button class="customButton" ng-click="submit()">Create</button>
 				</div>
 			</div>
 			
 			<div class="customOptions">
-				<textarea rows="30" cols="30" disabled="">
+				<textarea rows="20" cols="43" disabled="">
 					{{xmlString}}
 				</textarea>
 				

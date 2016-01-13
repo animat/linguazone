@@ -10,6 +10,7 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 		$scope.step = 1;
 		$scope.heading = 'Step 1: Select a language';
 		$scope.heading_description = 'Select a language for activity.';
+		$scope.metaData = [{question: '', response: ''}];
 		$scope.jsonObj = 	{ 
      						xml: {}
 						};
@@ -18,6 +19,16 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 		promise.then(
 			function (result) {
 				$scope.languages = result;
+			}
+			, function (reason) {
+				alert('Languages cound not be fetched');
+			}
+		);
+
+		var promise = HomeService.getActivities();
+		promise.then(
+			function (result) {
+				$scope.activities = result;
 			}
 			, function (reason) {
 				alert('Languages cound not be fetched');
@@ -47,18 +58,34 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 			$scope.jsonObj["xml"]["description"] = {text : $scope.description_name};
 		};
 
+		// Include Q/A to XML metadara
+		if ($scope.metaData[0].question !== '' && $scope.metaData[0].response !== ''){
+			var metaArray = [];
+			for (var i=0; i < $scope.metaData.length; i++){
+				if ($scope.metaData[i].question !== '' && $scope.metaData[i].question !== ''){
+					metaArray.push({node : {
+						question: {
+							_content: $scope.metaData[i].question, _name: getSpecificLanguage($scope.language).name, _type: 'text'},
+							response: {
+								_content: $scope.metaData[i].response, _name: 'lang', _type: 'text' 
+							}
+					}});
+				}
+			}
+			$scope.jsonObj["xml"]["gamedata"] = metaArray;
+			convertToXML($scope.jsonObj);
+		}
+
 		if (typeof($scope.language) !== 'undefined' && $scope.language !== ''){
 			var language = getSpecificLanguage($scope.language);
 			$scope.jsonObj["xml"]["language"] = language.name; 
 			convertToXML($scope.jsonObj);
 		}
-		// for (var key in $scope.jsonObj) {
-  //            if (key === 'xml') {
-  //              console.log($scope.jsonObj[key]);
-  //            }
-  //       }
-
 	};
+
+	$scope.addMetaToXML = function(meta_to_add){
+
+	}
 
 	getSpecificLanguage = function(lang_id){
 		return $filter('filter')($scope.languages, function (language) {
@@ -81,6 +108,27 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 			$scope.heading_description = 'Provide metadata required for activity';
 		}
 	};
+
+	$scope.leapFrog = function(activity_name){
+		if(activity_name == 'leapFrog'){
+			$scope.step = 4;
+			$scope.changeText();
+		}
+	};
+
+	$scope.addToMeta = function(meta_to_add){
+		$scope.metaData.push({question: '', response: ''});
+		$scope.editXML();
+	};
+
+	$scope.removeFromMeta = function(){
+		$scope.metaData.pop();
+		$scope.editXML();
+	}
+
+	$scope.submit = function(){
+		alert('Success');
+	}
 };
 
 lz.controller('HomeCtrl', HomeCtrl);
