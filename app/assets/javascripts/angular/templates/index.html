@@ -16,17 +16,21 @@
 					<select class="customDropdown" 
 							ng-model="language"
 							ng-options="language.id as language.name for language in languages"
-							ng-change="editXML()">
+							ng-change="editXML();">
 					</select>
 					<br />
 					<br />
 					<button class="customButton" ng-click="step=2; changeText();">Next</button>
 				</div>
 				<div ng-show="step==2">
-					<label>Name: </label> <input type="textfield">
-					<label>Description: </label> <input type="textfield">
-					<button ng-click="step=1">Prevoius</button>
-					<button ng-click="step=3">Next</button>
+					<label>Name: </label> <input class="customTextbox" type="textfield" ng-change="editXML();" ng-model="activity_name">
+					<br />
+					<br />
+					<label style="padding-left: 61px;">Description: </label> <input class="customTextbox" type="textfield" style="width: 300px;" ng-change="editXML();" ng-model="description_name">
+					<br />
+					<br />
+					<button class="customButton" ng-click="step=1; changeText();">Prevoius</button>
+					<button class="customButton" ng-click="step=3; changeText();">Next</button>
 				</div>
 				<div ng-show="step==3">
 					<label>Select Game: </label>
