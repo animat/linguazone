@@ -21,8 +21,6 @@
 //= require angular-bootstrap/ui-bootstrap.min
 //= require angular/app
 //= require angular/route/routes
-//= require_tree ./angular/factories
-//= require_tree ./angular/directives
 //= require_tree ./angular/controllers
 //= require_tree ./angular/services
 //= require_tree ./angular/templates
