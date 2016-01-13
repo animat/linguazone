@@ -14,6 +14,9 @@
 //= require waverec/lgz-recorder
 //= require bootstrap/dist/js/bootstrap.min
 //= require angular/angular.min
+//= require x2js/xml2json.min
+//= require angular-x2js/src/x2js
+//= require vkbeautify
 //= require angular/app
 //= require angular/route/routes
 //= require_tree ./angular/factories
@@ -23,6 +26,3 @@
 //= require_tree ./angular/templates
 //= require angular-ui-router/release/angular-ui-router.min
 //= require angular-bootstrap/ui-bootstrap.min
-//= require x2js/xml2json.min
-//= require angular-x2js/src/x2js
-//= require vkbeautify
