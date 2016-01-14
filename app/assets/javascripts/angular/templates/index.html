@@ -48,12 +48,13 @@
 						<label>Answer: </label> <input class="customTextbox" type="textfield" ng-model="meta.response"><br /><br />
 					</div>
 					<br />
-					<button class="customButton" ng-click="addToMeta()">Add Q/A</button>
-					<button class="customButton" ng-click="removeFromMeta()">Remove Q/A</button>
+					<button class="customButton" style="background-color: green; border-color: black;" ng-click="addToMeta()">Add Q/A</button>
+					<button class="customButton" style="background-color: red; border-color: black;" ng-click="removeFromMeta()">Remove Q/A</button>
 					<br />
 					<br />
-					<button class="customButton" ng-click="step=3; changeText();">Prevoius</button>
-					<button class="customButton" ng-click="submit()">Create</button>
+					<br />
+					<button class="customButton" style="width: 125px;" ng-click="step=3; changeText();">Prevoius</button>
+					<button class="customButton" style="width: 125px;" ng-click="submit()">Create</button>
 				</div>
 			</div>
 			
