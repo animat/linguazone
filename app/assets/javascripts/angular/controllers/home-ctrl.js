@@ -97,26 +97,28 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 		})[0];
 	};
 
-	$scope.changeText = function(){
-		if ($scope.step === 1){
-			$scope.heading = 'Step 1: Select a language';
-			$scope.heading_description = 'Select a language for activity.';
-		}else if($scope.step === 2){
-			$scope.heading = 'Step 2: Select an activity';
-			$scope.heading_description = 'Select an activity to generate XML for.';
-		}else if($scope.step === 3){
-			$scope.heading = 'Step 3: Provide name for activity';
-			$scope.heading_description = 'Provide name and description for activity.';
-		}else if($scope.step === 4){
-			$scope.heading = 'Step 4: Provide activity data';
-			$scope.heading_description = 'Provide metadata required for activity';
+	$scope.changeText = function(current_step, new_step_number){
+		if (validate_forms(current_step)){
+			$scope.step = new_step_number;
+			if ($scope.step === 1){
+				$scope.heading = 'Step 1: Select a language';
+				$scope.heading_description = 'Select a language for activity.';
+			}else if($scope.step === 2){
+				$scope.heading = 'Step 2: Select an activity';
+				$scope.heading_description = 'Select an activity to generate XML for.';
+			}else if($scope.step === 3){
+				$scope.heading = 'Step 3: Provide name for activity';
+				$scope.heading_description = 'Provide name and description for activity.';
+			}else if($scope.step === 4){
+				$scope.heading = 'Step 4: Provide activity data';
+				$scope.heading_description = 'Provide metadata required for activity';
+			}
 		}
 	};
 
 	$scope.leapFrog = function(activity_name){
 		if(activity_name == 'leapFrog'){
-			$scope.step = 3;
-			$scope.changeText();
+			$scope.changeText(2,3);
 		}
 	};
 
@@ -135,11 +137,43 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 	$scope.removeFromMeta = function(){
 		$scope.metaData.pop();
 		$scope.editXML();
-	}
+	};
 
 	$scope.submit = function(){
 		alert('Success');
-	}
+	};
+
+	validate_forms = function(step_number){
+		switch(step_number){
+			case 1:
+				if (typeof($scope.language) === 'undefined' || $scope.language === ''){
+					$('#language_warning').show();
+					return false;
+				}else{
+					$('#language_warning').hide();
+				}
+				break;
+			case 3:
+				if (typeof($scope.activity_name) === 'undefined' || $scope.activity_name === ''){
+					$('#name_warning').show();
+					return false;
+				}else{
+					$('#name_warning').hide();
+				}
+
+				if (typeof($scope.description_name) === 'undefined' || $scope.description_name === ''){
+					$('#description_warning').show();
+					return false;
+				}else{
+					$('#description_warning').hide();
+				}
+				break;
+			case 4:
+				break;
+			default:
+		}
+		return true;
+	};
 };
 
 lz.controller('HomeCtrl', HomeCtrl);

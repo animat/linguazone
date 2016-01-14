@@ -20,8 +20,10 @@
 							ng-change="editXML();">
 					</select>
 					<br />
+					<label id="language_warning" style="color: red; font-size: 12px; margin-left: 80px; display: none;">Please select a language from activity</label>
 					<br />
-					<button class="customButton" ng-click="step=2; changeText();">Next</button>
+					<br />
+					<button class="customButton" ng-click="changeText(1,2);">Next</button>
 				</div>
 
 				<div ng-show="step==2">
@@ -32,18 +34,22 @@
 					</div>
 					<br />
 					<br />
-					<button class="customButton" ng-click="step=1; changeText();">Prevoius</button>
+					<button class="customButton" ng-click="changeText(2,1);">Prevoius</button>
 				</div>
 
 				<div ng-show="step==3">
 					<label>Name: </label> <input class="customTextbox" type="textfield" ng-change="editXML();" ng-model="activity_name">
 					<br />
+					<label id="name_warning" style="color: red; font-size: 12px; margin-left: 11px; display: none;">Please enter name of activity</label>
+					<br />
 					<br />
 					<label style="padding-left: 61px;">Description: </label> <input class="customTextbox" type="textfield" style="width: 300px;" ng-change="editXML();" ng-model="description_name">
 					<br />
+					<label id="description_warning" style="color: red; font-size: 12px; margin-left: 11px; display: none;">Please enter description for activity</label>
 					<br />
-					<button class="customButton" ng-click="step=2; changeText();">Prevoius</button>
-					<button class="customButton" ng-click="step=4; changeText();">Next</button>
+					<br />
+					<button class="customButton" ng-click="changeText(3,2);">Prevoius</button>
+					<button class="customButton" ng-click="changeText(3,4);">Next</button>
 				</div>
 
 				
@@ -59,7 +65,7 @@
 					<br />
 					<br />
 					<br />
-					<button class="customButton" style="width: 125px;" ng-click="step=3; changeText();">Prevoius</button>
+					<button class="customButton" style="width: 125px;" ng-click="changeText(4,3);">Prevoius</button>
 					<button class="customButton" style="width: 125px;" ng-click="submit()">Create</button>
 				</div>
 
