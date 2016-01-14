@@ -102,11 +102,11 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 			$scope.heading = 'Step 1: Select a language';
 			$scope.heading_description = 'Select a language for activity.';
 		}else if($scope.step === 2){
-			$scope.heading = 'Step 2: Provide name for activity';
-			$scope.heading_description = 'Provide name and description for activity.';
-		}else if($scope.step === 3){
-			$scope.heading = 'Step 3: Select an activity';
+			$scope.heading = 'Step 2: Select an activity';
 			$scope.heading_description = 'Select an activity to generate XML for.';
+		}else if($scope.step === 3){
+			$scope.heading = 'Step 3: Provide name for activity';
+			$scope.heading_description = 'Provide name and description for activity.';
 		}else if($scope.step === 4){
 			$scope.heading = 'Step 4: Provide activity data';
 			$scope.heading_description = 'Provide metadata required for activity';
@@ -115,7 +115,7 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 
 	$scope.leapFrog = function(activity_name){
 		if(activity_name == 'leapFrog'){
-			$scope.step = 4;
+			$scope.step = 3;
 			$scope.changeText();
 		}
 	};
