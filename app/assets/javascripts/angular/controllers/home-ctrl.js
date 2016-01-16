@@ -25,7 +25,7 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 			}
 		);
 
-        $scope.metaArray = [];
+        
 		var promise = HomeService.getActivities();
 		promise.then(
 			function (result) {
@@ -61,23 +61,22 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 
 		// Include Q/A to XML metadara
 		if ($scope.metaData[0].question !== '' && $scope.metaData[0].response !== ''){
-		     
+		    metaArray = [];
 			for (var i=0; i < $scope.metaData.length; i++){
-				if ($scope.metaData[i].question !== '' && $scope.metaData[i].question !== ''){
-					$scope.metaArray.push( {
-						question: {node: {
+				if ($scope.metaData[i].question !== '' && $scope.metaData[i].response !== ''){
+					metaArray.push({
+						node: {
+							question: {
 							_content: $scope.metaData[i].question, _name: getSpecificLanguage($scope.language).name, _type: 'text'},
 							response: {
 								_content: $scope.metaData[i].response, _name: 'lang', _type: 'text' 
 							}
-					}});
+						}
+					});
 				}
 			}
-
-			
-
-			// $scope.jsonObj["xml"]["gamedata"]["node"] = metaArray;
-			// convertToXML($scope.jsonObj);
+			$scope.jsonObj["xml"]["gamedata"] = metaArray;
+			convertToXML($scope.jsonObj);
 		}
 
 		if (typeof($scope.language) !== 'undefined' && $scope.language !== ''){
@@ -122,16 +121,9 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 		}
 	};
 
-	$scope.addToMeta = function(meta_to_add){
+	$scope.addToMeta = function(){
 		$scope.metaData.push({question: '', response: ''});
 		$scope.editXML();
-
-
-		$scope.jsonObj["xml"]["gamedata"] = $scope.metaArray;
-
-		convertToXML($scope.jsonObj);
-		console.dir($scope.jsonObj["xml"]["gamedata"])
-		console.log($scope.metaArray);
 	};
 
 	$scope.removeFromMeta = function(){
