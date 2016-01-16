@@ -133,8 +133,10 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 	};
 
 	$scope.removeFromMeta = function(){
-		$scope.metaData.pop();
-		$scope.editXML();
+		if($scope.metaData.length > 1){
+			$scope.metaData.pop();
+			$scope.editXML();
+		}
 	};
 
 	$scope.submit = function(){
