@@ -122,8 +122,14 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 	};
 
 	$scope.addToMeta = function(){
-		$scope.metaData.push({question: '', response: ''});
-		$scope.editXML();
+		var current_index = $scope.metaData.length -1;
+		if ($scope.metaData[current_index].question !== '' && $scope.metaData[current_index].response !== ''){
+			$('#QA_warning_'+current_index).hide();
+			$scope.editXML();
+			$scope.metaData.push({question: '', response: ''});
+		}else{
+			$('#QA_warning_'+current_index).show();
+		}
 	};
 
 	$scope.removeFromMeta = function(){

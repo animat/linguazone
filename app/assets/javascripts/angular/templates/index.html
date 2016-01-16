@@ -57,7 +57,10 @@
 				<div ng-show="step==4">
 					<div ng-repeat="meta in metaData">
 						<label>Question: </label> <input class="customTextbox" type="textfield" ng-model="meta.question">
-						<label>Answer: </label> <input class="customTextbox" type="textfield" ng-model="meta.response"><br /><br />
+						<label>Answer: </label> <input class="customTextbox" type="textfield" ng-model="meta.response">
+						<br />
+						<label id="QA_warning_{{$index}}" style="color: red; font-size: 12px; margin-left: 22px; display: none;">Please fill out both question/ answer for the activity</label>
+						<br /><br />
 					</div>
 					<br />
 					<button class="customButton" style="background-color: green; border-color: black;" ng-click="addToMeta()">Add Q/A</button>
