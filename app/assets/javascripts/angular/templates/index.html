@@ -10,51 +10,34 @@
 		<div id="container">
 			<div class="customOptions">
 				
-				<div ng-show="step==1">
+				<div ng-show="step=='language'">
 					<label>Select Language</label>
 					<br />
 					<br />
 					<select class="customDropdown" 
 							ng-model="language"
 							ng-options="language.id as language.name for language in languages"
-							ng-change="editXML();">
+							ng-change="editXML(); validate_forms('language');">
 					</select>
 					<br />
 					<label id="language_warning" style="color: red; font-size: 12px; margin-left: 80px; display: none;">Please select a language from activity</label>
 					<br />
 					<br />
-					<button class="customButton" ng-click="changeText(1,2);">Next</button>
+					<button class="customButton" ng-click="changeText('language',1);">Next</button>
 				</div>
 
-				<div ng-show="step==2">
+				<div ng-show="step==1">
 					<div ng-repeat="activity in activities" class="customText" style="width: 20%; float: left">
-						<a href="" ng-click="leapFrog(activity.swf)"><img type="image" ng-src="/assets/games/{{activity.swf}}/icon-small.jpg" alt="No Image"/></a>
+						<a href="" ng-click="leapFrog(activity)"><img type="image" ng-src="/assets/games/{{activity.swf}}/icon-small.jpg" alt="No Image"/></a>
 						<br />
 						<p>{{activity.name}}</p>
 					</div>
 					<br />
 					<br />
-					<button class="customButton" ng-click="changeText(2,1);">Prevoius</button>
+					<button class="customButton" ng-click="changeText(1,'language');">Prevoius</button>
 				</div>
 
-				<div ng-show="step==3">
-					<label>Name: </label> <input class="customTextbox" type="textfield" ng-change="editXML();" ng-model="activity_name">
-					<br />
-					<label id="name_warning" style="color: red; font-size: 12px; margin-left: 11px; display: none;">Please enter name of activity</label>
-					<br />
-					<br />
-					<label style="padding-left: 61px;">Description: </label> <input class="customTextbox" type="textfield" style="width: 300px;" ng-change="editXML();" ng-model="description_name">
-					<br />
-					<label id="description_warning" style="color: red; font-size: 12px; margin-left: 11px; display: none;">Please enter description for activity</label>
-					<br />
-					<br />
-					<button class="customButton" ng-click="changeText(3,2);">Prevoius</button>
-					<button class="customButton" ng-click="changeText(3,4);">Next</button>
-				</div>
-
-				
-
-				<div ng-show="step==4">
+				<div ng-show="step==2">
 					<div ng-repeat="meta in metaData">
 						<label>Question: </label> <input class="customTextbox" type="textfield" ng-model="meta.question">
 						<label>Answer: </label> <input class="customTextbox" type="textfield" ng-model="meta.response">
@@ -68,8 +51,18 @@
 					<br />
 					<br />
 					<br />
-					<button class="customButton" style="width: 125px;" ng-click="changeText(4,3);">Prevoius</button>
-					<button class="customButton" style="width: 125px;" ng-click="submit()">Create</button>
+					<button class="customButton" style="width: 125px;" ng-click="changeText(2,1);">Prevoius</button>
+					<button class="customButton" style="width: 125px;" ng-click="changeText(2,3);">Next</button>
+				</div>
+
+				<div ng-show="step==3">
+					<label style="padding-left: 61px;">Description: </label> <input class="customTextbox" type="textfield" style="width: 300px;" ng-change="editXML();" ng-model="description_name">
+					<br />
+					<label id="description_warning" style="color: red; font-size: 12px; margin-left: 11px; display: none;">Please describe your activity</label>
+					<br />
+					<br />
+					<button class="customButton" ng-click="changeText(3,2);">Prevoius</button>
+					<button class="customButton" ng-click="submit(validate_forms(3));">Submit</button>
 				</div>
 
 			</div>

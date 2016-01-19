@@ -7,9 +7,11 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 	};
 	
 	$scope.init = function(){
-		$scope.step = 1;
-		$scope.heading = 'Step 1: Select a language';
-		$scope.heading_description = 'Select a language for activity.';
+		$scope.activity_name = '';
+		$scope.activity_swf = '';
+		$scope.step = 'language';
+		$scope.heading = 'Select a language';
+		$scope.heading_description = 'Select a language for your activity.';
 		$scope.metaData = [{question: '', response: ''}];
 		$scope.jsonObj = 	{ 
      						xml: {}
@@ -38,18 +40,11 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 	};
 	$scope.init();
 
-	function camelize(str) {
-		return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
-			return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
-		}).replace(/\s+/g, '');
-	}
-
 	$scope.editXML = function(){
 
 		// Include name into XML
 		if (typeof($scope.activity_name) !== 'undefined' && $scope.activity_name !== ''){
-			var swfString = camelize($scope.activity_name).replace(/\s/g, '');
-			var formatString = {format : {_gamename : $scope.activity_name, _gameSWF: swfString}}; 
+			var formatString = {format : {_gamename : $scope.activity_name, _gameSWF: $scope.activity_swf}}; 
 			$scope.jsonObj["xml"] = formatString;
 			convertToXML($scope.jsonObj);
 		};
@@ -61,21 +56,22 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 
 		// Include Q/A to XML metadara
 		if ($scope.metaData[0].question !== '' && $scope.metaData[0].response !== ''){
-		    metaArray = [];
+			nodeArray = [];
 			for (var i=0; i < $scope.metaData.length; i++){
 				if ($scope.metaData[i].question !== '' && $scope.metaData[i].response !== ''){
-					metaArray.push({
-						node: {
+					nodeArray.push(
+						{
 							question: {
 							_content: $scope.metaData[i].question, _name: getSpecificLanguage($scope.language).name, _type: 'text'},
 							response: {
 								_content: $scope.metaData[i].response, _name: 'lang', _type: 'text' 
 							}
 						}
-					});
+					);
 				}
 			}
-			$scope.jsonObj["xml"]["gamedata"] = metaArray;
+			$scope.jsonObj["xml"]["gamedata"] = {};
+			$scope.jsonObj["xml"]["gamedata"]["node"] = nodeArray;
 			convertToXML($scope.jsonObj);
 		}
 
@@ -97,45 +93,56 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 	};
 
 	$scope.changeText = function(current_step, new_step_number){
-		if (validate_forms(current_step)){
+		if ($scope.validate_forms(current_step)){
 			$scope.step = new_step_number;
-			if ($scope.step === 1){
-				$scope.heading = 'Step 1: Select a language';
-				$scope.heading_description = 'Select a language for activity.';
+			if ($scope.step === 'language'){
+				$scope.heading = 'Select a language';
+				$scope.heading_description = 'Select a language for your activity';
+			}else if($scope.step === 1){
+				$scope.heading = 'Step 1: Select an activity';
+				$scope.heading_description = 'Select an activity to generate XML for';
 			}else if($scope.step === 2){
-				$scope.heading = 'Step 2: Select an activity';
-				$scope.heading_description = 'Select an activity to generate XML for.';
+				$scope.heading = 'Step 2: Provide activity data';
+				$scope.heading_description = 'Provide data for your activity';
 			}else if($scope.step === 3){
-				$scope.heading = 'Step 3: Provide name for activity';
-				$scope.heading_description = 'Provide name and description for activity.';
-			}else if($scope.step === 4){
-				$scope.heading = 'Step 4: Provide activity data';
-				$scope.heading_description = 'Provide metadata required for activity';
+				$scope.heading = 'Step 3: Describe your activity';
+				$scope.heading_description = 'Enter information about your activity';
 			}
 		}
 	};
 
 	$scope.leapFrog = function(activity_name){
-		if(activity_name == 'leapFrog'){
-			$scope.changeText(2,3);
+		if(activity_name.swf == 'leapFrog'){
+			$scope.activity_name = activity_name.name;
+			$scope.activity_swf = activity_name.swf;
+			$scope.editXML();
+			$scope.changeText(1,2);
 		}
 	};
 
+	validateGameData = function(){
+		for(var i=0; i < $scope.metaData.length; i++){
+			if ($scope.metaData[i].question !== '' && $scope.metaData[i].response !== ''){
+				$('#QA_warning_'+i).hide();
+			}else{
+				$('#QA_warning_'+i).show();
+				return false;
+			}
+		}
+		return true;
+	}
+
 	$scope.addToMeta = function(){
-		var current_index = $scope.metaData.length -1;
-		if ($scope.metaData[current_index].question !== '' && $scope.metaData[current_index].response !== ''){
-			$('#QA_warning_'+current_index).hide();
+		if (validateGameData()){
 			$scope.editXML();
 			$scope.metaData.push({question: '', response: ''});
-		}else{
-			$('#QA_warning_'+current_index).show();
 		}
 	};
 
 	$scope.removeFromMeta = function(){
-		if($scope.metaData.length > 1){
-			$scope.metaData.pop();
+		if($scope.metaData.length > 1 && validateGameData()){
 			$scope.editXML();
+			$scope.metaData.pop();
 		}
 	};
 
@@ -143,9 +150,9 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 		alert('Success');
 	};
 
-	validate_forms = function(step_number){
+	$scope.validate_forms = function(step_number){
 		switch(step_number){
-			case 1:
+			case 'language':
 				if (typeof($scope.language) === 'undefined' || $scope.language === ''){
 					$('#language_warning').show();
 					return false;
@@ -153,22 +160,18 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 					$('#language_warning').hide();
 				}
 				break;
-			case 3:
-				if (typeof($scope.activity_name) === 'undefined' || $scope.activity_name === ''){
-					$('#name_warning').show();
+			case 2:
+				if (!validateGameData()){
 					return false;
-				}else{
-					$('#name_warning').hide();
 				}
-
+				break;
+			case 3:
 				if (typeof($scope.description_name) === 'undefined' || $scope.description_name === ''){
 					$('#description_warning').show();
 					return false;
 				}else{
 					$('#description_warning').hide();
 				}
-				break;
-			case 4:
 				break;
 			default:
 		}
