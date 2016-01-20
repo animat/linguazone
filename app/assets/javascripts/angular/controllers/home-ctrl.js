@@ -155,20 +155,22 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 				}else{
 					$('#language_warning').hide();
 				}
-				break;
+			break;
 			case 2:
-				if (!validateGameData()){
-					return false;
+				for (var i=0; i < $scope.metaData.length; i++){
+					if (!validateGameData(i)){
+						return false;
+					}
 				}
-				break;
-			case 3:
+			break;
+				case 3:
 				if (typeof($scope.description_name) === 'undefined' || $scope.description_name === ''){
 					$('#description_warning').show();
 					return false;
 				}else{
 					$('#description_warning').hide();
 				}
-				break;
+			break;
 			default:
 		}
 		return true;
