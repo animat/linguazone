@@ -120,30 +120,29 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 		}
 	};
 
-	validateGameData = function(){
-		for(var i=0; i < $scope.metaData.length; i++){
-			if ($scope.metaData[i].question !== '' && $scope.metaData[i].response !== ''){
-				$('#QA_warning_'+i).hide();
-			}else{
-				$('#QA_warning_'+i).show();
-				return false;
-			}
+	validateGameData = function(index){
+		if ($scope.metaData[index].question !== '' && $scope.metaData[index].response !== ''){
+			$('#QA_warning_'+index).hide();
+		}else{
+			$('#QA_warning_'+index).show();
+			return false;
 		}
 		return true;
 	}
 
-	$scope.addToMeta = function(){
-		if (validateGameData()){
+	$scope.addToMeta = function(index){
+		if (validateGameData(index)){
 			$scope.editXML();
-			$scope.metaData.push({question: '', response: ''});
+			$scope.metaData.splice(index+1, 0, {question: '', response: ''});
 		}
 	};
 
-	$scope.removeFromMeta = function(){
-		if($scope.metaData.length > 1 && validateGameData()){
-			$scope.editXML();
-			$scope.metaData.pop();
-		}
+	$scope.removeFromMeta = function(index){
+		$scope.metaData.splice(index,1);
+		// if($scope.metaData.length > 1 && validateGameData()){
+		// 	$scope.editXML();
+		// 	$scope.metaData.pop();
+		// }
 	};
 
 	$scope.submit = function(){

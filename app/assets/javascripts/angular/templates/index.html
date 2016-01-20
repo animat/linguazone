@@ -39,17 +39,16 @@
 
 				<div ng-show="step==2">
 					<div ng-repeat="meta in metaData">
-						<label>Question: </label> <input class="customTextbox" type="textfield" ng-model="meta.question">
-						<label>Answer: </label> <input class="customTextbox" type="textfield" ng-model="meta.response">
+						<label>Question: </label> <input class="customTextbox" type="textfield" ng-model="meta.question"> 
+						<label style="margin-left: 20px;">Answer: </label> <input class="customTextbox" type="textfield" ng-model="meta.response">
+						<div style="float: right; margin-top: -2px; margin-right: 25px;">
+							<a title="Add another question from here" href="" ng-click="addToMeta($index)"><img src="/assets/add.png"></a>
+							<a title="Remove this question" href="" ng-click="removeFromMeta($index)"><img src="/assets/remove.png"></a>
+						</div>
 						<br />
 						<label id="QA_warning_{{$index}}" style="color: red; font-size: 12px; margin-left: 22px; display: none;">Please fill out both question/ answer for the activity</label>
 						<br /><br />
 					</div>
-					<br />
-					<button class="customButton" style="background-color: green; border-color: black;" ng-click="addToMeta()">Add Q/A</button>
-					<button class="customButton" style="background-color: red; border-color: black;" ng-click="removeFromMeta()">Remove Q/A</button>
-					<br />
-					<br />
 					<br />
 					<button class="customButton" style="width: 125px;" ng-click="changeText(2,1);">Prevoius</button>
 					<button class="customButton" style="width: 125px;" ng-click="changeText(2,3);">Next</button>
