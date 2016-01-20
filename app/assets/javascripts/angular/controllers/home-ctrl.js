@@ -139,10 +139,7 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 
 	$scope.removeFromMeta = function(index){
 		$scope.metaData.splice(index,1);
-		// if($scope.metaData.length > 1 && validateGameData()){
-		// 	$scope.editXML();
-		// 	$scope.metaData.pop();
-		// }
+		$scope.editXML();
 	};
 
 	$scope.submit = function(){
