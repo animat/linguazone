@@ -135,11 +135,13 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 		if (validateGameData(index)){
 			$scope.editXML();
 			$scope.metaData.splice(index+1, 0, {question: '', response: ''});
+			$scope.nodeArray.splice(index+1, 0, '');
 		}
 	};
 
 	$scope.removeFromMeta = function(index){
 		$scope.metaData.splice(index,1);
+		$scope.nodeArray.splice(index,1);
 		$scope.editXML();
 	};
 
@@ -152,7 +154,7 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 					_content: $scope.metaData[index].response, _name: 'lang', _type: 'text' 
 				}
 		}
-		$scope.nodeArray[index] = nodeAtIndex;	
+		$scope.nodeArray[index] = nodeAtIndex;
 		$scope.jsonObj["xml"]["gamedata"] = {};
 		$scope.jsonObj["xml"]["gamedata"]["node"] = $scope.nodeArray;
 		convertToXML($scope.jsonObj);
