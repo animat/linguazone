@@ -39,8 +39,8 @@
 
 				<div ng-show="step==2">
 					<div ng-repeat="meta in metaData">
-						<label>Question: </label> <input class="customTextbox" type="textfield" ng-model="meta.question"> 
-						<label style="margin-left: 20px;">Answer: </label> <input class="customTextbox" type="textfield" ng-model="meta.response">
+						<label>Question: </label> <input class="customTextbox" type="textfield" ng-model="meta.question" ng-change="addMetaOnType($index)"> 
+						<label style="margin-left: 20px;">Answer: </label> <input class="customTextbox" type="textfield" ng-model="meta.response" ng-change="addMetaOnType($index)">
 						<div style="float: right; margin-top: -2px; margin-right: 25px;">
 							<a title="Add another question from here" href="" ng-click="addToMeta($index)"><img src="/assets/add.png"></a>
 							<a title="Remove this question" href="" ng-click="removeFromMeta($index)"><img src="/assets/remove.png"></a>

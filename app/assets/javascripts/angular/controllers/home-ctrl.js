@@ -16,6 +16,7 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 		$scope.jsonObj = 	{ 
      						xml: {}
 						};
+		$scope.nodeArray = [];
 		convertToXML($scope.jsonObj);
 		var promise = HomeService.getLanguages();
 		promise.then(
@@ -56,10 +57,10 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 
 		// Include Q/A to XML metadara
 		if ($scope.metaData[0].question !== '' && $scope.metaData[0].response !== ''){
-			nodeArray = [];
+			$scope.nodeArray = [];
 			for (var i=0; i < $scope.metaData.length; i++){
 				if ($scope.metaData[i].question !== '' && $scope.metaData[i].response !== ''){
-					nodeArray.push(
+					$scope.nodeArray.push(
 						{
 							question: {
 							_content: $scope.metaData[i].question, _name: getSpecificLanguage($scope.language).name, _type: 'text'},
@@ -71,7 +72,7 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 				}
 			}
 			$scope.jsonObj["xml"]["gamedata"] = {};
-			$scope.jsonObj["xml"]["gamedata"]["node"] = nodeArray;
+			$scope.jsonObj["xml"]["gamedata"]["node"] = $scope.nodeArray;
 			convertToXML($scope.jsonObj);
 		}
 
@@ -140,6 +141,21 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 	$scope.removeFromMeta = function(index){
 		$scope.metaData.splice(index,1);
 		$scope.editXML();
+	};
+
+	$scope.addMetaOnType = function(index){
+		var nodeAtIndex = '';
+		nodeAtIndex = {
+			question: {
+				_content: $scope.metaData[index].question, _name: getSpecificLanguage($scope.language).name, _type: 'text'},
+				response: {
+					_content: $scope.metaData[index].response, _name: 'lang', _type: 'text' 
+				}
+		}
+		$scope.nodeArray[index] = nodeAtIndex;	
+		$scope.jsonObj["xml"]["gamedata"] = {};
+		$scope.jsonObj["xml"]["gamedata"]["node"] = $scope.nodeArray;
+		convertToXML($scope.jsonObj);
 	};
 
 	$scope.submit = function(){
