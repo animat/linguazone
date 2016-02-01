@@ -161,7 +161,15 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 	};
 
 	$scope.submit = function(){
-		alert('Success');
+		var promise = HomeService.submitXML($scope.xmlString, $scope.jsonObj);
+		promise.then(
+			function(result){
+				alert('Success');
+			},
+			function(reason){
+				alert('Failure');
+			}
+		);
 	};
 
 	$scope.validate_forms = function(step_number){

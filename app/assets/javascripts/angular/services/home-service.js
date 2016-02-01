@@ -25,6 +25,23 @@ lz.factory("HomeService", function ($http, $q) {
                 defer.reject(data);
             });
             return defer.promise;
+        },
+        submitXML: function(xmlString, jsonObject){
+            var url = "/api/v1/games";
+            var defer = $q.defer();
+            $http({
+                method: 'POST',
+                url: url,
+                data: {
+                    xml: xmlString,
+                    json: jsonObject
+                }
+            }).success(function (data, status, header, config) {
+                defer.resolve(data);
+            }).error(function (data, status, header, config) {
+                defer.reject(data);
+            }); 
+            return defer.promise;
         }
     };
 });
