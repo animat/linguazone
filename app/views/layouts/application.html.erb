@@ -48,7 +48,27 @@
       <% end %>
     </div>
   </div>
-  <div ui-view=""></div>
+  <!-- <div ui-view=""></div> -->
+
+  <div id="body">
+    <div id="body_header"></div>
+    <div class="wrapper">
+      <% unless flash[:notice].nil? %>
+        <p class="flash_notice flash_msg"><%= flash[:notice]%></p>
+      <% end %>
+    <% unless flash[:success].nil? %>
+      <p class="flash_success flash_msg"><%= flash[:success]%></p>
+    <% end %>
+    <% unless flash[:info].nil? %>
+        <p class="flash_info flash_msg"><%= flash[:info]%></p>
+      <% end %>
+      <% unless flash[:error].nil? %>
+        <p class="flash_error flash_msg"><%= flash[:error] %></p>
+      <% end %>
+      <%= yield %>
+    </div>
+    <div id="body_footer"></div>
+  </div>
   
   <div id="footer">
     <div id="animat_links">
