@@ -1,4 +1,4 @@
-lz.factory("HomeService", function ($http, $q) {
+lz.factory("GameService", function ($http, $q) {
     return {
         getLanguages: function () {
             var url = "/api/v3/about/get_languages";

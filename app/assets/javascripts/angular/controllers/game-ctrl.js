@@ -1,4 +1,4 @@
-function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
+function GameCtrl ($scope, $state, GameService, x2js, $filter) {
 
 	convertToXML = function(jsonObject){
 		var x2js = new X2JS();
@@ -18,7 +18,7 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 						};
 		$scope.nodeArray = [];
 		convertToXML($scope.jsonObj);
-		var promise = HomeService.getLanguages();
+		var promise = GameService.getLanguages();
 		promise.then(
 			function (result) {
 				$scope.languages = result;
@@ -29,7 +29,7 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 		);
 
         
-		var promise = HomeService.getActivities();
+		var promise = GameService.getActivities();
 		promise.then(
 			function (result) {
 				$scope.activities = result;
@@ -161,7 +161,7 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 	};
 
 	$scope.submit = function(){
-		var promise = HomeService.submitXML($scope.xmlString, $scope.jsonObj);
+		var promise = GameService.submitXML($scope.xmlString, $scope.jsonObj);
 		promise.then(
 			function(result){
 				alert('Success');
@@ -203,9 +203,9 @@ function HomeCtrl ($scope, $state, HomeService, x2js, $filter) {
 	};
 };
 
-lz.controller('HomeCtrl', HomeCtrl);
-HomeCtrl.$inject = ['$scope'
+lz.controller('GameCtrl', GameCtrl);
+GameCtrl.$inject = ['$scope'
 				, '$state'
-				, 'HomeService'
+				, 'GameService'
 				, 'x2js'
 				, '$filter'];

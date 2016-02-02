@@ -57,7 +57,7 @@ class Api::V1::GamesController < ApplicationController
       classes_array = active_classes_string.split("_").map {|n| n.to_i}
       @ags = AvailableGame.all(:conditions => ["game_id = ? AND user_id = ? AND course_id != ?", game_id, user_id, 0])
       @ag_course_ids = @ags.map { |ag| ag.course_id.to_i }
-      
+
       # Destroy any old AGs that should no longer be available
       @ags.each do |ag|
         unless classes_array.include?(ag.course_id)

@@ -1,8 +1,14 @@
 lz.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 	$urlRouterProvider.otherwise('/index');
-    $stateProvider.state('index', {
+    $stateProvider
+    	.state('index', {
     			url: '/index',
     			templateUrl: '/assets/index.html',
-    			controller: 'HomeCtrl'
-    		});
+    		})
+    	.state('add-game', {
+    		url: '/add-game',
+    		templateUrl: '/assets/add-game.html',
+    		controller: 'GameCtrl'
+    	})
+    ;
 });

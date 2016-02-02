@@ -1,0 +1,78 @@
+<div id="body">
+	<div id="body_header"></div>
+	<div class="wrapper">
+
+		<h1 align="center">{{heading}}</h1>
+		<p align="center">
+			{{heading_description}}
+		</p>
+		<br />
+		<div id="container">
+			<div class="customOptions">
+				
+				<div ng-show="step=='language'">
+					<label>Select Language</label>
+					<br />
+					<br />
+					<select class="customDropdown" 
+							ng-model="language"
+							ng-options="language.id as language.name for language in languages"
+							ng-change="editXML(); validate_forms('language');">
+					</select>
+					<br />
+					<label id="language_warning" style="color: red; font-size: 12px; margin-left: 80px; display: none;">Please select a language from activity</label>
+					<br />
+					<br />
+					<button class="customButton" ng-click="changeText('language',1);">Next</button>
+				</div>
+
+				<div ng-show="step==1">
+					<div ng-repeat="activity in activities" class="customText" style="width: 20%; float: left">
+						<a href="" ng-click="leapFrog(activity)"><img type="image" ng-src="/assets/games/{{activity.swf}}/icon-small.jpg" alt="No Image"/></a>
+						<br />
+						<p>{{activity.name}}</p>
+					</div>
+					<br />
+					<br />
+					<button class="customButton" ng-click="changeText(1,'language');">Prevoius</button>
+				</div>
+
+				<div ng-show="step==2">
+					<div ng-repeat="meta in metaData">
+						<label>Question: </label> <input class="customTextbox" type="textfield" ng-model="meta.question" ng-change="addMetaOnType($index)"> 
+						<label style="margin-left: 20px;">Answer: </label> <input class="customTextbox" type="textfield" ng-model="meta.response" ng-change="addMetaOnType($index)">
+						<div style="float: right; margin-top: -2px; margin-right: 25px;">
+							<a title="Add another question from here" href="" ng-click="addToMeta($index)"><img src="/assets/add.png"></a>
+							<a title="Remove this question" href="" ng-click="removeFromMeta($index)"><img src="/assets/remove.png"></a>
+						</div>
+						<br />
+						<label id="QA_warning_{{$index}}" style="color: red; font-size: 12px; margin-left: 22px; display: none;">Please fill out both question/ answer for the activity</label>
+						<br /><br />
+					</div>
+					<br />
+					<button class="customButton" style="width: 125px;" ng-click="changeText(2,1);">Prevoius</button>
+					<button class="customButton" style="width: 125px;" ng-click="changeText(2,3);">Next</button>
+				</div>
+
+				<div ng-show="step==3">
+					<label style="padding-left: 61px;">Description: </label> <input class="customTextbox" type="textfield" style="width: 300px;" ng-change="editXML();" ng-model="description_name">
+					<br />
+					<label id="description_warning" style="color: red; font-size: 12px; margin-left: 11px; display: none;">Please describe your activity</label>
+					<br />
+					<br />
+					<button class="customButton" ng-click="changeText(3,2);">Prevoius</button>
+					<button class="customButton" ng-click="submit(validate_forms(3));">Submit</button>
+				</div>
+
+			</div>
+			
+			<div class="customOptions">
+				<textarea rows="20" cols="43" disabled="">
+					{{xmlString}}
+				</textarea>
+				
+			</div>
+		</div>
+	</div>
+	<div id="body_footer"></div>
+</div>

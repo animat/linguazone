@@ -503,3 +503,7 @@ ul#teacherMenu li {
   box-shadow: 0px 0px 8px #888889;
   font-size: 18px;
 }
+
+.customLink {
+  text-decoration: none;
+}
