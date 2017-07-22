@@ -1,4 +1,4 @@
-#Encoding: UTF-8
+# encoding: UTF-8
 class StudyController < ApplicationController
   before_filter :load_word_list
   
@@ -15,8 +15,10 @@ class StudyController < ApplicationController
       @sh.save
       record_feed_item(@al.course.id, @sh)
     end
-    doc = REXML::Document.new(@list.xml)
-    @nodes = REXML::XPath.match(doc, "/gamedata/node")
+    str = @list.xml
+    doc = REXML::Document.new(str)
+    #@nodes = REXML::XPath.match(doc, "/gamedata/node")
+    @nodes = []
   end
 
   def print

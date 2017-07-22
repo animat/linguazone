@@ -2,9 +2,9 @@ source 'http://rubygems.org'
 
 ruby "1.9.3"
 
+gem 'rails', '~> 3.2.11'
 gem 'rdoc'
 gem 'rails3-jquery-autocomplete', "~> 1.0.10"
-gem 'rails', '~> 3.2.11'
 gem "aws-sdk"
 gem "authlogic", "3.2.0"
 gem 'bcrypt-ruby', "3.0.1"
