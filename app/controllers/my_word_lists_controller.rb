@@ -1,5 +1,4 @@
 class MyWordListsController < CourseItemsController
-  before_filter :check_expired
   
   def index
     @search = AvailableWordList.search(params[:search])

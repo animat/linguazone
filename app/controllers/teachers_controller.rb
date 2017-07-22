@@ -1,6 +1,5 @@
 class TeachersController < ApplicationController
   filter_access_to :index, :update, :destroy
-  before_filter :check_expired, :except => [:login, :new, :create]
 
   def getting_started
     session[:teacher] = nil

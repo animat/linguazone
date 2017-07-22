@@ -1,5 +1,4 @@
 class MyGamesController < CourseItemsController
-  before_filter :check_expired
   
   def index
     @search = AvailableGame.search(params[:search])

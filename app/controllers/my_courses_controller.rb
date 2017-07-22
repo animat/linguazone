@@ -1,5 +1,4 @@
 class MyCoursesController < ApplicationController
-  before_filter :check_expired
 
   def index
     @courses = Course.all(:conditions => ["user_id = ?", current_user.id], :order => "name asc", :include => :course_registrations)

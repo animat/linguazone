@@ -14,7 +14,9 @@ class ContactMailer < ActionMailer::Base
     @city = email_params[:city]
     @state = email_params[:state]
     @main_msg = email_params[:body]
-    mail :to => "info@linguazone.com", :subject => "LinguaZone contact form", :from => @address, :reply_to => @address
+    if @main_msg != ""
+      mail :to => "info@linguazone.com", :subject => "LinguaZone contact form", :from => @address, :reply_to => @address
+    end
   end
   
   def report_bug(params)
@@ -26,7 +28,7 @@ class ContactMailer < ActionMailer::Base
     end
     @main_msg = params[:body]
     @game_id = params[:game_id]
-    mail :to => "info@linguazone.com", :subject => "LinguaZone bug report", :reply_to => @reply_address
+    #mail :to => "info@linguazone.com", :subject => "LinguaZone bug report", :reply_to => @reply_address
   end
   
   def updated_media_notify_artist(email_addr, id, descrip, assigned_to, notes)
@@ -42,7 +44,7 @@ class ContactMailer < ActionMailer::Base
     @notes = notes
     @assigned_to = params[:assigned_to]
     @id = id
-    mail :to => "info@linguazone.com, magistraroberts@gmail.com", :subject => "[LZ] New clip art uploaded: #{@descrip}"
+    #mail :to => "info@linguazone.com, magistraroberts@gmail.com", :subject => "[LZ] New clip art uploaded: #{@descrip}"
     content_type  "text/html"
   end
 
